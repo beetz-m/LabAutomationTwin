@@ -1,0 +1,3117 @@
+{
+  "run": {
+    "scene": "scenes/cell01_twin.usda (layout P1)",
+    "physics_hz": 240,
+    "place_mode": "compliant",
+    "initial_state": {
+      "L10_inventory": {
+        "2": "Plate_P17",
+        "5": "Plate_P18"
+      },
+      "L10_slots_occupied": [
+        2,
+        5
+      ],
+      "L10_environment": {
+        "T": 36.998,
+        "CO2": 4.999,
+        "RH": 89.994
+      },
+      "L09": "READY",
+      "H4": "READY"
+    },
+    "plates": {
+      "P17": {
+        "barcode": "Plate_P17",
+        "slot": 2,
+        "inventory": "Plate_P17"
+      },
+      "P23": {
+        "barcode": "Plate_P23",
+        "slot": 5,
+        "inventory": "Plate_P18"
+      }
+    },
+    "wall_time_s": 340.9,
+    "L10_environment_series_1Hz": [
+      [
+        0.0,
+        37.0,
+        5.0,
+        90.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        36.998,
+        4.999,
+        89.99,
+        0.0,
+        0.0
+      ],
+      [
+        2.0,
+        36.996,
+        4.997,
+        89.99,
+        0.0,
+        0.0
+      ],
+      [
+        3.0,
+        36.994,
+        4.996,
+        89.98,
+        0.0,
+        0.0
+      ],
+      [
+        4.0,
+        36.992,
+        4.995,
+        89.98,
+        0.0,
+        0.0
+      ],
+      [
+        5.0,
+        36.99,
+        4.993,
+        89.97,
+        0.0,
+        0.0
+      ],
+      [
+        6.0,
+        36.988,
+        4.992,
+        89.96,
+        0.0,
+        0.0
+      ],
+      [
+        7.0,
+        36.986,
+        4.991,
+        89.96,
+        0.0,
+        0.0
+      ],
+      [
+        8.0,
+        36.984,
+        4.989,
+        89.95,
+        0.0,
+        0.0
+      ],
+      [
+        9.0,
+        36.982,
+        4.988,
+        89.94,
+        0.0,
+        0.0
+      ],
+      [
+        10.0,
+        36.98,
+        4.987,
+        89.94,
+        0.0,
+        0.0
+      ],
+      [
+        11.0,
+        36.978,
+        4.986,
+        89.93,
+        0.0,
+        0.0
+      ],
+      [
+        12.0,
+        36.976,
+        4.984,
+        89.93,
+        0.0,
+        0.0
+      ],
+      [
+        13.0,
+        36.974,
+        4.983,
+        89.92,
+        0.0,
+        0.0
+      ],
+      [
+        14.0,
+        36.972,
+        4.982,
+        89.91,
+        0.0,
+        0.0
+      ],
+      [
+        15.0,
+        36.969,
+        4.979,
+        89.9,
+        0.6,
+        0.0
+      ],
+      [
+        16.0,
+        36.955,
+        4.97,
+        89.87,
+        1.0,
+        0.0
+      ],
+      [
+        17.0,
+        36.941,
+        4.961,
+        89.83,
+        1.0,
+        0.0
+      ],
+      [
+        18.0,
+        36.927,
+        4.952,
+        89.8,
+        1.0,
+        0.0
+      ],
+      [
+        19.0,
+        36.913,
+        4.943,
+        89.76,
+        1.0,
+        0.0
+      ],
+      [
+        20.0,
+        36.9,
+        4.934,
+        89.73,
+        1.0,
+        0.0
+      ],
+      [
+        21.0,
+        36.886,
+        4.925,
+        89.69,
+        1.0,
+        0.0
+      ],
+      [
+        22.0,
+        36.873,
+        4.916,
+        89.66,
+        1.0,
+        0.0
+      ],
+      [
+        23.0,
+        36.859,
+        4.907,
+        89.62,
+        1.0,
+        0.0
+      ],
+      [
+        24.0,
+        36.846,
+        4.899,
+        89.58,
+        1.0,
+        0.0
+      ],
+      [
+        25.0,
+        36.833,
+        4.89,
+        89.55,
+        1.0,
+        0.0
+      ],
+      [
+        26.0,
+        36.82,
+        4.882,
+        89.51,
+        1.0,
+        0.0
+      ],
+      [
+        27.0,
+        36.807,
+        4.873,
+        89.48,
+        1.0,
+        0.0
+      ],
+      [
+        28.0,
+        36.795,
+        4.865,
+        89.44,
+        1.0,
+        0.0
+      ],
+      [
+        29.0,
+        36.782,
+        4.857,
+        89.41,
+        1.0,
+        0.0
+      ],
+      [
+        30.0,
+        36.769,
+        4.849,
+        89.37,
+        1.0,
+        0.0
+      ],
+      [
+        31.0,
+        36.757,
+        4.841,
+        89.34,
+        1.0,
+        0.0
+      ],
+      [
+        32.0,
+        36.745,
+        4.833,
+        89.31,
+        1.0,
+        0.0
+      ],
+      [
+        33.0,
+        36.733,
+        4.825,
+        89.27,
+        1.0,
+        0.0
+      ],
+      [
+        34.0,
+        36.721,
+        4.817,
+        89.24,
+        0.71,
+        0.0
+      ],
+      [
+        35.0,
+        36.719,
+        4.816,
+        89.23,
+        0.0,
+        0.0
+      ],
+      [
+        36.0,
+        36.719,
+        4.816,
+        89.22,
+        0.0,
+        0.0
+      ],
+      [
+        37.0,
+        36.719,
+        4.816,
+        89.22,
+        0.0,
+        0.0
+      ],
+      [
+        38.0,
+        36.72,
+        4.816,
+        89.21,
+        0.0,
+        0.0
+      ],
+      [
+        39.0,
+        36.72,
+        4.817,
+        89.21,
+        0.0,
+        0.0
+      ],
+      [
+        40.0,
+        36.72,
+        4.817,
+        89.2,
+        0.0,
+        0.0
+      ],
+      [
+        41.0,
+        36.72,
+        4.817,
+        89.2,
+        0.0,
+        0.0
+      ],
+      [
+        42.0,
+        36.721,
+        4.817,
+        89.19,
+        0.0,
+        0.0
+      ],
+      [
+        43.0,
+        36.721,
+        4.817,
+        89.19,
+        0.0,
+        0.0
+      ],
+      [
+        44.0,
+        36.721,
+        4.818,
+        89.18,
+        0.0,
+        0.0
+      ],
+      [
+        45.0,
+        36.722,
+        4.818,
+        89.18,
+        0.0,
+        0.0
+      ],
+      [
+        46.0,
+        36.722,
+        4.818,
+        89.17,
+        0.0,
+        0.0
+      ],
+      [
+        47.0,
+        36.722,
+        4.818,
+        89.17,
+        0.0,
+        0.0
+      ],
+      [
+        48.0,
+        36.722,
+        4.818,
+        89.16,
+        0.0,
+        0.0
+      ],
+      [
+        49.0,
+        36.723,
+        4.819,
+        89.16,
+        0.0,
+        0.0
+      ],
+      [
+        50.0,
+        36.723,
+        4.819,
+        89.15,
+        0.0,
+        0.0
+      ],
+      [
+        51.0,
+        36.723,
+        4.819,
+        89.15,
+        0.0,
+        0.0
+      ],
+      [
+        52.0,
+        36.723,
+        4.819,
+        89.15,
+        0.0,
+        0.0
+      ],
+      [
+        53.0,
+        36.724,
+        4.819,
+        89.14,
+        0.0,
+        0.0
+      ],
+      [
+        54.0,
+        36.724,
+        4.819,
+        89.14,
+        0.0,
+        0.0
+      ],
+      [
+        55.0,
+        36.724,
+        4.82,
+        89.13,
+        0.0,
+        0.0
+      ],
+      [
+        56.0,
+        36.725,
+        4.82,
+        89.13,
+        0.0,
+        0.0
+      ],
+      [
+        57.0,
+        36.725,
+        4.82,
+        89.12,
+        0.0,
+        0.0
+      ],
+      [
+        58.0,
+        36.725,
+        4.82,
+        89.12,
+        0.0,
+        0.0
+      ],
+      [
+        59.0,
+        36.725,
+        4.82,
+        89.11,
+        0.0,
+        0.0
+      ],
+      [
+        60.0,
+        36.725,
+        4.821,
+        89.11,
+        0.0,
+        0.0
+      ],
+      [
+        61.0,
+        36.726,
+        4.821,
+        89.1,
+        0.0,
+        0.0
+      ],
+      [
+        62.0,
+        36.726,
+        4.821,
+        89.1,
+        0.0,
+        0.0
+      ],
+      [
+        63.0,
+        36.726,
+        4.821,
+        89.09,
+        0.0,
+        0.0
+      ],
+      [
+        64.0,
+        36.726,
+        4.821,
+        89.09,
+        0.0,
+        0.0
+      ],
+      [
+        65.0,
+        36.727,
+        4.821,
+        89.08,
+        0.0,
+        0.0
+      ],
+      [
+        66.0,
+        36.727,
+        4.822,
+        89.08,
+        0.0,
+        0.0
+      ],
+      [
+        67.0,
+        36.727,
+        4.822,
+        89.08,
+        0.0,
+        0.0
+      ],
+      [
+        68.0,
+        36.727,
+        4.822,
+        89.07,
+        0.0,
+        0.0
+      ],
+      [
+        69.0,
+        36.728,
+        4.822,
+        89.07,
+        0.0,
+        0.0
+      ],
+      [
+        70.0,
+        36.728,
+        4.822,
+        89.06,
+        0.0,
+        0.0
+      ],
+      [
+        71.0,
+        36.728,
+        4.822,
+        89.06,
+        0.0,
+        0.0
+      ],
+      [
+        72.0,
+        36.728,
+        4.822,
+        89.05,
+        0.0,
+        0.0
+      ],
+      [
+        73.0,
+        36.728,
+        4.823,
+        89.05,
+        0.0,
+        0.0
+      ],
+      [
+        74.0,
+        36.729,
+        4.823,
+        89.04,
+        0.0,
+        0.0
+      ],
+      [
+        75.0,
+        36.729,
+        4.823,
+        89.04,
+        0.0,
+        0.0
+      ],
+      [
+        76.0,
+        36.729,
+        4.823,
+        89.03,
+        0.0,
+        0.0
+      ],
+      [
+        77.0,
+        36.729,
+        4.823,
+        89.03,
+        0.0,
+        0.0
+      ],
+      [
+        78.0,
+        36.73,
+        4.823,
+        89.03,
+        0.0,
+        0.0
+      ],
+      [
+        79.0,
+        36.73,
+        4.823,
+        89.02,
+        0.0,
+        0.0
+      ],
+      [
+        80.0,
+        36.73,
+        4.824,
+        89.02,
+        0.0,
+        0.0
+      ],
+      [
+        81.0,
+        36.73,
+        4.824,
+        89.01,
+        0.0,
+        0.0
+      ],
+      [
+        82.0,
+        36.73,
+        4.824,
+        89.01,
+        0.0,
+        0.0
+      ],
+      [
+        83.0,
+        36.727,
+        4.822,
+        88.99,
+        0.8,
+        0.0
+      ],
+      [
+        84.0,
+        36.715,
+        4.814,
+        88.96,
+        1.0,
+        0.0
+      ],
+      [
+        85.0,
+        36.703,
+        4.806,
+        88.93,
+        1.0,
+        0.0
+      ],
+      [
+        86.0,
+        36.692,
+        4.799,
+        88.89,
+        1.0,
+        0.0
+      ],
+      [
+        87.0,
+        36.68,
+        4.791,
+        88.86,
+        1.0,
+        0.0
+      ],
+      [
+        88.0,
+        36.668,
+        4.784,
+        88.83,
+        1.0,
+        0.0
+      ],
+      [
+        89.0,
+        36.657,
+        4.776,
+        88.79,
+        1.0,
+        0.0
+      ],
+      [
+        90.0,
+        36.646,
+        4.769,
+        88.76,
+        1.0,
+        0.0
+      ],
+      [
+        91.0,
+        36.634,
+        4.762,
+        88.73,
+        1.0,
+        0.0
+      ],
+      [
+        92.0,
+        36.623,
+        4.755,
+        88.69,
+        1.0,
+        0.0
+      ],
+      [
+        93.0,
+        36.612,
+        4.748,
+        88.66,
+        1.0,
+        0.0
+      ],
+      [
+        94.0,
+        36.601,
+        4.741,
+        88.63,
+        1.0,
+        0.0
+      ],
+      [
+        95.0,
+        36.591,
+        4.734,
+        88.6,
+        1.0,
+        0.0
+      ],
+      [
+        96.0,
+        36.58,
+        4.727,
+        88.56,
+        1.0,
+        0.0
+      ],
+      [
+        97.0,
+        36.569,
+        4.72,
+        88.53,
+        1.0,
+        0.0
+      ],
+      [
+        98.0,
+        36.559,
+        4.713,
+        88.5,
+        1.0,
+        0.0
+      ],
+      [
+        99.0,
+        36.548,
+        4.707,
+        88.47,
+        1.0,
+        0.0
+      ],
+      [
+        100.0,
+        36.538,
+        4.7,
+        88.43,
+        0.72,
+        0.0
+      ],
+      [
+        101.0,
+        36.537,
+        4.7,
+        88.42,
+        0.0,
+        0.0
+      ],
+      [
+        102.0,
+        36.539,
+        4.701,
+        88.42,
+        0.0,
+        0.0
+      ],
+      [
+        103.0,
+        36.541,
+        4.702,
+        88.42,
+        0.0,
+        0.0
+      ],
+      [
+        104.0,
+        36.543,
+        4.703,
+        88.41,
+        0.0,
+        0.0
+      ],
+      [
+        105.0,
+        36.545,
+        4.705,
+        88.41,
+        0.0,
+        0.0
+      ],
+      [
+        106.0,
+        36.546,
+        4.706,
+        88.41,
+        0.0,
+        0.0
+      ],
+      [
+        107.0,
+        36.548,
+        4.707,
+        88.4,
+        0.0,
+        0.0
+      ],
+      [
+        108.0,
+        36.55,
+        4.708,
+        88.4,
+        0.0,
+        0.0
+      ],
+      [
+        109.0,
+        36.552,
+        4.709,
+        88.4,
+        0.0,
+        0.0
+      ],
+      [
+        110.0,
+        36.553,
+        4.71,
+        88.39,
+        0.0,
+        0.0
+      ],
+      [
+        111.0,
+        36.555,
+        4.711,
+        88.39,
+        0.0,
+        0.0
+      ],
+      [
+        112.0,
+        36.557,
+        4.712,
+        88.39,
+        0.0,
+        0.0
+      ],
+      [
+        113.0,
+        36.558,
+        4.714,
+        88.38,
+        0.0,
+        0.0
+      ],
+      [
+        114.0,
+        36.56,
+        4.715,
+        88.38,
+        0.0,
+        0.0
+      ],
+      [
+        115.0,
+        36.562,
+        4.716,
+        88.38,
+        0.0,
+        0.0
+      ],
+      [
+        116.0,
+        36.563,
+        4.717,
+        88.37,
+        0.0,
+        0.0
+      ],
+      [
+        117.0,
+        36.565,
+        4.718,
+        88.37,
+        0.0,
+        0.0
+      ]
+    ]
+  },
+  "episodes": [
+    {
+      "episode_id": "cell01-ep-001-nominal",
+      "scenario": "nominal",
+      "request": {
+        "plate_id": "Plate_P17",
+        "store_slot": 3,
+        "protocol": {
+          "protocol_window_s": 600.0,
+          "storage_environment": "ambient_accepted_by_request",
+          "note": "demo request parameters for the twin episode; not biological or validated values (D016)"
+        }
+      },
+      "escalations": [],
+      "outcome": {
+        "route": "store",
+        "stored": true,
+        "L09_inventory": {
+          "3": "Plate_P17"
+        },
+        "L09": "READY",
+        "duration_s": 66.3
+      },
+      "records": [
+        {
+          "episode_id": "cell01-ep-001-nominal",
+          "designator_id": "cell01-ep-001-nominal/retrieve",
+          "event_type": "L10.retrieve",
+          "timestamp_s": 34.729,
+          "lifecycle": {
+            "open_designator": {
+              "action": "retrieve",
+              "requested_bindings": [
+                "identity_binding",
+                "object_id",
+                "source_component_id",
+                "source_frame",
+                "target_frame"
+              ],
+              "unresolved_bindings": []
+            },
+            "grounded_designator": {
+              "component_id": "L10",
+              "component_prim": "/World/Cell01/Stations/L10_Incubator",
+              "interaction_frames": {
+                "source_frame": "transfer_station"
+              },
+              "grounded_bindings": {
+                "component_id": "L10",
+                "component_prim": "/World/Cell01/Stations/L10_Incubator",
+                "object_id": "Plate_P17",
+                "source_component_id": "L10",
+                "source_frame": "transfer_station",
+                "target_frame": "L09/transfer_nest",
+                "identity_binding": "barcode read at the L10 stowed transfer nest (labware:barcode)",
+                "source_slot": 2
+              }
+            },
+            "commitment": {
+              "accepted": true,
+              "acceptance_checks": {
+                "grounded": true,
+                "semantic_valid": true,
+                "causally_admissible": true,
+                "motion_feasible": true,
+                "monitorable": true,
+                "evidence_supported": true
+              },
+              "failure_reasons": [],
+              "blocked_paths": []
+            },
+            "execution": {
+              "command_completed": true,
+              "physical_success": true,
+              "timestamp_s": 34.729,
+              "t_start_s": 1.0,
+              "device_events": [
+                {
+                  "t": 1.0,
+                  "event": "retrieve_accepted",
+                  "mode": "BUSY",
+                  "plate_id": "Plate_P17",
+                  "slot": 2
+                },
+                {
+                  "t": 14.4625,
+                  "event": "identity_read",
+                  "mode": "BUSY",
+                  "where": "transfer_nest",
+                  "expected": "Plate_P17",
+                  "observed": "Plate_P17"
+                },
+                {
+                  "t": 14.4625,
+                  "event": "retrieved",
+                  "mode": "BUSY",
+                  "plate_id": "Plate_P17",
+                  "slot": 2
+                },
+                {
+                  "t": 14.46,
+                  "event": "release_record",
+                  "mode": "BUSY",
+                  "plate_id": "Plate_P17",
+                  "slot": 2,
+                  "environment": {
+                    "T": 36.972,
+                    "CO2": 4.981,
+                    "RH": 89.911
+                  },
+                  "environment_valid": true
+                },
+                {
+                  "t": 31.4792,
+                  "event": "stow_accepted",
+                  "mode": "BUSY"
+                }
+              ]
+            },
+            "monitors": {
+              "required": [
+                "plate_identity",
+                "grasp_confirmed",
+                "source_release_state",
+                "time_outside_environment"
+              ],
+              "observed": [
+                {
+                  "name": "plate_identity",
+                  "passed": true,
+                  "observation": "L10 barcode reader: expected Plate_P17, read 'Plate_P17'",
+                  "value": {
+                    "expected": "Plate_P17",
+                    "observed": "Plate_P17"
+                  }
+                },
+                {
+                  "name": "grasp_confirmed",
+                  "passed": true,
+                  "observation": "R01 jaws closed on the plate and lifted it",
+                  "value": {
+                    "phase": "pick_L10",
+                    "reached": true,
+                    "contact": "True",
+                    "lifted": "True",
+                    "finger_travel_mm": [
+                      "2.63",
+                      "2.37"
+                    ],
+                    "tcp_err_at_grasp_mm": [
+                      0.06,
+                      0.07,
+                      -0.03
+                    ],
+                    "plate_in_tool_mm": [
+                      0.06,
+                      -0.03,
+                      5.98
+                    ],
+                    "robot_contacts": {
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/NestCoreR/Box | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1286,
+                        0.0026
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/NestCoreL/Box | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1286,
+                        0.0031
+                      ]
+                    },
+                    "robot_proximity": {
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide1Y | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1297,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide0Y | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1297,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide1X | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1296,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide3X | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1296,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide2X | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1296,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide0X | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1296,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide2Y | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1295,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide3Y | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1295,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/A1Key | Episode/Plate_P17/Collision/Prism": [
+                        21.108,
+                        1294,
+                        0.0
+                      ],
+                      "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Cell01/Stations/L10_Incubator/Shuttle/Collision/TrayL/Box": [
+                        23.733,
+                        14,
+                        0.0
+                      ],
+                      "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Cell01/Stations/L10_Incubator/Shuttle/Collision/TrayL/Box": [
+                        23.737,
+                        12,
+                        0.0
+                      ],
+                      "Cell01/Robots/R01_FR3/FR3/Geometry/base/fr3_link1/fr3_link2/fr3_link3/fr3_link4/fr3_link5/fr3_link6/fr3_link7/fr3_link7_collision/fr3_link7_collision | Cell01/Stations/L10_Incubator/Body/Collision/WallFrontUpper/Box": [
+                        28.6,
+                        21,
+                        0.0
+                      ]
+                    }
+                  }
+                },
+                {
+                  "name": "source_release_state",
+                  "passed": true,
+                  "observation": "L10 release observed; gate closed after the pick",
+                  "value": {
+                    "release": {
+                      "t": 14.46,
+                      "slot": 2,
+                      "environment": {
+                        "T": 36.972,
+                        "CO2": 4.981,
+                        "RH": 89.911
+                      },
+                      "environment_valid": true
+                    },
+                    "L10_mode": "READY"
+                  }
+                },
+                {
+                  "name": "time_outside_environment",
+                  "passed": true,
+                  "observation": "20.3 s outside L10 after the pick (protocol window 600 s)",
+                  "value": 20.27
+                }
+              ],
+              "missing": [],
+              "failed": []
+            },
+            "failures": {
+              "reasons": [],
+              "blocked_paths": []
+            },
+            "repairs": {
+              "attempted": [],
+              "available_routes": [
+                "repair_reseat_or_regrasp",
+                "human_escalation",
+                "H4_quarantine_if_identity_or_contamination_unresolved"
+              ]
+            },
+            "verdict": {
+              "critic_vector": {
+                "physical_success": true,
+                "safety_ok": true,
+                "quality_ok": true,
+                "grounding_ok": true,
+                "experimental_validity_ok": true,
+                "measurement_adequacy_ok": null,
+                "evidence_complete": true,
+                "commit_semantic_event": true,
+                "failure_reasons": [],
+                "blocked_paths": []
+              },
+              "semantic_event_eligible": true,
+              "evidence_complete": true
+            },
+            "routing": {
+              "route": "culture_sdt_commit",
+              "target": "CultureSDT"
+            }
+          },
+          "designator": {
+            "component_id": "L10",
+            "component_prim": "/World/Cell01/Stations/L10_Incubator",
+            "object_id": "Plate_P17",
+            "source_component_id": "L10",
+            "source_frame": "transfer_station",
+            "target_frame": "L09/transfer_nest",
+            "identity_binding": "barcode read at the L10 stowed transfer nest (labware:barcode)",
+            "source_slot": 2
+          },
+          "monitors": [
+            {
+              "name": "plate_identity",
+              "passed": true,
+              "observation": "L10 barcode reader: expected Plate_P17, read 'Plate_P17'",
+              "value": {
+                "expected": "Plate_P17",
+                "observed": "Plate_P17"
+              }
+            },
+            {
+              "name": "grasp_confirmed",
+              "passed": true,
+              "observation": "R01 jaws closed on the plate and lifted it",
+              "value": {
+                "phase": "pick_L10",
+                "reached": true,
+                "contact": "True",
+                "lifted": "True",
+                "finger_travel_mm": [
+                  "2.63",
+                  "2.37"
+                ],
+                "tcp_err_at_grasp_mm": [
+                  0.06,
+                  0.07,
+                  -0.03
+                ],
+                "plate_in_tool_mm": [
+                  0.06,
+                  -0.03,
+                  5.98
+                ],
+                "robot_contacts": {
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/NestCoreR/Box | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1286,
+                    0.0026
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/NestCoreL/Box | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1286,
+                    0.0031
+                  ]
+                },
+                "robot_proximity": {
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide1Y | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1297,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide0Y | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1297,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide1X | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1296,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide3X | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1296,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide2X | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1296,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide0X | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1296,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide2Y | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1295,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide3Y | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1295,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/A1Key | Episode/Plate_P17/Collision/Prism": [
+                    21.108,
+                    1294,
+                    0.0
+                  ],
+                  "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Cell01/Stations/L10_Incubator/Shuttle/Collision/TrayL/Box": [
+                    23.733,
+                    14,
+                    0.0
+                  ],
+                  "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Cell01/Stations/L10_Incubator/Shuttle/Collision/TrayL/Box": [
+                    23.737,
+                    12,
+                    0.0
+                  ],
+                  "Cell01/Robots/R01_FR3/FR3/Geometry/base/fr3_link1/fr3_link2/fr3_link3/fr3_link4/fr3_link5/fr3_link6/fr3_link7/fr3_link7_collision/fr3_link7_collision | Cell01/Stations/L10_Incubator/Body/Collision/WallFrontUpper/Box": [
+                    28.6,
+                    21,
+                    0.0
+                  ]
+                }
+              }
+            },
+            {
+              "name": "source_release_state",
+              "passed": true,
+              "observation": "L10 release observed; gate closed after the pick",
+              "value": {
+                "release": {
+                  "t": 14.46,
+                  "slot": 2,
+                  "environment": {
+                    "T": 36.972,
+                    "CO2": 4.981,
+                    "RH": 89.911
+                  },
+                  "environment_valid": true
+                },
+                "L10_mode": "READY"
+              }
+            },
+            {
+              "name": "time_outside_environment",
+              "passed": true,
+              "observation": "20.3 s outside L10 after the pick (protocol window 600 s)",
+              "value": 20.27
+            }
+          ],
+          "critic_vector": {
+            "physical_success": true,
+            "safety_ok": true,
+            "quality_ok": true,
+            "grounding_ok": true,
+            "experimental_validity_ok": true,
+            "measurement_adequacy_ok": null,
+            "evidence_complete": true,
+            "commit_semantic_event": true,
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "commitment_acceptance": {
+            "accepted": true,
+            "acceptance_checks": {
+              "grounded": true,
+              "semantic_valid": true,
+              "causally_admissible": true,
+              "motion_feasible": true,
+              "monitorable": true,
+              "evidence_supported": true
+            },
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "semantic_event": {
+            "eligible": true,
+            "target": "CultureSDT.custody_event",
+            "effect": "Plate_P17 left L10"
+          },
+          "routing": "culture_sdt_commit",
+          "evidence": {
+            "source_component_id": "L10",
+            "source_frame": "transfer_station",
+            "object_id": "Plate_P17",
+            "identity_observation": "Plate_P17",
+            "timestamps": {
+              "release": 14.46,
+              "picked": 34.729
+            }
+          },
+          "provenance": {
+            "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+          }
+        },
+        {
+          "episode_id": "cell01-ep-001-nominal",
+          "designator_id": "cell01-ep-001-nominal/transport",
+          "event_type": "R01.transport",
+          "timestamp_s": 50.521,
+          "lifecycle": {
+            "open_designator": {
+              "action": "transport",
+              "requested_bindings": [
+                "contamination_state",
+                "object_id",
+                "route",
+                "source_frame",
+                "target_frame"
+              ],
+              "unresolved_bindings": []
+            },
+            "grounded_designator": {
+              "component_id": "R01",
+              "component_prim": "/World/Cell01/Robots/R01_FR3",
+              "interaction_frames": {
+                "grasp_frame": "plate_grasp_frame",
+                "tool_frame": "tool0"
+              },
+              "grounded_bindings": {
+                "component_id": "R01",
+                "component_prim": "/World/Cell01/Robots/R01_FR3",
+                "object_id": "Plate_P17",
+                "source_frame": "L10/transfer_station",
+                "target_frame": "L09/transfer_nest",
+                "route": "planned joint-space transit between the 0.20 m approach poses (twin/r01_planner.py)",
+                "contamination_state": "not modelled (assumption: lidded plate, closed route)"
+              }
+            },
+            "commitment": {
+              "accepted": true,
+              "acceptance_checks": {
+                "grounded": true,
+                "semantic_valid": true,
+                "causally_admissible": true,
+                "motion_feasible": true,
+                "monitorable": true,
+                "evidence_supported": true
+              },
+              "failure_reasons": [],
+              "blocked_paths": []
+            },
+            "execution": {
+              "command_completed": true,
+              "physical_success": true,
+              "timestamp_s": 50.521,
+              "t_start_s": 34.729,
+              "device_events": []
+            },
+            "monitors": {
+              "required": [
+                "route_clear",
+                "object_identity",
+                "object_pose_or_grasp",
+                "contamination_compatibility",
+                "elapsed_time"
+              ],
+              "observed": [
+                {
+                  "name": "route_clear",
+                  "passed": true,
+                  "observation": "contact report during transit: no contacts besides the fingers on the plate",
+                  "value": {
+                    "contacts": {},
+                    "proximity_within_contact_offset": {}
+                  }
+                },
+                {
+                  "name": "object_identity",
+                  "passed": true,
+                  "observation": "carrying the plate read as 'Plate_P17' at the source",
+                  "value": "Plate_P17"
+                },
+                {
+                  "name": "object_pose_or_grasp",
+                  "passed": true,
+                  "observation": "no slip > 5 mm in the fingers; plate seated at the target (seat sensors)",
+                  "value": {
+                    "slip": null,
+                    "seated": true,
+                    "release_height_mm": 2.75,
+                    "landing_speed_mm_s": 144.3,
+                    "impedance_lateral_max_mm": 1.44
+                  }
+                },
+                {
+                  "name": "contamination_compatibility",
+                  "passed": true,
+                  "observation": "ASSUMPTION: no contamination model in the twin; lidded plate on a closed route assumed (epistemic_status: assumption)",
+                  "value": "assumption"
+                },
+                {
+                  "name": "elapsed_time",
+                  "passed": true,
+                  "observation": "transport took 15.8 s (protocol window 600 s)",
+                  "value": 15.79
+                }
+              ],
+              "missing": [],
+              "failed": []
+            },
+            "failures": {
+              "reasons": [],
+              "blocked_paths": []
+            },
+            "repairs": {
+              "attempted": [],
+              "available_routes": [
+                "repair_route_or_pose",
+                "human_escalation",
+                "H4_quarantine_if_identity_or_contamination_unresolved"
+              ]
+            },
+            "verdict": {
+              "critic_vector": {
+                "physical_success": true,
+                "safety_ok": true,
+                "quality_ok": true,
+                "grounding_ok": true,
+                "experimental_validity_ok": true,
+                "measurement_adequacy_ok": null,
+                "evidence_complete": true,
+                "commit_semantic_event": true,
+                "failure_reasons": [],
+                "blocked_paths": []
+              },
+              "semantic_event_eligible": true,
+              "evidence_complete": true
+            },
+            "routing": {
+              "route": "culture_sdt_commit",
+              "target": "CultureSDT"
+            }
+          },
+          "designator": {
+            "component_id": "R01",
+            "component_prim": "/World/Cell01/Robots/R01_FR3",
+            "object_id": "Plate_P17",
+            "source_frame": "L10/transfer_station",
+            "target_frame": "L09/transfer_nest",
+            "route": "planned joint-space transit between the 0.20 m approach poses (twin/r01_planner.py)",
+            "contamination_state": "not modelled (assumption: lidded plate, closed route)"
+          },
+          "monitors": [
+            {
+              "name": "route_clear",
+              "passed": true,
+              "observation": "contact report during transit: no contacts besides the fingers on the plate",
+              "value": {
+                "contacts": {},
+                "proximity_within_contact_offset": {}
+              }
+            },
+            {
+              "name": "object_identity",
+              "passed": true,
+              "observation": "carrying the plate read as 'Plate_P17' at the source",
+              "value": "Plate_P17"
+            },
+            {
+              "name": "object_pose_or_grasp",
+              "passed": true,
+              "observation": "no slip > 5 mm in the fingers; plate seated at the target (seat sensors)",
+              "value": {
+                "slip": null,
+                "seated": true,
+                "release_height_mm": 2.75,
+                "landing_speed_mm_s": 144.3,
+                "impedance_lateral_max_mm": 1.44
+              }
+            },
+            {
+              "name": "contamination_compatibility",
+              "passed": true,
+              "observation": "ASSUMPTION: no contamination model in the twin; lidded plate on a closed route assumed (epistemic_status: assumption)",
+              "value": "assumption"
+            },
+            {
+              "name": "elapsed_time",
+              "passed": true,
+              "observation": "transport took 15.8 s (protocol window 600 s)",
+              "value": 15.79
+            }
+          ],
+          "critic_vector": {
+            "physical_success": true,
+            "safety_ok": true,
+            "quality_ok": true,
+            "grounding_ok": true,
+            "experimental_validity_ok": true,
+            "measurement_adequacy_ok": null,
+            "evidence_complete": true,
+            "commit_semantic_event": true,
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "commitment_acceptance": {
+            "accepted": true,
+            "acceptance_checks": {
+              "grounded": true,
+              "semantic_valid": true,
+              "causally_admissible": true,
+              "motion_feasible": true,
+              "monitorable": true,
+              "evidence_supported": true
+            },
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "semantic_event": {
+            "eligible": true,
+            "target": "CultureSDT.custody_event",
+            "effect": "Plate_P17 moved L10 -> L09"
+          },
+          "routing": "culture_sdt_commit",
+          "evidence": {
+            "route": {
+              "path": "L10/transfer_station -> L09/transfer_nest",
+              "plan": {
+                "via": null,
+                "goal_margin_deg": 63.1,
+                "goal_sigma_min": 0.132,
+                "waypoints_deg": [
+                  [
+                    78.8,
+                    4.2,
+                    -6.3,
+                    -84.0,
+                    0.5,
+                    88.3,
+                    -45.2
+                  ]
+                ],
+                "converged": true,
+                "residual_mm": 0.19
+              }
+            },
+            "object_id": "Plate_P17",
+            "source_frame": "L10/transfer_station",
+            "target_frame": "L09/transfer_nest",
+            "timestamps": {
+              "start": 34.729,
+              "placed": 50.521
+            }
+          },
+          "provenance": {
+            "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+          }
+        },
+        {
+          "episode_id": "cell01-ep-001-nominal",
+          "designator_id": "cell01-ep-001-nominal/store",
+          "event_type": "L09.store",
+          "timestamp_s": 67.271,
+          "lifecycle": {
+            "open_designator": {
+              "action": "store",
+              "requested_bindings": [
+                "environmental_state_binding",
+                "object_id",
+                "storage_component_id",
+                "storage_slot_or_frame"
+              ],
+              "unresolved_bindings": []
+            },
+            "grounded_designator": {
+              "component_id": "L09",
+              "component_prim": "/World/Cell01/Stations/L09_PlateHotel",
+              "interaction_frames": {
+                "storage_slot_or_frame": "slot_frames[]",
+                "transfer_frame": "transfer_nest"
+              },
+              "grounded_bindings": {
+                "component_id": "L09",
+                "component_prim": "/World/Cell01/Stations/L09_PlateHotel",
+                "object_id": "Plate_P17",
+                "storage_component_id": "L09",
+                "storage_slot_or_frame": "slot_03",
+                "environmental_state_binding": "ambient_accepted_by_request"
+              }
+            },
+            "commitment": {
+              "accepted": true,
+              "acceptance_checks": {
+                "grounded": true,
+                "semantic_valid": true,
+                "causally_admissible": true,
+                "motion_feasible": true,
+                "monitorable": true,
+                "evidence_supported": true
+              },
+              "failure_reasons": [],
+              "blocked_paths": []
+            },
+            "execution": {
+              "command_completed": true,
+              "physical_success": true,
+              "timestamp_s": 67.271,
+              "t_start_s": 50.521,
+              "device_events": [
+                {
+                  "t": 53.6042,
+                  "event": "identity_read",
+                  "mode": "BUSY",
+                  "where": "transfer_nest",
+                  "expected": "Plate_P17",
+                  "observed": "Plate_P17"
+                },
+                {
+                  "t": 67.025,
+                  "event": "stored",
+                  "mode": "BUSY",
+                  "plate_id": "Plate_P17",
+                  "slot": 3
+                }
+              ]
+            },
+            "monitors": {
+              "required": [
+                "identity_preserved",
+                "slot_available",
+                "seating_confirmed",
+                "environment_accepted"
+              ],
+              "observed": [
+                {
+                  "name": "identity_preserved",
+                  "passed": true,
+                  "observation": "L09 barcode reader: expected Plate_P17, read 'Plate_P17'",
+                  "value": {
+                    "expected": "Plate_P17",
+                    "observed": "Plate_P17"
+                  }
+                },
+                {
+                  "name": "slot_available",
+                  "passed": true,
+                  "observation": "slot 3 empty (ray + inventory) and accepted",
+                  "value": {
+                    "slot": 3,
+                    "accepted": true,
+                    "reason": ""
+                  }
+                },
+                {
+                  "name": "seating_confirmed",
+                  "passed": true,
+                  "observation": "seated on the L09 nest before the store; slot ray occupied after",
+                  "value": {
+                    "nest_seated": true,
+                    "slot_occupied_after": true
+                  }
+                },
+                {
+                  "name": "environment_accepted",
+                  "passed": true,
+                  "observation": "ambient storage accepted by the request; 52.81 s outside a controlled environment (protocol window 600 s)",
+                  "value": {
+                    "time_outside_s": 52.81,
+                    "binding": "ambient_accepted_by_request"
+                  }
+                }
+              ],
+              "missing": [],
+              "failed": []
+            },
+            "failures": {
+              "reasons": [],
+              "blocked_paths": []
+            },
+            "repairs": {
+              "attempted": [],
+              "available_routes": [
+                "retry_storage",
+                "alternate_storage",
+                "H4_quarantine_if_storage_validity_unresolved"
+              ]
+            },
+            "verdict": {
+              "critic_vector": {
+                "physical_success": true,
+                "safety_ok": true,
+                "quality_ok": true,
+                "grounding_ok": true,
+                "experimental_validity_ok": true,
+                "measurement_adequacy_ok": null,
+                "evidence_complete": true,
+                "commit_semantic_event": true,
+                "failure_reasons": [],
+                "blocked_paths": []
+              },
+              "semantic_event_eligible": true,
+              "evidence_complete": true
+            },
+            "routing": {
+              "route": "culture_sdt_commit",
+              "target": "CultureSDT"
+            }
+          },
+          "designator": {
+            "component_id": "L09",
+            "component_prim": "/World/Cell01/Stations/L09_PlateHotel",
+            "object_id": "Plate_P17",
+            "storage_component_id": "L09",
+            "storage_slot_or_frame": "slot_03",
+            "environmental_state_binding": "ambient_accepted_by_request"
+          },
+          "monitors": [
+            {
+              "name": "identity_preserved",
+              "passed": true,
+              "observation": "L09 barcode reader: expected Plate_P17, read 'Plate_P17'",
+              "value": {
+                "expected": "Plate_P17",
+                "observed": "Plate_P17"
+              }
+            },
+            {
+              "name": "slot_available",
+              "passed": true,
+              "observation": "slot 3 empty (ray + inventory) and accepted",
+              "value": {
+                "slot": 3,
+                "accepted": true,
+                "reason": ""
+              }
+            },
+            {
+              "name": "seating_confirmed",
+              "passed": true,
+              "observation": "seated on the L09 nest before the store; slot ray occupied after",
+              "value": {
+                "nest_seated": true,
+                "slot_occupied_after": true
+              }
+            },
+            {
+              "name": "environment_accepted",
+              "passed": true,
+              "observation": "ambient storage accepted by the request; 52.81 s outside a controlled environment (protocol window 600 s)",
+              "value": {
+                "time_outside_s": 52.81,
+                "binding": "ambient_accepted_by_request"
+              }
+            }
+          ],
+          "critic_vector": {
+            "physical_success": true,
+            "safety_ok": true,
+            "quality_ok": true,
+            "grounding_ok": true,
+            "experimental_validity_ok": true,
+            "measurement_adequacy_ok": null,
+            "evidence_complete": true,
+            "commit_semantic_event": true,
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "commitment_acceptance": {
+            "accepted": true,
+            "acceptance_checks": {
+              "grounded": true,
+              "semantic_valid": true,
+              "causally_admissible": true,
+              "motion_feasible": true,
+              "monitorable": true,
+              "evidence_supported": true
+            },
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "semantic_event": {
+            "eligible": true,
+            "target": "CultureSDT.custody_event",
+            "effect": "Plate_P17 stored in L09 slot 3"
+          },
+          "routing": "culture_sdt_commit",
+          "evidence": {
+            "storage_component_id": "L09",
+            "storage_slot_or_frame": "slot_03",
+            "object_id": "Plate_P17",
+            "timestamps": {
+              "start": 50.521,
+              "stored": 67.271
+            },
+            "environment_snapshot": {
+              "L10_environment_history": {
+                "slot": 2,
+                "incubated_at": 0.0,
+                "time_stored_s": 14.574,
+                "time_out_of_envelope_s": 0.0,
+                "T_min": 36.971649638093965,
+                "T_max": 36.999991319443986,
+                "CO2_min": 4.981269403478507,
+                "CO2_max": 4.999994259259015,
+                "excursions": [],
+                "release": {
+                  "t": 14.46,
+                  "slot": 2,
+                  "environment": {
+                    "T": 36.972,
+                    "CO2": 4.981,
+                    "RH": 89.911
+                  },
+                  "environment_valid": true
+                },
+                "time_outside_controlled_environment_s": 52.81
+              },
+              "L09": "ambient (unconditioned)"
+            }
+          },
+          "provenance": {
+            "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+          }
+        }
+      ],
+      "validation": {
+        "errors": {},
+        "records_checked": 3,
+        "pass": true
+      }
+    },
+    {
+      "episode_id": "cell01-ep-002-identity_swap",
+      "scenario": "identity_swap",
+      "request": {
+        "plate_id": "Plate_P18",
+        "store_slot": 4,
+        "protocol": {
+          "protocol_window_s": 600.0,
+          "storage_environment": "ambient_accepted_by_request",
+          "note": "demo request parameters for the twin episode; not biological or validated values (D016)"
+        }
+      },
+      "escalations": [
+        {
+          "kind": "plate_unaccounted",
+          "plate_id": "Plate_P18",
+          "t": 82.27,
+          "last_inventory_slot": 5,
+          "found_instead": "Plate_P23",
+          "action": "human search / inventory audit; Culture SDT location of Plate_P18 set to unknown"
+        },
+        {
+          "kind": "quarantine_review",
+          "sample_id": "Plate_P23",
+          "action": "human review; release needs an authorisation token AND the H4 key in RELEASE"
+        }
+      ],
+      "outcome": {
+        "route": "quarantine",
+        "contained": true,
+        "reentry_blocked": true,
+        "H4": {
+          "mode": "QUARANTINED",
+          "fault": "",
+          "occupied": true,
+          "plate_on_nest": true,
+          "seated": true,
+          "beam_blocked": true,
+          "locked": true,
+          "door_deg": 0.0005231977431319331,
+          "bolt_m": 1.4257239052545279e-12,
+          "shuttle_m": 1.2614449040881937e-08,
+          "key_position": "LOCK",
+          "sample_id": "Plate_P23",
+          "reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'",
+          "seat_gaps_mm": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ]
+        },
+        "L10_unaccounted": {
+          "Plate_P18": {
+            "t": 82.27,
+            "last_inventory_slot": 5,
+            "found_instead": "Plate_P23"
+          }
+        },
+        "duration_s": 49.8
+      },
+      "records": [
+        {
+          "episode_id": "cell01-ep-002-identity_swap",
+          "designator_id": "cell01-ep-002-identity_swap/retrieve",
+          "event_type": "L10.retrieve",
+          "timestamp_s": 100.742,
+          "lifecycle": {
+            "open_designator": {
+              "action": "retrieve",
+              "requested_bindings": [
+                "identity_binding",
+                "object_id",
+                "source_component_id",
+                "source_frame",
+                "target_frame"
+              ],
+              "unresolved_bindings": []
+            },
+            "grounded_designator": {
+              "component_id": "L10",
+              "component_prim": "/World/Cell01/Stations/L10_Incubator",
+              "interaction_frames": {
+                "source_frame": "transfer_station"
+              },
+              "grounded_bindings": {
+                "component_id": "L10",
+                "component_prim": "/World/Cell01/Stations/L10_Incubator",
+                "object_id": "Plate_P18",
+                "source_component_id": "L10",
+                "source_frame": "transfer_station",
+                "target_frame": "H4/transfer_nest",
+                "identity_binding": "barcode read at the L10 stowed transfer nest (labware:barcode)",
+                "source_slot": 5
+              }
+            },
+            "commitment": {
+              "accepted": false,
+              "acceptance_checks": {
+                "grounded": true,
+                "semantic_valid": false,
+                "causally_admissible": true,
+                "motion_feasible": true,
+                "monitorable": true,
+                "evidence_supported": true
+              },
+              "failure_reasons": [
+                "failed monitor plate_identity: L10 barcode reader: expected Plate_P18, read 'Plate_P23'"
+              ],
+              "blocked_paths": [
+                "evidence_admission",
+                "semantic_event_commit"
+              ]
+            },
+            "execution": {
+              "command_completed": true,
+              "physical_success": true,
+              "timestamp_s": 100.742,
+              "t_start_s": 67.271,
+              "device_events": [
+                {
+                  "t": 82.0583,
+                  "event": "identity_read",
+                  "mode": "BUSY",
+                  "where": "transfer_nest",
+                  "expected": "Plate_P18",
+                  "observed": "Plate_P23"
+                },
+                {
+                  "t": 82.0583,
+                  "event": "fault",
+                  "mode": "FAULT",
+                  "fault": "slot_identity_mismatch",
+                  "detail": "slot 5 held 'Plate_P23', inventory said Plate_P18; inventory kept as pre-fault"
+                },
+                {
+                  "t": 82.2708,
+                  "event": "inventory_reconciled",
+                  "mode": "FAULT",
+                  "slot": 5,
+                  "expected": "Plate_P18",
+                  "observed": "Plate_P23",
+                  "expected_plate_location": "unknown"
+                },
+                {
+                  "t": 82.2708,
+                  "event": "fault_handled",
+                  "mode": "FAULT",
+                  "fault": "slot_identity_mismatch",
+                  "route": "present_for_removal",
+                  "reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'"
+                },
+                {
+                  "t": 82.2708,
+                  "event": "present_for_removal_accepted",
+                  "mode": "BUSY",
+                  "observed": "Plate_P23"
+                },
+                {
+                  "t": 82.27,
+                  "event": "plate_unaccounted",
+                  "mode": "BUSY",
+                  "plate_id": "Plate_P18",
+                  "last_inventory_slot": 5,
+                  "found_instead": "Plate_P23"
+                },
+                {
+                  "t": 97.4917,
+                  "event": "stow_accepted",
+                  "mode": "BUSY"
+                },
+                {
+                  "t": 100.0875,
+                  "event": "alarm_raised",
+                  "mode": "BUSY",
+                  "alarm": "CO2_excursion",
+                  "value": 4.7
+                }
+              ]
+            },
+            "monitors": {
+              "required": [
+                "plate_identity",
+                "grasp_confirmed",
+                "source_release_state",
+                "time_outside_environment"
+              ],
+              "observed": [
+                {
+                  "name": "plate_identity",
+                  "passed": false,
+                  "observation": "L10 barcode reader: expected Plate_P18, read 'Plate_P23'",
+                  "value": {
+                    "expected": "Plate_P18",
+                    "observed": "Plate_P23"
+                  }
+                },
+                {
+                  "name": "grasp_confirmed",
+                  "passed": true,
+                  "observation": "R01 jaws closed on the plate and lifted it",
+                  "value": {
+                    "phase": "pick_L10",
+                    "reached": true,
+                    "contact": "True",
+                    "lifted": "True",
+                    "finger_travel_mm": [
+                      "2.55",
+                      "2.45"
+                    ],
+                    "tcp_err_at_grasp_mm": [
+                      0.06,
+                      0.06,
+                      -0.04
+                    ],
+                    "plate_in_tool_mm": [
+                      0.07,
+                      -0.03,
+                      5.97
+                    ],
+                    "robot_contacts": {
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/NestCoreR/Box | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1286,
+                        0.0028
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/NestCoreL/Box | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1286,
+                        0.0036
+                      ]
+                    },
+                    "robot_proximity": {
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide1X | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1296,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide1Y | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1297,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide0Y | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1297,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide3X | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1296,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide3Y | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1295,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide2Y | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1295,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide2X | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1297,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide0X | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1296,
+                        0.0
+                      ],
+                      "Cell01/Stations/L10_Incubator/Shuttle/Collision/A1Key | Episode/Plate_P23/Collision/Prism": [
+                        87.121,
+                        1294,
+                        0.0
+                      ],
+                      "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Cell01/Stations/L10_Incubator/Shuttle/Collision/TrayL/Box": [
+                        89.742,
+                        14,
+                        0.0
+                      ],
+                      "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Cell01/Stations/L10_Incubator/Shuttle/Collision/TrayL/Box": [
+                        89.746,
+                        12,
+                        0.0
+                      ],
+                      "Cell01/Robots/R01_FR3/FR3/Geometry/base/fr3_link1/fr3_link2/fr3_link3/fr3_link4/fr3_link5/fr3_link6/fr3_link7/fr3_link7_collision/fr3_link7_collision | Cell01/Stations/L10_Incubator/Body/Collision/WallFrontUpper/Box": [
+                        94.65,
+                        12,
+                        0.0
+                      ]
+                    }
+                  }
+                },
+                {
+                  "name": "source_release_state",
+                  "passed": true,
+                  "observation": "L10 release observed; gate closed after the pick",
+                  "value": {
+                    "release": {
+                      "t": 82.2708,
+                      "environment": {
+                        "T": 36.697,
+                        "CO2": 4.802,
+                        "RH": 88.911
+                      },
+                      "environment_valid": true
+                    },
+                    "L10_mode": "READY"
+                  }
+                },
+                {
+                  "name": "time_outside_environment",
+                  "passed": true,
+                  "observation": "18.5 s outside L10 after the pick (protocol window 600 s)",
+                  "value": 18.47
+                }
+              ],
+              "missing": [],
+              "failed": [
+                "plate_identity"
+              ]
+            },
+            "failures": {
+              "reasons": [
+                "failed monitor plate_identity: L10 barcode reader: expected Plate_P18, read 'Plate_P23'"
+              ],
+              "blocked_paths": [
+                "evidence_admission",
+                "semantic_event_commit"
+              ]
+            },
+            "repairs": {
+              "attempted": [],
+              "available_routes": [
+                "repair_reseat_or_regrasp",
+                "human_escalation",
+                "H4_quarantine_if_identity_or_contamination_unresolved"
+              ]
+            },
+            "verdict": {
+              "critic_vector": {
+                "physical_success": true,
+                "safety_ok": true,
+                "quality_ok": true,
+                "grounding_ok": false,
+                "experimental_validity_ok": false,
+                "measurement_adequacy_ok": null,
+                "evidence_complete": true,
+                "commit_semantic_event": false,
+                "failure_reasons": [
+                  "failed monitor plate_identity: L10 barcode reader: expected Plate_P18, read 'Plate_P23'"
+                ],
+                "blocked_paths": [
+                  "evidence_admission",
+                  "semantic_event_commit"
+                ]
+              },
+              "semantic_event_eligible": false,
+              "evidence_complete": true
+            },
+            "routing": {
+              "route": "H4_quarantine",
+              "target": "H4"
+            }
+          },
+          "designator": {
+            "component_id": "L10",
+            "component_prim": "/World/Cell01/Stations/L10_Incubator",
+            "object_id": "Plate_P18",
+            "source_component_id": "L10",
+            "source_frame": "transfer_station",
+            "target_frame": "H4/transfer_nest",
+            "identity_binding": "barcode read at the L10 stowed transfer nest (labware:barcode)",
+            "source_slot": 5
+          },
+          "monitors": [
+            {
+              "name": "plate_identity",
+              "passed": false,
+              "observation": "L10 barcode reader: expected Plate_P18, read 'Plate_P23'",
+              "value": {
+                "expected": "Plate_P18",
+                "observed": "Plate_P23"
+              }
+            },
+            {
+              "name": "grasp_confirmed",
+              "passed": true,
+              "observation": "R01 jaws closed on the plate and lifted it",
+              "value": {
+                "phase": "pick_L10",
+                "reached": true,
+                "contact": "True",
+                "lifted": "True",
+                "finger_travel_mm": [
+                  "2.55",
+                  "2.45"
+                ],
+                "tcp_err_at_grasp_mm": [
+                  0.06,
+                  0.06,
+                  -0.04
+                ],
+                "plate_in_tool_mm": [
+                  0.07,
+                  -0.03,
+                  5.97
+                ],
+                "robot_contacts": {
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/NestCoreR/Box | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1286,
+                    0.0028
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/NestCoreL/Box | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1286,
+                    0.0036
+                  ]
+                },
+                "robot_proximity": {
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide1X | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1296,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide1Y | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1297,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide0Y | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1297,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide3X | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1296,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide3Y | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1295,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide2Y | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1295,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide2X | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1297,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/Guide0X | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1296,
+                    0.0
+                  ],
+                  "Cell01/Stations/L10_Incubator/Shuttle/Collision/A1Key | Episode/Plate_P23/Collision/Prism": [
+                    87.121,
+                    1294,
+                    0.0
+                  ],
+                  "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Cell01/Stations/L10_Incubator/Shuttle/Collision/TrayL/Box": [
+                    89.742,
+                    14,
+                    0.0
+                  ],
+                  "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Cell01/Stations/L10_Incubator/Shuttle/Collision/TrayL/Box": [
+                    89.746,
+                    12,
+                    0.0
+                  ],
+                  "Cell01/Robots/R01_FR3/FR3/Geometry/base/fr3_link1/fr3_link2/fr3_link3/fr3_link4/fr3_link5/fr3_link6/fr3_link7/fr3_link7_collision/fr3_link7_collision | Cell01/Stations/L10_Incubator/Body/Collision/WallFrontUpper/Box": [
+                    94.65,
+                    12,
+                    0.0
+                  ]
+                }
+              }
+            },
+            {
+              "name": "source_release_state",
+              "passed": true,
+              "observation": "L10 release observed; gate closed after the pick",
+              "value": {
+                "release": {
+                  "t": 82.2708,
+                  "environment": {
+                    "T": 36.697,
+                    "CO2": 4.802,
+                    "RH": 88.911
+                  },
+                  "environment_valid": true
+                },
+                "L10_mode": "READY"
+              }
+            },
+            {
+              "name": "time_outside_environment",
+              "passed": true,
+              "observation": "18.5 s outside L10 after the pick (protocol window 600 s)",
+              "value": 18.47
+            }
+          ],
+          "critic_vector": {
+            "physical_success": true,
+            "safety_ok": true,
+            "quality_ok": true,
+            "grounding_ok": false,
+            "experimental_validity_ok": false,
+            "measurement_adequacy_ok": null,
+            "evidence_complete": true,
+            "commit_semantic_event": false,
+            "failure_reasons": [
+              "failed monitor plate_identity: L10 barcode reader: expected Plate_P18, read 'Plate_P23'"
+            ],
+            "blocked_paths": [
+              "evidence_admission",
+              "semantic_event_commit"
+            ]
+          },
+          "commitment_acceptance": {
+            "accepted": false,
+            "acceptance_checks": {
+              "grounded": true,
+              "semantic_valid": false,
+              "causally_admissible": true,
+              "motion_feasible": true,
+              "monitorable": true,
+              "evidence_supported": true
+            },
+            "failure_reasons": [
+              "failed monitor plate_identity: L10 barcode reader: expected Plate_P18, read 'Plate_P23'"
+            ],
+            "blocked_paths": [
+              "evidence_admission",
+              "semantic_event_commit"
+            ]
+          },
+          "semantic_event": {
+            "eligible": false,
+            "target": "CultureSDT.custody_event",
+            "effect": "Plate_P18 left L10"
+          },
+          "routing": "H4_quarantine",
+          "evidence": {
+            "source_component_id": "L10",
+            "source_frame": "transfer_station",
+            "object_id": "Plate_P18",
+            "identity_observation": "Plate_P23",
+            "timestamps": {
+              "release": 82.2708,
+              "picked": 100.742
+            }
+          },
+          "provenance": {
+            "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+          },
+          "quarantine_request": {
+            "request_id": "quarantine-cell01-ep-002-identity_swap",
+            "action": "quarantine_sample",
+            "source_episode_id": "cell01-ep-002-identity_swap",
+            "sample_id": "Plate_P23",
+            "reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'",
+            "target": {
+              "component_id": "H4",
+              "component_prim": "/World/Cell01/Stations/H4_Quarantine",
+              "quarantine_frame": "quarantine_nest"
+            },
+            "authorization": "human_review_required",
+            "physical_execution": {
+              "status": "executed",
+              "command_completed": true,
+              "evidence": [
+                "cell01-ep-002-identity_swap/transport",
+                "cell01-ep-002-identity_swap/quarantine"
+              ]
+            },
+            "semantic_effect": "prevent_reentry_until_authorized",
+            "expected_sample_id": "Plate_P18"
+          }
+        },
+        {
+          "episode_id": "cell01-ep-002-identity_swap",
+          "designator_id": "cell01-ep-002-identity_swap/transport",
+          "event_type": "R01.transport",
+          "timestamp_s": 115.121,
+          "lifecycle": {
+            "open_designator": {
+              "action": "transport",
+              "requested_bindings": [
+                "contamination_state",
+                "object_id",
+                "route",
+                "source_frame",
+                "target_frame"
+              ],
+              "unresolved_bindings": []
+            },
+            "grounded_designator": {
+              "component_id": "R01",
+              "component_prim": "/World/Cell01/Robots/R01_FR3",
+              "interaction_frames": {
+                "grasp_frame": "plate_grasp_frame",
+                "tool_frame": "tool0"
+              },
+              "grounded_bindings": {
+                "component_id": "R01",
+                "component_prim": "/World/Cell01/Robots/R01_FR3",
+                "object_id": "Plate_P23",
+                "source_frame": "L10/transfer_station",
+                "target_frame": "H4/transfer_nest",
+                "route": "planned joint-space transit between the 0.20 m approach poses (twin/r01_planner.py)",
+                "contamination_state": "not modelled (assumption: lidded plate, closed route)"
+              }
+            },
+            "commitment": {
+              "accepted": true,
+              "acceptance_checks": {
+                "grounded": true,
+                "semantic_valid": true,
+                "causally_admissible": true,
+                "motion_feasible": true,
+                "monitorable": true,
+                "evidence_supported": true
+              },
+              "failure_reasons": [],
+              "blocked_paths": []
+            },
+            "execution": {
+              "command_completed": true,
+              "physical_success": true,
+              "timestamp_s": 115.121,
+              "t_start_s": 100.742,
+              "device_events": []
+            },
+            "monitors": {
+              "required": [
+                "route_clear",
+                "object_identity",
+                "object_pose_or_grasp",
+                "contamination_compatibility",
+                "elapsed_time"
+              ],
+              "observed": [
+                {
+                  "name": "route_clear",
+                  "passed": true,
+                  "observation": "contact report during transit: no contacts besides the fingers on the plate",
+                  "value": {
+                    "contacts": {},
+                    "proximity_within_contact_offset": {}
+                  }
+                },
+                {
+                  "name": "object_identity",
+                  "passed": true,
+                  "observation": "carrying the plate read as 'Plate_P23' at the source",
+                  "value": "Plate_P23"
+                },
+                {
+                  "name": "object_pose_or_grasp",
+                  "passed": true,
+                  "observation": "no slip > 5 mm in the fingers; plate seated at the target (seat sensors)",
+                  "value": {
+                    "slip": null,
+                    "seated": true,
+                    "release_height_mm": 2.44,
+                    "landing_speed_mm_s": 137.2,
+                    "impedance_lateral_max_mm": 1.0
+                  }
+                },
+                {
+                  "name": "contamination_compatibility",
+                  "passed": true,
+                  "observation": "ASSUMPTION: no contamination model in the twin; lidded plate on a closed route assumed (epistemic_status: assumption)",
+                  "value": "assumption"
+                },
+                {
+                  "name": "elapsed_time",
+                  "passed": true,
+                  "observation": "transport took 14.4 s (protocol window 600 s)",
+                  "value": 14.38
+                }
+              ],
+              "missing": [],
+              "failed": []
+            },
+            "failures": {
+              "reasons": [],
+              "blocked_paths": []
+            },
+            "repairs": {
+              "attempted": [],
+              "available_routes": [
+                "repair_route_or_pose",
+                "human_escalation",
+                "H4_quarantine_if_identity_or_contamination_unresolved"
+              ]
+            },
+            "verdict": {
+              "critic_vector": {
+                "physical_success": true,
+                "safety_ok": true,
+                "quality_ok": true,
+                "grounding_ok": true,
+                "experimental_validity_ok": true,
+                "measurement_adequacy_ok": null,
+                "evidence_complete": true,
+                "commit_semantic_event": true,
+                "failure_reasons": [],
+                "blocked_paths": []
+              },
+              "semantic_event_eligible": true,
+              "evidence_complete": true
+            },
+            "routing": {
+              "route": "culture_sdt_commit",
+              "target": "CultureSDT"
+            }
+          },
+          "designator": {
+            "component_id": "R01",
+            "component_prim": "/World/Cell01/Robots/R01_FR3",
+            "object_id": "Plate_P23",
+            "source_frame": "L10/transfer_station",
+            "target_frame": "H4/transfer_nest",
+            "route": "planned joint-space transit between the 0.20 m approach poses (twin/r01_planner.py)",
+            "contamination_state": "not modelled (assumption: lidded plate, closed route)"
+          },
+          "monitors": [
+            {
+              "name": "route_clear",
+              "passed": true,
+              "observation": "contact report during transit: no contacts besides the fingers on the plate",
+              "value": {
+                "contacts": {},
+                "proximity_within_contact_offset": {}
+              }
+            },
+            {
+              "name": "object_identity",
+              "passed": true,
+              "observation": "carrying the plate read as 'Plate_P23' at the source",
+              "value": "Plate_P23"
+            },
+            {
+              "name": "object_pose_or_grasp",
+              "passed": true,
+              "observation": "no slip > 5 mm in the fingers; plate seated at the target (seat sensors)",
+              "value": {
+                "slip": null,
+                "seated": true,
+                "release_height_mm": 2.44,
+                "landing_speed_mm_s": 137.2,
+                "impedance_lateral_max_mm": 1.0
+              }
+            },
+            {
+              "name": "contamination_compatibility",
+              "passed": true,
+              "observation": "ASSUMPTION: no contamination model in the twin; lidded plate on a closed route assumed (epistemic_status: assumption)",
+              "value": "assumption"
+            },
+            {
+              "name": "elapsed_time",
+              "passed": true,
+              "observation": "transport took 14.4 s (protocol window 600 s)",
+              "value": 14.38
+            }
+          ],
+          "critic_vector": {
+            "physical_success": true,
+            "safety_ok": true,
+            "quality_ok": true,
+            "grounding_ok": true,
+            "experimental_validity_ok": true,
+            "measurement_adequacy_ok": null,
+            "evidence_complete": true,
+            "commit_semantic_event": true,
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "commitment_acceptance": {
+            "accepted": true,
+            "acceptance_checks": {
+              "grounded": true,
+              "semantic_valid": true,
+              "causally_admissible": true,
+              "motion_feasible": true,
+              "monitorable": true,
+              "evidence_supported": true
+            },
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "semantic_event": {
+            "eligible": true,
+            "target": "CultureSDT.custody_event",
+            "effect": "Plate_P23 moved L10 -> H4"
+          },
+          "routing": "culture_sdt_commit",
+          "evidence": {
+            "route": {
+              "path": "L10/transfer_station -> H4/transfer_nest",
+              "plan": {
+                "via": null,
+                "goal_margin_deg": 36.1,
+                "goal_sigma_min": 0.136,
+                "waypoints_deg": [
+                  [
+                    -27.8,
+                    -62.0,
+                    -61.0,
+                    -83.2,
+                    -61.7,
+                    61.3,
+                    29.2
+                  ]
+                ],
+                "converged": true,
+                "residual_mm": 0.12
+              }
+            },
+            "object_id": "Plate_P23",
+            "source_frame": "L10/transfer_station",
+            "target_frame": "H4/transfer_nest",
+            "timestamps": {
+              "start": 100.742,
+              "placed": 115.121
+            }
+          },
+          "provenance": {
+            "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+          }
+        },
+        {
+          "episode_id": "cell01-ep-002-identity_swap",
+          "designator_id": "cell01-ep-002-identity_swap/quarantine",
+          "event_type": "H4.quarantine",
+          "timestamp_s": 117.121,
+          "lifecycle": {
+            "open_designator": {
+              "action": "quarantine",
+              "requested_bindings": [
+                "object_id",
+                "quarantine_component_id",
+                "quarantine_frame",
+                "quarantine_reason",
+                "release_authorization_policy"
+              ],
+              "unresolved_bindings": []
+            },
+            "grounded_designator": {
+              "component_id": "H4",
+              "component_prim": "/World/Cell01/Stations/H4_Quarantine",
+              "interaction_frames": {
+                "quarantine_frame": "quarantine_nest",
+                "door_frame": "door_frame"
+              },
+              "grounded_bindings": {
+                "component_id": "H4",
+                "component_prim": "/World/Cell01/Stations/H4_Quarantine",
+                "object_id": "Plate_P23",
+                "quarantine_component_id": "H4",
+                "quarantine_frame": "quarantine_nest",
+                "quarantine_reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'",
+                "release_authorization_policy": "token AND key switch in RELEASE"
+              }
+            },
+            "commitment": {
+              "accepted": true,
+              "acceptance_checks": {
+                "grounded": true,
+                "semantic_valid": true,
+                "causally_admissible": true,
+                "motion_feasible": true,
+                "monitorable": true,
+                "evidence_supported": true
+              },
+              "failure_reasons": [],
+              "blocked_paths": []
+            },
+            "execution": {
+              "command_completed": true,
+              "physical_success": true,
+              "timestamp_s": 117.121,
+              "t_start_s": 115.121,
+              "device_events": [
+                {
+                  "t": 116.4458,
+                  "event": "mode",
+                  "mode": "QUARANTINED",
+                  "to": "QUARANTINED"
+                },
+                {
+                  "t": 116.4458,
+                  "event": "quarantined",
+                  "mode": "QUARANTINED",
+                  "sample_id": "Plate_P23",
+                  "reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'",
+                  "beam_confirms": true
+                },
+                {
+                  "t": 116.6208,
+                  "event": "release_refused",
+                  "mode": "QUARANTINED",
+                  "reason": "authorization token missing"
+                }
+              ]
+            },
+            "monitors": {
+              "required": [
+                "object_identity_or_uncertainty",
+                "containment_state",
+                "reentry_prevented"
+              ],
+              "observed": [
+                {
+                  "name": "object_identity_or_uncertainty",
+                  "passed": true,
+                  "observation": "identity resolved by barcode as 'Plate_P23'; the expected Plate_P18 is recorded as unaccounted",
+                  "value": {
+                    "observed": "Plate_P23",
+                    "expected": "Plate_P18",
+                    "expected_unaccounted": {
+                      "t": 82.27,
+                      "last_inventory_slot": 5,
+                      "found_instead": "Plate_P23"
+                    }
+                  }
+                },
+                {
+                  "name": "containment_state",
+                  "passed": true,
+                  "observation": "H4 QUARANTINED: plate in the chamber (beam), door closed, bolt locked",
+                  "value": {
+                    "mode": "QUARANTINED",
+                    "fault": "",
+                    "occupied": true,
+                    "plate_on_nest": true,
+                    "seated": true,
+                    "beam_blocked": true,
+                    "locked": true,
+                    "door_deg": 0.0005231977431319331,
+                    "bolt_m": 1.4257239052545279e-12,
+                    "shuttle_m": 1.2614449040881937e-08,
+                    "key_position": "LOCK",
+                    "sample_id": "Plate_P23",
+                    "reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'",
+                    "seat_gaps_mm": [
+                      -0.0,
+                      -0.0,
+                      -0.0,
+                      -0.0
+                    ]
+                  }
+                },
+                {
+                  "name": "reentry_prevented",
+                  "passed": true,
+                  "observation": "unauthorised release refused: 'authorization token missing'",
+                  "value": {
+                    "refused": true,
+                    "reason": "authorization token missing"
+                  }
+                }
+              ],
+              "missing": [],
+              "failed": []
+            },
+            "failures": {
+              "reasons": [],
+              "blocked_paths": []
+            },
+            "repairs": {
+              "attempted": [],
+              "available_routes": [
+                "human_escalation",
+                "prevent_scientific_evidence_admission"
+              ]
+            },
+            "verdict": {
+              "critic_vector": {
+                "physical_success": true,
+                "safety_ok": true,
+                "quality_ok": true,
+                "grounding_ok": true,
+                "experimental_validity_ok": true,
+                "measurement_adequacy_ok": null,
+                "evidence_complete": true,
+                "commit_semantic_event": true,
+                "failure_reasons": [],
+                "blocked_paths": []
+              },
+              "semantic_event_eligible": true,
+              "evidence_complete": true
+            },
+            "routing": {
+              "route": "culture_sdt_commit",
+              "target": "CultureSDT"
+            }
+          },
+          "designator": {
+            "component_id": "H4",
+            "component_prim": "/World/Cell01/Stations/H4_Quarantine",
+            "object_id": "Plate_P23",
+            "quarantine_component_id": "H4",
+            "quarantine_frame": "quarantine_nest",
+            "quarantine_reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'",
+            "release_authorization_policy": "token AND key switch in RELEASE"
+          },
+          "monitors": [
+            {
+              "name": "object_identity_or_uncertainty",
+              "passed": true,
+              "observation": "identity resolved by barcode as 'Plate_P23'; the expected Plate_P18 is recorded as unaccounted",
+              "value": {
+                "observed": "Plate_P23",
+                "expected": "Plate_P18",
+                "expected_unaccounted": {
+                  "t": 82.27,
+                  "last_inventory_slot": 5,
+                  "found_instead": "Plate_P23"
+                }
+              }
+            },
+            {
+              "name": "containment_state",
+              "passed": true,
+              "observation": "H4 QUARANTINED: plate in the chamber (beam), door closed, bolt locked",
+              "value": {
+                "mode": "QUARANTINED",
+                "fault": "",
+                "occupied": true,
+                "plate_on_nest": true,
+                "seated": true,
+                "beam_blocked": true,
+                "locked": true,
+                "door_deg": 0.0005231977431319331,
+                "bolt_m": 1.4257239052545279e-12,
+                "shuttle_m": 1.2614449040881937e-08,
+                "key_position": "LOCK",
+                "sample_id": "Plate_P23",
+                "reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'",
+                "seat_gaps_mm": [
+                  -0.0,
+                  -0.0,
+                  -0.0,
+                  -0.0
+                ]
+              }
+            },
+            {
+              "name": "reentry_prevented",
+              "passed": true,
+              "observation": "unauthorised release refused: 'authorization token missing'",
+              "value": {
+                "refused": true,
+                "reason": "authorization token missing"
+              }
+            }
+          ],
+          "critic_vector": {
+            "physical_success": true,
+            "safety_ok": true,
+            "quality_ok": true,
+            "grounding_ok": true,
+            "experimental_validity_ok": true,
+            "measurement_adequacy_ok": null,
+            "evidence_complete": true,
+            "commit_semantic_event": true,
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "commitment_acceptance": {
+            "accepted": true,
+            "acceptance_checks": {
+              "grounded": true,
+              "semantic_valid": true,
+              "causally_admissible": true,
+              "motion_feasible": true,
+              "monitorable": true,
+              "evidence_supported": true
+            },
+            "failure_reasons": [],
+            "blocked_paths": []
+          },
+          "semantic_event": {
+            "eligible": true,
+            "target": "CultureSDT.quarantine_event",
+            "effect": "Plate_P23 contained in H4; scientific evidence from it blocked until authorised release"
+          },
+          "routing": "culture_sdt_commit",
+          "evidence": {
+            "object_id": "Plate_P23",
+            "quarantine_reason": "identity mismatch at L10 release: expected Plate_P18, barcode read 'Plate_P23'",
+            "containment_state": "QUARANTINED",
+            "timestamps": {
+              "start": 115.121,
+              "contained": 117.121
+            }
+          },
+          "provenance": {
+            "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+          }
+        }
+      ],
+      "validation": {
+        "errors": {},
+        "records_checked": 3,
+        "pass": true
+      }
+    }
+  ]
+}

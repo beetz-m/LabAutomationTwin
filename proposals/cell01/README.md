@@ -55,7 +55,16 @@ unverified reseller listing.
   - An articulated H4 twin exists (door, latch, shuttle, key switch, button) with a contract-level controller (`LabAutomationTwin/twin/h4_controller.py`).
   - FR3 place/seat/retrieve has been validated in the Cell 01 overlay (layout P1).
   - The "requested" H4 grounding can now bind to a physical station.
+  - The quarantine path runs end to end in the twin (`LabAutomationTwin/scripts/run_cell01_episode.py`, 2026-10-15):
+    - A plate swap in L10 is caught by L10's barcode read at release.
+    - The retrieve record is blocked and routed to H4; the twin then executes the quarantine request (`physical_execution.status = executed`).
+    - R01 carries the plate to H4, which contains and locks it and refuses an unauthorised release.
+    - The plate the inventory expected is escalated as unaccounted for.
 - Articulated L09 and L10 twins exist (`LabAutomationTwin/assets/l09`, `assets/l10`; controllers in `twin/`).
+- First CRAM episodes on the twin:
+  - Nominal: L10 `retrieve` → R01 `transport` → L09 `store`, with identity read at L10 and again at L09.
+  - Records: NEEM-compatible and validated against `sdt/schemas` (`test_reports/episodes/`).
+  - Builder: `twin/episode_records.py` reuses `physical_workflow.py`'s grounding and `build_h4_quarantine_request` unchanged.
 - Under **"Load the current BioPhysical Cell 01 USD in the target Isaac Sim version"**:
   - Loaded in Isaac Sim 6.2.0.0 on 2026-10-15.
   - The 12 colliders were ignored (fixed by item 1), and the time-code range was missing.

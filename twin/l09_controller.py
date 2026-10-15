@@ -5,7 +5,8 @@ attributes, so any assets/common/plate_store.py device can use it; twin/l10_cont
 
 Implements sdt/components/L09_PlateHotel.yaml on top of assets/l09/l09.usda:
 
-  actions        present_for_load, store(plate_id, slot), retrieve(plate_id), stow, reserve(slot, plate_id)
+  actions        present_for_load, store(plate_id, slot), retrieve(plate_id), stow, reserve(slot, plate_id),
+                 present_for_removal(reason): after an identity fault, present the plate for removal to H4
   constraints    one plate per slot; SDT plate ID must agree with the identity READ at transfer; transfer nest
                  clear before robot placement; door/interlock must permit access
   monitors       barcode at the stowed nest, per-slot occupancy rays, nest seat sensors, gate/door/shuttle
@@ -90,6 +91,8 @@ class PlateStoreController:
         self.travel = {"gate": g("handler:gateTravel_mm") * MM, "shuttle": g("handler:shuttleTravel_mm") * MM}
         self.inventory = [""] * self.n_slots
         self.reserved = {}
+        self.identity_fault = None   # {slot, expected, observed} of the last slot_identity_mismatch
+        self.unaccounted = {}        # plate_id -> record: the inventory placed it here, but it was not found
         self._job = None
         self._door_halt = False
         self._written = {}
@@ -204,6 +207,30 @@ class PlateStoreController:
             return self._refuse("stow", "plate on nest: store it or remove it")
         return self._start("stow", self._seq_stow("READY"))
 
+    def present_for_removal(self, reason: str) -> Result:
+        """Identity-fault recovery (retrieve/store failure routing: H4 quarantine if identity unresolved).
+
+        After slot_identity_mismatch the plate is held on the stowed nest with the handler parked. This presents it
+        so the robot can take it to H4. On a retrieve mismatch the slot is physically empty now: its inventory entry
+        is cleared and the plate the inventory expected there is recorded as unaccounted for (location unknown).
+        """
+        f = self.identity_fault
+        if self.mode != "FAULT" or self.fault != "slot_identity_mismatch" or f is None:
+            return self._refuse("present_for_removal", f"mode {self.mode}, fault {self.fault!r}")
+        if not (self.plate_on_nest and self.seated):
+            return self._refuse("present_for_removal", "no seated plate on the stowed nest")
+        if not self.parked():
+            return self._refuse("present_for_removal", "handler not parked: service required")
+        if f["slot"] is not None and self.inventory[f["slot"]] == f["expected"] and not self.slot_occupied[f["slot"]]:
+            self.unaccounted[f["expected"]] = {"t": round(self.t, 2), "last_inventory_slot": f["slot"],
+                                               "found_instead": f["observed"]}
+            self.inventory[f["slot"]] = ""
+            self._log("inventory_reconciled", slot=f["slot"], expected=f["expected"], observed=f["observed"],
+                      expected_plate_location="unknown")
+        self._log("fault_handled", fault=self.fault, route="present_for_removal", reason=reason)
+        self.fault, self.identity_fault = "", None
+        return self._start("present_for_removal", self._seq_present("PRESENTED_LOADED"), observed=f["observed"])
+
     def reset_fault(self, by: str) -> Result:
         """Operator reset: re-home the handler to park, unless the tine may be under a plate on the nest."""
         if self.mode != "FAULT":
@@ -267,6 +294,7 @@ class PlateStoreController:
         if seen != plate_id:
             self._set_fault("slot_identity_mismatch",
                             f"expected {plate_id}, read {seen!r}; plate held on the stowed nest; quarantine recommended")
+            self.identity_fault = {"slot": None, "expected": plate_id, "observed": seen}
             return
         L = self.ledge(slot)
         yield from self._move("fork", self.fork_travel)            # tine to the slot side, above the nest plate
@@ -302,6 +330,7 @@ class PlateStoreController:
         if seen != plate_id:
             self._set_fault("slot_identity_mismatch",
                             f"slot {slot} held {seen!r}, inventory said {plate_id}; inventory kept as pre-fault")
+            self.identity_fault = {"slot": slot, "expected": plate_id, "observed": seen}
             return
         if not self.seated:
             self._set_fault("double_occupancy_or_jam", f"retrieved plate not seated on the nest: {self.seat_gaps}")

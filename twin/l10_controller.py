@@ -120,7 +120,10 @@ class L10Controller(PlateStoreController):
                 self.plates[new] = {"slot": slot, "incubated_at": round(self.t, 2), "time_stored_s": 0.0,
                                     "time_out_of_envelope_s": 0.0, "T_min": self.env["T"], "T_max": self.env["T"],
                                     "CO2_min": self.env["CO2"], "CO2_max": self.env["CO2"], "excursions": []}
-            if old and old != new:   # released
+            if old and old != new and old in self.unaccounted:   # inventory reconciled: it was never here
+                self.plates.get(old, {})["unaccounted"] = self.unaccounted[old]
+                self._log("plate_unaccounted", plate_id=old, **self.unaccounted[old])
+            elif old and old != new:   # released
                 rec = {"t": round(self.t, 2), "slot": slot, "environment": {k: round(v, 3) for k, v in self.env.items()},
                        "environment_valid": self.environment_valid}
                 self.released[old] = rec

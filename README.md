@@ -16,8 +16,8 @@ merge-ready proposals for the Cell 01 package are in `proposals/cell01/`.
 | `assets/l10/` | L10 CO2 incubator, STX44-class (L09 mechanism + insulated chamber, environment state). |
 | `assets/common/` | Shared CAD → USD helpers, the SBS shuttle nest, and the parametric plate store (L09, L10). |
 | `assets/gripper/`, `assets/labware/` | Plate gripper proxy for R01, SBS 96-well plate. |
-| `twin/` | Runtime controllers: `h4_controller.py`, `l09_controller.py` (`PlateStoreController`), `l10_controller.py`. |
-| `scripts/` | Isaac Sim tests (`test_*_physics.py`, `test_h4_robot.py`), renders, FR3 import. |
+| `twin/` | Runtime controllers: `h4_controller.py`, `l09_controller.py` (`PlateStoreController`), `l10_controller.py`. R01: `r01_rig.py` (FR3 + gripper, IK, pick/place), `r01_planner.py` (checked joint-space transits). Evidence: `episode_records.py`. |
+| `scripts/` | Isaac Sim tests (`test_*_physics.py`, `test_h4_robot.py`), the end-to-end episodes (`run_cell01_episode.py`), renders, FR3 import. |
 | `tools/` | Layout and reach (`reachability_study.py`, `layout_p1.py`), overlay composer, clearance sweeps, `build_all.sh`. |
 | `scenes/` | `layout_p1.json` (placements) and the generated overlay `cell01_twin.usda`. |
 | `proposals/cell01/` | Cell 01 fixes and the D017 decision text, ready to merge when the owner chooses. |
@@ -48,6 +48,7 @@ env_isaacsim/bin/python scripts/test_h4_physics.py      # 14 station checks
 env_isaacsim/bin/python scripts/test_l09_physics.py     # 11 checks
 env_isaacsim/bin/python scripts/test_l10_physics.py     # 11 checks
 env_isaacsim/bin/python scripts/test_h4_robot.py --scene cell01 [--place-mode compliant|drop]   # 16 FR3 trials
+env_isaacsim/bin/python scripts/run_cell01_episode.py   # end-to-end episodes, records in test_reports/episodes/
 env_isaacsim/bin/python scripts/render_cell01.py [--quick]
 ```
 
@@ -61,6 +62,39 @@ computes the placements and checks footprints, door swings and presented trays a
 pedestal and the AMR lane, plus FR3 reach; `tools/compose_cell01_overlay.py` writes the overlay.
 Plan view: `renders/cell01_layout_p1.png`.
 
+## End-to-end episodes
+
+`scripts/run_cell01_episode.py` runs Cell 01 workflows as CRAM designators with every station controller and R01
+in the loop. Monitors read the simulated devices: barcode rays, seat sensors, slot rays, joint states, PhysX contact
+reports and the L10 environment model. The two episodes, verified 2026-10-15:
+
+| Episode | What happens | Records |
+|---|---|---|
+| `nominal` | L10 releases Plate_P17. R01 picks it, transits and places it on L09. L09 reads the barcode again and stores it in slot 3. | retrieve, transport, store: all eligible to commit |
+| `identity_swap` | L10's inventory says slot 5 holds Plate_P18, but the plate there is Plate_P23. L10's reader catches it at release, and L10 presents the plate for removal. R01 carries it to H4, which quarantines and locks it and refuses an unauthorised release. | retrieve: blocked (`plate_identity`), routed to H4, quarantine request executed; transport, quarantine: eligible; escalations: Plate_P18 unaccounted for, quarantine review |
+
+**Records.** `twin/episode_records.py` turns the run log into records that follow Cell 01's
+`neem_record_schema.yaml`:
+- The critic vector comes from `monitor_templates.yaml`.
+- Grounding and the H4 request come from Cell 01's `physical_workflow.py`, which is imported read-only.
+- Every record is validated against the schemas and their invariants.
+- `python -m twin.episode_records` rebuilds the records without Isaac Sim.
+
+**Request parameters.** The protocol window (600 s) and the acceptance of ambient storage in L09 are labelled demo
+request parameters, not biological values (D016). Contamination compatibility is recorded as an assumption, because
+the twin has no contamination model.
+
+**R01 motion.**
+- Between stations, R01 moves in joint space along paths from `twin/r01_planner.py`. It uses the FR3 URDF
+  kinematics and checks the plate, the gripper and the arm links against the station housings, stack lights,
+  H4's open door, the bench and the walls.
+- Approach configurations must have joint margins of at least 20° and a well-conditioned Jacobian:
+  - The first run's planner chose configurations with σ_min 0.06–0.08.
+  - The damped IK then left 1–2 mm errors that never settled.
+  - The READY-like configurations reach 0.12–0.14.
+- Approach, insertion and lift stay Cartesian (`twin/r01_rig.py`).
+- No arm contact occurred in either transit.
+
 ## Design basis and limits
 
 - All station designs are project-owned parametric designs, not manufacturer models. Manufacturer CAD (LiCONiC,
@@ -68,3 +102,5 @@ Plan view: `renders/cell01_layout_p1.png`.
 - L10's environment model parameters are illustrative engineering assumptions, not validated incubator data
   (Cell 01 rule D016: no invented biological parameters).
 - The robot campaigns are functional checks (16 trials), not reliability estimates.
+- The episodes are single functional runs. The transit planner checks simplified boxes and link spheres; it is not a
+  collision-aware motion planner (cuMotion would be the production choice).

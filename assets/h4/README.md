@@ -85,7 +85,7 @@ Before the coupled-jaw fix, the first P1 compliant campaign scored 15/16 (`test_
 - stiffness is K = 800/800/1500 N/m with damping, plus payload compensation;
 - this cuts landing speed by 2.4–3× compared with dropping the plate.
 
-Lessons recorded in the test script:
+Lessons recorded in the test script and in the shared robot rig `twin/r01_rig.py`:
 - **Settle before switching:** without the ramp and settle, the gain switch left a 4 mm lateral transient and 2 of 8 plates jammed.
 - **Move convergence:** must require the tool point to be at rest. A tolerance-only check overshot the grasp by 4 mm.
 - **Transit height:** must be 0.20 m. At 0.10 m the arm clipped H4's open door top in the Cell 01 placement.
