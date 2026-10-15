@@ -68,7 +68,15 @@ unverified reseller listing.
 - Under **"Load the current BioPhysical Cell 01 USD in the target Isaac Sim version"**:
   - Loaded in Isaac Sim 6.2.0.0 on 2026-10-15.
   - The 12 colliders were ignored (fixed by item 1), and the time-code range was missing.
-- New: replace the provisional supports with real furniture, and build R02 (rail, UR5e, tool changer) on the shifted rail.
+- New: replace the provisional supports with real furniture.
+- R02 is built in the twin (`LabAutomationTwin/assets/r02`, 2026-10-16). Notes for the Cell 01 package:
+  - **DOF count:** `R02_RailMounted_UR5e.yaml` gives `dof: 8` but describes a 1-DOF rail plus a 6-DOF robot (7).
+  - **Magazine location:** the tool magazine has no location in Cell 01 (its frames sit at the origin). The twin
+    places TCM01 north of the rail at (0.30, 1.20), with coupling faces at 1.12 m. All five docks are reachable
+    (`scenes/layout_p1.json`). Proposed as an amendment to D017.
+  - **L21 deck:** the `L21_QC_Calibration/Deck` placeholder has no collider, unlike L12's deck. The overlay adds one.
+  - **Tool identity:** a dock's expected tool is not evidence of identity. The twin reads `tool:id` through the
+    coupler and refuses a swapped tool (`wrong_tool`), as the contract's `must_not_assume` requires.
 
 ## 5. To merge layout P1 into the authoritative scene later
 

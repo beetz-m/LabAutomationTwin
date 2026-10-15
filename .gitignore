@@ -18,4 +18,7 @@ assets/l10/*.usda
 assets/labware/*.usda
 assets/gripper/*.usda
 assets/fr3/
+assets/r02/*.usda
+assets/r02/r02.urdf
+assets/r02/usd/
 scenes/*.usda

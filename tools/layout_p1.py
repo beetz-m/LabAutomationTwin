@@ -49,6 +49,13 @@ SITES = {
     "L09": dict(nest=(-1.38, 0.90), support="side_table"),
     "H4": dict(nest=(-2.02, 0.05), support="side_table"),
 }
+# R02 and its tool magazine (amendment to P1, 2026-10-15: R02 built). The rail is part of P1 (D004 travel, shifted
+# west); the magazine TCM01 (assets/r02/build_tooling.py) stands north of the rail, docks open toward it.
+RAIL = dict(x0=-0.85, x1=1.75, y=0.78, top=0.965)
+FIXTURES = {
+    "TCM01": dict(prim="/World/Cell01/Tooling/AutomaticToolChanger", origin=(0.30, 1.20, 0.0), yaw_deg=0.0,
+                  body=(-0.41, 0.41, -0.07, 0.24), dock_pitch=0.15, dock_z=1.12),
+}
 EXTRA_SITES = {  # frames only for now (no device asset yet)
     "AMR_dock_carrier": (-1.40, -0.12),
     "handover_nest_R01_R02": (-1.05, 0.55),
@@ -115,13 +122,18 @@ def main():
         shapes.append((name, "body", rect_poly(d["body"], origin, yaw)))
         for zn, r in d["zones"].items():
             shapes.append((name, zn, rect_poly(r, origin, yaw)))
+    for name, f in FIXTURES.items():
+        shapes.append((name, "body", rect_poly(f["body"], f["origin"], f["yaw_deg"])))
+    rail = np.array([(RAIL["x0"] - 0.25, RAIL["y"] - 0.06), (RAIL["x1"] + 0.25, RAIL["y"] - 0.06),
+                     (RAIL["x1"] + 0.25, RAIL["y"] + 0.06), (RAIL["x0"] - 0.25, RAIL["y"] + 0.06)])
+    shapes.append(("R02", "rail", rail))
     x0, x1, y0, y1 = CELL
     bench = np.array([(BENCH[0], BENCH[2]), (BENCH[1], BENCH[2]), (BENCH[1], BENCH[3]), (BENCH[0], BENCH[3])])
     for name, part, poly in shapes:
         if poly[:, 0].min() < x0 + 0.03 or poly[:, 0].max() > x1 - 0.03 or poly[:, 1].min() < y0 + 0.03 or \
            poly[:, 1].max() > y1 - 0.03:
             problems.append(f"{name}/{part} outside the cell walls")
-        if part in ("body", "service_door") and sat_overlap(poly, bench):
+        if part in ("body", "service_door") and name != "R02" and sat_overlap(poly, bench):
             problems.append(f"{name}/{part} overlaps the central bench")
         if circle_hits(poly, R01[:2], ARM_CLEAR_R if part == "body" else PEDESTAL_R):
             problems.append(f"{name}/{part} intrudes on R01's pedestal/base clearance")
@@ -138,13 +150,17 @@ def main():
         reach[name] = dict(serviceable=bool(ok), yaw_coverage=f"{k}/5", dist=round(float(np.hypot(*(tgt - R01)[:2])), 3))
         if not ok:
             problems.append(f"{name} nest not serviceable by R01 ({k}/5 yaws)")
+    reach.update(r02_dock_reach())
+    problems += [f"TCM01 {d} not reachable by R02" for d, r in reach.items() if d.startswith("dock_") and not r["ok"]]
     for name, xy in EXTRA_SITES.items():
         ok, k = rs.serviceable(fr3, R01, np.array([*xy, 0.96]), rng)
         reach[name] = dict(serviceable=bool(ok), yaw_coverage=f"{k}/5", dist=round(float(np.hypot(*(np.array(xy) - R01[:2]))), 3))
         if not ok:
             problems.append(f"{name} not serviceable by R01")
+    fixtures = {n: dict(prim=f["prim"], origin=list(f["origin"]), yaw_deg=f["yaw_deg"], footprint=list(f["body"]))
+                for n, f in FIXTURES.items()}
     out = dict(proposal="P1 R01 cluster", adopted="2026-10-15 (user)", r01_base=R01.tolist(), nest_z=NEST_Z,
-               stations=place, extra_frames={k: [*v, 0.96] for k, v in EXTRA_SITES.items()}, reach=reach,
+               stations=place, fixtures=fixtures, r02_rail=RAIL, extra_frames={k: [*v, 0.96] for k, v in EXTRA_SITES.items()}, reach=reach,
                notes=["R02 rail shift (2.6 m travel, x -0.85..1.75 at y 0.78) is part of P1 but R02 is not built yet",
                       "supports (side tables, L10 plinth) are provisional layout furniture"],
                problems=problems)
@@ -160,6 +176,38 @@ def main():
     sys.exit(1 if problems else 0)
 
 
+def r02_dock_reach():
+    """R02 (rail + UR5e, assets/r02/r02.urdf) reaches each dock pose: coupler face on the docked coupling face,
+    tool axis down; checked at the dock and 0.10 m above it (the lift-out), joint margin >= 15 deg."""
+    sys.path.insert(0, os.path.join(ROOT))
+    from twin.kinematics import UrdfChain
+    urdf = os.path.join(ROOT, "assets/r02/r02.urdf")
+    if not os.path.exists(urdf):
+        return {}
+    ch = UrdfChain(urdf, "rail_base", "tc_robot_half")
+    tool = np.eye(4)
+    tool[2, 3] = 0.016                                  # robot coupler face beyond tool0
+    down = np.diag([1.0, -1.0, -1.0])                   # tool +Z down, tool X along world X
+    f = FIXTURES["TCM01"]
+    out = {}
+    for k in range(5):
+        p = np.array([f["origin"][0] + (k - 2) * f["dock_pitch"], f["origin"][1], f["dock_z"]])
+        base = np.array([RAIL["x0"], RAIL["y"], 0.0])
+        rail = float(np.clip(p[0] - base[0], 0.0, 2.6))
+        q0 = np.array([rail, math.pi / 2, -1.2, 1.6, -1.97, -math.pi / 2, 0.0])
+        ok, info = True, {}
+        for lift in (0.10, 0.0):
+            q = ch.ik(p - base + [0, 0, lift], down, q0, active=range(1, 7), tool=tool)
+            good = q is not None and ch.margin(q, range(1, 7)) > math.radians(15)
+            ok &= good
+            if q is not None:
+                q0 = q
+                info = dict(rail_m=round(rail, 3), sigma_min=round(ch.sigma_min(q, range(1, 7), tool), 3),
+                            margin_deg=round(math.degrees(ch.margin(q, range(1, 7))), 1))
+        out[f"dock_T0{k + 1}"] = dict(ok=bool(ok), **info)
+    return out
+
+
 def plot(shapes, place, out):
     import matplotlib
     matplotlib.use("Agg")
@@ -171,23 +219,25 @@ def plot(shapes, place, out):
     ax.axhspan(-2.25, AMR_LANE_Y, color="tab:green", alpha=0.07, label="AMR front lane")
     ax.add_patch(Circle(R01[:2], 0.65, color="tab:blue", alpha=0.12, label="R01 top-down reach @ 0.97 m"))
     ax.add_patch(Circle(R01[:2], PEDESTAL_R, color="tab:blue", alpha=0.5))
-    ax.plot([-0.85, 1.75], [0.78, 0.78], color="tab:orange", lw=4, label="R02 rail (P1, not built)")
-    col = {"body": "0.3", "tray": "tab:purple", "door_swing": "tab:red", "service_door": "tab:red"}
+    ax.plot([-0.85, 1.75], [0.78, 0.78], color="tab:orange", lw=4, label="R02 rail travel (P1)")
+    col = {"body": "0.3", "tray": "tab:purple", "door_swing": "tab:red", "service_door": "tab:red", "rail": "tab:orange"}
     for name, part, poly in shapes:
         ax.add_patch(Polygon(poly, closed=True, fill=part == "body", alpha=0.35 if part == "body" else 0.9,
                              edgecolor=col[part], facecolor=col[part], lw=1.5, ls="-" if part == "body" else "--"))
+    for name, f in out["fixtures"].items():
+        ax.annotate(name, f["origin"][:2], ha="center", va="center", fontsize=9, color="white", weight="bold")
     for name, p in place.items():
         ax.plot(*p["nest"][:2], "s", color="tab:purple")
         ax.annotate(name, p["origin"][:2], ha="center", va="center", fontsize=11, color="white", weight="bold")
     for name, xyz in out["extra_frames"].items():
         ax.plot(*xyz[:2], "^", color="tab:green", ms=9)
         ax.annotate(name.replace("_", " "), xyz[:2], textcoords="offset points", xytext=(6, -12), fontsize=8)
-    ax.set_xlim(-3.1, 1.0)
+    ax.set_xlim(-3.1, 2.0)
     ax.set_ylim(-1.3, 2.35)
     ax.set_aspect("equal")
     ax.grid(alpha=0.3)
     ax.legend(loc="lower right", fontsize=8)
-    ax.set_title("Cell 01 layout P1 (adopted 2026-10-15): R01 cluster, west half  -  dashed: trays / door swings")
+    ax.set_title("Cell 01 layout P1 (adopted 2026-10-15): R01 cluster, R02 rail + tool magazine  -  dashed: trays / door swings")
     fig.tight_layout()
     fig.savefig(os.path.join(ROOT, "renders", "cell01_layout_p1.png"), dpi=110)
 

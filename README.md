@@ -16,7 +16,8 @@ merge-ready proposals for the Cell 01 package are in `proposals/cell01/`.
 | `assets/l10/` | L10 CO2 incubator, STX44-class (L09 mechanism + insulated chamber, environment state). |
 | `assets/common/` | Shared CAD → USD helpers, the SBS shuttle nest, and the parametric plate store (L09, L10). |
 | `assets/gripper/`, `assets/labware/` | Plate gripper proxy for R01, SBS 96-well plate. |
-| `twin/` | Runtime controllers: `h4_controller.py`, `l09_controller.py` (`PlateStoreController`), `l10_controller.py`. R01: `r01_rig.py` (FR3 + gripper, IK, pick/place), `r01_planner.py` (checked joint-space transits). Evidence: `episode_records.py`. |
+| `assets/r02/` | R02: rail + UR5e (official ur_description) + automatic tool changer, tool magazine TCM01 with tools T01-T05. See its README. |
+| `twin/` | Runtime controllers: `h4_controller.py`, `l09_controller.py` (`PlateStoreController`), `l10_controller.py`. R01: `r01_rig.py` (FR3 + gripper, IK, pick/place), `r01_planner.py` (checked joint-space transits). R02: `r02_rig.py`, `r02_controller.py` (rail + tool-changer contracts), `kinematics.py` (URDF FK/IK). Evidence: `episode_records.py`. |
 | `scripts/` | Isaac Sim tests (`test_*_physics.py`, `test_h4_robot.py`), the end-to-end episodes (`run_cell01_episode.py`), renders, FR3 import. |
 | `tools/` | Layout and reach (`reachability_study.py`, `layout_p1.py`), overlay composer, clearance sweeps, `build_all.sh`. |
 | `scenes/` | `layout_p1.json` (placements) and the generated overlay `cell01_twin.usda`. |
@@ -48,6 +49,7 @@ env_isaacsim/bin/python scripts/test_h4_physics.py      # 14 station checks
 env_isaacsim/bin/python scripts/test_l09_physics.py     # 11 checks
 env_isaacsim/bin/python scripts/test_l10_physics.py     # 11 checks
 env_isaacsim/bin/python scripts/test_h4_robot.py --scene cell01 [--place-mode compliant|drop]   # 16 FR3 trials
+env_isaacsim/bin/python scripts/test_r02.py              # R02 rail, reach, tool changer, plate transfer (10)
 env_isaacsim/bin/python scripts/run_cell01_episode.py   # end-to-end episodes, records in test_reports/episodes/
 env_isaacsim/bin/python scripts/render_cell01.py [--quick]
 ```

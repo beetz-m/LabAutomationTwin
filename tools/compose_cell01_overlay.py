@@ -14,7 +14,10 @@ scene and adds overrides only:
          0.56-0.60 m from R01 and its robot side facing R01; the placeholder Housing cubes are deactivated;
        * provisional supports (side tables, an L10 plinth) put every transfer nest at 0.972 m;
        * R02's rail shifted west to x -0.85..1.75 at y 0.78 (2.6 m, D004); L21 moved to (2.25, 1.20);
-       * layout frames for the AMR carrier dock and the R01/R02 handover nest on the bench.
+       * layout frames for the AMR carrier dock and the R01/R02 handover nest on the bench;
+       * the R02 tool magazine TCM01 with tools T01-T05 (assets/r02/tooling.usda) on the Cell 01 tool-changer prim;
+       * a collider on the L21 deck placeholder (it has none in Cell 01; R02 places plates on it).
+  R02 itself (rail + UR5e, assets/r02/) is added at runtime by the scripts that use it (twin/r02_rig.py), like R01.
 
 Run with the CAD venv:  env_cad/bin/python tools/compose_cell01_overlay.py   (after tools/layout_p1.py)
 """
@@ -32,7 +35,8 @@ CELL01 = os.path.expanduser(
 OUT = os.path.join(ROOT, "scenes", "cell01_twin.usda")
 LAYOUT = os.path.join(ROOT, "scenes", "layout_p1.json")
 R01 = "/World/Cell01/Robots/R01_FR3"
-ASSETS = {"H4": "assets/h4/h4.usda", "L09": "assets/l09/l09.usda", "L10": "assets/l10/l10.usda"}
+ASSETS = {"H4": "assets/h4/h4.usda", "L09": "assets/l09/l09.usda", "L10": "assets/l10/l10.usda",
+          "TCM01": "assets/r02/tooling.usda"}
 NEST_FRAME = {"H4": "transfer_nest", "L09": "transfer_nest", "L10": "transfer_station"}
 RAIL = dict(x0=-0.85, x1=1.75, y=0.78, z=0.92)
 L21_XY = (2.25, 1.20)
@@ -112,13 +116,27 @@ def main():
         sup.CreateAttribute("sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(
             f"provisional {s['support']} (layout P1), top at {h:.3f} m so the transfer nest is at {lay['nest_z']} m")
 
-    # R02 rail (placeholder geometry) and L21 (placeholder deck)
+    # fixtures: the R02 tool magazine
+    for name, fx in lay.get("fixtures", {}).items():
+        prim = st.OverridePrim(fx["prim"])
+        prim.GetReferences().AddReference(os.path.relpath(os.path.join(ROOT, ASSETS[name]), os.path.dirname(OUT)))
+        set_pose(prim, fx["origin"], fx["yaw_deg"])
+        prim.CreateAttribute("sdt:bindingStatus", Sdf.ValueTypeNames.String).Set("proxy_v1")
+        prim.CreateAttribute("sdt:placementDecision", Sdf.ValueTypeNames.String, custom=True).Set(
+            DECISION + " Tool magazine placed with R02 (layout P1 amendment, 2026-10-15).")
+
+    # R02 rail (placeholder geometry, replaced at runtime when R02 is added) and L21 (placeholder deck)
     rail = st.OverridePrim("/World/Cell01/Robots/R02_RailSystem/LinearRail")
     set_pose(rail, ((RAIL["x0"] + RAIL["x1"]) / 2, RAIL["y"], RAIL["z"]))
     st.OverridePrim("/World/Cell01/Robots/R02_RailSystem/LinearRail/Rail").GetAttribute("xformOp:scale").Set(
         Gf.Vec3f(RAIL["x1"] - RAIL["x0"], 0.11, 0.09))
     l21 = st.OverridePrim("/World/Cell01/Stations/L21_QC_Calibration")
     set_pose(l21, (*L21_XY, 0.94))
+    # the L21 deck placeholder has no collider in Cell 01 (unlike L12's deck); R02 sets plates on it
+    deck = st.OverridePrim("/World/Cell01/Stations/L21_QC_Calibration/Deck")
+    UsdPhysics.CollisionAPI.Apply(deck)
+    deck.CreateAttribute("sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(
+        "collider added by the LabAutomationTwin overlay: plates are placed on the L21 deck by R02")
 
     # layout frames (no device assets yet)
     for name, xyz in lay["extra_frames"].items():
@@ -144,6 +162,12 @@ def main():
         worst = max(worst, err)
         print(f"  {name:4s} nest at ({nest[0]:.3f}, {nest[1]:.3f}, {nest[2]:.3f}); {math.hypot(nest[0] - base[0], nest[1] - base[1]):.3f} m "
               f"from R01, {nest[2] - base[2]:.3f} m above its base; layout error {err * 1000:.2f} mm")
+    for name, fx in lay.get("fixtures", {}).items():
+        for k in range(5):
+            d = xc.GetLocalToWorldTransform(out.GetPrimAtPath(f"{fx['prim']}/dock_T0{k + 1}")).ExtractTranslation()
+            exp = Gf.Vec3d(fx["origin"][0] + (k - 2) * 0.15, fx["origin"][1], 1.12)
+            worst = max(worst, (d - exp).GetLength())
+        print(f"  {name} docks at x {fx['origin'][0] - 0.30:.2f}..{fx['origin'][0] + 0.30:.2f}, y {fx['origin'][1]}, z 1.12")
     assert worst < 1e-3, worst
 
 

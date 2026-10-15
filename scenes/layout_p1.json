@@ -78,6 +78,29 @@
       ]
     }
   },
+  "fixtures": {
+    "TCM01": {
+      "prim": "/World/Cell01/Tooling/AutomaticToolChanger",
+      "origin": [
+        0.3,
+        1.2,
+        0.0
+      ],
+      "yaw_deg": 0.0,
+      "footprint": [
+        -0.41,
+        0.41,
+        -0.07,
+        0.24
+      ]
+    }
+  },
+  "r02_rail": {
+    "x0": -0.85,
+    "x1": 1.75,
+    "y": 0.78,
+    "top": 0.965
+  },
   "extra_frames": {
     "AMR_dock_carrier": [
       -1.4,
@@ -105,6 +128,36 @@
       "serviceable": true,
       "yaw_coverage": "3/5",
       "dist": 0.558
+    },
+    "dock_T01": {
+      "ok": true,
+      "rail_m": 0.85,
+      "sigma_min": 0.208,
+      "margin_deg": 44.2
+    },
+    "dock_T02": {
+      "ok": true,
+      "rail_m": 1.0,
+      "sigma_min": 0.208,
+      "margin_deg": 44.2
+    },
+    "dock_T03": {
+      "ok": true,
+      "rail_m": 1.15,
+      "sigma_min": 0.208,
+      "margin_deg": 44.2
+    },
+    "dock_T04": {
+      "ok": true,
+      "rail_m": 1.3,
+      "sigma_min": 0.208,
+      "margin_deg": 44.2
+    },
+    "dock_T05": {
+      "ok": true,
+      "rail_m": 1.45,
+      "sigma_min": 0.208,
+      "margin_deg": 44.2
     },
     "AMR_dock_carrier": {
       "serviceable": true,
