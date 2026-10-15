@@ -6,15 +6,15 @@
       "trials": 8,
       "seated": 8,
       "retrieved": 8,
-      "max_landing_speed_mm_s": 128.3,
-      "max_release_height_mm": 3.66
+      "max_landing_speed_mm_s": 125.6,
+      "max_release_height_mm": 4.23
     },
     "unregistered": {
       "trials": 8,
       "seated": 8,
       "retrieved": 8,
-      "max_landing_speed_mm_s": 128.1,
-      "max_release_height_mm": 6.77
+      "max_landing_speed_mm_s": 118.9,
+      "max_release_height_mm": 5.02
     }
   },
   "quarantine_cycle": {
@@ -40,26 +40,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.58",
-          "2.42"
+          "2.61",
+          "2.39"
         ],
         "tcp_err_at_grasp_mm": [
-          0.0,
-          0.03,
+          0.01,
+          0.04,
           0.09
         ],
         "plate_in_tool_mm": [
-          0.02,
-          -0.05,
+          0.03,
+          -0.03,
           6.09
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        0.5,
-        -1.58
+      "q_entry_deg": [
+        18.5,
+        8.4,
+        17.9,
+        -136.6,
+        -4.4,
+        144.5,
+        -4.9
       ],
-      "impedance_lateral_max_mm": 2.87,
+      "guide_correction_mm": [
+        0.92,
+        -0.72
+      ],
+      "impedance_lateral_max_mm": 2.69,
       "impedance_trace": [
         [
           0.0,
@@ -88,73 +97,78 @@
         ],
         [
           0.5,
-          0.01,
-          -0.0
+          0.02,
+          0.0
         ],
         [
           0.6,
-          0.04,
-          0.75
+          0.06,
+          0.76
         ],
         [
           0.7,
-          0.54,
-          1.56
+          0.56,
+          1.57
         ],
         [
           0.8,
-          1.19,
-          1.93
+          1.21,
+          1.94
         ],
         [
           0.9,
-          1.73,
-          2.22
+          1.74,
+          2.23
         ],
         [
           1.0,
-          2.14,
-          2.47
+          2.15,
+          2.48
         ],
         [
           1.1,
-          2.47,
+          2.48,
           2.68
         ],
         [
           1.2,
-          2.74,
-          2.85
+          2.63,
+          2.93
         ],
         [
           1.3,
-          2.71,
-          2.89
+          2.25,
+          3.37
         ],
         [
           1.4,
-          2.4,
-          2.21
+          1.83,
+          2.75
         ],
         [
           1.5,
-          1.99,
-          1.8
+          1.44,
+          2.31
         ]
       ],
-      "release_height_mm": 3.35,
-      "landing_speed_mm_s": 126.6,
+      "nullspace_drift_deg": 1.28,
+      "joint_margin_min_deg": [
+        39.6,
+        "joint4"
+      ],
+      "release_height_mm": 3.82,
+      "landing_speed_mm_s": 114.1,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        -0.0,
+        0.0,
         0.0,
         0.0,
         0.0
       ],
       "plate_err_mm": [
-        0.5,
-        -0.14,
+        0.23,
+        -0.5,
         0.0
       ],
       "plate_yaw_err_deg": 0.0,
@@ -172,23 +186,23 @@
         "lifted": "True",
         "finger_travel_mm": [
           "2.44",
-          "2.43"
+          "2.44"
         ],
         "tcp_err_at_grasp_mm": [
-          0.02,
+          0.03,
           -0.02,
           0.02
         ],
         "plate_in_tool_mm": [
-          -0.91,
-          0.63,
+          -0.61,
+          -0.03,
           6.02
         ]
       },
       "result": "PASS",
       "h4_events": [
         {
-          "t": 28.5958,
+          "t": 28.7625,
           "event": "quarantine_sample_accepted",
           "mode": "SECURING",
           "sample_id": "P-TRIAL-0",
@@ -196,13 +210,13 @@
           "preceding_anomalies": []
         },
         {
-          "t": 29.9208,
+          "t": 30.0875,
           "event": "mode",
           "mode": "QUARANTINED",
           "to": "QUARANTINED"
         },
         {
-          "t": 29.9208,
+          "t": 30.0875,
           "event": "quarantined",
           "mode": "QUARANTINED",
           "sample_id": "P-TRIAL-0",
@@ -210,27 +224,27 @@
           "beam_confirms": true
         },
         {
-          "t": 35.5958,
+          "t": 35.7625,
           "event": "release_accepted",
           "mode": "RELEASING",
           "authorization": "QA-ROBOT-TRIAL",
           "sample_id": "P-TRIAL-0"
         },
         {
-          "t": 36.3292,
+          "t": 36.4958,
           "event": "released",
           "mode": "RELEASING",
           "sample_id": "P-TRIAL-0",
           "authorization": "QA-ROBOT-TRIAL"
         },
         {
-          "t": 36.3292,
+          "t": 36.4958,
           "event": "mode",
           "mode": "PRESENTED",
           "to": "PRESENTED"
         },
         {
-          "t": 46.7583,
+          "t": 46.925,
           "event": "sample_removed",
           "mode": "PRESENTED",
           "sample_id": "P-TRIAL-0"
@@ -238,7 +252,7 @@
       ]
     },
     {
-      "_t0": 54.554166666683116,
+      "_t0": 54.875000000016705,
       "trial": 1,
       "mode": "registered",
       "belief_err_mm": [
@@ -252,8 +266,8 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.54",
-          "2.46"
+          "2.59",
+          "2.41"
         ],
         "tcp_err_at_grasp_mm": [
           -0.01,
@@ -262,16 +276,25 @@
         ],
         "plate_in_tool_mm": [
           0.01,
-          0.04,
+          -0.03,
           6.08
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        0.63,
-        -1.56
+      "q_entry_deg": [
+        18.5,
+        8.5,
+        17.8,
+        -136.5,
+        -4.5,
+        144.5,
+        -5.3
       ],
-      "impedance_lateral_max_mm": 2.92,
+      "guide_correction_mm": [
+        0.71,
+        -1.23
+      ],
+      "impedance_lateral_max_mm": 2.83,
       "impedance_trace": [
         [
           0.0,
@@ -280,7 +303,7 @@
         ],
         [
           0.1,
-          0.02,
+          0.01,
           0.01
         ],
         [
@@ -305,17 +328,17 @@
         ],
         [
           0.6,
-          0.04,
-          0.75
+          0.06,
+          0.76
         ],
         [
           0.7,
-          0.55,
-          1.56
+          0.56,
+          1.57
         ],
         [
           0.8,
-          1.19,
+          1.2,
           1.94
         ],
         [
@@ -340,34 +363,379 @@
         ],
         [
           1.3,
-          2.83,
-          2.77
+          2.61,
+          2.97
         ],
         [
           1.4,
-          2.46,
-          2.1
+          2.1,
+          2.39
         ],
         [
           1.5,
-          2.02,
-          1.71
+          1.69,
+          1.95
         ]
       ],
-      "release_height_mm": 3.29,
-      "landing_speed_mm_s": 126.4,
+      "nullspace_drift_deg": 1.31,
+      "joint_margin_min_deg": [
+        39.7,
+        "joint4"
+      ],
+      "release_height_mm": 3.48,
+      "landing_speed_mm_s": 124.9,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         -0.0,
-        0.0,
+        -0.0,
         -0.0,
         -0.0
       ],
       "plate_err_mm": [
-        0.5,
-        -0.15,
+        0.47,
+        -0.26,
         -0.0
+      ],
+      "plate_yaw_err_deg": 0.0,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.54",
+          "2.46"
+        ],
+        "tcp_err_at_grasp_mm": [
+          0.04,
+          -0.02,
+          0.0
+        ],
+        "plate_in_tool_mm": [
+          -0.67,
+          -0.03,
+          6.0
+        ]
+      },
+      "result": "PASS",
+      "h4_events": []
+    },
+    {
+      "_t0": 90.05416666666693,
+      "trial": 2,
+      "mode": "registered",
+      "belief_err_mm": [
+        0.35,
+        -0.67
+      ],
+      "belief_yaw_err_deg": -0.14,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.57",
+          "2.43"
+        ],
+        "tcp_err_at_grasp_mm": [
+          -0.01,
+          0.02,
+          0.08
+        ],
+        "plate_in_tool_mm": [
+          0.01,
+          -0.03,
+          6.08
+        ]
+      },
+      "place_reached": true,
+      "q_entry_deg": [
+        18.5,
+        8.3,
+        17.9,
+        -136.8,
+        -4.4,
+        144.6,
+        -5.1
+      ],
+      "guide_correction_mm": [
+        0.54,
+        -0.75
+      ],
+      "impedance_lateral_max_mm": 2.63,
+      "impedance_trace": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.1,
+          0.01,
+          0.01
+        ],
+        [
+          0.2,
+          0.01,
+          0.0
+        ],
+        [
+          0.3,
+          0.01,
+          -0.0
+        ],
+        [
+          0.4,
+          0.01,
+          -0.0
+        ],
+        [
+          0.5,
+          0.02,
+          0.0
+        ],
+        [
+          0.6,
+          0.06,
+          0.76
+        ],
+        [
+          0.7,
+          0.56,
+          1.57
+        ],
+        [
+          0.8,
+          1.21,
+          1.95
+        ],
+        [
+          0.9,
+          1.74,
+          2.23
+        ],
+        [
+          1.0,
+          2.15,
+          2.48
+        ],
+        [
+          1.1,
+          2.48,
+          2.69
+        ],
+        [
+          1.2,
+          2.46,
+          3.1
+        ],
+        [
+          1.3,
+          2.02,
+          3.6
+        ],
+        [
+          1.4,
+          1.56,
+          3.07
+        ],
+        [
+          1.5,
+          1.18,
+          2.64
+        ]
+      ],
+      "nullspace_drift_deg": 1.26,
+      "joint_margin_min_deg": [
+        39.5,
+        "joint4"
+      ],
+      "release_height_mm": 4.17,
+      "landing_speed_mm_s": 68.6,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "plate_err_mm": [
+        0.34,
+        -0.37,
+        -0.0
+      ],
+      "plate_yaw_err_deg": 0.03,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.18",
+          "2.77"
+        ],
+        "tcp_err_at_grasp_mm": [
+          0.02,
+          -0.01,
+          0.02
+        ],
+        "plate_in_tool_mm": [
+          0.06,
+          -0.01,
+          6.02
+        ]
+      },
+      "result": "PASS",
+      "h4_events": []
+    },
+    {
+      "_t0": 125.25833333330158,
+      "trial": 3,
+      "mode": "registered",
+      "belief_err_mm": [
+        -0.12,
+        -0.63
+      ],
+      "belief_yaw_err_deg": 0.08,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.58",
+          "2.42"
+        ],
+        "tcp_err_at_grasp_mm": [
+          -0.01,
+          0.02,
+          0.08
+        ],
+        "plate_in_tool_mm": [
+          0.01,
+          -0.03,
+          6.08
+        ]
+      },
+      "place_reached": true,
+      "q_entry_deg": [
+        18.5,
+        8.4,
+        17.9,
+        -136.7,
+        -4.4,
+        144.6,
+        -5.3
+      ],
+      "guide_correction_mm": [
+        0.82,
+        -0.66
+      ],
+      "impedance_lateral_max_mm": 2.63,
+      "impedance_trace": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.1,
+          0.01,
+          0.01
+        ],
+        [
+          0.2,
+          0.01,
+          0.0
+        ],
+        [
+          0.3,
+          0.01,
+          -0.0
+        ],
+        [
+          0.4,
+          0.01,
+          -0.0
+        ],
+        [
+          0.5,
+          0.02,
+          0.0
+        ],
+        [
+          0.6,
+          0.06,
+          0.76
+        ],
+        [
+          0.7,
+          0.56,
+          1.57
+        ],
+        [
+          0.8,
+          1.21,
+          1.94
+        ],
+        [
+          0.9,
+          1.74,
+          2.23
+        ],
+        [
+          1.0,
+          2.15,
+          2.48
+        ],
+        [
+          1.1,
+          2.48,
+          2.69
+        ],
+        [
+          1.2,
+          2.49,
+          3.06
+        ],
+        [
+          1.3,
+          2.22,
+          3.36
+        ],
+        [
+          1.4,
+          1.73,
+          2.8
+        ],
+        [
+          1.5,
+          1.33,
+          2.38
+        ]
+      ],
+      "nullspace_drift_deg": 1.28,
+      "joint_margin_min_deg": [
+        39.5,
+        "joint4"
+      ],
+      "release_height_mm": 3.91,
+      "landing_speed_mm_s": 116.5,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.27,
+        -0.49,
+        0.0
       ],
       "plate_yaw_err_deg": -0.0,
       "pick_nest": {
@@ -376,32 +744,202 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.85",
-          "2.13"
+          "2.31",
+          "2.67"
         ],
         "tcp_err_at_grasp_mm": [
-          0.01,
-          -0.02,
-          0.02
+          0.02,
+          -0.01,
+          0.03
         ],
         "plate_in_tool_mm": [
-          -0.77,
-          0.54,
-          6.03
+          -0.36,
+          -0.01,
+          6.02
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 89.55833333333405,
-      "trial": 2,
+      "_t0": 160.46249999993623,
+      "trial": 4,
       "mode": "registered",
       "belief_err_mm": [
-        0.35,
-        -0.67
+        -0.27,
+        -0.02
       ],
-      "belief_yaw_err_deg": -0.14,
+      "belief_yaw_err_deg": 0.03,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.55",
+          "2.45"
+        ],
+        "tcp_err_at_grasp_mm": [
+          -0.01,
+          0.02,
+          0.08
+        ],
+        "plate_in_tool_mm": [
+          0.01,
+          -0.03,
+          6.08
+        ]
+      },
+      "place_reached": true,
+      "q_entry_deg": [
+        18.5,
+        8.4,
+        17.8,
+        -136.6,
+        -4.4,
+        144.5,
+        -5.2
+      ],
+      "guide_correction_mm": [
+        0.76,
+        -1.07
+      ],
+      "impedance_lateral_max_mm": 2.79,
+      "impedance_trace": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.1,
+          0.01,
+          0.01
+        ],
+        [
+          0.2,
+          0.01,
+          0.0
+        ],
+        [
+          0.3,
+          0.01,
+          -0.0
+        ],
+        [
+          0.4,
+          0.01,
+          -0.0
+        ],
+        [
+          0.5,
+          0.02,
+          0.0
+        ],
+        [
+          0.6,
+          0.06,
+          0.76
+        ],
+        [
+          0.7,
+          0.56,
+          1.57
+        ],
+        [
+          0.8,
+          1.21,
+          1.94
+        ],
+        [
+          0.9,
+          1.73,
+          2.23
+        ],
+        [
+          1.0,
+          2.14,
+          2.48
+        ],
+        [
+          1.1,
+          2.48,
+          2.68
+        ],
+        [
+          1.2,
+          2.74,
+          2.85
+        ],
+        [
+          1.3,
+          2.52,
+          3.06
+        ],
+        [
+          1.4,
+          2.0,
+          2.51
+        ],
+        [
+          1.5,
+          1.6,
+          2.09
+        ]
+      ],
+      "nullspace_drift_deg": 1.3,
+      "joint_margin_min_deg": [
+        39.6,
+        "joint4"
+      ],
+      "release_height_mm": 3.62,
+      "landing_speed_mm_s": 103.7,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.13,
+        -0.49,
+        0.0
+      ],
+      "plate_yaw_err_deg": -0.0,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.48",
+          "2.52"
+        ],
+        "tcp_err_at_grasp_mm": [
+          0.03,
+          -0.02,
+          0.01
+        ],
+        "plate_in_tool_mm": [
+          -0.34,
+          -0.03,
+          6.01
+        ]
+      },
+      "result": "PASS",
+      "h4_events": []
+    },
+    {
+      "_t0": 195.5083333332377,
+      "trial": 5,
+      "mode": "registered",
+      "belief_err_mm": [
+        -0.49,
+        -0.4
+      ],
+      "belief_yaw_err_deg": 0.32,
       "pick_source": {
         "phase": "pick_source",
         "reached": true,
@@ -418,16 +956,25 @@
         ],
         "plate_in_tool_mm": [
           0.01,
-          -0.02,
+          -0.03,
           6.08
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        0.1,
-        -1.61
+      "q_entry_deg": [
+        18.5,
+        8.4,
+        17.9,
+        -136.6,
+        -4.4,
+        144.5,
+        -5.5
       ],
-      "impedance_lateral_max_mm": 2.76,
+      "guide_correction_mm": [
+        1.05,
+        -0.64
+      ],
+      "impedance_lateral_max_mm": 2.62,
       "impedance_trace": [
         [
           0.0,
@@ -436,7 +983,7 @@
         ],
         [
           0.1,
-          0.02,
+          0.01,
           0.01
         ],
         [
@@ -456,33 +1003,33 @@
         ],
         [
           0.5,
-          0.01,
-          -0.0
+          0.02,
+          0.0
         ],
         [
           0.6,
-          0.04,
-          0.75
+          0.06,
+          0.76
         ],
         [
           0.7,
-          0.54,
-          1.56
+          0.56,
+          1.57
         ],
         [
           0.8,
-          1.19,
+          1.21,
           1.94
         ],
         [
           0.9,
           1.73,
-          2.22
+          2.23
         ],
         [
           1.0,
-          2.14,
-          2.47
+          2.15,
+          2.48
         ],
         [
           1.1,
@@ -491,339 +1038,32 @@
         ],
         [
           1.2,
-          2.74,
-          2.86
-        ],
-        [
-          1.3,
-          2.48,
-          3.21
-        ],
-        [
-          1.4,
-          2.28,
-          2.51
-        ],
-        [
-          1.5,
-          1.92,
-          2.1
-        ]
-      ],
-      "release_height_mm": 3.66,
-      "landing_speed_mm_s": 122.7,
-      "seated": true,
-      "in_transit_slip": null,
-      "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "plate_err_mm": [
-        0.48,
-        -0.27,
-        0.0
-      ],
-      "plate_yaw_err_deg": 0.03,
-      "pick_nest": {
-        "phase": "pick_nest",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.04",
-          "2.91"
-        ],
-        "tcp_err_at_grasp_mm": [
-          0.01,
-          -0.01,
-          0.04
-        ],
-        "plate_in_tool_mm": [
-          -0.08,
-          0.77,
-          6.03
-        ]
-      },
-      "result": "PASS",
-      "h4_events": []
-    },
-    {
-      "_t0": 124.59583333330218,
-      "trial": 3,
-      "mode": "registered",
-      "belief_err_mm": [
-        -0.12,
-        -0.63
-      ],
-      "belief_yaw_err_deg": 0.08,
-      "pick_source": {
-        "phase": "pick_source",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.5",
-          "2.5"
-        ],
-        "tcp_err_at_grasp_mm": [
-          -0.03,
-          -0.04,
-          0.0
-        ],
-        "plate_in_tool_mm": [
-          -0.03,
-          0.07,
-          6.01
-        ]
-      },
-      "place_reached": true,
-      "guide_correction_mm": [
-        0.51,
-        -1.57
-      ],
-      "impedance_lateral_max_mm": 2.88,
-      "impedance_trace": [
-        [
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          0.1,
-          0.02,
-          0.01
-        ],
-        [
-          0.2,
-          0.01,
-          0.0
-        ],
-        [
-          0.3,
-          0.01,
-          -0.0
-        ],
-        [
-          0.4,
-          0.01,
-          -0.0
-        ],
-        [
-          0.5,
-          0.01,
-          -0.0
-        ],
-        [
-          0.6,
-          0.05,
-          0.75
-        ],
-        [
-          0.7,
-          0.55,
-          1.56
-        ],
-        [
-          0.8,
-          1.2,
-          1.94
-        ],
-        [
-          0.9,
-          1.73,
-          2.22
-        ],
-        [
-          1.0,
-          2.14,
-          2.47
-        ],
-        [
-          1.1,
-          2.48,
-          2.68
-        ],
-        [
-          1.2,
-          2.74,
-          2.86
-        ],
-        [
-          1.3,
-          2.73,
-          2.88
-        ],
-        [
-          1.4,
-          2.39,
-          2.22
-        ],
-        [
-          1.5,
-          1.99,
-          1.8
-        ]
-      ],
-      "release_height_mm": 3.45,
-      "landing_speed_mm_s": 127.4,
-      "seated": true,
-      "in_transit_slip": null,
-      "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "plate_err_mm": [
-        0.5,
-        -0.24,
-        0.0
-      ],
-      "plate_yaw_err_deg": 0.0,
-      "pick_nest": {
-        "phase": "pick_nest",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.31",
-          "2.68"
-        ],
-        "tcp_err_at_grasp_mm": [
-          0.01,
-          -0.01,
-          0.03
-        ],
-        "plate_in_tool_mm": [
-          -0.59,
-          -0.78,
-          6.03
-        ]
-      },
-      "result": "PASS",
-      "h4_events": []
-    },
-    {
-      "_t0": 159.7583333332702,
-      "trial": 4,
-      "mode": "registered",
-      "belief_err_mm": [
-        -0.27,
-        -0.02
-      ],
-      "belief_yaw_err_deg": 0.03,
-      "pick_source": {
-        "phase": "pick_source",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.54",
-          "2.46"
-        ],
-        "tcp_err_at_grasp_mm": [
-          -0.01,
-          0.02,
-          0.08
-        ],
-        "plate_in_tool_mm": [
-          0.0,
-          -0.01,
-          6.08
-        ]
-      },
-      "place_reached": true,
-      "guide_correction_mm": [
-        0.57,
-        -1.56
-      ],
-      "impedance_lateral_max_mm": 2.9,
-      "impedance_trace": [
-        [
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          0.1,
-          0.02,
-          0.01
-        ],
-        [
-          0.2,
-          0.01,
-          0.0
-        ],
-        [
-          0.3,
-          0.01,
-          -0.0
-        ],
-        [
-          0.4,
-          0.01,
-          -0.0
-        ],
-        [
-          0.5,
-          0.01,
-          -0.0
-        ],
-        [
-          0.6,
-          0.04,
-          0.75
-        ],
-        [
-          0.7,
-          0.54,
-          1.56
-        ],
-        [
-          0.8,
-          1.2,
-          1.93
-        ],
-        [
-          0.9,
-          1.73,
-          2.22
-        ],
-        [
-          1.0,
-          2.14,
-          2.47
-        ],
-        [
-          1.1,
           2.47,
-          2.68
-        ],
-        [
-          1.2,
-          2.74,
-          2.86
+          3.07
         ],
         [
           1.3,
-          2.77,
-          2.82
+          2.22,
+          3.36
         ],
         [
           1.4,
-          2.43,
-          2.16
+          1.93,
+          2.58
         ],
         [
           1.5,
-          2.0,
-          1.76
+          1.51,
+          2.12
         ]
       ],
-      "release_height_mm": 3.34,
-      "landing_speed_mm_s": 125.4,
+      "nullspace_drift_deg": 1.3,
+      "joint_margin_min_deg": [
+        39.6,
+        "joint4"
+      ],
+      "release_height_mm": 3.65,
+      "landing_speed_mm_s": 20.3,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
@@ -833,28 +1073,28 @@
         -0.0
       ],
       "plate_err_mm": [
-        0.49,
-        -0.14,
-        0.0
+        0.42,
+        -0.24,
+        -0.0
       ],
-      "plate_yaw_err_deg": -0.02,
+      "plate_yaw_err_deg": 0.01,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.49",
-          "2.5"
+          "2.44",
+          "2.43"
         ],
         "tcp_err_at_grasp_mm": [
-          0.03,
-          -0.02,
+          0.05,
+          -0.01,
           0.01
         ],
         "plate_in_tool_mm": [
-          -0.72,
-          0.5,
+          -0.89,
+          -0.01,
           6.01
         ]
       },
@@ -862,163 +1102,7 @@
       "h4_events": []
     },
     {
-      "_t0": 194.76249999990503,
-      "trial": 5,
-      "mode": "registered",
-      "belief_err_mm": [
-        -0.49,
-        -0.4
-      ],
-      "belief_yaw_err_deg": 0.32,
-      "pick_source": {
-        "phase": "pick_source",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.58",
-          "2.42"
-        ],
-        "tcp_err_at_grasp_mm": [
-          -0.0,
-          0.03,
-          0.09
-        ],
-        "plate_in_tool_mm": [
-          0.02,
-          0.0,
-          6.09
-        ]
-      },
-      "place_reached": true,
-      "guide_correction_mm": [
-        0.86,
-        -1.57
-      ],
-      "impedance_lateral_max_mm": 2.94,
-      "impedance_trace": [
-        [
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          0.1,
-          0.02,
-          0.01
-        ],
-        [
-          0.2,
-          0.01,
-          0.0
-        ],
-        [
-          0.3,
-          0.01,
-          -0.0
-        ],
-        [
-          0.4,
-          0.01,
-          -0.0
-        ],
-        [
-          0.5,
-          0.01,
-          -0.0
-        ],
-        [
-          0.6,
-          0.04,
-          0.75
-        ],
-        [
-          0.7,
-          0.55,
-          1.56
-        ],
-        [
-          0.8,
-          1.2,
-          1.94
-        ],
-        [
-          0.9,
-          1.73,
-          2.22
-        ],
-        [
-          1.0,
-          2.14,
-          2.47
-        ],
-        [
-          1.1,
-          2.48,
-          2.68
-        ],
-        [
-          1.2,
-          2.74,
-          2.86
-        ],
-        [
-          1.3,
-          2.93,
-          2.71
-        ],
-        [
-          1.4,
-          2.56,
-          1.98
-        ],
-        [
-          1.5,
-          2.12,
-          1.56
-        ]
-      ],
-      "release_height_mm": 3.1,
-      "landing_speed_mm_s": 128.3,
-      "seated": true,
-      "in_transit_slip": null,
-      "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "plate_err_mm": [
-        0.26,
-        -0.09,
-        0.0
-      ],
-      "plate_yaw_err_deg": -0.04,
-      "pick_nest": {
-        "phase": "pick_nest",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.46",
-          "2.4"
-        ],
-        "tcp_err_at_grasp_mm": [
-          0.04,
-          -0.02,
-          0.01
-        ],
-        "plate_in_tool_mm": [
-          -0.75,
-          0.29,
-          6.01
-        ]
-      },
-      "result": "PASS",
-      "h4_events": []
-    },
-    {
-      "_t0": 229.7499999998732,
+      "_t0": 230.5583333332058,
       "trial": 6,
       "mode": "registered",
       "belief_err_mm": [
@@ -1042,16 +1126,25 @@
         ],
         "plate_in_tool_mm": [
           0.01,
-          -0.07,
+          -0.03,
           6.08
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        0.59,
-        -1.56
+      "q_entry_deg": [
+        18.5,
+        8.4,
+        17.9,
+        -136.6,
+        -4.4,
+        144.5,
+        -5.2
       ],
-      "impedance_lateral_max_mm": 2.9,
+      "guide_correction_mm": [
+        0.79,
+        -1.04
+      ],
+      "impedance_lateral_max_mm": 2.78,
       "impedance_trace": [
         [
           0.0,
@@ -1080,28 +1173,28 @@
         ],
         [
           0.5,
-          0.01,
+          0.02,
           -0.0
         ],
         [
           0.6,
-          0.04,
-          0.75
+          0.06,
+          0.76
         ],
         [
           0.7,
-          0.54,
-          1.56
+          0.56,
+          1.57
         ],
         [
           0.8,
-          1.19,
+          1.21,
           1.94
         ],
         [
           0.9,
           1.73,
-          2.22
+          2.23
         ],
         [
           1.0,
@@ -1110,7 +1203,7 @@
         ],
         [
           1.1,
-          2.47,
+          2.48,
           2.68
         ],
         [
@@ -1120,61 +1213,66 @@
         ],
         [
           1.3,
-          2.78,
-          2.82
+          2.5,
+          3.08
         ],
         [
           1.4,
-          2.42,
-          2.16
+          2.0,
+          2.52
         ],
         [
           1.5,
-          2.0,
-          1.75
+          1.59,
+          2.1
         ]
       ],
-      "release_height_mm": 3.33,
-      "landing_speed_mm_s": 128.1,
+      "nullspace_drift_deg": 1.29,
+      "joint_margin_min_deg": [
+        39.6,
+        "joint4"
+      ],
+      "release_height_mm": 3.63,
+      "landing_speed_mm_s": 125.6,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        -0.0,
+        0.0,
         -0.0,
         0.0,
-        0.0
+        -0.0
       ],
       "plate_err_mm": [
-        0.5,
-        -0.18,
-        0.0
+        0.39,
+        -0.49,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.0,
+      "plate_yaw_err_deg": -0.01,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.56",
-          "2.43"
+          "2.42",
+          "2.58"
         ],
         "tcp_err_at_grasp_mm": [
-          0.01,
+          0.04,
           -0.02,
-          0.02
+          0.0
         ],
         "plate_in_tool_mm": [
-          -0.76,
-          0.65,
-          6.03
+          -0.6,
+          -0.03,
+          6.0
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 264.91249999984126,
+      "_t0": 265.75416666650716,
       "trial": 7,
       "mode": "registered",
       "belief_err_mm": [
@@ -1188,26 +1286,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.55",
-          "2.45"
+          "2.42",
+          "2.58"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.01,
+          -0.0,
           0.02,
           0.08
         ],
         "plate_in_tool_mm": [
           0.01,
-          0.03,
+          -0.01,
           6.08
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        0.08,
-        -1.61
+      "q_entry_deg": [
+        18.4,
+        8.3,
+        17.9,
+        -136.8,
+        -4.4,
+        144.6,
+        -5.5
       ],
-      "impedance_lateral_max_mm": 2.75,
+      "guide_correction_mm": [
+        0.32,
+        -0.63
+      ],
+      "impedance_lateral_max_mm": 2.55,
       "impedance_trace": [
         [
           0.0,
@@ -1216,7 +1323,7 @@
         ],
         [
           0.1,
-          0.02,
+          0.01,
           0.01
         ],
         [
@@ -1241,17 +1348,17 @@
         ],
         [
           0.6,
-          0.04,
-          0.75
+          0.06,
+          0.76
         ],
         [
           0.7,
           0.55,
-          1.56
+          1.57
         ],
         [
           0.8,
-          1.2,
+          1.21,
           1.94
         ],
         [
@@ -1271,27 +1378,32 @@
         ],
         [
           1.2,
-          2.74,
-          2.87
+          2.32,
+          3.22
         ],
         [
           1.3,
-          2.45,
-          3.23
+          1.87,
+          3.66
         ],
         [
           1.4,
-          2.24,
-          2.53
+          1.37,
+          3.13
         ],
         [
           1.5,
-          1.9,
-          2.1
+          0.97,
+          2.7
         ]
       ],
-      "release_height_mm": 3.66,
-      "landing_speed_mm_s": 101.5,
+      "nullspace_drift_deg": 1.26,
+      "joint_margin_min_deg": [
+        39.4,
+        "joint4"
+      ],
+      "release_height_mm": 4.23,
+      "landing_speed_mm_s": 60.1,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
@@ -1301,28 +1413,28 @@
         0.0
       ],
       "plate_err_mm": [
-        0.4,
-        -0.27,
+        0.05,
+        -0.32,
         0.0
       ],
-      "plate_yaw_err_deg": 0.12,
+      "plate_yaw_err_deg": 0.16,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.15",
-          "2.73"
+          "2.17",
+          "2.72"
         ],
         "tcp_err_at_grasp_mm": [
-          0.0,
           0.01,
-          0.06
+          0.01,
+          0.05
         ],
         "plate_in_tool_mm": [
-          0.39,
-          -0.56,
+          0.77,
+          -0.0,
           6.04
         ]
       },
@@ -1330,7 +1442,7 @@
       "h4_events": []
     },
     {
-      "_t0": 299.8041666664762,
+      "_t0": 300.81666666647527,
       "trial": 8,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1344,26 +1456,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.56",
-          "2.44"
+          "2.59",
+          "2.41"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.01,
-          0.01,
-          0.07
+          -0.0,
+          0.02,
+          0.08
         ],
         "plate_in_tool_mm": [
           0.01,
-          0.02,
-          6.07
+          -0.03,
+          6.08
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        0.16,
-        -1.1
+      "q_entry_deg": [
+        18.5,
+        8.1,
+        18.0,
+        -137.1,
+        -4.3,
+        144.7,
+        -5.0
       ],
-      "impedance_lateral_max_mm": 2.66,
+      "guide_correction_mm": [
+        0.94,
+        0.64
+      ],
+      "impedance_lateral_max_mm": 2.04,
       "impedance_trace": [
         [
           0.0,
@@ -1372,7 +1493,7 @@
         ],
         [
           0.1,
-          0.02,
+          0.01,
           0.01
         ],
         [
@@ -1392,101 +1513,106 @@
         ],
         [
           0.5,
-          0.01,
-          -0.0
+          0.02,
+          0.0
         ],
         [
           0.6,
-          0.04,
-          0.75
+          0.06,
+          0.76
         ],
         [
           0.7,
-          0.55,
-          1.56
+          0.56,
+          1.57
         ],
         [
           0.8,
-          1.2,
-          1.94
+          1.21,
+          1.95
         ],
         [
           0.9,
           1.74,
-          2.23
+          2.24
         ],
         [
           1.0,
-          2.15,
-          2.49
+          1.94,
+          2.66
         ],
         [
           1.1,
-          2.46,
-          2.72
+          1.68,
+          3.49
         ],
         [
           1.2,
-          2.52,
-          3.06
+          1.5,
+          4.23
         ],
         [
           1.3,
-          2.12,
-          3.57
+          1.45,
+          4.6
         ],
         [
           1.4,
-          1.67,
-          3.04
+          1.37,
+          3.94
         ],
         [
           1.5,
-          1.33,
-          2.61
+          1.2,
+          3.5
         ]
       ],
-      "release_height_mm": 4.1,
-      "landing_speed_mm_s": 8.2,
+      "nullspace_drift_deg": 1.22,
+      "joint_margin_min_deg": [
+        39.1,
+        "joint4"
+      ],
+      "release_height_mm": 5.02,
+      "landing_speed_mm_s": 11.4,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        -0.0,
-        -0.0,
+        0.0,
+        0.0,
         0.0,
         0.0
       ],
       "plate_err_mm": [
-        0.1,
-        0.48,
+        0.09,
+        0.46,
         0.0
       ],
-      "plate_yaw_err_deg": -0.0,
+      "plate_yaw_err_deg": 0.02,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.4",
-          "2.39"
+          "2.33",
+          "2.23"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.07,
-          0.0,
-          0.09
+          0.05,
+          -0.0,
+          0.0
         ],
         "plate_in_tool_mm": [
-          -0.9,
-          -0.85,
-          0.07
+          -1.41,
+          -1.62,
+          -0.03
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 335.1249999997774,
+      "_t0": 336.291666666443,
       "trial": 9,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1500,26 +1626,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.51",
-          "2.49"
+          "2.62",
+          "2.38"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          -0.06,
-          -0.01
+          -0.0,
+          0.02,
+          0.08
         ],
         "plate_in_tool_mm": [
-          -0.05,
-          0.05,
-          5.99
+          0.01,
+          -0.03,
+          6.08
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        2.49,
-        5.61
+      "q_entry_deg": [
+        18.5,
+        8.8,
+        17.7,
+        -136.1,
+        -4.6,
+        144.4,
+        -5.4
       ],
-      "impedance_lateral_max_mm": 8.34,
+      "guide_correction_mm": [
+        1.03,
+        -1.93
+      ],
+      "impedance_lateral_max_mm": 2.94,
       "impedance_trace": [
         [
           0.0,
@@ -1528,7 +1663,7 @@
         ],
         [
           0.1,
-          0.02,
+          0.01,
           0.01
         ],
         [
@@ -1548,33 +1683,33 @@
         ],
         [
           0.5,
-          0.01,
-          -0.0
+          0.02,
+          0.0
         ],
         [
           0.6,
-          0.04,
-          0.75
+          0.06,
+          0.76
         ],
         [
           0.7,
-          0.54,
-          1.56
+          0.56,
+          1.57
         ],
         [
           0.8,
-          1.19,
+          1.2,
           1.93
         ],
         [
           0.9,
-          1.72,
+          1.73,
           2.21
         ],
         [
           1.0,
           2.13,
-          2.45
+          2.46
         ],
         [
           1.1,
@@ -1583,66 +1718,71 @@
         ],
         [
           1.2,
-          2.72,
+          2.73,
           2.83
         ],
         [
           1.3,
-          2.93,
+          2.92,
           2.67
         ],
         [
           1.4,
-          2.62,
-          1.87
+          2.63,
+          1.85
         ],
         [
           1.5,
-          6.57,
-          4.46
+          2.3,
+          1.51
         ]
       ],
-      "release_height_mm": 6.77,
-      "landing_speed_mm_s": 128.1,
+      "nullspace_drift_deg": 1.3,
+      "joint_margin_min_deg": [
+        40.1,
+        "joint4"
+      ],
+      "release_height_mm": 3.0,
+      "landing_speed_mm_s": 105.2,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
       ],
       "plate_err_mm": [
-        -0.03,
-        -0.29,
-        0.0
+        0.29,
+        0.5,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.19,
+      "plate_yaw_err_deg": -0.0,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "4.89",
-          "0.0"
+          "4.81",
+          "0.09"
         ],
         "tcp_err_at_grasp_mm": [
-          0.1,
           0.04,
-          0.02
+          -0.1,
+          -0.07
         ],
         "plate_in_tool_mm": [
-          -0.82,
-          0.13,
-          5.85
+          -0.66,
+          -0.02,
+          5.71
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 370.6958333330784,
+      "_t0": 371.48333333307767,
       "trial": 10,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1656,182 +1796,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.52",
-          "2.48"
+          "2.51",
+          "2.49"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.01,
-          0.02,
-          0.08
-        ],
-        "plate_in_tool_mm": [
-          0.01,
-          0.02,
-          6.08
-        ]
-      },
-      "place_reached": true,
-      "guide_correction_mm": [
-        1.5,
-        -1.23
-      ],
-      "impedance_lateral_max_mm": 2.93,
-      "impedance_trace": [
-        [
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          0.1,
-          0.01,
-          0.01
-        ],
-        [
-          0.2,
-          0.01,
-          0.0
-        ],
-        [
-          0.3,
-          0.01,
-          -0.0
-        ],
-        [
-          0.4,
-          0.01,
-          -0.0
-        ],
-        [
-          0.5,
-          0.01,
-          -0.0
-        ],
-        [
-          0.6,
-          0.04,
-          0.75
-        ],
-        [
-          0.7,
-          0.55,
-          1.56
-        ],
-        [
-          0.8,
-          1.19,
-          1.93
-        ],
-        [
-          0.9,
-          1.73,
-          2.22
-        ],
-        [
-          1.0,
-          2.14,
-          2.46
-        ],
-        [
-          1.1,
-          2.47,
-          2.67
-        ],
-        [
-          1.2,
-          2.73,
-          2.85
-        ],
-        [
-          1.3,
-          2.92,
-          2.71
-        ],
-        [
-          1.4,
-          2.76,
-          1.75
-        ],
-        [
-          1.5,
-          2.27,
-          1.46
-        ]
-      ],
-      "release_height_mm": 3.23,
-      "landing_speed_mm_s": 123.6,
-      "seated": true,
-      "in_transit_slip": null,
-      "seat_gaps_mm": [
-        -0.0,
-        0.0,
-        -0.0,
-        0.0
-      ],
-      "plate_err_mm": [
-        -0.49,
-        -0.29,
-        0.0
-      ],
-      "plate_yaw_err_deg": 0.01,
-      "pick_nest": {
-        "phase": "pick_nest",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.31",
-          "2.44"
-        ],
-        "tcp_err_at_grasp_mm": [
-          0.04,
-          -0.02,
-          0.01
-        ],
-        "plate_in_tool_mm": [
-          -1.56,
-          0.2,
-          6.01
-        ]
-      },
-      "result": "PASS",
-      "h4_events": []
-    },
-    {
-      "_t0": 405.8708333330464,
-      "trial": 11,
-      "mode": "unregistered",
-      "belief_err_mm": [
-        -1.71,
-        1.03
-      ],
-      "belief_yaw_err_deg": -0.4,
-      "pick_source": {
-        "phase": "pick_source",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.57",
-          "2.43"
-        ],
-        "tcp_err_at_grasp_mm": [
-          -0.01,
-          0.02,
-          0.08
-        ],
-        "plate_in_tool_mm": [
-          0.01,
+          -0.04,
           -0.05,
-          6.08
+          0.0
+        ],
+        "plate_in_tool_mm": [
+          -0.04,
+          -0.01,
+          6.0
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        1.17,
-        -1.5
+      "q_entry_deg": [
+        18.6,
+        8.6,
+        17.9,
+        -136.4,
+        -4.5,
+        144.5,
+        -4.4
       ],
-      "impedance_lateral_max_mm": 2.95,
+      "guide_correction_mm": [
+        1.26,
+        -0.38
+      ],
+      "impedance_lateral_max_mm": 2.62,
       "impedance_trace": [
         [
           0.0,
@@ -1840,7 +1833,7 @@
         ],
         [
           0.1,
-          0.02,
+          0.01,
           0.01
         ],
         [
@@ -1865,481 +1858,13 @@
         ],
         [
           0.6,
-          0.04,
-          0.75
-        ],
-        [
-          0.7,
-          0.54,
-          1.56
-        ],
-        [
-          0.8,
-          1.19,
-          1.93
-        ],
-        [
-          0.9,
-          1.72,
-          2.21
-        ],
-        [
-          1.0,
-          2.14,
-          2.46
-        ],
-        [
-          1.1,
-          2.46,
-          2.67
-        ],
-        [
-          1.2,
-          2.73,
-          2.84
-        ],
-        [
-          1.3,
-          2.93,
-          2.68
-        ],
-        [
-          1.4,
-          2.76,
-          1.73
-        ],
-        [
-          1.5,
-          2.25,
-          1.35
-        ]
-      ],
-      "release_height_mm": 2.99,
-      "landing_speed_mm_s": 126.9,
-      "seated": true,
-      "in_transit_slip": null,
-      "seat_gaps_mm": [
-        0.001,
-        0.001,
-        0.0,
-        0.0
-      ],
-      "plate_err_mm": [
-        -0.23,
-        -0.22,
-        0.0
-      ],
-      "plate_yaw_err_deg": 0.01,
-      "pick_nest": {
-        "phase": "pick_nest",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.9",
-          "1.92"
-        ],
-        "tcp_err_at_grasp_mm": [
-          0.04,
-          -0.05,
-          -0.02
-        ],
-        "plate_in_tool_mm": [
-          -1.47,
-          -0.01,
-          5.98
-        ]
-      },
-      "result": "PASS",
-      "h4_events": []
-    },
-    {
-      "_t0": 441.04166666634774,
-      "trial": 12,
-      "mode": "unregistered",
-      "belief_err_mm": [
-        2.07,
-        2.67
-      ],
-      "belief_yaw_err_deg": 0.81,
-      "pick_source": {
-        "phase": "pick_source",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.55",
-          "2.45"
-        ],
-        "tcp_err_at_grasp_mm": [
-          -0.01,
-          0.02,
-          0.08
-        ],
-        "plate_in_tool_mm": [
-          0.01,
-          0.04,
-          6.08
-        ]
-      },
-      "place_reached": true,
-      "guide_correction_mm": [
-        -0.93,
-        -1.62
-      ],
-      "impedance_lateral_max_mm": 2.4,
-      "impedance_trace": [
-        [
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          0.1,
-          0.02,
-          0.01
-        ],
-        [
-          0.2,
-          0.01,
-          0.0
-        ],
-        [
-          0.3,
-          0.01,
-          -0.0
-        ],
-        [
-          0.4,
-          0.01,
-          -0.0
-        ],
-        [
-          0.5,
-          0.01,
-          -0.0
-        ],
-        [
-          0.6,
-          0.04,
-          0.75
-        ],
-        [
-          0.7,
-          0.55,
-          1.56
-        ],
-        [
-          0.8,
-          1.19,
-          1.93
-        ],
-        [
-          0.9,
-          1.72,
-          2.21
-        ],
-        [
-          1.0,
-          2.14,
-          2.46
-        ],
-        [
-          1.1,
-          2.22,
-          2.9
-        ],
-        [
-          1.2,
-          2.18,
-          3.58
-        ],
-        [
-          1.3,
-          2.35,
-          3.87
-        ],
-        [
-          1.4,
-          2.36,
-          3.2
-        ],
-        [
-          1.5,
-          2.1,
-          2.85
-        ]
-      ],
-      "release_height_mm": 4.5,
-      "landing_speed_mm_s": 112.9,
-      "seated": true,
-      "in_transit_slip": null,
-      "seat_gaps_mm": [
-        -0.0,
-        0.0,
-        -0.0,
-        0.0
-      ],
-      "plate_err_mm": [
-        0.06,
-        0.3,
-        -0.0
-      ],
-      "plate_yaw_err_deg": 0.0,
-      "pick_nest": {
-        "phase": "pick_nest",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "4.48",
-          "0.13"
-        ],
-        "tcp_err_at_grasp_mm": [
-          0.04,
-          -0.15,
-          -0.11
-        ],
-        "plate_in_tool_mm": [
-          2.34,
-          -0.65,
-          5.72
-        ]
-      },
-      "result": "PASS",
-      "h4_events": []
-    },
-    {
-      "_t0": 476.1083333329825,
-      "trial": 13,
-      "mode": "unregistered",
-      "belief_err_mm": [
-        2.57,
-        0.31
-      ],
-      "belief_yaw_err_deg": -0.64,
-      "pick_source": {
-        "phase": "pick_source",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.57",
-          "2.43"
-        ],
-        "tcp_err_at_grasp_mm": [
-          -0.01,
-          0.02,
-          0.08
-        ],
-        "plate_in_tool_mm": [
-          0.01,
           0.06,
-          6.08
-        ]
-      },
-      "place_reached": true,
-      "guide_correction_mm": [
-        -1.5,
-        -1.71
-      ],
-      "impedance_lateral_max_mm": 2.6,
-      "impedance_trace": [
-        [
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          0.1,
-          0.02,
-          0.01
-        ],
-        [
-          0.2,
-          0.01,
-          0.0
-        ],
-        [
-          0.3,
-          0.01,
-          -0.0
-        ],
-        [
-          0.4,
-          0.01,
-          -0.0
-        ],
-        [
-          0.5,
-          0.01,
-          -0.0
-        ],
-        [
-          0.6,
-          0.04,
-          0.75
+          0.76
         ],
         [
           0.7,
           0.55,
-          1.56
-        ],
-        [
-          0.8,
-          1.2,
-          1.94
-        ],
-        [
-          0.9,
-          1.73,
-          2.23
-        ],
-        [
-          1.0,
-          1.97,
-          2.62
-        ],
-        [
-          1.1,
-          1.96,
-          3.33
-        ],
-        [
-          1.2,
-          2.15,
-          3.96
-        ],
-        [
-          1.3,
-          2.45,
-          4.23
-        ],
-        [
-          1.4,
-          2.6,
-          3.5
-        ],
-        [
-          1.5,
-          2.45,
-          3.09
-        ]
-      ],
-      "release_height_mm": 4.7,
-      "landing_speed_mm_s": 110.2,
-      "seated": true,
-      "in_transit_slip": null,
-      "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "plate_err_mm": [
-        0.14,
-        -0.42,
-        0.0
-      ],
-      "plate_yaw_err_deg": 0.0,
-      "pick_nest": {
-        "phase": "pick_nest",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.65",
-          "2.1"
-        ],
-        "tcp_err_at_grasp_mm": [
-          0.03,
-          -0.03,
-          0.01
-        ],
-        "plate_in_tool_mm": [
-          2.38,
-          0.14,
-          6.01
-        ]
-      },
-      "result": "PASS",
-      "h4_events": []
-    },
-    {
-      "_t0": 511.14583333295064,
-      "trial": 14,
-      "mode": "unregistered",
-      "belief_err_mm": [
-        -0.74,
-        -0.53
-      ],
-      "belief_yaw_err_deg": -0.52,
-      "pick_source": {
-        "phase": "pick_source",
-        "reached": true,
-        "contact": "True",
-        "lifted": "True",
-        "finger_travel_mm": [
-          "2.59",
-          "2.41"
-        ],
-        "tcp_err_at_grasp_mm": [
-          -0.01,
-          0.02,
-          0.07
-        ],
-        "plate_in_tool_mm": [
-          0.01,
-          0.02,
-          6.07
-        ]
-      },
-      "place_reached": true,
-      "guide_correction_mm": [
-        0.69,
-        -1.62
-      ],
-      "impedance_lateral_max_mm": 2.88,
-      "impedance_trace": [
-        [
-          0.0,
-          0.0,
-          0.0
-        ],
-        [
-          0.1,
-          0.01,
-          0.01
-        ],
-        [
-          0.2,
-          0.01,
-          0.0
-        ],
-        [
-          0.3,
-          0.01,
-          -0.0
-        ],
-        [
-          0.4,
-          0.01,
-          -0.0
-        ],
-        [
-          0.5,
-          0.01,
-          -0.0
-        ],
-        [
-          0.6,
-          0.04,
-          0.75
-        ],
-        [
-          0.7,
-          0.55,
-          1.56
+          1.57
         ],
         [
           0.8,
@@ -2363,99 +1888,113 @@
         ],
         [
           1.2,
-          2.73,
-          2.86
+          2.42,
+          3.11
         ],
         [
           1.3,
-          2.74,
-          2.84
+          2.07,
+          3.52
         ],
         [
           1.4,
-          2.43,
-          2.16
+          1.77,
+          2.84
         ],
         [
           1.5,
-          2.01,
-          1.75
+          1.51,
+          2.32
         ]
       ],
-      "release_height_mm": 3.22,
-      "landing_speed_mm_s": 102.4,
+      "nullspace_drift_deg": 1.29,
+      "joint_margin_min_deg": [
+        39.8,
+        "joint4"
+      ],
+      "release_height_mm": 3.9,
+      "landing_speed_mm_s": 33.9,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
+        0.0,
         -0.0,
-        -0.0,
-        -0.0,
+        0.0,
         -0.0
       ],
       "plate_err_mm": [
-        0.47,
-        -0.38,
-        -0.0
+        -0.15,
+        0.3,
+        0.0
       ],
-      "plate_yaw_err_deg": 0.03,
+      "plate_yaw_err_deg": 0.0,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.17",
-          "2.59"
+          "2.29",
+          "2.51"
         ],
         "tcp_err_at_grasp_mm": [
-          0.02,
+          0.03,
           -0.01,
           0.02
         ],
         "plate_in_tool_mm": [
-          -1.17,
-          -0.06,
-          6.03
+          -1.83,
+          0.0,
+          6.02
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 546.1541666667181,
-      "trial": 15,
+      "_t0": 406.84999999971217,
+      "trial": 11,
       "mode": "unregistered",
       "belief_err_mm": [
-        0.29,
-        -1.07
+        -1.71,
+        1.03
       ],
-      "belief_yaw_err_deg": 0.5,
+      "belief_yaw_err_deg": -0.4,
       "pick_source": {
         "phase": "pick_source",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.46",
-          "2.54"
+          "2.56",
+          "2.44"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          -0.05,
-          -0.01
+          -0.0,
+          0.02,
+          0.08
         ],
         "plate_in_tool_mm": [
-          -0.04,
-          0.07,
-          5.99
+          0.01,
+          -0.03,
+          6.08
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        0.42,
-        -1.61
+      "q_entry_deg": [
+        18.6,
+        8.7,
+        17.8,
+        -136.2,
+        -4.6,
+        144.4,
+        -4.7
       ],
-      "impedance_lateral_max_mm": 2.85,
+      "guide_correction_mm": [
+        1.17,
+        -1.3
+      ],
+      "impedance_lateral_max_mm": 2.92,
       "impedance_trace": [
         [
           0.0,
@@ -2464,7 +2003,517 @@
         ],
         [
           0.1,
+          0.01,
+          0.01
+        ],
+        [
+          0.2,
+          0.01,
+          0.0
+        ],
+        [
+          0.3,
+          0.01,
+          -0.0
+        ],
+        [
+          0.4,
+          0.01,
+          -0.0
+        ],
+        [
+          0.5,
           0.02,
+          0.0
+        ],
+        [
+          0.6,
+          0.06,
+          0.76
+        ],
+        [
+          0.7,
+          0.56,
+          1.57
+        ],
+        [
+          0.8,
+          1.21,
+          1.94
+        ],
+        [
+          0.9,
+          1.73,
+          2.22
+        ],
+        [
+          1.0,
+          2.14,
+          2.46
+        ],
+        [
+          1.1,
+          2.47,
+          2.67
+        ],
+        [
+          1.2,
+          2.73,
+          2.84
+        ],
+        [
+          1.3,
+          2.89,
+          2.71
+        ],
+        [
+          1.4,
+          2.44,
+          2.06
+        ],
+        [
+          1.5,
+          2.05,
+          1.58
+        ]
+      ],
+      "nullspace_drift_deg": 1.33,
+      "joint_margin_min_deg": [
+        40.0,
+        "joint4"
+      ],
+      "release_height_mm": 3.11,
+      "landing_speed_mm_s": 118.9,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.1,
+        -0.24,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.08,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.91",
+          "1.91"
+        ],
+        "tcp_err_at_grasp_mm": [
+          0.05,
+          -0.05,
+          -0.02
+        ],
+        "plate_in_tool_mm": [
+          -1.64,
+          -0.02,
+          5.97
+        ]
+      },
+      "result": "PASS",
+      "h4_events": []
+    },
+    {
+      "_t0": 442.0333333330135,
+      "trial": 12,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        2.07,
+        2.67
+      ],
+      "belief_yaw_err_deg": 0.81,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.56",
+          "2.44"
+        ],
+        "tcp_err_at_grasp_mm": [
+          -0.0,
+          0.02,
+          0.08
+        ],
+        "plate_in_tool_mm": [
+          0.01,
+          -0.03,
+          6.08
+        ]
+      },
+      "place_reached": true,
+      "q_entry_deg": [
+        18.3,
+        8.5,
+        17.6,
+        -136.4,
+        -4.4,
+        144.5,
+        -6.4
+      ],
+      "guide_correction_mm": [
+        -0.98,
+        -1.91
+      ],
+      "impedance_lateral_max_mm": 2.35,
+      "impedance_trace": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.1,
+          0.01,
+          0.01
+        ],
+        [
+          0.2,
+          0.01,
+          0.0
+        ],
+        [
+          0.3,
+          0.01,
+          -0.0
+        ],
+        [
+          0.4,
+          0.01,
+          -0.0
+        ],
+        [
+          0.5,
+          0.02,
+          0.0
+        ],
+        [
+          0.6,
+          0.06,
+          0.76
+        ],
+        [
+          0.7,
+          0.56,
+          1.57
+        ],
+        [
+          0.8,
+          1.2,
+          1.94
+        ],
+        [
+          0.9,
+          1.73,
+          2.22
+        ],
+        [
+          1.0,
+          2.14,
+          2.47
+        ],
+        [
+          1.1,
+          2.21,
+          2.9
+        ],
+        [
+          1.2,
+          2.15,
+          3.59
+        ],
+        [
+          1.3,
+          2.26,
+          3.9
+        ],
+        [
+          1.4,
+          2.35,
+          3.18
+        ],
+        [
+          1.5,
+          2.28,
+          2.72
+        ]
+      ],
+      "nullspace_drift_deg": 1.23,
+      "joint_margin_min_deg": [
+        39.8,
+        "joint4"
+      ],
+      "release_height_mm": 4.37,
+      "landing_speed_mm_s": 111.9,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.13,
+        0.4,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.01,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.47",
+          "0.13"
+        ],
+        "tcp_err_at_grasp_mm": [
+          0.03,
+          -0.13,
+          -0.09
+        ],
+        "plate_in_tool_mm": [
+          2.36,
+          0.01,
+          5.72
+        ]
+      },
+      "result": "PASS",
+      "h4_events": []
+    },
+    {
+      "_t0": 477.2666666663148,
+      "trial": 13,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        2.57,
+        0.31
+      ],
+      "belief_yaw_err_deg": -0.64,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.58",
+          "2.42"
+        ],
+        "tcp_err_at_grasp_mm": [
+          -0.01,
+          0.01,
+          0.08
+        ],
+        "plate_in_tool_mm": [
+          0.01,
+          -0.03,
+          6.08
+        ]
+      },
+      "place_reached": true,
+      "q_entry_deg": [
+        18.3,
+        8.2,
+        17.8,
+        -136.9,
+        -4.3,
+        144.6,
+        -4.9
+      ],
+      "guide_correction_mm": [
+        -1.42,
+        -1.75
+      ],
+      "impedance_lateral_max_mm": 2.55,
+      "impedance_trace": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.1,
+          0.01,
+          0.01
+        ],
+        [
+          0.2,
+          0.01,
+          0.0
+        ],
+        [
+          0.3,
+          0.01,
+          -0.0
+        ],
+        [
+          0.4,
+          0.01,
+          -0.0
+        ],
+        [
+          0.5,
+          0.02,
+          0.0
+        ],
+        [
+          0.6,
+          0.06,
+          0.76
+        ],
+        [
+          0.7,
+          0.56,
+          1.57
+        ],
+        [
+          0.8,
+          1.21,
+          1.95
+        ],
+        [
+          0.9,
+          1.74,
+          2.23
+        ],
+        [
+          1.0,
+          1.97,
+          2.63
+        ],
+        [
+          1.1,
+          1.97,
+          3.33
+        ],
+        [
+          1.2,
+          2.14,
+          3.96
+        ],
+        [
+          1.3,
+          2.44,
+          4.23
+        ],
+        [
+          1.4,
+          2.44,
+          3.61
+        ],
+        [
+          1.5,
+          2.32,
+          3.22
+        ]
+      ],
+      "nullspace_drift_deg": 1.2,
+      "joint_margin_min_deg": [
+        39.4,
+        "joint4"
+      ],
+      "release_height_mm": 4.79,
+      "landing_speed_mm_s": 104.4,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.31,
+        -0.39,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.02,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.6",
+          "2.14"
+        ],
+        "tcp_err_at_grasp_mm": [
+          0.03,
+          -0.02,
+          0.01
+        ],
+        "plate_in_tool_mm": [
+          2.21,
+          -0.05,
+          6.01
+        ]
+      },
+      "result": "PASS",
+      "h4_events": []
+    },
+    {
+      "_t0": 512.4624999996224,
+      "trial": 14,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        -0.74,
+        -0.53
+      ],
+      "belief_yaw_err_deg": -0.52,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.22",
+          "2.78"
+        ],
+        "tcp_err_at_grasp_mm": [
+          -0.0,
+          0.02,
+          0.08
+        ],
+        "plate_in_tool_mm": [
+          0.01,
+          -0.01,
+          6.08
+        ]
+      },
+      "place_reached": true,
+      "q_entry_deg": [
+        18.5,
+        8.4,
+        17.9,
+        -136.6,
+        -4.4,
+        144.5,
+        -4.6
+      ],
+      "guide_correction_mm": [
+        1.15,
+        -0.29
+      ],
+      "impedance_lateral_max_mm": 2.56,
+      "impedance_trace": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.1,
+          0.01,
           0.01
         ],
         [
@@ -2489,13 +2538,13 @@
         ],
         [
           0.6,
-          0.05,
-          0.75
+          0.06,
+          0.76
         ],
         [
           0.7,
           0.55,
-          1.56
+          1.57
         ],
         [
           0.8,
@@ -2505,6 +2554,176 @@
         [
           0.9,
           1.73,
+          2.22
+        ],
+        [
+          1.0,
+          2.14,
+          2.47
+        ],
+        [
+          1.1,
+          2.48,
+          2.68
+        ],
+        [
+          1.2,
+          2.3,
+          3.25
+        ],
+        [
+          1.3,
+          1.97,
+          3.65
+        ],
+        [
+          1.4,
+          1.68,
+          2.96
+        ],
+        [
+          1.5,
+          1.42,
+          2.46
+        ]
+      ],
+      "nullspace_drift_deg": 1.28,
+      "joint_margin_min_deg": [
+        39.6,
+        "joint4"
+      ],
+      "release_height_mm": 3.98,
+      "landing_speed_mm_s": 67.8,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        -0.0
+      ],
+      "plate_err_mm": [
+        0.02,
+        -0.34,
+        -0.0
+      ],
+      "plate_yaw_err_deg": 0.14,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.28",
+          "2.48"
+        ],
+        "tcp_err_at_grasp_mm": [
+          0.03,
+          -0.01,
+          0.02
+        ],
+        "plate_in_tool_mm": [
+          -0.63,
+          -0.0,
+          6.02
+        ]
+      },
+      "result": "PASS",
+      "h4_events": []
+    },
+    {
+      "_t0": 547.6750000000708,
+      "trial": 15,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        0.29,
+        -1.07
+      ],
+      "belief_yaw_err_deg": 0.5,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.56",
+          "2.44"
+        ],
+        "tcp_err_at_grasp_mm": [
+          -0.01,
+          0.02,
+          0.08
+        ],
+        "plate_in_tool_mm": [
+          0.01,
+          -0.03,
+          6.08
+        ]
+      },
+      "place_reached": true,
+      "q_entry_deg": [
+        18.5,
+        8.3,
+        17.9,
+        -136.8,
+        -4.4,
+        144.6,
+        -5.7
+      ],
+      "guide_correction_mm": [
+        0.76,
+        -0.2
+      ],
+      "impedance_lateral_max_mm": 2.4,
+      "impedance_trace": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.1,
+          0.01,
+          0.01
+        ],
+        [
+          0.2,
+          0.01,
+          0.0
+        ],
+        [
+          0.3,
+          0.01,
+          -0.0
+        ],
+        [
+          0.4,
+          0.01,
+          -0.0
+        ],
+        [
+          0.5,
+          0.02,
+          0.0
+        ],
+        [
+          0.6,
+          0.06,
+          0.76
+        ],
+        [
+          0.7,
+          0.56,
+          1.57
+        ],
+        [
+          0.8,
+          1.21,
+          1.95
+        ],
+        [
+          0.9,
+          1.74,
           2.23
         ],
         [
@@ -2514,32 +2733,37 @@
         ],
         [
           1.1,
-          2.48,
-          2.69
+          2.31,
+          2.81
         ],
         [
           1.2,
-          2.73,
-          2.88
+          2.08,
+          3.47
         ],
         [
           1.3,
-          2.68,
-          2.94
+          1.91,
+          3.72
         ],
         [
           1.4,
-          2.36,
-          2.27
+          1.44,
+          3.1
         ],
         [
           1.5,
-          1.99,
-          1.83
+          1.05,
+          2.66
         ]
       ],
-      "release_height_mm": 3.47,
-      "landing_speed_mm_s": 127.8,
+      "nullspace_drift_deg": 1.27,
+      "joint_margin_min_deg": [
+        39.4,
+        "joint4"
+      ],
+      "release_height_mm": 4.2,
+      "landing_speed_mm_s": 92.3,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
@@ -2549,29 +2773,29 @@
         0.0
       ],
       "plate_err_mm": [
-        0.49,
-        -0.15,
+        0.1,
+        0.36,
         0.0
       ],
-      "plate_yaw_err_deg": 0.01,
+      "plate_yaw_err_deg": -0.01,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "1.71",
-          "3.08"
+          "1.9",
+          "2.91"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.06,
-          0.1,
-          0.17
+          -0.15,
+          0.25,
+          0.36
         ],
         "plate_in_tool_mm": [
-          -0.18,
-          1.57,
-          6.1
+          0.14,
+          -0.0,
+          6.11
         ]
       },
       "result": "PASS",
@@ -2579,6 +2803,6 @@
     }
   ],
   "physics_hz": 240,
-  "wall_time_s": 1353.5,
+  "wall_time_s": 1148.6,
   "seed": 7
 }

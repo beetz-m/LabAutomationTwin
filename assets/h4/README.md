@@ -70,21 +70,30 @@ The controller writes `state:*`, `control:*` and the status lights, and keeps an
 - Registered trials use N(0, 0.5 mm) and 0.3°; unregistered trials use ±3 mm and ±1°.
 - Every campaign also passes the quarantine, lock and authorised-release cycle.
 
-| Scene | Placement | Seated & retrieved | Max landing speed | Max release height |
-|---|---|---|---|---|
-| bench | compliant | 16 / 16 | 128 mm/s | 6.8 mm (unregistered) |
-| Cell 01 overlay (FR3 on R01 `base_link`) | compliant | 16 / 16 | 140 mm/s | 3.8 mm |
-| Cell 01 overlay | drop | 16 / 16 | 417 mm/s | 13.1 mm |
+| Scene | Placement | Seated & retrieved | Max landing speed | Max release height | Max lateral transient |
+|---|---|---|---|---|---|
+| Cell 01 overlay, layout P1 (FR3 on R01 `base_link`) | compliant | 16 / 16 | 169 mm/s | 5.2 mm (unregistered) | 2.1 mm |
+| Cell 01 overlay, layout P1 | drop | 16 / 16 | 411 mm/s | 13.1 mm | — |
+| bench | compliant | 16 / 16 | 126 mm/s | 5.0 mm (unregistered) | 2.9 mm |
+| bench | drop | 16 / 16 | 405 mm/s | 12.9 mm | — |
+
+All four campaigns were rerun after the test-rig fixes below (coupled jaws, robot mount filter, null-space term).
+Before the coupled-jaw fix, the first P1 compliant campaign scored 15/16 (`test_reports/h4_robot_report_cell01_compliant.p1_run1.json`).
 
 **Compliant placement** emulates the FR3's Cartesian impedance mode:
 - the arm ramps into the soft mode and settles before descending at 15 mm/s;
 - stiffness is K = 800/800/1500 N/m with damping, plus payload compensation;
-- this cuts landing speed by about 3× compared with dropping the plate.
+- this cuts landing speed by 2.4–3× compared with dropping the plate.
 
 Lessons recorded in the test script:
 - **Settle before switching:** without the ramp and settle, the gain switch left a 4 mm lateral transient and 2 of 8 plates jammed.
 - **Move convergence:** must require the tool point to be at rest. A tolerance-only check overshot the grasp by 4 mm.
 - **Transit height:** must be 0.20 m. At 0.10 m the arm clipped H4's open door top in the Cell 01 placement.
+- **Approach side:** R01 must approach from the side away from the door hinge (36.6° off the nest axis). Head-on, the wrist grazed the open door's edge during insertion.
+- **Coupled jaws:** while holding, both jaws track their mean position plus a 2.5 mm preload (25 N), emulating the GEP2006's mechanical coupling. With both jaws merely force-capped, the gripper had no stiffness relative to the plate along the jaw axis. The compliant arm then slid along it until one jaw hit its stroke end and the other shoved the arm 20–36 mm sideways, which happened in 1–3 of 16 trials in layout P1.
+- **Robot mount:** collisions between the FR3 base link and its mount (pedestal or bench) are filtered. The base link pressed into the pedestal throughout every move.
+- **Null-space stiffness:** the impedance step adds a null-space posture term (20 N·m/rad, as in franka_example_controllers), so the FR3's redundant elbow motion is not free while compliant.
+- **Diagnostics:** `H4_CONTACTS=1` logs every contact pair of the robot, gripper and plate during insertion into the report.
 
 The earlier results follow.
 
@@ -100,8 +109,8 @@ The earlier results follow.
 ## Known limits
 
 - **Gripper:** the GEP2006 and WMR2063 are dimensioned proxies (their CAD is restricted). Jaw coupling and force limiting are emulated in the test's gripper command.
-- **Release height:** the compliant mode (the default) releases 2–4 mm above the seat. Drop mode, which releases 13 mm up, is kept for comparison.
+- **Release height:** the compliant mode (the default) releases 2.6–5.2 mm above the seat. Drop mode, which releases 13 mm up, is kept for comparison.
 - **Retrieval margin:** finger clearance is 2.5 mm per side, so a pose error above about 3 mm along the jaw axis risks landing a finger on the plate. Use registration for retrieval.
 - **Sample size:** 16 trials is a functional check, not a reliability estimate. Run a few hundred seeded trials before claiming a failure rate.
-- **Placement:** H4 is placed for R01 only in the overlay `scenes/cell01_h4.usda`, by user decision. The proposed Cell 01 changes are in `proposals/cell01/`.
+- **Placement:** H4 is placed for R01 only in the overlay `scenes/cell01_twin.usda` (layout P1, user decision 2026-10-15; placements in `scenes/layout_p1.json`). The proposed Cell 01 changes are in `proposals/cell01/`.
 - **Design basis:** the dimensions are a plausible design, not a procured product.

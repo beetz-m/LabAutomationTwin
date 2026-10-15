@@ -34,7 +34,7 @@ ap.add_argument("--trials", type=int, default=16)
 ap.add_argument("--seed", type=int, default=7)
 ap.add_argument("--stop-after", type=int, default=None, help="debug: stop after this many trials (same RNG draws)")
 ap.add_argument("--scene", choices=("bench", "cell01"), default="bench",
-                help="bench: standalone rig; cell01: scenes/cell01_h4.usda overlay, FR3 on R01's base_link")
+                help="bench: standalone rig; cell01: scenes/cell01_twin.usda overlay (layout P1), FR3 on R01's base_link")
 ap.add_argument("--place-mode", choices=("compliant", "drop"), default="compliant",
                 help="compliant: lower the plate into the guides under low arm stiffness and release 2 mm "
                      "above the seat; drop: release 1 mm above the guide tops (~13 mm free fall)")
@@ -44,7 +44,7 @@ H4_USD = os.path.join(ROOT, "assets/h4/h4.usda")
 PLATE_USD = os.path.join(ROOT, "assets/labware/plate_sbs96.usda")
 FR3_USD = os.path.join(ROOT, "assets/fr3/usd/fr3_arm/fr3_arm.usda")
 GRIPPER_USD = os.path.join(ROOT, "assets/gripper/plate_gripper.usda")
-CELL01_OVERLAY = os.path.join(ROOT, "scenes/cell01_h4.usda")
+CELL01_OVERLAY = os.path.join(ROOT, "scenes/cell01_twin.usda")
 REPORT_DIR = os.path.join(ROOT, "test_reports")
 HZ = 240
 DT = 1.0 / HZ
@@ -72,20 +72,27 @@ import numpy as np  # noqa: E402
 import omni.usd  # noqa: E402
 from isaacsim.core.experimental.prims import Articulation, RigidPrim  # noqa: E402
 from isaacsim.core.simulation_manager import SimulationManager  # noqa: E402
-from pxr import Gf, PhysxSchema, Usd, UsdGeom, UsdPhysics  # noqa: E402
+from omni.physx import get_physx_simulation_interface  # noqa: E402
+from pxr import Gf, PhysicsSchemaTools, PhysxSchema, Usd, UsdGeom, UsdPhysics  # noqa: E402
 
 from twin.h4_controller import H4Controller  # noqa: E402
 
 if args.scene == "bench":
     SOURCE = np.array([0.55, -0.27, BENCH_Z + 0.04])
     H4_PATH, FR3_PATH, GRIP_PATH = "/World/H4_Quarantine", "/World/FR3", "/World/Gripper"
-else:  # test-only handover stand within R01 reach (not part of Cell 01)
-    SOURCE = np.array([-1.60, 0.45, 0.96])
+else:  # layout P1 (scenes/layout_p1.json): the source plate sits on a test stand at the R01/R02 handover nest
+    with open(os.path.join(ROOT, "scenes/layout_p1.json")) as f:
+        LAYOUT = json.load(f)
+    SOURCE = np.array(LAYOUT["extra_frames"]["handover_nest_R01_R02"])
+    WORKTOP_Z = 0.92  # central bench top (Cell 01)
     H4_PATH = "/World/Cell01/Stations/H4_Quarantine"
     FR3_PATH, GRIP_PATH = "/World/Cell01/Robots/R01_FR3/FR3", "/World/Cell01/Robots/R01_FR3/PlateGripper"
-    H4_YAW_CELL01 = -92.0  # as placed by tools/compose_cell01_overlay.py (checked against the stage below)
+    H4_YAW_CELL01 = LAYOUT["stations"]["H4"]["yaw_deg"]  # as placed by the overlay (checked against the stage below)
 IMPEDANCE = np.array([800.0, 800.0, 1500.0, 10.0, 10.0, 10.0])  # N/m (x, y, z), N*m/rad (rx, ry, rz)
 IMP_DAMPING = np.array([40.0, 40.0, 60.0])                     # N*s/m (x, y, z)
+# null-space posture stiffness / damping (FR3 is redundant; franka_example_controllers' Cartesian impedance uses
+# nullspace_stiffness 20 too). Without it the elbow's self-motion had zero stiffness while compliant.
+NS_STIFFNESS, NS_DAMPING = 20.0, 2.0 * math.sqrt(20.0)        # N*m/rad, N*m*s/rad
 rng = np.random.default_rng(args.seed)
 
 
@@ -168,8 +175,8 @@ if args.scene == "bench":
     h4.GetPrim().GetReferences().AddReference(H4_USD)
     h4.AddTranslateOp().Set(Gf.Vec3d(0, 0, BENCH_Z))
 else:  # Cell 01: H4 placed by the overlay; FR3 mounted on R01's base_link frame
-    static_box("/World/TestFixtures/SourceStand", [SOURCE[0], SOURCE[1], SOURCE[2] / 2], (0.14, 0.07, SOURCE[2]),
-               yaw_deg=H4_YAW_CELL01)  # oriented like the plate it presents
+    static_box("/World/TestFixtures/SourceStand", [SOURCE[0], SOURCE[1], (SOURCE[2] + WORKTOP_Z) / 2],
+               (0.14, 0.07, SOURCE[2] - WORKTOP_Z), yaw_deg=H4_YAW_CELL01)  # on the bench, oriented like the plate
     h4 = UsdGeom.Xform(stage.GetPrimAtPath(H4_PATH))
 
 fr3 = UsdGeom.Xform.Define(stage, FR3_PATH)
@@ -209,6 +216,17 @@ for p in list(Usd.PrimRange(fr3.GetPrim())) + list(Usd.PrimRange(grip.GetPrim())
     if p.HasAPI(UsdPhysics.RigidBodyAPI):  # emulate the FR3's gravity compensation
         PhysxSchema.PhysxRigidBodyAPI.Apply(p).CreateDisableGravityAttr(True)
 PhysxSchema.PhysxArticulationAPI.Apply(stage.GetPrimAtPath(ART_ROOT)).CreateSleepThresholdAttr(0.0)  # robot too
+# The FR3 base is bolted to its mount: without this filter fr3_link0's collider pressed into the pedestal (Cell 01)
+# or bench throughout every move (contact impulses up to ~80 N*s per step, logged with H4_CONTACTS=1), fighting the
+# base's root_joint, which PhysX enforces as an external constraint because ArticulationRootAPI sits on the base
+# link. In layout P1 this coincided with intermittent 3-36 mm lateral jolts during compliant insertion (1/16 failed).
+MOUNT = "/World/Bench/Box" if args.scene == "bench" else "/World/Cell01/Robots/R01_FR3/Pedestal"
+UsdPhysics.FilteredPairsAPI.Apply(stage.GetPrimAtPath(ART_ROOT)).CreateFilteredPairsRel().AddTarget(MOUNT)
+CONTACTS = bool(os.environ.get("H4_CONTACTS"))  # diagnostic: log contacts of robot, gripper and plate while placing
+if CONTACTS:
+    for p in list(Usd.PrimRange(fr3.GetPrim())) + list(Usd.PrimRange(grip.GetPrim())) + [stage.GetPrimAtPath("/World/Plate")]:
+        if p.HasAPI(UsdPhysics.RigidBodyAPI):
+            PhysxSchema.PhysxContactReportAPI.Apply(p).CreateThresholdAttr().Set(0.0)
 for _ in range(5):
     app.update()
 
@@ -218,7 +236,7 @@ NEST_TRUE = np.array(_nest_w.ExtractTranslation())
 _R = _nest_w.ExtractRotationMatrix()
 NEST_YAW = math.degrees(math.atan2(_R[0][1], _R[0][0]))  # nest +X (plate long axis) in world
 if args.scene == "cell01":
-    assert abs(NEST_YAW - H4_YAW_CELL01) < 0.5, (NEST_YAW, H4_YAW_CELL01)
+    assert abs((NEST_YAW - H4_YAW_CELL01 + 180) % 360 - 180) < 0.5, (NEST_YAW, H4_YAW_CELL01)
 
 # ------------------------------------------------------------------------------ runtime handles
 app_utils.play(commit=True)
@@ -228,6 +246,7 @@ names = list(arm.dof_names)
 ARM = [names.index(f"fr3_joint{i}") for i in range(1, 8)]
 FA, FB = names.index("FingerAJoint"), names.index("FingerBJoint")
 links = list(arm.link_names)
+LIM_LO, LIM_HI = (np.asarray(v.numpy()[0][ARM], float) for v in arm.get_dof_limits())
 BODY_LINK = links.index("GripperBody")
 body_rp = RigidPrim(f"{GRIP_PATH}/GripperBody")
 plate_rp = RigidPrim("/World/Plate")
@@ -254,8 +273,20 @@ arm.set_dof_position_targets(np.array([READY], dtype=np.float32), dof_indices=AR
 HELD = {"on": False, "offset": None, "dropped": None}
 
 
+GRIP_SQUEEZE = 0.0025  # coupled-jaw preload: 10 kN/m finger drive x 2.5 mm = 25 N per jaw (below the 30 N cap)
+
+
 def _watch(i, k):
     ctrl.update(DT)
+    if HELD["on"]:
+        # GEP2006 jaws are mechanically coupled. With both jaws merely force-capped (targets beyond the stroke) the
+        # gripper body had no stiffness relative to the plate along the jaw axis, and the compliant arm could
+        # slide along it until one jaw reached its stroke end and the other shoved the arm 20-30 mm sideways
+        # (layout P1 campaigns). Both jaws track the mean jaw position + a preload, so any asymmetry is pushed
+        # back with 2 x 10 kN/m.
+        qf = arm.get_dof_positions().numpy()[0]
+        s_mean = (abs(qf[FA]) + abs(qf[FB])) / 2 + GRIP_SQUEEZE
+        arm.set_dof_position_targets(np.array([[-s_mean, s_mean]], dtype=np.float32), dof_indices=[FA, FB])
     if HELD["on"] and HELD["dropped"] is None:
         p_tcp = tcp()[0]
         d = plate_pose()[0] - p_tcp
@@ -422,7 +453,9 @@ def place(nest_bottom_center, yaw):
         p_tcp, _, _ = tcp()
         q_goal = q
         depth = RELEASE_ABOVE_SEAT - COMPLIANT_RELEASE
-        state = {"x_prev": p_tcp.copy(), "k": stiff0[0, ARM].astype(float)}
+        state = {"x_prev": p_tcp.copy(), "k": stiff0[0, ARM].astype(float), "margin": (np.inf, -1)}
+        q_entry = arm.get_dof_positions().numpy()[0][ARM].astype(float)
+        info["q_entry_deg"] = [round(math.degrees(v), 1) for v in q_entry]
         lat_max, lat_trace = 0.0, []
 
         def impedance_step(x_des, scale_k, scale_d):
@@ -442,13 +475,29 @@ def place(nest_bottom_center, yaw):
             wrench[:3] -= IMP_DAMPING * v
             wrench[2] += PLATE_MASS * 9.81  # payload support
             q_now = arm.get_dof_positions().numpy()[0][ARM].astype(float)
-            arm.set_dof_position_targets(np.array([q_now + (J.T @ wrench) / k_joint], dtype=np.float32),
+            qd_now = arm.get_dof_velocities().numpy()[0][ARM].astype(float)
+            # torque-level null-space projector N = I - J^T (J^T)^+ (kinematic pseudo-inverse)
+            n_proj = np.eye(7) - J.T @ np.linalg.pinv(J.T, rcond=1e-4)
+            tau_ns = n_proj @ (NS_STIFFNESS * (q_entry - q_now) - NS_DAMPING * qd_now)
+            m = np.minimum(q_now - LIM_LO, LIM_HI - q_now)
+            if m.min() < state["margin"][0]:
+                state["margin"] = (float(m.min()), int(m.argmin()) + 1)
+            arm.set_dof_position_targets(np.array([q_now + (J.T @ wrench + tau_ns) / k_joint], dtype=np.float32),
                                          dof_indices=ARM)
             step()
+            if CONTACTS:
+                heads, data = get_physx_simulation_interface().get_contact_report()
+                for h in heads:
+                    imp = sum(np.linalg.norm(np.array(data[k].impulse)) for k in
+                              range(h.contact_data_offset, h.contact_data_offset + h.num_contact_data))
+                    pair = tuple(sorted(str(PhysicsSchemaTools.intToSdfPath(c)).split("/World/")[-1]
+                                        for c in (h.collider0, h.collider1)))
+                    c = state.setdefault("contacts", {}).setdefault(pair, [round(ctrl.t, 3), 0, 0.0])
+                    c[1] += 1
+                    c[2] = max(c[2], float(imp))
             return x - x_des
 
         n_ramp, n_settle, n_desc, n_hold = int(0.25 * HZ), int(0.3 * HZ), int(depth / 0.015 * HZ), int(0.3 * HZ)
-        t = 0
         for i in range(n_ramp + n_settle + n_desc + n_hold):
             a = min(1.0, (i + 1) / n_ramp)  # gain ramp, log-linear from stiff to soft
             sk = COMPLIANCE[0] ** a
@@ -464,6 +513,12 @@ def place(nest_bottom_center, yaw):
         info["guide_correction_mm"] = [round(v * 1e3, 2) for v in lateral]
         info["impedance_lateral_max_mm"] = round(lat_max * 1e3, 2)
         info["impedance_trace"] = lat_trace  # (t s, lateral err mm, vertical err mm)
+        if CONTACTS:  # pair -> [first t, steps in contact, max impulse N*s]
+            info["contacts"] = {" | ".join(k): [v[0], v[1], round(v[2], 4)] for k, v in state.get("contacts", {}).items()}
+            get_physx_simulation_interface().get_contact_report()
+        info["nullspace_drift_deg"] = round(float(np.degrees(np.abs(
+            arm.get_dof_positions().numpy()[0][ARM].astype(float) - q_entry).max())), 2)
+        info["joint_margin_min_deg"] = [round(math.degrees(state["margin"][0]), 1), f"joint{state['margin'][1]}"]
         info.update(release_and_watch())
         cur = arm.get_dof_positions().numpy()[0][ARM]
         arm.set_dof_position_targets(np.array([cur], dtype=np.float32), dof_indices=ARM)  # no jump on re-stiffening

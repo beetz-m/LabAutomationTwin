@@ -2,7 +2,7 @@
   "asset": "/home/mbeetz/Documents/LabAutomationTwin/assets/l09/l09.usda",
   "physics_hz": 240,
   "sim_time_s": 127.5,
-  "wall_time_s": 308.1,
+  "wall_time_s": 212.9,
   "results": [
     {
       "test": "S structure",

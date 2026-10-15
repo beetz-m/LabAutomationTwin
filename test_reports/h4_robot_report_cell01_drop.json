@@ -6,15 +6,15 @@
       "trials": 8,
       "seated": 8,
       "retrieved": 8,
-      "max_landing_speed_mm_s": 416.7,
-      "max_release_height_mm": 13.13
+      "max_landing_speed_mm_s": 411.2,
+      "max_release_height_mm": 13.11
     },
     "unregistered": {
       "trials": 8,
       "seated": 8,
       "retrieved": 8,
-      "max_landing_speed_mm_s": 388.8,
-      "max_release_height_mm": 13.12
+      "max_landing_speed_mm_s": 369.7,
+      "max_release_height_mm": 13.11
     }
   },
   "quarantine_cycle": {
@@ -40,37 +40,37 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.6",
-          "2.4"
+          "2.68",
+          "2.32"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.05,
-          -0.04,
-          0.03
+          -0.02,
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.11,
-          6.03
+          0.02,
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.82,
-      "landing_speed_mm_s": 364.7,
+      "release_height_mm": 13.09,
+      "landing_speed_mm_s": 409.8,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        -0.0,
         0.0,
         -0.0,
-        0.0
+        0.0,
+        -0.0
       ],
       "plate_err_mm": [
-        -0.12,
-        0.05,
+        -0.02,
+        0.5,
         0.0
       ],
-      "plate_yaw_err_deg": 0.33,
+      "plate_yaw_err_deg": -0.0,
       "quarantine_cycle": {
         "accepted": true,
         "locked": true,
@@ -84,24 +84,24 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.48",
-          "2.39"
+          "2.53",
+          "2.34"
         ],
         "tcp_err_at_grasp_mm": [
-          0.01,
-          0.0,
-          0.03
+          0.03,
+          -0.02,
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.22,
-          0.13,
-          6.03
+          -0.77,
+          -0.02,
+          6.05
         ]
       },
       "result": "PASS",
       "h4_events": [
         {
-          "t": 33.9375,
+          "t": 32.075,
           "event": "quarantine_sample_accepted",
           "mode": "SECURING",
           "sample_id": "P-TRIAL-0",
@@ -109,13 +109,13 @@
           "preceding_anomalies": []
         },
         {
-          "t": 35.2583,
+          "t": 33.3958,
           "event": "mode",
           "mode": "QUARANTINED",
           "to": "QUARANTINED"
         },
         {
-          "t": 35.2583,
+          "t": 33.3958,
           "event": "quarantined",
           "mode": "QUARANTINED",
           "sample_id": "P-TRIAL-0",
@@ -123,27 +123,27 @@
           "beam_confirms": true
         },
         {
-          "t": 40.9375,
+          "t": 39.075,
           "event": "release_accepted",
           "mode": "RELEASING",
           "authorization": "QA-ROBOT-TRIAL",
           "sample_id": "P-TRIAL-0"
         },
         {
-          "t": 41.6708,
+          "t": 39.8083,
           "event": "released",
           "mode": "RELEASING",
           "sample_id": "P-TRIAL-0",
           "authorization": "QA-ROBOT-TRIAL"
         },
         {
-          "t": 41.6708,
+          "t": 39.8083,
           "event": "mode",
           "mode": "PRESENTED",
           "to": "PRESENTED"
         },
         {
-          "t": 52.25,
+          "t": 50.0917,
           "event": "sample_removed",
           "mode": "PRESENTED",
           "sample_id": "P-TRIAL-0"
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "_t0": 63.44166666669019,
+      "_t0": 64.51666666669016,
       "trial": 1,
       "mode": "registered",
       "belief_err_mm": [
@@ -165,62 +165,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.51",
-          "2.49"
+          "2.66",
+          "2.34"
         ],
         "tcp_err_at_grasp_mm": [
-          0.11,
-          -0.04,
+          -0.03,
+          0.01,
           0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
-          0.12,
+          0.01,
+          -0.03,
           6.01
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.84,
-      "landing_speed_mm_s": 360.6,
+      "release_height_mm": 13.11,
+      "landing_speed_mm_s": 410.4,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
         -0.0,
         0.0,
-        -0.0
+        -0.0,
+        0.0
       ],
       "plate_err_mm": [
-        0.09,
-        0.42,
-        -0.0
+        0.16,
+        -0.13,
+        0.0
       ],
-      "plate_yaw_err_deg": -0.1,
+      "plate_yaw_err_deg": 0.09,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.49",
-          "2.5"
+          "2.52",
+          "2.48"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.09,
-          -0.04,
-          -0.1
+          -0.01,
+          0.03,
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.2,
-          0.07,
-          5.9
+          0.35,
+          -0.03,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 103.52499999998801,
+      "_t0": 109.766666666649,
       "trial": 2,
       "mode": "registered",
       "belief_err_mm": [
@@ -234,62 +234,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.65",
-          "2.35"
+          "2.64",
+          "2.36"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.03,
-          -0.03,
-          0.03
+          -0.02,
+          0.01,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.03,
-          -0.21,
-          6.03
+          0.02,
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.81,
-      "landing_speed_mm_s": 385.3,
+      "release_height_mm": 13.09,
+      "landing_speed_mm_s": 410.5,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
+        -0.0,
+        -0.0,
         0.0,
-        0.0,
-        0.0,
-        -0.0
-      ],
-      "plate_err_mm": [
-        -0.07,
-        -0.07,
         0.0
       ],
-      "plate_yaw_err_deg": -0.13,
+      "plate_err_mm": [
+        0.2,
+        0.48,
+        -0.0
+      ],
+      "plate_yaw_err_deg": 0.0,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.63",
-          "2.37"
+          "2.55",
+          "2.45"
         ],
         "tcp_err_at_grasp_mm": [
-          0.05,
-          0.08,
-          0.17
+          0.0,
+          0.0,
+          0.05
         ],
         "plate_in_tool_mm": [
-          0.55,
-          -0.07,
-          6.06
+          -1.12,
+          -0.01,
+          6.05
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 145.77916666661625,
+      "_t0": 154.84583333327467,
       "trial": 3,
       "mode": "registered",
       "belief_err_mm": [
@@ -303,23 +303,23 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.36",
-          "2.64"
+          "2.45",
+          "2.55"
         ],
         "tcp_err_at_grasp_mm": [
-          0.07,
-          -0.07,
-          -0.0
+          -0.03,
+          0.01,
+          0.0
         ],
         "plate_in_tool_mm": [
-          0.05,
-          0.05,
-          5.99
+          0.01,
+          -0.01,
+          6.0
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.86,
-      "landing_speed_mm_s": 391.1,
+      "release_height_mm": 13.11,
+      "landing_speed_mm_s": 411.2,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
@@ -329,36 +329,36 @@
         0.0
       ],
       "plate_err_mm": [
-        0.26,
-        0.22,
+        -0.13,
+        0.47,
         0.0
       ],
-      "plate_yaw_err_deg": 0.21,
+      "plate_yaw_err_deg": -0.02,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.5",
-          "2.5"
+          "2.39",
+          "2.58"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          -0.03,
-          -0.04
+          -0.01,
+          0.03,
+          0.05
         ],
         "plate_in_tool_mm": [
-          0.96,
-          -0.08,
-          5.96
+          -1.09,
+          -0.01,
+          6.05
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 186.68749999991238,
+      "_t0": 200.40416666656657,
       "trial": 4,
       "mode": "registered",
       "belief_err_mm": [
@@ -372,62 +372,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.69",
-          "2.31"
+          "2.52",
+          "2.48"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.03,
-          -0.04,
-          0.01
+          -0.02,
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.38,
-          6.01
+          0.02,
+          -0.01,
+          6.02
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.83,
-      "landing_speed_mm_s": 367.2,
+      "release_height_mm": 13.09,
+      "landing_speed_mm_s": 410.7,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         0.0,
         0.0,
-        0.0,
+        -0.0,
         0.0
       ],
       "plate_err_mm": [
-        -0.21,
-        0.34,
+        0.16,
+        -0.01,
         0.0
       ],
-      "plate_yaw_err_deg": 0.22,
+      "plate_yaw_err_deg": -0.1,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.43",
-          "2.48"
+          "2.64",
+          "2.33"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.0,
-          -0.04,
-          0.0
+          -0.01,
+          0.04,
+          0.05
         ],
         "plate_in_tool_mm": [
-          0.41,
-          0.02,
-          6.01
+          -0.01,
+          -0.03,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 228.81249999987406,
+      "_t0": 245.64999999985875,
       "trial": 5,
       "mode": "registered",
       "belief_err_mm": [
@@ -441,23 +441,23 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.57",
-          "2.43"
+          "2.46",
+          "2.54"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          -0.04,
+          -0.02,
+          0.02,
           0.03
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.09,
+          0.02,
+          -0.01,
           6.03
         ]
       },
       "place_reached": true,
       "release_height_mm": 13.09,
-      "landing_speed_mm_s": 396.2,
+      "landing_speed_mm_s": 410.6,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
@@ -467,36 +467,36 @@
         0.0
       ],
       "plate_err_mm": [
-        -0.15,
-        0.35,
+        -0.13,
+        0.27,
         0.0
       ],
-      "plate_yaw_err_deg": -0.11,
+      "plate_yaw_err_deg": -0.3,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.37",
-          "2.48"
+          "2.5",
+          "2.3"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          -0.02,
-          -0.02
+          -0.0,
+          0.02,
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.73,
-          0.1,
-          5.98
+          -0.56,
+          -0.03,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 269.0708333331708,
+      "_t0": 290.88749999981763,
       "trial": 6,
       "mode": "registered",
       "belief_err_mm": [
@@ -510,23 +510,23 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.58",
-          "2.42"
+          "2.48",
+          "2.52"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.05,
-          -0.04,
-          0.03
+          -0.03,
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.11,
-          6.03
+          0.01,
+          -0.01,
+          6.01
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.81,
-      "landing_speed_mm_s": 416.7,
+      "release_height_mm": 13.1,
+      "landing_speed_mm_s": 410.3,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
@@ -536,36 +536,36 @@
         0.0
       ],
       "plate_err_mm": [
-        0.04,
-        0.04,
-        0.0
+        0.2,
+        -0.0,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.25,
+      "plate_yaw_err_deg": 0.03,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.41",
-          "2.53"
+          "2.61",
+          "2.39"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.05,
-          0.01,
-          -0.0
+          -0.01,
+          0.03,
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.19,
-          0.31,
-          6.0
+          -0.09,
+          -0.03,
+          6.05
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 310.27916666646666,
+      "_t0": 336.1124999997765,
       "trial": 7,
       "mode": "registered",
       "belief_err_mm": [
@@ -579,23 +579,23 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.54",
-          "2.46"
+          "2.67",
+          "2.33"
         ],
         "tcp_err_at_grasp_mm": [
-          0.11,
-          -0.04,
-          0.0
+          -0.02,
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.04,
-          6.0
+          0.02,
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
-      "release_height_mm": 13.13,
-      "landing_speed_mm_s": 367.5,
+      "release_height_mm": 13.09,
+      "landing_speed_mm_s": 369.8,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
@@ -605,9 +605,9 @@
         0.0
       ],
       "plate_err_mm": [
-        0.14,
-        -0.46,
-        -0.0
+        0.41,
+        0.22,
+        0.0
       ],
       "plate_yaw_err_deg": 0.06,
       "pick_nest": {
@@ -616,25 +616,25 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.65",
-          "2.23"
+          "2.19",
+          "2.69"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.0,
-          -0.02,
-          0.0
+          -0.01,
+          0.03,
+          0.06
         ],
         "plate_in_tool_mm": [
-          0.28,
-          0.24,
-          6.0
+          -0.91,
+          -0.01,
+          6.06
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 351.5249999997625,
+      "_t0": 381.19166666640217,
       "trial": 8,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -648,62 +648,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.48",
-          "2.53"
+          "2.44",
+          "2.56"
         ],
         "tcp_err_at_grasp_mm": [
-          0.08,
           -0.03,
+          0.01,
           0.0
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.03,
-          6.01
+          0.01,
+          -0.01,
+          6.0
         ]
       },
       "place_reached": true,
-      "release_height_mm": 13.12,
-      "landing_speed_mm_s": 290.7,
+      "release_height_mm": 13.11,
+      "landing_speed_mm_s": 328.9,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         0.0,
+        -0.0,
         0.0,
-        0.0,
-        0.0
+        -0.0
       ],
       "plate_err_mm": [
-        0.07,
-        -0.01,
-        0.0
+        0.31,
+        0.26,
+        -0.0
       ],
-      "plate_yaw_err_deg": -0.36,
+      "plate_yaw_err_deg": -0.04,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.64",
-          "2.26"
+          "2.14",
+          "2.75"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.02,
-          -0.03,
-          -0.02
+          -0.01,
+          0.03,
+          0.06
         ],
         "plate_in_tool_mm": [
-          2.91,
-          -0.03,
-          5.98
+          -2.91,
+          0.0,
+          6.06
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 393.01249999972475,
+      "_t0": 426.5874999996942,
       "trial": 9,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -717,62 +717,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.63",
-          "2.37"
+          "2.67",
+          "2.33"
         ],
         "tcp_err_at_grasp_mm": [
+          -0.02,
           0.02,
-          -0.03,
           0.02
         ],
         "plate_in_tool_mm": [
-          0.03,
-          -0.13,
+          0.02,
+          -0.03,
           6.02
         ]
       },
       "place_reached": true,
-      "release_height_mm": 13.1,
-      "landing_speed_mm_s": 293.9,
+      "release_height_mm": 13.09,
+      "landing_speed_mm_s": 328.8,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
         -0.0,
         0.0,
+        -0.0,
         0.0
       ],
       "plate_err_mm": [
-        -0.35,
-        -0.13,
+        -0.41,
+        -0.14,
         0.0
       ],
-      "plate_yaw_err_deg": -0.02,
+      "plate_yaw_err_deg": -0.09,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.06",
-          "2.86"
+          "2.93",
+          "2.03"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          -0.05,
-          -0.03
+          0.01,
+          0.02,
+          0.05
         ],
         "plate_in_tool_mm": [
-          -2.92,
-          0.13,
-          5.94
+          3.02,
+          -0.02,
+          6.05
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 434.92499999968663,
+      "_t0": 471.8124999996531,
       "trial": 10,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -786,62 +786,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.55",
-          "2.46"
+          "2.46",
+          "2.54"
         ],
         "tcp_err_at_grasp_mm": [
-          0.13,
           -0.03,
-          0.01
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.04,
-          0.04,
-          6.0
+          0.02,
+          -0.01,
+          6.02
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.84,
-      "landing_speed_mm_s": 343.3,
+      "release_height_mm": 13.09,
+      "landing_speed_mm_s": 328.8,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
       ],
       "plate_err_mm": [
-        -0.38,
-        -0.21,
-        0.0
+        -0.42,
+        -0.39,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.01,
+      "plate_yaw_err_deg": 0.09,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "0.95",
-          "3.73"
+          "4.09",
+          "0.68"
         ],
         "tcp_err_at_grasp_mm": [
-          0.21,
-          0.07,
-          0.55
+          -0.01,
+          0.04,
+          0.03
         ],
         "plate_in_tool_mm": [
-          0.29,
-          -0.11,
-          6.23
+          -0.28,
+          -0.02,
+          6.01
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 476.17083333298245,
+      "_t0": 517.062499999681,
       "trial": 11,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -851,34 +851,34 @@
       "belief_yaw_err_deg": -0.4,
       "pick_source": {
         "phase": "pick_source",
-        "reached": false,
+        "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.53",
-          "2.47"
+          "2.45",
+          "2.55"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.05,
-          -0.04,
-          0.01
+          -0.02,
+          0.02,
+          0.03
         ],
         "plate_in_tool_mm": [
-          0.05,
-          -0.04,
-          6.01
+          0.02,
+          -0.01,
+          6.03
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.83,
-      "landing_speed_mm_s": 324.8,
+      "release_height_mm": 13.09,
+      "landing_speed_mm_s": 328.8,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         0.0,
+        -0.0,
         0.0,
-        0.0,
-        0.0
+        -0.0
       ],
       "plate_err_mm": [
         -0.32,
@@ -892,25 +892,25 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "1.1",
-          "3.77"
+          "3.67",
+          "1.16"
         ],
         "tcp_err_at_grasp_mm": [
-          0.09,
-          -0.01,
-          0.25
+          0.06,
+          -0.07,
+          0.03
         ],
         "plate_in_tool_mm": [
-          -0.55,
-          0.14,
-          6.12
+          0.37,
+          -0.03,
+          6.01
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 518.4958333330326,
+      "_t0": 561.9958333335865,
       "trial": 12,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -924,62 +924,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.55",
-          "2.45"
+          "2.72",
+          "2.28"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.07,
-          -0.04,
-          0.04
+          -0.02,
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.03,
-          -0.08,
-          6.04
+          0.02,
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
-      "release_height_mm": 13.1,
-      "landing_speed_mm_s": 269.8,
+      "release_height_mm": 13.09,
+      "landing_speed_mm_s": 288.1,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         -0.0,
-        0.0,
         -0.0,
-        0.0
+        -0.0,
+        -0.0
       ],
       "plate_err_mm": [
-        0.48,
-        0.17,
-        0.0
+        0.44,
+        -0.07,
+        -0.0
       ],
-      "plate_yaw_err_deg": -0.03,
+      "plate_yaw_err_deg": 0.02,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "3.74",
-          "0.87"
+          "0.68",
+          "4.08"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.07,
-          -0.02,
-          -0.08
+          -0.08,
+          -0.09,
+          0.31
         ],
         "plate_in_tool_mm": [
-          -2.49,
-          -0.44,
-          5.87
+          2.9,
+          0.03,
+          6.28
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 559.237500000218,
+      "_t0": 607.062500000827,
       "trial": 13,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -993,62 +993,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.63",
-          "2.37"
+          "2.47",
+          "2.53"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.09,
-          -0.04,
-          0.03
+          -0.02,
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.09,
-          6.03
+          0.01,
+          -0.01,
+          6.01
         ]
       },
       "place_reached": true,
-      "release_height_mm": 12.82,
-      "landing_speed_mm_s": 301.3,
+      "release_height_mm": 13.1,
+      "landing_speed_mm_s": 289.6,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
       ],
       "plate_err_mm": [
-        0.43,
-        0.44,
-        0.0
+        0.4,
+        0.29,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.06,
+      "plate_yaw_err_deg": 0.04,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "4.58",
-          "0.17"
+          "0.2",
+          "4.49"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          0.01,
-          -0.0
+          -0.06,
+          -0.17,
+          0.39
         ],
         "plate_in_tool_mm": [
-          -0.11,
-          -0.06,
-          5.82
+          0.88,
+          0.02,
+          7.15
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 599.6958333340665,
+      "_t0": 652.1166666680673,
       "trial": 14,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1062,62 +1062,62 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.47",
-          "2.53"
+          "2.66",
+          "2.34"
         ],
         "tcp_err_at_grasp_mm": [
-          0.07,
           -0.03,
-          0.02
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.03,
-          0.07,
-          6.02
+          0.01,
+          -0.01,
+          6.01
         ]
       },
       "place_reached": true,
-      "release_height_mm": 13.12,
-      "landing_speed_mm_s": 377.9,
+      "release_height_mm": 13.11,
+      "landing_speed_mm_s": 369.5,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         -0.0,
         -0.0,
-        0.0,
-        0.0
+        -0.0,
+        -0.0
       ],
       "plate_err_mm": [
-        -0.23,
-        0.01,
-        0.0
+        -0.44,
+        0.06,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.13,
+      "plate_yaw_err_deg": 0.05,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.12",
-          "2.64"
+          "2.63",
+          "2.13"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.02,
-          -0.02,
-          0.01
+          -0.01,
+          0.03,
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.7,
-          -0.37,
-          6.0
+          -0.66,
+          -0.02,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 641.5333333345992,
+      "_t0": 697.3708333353102,
       "trial": 15,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1131,55 +1131,55 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.52",
-          "2.48"
+          "2.62",
+          "2.38"
         ],
         "tcp_err_at_grasp_mm": [
-          0.1,
-          -0.03,
+          -0.02,
+          0.01,
           0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
-          0.03,
-          6.01
+          0.01,
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
       "release_height_mm": 13.1,
-      "landing_speed_mm_s": 388.8,
+      "landing_speed_mm_s": 369.7,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
       ],
       "plate_err_mm": [
-        0.42,
-        0.46,
-        0.0
+        0.36,
+        0.43,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.02,
+      "plate_yaw_err_deg": -0.06,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.38",
-          "2.4"
+          "2.36",
+          "2.39"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.02,
-          -0.03,
-          0.0
+          0.01,
+          0.01,
+          0.05
         ],
         "plate_in_tool_mm": [
-          1.54,
-          0.05,
-          6.0
+          -1.48,
+          -0.02,
+          6.05
         ]
       },
       "result": "PASS",
@@ -1187,6 +1187,6 @@
     }
   ],
   "physics_hz": 240,
-  "wall_time_s": 1790.4,
+  "wall_time_s": 1516.4,
   "seed": 7
 }

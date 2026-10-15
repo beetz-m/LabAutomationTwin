@@ -1,21 +1,25 @@
-"""Compose the Cell 01 working overlay: Cell 01 (read-only) + physics-schema fixes + H4 placed for R01.
+"""Compose the Cell 01 working overlay: Cell 01 (read-only) + physics-schema fixes + layout P1 + station twins.
 
 The authoritative Cell 01 USD in ResearchSpace is NOT modified (user decision 2026-10-15: land Cell 01
-changes as a non-destructive overlay). This writes scenes/cell01_h4.usda, which sublayers the Cell 01
+changes as a non-destructive overlay). This writes scenes/cell01_twin.usda, which sublayers the Cell 01
 scene and adds overrides only:
 
   1. the 12 colliders whose PhysicsCollisionAPI was authored as a plain attribute (ignored by USD/PhysX)
      get the API applied properly (see tools/fix_cell01_api_schemas.py for the in-place fix);
   2. a time-code range, and a 240 Hz PhysX scene;
-  3. H4 (assets/h4/h4.usda) referenced onto /World/Cell01/Stations/H4_Quarantine and placed within R01's
-     reach (user decision 2026-10-15, deviating from floor plan v0.3, which puts H4 in the front-right
-     corner out of reach of R01 and R02). The pose reproduces the hand-off geometry validated in
-     scripts/test_h4_robot.py: R01's base at (0.30, -0.62) in the H4 frame, transfer_nest 0.50 m from
-     R01 horizontally, H4's door facing R01 and its swing over the bench's west edge.
+  3. layout P1 'R01 cluster' (tools/reachability_study.py; adopted by the user 2026-10-15), with the
+     placements computed and checked by tools/layout_p1.py (scenes/layout_p1.json):
+       * R01 moved to (-1.55, 0.35) at the west end of the central bench;
+       * H4, L09 and L10 twins (assets/*/) referenced onto their Cell 01 prims, each with its transfer nest
+         0.56-0.60 m from R01 and its robot side facing R01; the placeholder Housing cubes are deactivated;
+       * provisional supports (side tables, an L10 plinth) put every transfer nest at 0.972 m;
+       * R02's rail shifted west to x -0.85..1.75 at y 0.78 (2.6 m, D004); L21 moved to (2.25, 1.20);
+       * layout frames for the AMR carrier dock and the R01/R02 handover nest on the bench.
 
-Run with the CAD venv:  env_cad/bin/python tools/compose_cell01_overlay.py
+Run with the CAD venv:  env_cad/bin/python tools/compose_cell01_overlay.py   (after tools/layout_p1.py)
 """
 
+import json
 import math
 import os
 
@@ -25,24 +29,43 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CELL01 = os.path.expanduser(
     "~/ResearchSpace/projects/robot-scientist/cell-01/AICOR_Cell01_Codex_Handoff/simulation/isaac_sim/"
     "biophysical_v2/AICOR_BioPhysical_Cell01_v2.usda")
-OUT = os.path.join(ROOT, "scenes", "cell01_h4.usda")
-H4_PRIM = "/World/Cell01/Stations/H4_Quarantine"
-R01_BASE = "/World/Cell01/Robots/R01_FR3/base_link"
-WORKTOP_Z = 0.92
-ROBOT_IN_H4 = (0.30, -0.62)    # R01 base in the H4 frame, as validated on the bench rig
-H4_YAW_DEG = -92.0             # H4 front (-Y local) faces west, toward R01
+OUT = os.path.join(ROOT, "scenes", "cell01_twin.usda")
+LAYOUT = os.path.join(ROOT, "scenes", "layout_p1.json")
+R01 = "/World/Cell01/Robots/R01_FR3"
+ASSETS = {"H4": "assets/h4/h4.usda", "L09": "assets/l09/l09.usda", "L10": "assets/l10/l10.usda"}
+NEST_FRAME = {"H4": "transfer_nest", "L09": "transfer_nest", "L10": "transfer_station"}
+RAIL = dict(x0=-0.85, x1=1.75, y=0.78, z=0.92)
+L21_XY = (2.25, 1.20)
+DECISION = ("2026-10-15 (user): layout P1 'R01 cluster' adopted (tools/reachability_study.py, tools/layout_p1.py); "
+            "deviates from floor plan v0.3. Pending a DECISIONS.md entry in Cell 01 (proposals/cell01/README.md).")
+
+
+def set_pose(prim, xyz, yaw_deg=None):
+    xf = UsdGeom.Xformable(prim)
+    xf.ClearXformOpOrder()
+    xf.AddTranslateOp().Set(Gf.Vec3d(*map(float, xyz)))
+    if yaw_deg is not None:
+        xf.AddRotateZOp().Set(float(yaw_deg))
+
+
+def box(st, path, center, size, yaw_deg, color, collide=True):
+    xf = UsdGeom.Xform.Define(st, path)
+    set_pose(xf.GetPrim(), center, yaw_deg)
+    c = UsdGeom.Cube.Define(st, path + "/Geom")
+    c.CreateSizeAttr(1.0)
+    c.AddScaleOp().Set(Gf.Vec3f(*map(float, size)))
+    c.CreateDisplayColorAttr([Gf.Vec3f(*color)])
+    if collide:
+        UsdPhysics.CollisionAPI.Apply(c.GetPrim())
+    return xf.GetPrim()
 
 
 def main():
+    lay = json.load(open(LAYOUT))
+    assert not lay["problems"], f"layout check failed, run tools/layout_p1.py: {lay['problems']}"
     src = Usd.Stage.Open(CELL01)
-    r01 = Gf.Vec3d(UsdGeom.XformCache().GetLocalToWorldTransform(src.GetPrimAtPath(R01_BASE)).ExtractTranslation())
     broken = [p.GetPath() for p in src.Traverse() if p.GetAttribute("apiSchemas")
               and "PhysicsCollisionAPI" in (p.GetAttribute("apiSchemas").Get() or [])]
-
-    # H4 origin = R01 base - R(yaw) * ROBOT_IN_H4 (horizontal), on the worktop
-    c, s = math.cos(math.radians(H4_YAW_DEG)), math.sin(math.radians(H4_YAW_DEG))
-    rx, ry = ROBOT_IN_H4
-    h4_xy = (r01[0] - (c * rx - s * ry), r01[1] - (s * rx + c * ry))
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     if os.path.exists(OUT):
@@ -56,8 +79,8 @@ def main():
     st.SetStartTimeCode(0)
     st.SetEndTimeCode(1000000)
     st.SetTimeCodesPerSecond(60)
-    layer.comment = ("Working overlay generated by tools/compose_cell01_overlay.py. Cell 01 itself is unmodified; "
-                     "edit the script, not this file.")
+    layer.comment = ("Working overlay generated by tools/compose_cell01_overlay.py from scenes/layout_p1.json. "
+                     "Cell 01 itself is unmodified; edit the scripts, not this file.")
 
     for path in broken:
         UsdPhysics.CollisionAPI.Apply(st.OverridePrim(path))
@@ -65,31 +88,63 @@ def main():
     scene.AddAppliedSchema("PhysxSceneAPI")
     scene.CreateAttribute("physxScene:timeStepsPerSecond", Sdf.ValueTypeNames.UInt).Set(240)
 
-    h4 = st.OverridePrim(H4_PRIM)
-    h4.GetReferences().AddReference(os.path.relpath(os.path.join(ROOT, "assets/h4/h4.usda"), os.path.dirname(OUT)))
-    xf = UsdGeom.Xformable(h4)
-    xf.AddTranslateOp().Set(Gf.Vec3d(h4_xy[0], h4_xy[1], WORKTOP_Z))
-    xf.AddRotateZOp().Set(H4_YAW_DEG)
-    h4.CreateAttribute("sdt:bindingStatus", Sdf.ValueTypeNames.String).Set("articulated_v1")
-    h4.CreateAttribute("sdt:placementDecision", Sdf.ValueTypeNames.String, custom=True).Set(
-        "2026-10-15 (user): H4 within R01 reach on the central automation bench; deviates from floor plan "
-        "v0.3 (front-right corner, AMR lane). Pose reproduces the hand-off geometry validated in "
-        "LabAutomationTwin/scripts/test_h4_robot.py. Pending a DECISIONS.md entry in Cell 01.")
+    # R01: base_link stays 0.72 above the R01_FR3 origin (pedestal height)
+    r01 = st.OverridePrim(R01)
+    set_pose(r01, (lay["r01_base"][0], lay["r01_base"][1], 0.0))
+    r01.CreateAttribute("sdt:placementDecision", Sdf.ValueTypeNames.String, custom=True).Set(DECISION)
+
+    # stations: twin asset onto the Cell 01 prim, placeholder housing off, support underneath
+    for name, s in lay["stations"].items():
+        prim = st.OverridePrim(s["prim"])
+        prim.GetReferences().AddReference(os.path.relpath(os.path.join(ROOT, ASSETS[name]), os.path.dirname(OUT)))
+        set_pose(prim, s["origin"], s["yaw_deg"])
+        prim.CreateAttribute("sdt:bindingStatus", Sdf.ValueTypeNames.String).Set("articulated_v1")
+        prim.CreateAttribute("sdt:placementDecision", Sdf.ValueTypeNames.String, custom=True).Set(DECISION)
+        if src.GetPrimAtPath(s["prim"] + "/Housing"):
+            st.OverridePrim(s["prim"] + "/Housing").SetActive(False)
+        x0, x1, y0, y1 = s["footprint"]
+        h = s["support_height"]
+        cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+        c, sn = math.cos(math.radians(s["yaw_deg"])), math.sin(math.radians(s["yaw_deg"]))
+        centre = (s["origin"][0] + c * cx - sn * cy, s["origin"][1] + sn * cx + c * cy, h / 2)
+        sup = box(st, f"/World/Cell01/Furniture/P1_Supports/{name}_{s['support']}", centre,
+                  (x1 - x0 + 0.04, y1 - y0 + 0.04, h), s["yaw_deg"], (0.62, 0.64, 0.66))
+        sup.CreateAttribute("sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(
+            f"provisional {s['support']} (layout P1), top at {h:.3f} m so the transfer nest is at {lay['nest_z']} m")
+
+    # R02 rail (placeholder geometry) and L21 (placeholder deck)
+    rail = st.OverridePrim("/World/Cell01/Robots/R02_RailSystem/LinearRail")
+    set_pose(rail, ((RAIL["x0"] + RAIL["x1"]) / 2, RAIL["y"], RAIL["z"]))
+    st.OverridePrim("/World/Cell01/Robots/R02_RailSystem/LinearRail/Rail").GetAttribute("xformOp:scale").Set(
+        Gf.Vec3f(RAIL["x1"] - RAIL["x0"], 0.11, 0.09))
+    l21 = st.OverridePrim("/World/Cell01/Stations/L21_QC_Calibration")
+    set_pose(l21, (*L21_XY, 0.94))
+
+    # layout frames (no device assets yet)
+    for name, xyz in lay["extra_frames"].items():
+        f = UsdGeom.Xform.Define(st, f"/World/Cell01/LayoutP1/{name}")
+        set_pose(f.GetPrim(), xyz)
+        UsdGeom.Xformable(f).CreateVisibilityAttr("invisible")
+    UsdGeom.Xform.Define(st, "/World/Cell01/LayoutP1").GetPrim().CreateAttribute(
+        "sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(DECISION)
     layer.Save()
 
-    # report
+    # report: composed nest poses against the layout
     out = Usd.Stage.Open(OUT)
     xc = UsdGeom.XformCache()
-    nest = xc.GetLocalToWorldTransform(out.GetPrimAtPath(f"{H4_PRIM}/transfer_nest")).ExtractTranslation()
+    base = xc.GetLocalToWorldTransform(out.GetPrimAtPath(R01 + "/base_link")).ExtractTranslation()
     colliders = sum(p.HasAPI(UsdPhysics.CollisionAPI) for p in out.Traverse())
-    bb = UsdGeom.BBoxCache(0, ["default"]).ComputeWorldBound(out.GetPrimAtPath(H4_PRIM)).ComputeAlignedRange()
-    d = math.hypot(nest[0] - r01[0], nest[1] - r01[1])
     print(f"wrote {OUT}")
     print(f"  collider fixes: {len(broken)}; colliders in composed stage: {colliders}")
-    print(f"  H4 at ({h4_xy[0]:.3f}, {h4_xy[1]:.3f}, {WORKTOP_Z}) yaw {H4_YAW_DEG}; footprint x[{bb.GetMin()[0]:.3f},"
-          f"{bb.GetMax()[0]:.3f}] y[{bb.GetMin()[1]:.3f},{bb.GetMax()[1]:.3f}]")
-    print(f"  transfer_nest at ({nest[0]:.3f}, {nest[1]:.3f}, {nest[2]:.3f}); {d:.3f} m from R01 base horizontally, "
-          f"{nest[2] - r01[2]:.3f} m above it")
+    print(f"  R01 base_link at ({base[0]:.3f}, {base[1]:.3f}, {base[2]:.3f})")
+    worst = 0.0
+    for name, s in lay["stations"].items():
+        nest = xc.GetLocalToWorldTransform(out.GetPrimAtPath(f"{s['prim']}/{NEST_FRAME[name]}")).ExtractTranslation()
+        err = (Gf.Vec3d(*s["nest"]) - nest).GetLength()
+        worst = max(worst, err)
+        print(f"  {name:4s} nest at ({nest[0]:.3f}, {nest[1]:.3f}, {nest[2]:.3f}); {math.hypot(nest[0] - base[0], nest[1] - base[1]):.3f} m "
+              f"from R01, {nest[2] - base[2]:.3f} m above its base; layout error {err * 1000:.2f} mm")
+    assert worst < 1e-3, worst
 
 
 if __name__ == "__main__":

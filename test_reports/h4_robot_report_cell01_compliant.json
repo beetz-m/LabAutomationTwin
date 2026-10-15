@@ -6,15 +6,15 @@
       "trials": 8,
       "seated": 8,
       "retrieved": 8,
-      "max_landing_speed_mm_s": 129.6,
-      "max_release_height_mm": 2.91
+      "max_landing_speed_mm_s": 168.9,
+      "max_release_height_mm": 3.02
     },
     "unregistered": {
       "trials": 8,
       "seated": 8,
       "retrieved": 8,
-      "max_landing_speed_mm_s": 139.6,
-      "max_release_height_mm": 3.78
+      "max_landing_speed_mm_s": 145.7,
+      "max_release_height_mm": 5.16
     }
   },
   "quarantine_cycle": {
@@ -40,26 +40,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.6",
-          "2.4"
+          "2.68",
+          "2.32"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.05,
-          -0.04,
-          0.03
+          -0.02,
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.11,
-          6.03
+          0.02,
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.9,
-        0.03
+      "q_entry_deg": [
+        -42.8,
+        -61.2,
+        -77.2,
+        -110.4,
+        -58.7,
+        89.3,
+        30.5
       ],
-      "impedance_lateral_max_mm": 1.67,
+      "guide_correction_mm": [
+        0.67,
+        0.56
+      ],
+      "impedance_lateral_max_mm": 1.65,
       "impedance_trace": [
         [
           0.0,
@@ -68,96 +77,168 @@
         ],
         [
           0.1,
-          0.01,
-          0.01
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.02,
-          0.01
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.02,
-          -0.0
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.0
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.02,
-          -0.0
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.03,
-          0.73
+          0.05,
+          0.74
         ],
         [
           0.7,
-          0.38,
-          1.41
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.81,
-          1.56
-        ],
-        [
-          0.9,
-          1.13,
-          1.63
-        ],
-        [
-          1.0,
-          1.36,
+          0.69,
           1.71
         ],
         [
+          0.9,
+          1.0,
+          1.83
+        ],
+        [
+          1.0,
+          1.23,
+          1.91
+        ],
+        [
           1.1,
-          1.54,
-          1.81
+          1.41,
+          1.98
         ],
         [
           1.2,
-          1.66,
-          1.88
+          1.55,
+          2.05
         ],
         [
           1.3,
-          1.44,
-          2.19
+          1.65,
+          1.79
         ],
         [
           1.4,
-          1.33,
-          1.52
+          1.32,
+          1.15
         ],
         [
           1.5,
-          1.11,
-          1.1
+          1.05,
+          0.78
         ]
       ],
-      "release_height_mm": 2.51,
-      "landing_speed_mm_s": 96.2,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          26.908,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          26.908,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          26.908,
+          380,
+          0.1038
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          26.908,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          27.996,
+          119,
+          0.0174
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          28.046,
+          107,
+          0.0011
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          28.046,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          28.046,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          28.071,
+          101,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          28.146,
+          83,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          28.146,
+          83,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          28.171,
+          77,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          28.187,
+          73,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.07,
+      "joint_margin_min_deg": [
+        43.7,
+        "joint2"
+      ],
+      "release_height_mm": 2.64,
+      "landing_speed_mm_s": 133.2,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
+        -0.0,
         0.0,
         0.0,
         0.0
       ],
       "plate_err_mm": [
-        -0.34,
-        -0.2,
+        0.29,
+        0.11,
         0.0
       ],
-      "plate_yaw_err_deg": -0.03,
+      "plate_yaw_err_deg": -0.06,
       "quarantine_cycle": {
         "accepted": true,
         "locked": true,
@@ -171,24 +252,24 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.34",
-          "2.52"
+          "2.59",
+          "2.3"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.02,
-          -0.02,
-          0.0
+          -0.01,
+          0.04,
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.09,
-          0.12,
-          6.0
+          -0.3,
+          -0.03,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": [
         {
-          "t": 35.85,
+          "t": 33.9958,
           "event": "quarantine_sample_accepted",
           "mode": "SECURING",
           "sample_id": "P-TRIAL-0",
@@ -196,13 +277,13 @@
           "preceding_anomalies": []
         },
         {
-          "t": 37.1708,
+          "t": 35.3167,
           "event": "mode",
           "mode": "QUARANTINED",
           "to": "QUARANTINED"
         },
         {
-          "t": 37.1708,
+          "t": 35.3167,
           "event": "quarantined",
           "mode": "QUARANTINED",
           "sample_id": "P-TRIAL-0",
@@ -210,27 +291,27 @@
           "beam_confirms": true
         },
         {
-          "t": 42.85,
+          "t": 40.9958,
           "event": "release_accepted",
           "mode": "RELEASING",
           "authorization": "QA-ROBOT-TRIAL",
           "sample_id": "P-TRIAL-0"
         },
         {
-          "t": 43.5833,
+          "t": 41.7292,
           "event": "released",
           "mode": "RELEASING",
           "sample_id": "P-TRIAL-0",
           "authorization": "QA-ROBOT-TRIAL"
         },
         {
-          "t": 43.5833,
+          "t": 41.7292,
           "event": "mode",
           "mode": "PRESENTED",
           "to": "PRESENTED"
         },
         {
-          "t": 54.0167,
+          "t": 52.0125,
           "event": "sample_removed",
           "mode": "PRESENTED",
           "sample_id": "P-TRIAL-0"
@@ -238,7 +319,7 @@
       ]
     },
     {
-      "_t0": 64.73750000002329,
+      "_t0": 66.43750000002174,
       "trial": 1,
       "mode": "registered",
       "belief_err_mm": [
@@ -252,26 +333,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.44",
-          "2.56"
+          "2.63",
+          "2.37"
         ],
         "tcp_err_at_grasp_mm": [
-          0.08,
-          -0.04,
-          0.01
+          -0.02,
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.04,
-          0.05,
-          6.01
+          0.02,
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.76,
-        -0.48
+      "q_entry_deg": [
+        -43.1,
+        -60.5,
+        -77.5,
+        -110.6,
+        -58.2,
+        89.8,
+        29.8
       ],
-      "impedance_lateral_max_mm": 1.72,
+      "guide_correction_mm": [
+        0.58,
+        0.23
+      ],
+      "impedance_lateral_max_mm": 1.63,
       "impedance_trace": [
         [
           0.0,
@@ -280,121 +370,193 @@
         ],
         [
           0.1,
-          0.02,
-          0.02
+          0.01,
+          0.06
         ],
         [
           0.2,
           0.02,
-          0.0
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.0
+          0.02,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.0
+          0.02,
+          0.01
         ],
         [
           0.5,
-          0.01,
-          -0.0
+          0.02,
+          0.0
         ],
         [
           0.6,
-          0.03,
-          0.73
+          0.05,
+          0.75
         ],
         [
           0.7,
-          0.38,
-          1.41
+          0.33,
+          1.48
         ],
         [
           0.8,
-          0.81,
-          1.55
+          0.69,
+          1.72
         ],
         [
           0.9,
-          1.13,
-          1.63
+          1.01,
+          1.84
         ],
         [
           1.0,
-          1.37,
-          1.72
+          1.25,
+          1.93
         ],
         [
           1.1,
-          1.53,
-          1.8
+          1.44,
+          2.0
         ],
         [
           1.2,
-          1.65,
-          1.9
+          1.58,
+          2.06
         ],
         [
           1.3,
-          1.66,
-          1.72
+          1.42,
+          2.14
         ],
         [
           1.4,
-          1.44,
-          0.98
+          1.11,
+          1.54
         ],
         [
           1.5,
-          1.16,
-          0.54
+          0.81,
+          1.22
         ]
       ],
-      "release_height_mm": 2.27,
-      "landing_speed_mm_s": 121.4,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          87.721,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          87.721,
+          380,
+          0.1049
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          87.721,
+          380,
+          0.1038
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          87.721,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          88.75,
+          133,
+          0.0214
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          88.775,
+          127,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          88.825,
+          115,
+          0.005
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          88.9,
+          97,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          88.9,
+          97,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          88.925,
+          91,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          89.021,
+          68,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          89.067,
+          57,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          89.142,
+          39,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.04,
+      "joint_margin_min_deg": [
+        44.4,
+        "joint2"
+      ],
+      "release_height_mm": 2.95,
+      "landing_speed_mm_s": 118.4,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
         -0.0,
-        0.0,
+        -0.0,
+        -0.0,
         -0.0
       ],
       "plate_err_mm": [
-        -0.39,
-        -0.21,
-        0.0
+        0.14,
+        -0.37,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.05,
+      "plate_yaw_err_deg": -0.09,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.57",
-          "2.42"
+          "2.63",
+          "2.35"
         ],
         "tcp_err_at_grasp_mm": [
-          0.02,
+          -0.01,
           0.04,
-          0.06
+          0.05
         ],
         "plate_in_tool_mm": [
-          -0.46,
-          0.24,
-          6.06
+          0.64,
+          -0.03,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 107.84583333331742,
+      "_t0": 113.795833333312,
       "trial": 2,
       "mode": "registered",
       "belief_err_mm": [
@@ -408,24 +570,33 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.64",
-          "2.36"
+          "2.67",
+          "2.32"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.01,
-          -0.05,
-          0.0
+          -0.02,
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.09,
+          0.01,
+          -0.03,
           6.01
         ]
       },
       "place_reached": true,
+      "q_entry_deg": [
+        -43.0,
+        -60.5,
+        -77.5,
+        -110.6,
+        -58.2,
+        89.8,
+        30.2
+      ],
       "guide_correction_mm": [
-        -0.94,
-        0.28
+        0.09,
+        0.97
       ],
       "impedance_lateral_max_mm": 1.65,
       "impedance_trace": [
@@ -436,113 +607,185 @@
         ],
         [
           0.1,
-          0.02,
-          0.01
+          0.03,
+          0.05
         ],
         [
           0.2,
-          0.02,
-          -0.0
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.0
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.01,
+          0.02,
           0.0
         ],
         [
           0.6,
-          0.04,
+          0.05,
           0.74
         ],
         [
           0.7,
-          0.39,
-          1.41
+          0.34,
+          1.47
         ],
         [
           0.8,
-          0.81,
-          1.55
-        ],
-        [
-          0.9,
-          1.13,
-          1.63
-        ],
-        [
-          1.0,
-          1.36,
+          0.7,
           1.72
         ],
         [
+          0.9,
+          1.01,
+          1.84
+        ],
+        [
+          1.0,
+          1.25,
+          1.92
+        ],
+        [
           1.1,
-          1.54,
-          1.8
+          1.44,
+          2.0
         ],
         [
           1.2,
-          1.57,
-          1.96
+          1.58,
+          2.06
         ],
         [
           1.3,
-          1.44,
-          2.26
+          1.54,
+          1.99
         ],
         [
           1.4,
-          1.42,
-          1.55
+          1.38,
+          1.29
         ],
         [
           1.5,
-          1.21,
-          1.15
+          1.15,
+          0.92
         ]
       ],
-      "release_height_mm": 2.63,
-      "landing_speed_mm_s": 120.2,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          135.071,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          135.071,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          135.071,
+          380,
+          0.1066
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          135.071,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          136.108,
+          131,
+          0.0099
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          136.133,
+          125,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          136.208,
+          107,
+          0.0027
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          136.233,
+          101,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          136.258,
+          95,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          136.283,
+          89,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          136.371,
+          68,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          136.417,
+          57,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          136.433,
+          53,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.08,
+      "joint_margin_min_deg": [
+        44.4,
+        "joint2"
+      ],
+      "release_height_mm": 2.82,
+      "landing_speed_mm_s": 121.2,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
-        0.0,
-        0.0,
-        0.0
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
       ],
       "plate_err_mm": [
-        0.12,
-        -0.5,
-        0.0
+        0.43,
+        0.11,
+        -0.0
       ],
-      "plate_yaw_err_deg": -0.0,
+      "plate_yaw_err_deg": 0.05,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.62",
-          "2.37"
+          "2.5",
+          "2.42"
         ],
         "tcp_err_at_grasp_mm": [
-          0.06,
+          -0.01,
           0.03,
-          0.05
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.15,
-          -0.03,
+          -0.78,
+          -0.01,
           6.05
         ]
       },
@@ -550,7 +793,7 @@
       "h4_events": []
     },
     {
-      "_t0": 151.43333333327777,
+      "_t0": 160.9583333332691,
       "trial": 3,
       "mode": "registered",
       "belief_err_mm": [
@@ -564,26 +807,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.51",
-          "2.49"
+          "2.58",
+          "2.42"
         ],
         "tcp_err_at_grasp_mm": [
-          0.12,
-          -0.04,
-          -0.0
+          -0.03,
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.04,
-          0.18,
-          6.0
+          0.02,
+          -0.01,
+          6.02
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.77,
-        0.05
+      "q_entry_deg": [
+        -42.9,
+        -60.5,
+        -77.5,
+        -110.5,
+        -58.2,
+        89.8,
+        29.9
       ],
-      "impedance_lateral_max_mm": 1.65,
+      "guide_correction_mm": [
+        0.28,
+        0.93
+      ],
+      "impedance_lateral_max_mm": 1.67,
       "impedance_trace": [
         [
           0.0,
@@ -592,121 +844,203 @@
         ],
         [
           0.1,
-          0.02,
-          -0.01
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.01,
-          -0.01
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.01
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.01,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.04,
-          0.73
+          0.05,
+          0.74
         ],
         [
           0.7,
-          0.39,
-          1.4
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.82,
-          1.55
+          0.7,
+          1.72
         ],
         [
           0.9,
-          1.14,
-          1.62
+          1.01,
+          1.83
         ],
         [
           1.0,
-          1.37,
-          1.71
+          1.25,
+          1.92
         ],
         [
           1.1,
-          1.54,
-          1.8
+          1.44,
+          2.0
         ],
         [
           1.2,
-          1.55,
-          1.56
+          1.58,
+          2.06
         ],
         [
           1.3,
-          1.32,
-          1.89
+          1.62,
+          1.86
         ],
         [
           1.4,
-          1.17,
-          1.32
+          1.39,
+          1.2
         ],
         [
           1.5,
-          0.94,
-          1.03
+          1.17,
+          0.81
         ]
       ],
-      "release_height_mm": 2.8,
-      "landing_speed_mm_s": 126.8,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          182.254,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          182.254,
+          380,
+          0.1063
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          182.254,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          182.254,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          183.317,
+          125,
+          0.0094
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          183.392,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          183.392,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          183.417,
+          101,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          183.417,
+          101,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          183.492,
+          83,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          183.492,
+          83,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          183.517,
+          77,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          183.554,
+          68,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/NestCore/Box | Plate/Collision/Prism": [
+          183.792,
+          11,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/NestStripBackL/Box | Plate/Collision/Prism": [
+          183.792,
+          11,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.09,
+      "joint_margin_min_deg": [
+        44.4,
+        "joint2"
+      ],
+      "release_height_mm": 2.67,
+      "landing_speed_mm_s": 168.9,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
         -0.0,
         0.0,
+        -0.0,
         0.0
       ],
       "plate_err_mm": [
-        -0.16,
-        -0.49,
+        0.33,
+        0.08,
         0.0
       ],
-      "plate_yaw_err_deg": 0.01,
+      "plate_yaw_err_deg": 0.08,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.57",
-          "2.42"
+          "2.51",
+          "2.49"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.02,
-          0.01,
-          0.02
+          -0.01,
+          0.03,
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.14,
-          0.44,
-          6.02
+          -0.74,
+          -0.03,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 194.416666666572,
+      "_t0": 208.1333333332262,
       "trial": 4,
       "mode": "registered",
       "belief_err_mm": [
@@ -720,26 +1054,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.55",
-          "2.45"
+          "2.63",
+          "2.37"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.09,
-          -0.04,
+          -0.03,
+          0.01,
           0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.04,
+          0.01,
+          -0.03,
           6.01
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.78,
-        -0.34
+      "q_entry_deg": [
+        -43.0,
+        -60.5,
+        -77.5,
+        -110.6,
+        -58.2,
+        89.8,
+        29.9
       ],
-      "impedance_lateral_max_mm": 1.73,
+      "guide_correction_mm": [
+        0.43,
+        0.61
+      ],
+      "impedance_lateral_max_mm": 1.68,
       "impedance_trace": [
         [
           0.0,
@@ -748,121 +1091,193 @@
         ],
         [
           0.1,
-          0.05,
-          -0.0
+          0.03,
+          0.05
         ],
         [
           0.2,
+          0.03,
+          0.03
+        ],
+        [
+          0.3,
+          0.03,
+          0.01
+        ],
+        [
+          0.4,
+          0.03,
+          0.0
+        ],
+        [
+          0.5,
           0.02,
           0.0
         ],
         [
-          0.3,
-          0.02,
-          -0.0
-        ],
-        [
-          0.4,
-          0.01,
-          -0.0
-        ],
-        [
-          0.5,
-          0.01,
-          -0.0
-        ],
-        [
           0.6,
-          0.04,
+          0.06,
           0.74
         ],
         [
           0.7,
-          0.39,
-          1.41
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.81,
-          1.55
-        ],
-        [
-          0.9,
-          1.13,
-          1.63
-        ],
-        [
-          1.0,
-          1.37,
+          0.7,
           1.72
         ],
         [
+          0.9,
+          1.01,
+          1.84
+        ],
+        [
+          1.0,
+          1.25,
+          1.92
+        ],
+        [
           1.1,
-          1.54,
-          1.8
+          1.44,
+          2.0
         ],
         [
           1.2,
-          1.67,
-          1.88
+          1.58,
+          2.06
         ],
         [
           1.3,
-          1.56,
-          1.88
+          1.68,
+          1.81
         ],
         [
           1.4,
-          1.39,
-          1.18
+          1.25,
+          1.31
         ],
         [
           1.5,
-          1.15,
-          0.63
+          0.95,
+          0.98
         ]
       ],
-      "release_height_mm": 2.3,
-      "landing_speed_mm_s": 118.9,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          229.417,
+          380,
+          0.105
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          229.417,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          229.417,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          229.417,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          230.504,
+          119,
+          0.0182
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          230.504,
+          119,
+          0.0055
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          230.529,
+          113,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          230.554,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          230.629,
+          89,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          230.654,
+          83,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          230.679,
+          77,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          230.704,
+          71,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          230.804,
+          47,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.06,
+      "joint_margin_min_deg": [
+        44.4,
+        "joint2"
+      ],
+      "release_height_mm": 2.88,
+      "landing_speed_mm_s": 155.9,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         0.0,
         0.0,
-        0.0,
+        -0.0,
         0.0
       ],
       "plate_err_mm": [
-        -0.35,
-        -0.38,
+        0.23,
+        0.22,
         0.0
       ],
-      "plate_yaw_err_deg": 0.05,
+      "plate_yaw_err_deg": -0.07,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.64",
-          "2.36"
+          "2.59",
+          "2.4"
         ],
         "tcp_err_at_grasp_mm": [
           -0.01,
-          0.05,
-          0.06
+          0.04,
+          0.04
         ],
         "plate_in_tool_mm": [
-          -0.37,
-          -0.26,
-          6.06
+          -0.22,
+          -0.03,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 237.49166666653284,
+      "_t0": 255.3083333331833,
       "trial": 5,
       "mode": "registered",
       "belief_err_mm": [
@@ -876,26 +1291,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.65",
-          "2.35"
+          "2.47",
+          "2.53"
         ],
         "tcp_err_at_grasp_mm": [
-          0.01,
           -0.03,
-          0.02
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.03,
-          6.02
+          0.01,
+          -0.01,
+          6.01
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.83,
-        -0.02
+      "q_entry_deg": [
+        -42.7,
+        -61.2,
+        -77.3,
+        -110.4,
+        -58.7,
+        89.3,
+        29.9
       ],
-      "impedance_lateral_max_mm": 1.71,
+      "guide_correction_mm": [
+        0.36,
+        0.87
+      ],
+      "impedance_lateral_max_mm": 1.65,
       "impedance_trace": [
         [
           0.0,
@@ -904,121 +1328,198 @@
         ],
         [
           0.1,
-          0.01,
-          0.0
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.02,
-          -0.0
+          0.03,
+          0.03
         ],
         [
           0.3,
           0.03,
-          -0.0
+          0.01
         ],
         [
           0.4,
-          0.02,
-          -0.0
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.04,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.03,
+          0.05,
           0.74
         ],
         [
           0.7,
-          0.39,
-          1.41
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.78,
-          1.55
+          0.69,
+          1.71
         ],
         [
           0.9,
-          1.13,
-          1.63
+          1.0,
+          1.83
         ],
         [
           1.0,
-          1.37,
-          1.72
+          1.23,
+          1.91
         ],
         [
           1.1,
-          1.45,
-          1.82
+          1.41,
+          1.98
         ],
         [
           1.2,
-          1.67,
-          1.88
+          1.55,
+          2.05
         ],
         [
           1.3,
-          1.51,
-          1.99
+          1.64,
+          1.79
         ],
         [
           1.4,
-          1.32,
-          1.34
+          1.38,
+          1.12
         ],
         [
           1.5,
-          1.09,
-          0.91
+          1.15,
+          0.74
         ]
       ],
-      "release_height_mm": 2.59,
-      "landing_speed_mm_s": 103.7,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          276.283,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          276.283,
+          380,
+          0.106
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          276.283,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          276.283,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          277.371,
+          119,
+          0.0085
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          277.421,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          277.421,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          277.446,
+          101,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          277.471,
+          95,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          277.496,
+          89,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          277.496,
+          89,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          277.546,
+          77,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          277.562,
+          73,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/NestStripBackL/Box | Plate/Collision/Prism": [
+          277.787,
+          19,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.09,
+      "joint_margin_min_deg": [
+        43.7,
+        "joint2"
+      ],
+      "release_height_mm": 2.62,
+      "landing_speed_mm_s": 133.1,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
-        0.0,
+        -0.0,
+        -0.0,
         0.0,
         0.0
       ],
       "plate_err_mm": [
-        -0.21,
-        -0.3,
+        0.05,
+        0.17,
         0.0
       ],
-      "plate_yaw_err_deg": 0.25,
+      "plate_yaw_err_deg": 0.2,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.31",
-          "2.59"
+          "2.69",
+          "2.27"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.03,
           -0.02,
-          -0.0
+          0.04,
+          0.05
         ],
         "plate_in_tool_mm": [
-          0.25,
-          0.0,
-          6.0
+          -0.64,
+          -0.03,
+          6.05
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 280.50416666649375,
+      "_t0": 302.3083333331406,
       "trial": 6,
       "mode": "registered",
       "belief_err_mm": [
@@ -1032,26 +1533,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.53",
-          "2.47"
+          "2.44",
+          "2.56"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.06,
-          -0.04,
-          0.02
+          -0.03,
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
-          0.03,
-          6.02
+          0.01,
+          -0.01,
+          6.01
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.79,
-        -0.45
+      "q_entry_deg": [
+        -42.8,
+        -61.1,
+        -77.2,
+        -110.5,
+        -58.7,
+        89.3,
+        30.2
       ],
-      "impedance_lateral_max_mm": 1.76,
+      "guide_correction_mm": [
+        0.43,
+        0.61
+      ],
+      "impedance_lateral_max_mm": 1.65,
       "impedance_trace": [
         [
           0.0,
@@ -1060,113 +1570,185 @@
         ],
         [
           0.1,
-          0.05,
-          -0.09
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.02,
-          -0.07
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.02,
-          -0.03
+          0.03,
+          0.01
         ],
         [
           0.4,
           0.03,
-          -0.01
+          0.0
         ],
         [
           0.5,
           0.02,
-          -0.01
+          0.0
         ],
         [
           0.6,
-          0.03,
-          0.72
+          0.05,
+          0.74
         ],
         [
           0.7,
-          0.39,
-          1.4
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.81,
-          1.55
+          0.69,
+          1.72
         ],
         [
           0.9,
-          1.13,
-          1.62
+          0.99,
+          1.83
         ],
         [
           1.0,
-          1.37,
-          1.71
+          1.23,
+          1.91
         ],
         [
           1.1,
-          1.53,
-          1.79
+          1.42,
+          1.99
         ],
         [
           1.2,
-          1.67,
-          1.87
+          1.55,
+          2.05
         ],
         [
           1.3,
-          1.67,
-          1.71
+          1.65,
+          1.79
         ],
         [
           1.4,
-          1.39,
-          1.09
+          1.24,
+          1.26
         ],
         [
           1.5,
-          1.15,
-          0.62
+          0.94,
+          0.94
         ]
       ],
-      "release_height_mm": 2.54,
-      "landing_speed_mm_s": 97.9,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          323.279,
+          380,
+          0.1036
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          323.279,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          323.279,
+          380,
+          0.1052
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          323.279,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          324.367,
+          119,
+          0.0165
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          324.367,
+          119,
+          0.0059
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          324.392,
+          113,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          324.442,
+          101,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          324.492,
+          89,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          324.517,
+          83,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          324.542,
+          77,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          324.567,
+          71,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          324.65,
+          51,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.07,
+      "joint_margin_min_deg": [
+        43.8,
+        "joint2"
+      ],
+      "release_height_mm": 2.83,
+      "landing_speed_mm_s": 152.3,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         0.0,
-        -0.0,
         0.0,
+        -0.0,
         -0.0
       ],
       "plate_err_mm": [
-        -0.41,
-        -0.47,
-        0.0
+        0.27,
+        0.32,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.02,
+      "plate_yaw_err_deg": -0.01,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.48",
-          "2.52"
+          "2.6",
+          "2.4"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.0,
+          -0.01,
           0.04,
           0.04
         ],
         "plate_in_tool_mm": [
-          -0.43,
-          0.25,
+          -0.39,
+          -0.03,
           6.04
         ]
       },
@@ -1174,7 +1756,7 @@
       "h4_events": []
     },
     {
-      "_t0": 323.12083333312165,
+      "_t0": 349.3249999997645,
       "trial": 7,
       "mode": "registered",
       "belief_err_mm": [
@@ -1188,26 +1770,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.5",
-          "2.5"
+          "2.64",
+          "2.36"
         ],
         "tcp_err_at_grasp_mm": [
-          0.08,
-          -0.04,
-          0.0
+          -0.02,
+          0.02,
+          0.02
         ],
         "plate_in_tool_mm": [
-          0.04,
           0.02,
-          6.0
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.82,
-        0.28
+      "q_entry_deg": [
+        -42.8,
+        -61.2,
+        -77.2,
+        -110.6,
+        -58.7,
+        89.3,
+        30.1
       ],
-      "impedance_lateral_max_mm": 1.67,
+      "guide_correction_mm": [
+        -0.41,
+        1.12
+      ],
+      "impedance_lateral_max_mm": 1.54,
       "impedance_trace": [
         [
           0.0,
@@ -1216,113 +1807,185 @@
         ],
         [
           0.1,
-          0.01,
-          0.01
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.01,
-          0.0
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.0
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.0
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.01,
-          -0.0
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.03,
+          0.06,
           0.74
         ],
         [
           0.7,
-          0.39,
-          1.41
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.81,
-          1.55
-        ],
-        [
-          0.9,
-          1.13,
-          1.63
-        ],
-        [
-          1.0,
-          1.36,
+          0.69,
           1.72
         ],
         [
+          0.9,
+          1.0,
+          1.83
+        ],
+        [
+          1.0,
+          1.24,
+          1.92
+        ],
+        [
           1.1,
-          1.53,
-          1.8
+          1.42,
+          1.99
         ],
         [
           1.2,
-          1.66,
-          1.88
+          1.5,
+          2.09
         ],
         [
           1.3,
-          1.41,
-          2.16
+          1.38,
+          2.36
         ],
         [
           1.4,
-          1.32,
-          1.53
+          1.36,
+          1.6
         ],
         [
           1.5,
-          1.08,
-          1.22
+          1.28,
+          1.15
         ]
       ],
-      "release_height_mm": 2.91,
-      "landing_speed_mm_s": 129.6,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          370.458,
+          380,
+          0.1064
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          370.458,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          370.458,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          370.458,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          371.421,
+          149,
+          0.0097
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          371.521,
+          125,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          371.596,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          371.621,
+          101,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          371.621,
+          101,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          371.683,
+          86,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          371.758,
+          68,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          371.8,
+          58,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          371.8,
+          58,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.08,
+      "joint_margin_min_deg": [
+        43.7,
+        "joint2"
+      ],
+      "release_height_mm": 3.02,
+      "landing_speed_mm_s": 123.0,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.001,
         0.0,
+        -0.0,
         0.0,
-        -0.0
-      ],
-      "plate_err_mm": [
-        -0.01,
-        -0.13,
         0.0
       ],
-      "plate_yaw_err_deg": -0.03,
+      "plate_err_mm": [
+        0.5,
+        0.05,
+        -0.0
+      ],
+      "plate_yaw_err_deg": -0.0,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.67",
-          "2.2"
+          "2.19",
+          "2.7"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.0,
-          0.02,
+          -0.02,
+          0.03,
           0.06
         ],
         "plate_in_tool_mm": [
-          0.62,
-          -0.14,
+          -0.81,
+          -0.01,
           6.06
         ]
       },
@@ -1330,7 +1993,7 @@
       "h4_events": []
     },
     {
-      "_t0": 367.19999999974823,
+      "_t0": 396.5083333330549,
       "trial": 8,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1344,26 +2007,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.64",
-          "2.36"
+          "2.46",
+          "2.54"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          -0.04,
-          0.01
+          -0.03,
+          0.01,
+          0.0
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.05,
-          6.01
+          0.01,
+          -0.01,
+          6.0
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.99,
-        1.68
+      "q_entry_deg": [
+        -42.5,
+        -61.0,
+        -77.3,
+        -110.4,
+        -58.6,
+        89.4,
+        30.6
       ],
-      "impedance_lateral_max_mm": 2.13,
+      "guide_correction_mm": [
+        0.26,
+        2.04
+      ],
+      "impedance_lateral_max_mm": 2.05,
       "impedance_trace": [
         [
           0.0,
@@ -1372,121 +2044,188 @@
         ],
         [
           0.1,
-          0.01,
-          0.01
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.01,
-          0.0
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.0
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.0
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.01,
-          -0.0
+          0.02,
+          0.0
         ],
         [
           0.6,
-          0.1,
+          0.05,
           0.74
         ],
         [
           0.7,
-          0.38,
-          1.41
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.81,
-          1.56
+          0.69,
+          1.71
         ],
         [
           0.9,
-          1.14,
-          1.63
+          1.0,
+          1.83
         ],
         [
           1.0,
-          1.35,
-          1.73
+          1.23,
+          1.91
         ],
         [
           1.1,
-          1.25,
-          2.41
+          1.42,
+          1.98
         ],
         [
           1.2,
-          1.49,
-          2.97
+          1.55,
+          2.05
         ],
         [
           1.3,
-          1.89,
-          3.16
+          1.77,
+          2.29
         ],
         [
           1.4,
-          2.13,
-          2.42
+          1.99,
+          1.8
         ],
         [
           1.5,
-          2.06,
-          2.08
+          2.05,
+          1.66
         ]
       ],
-      "release_height_mm": 3.78,
-      "landing_speed_mm_s": 122.2,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          417.65,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          417.65,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          417.65,
+          380,
+          0.1044
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          417.65,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          418.612,
+          149,
+          0.0274
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          418.612,
+          149,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          418.662,
+          137,
+          0.0029
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          418.662,
+          137,
+          0.0036
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          418.846,
+          93,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          419.0,
+          56,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          419.0,
+          56,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          419.154,
+          19,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 0.95,
+      "joint_margin_min_deg": [
+        43.9,
+        "joint2"
+      ],
+      "release_height_mm": 3.74,
+      "landing_speed_mm_s": 23.6,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
+        0.0,
+        0.0,
         -0.0,
-        0.0,
-        0.0,
-        0.0
+        -0.0
       ],
       "plate_err_mm": [
         -0.12,
-        0.17,
+        -0.4,
         -0.0
       ],
-      "plate_yaw_err_deg": -0.05,
+      "plate_yaw_err_deg": 0.02,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.66",
-          "2.26"
+          "2.15",
+          "2.75"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.05,
-          -0.03,
-          -0.06
+          -0.01,
+          0.03,
+          0.06
         ],
         "plate_in_tool_mm": [
-          3.01,
-          -0.08,
-          5.94
+          -2.2,
+          -0.0,
+          6.06
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 409.8124999997095,
+      "_t0": 443.56666666634544,
       "trial": 9,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1500,26 +2239,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.57",
-          "2.43"
+          "2.54",
+          "2.46"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
-          -0.04,
-          0.02
+          -0.03,
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
+          0.01,
           -0.01,
-          6.03
+          6.01
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.02,
-        -2.37
+      "q_entry_deg": [
+        -43.5,
+        -60.7,
+        -77.3,
+        -110.8,
+        -58.3,
+        89.7,
+        29.6
       ],
-      "impedance_lateral_max_mm": 2.36,
+      "guide_correction_mm": [
+        0.98,
+        -1.32
+      ],
+      "impedance_lateral_max_mm": 1.65,
       "impedance_trace": [
         [
           0.0,
@@ -1528,121 +2276,183 @@
         ],
         [
           0.1,
-          0.0,
-          -0.02
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.0,
-          -0.02
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.01
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.01,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.6,
           0.05,
-          0.73
+          0.74
         ],
         [
           0.7,
-          0.4,
-          1.4
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.82,
-          1.55
+          0.7,
+          1.72
         ],
         [
           0.9,
-          1.14,
-          1.62
+          1.01,
+          1.84
         ],
         [
           1.0,
-          1.37,
-          1.71
+          1.25,
+          1.93
         ],
         [
           1.1,
-          1.55,
-          1.8
+          1.16,
+          2.36
         ],
         [
           1.2,
-          1.66,
-          2.27
+          1.06,
+          3.05
         ],
         [
           1.3,
-          1.99,
-          2.56
+          1.23,
+          3.38
         ],
         [
           1.4,
-          2.22,
-          2.0
+          1.47,
+          2.68
         ],
         [
           1.5,
-          2.28,
-          1.81
+          1.59,
+          2.24
         ]
       ],
-      "release_height_mm": 3.75,
-      "landing_speed_mm_s": 69.6,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          464.704,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          464.704,
+          380,
+          0.1037
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          464.704,
+          380,
+          0.104
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          464.704,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          465.542,
+          179,
+          0.0248
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          465.542,
+          179,
+          0.016
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          465.871,
+          100,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          465.996,
+          70,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          466.037,
+          60,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          466.037,
+          60,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          466.25,
+          9,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.0,
+      "joint_margin_min_deg": [
+        44.3,
+        "joint2"
+      ],
+      "release_height_mm": 4.09,
+      "landing_speed_mm_s": 115.1,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
-        0.0,
+        -0.0,
+        -0.0,
         0.0,
         0.0
       ],
       "plate_err_mm": [
-        -0.09,
-        0.1,
+        -0.5,
+        -0.0,
         0.0
       ],
-      "plate_yaw_err_deg": 0.07,
+      "plate_yaw_err_deg": -0.0,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.1",
-          "2.82"
+          "2.9",
+          "2.02"
         ],
         "tcp_err_at_grasp_mm": [
-          0.0,
-          -0.02,
-          0.01
+          -0.0,
+          0.03,
+          0.04
         ],
         "plate_in_tool_mm": [
-          -2.66,
-          0.16,
-          5.99
+          2.85,
+          -0.02,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 453.2708333330033,
+      "_t0": 490.8041666663025,
       "trial": 10,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1656,26 +2466,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.44",
-          "2.56"
+          "2.45",
+          "2.55"
         ],
         "tcp_err_at_grasp_mm": [
-          0.07,
           -0.03,
+          0.01,
           0.01
         ],
         "plate_in_tool_mm": [
-          0.03,
-          0.09,
+          0.01,
+          -0.01,
           6.01
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.79,
-        0.31
+      "q_entry_deg": [
+        -42.6,
+        -61.1,
+        -77.4,
+        -110.1,
+        -58.7,
+        89.3,
+        30.5
       ],
-      "impedance_lateral_max_mm": 1.64,
+      "guide_correction_mm": [
+        1.37,
+        0.58
+      ],
+      "impedance_lateral_max_mm": 1.72,
       "impedance_trace": [
         [
           0.0,
@@ -1684,121 +2503,198 @@
         ],
         [
           0.1,
-          0.01,
-          0.02
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.02,
-          0.0
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.0
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.02
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.01,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.04,
+          0.05,
           0.74
         ],
         [
           0.7,
-          0.39,
-          1.41
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.82,
-          1.56
+          0.69,
+          1.71
         ],
         [
           0.9,
-          1.14,
-          1.63
+          0.99,
+          1.82
         ],
         [
           1.0,
-          1.37,
-          1.73
+          1.23,
+          1.91
         ],
         [
           1.1,
-          1.55,
-          1.81
+          1.41,
+          1.98
         ],
         [
           1.2,
-          1.53,
-          2.03
+          1.54,
+          2.04
         ],
         [
           1.3,
-          1.43,
-          2.35
+          1.65,
+          2.07
         ],
         [
           1.4,
-          1.28,
-          1.72
+          1.68,
+          1.26
         ],
         [
           1.5,
-          1.09,
-          1.36
+          1.58,
+          0.73
         ]
       ],
-      "release_height_mm": 2.84,
-      "landing_speed_mm_s": 125.9,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          511.796,
+          380,
+          0.1056
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          511.796,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          511.796,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          511.796,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          512.758,
+          149,
+          0.0063
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          512.883,
+          119,
+          0.0045
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          512.908,
+          113,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          512.971,
+          98,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          512.983,
+          95,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          513.008,
+          89,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          513.008,
+          89,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          513.071,
+          74,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          513.071,
+          74,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/NestStripBackL/Box | Plate/Collision/Prism": [
+          513.275,
+          25,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.04,
+      "joint_margin_min_deg": [
+        43.8,
+        "joint2"
+      ],
+      "release_height_mm": 2.62,
+      "landing_speed_mm_s": 145.7,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        0.0,
+        -0.0,
         0.0,
         0.0,
         0.0
       ],
       "plate_err_mm": [
-        -0.18,
-        -0.49,
-        0.0
+        -0.5,
+        0.04,
+        -0.0
       ],
-      "plate_yaw_err_deg": 0.01,
+      "plate_yaw_err_deg": 0.0,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "0.73",
-          "3.96"
+          "4.07",
+          "0.69"
         ],
         "tcp_err_at_grasp_mm": [
-          0.19,
-          0.11,
-          0.54
+          -0.0,
+          0.03,
+          0.03
         ],
         "plate_in_tool_mm": [
-          0.02,
-          1.2,
-          6.21
+          -0.63,
+          -0.02,
+          6.01
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 495.79166666629794,
+      "_t0": 537.845833333279,
       "trial": 11,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1812,26 +2708,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.45",
-          "2.55"
+          "2.61",
+          "2.39"
         ],
         "tcp_err_at_grasp_mm": [
-          0.09,
-          -0.03,
-          0.01
+          -0.02,
+          0.02,
+          0.03
         ],
         "plate_in_tool_mm": [
-          0.03,
-          0.03,
-          6.01
+          0.02,
+          -0.03,
+          6.03
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.56,
-        -0.78
+      "q_entry_deg": [
+        -43.1,
+        -60.6,
+        -77.5,
+        -110.4,
+        -58.3,
+        89.7,
+        30.2
       ],
-      "impedance_lateral_max_mm": 1.76,
+      "guide_correction_mm": [
+        1.04,
+        -0.27
+      ],
+      "impedance_lateral_max_mm": 1.55,
       "impedance_trace": [
         [
           0.0,
@@ -1840,82 +2745,154 @@
         ],
         [
           0.1,
-          0.0,
-          -0.01
+          0.03,
+          0.05
         ],
         [
           0.2,
-          0.01,
-          -0.01
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.01
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.0,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.0,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.04,
-          0.73
+          0.06,
+          0.74
         ],
         [
           0.7,
-          0.4,
-          1.4
+          0.34,
+          1.47
         ],
         [
           0.8,
-          0.82,
-          1.55
-        ],
-        [
-          0.9,
-          1.14,
-          1.62
-        ],
-        [
-          1.0,
-          1.38,
+          0.7,
           1.72
         ],
         [
+          0.9,
+          1.01,
+          1.83
+        ],
+        [
+          1.0,
+          1.25,
+          1.92
+        ],
+        [
           1.1,
-          1.55,
-          1.8
+          1.43,
+          1.99
         ],
         [
           1.2,
-          1.67,
-          1.89
+          1.46,
+          2.18
         ],
         [
           1.3,
-          1.76,
-          1.65
+          1.23,
+          2.52
         ],
         [
           1.4,
-          1.5,
-          0.77
+          1.18,
+          1.8
         ],
         [
           1.5,
-          1.16,
-          0.63
+          1.13,
+          1.38
         ]
       ],
-      "release_height_mm": 2.76,
-      "landing_speed_mm_s": 122.5,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          558.967,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          558.967,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          558.967,
+          380,
+          0.1044
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          558.967,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          559.929,
+          149,
+          0.0224
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          559.979,
+          137,
+          0.0034
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          560.004,
+          131,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          560.104,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          560.217,
+          80,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          560.283,
+          64,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          560.283,
+          64,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          560.329,
+          53,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          560.329,
+          53,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.01,
+      "joint_margin_min_deg": [
+        44.4,
+        "joint2"
+      ],
+      "release_height_mm": 3.23,
+      "landing_speed_mm_s": 127.8,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
@@ -1925,8 +2902,8 @@
         0.0
       ],
       "plate_err_mm": [
-        -0.28,
-        0.51,
+        -0.48,
+        0.31,
         0.0
       ],
       "plate_yaw_err_deg": 0.0,
@@ -1936,25 +2913,25 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "1.28",
-          "3.5"
+          "3.79",
+          "1.03"
         ],
         "tcp_err_at_grasp_mm": [
-          0.18,
-          0.02,
-          0.46
+          -0.01,
+          0.03,
+          0.04
         ],
         "plate_in_tool_mm": [
-          -0.5,
-          -0.15,
-          6.28
+          0.55,
+          -0.03,
+          6.01
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 538.3833333332858,
+      "_t0": 585.0375000005465,
       "trial": 12,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -1968,26 +2945,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.61",
-          "2.39"
+          "2.64",
+          "2.36"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.04,
           -0.03,
-          0.03
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.03,
-          -0.02,
-          6.03
+          0.01,
+          -0.03,
+          6.01
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        0.15,
-        -2.7
+      "q_entry_deg": [
+        -43.5,
+        -61.4,
+        -76.8,
+        -111.2,
+        -58.7,
+        89.2,
+        29.5
       ],
-      "impedance_lateral_max_mm": 2.71,
+      "guide_correction_mm": [
+        -0.6,
+        -0.83
+      ],
+      "impedance_lateral_max_mm": 1.25,
       "impedance_trace": [
         [
           0.0,
@@ -1996,93 +2982,140 @@
         ],
         [
           0.1,
-          0.01,
-          -0.01
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.01,
-          -0.01
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.02
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.02
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.01,
-          -0.0
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.03,
+          0.06,
           0.74
         ],
         [
           0.7,
-          0.38,
-          1.4
+          0.33,
+          1.48
         ],
         [
           0.8,
-          0.8,
-          1.55
+          0.69,
+          1.72
         ],
         [
           0.9,
-          1.13,
-          1.62
+          1.0,
+          1.84
         ],
         [
           1.0,
-          1.35,
-          1.69
+          1.24,
+          1.92
         ],
         [
           1.1,
-          1.52,
-          1.8
+          0.86,
+          2.78
         ],
         [
           1.2,
-          1.71,
-          2.44
+          0.44,
+          3.73
         ],
         [
           1.3,
-          2.21,
-          2.6
+          0.11,
+          4.31
         ],
         [
           1.4,
-          2.49,
-          2.0
+          0.49,
+          3.76
         ],
         [
           1.5,
-          2.54,
-          1.82
+          0.81,
+          3.33
         ]
       ],
-      "release_height_mm": 3.39,
-      "landing_speed_mm_s": 138.3,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          606.025,
+          380,
+          0.106
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          606.025,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          606.025,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          606.025,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          606.813,
+          191,
+          0.0193
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          606.838,
+          185,
+          0.0095
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          606.888,
+          173,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          607.013,
+          143,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.0,
+      "joint_margin_min_deg": [
+        43.7,
+        "joint2"
+      ],
+      "release_height_mm": 5.16,
+      "landing_speed_mm_s": 110.7,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         0.0,
         0.0,
         -0.0,
-        -0.0
+        0.0
       ],
       "plate_err_mm": [
-        -0.47,
-        0.43,
+        0.49,
+        0.09,
         0.0
       ],
       "plate_yaw_err_deg": -0.0,
@@ -2092,25 +3125,25 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "3.76",
-          "0.85"
+          "0.63",
+          "4.21"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.05,
-          -0.08,
-          -0.14
+          -0.11,
+          -0.07,
+          0.31
         ],
         "plate_in_tool_mm": [
-          -2.55,
-          -0.24,
-          5.84
+          2.92,
+          0.03,
+          6.34
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 581.4750000005012,
+      "_t0": 631.9500000011438,
       "trial": 13,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -2124,26 +3157,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.46",
-          "2.55"
+          "2.47",
+          "2.53"
         ],
         "tcp_err_at_grasp_mm": [
-          0.09,
-          -0.04,
-          -0.0
+          -0.03,
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.04,
           0.01,
-          6.0
+          -0.01,
+          6.01
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.78,
-        -0.43
+      "q_entry_deg": [
+        -43.2,
+        -61.2,
+        -76.9,
+        -111.0,
+        -58.6,
+        89.3,
+        31.1
       ],
-      "impedance_lateral_max_mm": 1.75,
+      "guide_correction_mm": [
+        -1.25,
+        0.91
+      ],
+      "impedance_lateral_max_mm": 1.55,
       "impedance_trace": [
         [
           0.0,
@@ -2152,93 +3194,150 @@
         ],
         [
           0.1,
-          0.01,
-          -0.01
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.01,
-          -0.01
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.09,
-          0.0
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.0,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.01,
-          -0.01
+          0.02,
+          0.0
         ],
         [
           0.6,
-          0.04,
-          0.73
+          0.05,
+          0.74
         ],
         [
           0.7,
-          0.39,
-          1.39
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.81,
-          1.54
+          0.69,
+          1.72
         ],
         [
           0.9,
-          1.14,
-          1.62
+          1.0,
+          1.84
         ],
         [
           1.0,
-          1.36,
-          1.7
+          1.24,
+          1.92
         ],
         [
           1.1,
-          1.53,
-          1.79
+          1.21,
+          2.38
         ],
         [
           1.2,
-          1.66,
-          1.87
+          1.28,
+          3.03
         ],
         [
           1.3,
-          1.69,
-          1.68
+          1.55,
+          3.3
         ],
         [
           1.4,
-          1.35,
-          1.04
+          1.49,
+          2.87
         ],
         [
           1.5,
-          1.15,
-          0.59
+          1.51,
+          2.53
         ]
       ],
-      "release_height_mm": 2.58,
-      "landing_speed_mm_s": 91.5,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          652.917,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          652.917,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          652.917,
+          380,
+          0.1086
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          652.917,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          653.704,
+          191,
+          0.0171
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          653.804,
+          167,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          653.904,
+          143,
+          0.0148
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          654.042,
+          110,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          654.392,
+          26,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          654.454,
+          11,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 0.98,
+      "joint_margin_min_deg": [
+        43.8,
+        "joint2"
+      ],
+      "release_height_mm": 4.39,
+      "landing_speed_mm_s": 34.4,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         0.0,
-        0.0,
+        -0.0,
         0.0,
         0.0
       ],
       "plate_err_mm": [
-        0.52,
-        0.48,
+        -0.5,
+        -0.35,
         0.0
       ],
       "plate_yaw_err_deg": 0.0,
@@ -2248,25 +3347,25 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "4.47",
-          "0.24"
+          "0.29",
+          "4.35"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.09,
-          -0.06,
-          -0.11
+          -0.11,
+          -0.07,
+          0.36
         ],
         "plate_in_tool_mm": [
-          0.07,
-          -0.74,
-          5.86
+          0.94,
+          0.01,
+          6.12
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 624.4583333343818,
+      "_t0": 678.8958333350749,
       "trial": 14,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -2280,24 +3379,33 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.55",
-          "2.45"
+          "2.65",
+          "2.35"
         ],
         "tcp_err_at_grasp_mm": [
-          0.1,
-          -0.04,
-          0.0
+          -0.03,
+          0.02,
+          0.03
         ],
         "plate_in_tool_mm": [
-          0.04,
-          -0.04,
-          6.0
+          0.02,
+          -0.03,
+          6.03
         ]
       },
       "place_reached": true,
+      "q_entry_deg": [
+        -42.7,
+        -61.1,
+        -77.3,
+        -110.4,
+        -58.7,
+        89.3,
+        30.7
+      ],
       "guide_correction_mm": [
-        -0.88,
-        0.33
+        0.66,
+        0.62
       ],
       "impedance_lateral_max_mm": 1.65,
       "impedance_trace": [
@@ -2308,121 +3416,198 @@
         ],
         [
           0.1,
-          0.01,
-          -0.01
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.01,
-          -0.01
+          0.03,
+          0.03
         ],
         [
           0.3,
-          0.01,
-          -0.01
+          0.03,
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.5,
-          0.0,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.04,
-          0.73
+          0.06,
+          0.74
         ],
         [
           0.7,
-          0.39,
-          1.4
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.82,
-          1.55
-        ],
-        [
-          0.9,
-          1.14,
-          1.62
-        ],
-        [
-          1.0,
-          1.37,
+          0.69,
           1.71
         ],
         [
+          0.9,
+          0.99,
+          1.83
+        ],
+        [
+          1.0,
+          1.23,
+          1.91
+        ],
+        [
           1.1,
-          1.54,
-          1.8
+          1.41,
+          1.98
         ],
         [
           1.2,
-          1.65,
-          1.92
+          1.55,
+          2.05
         ],
         [
           1.3,
-          1.42,
-          2.26
+          1.65,
+          1.79
         ],
         [
           1.4,
-          1.36,
-          1.57
+          1.37,
+          1.06
         ],
         [
           1.5,
-          1.15,
-          1.23
+          1.1,
+          0.69
         ]
       ],
-      "release_height_mm": 3.18,
-      "landing_speed_mm_s": 98.3,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          699.879,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          699.879,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          699.879,
+          380,
+          0.1038
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          699.879,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          700.967,
+          119,
+          0.0166
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          700.992,
+          113,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          701.017,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          701.067,
+          95,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          701.067,
+          95,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          701.067,
+          95,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          701.088,
+          90,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          701.092,
+          89,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          701.142,
+          77,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/NestStripBackL/Box | Plate/Collision/Prism": [
+          701.35,
+          27,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.07,
+      "joint_margin_min_deg": [
+        43.8,
+        "joint2"
+      ],
+      "release_height_mm": 2.58,
+      "landing_speed_mm_s": 129.5,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
         0.0,
+        -0.0,
         0.0,
-        0.0,
-        0.0
+        -0.0
       ],
       "plate_err_mm": [
-        -0.2,
-        -0.32,
+        0.01,
+        -0.01,
         0.0
       ],
-      "plate_yaw_err_deg": 0.07,
+      "plate_yaw_err_deg": -0.3,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "1.95",
-          "2.82"
+          "2.77",
+          "2.02"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.01,
-          -0.01,
-          0.03
+          -0.02,
+          0.04,
+          0.04
         ],
         "plate_in_tool_mm": [
-          0.32,
-          0.48,
-          6.02
+          -0.43,
+          -0.02,
+          6.04
         ]
       },
       "result": "PASS",
       "h4_events": []
     },
     {
-      "_t0": 668.2041666682721,
+      "_t0": 725.7541666690049,
       "trial": 15,
       "mode": "unregistered",
       "belief_err_mm": [
@@ -2436,26 +3621,35 @@
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.59",
-          "2.41"
+          "2.63",
+          "2.37"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.07,
-          -0.04,
-          0.03
+          -0.02,
+          0.01,
+          0.01
         ],
         "plate_in_tool_mm": [
-          0.06,
           0.01,
-          6.03
+          -0.03,
+          6.02
         ]
       },
       "place_reached": true,
-      "guide_correction_mm": [
-        -0.84,
-        0.24
+      "q_entry_deg": [
+        -42.7,
+        -61.2,
+        -77.2,
+        -110.5,
+        -58.7,
+        89.3,
+        29.8
       ],
-      "impedance_lateral_max_mm": 1.69,
+      "guide_correction_mm": [
+        -0.35,
+        1.1
+      ],
+      "impedance_lateral_max_mm": 1.55,
       "impedance_trace": [
         [
           0.0,
@@ -2464,114 +3658,186 @@
         ],
         [
           0.1,
-          0.01,
-          -0.01
+          0.03,
+          0.06
         ],
         [
           0.2,
-          0.01,
-          -0.01
+          0.03,
+          0.03
         ],
         [
           0.3,
           0.03,
-          -0.02
+          0.01
         ],
         [
           0.4,
-          0.01,
-          -0.01
+          0.03,
+          0.01
         ],
         [
           0.5,
-          0.0,
-          -0.01
+          0.03,
+          0.0
         ],
         [
           0.6,
-          0.04,
+          0.06,
           0.74
         ],
         [
           0.7,
-          0.4,
-          1.4
+          0.33,
+          1.47
         ],
         [
           0.8,
-          0.81,
-          1.55
+          0.69,
+          1.72
         ],
         [
           0.9,
-          1.14,
-          1.62
+          1.0,
+          1.83
         ],
         [
           1.0,
-          1.37,
-          1.71
+          1.23,
+          1.91
         ],
         [
           1.1,
-          1.55,
-          1.79
+          1.42,
+          1.98
         ],
         [
           1.2,
-          1.67,
-          1.87
+          1.54,
+          2.05
         ],
         [
           1.3,
-          1.49,
-          2.09
+          1.39,
+          2.31
         ],
         [
           1.4,
-          1.32,
-          1.49
+          1.35,
+          1.55
         ],
         [
           1.5,
-          1.07,
-          1.19
+          1.26,
+          1.12
         ]
       ],
-      "release_height_mm": 3.14,
-      "landing_speed_mm_s": 139.6,
+      "contacts": {
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Plate/Box | Plate/Collision/Prism": [
+          746.892,
+          380,
+          0.0
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerA/Collision/Pad/Box | Plate/Collision/Prism": [
+          746.892,
+          380,
+          0.1064
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Pad/Box | Plate/Collision/Prism": [
+          746.892,
+          380,
+          0.1035
+        ],
+        "Cell01/Robots/R01_FR3/PlateGripper/FingerB/Collision/Plate/Box | Plate/Collision/Prism": [
+          746.892,
+          380,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0Y | Plate/Collision/Prism": [
+          747.879,
+          143,
+          0.0093
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2X | Plate/Collision/Prism": [
+          747.979,
+          119,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1Y | Plate/Collision/Prism": [
+          748.029,
+          107,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide1X | Plate/Collision/Prism": [
+          748.079,
+          95,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3X | Plate/Collision/Prism": [
+          748.108,
+          88,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide0X | Plate/Collision/Prism": [
+          748.108,
+          88,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide3Y | Plate/Collision/Prism": [
+          748.15,
+          78,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/A1Key | Plate/Collision/Prism": [
+          748.171,
+          73,
+          0.0
+        ],
+        "Cell01/Stations/H4_Quarantine/Shuttle/Collision/Guide2Y | Plate/Collision/Prism": [
+          748.188,
+          69,
+          0.0
+        ]
+      },
+      "nullspace_drift_deg": 1.08,
+      "joint_margin_min_deg": [
+        43.7,
+        "joint2"
+      ],
+      "release_height_mm": 3.0,
+      "landing_speed_mm_s": 134.0,
       "seated": true,
       "in_transit_slip": null,
       "seat_gaps_mm": [
-        -0.0,
-        -0.0,
-        -0.0,
-        -0.0
-      ],
-      "plate_err_mm": [
-        -0.32,
-        -0.2,
+        0.0,
+        0.0,
+        0.0,
         0.0
       ],
-      "plate_yaw_err_deg": -0.03,
+      "plate_err_mm": [
+        0.33,
+        -0.38,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.13,
       "pick_nest": {
         "phase": "pick_nest",
         "reached": true,
         "contact": "True",
         "lifted": "True",
         "finger_travel_mm": [
-          "2.62",
-          "2.18"
+          "2.42",
+          "2.41"
         ],
         "tcp_err_at_grasp_mm": [
-          -0.05,
-          0.01,
-          -0.0
+          -0.02,
+          0.03,
+          0.05
         ],
         "plate_in_tool_mm": [
-          0.96,
-          -0.13,
-          6.0
+          -0.67,
+          -0.02,
+          6.05
         ]
       },
       "result": "PASS",
@@ -2579,6 +3845,6 @@
     }
   ],
   "physics_hz": 240,
-  "wall_time_s": 2207.3,
+  "wall_time_s": 1603.1,
   "seed": 7
 }

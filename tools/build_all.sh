@@ -10,4 +10,5 @@ $CAD assets/l09/build_l09.py
 $CAD assets/l10/build_l10.py
 $CAD tools/make_fr3_urdf.py               # reads the Cell 01 kit's franka_description in place
 OMNI_KIT_ACCEPT_EULA=YES $ISAAC scripts/import_fr3.py
-$CAD tools/compose_cell01_overlay.py      # scenes/cell01_h4.usda (Cell 01 is referenced, never modified)
+$CAD tools/layout_p1.py                  # layout P1 placements + checks -> scenes/layout_p1.json
+$CAD tools/compose_cell01_overlay.py      # scenes/cell01_twin.usda (Cell 01 is referenced, never modified)

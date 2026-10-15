@@ -1,0 +1,125 @@
+{
+  "proposal": "P1 R01 cluster",
+  "adopted": "2026-10-15 (user)",
+  "r01_base": [
+    -1.55,
+    0.35,
+    0.72
+  ],
+  "nest_z": 0.972,
+  "stations": {
+    "L10": {
+      "prim": "/World/Cell01/Stations/L10_Incubator",
+      "origin": [
+        -2.2921,
+        1.1849,
+        0.772
+      ],
+      "yaw_deg": 41.63,
+      "approach_deg": 0.0,
+      "support": "plinth",
+      "support_height": 0.772,
+      "nest": [
+        -1.95,
+        0.8,
+        0.972
+      ],
+      "footprint": [
+        -0.37,
+        0.388,
+        -0.432,
+        0.455
+      ]
+    },
+    "L09": {
+      "prim": "/World/Cell01/Stations/L09_PlateHotel",
+      "origin": [
+        -1.2766,
+        1.2344,
+        0.9
+      ],
+      "yaw_deg": -17.18,
+      "approach_deg": 0.0,
+      "support": "side_table",
+      "support_height": 0.9,
+      "nest": [
+        -1.38,
+        0.9,
+        0.972
+      ],
+      "footprint": [
+        -0.2,
+        0.218,
+        -0.264,
+        0.26
+      ]
+    },
+    "H4": {
+      "prim": "/World/Cell01/Stations/H4_Quarantine",
+      "origin": [
+        -2.2355,
+        0.0652,
+        0.9
+      ],
+      "yaw_deg": 85.95,
+      "approach_deg": 36.6,
+      "support": "side_table",
+      "support_height": 0.9,
+      "nest": [
+        -2.02,
+        0.05,
+        0.972
+      ],
+      "footprint": [
+        -0.15,
+        0.178,
+        -0.169,
+        0.142
+      ]
+    }
+  },
+  "extra_frames": {
+    "AMR_dock_carrier": [
+      -1.4,
+      -0.12,
+      0.96
+    ],
+    "handover_nest_R01_R02": [
+      -1.05,
+      0.55,
+      0.96
+    ]
+  },
+  "reach": {
+    "L10": {
+      "serviceable": true,
+      "yaw_coverage": "3/5",
+      "dist": 0.602
+    },
+    "L09": {
+      "serviceable": true,
+      "yaw_coverage": "4/5",
+      "dist": 0.576
+    },
+    "H4": {
+      "serviceable": true,
+      "yaw_coverage": "3/5",
+      "dist": 0.558
+    },
+    "AMR_dock_carrier": {
+      "serviceable": true,
+      "yaw_coverage": "5/5",
+      "dist": 0.493
+    },
+    "handover_nest_R01_R02": {
+      "serviceable": true,
+      "yaw_coverage": "3/5",
+      "dist": 0.539
+    }
+  },
+  "notes": [
+    "R02 rail shift (2.6 m travel, x -0.85..1.75 at y 0.78) is part of P1 but R02 is not built yet",
+    "supports (side tables, L10 plinth) are provisional layout furniture"
+  ],
+  "problems": []
+}
