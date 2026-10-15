@@ -1,0 +1,209 @@
+{
+  "component": "L09",
+  "prim": "/World/L09_PlateHotel",
+  "events": [
+    {
+      "t": 1.0,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 5.0,
+      "event": "store_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 3
+    },
+    {
+      "t": 8.0875,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-A",
+      "observed": "P-A"
+    },
+    {
+      "t": 21.5083,
+      "event": "stored",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 3
+    },
+    {
+      "t": 21.75,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 25.75,
+      "event": "store_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-B",
+      "slot": 13
+    },
+    {
+      "t": 28.8375,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-B",
+      "observed": "P-B"
+    },
+    {
+      "t": 50.3125,
+      "event": "stored",
+      "mode": "BUSY",
+      "plate_id": "P-B",
+      "slot": 13
+    },
+    {
+      "t": 50.5,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 54.5,
+      "event": "store_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-X",
+      "slot": 0
+    },
+    {
+      "t": 57.5833,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-X",
+      "observed": "P-C"
+    },
+    {
+      "t": 57.5833,
+      "event": "fault",
+      "mode": "FAULT",
+      "fault": "slot_identity_mismatch",
+      "detail": "expected P-X, read 'P-C'; plate held on the stowed nest; quarantine recommended"
+    },
+    {
+      "t": 57.75,
+      "event": "fault_reset",
+      "mode": "FAULT",
+      "by": "test-operator",
+      "fault": "slot_identity_mismatch"
+    },
+    {
+      "t": 57.75,
+      "event": "rehome_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 58.0,
+      "event": "store_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-C",
+      "slot": 0
+    },
+    {
+      "t": 58.3042,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-C",
+      "observed": "P-C"
+    },
+    {
+      "t": 70.0292,
+      "event": "stored",
+      "mode": "BUSY",
+      "plate_id": "P-C",
+      "slot": 0
+    },
+    {
+      "t": 70.25,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 74.25,
+      "event": "double_occupancy_prevented",
+      "mode": "PRESENTED_EMPTY",
+      "reason": "slot 3 occupied"
+    },
+    {
+      "t": 74.65,
+      "event": "stow_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 77.65,
+      "event": "retrieve_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 3
+    },
+    {
+      "t": 91.6375,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-A",
+      "observed": "P-A"
+    },
+    {
+      "t": 91.6375,
+      "event": "retrieved",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 3
+    },
+    {
+      "t": 95.05,
+      "event": "stow_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 98.85,
+      "event": "retrieve_refused",
+      "mode": "READY",
+      "reason": "transfer_nest_not_clear"
+    },
+    {
+      "t": 98.85,
+      "event": "fault_signal",
+      "mode": "READY",
+      "fault": "transfer_nest_not_clear"
+    },
+    {
+      "t": 99.25,
+      "event": "retrieve_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-B",
+      "slot": 13
+    },
+    {
+      "t": 101.2708,
+      "event": "handler_halted",
+      "mode": "BUSY",
+      "reason": "service door open"
+    },
+    {
+      "t": 105.1,
+      "event": "handler_resumed",
+      "mode": "BUSY"
+    },
+    {
+      "t": 124.5667,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-B",
+      "observed": "P-B"
+    },
+    {
+      "t": 124.5667,
+      "event": "retrieved",
+      "mode": "BUSY",
+      "plate_id": "P-B",
+      "slot": 13
+    }
+  ]
+}

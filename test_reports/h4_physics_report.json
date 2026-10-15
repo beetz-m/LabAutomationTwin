@@ -1,0 +1,348 @@
+{
+  "asset": "/home/mbeetz/Documents/LabAutomationTwin/assets/h4/h4.usda",
+  "physics_hz": 240,
+  "sim_time_s": 48.9,
+  "wall_time_s": 69.35,
+  "results": [
+    {
+      "test": "S structure",
+      "pass": true,
+      "joints": [
+        "DoorHinge",
+        "LatchSlide",
+        "RootJoint",
+        "ShuttleSlide",
+        "button_joint",
+        "key_joint"
+      ],
+      "links": [
+        "Body",
+        "Door",
+        "KeyCylinder",
+        "LatchBolt",
+        "Plunger",
+        "Shuttle"
+      ],
+      "colliders": 38,
+      "convex": 9
+    },
+    {
+      "test": "T1 fixed base at offset+rotated pose",
+      "pass": true,
+      "drift_m": 0.0,
+      "quat_err": -0.0
+    },
+    {
+      "test": "T2 rest: stowed, closed, unlocked, READY, green",
+      "pass": true,
+      "door_deg": 0.0,
+      "shuttle_mm": -0.0,
+      "mode": "READY"
+    },
+    {
+      "test": "T3 DOOR button presents the nest",
+      "pass": true,
+      "mode": "PRESENTED",
+      "door_deg": 99.998,
+      "shuttle_mm": 149.9965
+    },
+    {
+      "test": "T4 door cannot close onto presented shuttle",
+      "pass": true,
+      "door_deg_when_forced": 85.0347
+    },
+    {
+      "test": "T5 quarantine refused with empty nest",
+      "pass": true,
+      "reason": "no sample detected on nest"
+    },
+    {
+      "test": "T6 placement capture in design envelope and honest seat sensing",
+      "pass": true,
+      "captured": "9/9 inside envelope",
+      "beyond": "2/2 correctly reported unseated"
+    },
+    {
+      "test": "T7 rotated plate (A1 key) detected, quarantine refused",
+      "pass": true,
+      "seat_gaps_mm": [
+        2.711,
+        1.207,
+        1.764,
+        0.26
+      ],
+      "reason": "plate not seated (seat gaps mm: ['2.71', '1.21', '1.76', '0.26']); reseat"
+    },
+    {
+      "test": "T8 quarantine: stow, close, lock, red, beam confirms",
+      "pass": true,
+      "mode": "QUARANTINED",
+      "door_deg": 0.0,
+      "bolt_mm": -0.0,
+      "shuttle_mm": -0.0,
+      "fault": ""
+    },
+    {
+      "test": "T9 latch bolt blocks forced opening",
+      "pass": true,
+      "door_deg_under_force": 0.1338
+    },
+    {
+      "test": "T10 DOOR button refused while locked",
+      "pass": true,
+      "refused_events": 1
+    },
+    {
+      "test": "T11 release refused without token / key",
+      "pass": true,
+      "no_token": "authorization token missing",
+      "token_key_lock": "key switch not in RELEASE"
+    },
+    {
+      "test": "T12 authorised release: unlock, open, present plate, green",
+      "pass": true,
+      "mode": "PRESENTED",
+      "door_deg": 99.998,
+      "shuttle_mm": 149.9999,
+      "seated": true
+    },
+    {
+      "test": "T13 plate removed clears binding; stow -> READY",
+      "pass": true,
+      "mode": "READY"
+    }
+  ],
+  "placement_trials": [
+    {
+      "offset_mm": [
+        0,
+        0
+      ],
+      "yaw_deg": 0,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        -0.0,
+        -0.01,
+        0.0
+      ],
+      "final_yaw_err_deg": 0.01,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        2,
+        0
+      ],
+      "yaw_deg": 0,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        -0.48,
+        -0.01,
+        0.0
+      ],
+      "final_yaw_err_deg": 0.0,
+      "seat_gaps_mm": [
+        -0.0,
+        -0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        0,
+        2
+      ],
+      "yaw_deg": 0,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        -0.01,
+        -0.47,
+        0.0
+      ],
+      "final_yaw_err_deg": -0.0,
+      "seat_gaps_mm": [
+        0.0,
+        -0.0,
+        0.0,
+        -0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        -3,
+        2
+      ],
+      "yaw_deg": 1.5,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        0.38,
+        0.19,
+        0.0
+      ],
+      "final_yaw_err_deg": -0.07,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        3.5,
+        -3.5
+      ],
+      "yaw_deg": -2,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        -0.47,
+        0.46,
+        0.0
+      ],
+      "final_yaw_err_deg": -0.02,
+      "seat_gaps_mm": [
+        0.001,
+        -0.0,
+        0.002,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        4,
+        4
+      ],
+      "yaw_deg": 2,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        -0.49,
+        -0.48,
+        0.0
+      ],
+      "final_yaw_err_deg": 0.01,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        -4,
+        -4
+      ],
+      "yaw_deg": -2,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        0.45,
+        0.47,
+        0.0
+      ],
+      "final_yaw_err_deg": -0.02,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        6,
+        0
+      ],
+      "yaw_deg": 0,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        -0.45,
+        -0.09,
+        0.0
+      ],
+      "final_yaw_err_deg": 0.0,
+      "seat_gaps_mm": [
+        0.0,
+        -0.0,
+        0.0,
+        -0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        0,
+        -6
+      ],
+      "yaw_deg": 0,
+      "in_envelope": true,
+      "seated_sensor": true,
+      "final_err_mm": [
+        -0.22,
+        0.46,
+        0.0
+      ],
+      "final_yaw_err_deg": -0.0,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": [
+        9,
+        0
+      ],
+      "yaw_deg": 0,
+      "in_envelope": false,
+      "seated_sensor": false,
+      "final_err_mm": [
+        8.92,
+        0.32,
+        6.11
+      ],
+      "final_yaw_err_deg": -0.16,
+      "seat_gaps_mm": [
+        0.266,
+        10.238,
+        0.267,
+        10.238
+      ]
+    },
+    {
+      "offset_mm": [
+        0,
+        9
+      ],
+      "yaw_deg": 0,
+      "in_envelope": false,
+      "seated_sensor": false,
+      "final_err_mm": [
+        0.22,
+        9.28,
+        6.19
+      ],
+      "final_yaw_err_deg": 0.3,
+      "seat_gaps_mm": [
+        9.496,
+        9.495,
+        0.196,
+        0.194
+      ]
+    }
+  ]
+}

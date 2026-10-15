@@ -1,0 +1,185 @@
+{
+  "asset": "/home/mbeetz/Documents/LabAutomationTwin/assets/l10/l10.usda",
+  "physics_hz": 240,
+  "sim_time_s": 335.0,
+  "wall_time_s": 638.9,
+  "results": [
+    {
+      "test": "S structure + Cell 01 binding frames",
+      "pass": true,
+      "joints": [
+        "ForkSlide",
+        "GateSlide",
+        "LiftSlide",
+        "RootJoint",
+        "ServiceDoorHinge",
+        "ShuttleSlide"
+      ],
+      "binding": [
+        "transfer_station",
+        "gate_frame",
+        "cassette_slots",
+        "service_door"
+      ],
+      "slots": 44
+    },
+    {
+      "test": "T1 rest: READY, environment at setpoint, valid",
+      "pass": true,
+      "env": {
+        "T": 36.998,
+        "CO2": 4.999,
+        "RH": 89.994
+      }
+    },
+    {
+      "test": "T2 incubate P-A -> slot 0",
+      "pass": true,
+      "err_mm": [
+        -0.31,
+        -0.12,
+        -0.0
+      ],
+      "mode": "READY",
+      "fault": ""
+    },
+    {
+      "test": "T3 incubate P-B -> top slot 43",
+      "pass": true,
+      "err_mm": [
+        -0.22,
+        -0.56,
+        0.0
+      ],
+      "mode": "READY",
+      "fault": ""
+    },
+    {
+      "test": "T4 environment within envelope through transfers",
+      "pass": true,
+      "T_min": 36.791,
+      "CO2_min": 4.863,
+      "gate_open_total_s": 14.7
+    },
+    {
+      "test": "T5 door open 6 s -> T/CO2 excursion alarms, plates exposed",
+      "pass": true,
+      "alarms": [
+        "CO2_excursion",
+        "temperature_excursion"
+      ],
+      "T": 34.89,
+      "CO2": 3.91,
+      "exposure_s": 4.8972
+    },
+    {
+      "test": "T6 incubate refused while environment invalid",
+      "pass": true,
+      "reason": "environment not valid (['CO2_excursion', 'temperature_excursion'])"
+    },
+    {
+      "test": "T7 recovery into the envelope after closing",
+      "pass": true,
+      "recovery_s": 242.5,
+      "env": {
+        "T": 36.5,
+        "CO2": 4.72,
+        "RH": 85.57
+      },
+      "alarms": []
+    },
+    {
+      "test": "T8 release_plate: presented, verified, environment record",
+      "pass": true,
+      "err_mm": [
+        -0.47,
+        0.31,
+        0.0
+      ],
+      "release_env": {
+        "T": 36.524,
+        "CO2": 4.73,
+        "RH": 85.592
+      },
+      "outside_s": 5.21,
+      "exposure_s": 249.2406
+    },
+    {
+      "test": "T9 gate_stuck_open alarm past the limit",
+      "pass": true,
+      "alarms": [
+        "CO2_excursion",
+        "gate_stuck_open",
+        "temperature_excursion"
+      ]
+    },
+    {
+      "test": "T10 state attributes mirror the controller",
+      "pass": true,
+      "T": 36.44,
+      "alarm": "CO2_excursion,gate_stuck_open,temperature_excursion",
+      "valid": false
+    }
+  ],
+  "plate_histories": {
+    "P-A": {
+      "slot": 0,
+      "incubated_at": 20.0,
+      "time_stored_s": 308.2338,
+      "time_out_of_envelope_s": 249.2406,
+      "T_min": 34.78906251748494,
+      "T_max": 36.89060519451247,
+      "CO2_min": 3.862795040673224,
+      "CO2_max": 4.927942640983704,
+      "excursions": [
+        [
+          "temperature_excursion"
+        ],
+        [
+          "CO2_excursion",
+          "temperature_excursion"
+        ],
+        [
+          "temperature_excursion"
+        ]
+      ],
+      "release": {
+        "t": 325.79,
+        "slot": 0,
+        "environment": {
+          "T": 36.524,
+          "CO2": 4.73,
+          "RH": 85.592
+        },
+        "environment_valid": true
+      },
+      "time_outside_controlled_environment_s": 9.21
+    },
+    "P-B": {
+      "slot": 43,
+      "incubated_at": 65.29,
+      "time_stored_s": 271.8744,
+      "time_out_of_envelope_s": 255.5406,
+      "T_min": 34.78906251748494,
+      "T_max": 36.79060540757661,
+      "CO2_min": 3.862795040673224,
+      "CO2_max": 4.862772204297795,
+      "excursions": [
+        [
+          "temperature_excursion"
+        ],
+        [
+          "CO2_excursion",
+          "temperature_excursion"
+        ],
+        [
+          "temperature_excursion"
+        ],
+        [
+          "CO2_excursion",
+          "temperature_excursion"
+        ]
+      ]
+    }
+  }
+}

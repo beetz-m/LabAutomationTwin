@@ -1,0 +1,126 @@
+{
+  "asset": "/home/mbeetz/Documents/LabAutomationTwin/assets/l09/l09.usda",
+  "physics_hz": 240,
+  "sim_time_s": 127.5,
+  "wall_time_s": 308.1,
+  "results": [
+    {
+      "test": "S structure",
+      "pass": true,
+      "joints": [
+        "ForkSlide",
+        "GateSlide",
+        "LiftSlide",
+        "RootJoint",
+        "ServiceDoorHinge",
+        "ShuttleSlide"
+      ],
+      "links": [
+        "Body",
+        "Fork",
+        "Gate",
+        "Lift",
+        "ServiceDoor",
+        "Shuttle"
+      ]
+    },
+    {
+      "test": "T1 rest: READY, closed, stowed, parked, empty",
+      "pass": true,
+      "gate": 0.0,
+      "shuttle": 0.0,
+      "lift": 54.44,
+      "fork": 0.0
+    },
+    {
+      "test": "T2 present_for_load: gate open, nest presented",
+      "pass": true,
+      "gate": 89.93,
+      "shuttle": 199.98,
+      "lift": 54.44,
+      "fork": 0.0
+    },
+    {
+      "test": "T3 store P-A -> slot 3",
+      "pass": true,
+      "err_mm": [
+        -0.0,
+        -0.31,
+        -0.0
+      ],
+      "mode": "READY",
+      "fault": ""
+    },
+    {
+      "test": "T4 store P-B -> top slot 13",
+      "pass": true,
+      "err_mm": [
+        0.89,
+        -1.18,
+        0.0
+      ],
+      "mode": "READY",
+      "fault": ""
+    },
+    {
+      "test": "T5 identity mismatch stops + keeps inventory; then stored",
+      "pass": true,
+      "mismatch_detected": true,
+      "err_mm": [
+        0.01,
+        -0.6,
+        -0.0
+      ],
+      "fault": ""
+    },
+    {
+      "test": "T6 double occupancy refused",
+      "pass": true,
+      "reason": "slot 3 occupied"
+    },
+    {
+      "test": "T7 retrieve P-A -> presented, seated, verified",
+      "pass": true,
+      "err_mm": [
+        -0.03,
+        -0.13,
+        -0.0
+      ],
+      "mode": "PRESENTED_LOADED",
+      "fault": ""
+    },
+    {
+      "test": "T8 retrieve refused: transfer nest not clear",
+      "pass": true,
+      "reason": "transfer_nest_not_clear"
+    },
+    {
+      "test": "T9 service-door interlock halts and resumes",
+      "pass": true,
+      "held": true,
+      "mode": "PRESENTED_LOADED",
+      "fault": ""
+    },
+    {
+      "test": "T10 state attributes mirror the controller",
+      "pass": true,
+      "inventory": [
+        "P-C",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "mode": "PRESENTED_LOADED"
+    }
+  ]
+}

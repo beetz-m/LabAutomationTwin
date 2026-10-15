@@ -1,0 +1,753 @@
+{
+  "summary": {
+    "registered": {
+      "trials": 8,
+      "seated": 8,
+      "retrieved": 8
+    },
+    "unregistered": {
+      "trials": 8,
+      "seated": 8,
+      "retrieved": 8
+    }
+  },
+  "quarantine_cycle": {
+    "accepted": true,
+    "locked": true,
+    "released": true,
+    "presented_again": true,
+    "seated_after": true
+  },
+  "trials": [
+    {
+      "trial": 0,
+      "mode": "registered",
+      "belief_err_mm": [
+        -0.45,
+        -0.23
+      ],
+      "belief_yaw_err_deg": -0.3,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.81",
+          "2.18"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.05,
+        -0.32,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.13,
+      "quarantine_cycle": {
+        "accepted": true,
+        "locked": true,
+        "released": true,
+        "presented_again": true,
+        "seated_after": true
+      },
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.12",
+          "0.78"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 1,
+      "mode": "registered",
+      "belief_err_mm": [
+        -0.31,
+        0.24
+      ],
+      "belief_yaw_err_deg": 0.11,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.72",
+          "2.28"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        -0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.13,
+        -0.03,
+        0.0
+      ],
+      "plate_yaw_err_deg": -0.08,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.63",
+          "0.4"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 2,
+      "mode": "registered",
+      "belief_err_mm": [
+        0.35,
+        -0.67
+      ],
+      "belief_yaw_err_deg": -0.14,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.75",
+          "2.25"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        -0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.11,
+        -0.33,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.01,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "3.9",
+          "1.07"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 3,
+      "mode": "registered",
+      "belief_err_mm": [
+        -0.12,
+        -0.63
+      ],
+      "belief_yaw_err_deg": 0.08,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.7",
+          "2.29"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        -0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.05,
+        -0.33,
+        0.0
+      ],
+      "plate_yaw_err_deg": -0.02,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "3.84",
+          "1.17"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 4,
+      "mode": "registered",
+      "belief_err_mm": [
+        -0.27,
+        -0.02
+      ],
+      "belief_yaw_err_deg": 0.03,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.77",
+          "2.23"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.02,
+        -0.09,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.06,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.48",
+          "0.55"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 5,
+      "mode": "registered",
+      "belief_err_mm": [
+        -0.49,
+        -0.4
+      ],
+      "belief_yaw_err_deg": 0.32,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.7",
+          "2.29"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        -0.0,
+        -0.0
+      ],
+      "plate_err_mm": [
+        -0.2,
+        -0.44,
+        -0.0
+      ],
+      "plate_yaw_err_deg": -0.05,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.0",
+          "0.96"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 6,
+      "mode": "registered",
+      "belief_err_mm": [
+        -0.29,
+        -0.06
+      ],
+      "belief_yaw_err_deg": 0.03,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.73",
+          "2.27"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.03,
+        -0.16,
+        -0.0
+      ],
+      "plate_yaw_err_deg": 0.07,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.03",
+          "1.01"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 7,
+      "mode": "registered",
+      "belief_err_mm": [
+        0.68,
+        -0.77
+      ],
+      "belief_yaw_err_deg": 0.26,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.75",
+          "2.25"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.03,
+        -0.31,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.09,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "3.56",
+          "1.41"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 8,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        0.59,
+        -2.64
+      ],
+      "belief_yaw_err_deg": -0.22,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.72",
+          "2.27"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "plate_err_mm": [
+        0.03,
+        -0.1,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.12,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "0.44",
+          "4.42"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 9,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        -0.72,
+        2.87
+      ],
+      "belief_yaw_err_deg": 0.18,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.74",
+          "2.26"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.37,
+        0.36,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.01,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "5.01",
+          "0.0"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 10,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        -2.1,
+        -0.36
+      ],
+      "belief_yaw_err_deg": -0.52,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.72",
+          "2.28"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.19,
+        -0.41,
+        -0.0
+      ],
+      "plate_yaw_err_deg": -0.01,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.1",
+          "0.68"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 11,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        -1.71,
+        1.03
+      ],
+      "belief_yaw_err_deg": -0.4,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.74",
+          "2.26"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.34,
+        0.14,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.21,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.49",
+          "0.31"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 12,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        2.07,
+        2.67
+      ],
+      "belief_yaw_err_deg": 0.81,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.65",
+          "2.35"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        -0.0
+      ],
+      "plate_err_mm": [
+        0.14,
+        0.4,
+        -0.0
+      ],
+      "plate_yaw_err_deg": 0.02,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.66",
+          "0.0"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 13,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        2.57,
+        0.31
+      ],
+      "belief_yaw_err_deg": -0.64,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.77",
+          "2.23"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.47,
+        -0.01,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.0,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "4.12",
+          "0.59"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 14,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        -0.74,
+        -0.53
+      ],
+      "belief_yaw_err_deg": -0.52,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.71",
+          "2.29"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        -0.2,
+        -0.31,
+        0.0
+      ],
+      "plate_yaw_err_deg": 0.12,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "3.9",
+          "0.82"
+        ]
+      },
+      "result": "PASS"
+    },
+    {
+      "trial": 15,
+      "mode": "unregistered",
+      "belief_err_mm": [
+        0.29,
+        -1.07
+      ],
+      "belief_yaw_err_deg": 0.5,
+      "pick_source": {
+        "phase": "pick_source",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "2.75",
+          "2.24"
+        ]
+      },
+      "place_reached": true,
+      "seated": true,
+      "in_transit_slip": null,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "plate_err_mm": [
+        0.25,
+        -0.35,
+        0.0
+      ],
+      "plate_yaw_err_deg": -0.0,
+      "pick_nest": {
+        "phase": "pick_nest",
+        "reached": true,
+        "contact": "True",
+        "lifted": "True",
+        "finger_travel_mm": [
+          "3.23",
+          "1.53"
+        ]
+      },
+      "result": "PASS"
+    }
+  ],
+  "physics_hz": 240,
+  "wall_time_s": 583.4,
+  "seed": 7
+}

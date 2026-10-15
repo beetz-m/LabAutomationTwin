@@ -1,0 +1,150 @@
+{
+  "component": "L09",
+  "prim": "/World/L10_Incubator",
+  "events": [
+    {
+      "t": 1.0,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 5.25,
+      "event": "store_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 0
+    },
+    {
+      "t": 8.7083,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-A",
+      "observed": "P-A"
+    },
+    {
+      "t": 20.0,
+      "event": "stored",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 0
+    },
+    {
+      "t": 20.0,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 24.25,
+      "event": "store_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-B",
+      "slot": 43
+    },
+    {
+      "t": 27.7083,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-B",
+      "observed": "P-B"
+    },
+    {
+      "t": 65.2875,
+      "event": "stored",
+      "mode": "BUSY",
+      "plate_id": "P-B",
+      "slot": 43
+    },
+    {
+      "t": 66.6458,
+      "event": "alarm_raised",
+      "mode": "READY",
+      "alarm": "temperature_excursion",
+      "value": 36.499
+    },
+    {
+      "t": 66.7125,
+      "event": "alarm_raised",
+      "mode": "READY",
+      "alarm": "CO2_excursion",
+      "value": 4.699
+    },
+    {
+      "t": 71.5,
+      "event": "incubate_refused",
+      "mode": "READY",
+      "reason": "environment not valid (['CO2_excursion', 'temperature_excursion'])"
+    },
+    {
+      "t": 298.1042,
+      "event": "alarm_cleared",
+      "mode": "READY",
+      "alarm": "CO2_excursion",
+      "value": 4.7
+    },
+    {
+      "t": 313.9083,
+      "event": "alarm_cleared",
+      "mode": "READY",
+      "alarm": "temperature_excursion",
+      "value": 36.5
+    },
+    {
+      "t": 314.0,
+      "event": "retrieve_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 0
+    },
+    {
+      "t": 325.7875,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "transfer_nest",
+      "expected": "P-A",
+      "observed": "P-A"
+    },
+    {
+      "t": 325.7875,
+      "event": "retrieved",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 0
+    },
+    {
+      "t": 325.79,
+      "event": "release_record",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "slot": 0,
+      "environment": {
+        "T": 36.524,
+        "CO2": 4.73,
+        "RH": 85.592
+      },
+      "environment_valid": true
+    },
+    {
+      "t": 328.7542,
+      "event": "alarm_raised",
+      "mode": "BUSY",
+      "alarm": "temperature_excursion",
+      "value": 36.5
+    },
+    {
+      "t": 330.7333,
+      "event": "alarm_raised",
+      "mode": "PRESENTED_LOADED",
+      "alarm": "CO2_excursion",
+      "value": 4.7
+    },
+    {
+      "t": 331.0042,
+      "event": "alarm_raised",
+      "mode": "PRESENTED_LOADED",
+      "alarm": "gate_stuck_open",
+      "open_s": 5.2
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "component": "H4",
+  "prim": "/World/H4_Quarantine",
+  "events": [
+    {
+      "t": 1.0083,
+      "event": "present_nest_accepted",
+      "mode": "PRESENTING"
+    },
+    {
+      "t": 1.7167,
+      "event": "mode",
+      "mode": "PRESENTED",
+      "to": "PRESENTED"
+    },
+    {
+      "t": 9.5,
+      "event": "quarantine_sample_refused",
+      "mode": "PRESENTED",
+      "reason": "no sample detected on nest"
+    },
+    {
+      "t": 24.8,
+      "event": "quarantine_sample_refused",
+      "mode": "PRESENTED",
+      "reason": "plate not seated (seat gaps mm: ['2.71', '1.21', '1.76', '0.26']); reseat"
+    },
+    {
+      "t": 26.1,
+      "event": "quarantine_sample_accepted",
+      "mode": "SECURING",
+      "sample_id": "P-0001",
+      "reason": "identity_mismatch",
+      "preceding_anomalies": [
+        "barcode_read_mismatch@L17"
+      ]
+    },
+    {
+      "t": 27.425,
+      "event": "mode",
+      "mode": "QUARANTINED",
+      "to": "QUARANTINED"
+    },
+    {
+      "t": 27.425,
+      "event": "quarantined",
+      "mode": "QUARANTINED",
+      "sample_id": "P-0001",
+      "reason": "identity_mismatch",
+      "beam_confirms": true
+    },
+    {
+      "t": 35.1083,
+      "event": "door_request_refused",
+      "mode": "QUARANTINED",
+      "reason": "mode QUARANTINED",
+      "source": "DOOR pushbutton"
+    },
+    {
+      "t": 36.1,
+      "event": "release_refused",
+      "mode": "QUARANTINED",
+      "reason": "authorization token missing"
+    },
+    {
+      "t": 36.1,
+      "event": "release_refused",
+      "mode": "QUARANTINED",
+      "reason": "key switch not in RELEASE"
+    },
+    {
+      "t": 37.6,
+      "event": "release_accepted",
+      "mode": "RELEASING",
+      "authorization": "QA-2026-10-15-017",
+      "sample_id": "P-0001"
+    },
+    {
+      "t": 38.3333,
+      "event": "released",
+      "mode": "RELEASING",
+      "sample_id": "P-0001",
+      "authorization": "QA-2026-10-15-017"
+    },
+    {
+      "t": 38.3333,
+      "event": "mode",
+      "mode": "PRESENTED",
+      "to": "PRESENTED"
+    },
+    {
+      "t": 43.6042,
+      "event": "sample_removed",
+      "mode": "PRESENTED",
+      "sample_id": "P-0001"
+    },
+    {
+      "t": 43.9,
+      "event": "stow_accepted",
+      "mode": "STOWING"
+    },
+    {
+      "t": 44.75,
+      "event": "mode",
+      "mode": "READY",
+      "to": "READY"
+    }
+  ]
+}

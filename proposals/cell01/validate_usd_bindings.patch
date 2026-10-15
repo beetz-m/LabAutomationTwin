@@ -1,0 +1,31 @@
+--- a/tools/validate_usd_bindings.py
++++ b/tools/validate_usd_bindings.py
+@@ -52,6 +52,18 @@
+     else:
+         errors.append("missing canonical floor prim /World/Cell01/Architecture/Floor")
+ 
++    # Applied API schemas must be prim metadata (`prepend apiSchemas = [...]`). Authored as a plain
++    # attribute (`uniform token[] apiSchemas = [...]`) they are silently ignored: Cell 01 v2 had 12
++    # colliders that PhysX never saw (found 2026-10-15 in an Isaac Sim 6.2 smoke test).
++    for prim in stage.Traverse():
++        attr = prim.GetAttribute("apiSchemas")
++        if attr and attr.IsAuthored():
++            missing = [s for s in (attr.Get() or []) if s not in prim.GetAppliedSchemas()]
++            if missing:
++                errors.append(f"{prim.GetPath()}: API schemas {missing} authored as an attribute, not applied")
++    if stage.GetEndTimeCode() <= stage.GetStartTimeCode():
++        errors.append("no time-code range (startTimeCode/endTimeCode): Isaac Sim timelines loop a single frame")
++
+     rail = stage.GetPrimAtPath("/World/Cell01/Robots/R02_RailSystem")
+     if rail.IsValid():
+         travel = rail.GetAttribute("sdt:travel_m").Get()
+@@ -73,7 +85,8 @@
+             print(f"FAIL: {error}")
+         print(f"{len(errors)} USD binding/geometry issue(s) found.")
+         return 1
+-    print("PASS: USD stage, canonical prims, required frames, footprint, and R02 travel checked.")
++    print("PASS: USD stage, canonical prims, required frames, footprint, R02 travel, applied API schemas "
++          "and time-code range checked.")
+     return 0
+ 
+ 

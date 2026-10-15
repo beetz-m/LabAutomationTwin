@@ -1,0 +1,334 @@
+{
+  "assumptions": {
+    "tcp_m": 0.171,
+    "approach_m": 0.2,
+    "R01_base": [
+      -1.65,
+      -0.1,
+      0.72
+    ],
+    "rails": {
+      "usd": {
+        "y": 0.95,
+        "x0": 0.6,
+        "x1": 1.9,
+        "z": 0.97
+      },
+      "plan": {
+        "y": 0.78,
+        "x0": -0.15,
+        "x1": 2.45,
+        "z": 0.97
+      },
+      "proposal": {
+        "y": 0.78,
+        "x0": -0.85,
+        "x1": 1.75,
+        "z": 0.97
+      }
+    },
+    "criterion": "top-down IK at site and approach, tool yaw -90..90 deg about radial"
+  },
+  "bands": {
+    "R01": {
+      "0.3": [
+        0.2,
+        0.5
+      ],
+      "0.97": [
+        0.1,
+        0.65
+      ],
+      "1.06": [
+        0.1,
+        0.6
+      ]
+    },
+    "R02": {
+      "0.3": [
+        0.15,
+        0.65
+      ],
+      "0.97": [
+        0.15,
+        0.85
+      ],
+      "1.06": [
+        0.15,
+        0.8
+      ]
+    }
+  },
+  "layouts": {
+    "usd": {
+      "L09 plate hotel (transfer, front)": {
+        "point": [
+          -2.35,
+          1.4,
+          0.96
+        ],
+        "R01_dist_m": 1.655,
+        "R01": false,
+        "R02_dist_m": 2.984,
+        "R02": false
+      },
+      "L10 incubator (transfer, front)": {
+        "point": [
+          -1.55,
+          1.4,
+          0.96
+        ],
+        "R01_dist_m": 1.503,
+        "R01": false,
+        "R02_dist_m": 2.197,
+        "R02": false
+      },
+      "L12 liquid handler (plate nest)": {
+        "point": [
+          0.15,
+          0.1,
+          1.06
+        ],
+        "R01_dist_m": 1.811,
+        "R01": false,
+        "R02_dist_m": 0.962,
+        "R02": false
+      },
+      "L17 imager (plate load)": {
+        "point": [
+          1.65,
+          1.38,
+          1.0
+        ],
+        "R01_dist_m": 3.617,
+        "R01": false,
+        "R02_dist_m": 0.43,
+        "R02": true
+      },
+      "L21 QC (reference nest)": {
+        "point": [
+          2.48,
+          1.55,
+          0.97
+        ],
+        "R01_dist_m": 4.447,
+        "R01": false,
+        "R02_dist_m": 0.835,
+        "R02": true
+      },
+      "H4 quarantine (transfer_nest, overlay)": {
+        "point": [
+          -1.236,
+          0.186,
+          0.992
+        ],
+        "R01_dist_m": 0.503,
+        "R01": true,
+        "R02_dist_m": 1.989,
+        "R02": false
+      },
+      "R03 AMR dock (carrier)": {
+        "point": [
+          -1.8,
+          -1.8,
+          0.3
+        ],
+        "R01_dist_m": 1.707,
+        "R01": false,
+        "R02_dist_m": 3.65,
+        "R02": false
+      }
+    },
+    "plan": {
+      "L09 plate hotel (transfer, front)": {
+        "point": [
+          -2.35,
+          1.25,
+          0.96
+        ],
+        "R01_dist_m": 1.521,
+        "R01": false,
+        "R02_dist_m": 2.25,
+        "R02": false
+      },
+      "L10 incubator (transfer, front)": {
+        "point": [
+          -1.5,
+          1.2,
+          0.96
+        ],
+        "R01_dist_m": 1.309,
+        "R01": false,
+        "R02_dist_m": 1.414,
+        "R02": false
+      },
+      "L12 liquid handler (deck front)": {
+        "point": [
+          0.05,
+          1.05,
+          0.98
+        ],
+        "R01_dist_m": 2.052,
+        "R01": false,
+        "R02_dist_m": 0.27,
+        "R02": true
+      },
+      "L17 imager (plate load)": {
+        "point": [
+          1.45,
+          1.28,
+          1.0
+        ],
+        "R01_dist_m": 3.393,
+        "R01": false,
+        "R02_dist_m": 0.5,
+        "R02": true
+      },
+      "L14 seal/inspect": {
+        "point": [
+          2.1,
+          0.87,
+          0.98
+        ],
+        "R01_dist_m": 3.873,
+        "R01": false,
+        "R02_dist_m": 0.09,
+        "R02": false
+      },
+      "L21 QC (reference nest)": {
+        "point": [
+          2.55,
+          1.45,
+          0.97
+        ],
+        "R01_dist_m": 4.477,
+        "R01": false,
+        "R02_dist_m": 0.677,
+        "R02": true
+      },
+      "H4 quarantine (plan corner)": {
+        "point": [
+          2.35,
+          -1.35,
+          0.96
+        ],
+        "R01_dist_m": 4.191,
+        "R01": false,
+        "R02_dist_m": 2.13,
+        "R02": false
+      },
+      "R03 AMR dock (carrier)": {
+        "point": [
+          -1.8,
+          -1.4,
+          0.3
+        ],
+        "R01_dist_m": 1.309,
+        "R01": false,
+        "R02_dist_m": 2.734,
+        "R02": false
+      }
+    },
+    "proposal": {
+      "L10 incubator (transfer, faces R01)": {
+        "point": [
+          -2.05,
+          0.7,
+          0.96
+        ],
+        "R01_dist_m": 0.61,
+        "R01": true,
+        "R02_dist_m": 1.203,
+        "R02": false
+      },
+      "L09 plate hotel (transfer, faces R01)": {
+        "point": [
+          -1.3,
+          0.85,
+          0.96
+        ],
+        "R01_dist_m": 0.559,
+        "R01": true,
+        "R02_dist_m": 0.455,
+        "R02": true
+      },
+      "H4 quarantine (transfer_nest)": {
+        "point": [
+          -1.95,
+          0.0,
+          0.992
+        ],
+        "R01_dist_m": 0.532,
+        "R01": true,
+        "R02_dist_m": 1.348,
+        "R02": false
+      },
+      "R03 AMR dock (carrier, bench height)": {
+        "point": [
+          -1.25,
+          -0.05,
+          0.96
+        ],
+        "R01_dist_m": 0.5,
+        "R01": true,
+        "R02_dist_m": 0.921,
+        "R02": false
+      },
+      "HN handover nest R01<->R02": {
+        "point": [
+          -1.05,
+          0.55,
+          0.96
+        ],
+        "R01_dist_m": 0.539,
+        "R01": true,
+        "R02_dist_m": 0.305,
+        "R02": true
+      },
+      "L12 liquid handler (deck front)": {
+        "point": [
+          0.05,
+          1.05,
+          0.98
+        ],
+        "R01_dist_m": 1.746,
+        "R01": false,
+        "R02_dist_m": 0.27,
+        "R02": true
+      },
+      "L17 imager (plate load)": {
+        "point": [
+          1.45,
+          1.28,
+          1.0
+        ],
+        "R01_dist_m": 3.141,
+        "R01": false,
+        "R02_dist_m": 0.5,
+        "R02": true
+      },
+      "L14 seal/inspect": {
+        "point": [
+          2.1,
+          0.87,
+          0.98
+        ],
+        "R01_dist_m": 3.687,
+        "R01": false,
+        "R02_dist_m": 0.361,
+        "R02": true
+      },
+      "L21 QC (moved: reference nest)": {
+        "point": [
+          2.25,
+          1.2,
+          0.97
+        ],
+        "R01_dist_m": 3.894,
+        "R01": false,
+        "R02_dist_m": 0.653,
+        "R02": true
+      }
+    }
+  }
+}
