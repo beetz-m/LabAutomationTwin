@@ -1,0 +1,3133 @@
+{
+  "results": [
+    {
+      "test": "Q1 L21 frames, artifacts valid, reference plate seated in its nest",
+      "pass": true,
+      "frames": [
+        "reference_plate_frame",
+        "camera_calibration_frame",
+        "tool_calibration_frame",
+        "qc_nest_frame"
+      ],
+      "ref_nest": {
+        "plate_on_nest": true,
+        "seated": true,
+        "gaps_mm": [
+          -0.0,
+          -0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "beams": {
+        "A": false,
+        "B": false
+      }
+    },
+    {
+      "test": "Q2 validate_tool_frame T01 after coupling: located; corrected if needed; as left pass",
+      "pass": true,
+      "as_found": {
+        "z_runs": 1,
+        "y_runs": 2,
+        "x_runs": 1,
+        "ok": true,
+        "error_mm": [
+          -0.014,
+          -0.073,
+          0.745
+        ],
+        "finger_runs_y_mm": [
+          [
+            -53.32,
+            -45.3
+          ],
+          [
+            45.16,
+            53.17
+          ]
+        ],
+        "run_x_mm": [
+          -15.01,
+          14.99
+        ]
+      },
+      "as_left": {
+        "z_runs": 1,
+        "y_runs": 2,
+        "x_runs": 1,
+        "ok": true,
+        "error_mm": [
+          -0.014,
+          -0.074,
+          0.007
+        ],
+        "finger_runs_y_mm": [
+          [
+            -53.32,
+            -45.3
+          ],
+          [
+            45.16,
+            53.17
+          ]
+        ],
+        "run_x_mm": [
+          -15.02,
+          14.99
+        ]
+      },
+      "tcp_mm": 155.745,
+      "samples": {
+        "z": 1292,
+        "y": 9027,
+        "x": 6027
+      }
+    },
+    {
+      "test": "Q3 TCP belief off by 2 mm: out_of_tolerance, error located, corrected, re-check pass",
+      "pass": true,
+      "as_found": {
+        "z_runs": 1,
+        "y_runs": 2,
+        "x_runs": 1,
+        "ok": true,
+        "error_mm": [
+          -0.013,
+          -0.074,
+          -1.993
+        ],
+        "finger_runs_y_mm": [
+          [
+            -53.32,
+            -45.3
+          ],
+          [
+            45.16,
+            53.17
+          ]
+        ],
+        "run_x_mm": [
+          -15.01,
+          14.99
+        ]
+      },
+      "correction_mm": [
+        0.013,
+        0.074,
+        1.993
+      ],
+      "as_left": {
+        "z_runs": 1,
+        "y_runs": 2,
+        "x_runs": 1,
+        "ok": true,
+        "error_mm": [
+          -0.014,
+          -0.073,
+          -0.005
+        ],
+        "finger_runs_y_mm": [
+          [
+            -53.32,
+            -45.3
+          ],
+          [
+            45.16,
+            53.17
+          ]
+        ],
+        "run_x_mm": [
+          -15.02,
+          14.99
+        ]
+      },
+      "tcp_mm": 155.752
+    },
+    {
+      "test": "Q4 reference plate L21 -> L17; L17 reads REF-L21-001 at load",
+      "pass": true,
+      "identity": {
+        "t": 506.8958,
+        "event": "identity_read",
+        "mode": "BUSY",
+        "where": "stage_home",
+        "expected": "REF-L21-001",
+        "observed": "REF-L21-001"
+      },
+      "seated": true
+    },
+    {
+      "test": "Q5 validate_imager: pass, L21 issues and L17 applies a calibration",
+      "pass": true,
+      "summary": {
+        "verdict": "pass",
+        "issued": "L17-CAL-2026-10-16-L21-01",
+        "invalidated": [],
+        "10x": {
+          "pixel_um_measured": 0.45002,
+          "pixel_scale_error": 4e-05,
+          "autofocus_repeatability_um": 0.344,
+          "failed": [],
+          "brightness": [
+            0.6015,
+            0.6022
+          ]
+        },
+        "4x": {
+          "pixel_um_measured": 1.12,
+          "pixel_scale_error": 0.0,
+          "autofocus_repeatability_um": 0.087,
+          "failed": [],
+          "brightness": [
+            0.6017,
+            0.602
+          ]
+        }
+      },
+      "calibration": "L17-CAL-2026-10-16-L21-01"
+    },
+    {
+      "test": "Q6 magnification drift 4 %: as found out_of_tolerance, dependent image flagged, recalibrated, as-left pass",
+      "pass": true,
+      "as_found": {
+        "verdict": "out_of_tolerance_recalibrated",
+        "issued": "L17-CAL-2026-10-16-L21-02",
+        "invalidated": [
+          4
+        ],
+        "10x": {
+          "pixel_um_measured": 0.46801,
+          "pixel_scale_error": 0.03999,
+          "autofocus_repeatability_um": 0.217,
+          "failed": [
+            "pixel_scale"
+          ],
+          "brightness": [
+            0.6012,
+            0.6021
+          ]
+        },
+        "4x": {
+          "pixel_um_measured": 1.12,
+          "pixel_scale_error": 0.0,
+          "autofocus_repeatability_um": 0.024,
+          "failed": [],
+          "brightness": [
+            0.602,
+            0.6017
+          ]
+        }
+      },
+      "as_left": {
+        "verdict": "pass",
+        "issued": "L17-CAL-2026-10-16-L21-03",
+        "invalidated": [],
+        "10x": {
+          "pixel_um_measured": 0.46802,
+          "pixel_scale_error": 2e-05,
+          "autofocus_repeatability_um": 0.041,
+          "failed": [],
+          "brightness": [
+            0.6015,
+            0.6012
+          ]
+        },
+        "4x": {
+          "pixel_um_measured": 1.11998,
+          "pixel_scale_error": -2e-05,
+          "autofocus_repeatability_um": 0.064,
+          "failed": [],
+          "brightness": [
+            0.601,
+            0.6015
+          ]
+        }
+      },
+      "dependent": 4,
+      "calibration": "L17-CAL-2026-10-16-L21-03",
+      "blocked_between": false
+    },
+    {
+      "test": "Q7 LED at 60 %: out_of_tolerance (brightness), L17 blocked; after repair pass",
+      "pass": true,
+      "as_found": {
+        "verdict": "out_of_tolerance",
+        "issued": null,
+        "invalidated": [],
+        "10x": {
+          "pixel_um_measured": 0.46798,
+          "pixel_scale_error": -0.0001,
+          "autofocus_repeatability_um": 0.014,
+          "failed": [
+            "brightness"
+          ],
+          "brightness": [
+            0.3618,
+            0.3617
+          ]
+        },
+        "4x": {
+          "pixel_um_measured": 1.11999,
+          "pixel_scale_error": 1e-05,
+          "autofocus_repeatability_um": 0.054,
+          "failed": [
+            "brightness"
+          ],
+          "brightness": [
+            0.3617,
+            0.3617
+          ]
+        }
+      },
+      "refused": "calibration_invalidated: L17-CAL-2026-10-16-L21-03 invalidated by QC-L21-2026-10-16-IMG-008; repair/recalibrate via L21 first",
+      "after_repair": {
+        "verdict": "pass",
+        "issued": "L17-CAL-2026-10-16-L21-04",
+        "invalidated": [],
+        "10x": {
+          "pixel_um_measured": 0.4682,
+          "pixel_scale_error": 0.00038,
+          "autofocus_repeatability_um": 0.189,
+          "failed": [],
+          "brightness": [
+            0.6017,
+            0.6017
+          ]
+        },
+        "4x": {
+          "pixel_um_measured": 1.12,
+          "pixel_scale_error": 1e-05,
+          "autofocus_repeatability_um": 0.033,
+          "failed": [],
+          "brightness": [
+            0.6024,
+            0.6022
+          ]
+        }
+      }
+    },
+    {
+      "test": "Q8 expired reference artifact: validate_imager refused",
+      "pass": true,
+      "reason": "reference artifact REF-L21-001 missing or expired (valid until 2027-04-30)"
+    },
+    {
+      "test": "Q9 QC records: schema-valid; pass -> evidence layer, out of tolerance -> invalidate_dependent_measurements",
+      "pass": true,
+      "records": [
+        {
+          "id": "test-l21/qc_tcp_001",
+          "verdict": "out_of_tolerance",
+          "routing": "invalidate_dependent_measurements",
+          "errors": []
+        },
+        {
+          "id": "test-l21/qc_tcp_002",
+          "verdict": "pass",
+          "routing": "evidence_layer_commit",
+          "errors": []
+        },
+        {
+          "id": "test-l21/qc_tcp_003",
+          "verdict": "out_of_tolerance",
+          "routing": "invalidate_dependent_measurements",
+          "errors": []
+        },
+        {
+          "id": "test-l21/qc_tcp_004",
+          "verdict": "pass",
+          "routing": "evidence_layer_commit",
+          "errors": []
+        },
+        {
+          "id": "test-l21/qc_img_005",
+          "verdict": "pass",
+          "routing": "evidence_layer_commit",
+          "errors": []
+        },
+        {
+          "id": "test-l21/qc_img_006",
+          "verdict": "out_of_tolerance_recalibrated",
+          "routing": "invalidate_dependent_measurements",
+          "errors": []
+        },
+        {
+          "id": "test-l21/qc_img_007",
+          "verdict": "pass",
+          "routing": "evidence_layer_commit",
+          "errors": []
+        },
+        {
+          "id": "test-l21/qc_img_008",
+          "verdict": "out_of_tolerance",
+          "routing": "invalidate_dependent_measurements",
+          "errors": []
+        },
+        {
+          "id": "test-l21/qc_img_009",
+          "verdict": "pass",
+          "routing": "evidence_layer_commit",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "test": "Q10 reference plate back in its L21 nest (seated); T01 stored; L17 READY",
+      "pass": true,
+      "ref_nest": {
+        "plate_on_nest": true,
+        "seated": true,
+        "gaps_mm": [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "wall_s": 3048.7,
+  "qc_records": [
+    {
+      "qc_id": "QC-L21-2026-10-16-TCP-001",
+      "kind": "tool_frame",
+      "target": "T01",
+      "t": 141.704,
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "acceptance_criterion_id": "L21-ACC-TCP-v1",
+      "result": {
+        "z_runs": 1,
+        "y_runs": 2,
+        "x_runs": 1,
+        "ok": true,
+        "error_mm": [
+          -0.014,
+          -0.073,
+          0.745
+        ],
+        "finger_runs_y_mm": [
+          [
+            -53.32,
+            -45.3
+          ],
+          [
+            45.16,
+            53.17
+          ]
+        ],
+        "run_x_mm": [
+          -15.01,
+          14.99
+        ]
+      },
+      "verdict": "out_of_tolerance",
+      "tolerance_mm": 0.5,
+      "correction_mm": [
+        0.014,
+        0.073,
+        -0.745
+      ],
+      "samples": {
+        "z": 1293,
+        "y": 9027,
+        "x": 6027
+      },
+      "date": "2026-10-16",
+      "moves_converged": true
+    },
+    {
+      "qc_id": "QC-L21-2026-10-16-TCP-002",
+      "kind": "tool_frame",
+      "target": "T01",
+      "t": 252.937,
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "acceptance_criterion_id": "L21-ACC-TCP-v1",
+      "result": {
+        "z_runs": 1,
+        "y_runs": 2,
+        "x_runs": 1,
+        "ok": true,
+        "error_mm": [
+          -0.014,
+          -0.074,
+          0.007
+        ],
+        "finger_runs_y_mm": [
+          [
+            -53.32,
+            -45.3
+          ],
+          [
+            45.16,
+            53.17
+          ]
+        ],
+        "run_x_mm": [
+          -15.02,
+          14.99
+        ]
+      },
+      "verdict": "pass",
+      "tolerance_mm": 0.5,
+      "correction_mm": [
+        0.014,
+        0.074,
+        -0.007
+      ],
+      "samples": {
+        "z": 1292,
+        "y": 9027,
+        "x": 6027
+      },
+      "date": "2026-10-16",
+      "moves_converged": true
+    },
+    {
+      "qc_id": "QC-L21-2026-10-16-TCP-003",
+      "kind": "tool_frame",
+      "target": "T01",
+      "t": 364.496,
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "acceptance_criterion_id": "L21-ACC-TCP-v1",
+      "result": {
+        "z_runs": 1,
+        "y_runs": 2,
+        "x_runs": 1,
+        "ok": true,
+        "error_mm": [
+          -0.013,
+          -0.074,
+          -1.993
+        ],
+        "finger_runs_y_mm": [
+          [
+            -53.32,
+            -45.3
+          ],
+          [
+            45.16,
+            53.17
+          ]
+        ],
+        "run_x_mm": [
+          -15.01,
+          14.99
+        ]
+      },
+      "verdict": "out_of_tolerance",
+      "tolerance_mm": 0.5,
+      "correction_mm": [
+        0.013,
+        0.074,
+        1.993
+      ],
+      "samples": {
+        "z": 1291,
+        "y": 9027,
+        "x": 6027
+      },
+      "date": "2026-10-16",
+      "moves_converged": true
+    },
+    {
+      "qc_id": "QC-L21-2026-10-16-TCP-004",
+      "kind": "tool_frame",
+      "target": "T01",
+      "t": 476.037,
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "acceptance_criterion_id": "L21-ACC-TCP-v1",
+      "result": {
+        "z_runs": 1,
+        "y_runs": 2,
+        "x_runs": 1,
+        "ok": true,
+        "error_mm": [
+          -0.014,
+          -0.073,
+          -0.005
+        ],
+        "finger_runs_y_mm": [
+          [
+            -53.32,
+            -45.3
+          ],
+          [
+            45.16,
+            53.17
+          ]
+        ],
+        "run_x_mm": [
+          -15.02,
+          14.99
+        ]
+      },
+      "verdict": "pass",
+      "tolerance_mm": 0.5,
+      "correction_mm": [
+        0.014,
+        0.073,
+        0.005
+      ],
+      "samples": {
+        "z": 1291,
+        "y": 9027,
+        "x": 6027
+      },
+      "date": "2026-10-16",
+      "moves_converged": true
+    },
+    {
+      "qc_id": "QC-L21-2026-10-16-IMG-005",
+      "kind": "imager",
+      "target": "L17",
+      "t": 538.475,
+      "date": "2026-10-16",
+      "reference_artifact_id": "REF-L21-001",
+      "reference": {
+        "kind": "SBS reference plate, dot-grid target in every well",
+        "lot": "SIM-LOT-2026-001",
+        "certified": {
+          "pitch_um": 50.0,
+          "pitch_u_um": 0.05
+        },
+        "valid_until": "2027-04-30",
+        "certificate": "simulated certificate (twin)",
+        "home": "reference_plate_frame"
+      },
+      "acceptance_criterion_id": "L21-ACC-IMG-v1",
+      "acceptance": {
+        "id": "L21-ACC-IMG-v1",
+        "wells": [
+          "D06",
+          "E07"
+        ],
+        "objectives": [
+          "10x",
+          "4x"
+        ],
+        "af_repeats": 3,
+        "pixel_scale_tol": 0.01,
+        "recal_band": 0.1,
+        "isotropy_tol": 0.005,
+        "orientation_tol_deg": 1.0,
+        "brightness_nominal_fs": 0.6,
+        "brightness_tol": 0.1,
+        "af_repeat_um": {
+          "10x": 2.2,
+          "4x": 14.0
+        },
+        "focus_floor": {
+          "10x": 0.04,
+          "4x": 0.15
+        },
+        "validity_days": 30
+      },
+      "identity": {
+        "read_by_L17_at_load": "REF-L21-001",
+        "expected": "REF-L21-001",
+        "events": [
+          {
+            "t": 506.8958,
+            "event": "identity_read",
+            "mode": "BUSY",
+            "where": "stage_home",
+            "expected": "REF-L21-001",
+            "observed": "REF-L21-001"
+          }
+        ]
+      },
+      "device_configuration": {
+        "calibration_as_found": "L17-CAL-2026-10-16-SIM",
+        "objectives": {
+          "10x": {
+            "na": 0.25,
+            "wd": 12.0,
+            "pixel_um": 0.45,
+            "angle": 180.0
+          },
+          "4x": {
+            "na": 0.1,
+            "wd": 17.0,
+            "pixel_um": 1.12,
+            "angle": 0.0
+          }
+        }
+      },
+      "per_objective": {
+        "10x": {
+          "magnification": "10x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 40,
+              "dots_fitted": 40,
+              "pitch_px": [
+                111.104,
+                111.1109
+              ],
+              "pixel_um": 0.45001,
+              "isotropy": -6e-05,
+              "orthogonality_deg": -0.0039,
+              "orientation_deg": -0.0363,
+              "fit_rms_px": 0.0502,
+              "brightness_fs": 0.6015,
+              "background_fs": 0.5773,
+              "well": "D06",
+              "acquisition": 0,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_000_qc.png#sha256=2df84cf2a25d64e9"
+            },
+            {
+              "ok": true,
+              "dots": 35,
+              "dots_fitted": 35,
+              "pitch_px": [
+                111.1114,
+                111.0946
+              ],
+              "pixel_um": 0.45003,
+              "isotropy": 0.00015,
+              "orthogonality_deg": -0.0013,
+              "orientation_deg": -0.0389,
+              "fit_rms_px": 0.0529,
+              "brightness_fs": 0.6022,
+              "background_fs": 0.5773,
+              "well": "E07",
+              "acquisition": 1,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_001_qc.png#sha256=3e5b68ccb38eb45c"
+            }
+          ],
+          "autofocus_mm": [
+            -0.00027,
+            0.00047,
+            0.00045
+          ],
+          "pixel_um_measured": 0.45002,
+          "pixel_um_claimed": 0.45,
+          "pixel_scale_error": 4e-05,
+          "autofocus_repeatability_um": 0.344,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": true,
+            "autofocus_repeatability": true
+          },
+          "ok": true,
+          "recalibratable": false
+        },
+        "4x": {
+          "magnification": "4x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 266,
+              "dots_fitted": 266,
+              "pitch_px": [
+                44.6427,
+                44.6436
+              ],
+              "pixel_um": 1.11999,
+              "isotropy": -2e-05,
+              "orthogonality_deg": -0.0002,
+              "orientation_deg": 0.0389,
+              "fit_rms_px": 0.0744,
+              "brightness_fs": 0.6017,
+              "background_fs": 0.5775,
+              "well": "D06",
+              "acquisition": 2,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_002_qc.png#sha256=ab6568df932190e4"
+            },
+            {
+              "ok": true,
+              "dots": 252,
+              "dots_fitted": 252,
+              "pitch_px": [
+                44.6427,
+                44.6423
+              ],
+              "pixel_um": 1.12001,
+              "isotropy": 1e-05,
+              "orthogonality_deg": -0.001,
+              "orientation_deg": 0.0001,
+              "fit_rms_px": 0.0769,
+              "brightness_fs": 0.602,
+              "background_fs": 0.5775,
+              "well": "E07",
+              "acquisition": 3,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_003_qc.png#sha256=1a87cbba4092cd7a"
+            }
+          ],
+          "autofocus_mm": [
+            -3e-05,
+            5e-05,
+            -0.00016
+          ],
+          "pixel_um_measured": 1.12,
+          "pixel_um_claimed": 1.12,
+          "pixel_scale_error": 0.0,
+          "autofocus_repeatability_um": 0.087,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": true,
+            "autofocus_repeatability": true
+          },
+          "ok": true,
+          "recalibratable": false
+        }
+      },
+      "verdict": "pass",
+      "calibration_issued": "L17-CAL-2026-10-16-L21-01",
+      "invalidated_acquisitions": []
+    },
+    {
+      "qc_id": "QC-L21-2026-10-16-IMG-006",
+      "kind": "imager",
+      "target": "L17",
+      "t": 575.317,
+      "date": "2026-10-16",
+      "reference_artifact_id": "REF-L21-001",
+      "reference": {
+        "kind": "SBS reference plate, dot-grid target in every well",
+        "lot": "SIM-LOT-2026-001",
+        "certified": {
+          "pitch_um": 50.0,
+          "pitch_u_um": 0.05
+        },
+        "valid_until": "2027-04-30",
+        "certificate": "simulated certificate (twin)",
+        "home": "reference_plate_frame"
+      },
+      "acceptance_criterion_id": "L21-ACC-IMG-v1",
+      "acceptance": {
+        "id": "L21-ACC-IMG-v1",
+        "wells": [
+          "D06",
+          "E07"
+        ],
+        "objectives": [
+          "10x",
+          "4x"
+        ],
+        "af_repeats": 3,
+        "pixel_scale_tol": 0.01,
+        "recal_band": 0.1,
+        "isotropy_tol": 0.005,
+        "orientation_tol_deg": 1.0,
+        "brightness_nominal_fs": 0.6,
+        "brightness_tol": 0.1,
+        "af_repeat_um": {
+          "10x": 2.2,
+          "4x": 14.0
+        },
+        "focus_floor": {
+          "10x": 0.04,
+          "4x": 0.15
+        },
+        "validity_days": 30
+      },
+      "identity": {
+        "read_by_L17_at_load": "REF-L21-001",
+        "expected": "REF-L21-001",
+        "events": [
+          {
+            "t": 506.8958,
+            "event": "identity_read",
+            "mode": "BUSY",
+            "where": "stage_home",
+            "expected": "REF-L21-001",
+            "observed": "REF-L21-001"
+          }
+        ]
+      },
+      "device_configuration": {
+        "calibration_as_found": "L17-CAL-2026-10-16-L21-01",
+        "objectives": {
+          "10x": {
+            "na": 0.25,
+            "wd": 12.0,
+            "pixel_um": 0.45,
+            "angle": 180.0
+          },
+          "4x": {
+            "na": 0.1,
+            "wd": 17.0,
+            "pixel_um": 1.12,
+            "angle": 0.0
+          }
+        }
+      },
+      "per_objective": {
+        "10x": {
+          "magnification": "10x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 40,
+              "dots_fitted": 40,
+              "pitch_px": [
+                106.8353,
+                106.8324
+              ],
+              "pixel_um": 0.46802,
+              "isotropy": 3e-05,
+              "orthogonality_deg": -0.001,
+              "orientation_deg": 0.0001,
+              "fit_rms_px": 0.0414,
+              "brightness_fs": 0.6012,
+              "background_fs": 0.5773,
+              "well": "D06",
+              "acquisition": 5,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_005_qc.png#sha256=924e1ebf68e9a9c9"
+            },
+            {
+              "ok": true,
+              "dots": 40,
+              "dots_fitted": 40,
+              "pitch_px": [
+                106.8381,
+                106.8346
+              ],
+              "pixel_um": 0.46801,
+              "isotropy": 3e-05,
+              "orthogonality_deg": -0.0013,
+              "orientation_deg": -0.0009,
+              "fit_rms_px": 0.0422,
+              "brightness_fs": 0.6021,
+              "background_fs": 0.5773,
+              "well": "E07",
+              "acquisition": 6,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_006_qc.png#sha256=e7c6846a09ded9cf"
+            }
+          ],
+          "autofocus_mm": [
+            -3e-05,
+            -0.00047,
+            1e-05
+          ],
+          "pixel_um_measured": 0.46801,
+          "pixel_um_claimed": 0.45002,
+          "pixel_scale_error": 0.03999,
+          "autofocus_repeatability_um": 0.217,
+          "checks": {
+            "pixel_scale": false,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": true,
+            "autofocus_repeatability": true
+          },
+          "ok": false,
+          "recalibratable": true
+        },
+        "4x": {
+          "magnification": "4x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 252,
+              "dots_fitted": 252,
+              "pitch_px": [
+                44.6428,
+                44.6431
+              ],
+              "pixel_um": 1.12,
+              "isotropy": -1e-05,
+              "orthogonality_deg": -0.0009,
+              "orientation_deg": 0.0413,
+              "fit_rms_px": 0.0781,
+              "brightness_fs": 0.602,
+              "background_fs": 0.5775,
+              "well": "D06",
+              "acquisition": 7,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_007_qc.png#sha256=8b207ee9a19245de"
+            },
+            {
+              "ok": true,
+              "dots": 252,
+              "dots_fitted": 252,
+              "pitch_px": [
+                44.6426,
+                44.6431
+              ],
+              "pixel_um": 1.12,
+              "isotropy": -1e-05,
+              "orthogonality_deg": -0.0006,
+              "orientation_deg": -0.0396,
+              "fit_rms_px": 0.0764,
+              "brightness_fs": 0.6017,
+              "background_fs": 0.5775,
+              "well": "E07",
+              "acquisition": 8,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_008_qc.png#sha256=862d8af35ce59841"
+            }
+          ],
+          "autofocus_mm": [
+            1e-05,
+            1e-05,
+            -4e-05
+          ],
+          "pixel_um_measured": 1.12,
+          "pixel_um_claimed": 1.12,
+          "pixel_scale_error": 0.0,
+          "autofocus_repeatability_um": 0.024,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": true,
+            "autofocus_repeatability": true
+          },
+          "ok": true,
+          "recalibratable": false
+        }
+      },
+      "verdict": "out_of_tolerance_recalibrated",
+      "calibration_issued": "L17-CAL-2026-10-16-L21-02",
+      "invalidated_acquisitions": [
+        4
+      ]
+    },
+    {
+      "qc_id": "QC-L21-2026-10-16-IMG-007",
+      "kind": "imager",
+      "target": "L17",
+      "t": 608.733,
+      "date": "2026-10-16",
+      "reference_artifact_id": "REF-L21-001",
+      "reference": {
+        "kind": "SBS reference plate, dot-grid target in every well",
+        "lot": "SIM-LOT-2026-001",
+        "certified": {
+          "pitch_um": 50.0,
+          "pitch_u_um": 0.05
+        },
+        "valid_until": "2027-04-30",
+        "certificate": "simulated certificate (twin)",
+        "home": "reference_plate_frame"
+      },
+      "acceptance_criterion_id": "L21-ACC-IMG-v1",
+      "acceptance": {
+        "id": "L21-ACC-IMG-v1",
+        "wells": [
+          "D06",
+          "E07"
+        ],
+        "objectives": [
+          "10x",
+          "4x"
+        ],
+        "af_repeats": 3,
+        "pixel_scale_tol": 0.01,
+        "recal_band": 0.1,
+        "isotropy_tol": 0.005,
+        "orientation_tol_deg": 1.0,
+        "brightness_nominal_fs": 0.6,
+        "brightness_tol": 0.1,
+        "af_repeat_um": {
+          "10x": 2.2,
+          "4x": 14.0
+        },
+        "focus_floor": {
+          "10x": 0.04,
+          "4x": 0.15
+        },
+        "validity_days": 30
+      },
+      "identity": {
+        "read_by_L17_at_load": "REF-L21-001",
+        "expected": "REF-L21-001",
+        "events": [
+          {
+            "t": 506.8958,
+            "event": "identity_read",
+            "mode": "BUSY",
+            "where": "stage_home",
+            "expected": "REF-L21-001",
+            "observed": "REF-L21-001"
+          }
+        ]
+      },
+      "device_configuration": {
+        "calibration_as_found": "L17-CAL-2026-10-16-L21-02",
+        "objectives": {
+          "10x": {
+            "na": 0.25,
+            "wd": 12.0,
+            "pixel_um": 0.45,
+            "angle": 180.0
+          },
+          "4x": {
+            "na": 0.1,
+            "wd": 17.0,
+            "pixel_um": 1.12,
+            "angle": 0.0
+          }
+        }
+      },
+      "per_objective": {
+        "10x": {
+          "magnification": "10x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 42,
+              "dots_fitted": 42,
+              "pitch_px": [
+                106.8346,
+                106.8331
+              ],
+              "pixel_um": 0.46802,
+              "isotropy": 1e-05,
+              "orthogonality_deg": -0.0037,
+              "orientation_deg": 0.0003,
+              "fit_rms_px": 0.0434,
+              "brightness_fs": 0.6015,
+              "background_fs": 0.5773,
+              "well": "D06",
+              "acquisition": 9,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_009_qc.png#sha256=19a8df8d9a8e0ad4"
+            },
+            {
+              "ok": true,
+              "dots": 42,
+              "dots_fitted": 42,
+              "pitch_px": [
+                106.8329,
+                106.833
+              ],
+              "pixel_um": 0.46802,
+              "isotropy": -0.0,
+              "orthogonality_deg": -0.0023,
+              "orientation_deg": -0.0001,
+              "fit_rms_px": 0.048,
+              "brightness_fs": 0.6012,
+              "background_fs": 0.5773,
+              "well": "E07",
+              "acquisition": 10,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_010_qc.png#sha256=c0307eb33d397101"
+            }
+          ],
+          "autofocus_mm": [
+            6e-05,
+            -4e-05,
+            2e-05
+          ],
+          "pixel_um_measured": 0.46802,
+          "pixel_um_claimed": 0.46801,
+          "pixel_scale_error": 2e-05,
+          "autofocus_repeatability_um": 0.041,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": true,
+            "autofocus_repeatability": true
+          },
+          "ok": true,
+          "recalibratable": false
+        },
+        "4x": {
+          "magnification": "4x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 252,
+              "dots_fitted": 252,
+              "pitch_px": [
+                44.6445,
+                44.6419
+              ],
+              "pixel_um": 1.11999,
+              "isotropy": 6e-05,
+              "orthogonality_deg": -0.0022,
+              "orientation_deg": 0.001,
+              "fit_rms_px": 0.0805,
+              "brightness_fs": 0.601,
+              "background_fs": 0.5775,
+              "well": "D06",
+              "acquisition": 11,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_011_qc.png#sha256=fab6497a947f3206"
+            },
+            {
+              "ok": true,
+              "dots": 252,
+              "dots_fitted": 252,
+              "pitch_px": [
+                44.6425,
+                44.6455
+              ],
+              "pixel_um": 1.11997,
+              "isotropy": -7e-05,
+              "orthogonality_deg": -0.001,
+              "orientation_deg": -0.0009,
+              "fit_rms_px": 0.076,
+              "brightness_fs": 0.6015,
+              "background_fs": 0.5775,
+              "well": "E07",
+              "acquisition": 12,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_012_qc.png#sha256=b48f51d81e671c45"
+            }
+          ],
+          "autofocus_mm": [
+            2e-05,
+            0.00015,
+            0.00016
+          ],
+          "pixel_um_measured": 1.11998,
+          "pixel_um_claimed": 1.12,
+          "pixel_scale_error": -2e-05,
+          "autofocus_repeatability_um": 0.064,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": true,
+            "autofocus_repeatability": true
+          },
+          "ok": true,
+          "recalibratable": false
+        }
+      },
+      "verdict": "pass",
+      "calibration_issued": "L17-CAL-2026-10-16-L21-03",
+      "invalidated_acquisitions": []
+    },
+    {
+      "qc_id": "QC-L21-2026-10-16-IMG-008",
+      "kind": "imager",
+      "target": "L17",
+      "t": 642.233,
+      "date": "2026-10-16",
+      "reference_artifact_id": "REF-L21-001",
+      "reference": {
+        "kind": "SBS reference plate, dot-grid target in every well",
+        "lot": "SIM-LOT-2026-001",
+        "certified": {
+          "pitch_um": 50.0,
+          "pitch_u_um": 0.05
+        },
+        "valid_until": "2027-04-30",
+        "certificate": "simulated certificate (twin)",
+        "home": "reference_plate_frame"
+      },
+      "acceptance_criterion_id": "L21-ACC-IMG-v1",
+      "acceptance": {
+        "id": "L21-ACC-IMG-v1",
+        "wells": [
+          "D06",
+          "E07"
+        ],
+        "objectives": [
+          "10x",
+          "4x"
+        ],
+        "af_repeats": 3,
+        "pixel_scale_tol": 0.01,
+        "recal_band": 0.1,
+        "isotropy_tol": 0.005,
+        "orientation_tol_deg": 1.0,
+        "brightness_nominal_fs": 0.6,
+        "brightness_tol": 0.1,
+        "af_repeat_um": {
+          "10x": 2.2,
+          "4x": 14.0
+        },
+        "focus_floor": {
+          "10x": 0.04,
+          "4x": 0.15
+        },
+        "validity_days": 30
+      },
+      "identity": {
+        "read_by_L17_at_load": "REF-L21-001",
+        "expected": "REF-L21-001",
+        "events": [
+          {
+            "t": 506.8958,
+            "event": "identity_read",
+            "mode": "BUSY",
+            "where": "stage_home",
+            "expected": "REF-L21-001",
+            "observed": "REF-L21-001"
+          }
+        ]
+      },
+      "device_configuration": {
+        "calibration_as_found": "L17-CAL-2026-10-16-L21-03",
+        "objectives": {
+          "10x": {
+            "na": 0.25,
+            "wd": 12.0,
+            "pixel_um": 0.45,
+            "angle": 180.0
+          },
+          "4x": {
+            "na": 0.1,
+            "wd": 17.0,
+            "pixel_um": 1.12,
+            "angle": 0.0
+          }
+        }
+      },
+      "per_objective": {
+        "10x": {
+          "magnification": "10x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 48,
+              "dots_fitted": 48,
+              "pitch_px": [
+                106.844,
+                106.835
+              ],
+              "pixel_um": 0.46799,
+              "isotropy": 8e-05,
+              "orthogonality_deg": -0.0002,
+              "orientation_deg": 0.0003,
+              "fit_rms_px": 0.0465,
+              "brightness_fs": 0.3618,
+              "background_fs": 0.3463,
+              "well": "D06",
+              "acquisition": 13,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_013_qc.png#sha256=e9c781ec29c10960"
+            },
+            {
+              "ok": true,
+              "dots": 48,
+              "dots_fitted": 48,
+              "pitch_px": [
+                106.8467,
+                106.8458
+              ],
+              "pixel_um": 0.46796,
+              "isotropy": 1e-05,
+              "orthogonality_deg": -0.0001,
+              "orientation_deg": -0.0387,
+              "fit_rms_px": 0.0715,
+              "brightness_fs": 0.3617,
+              "background_fs": 0.3463,
+              "well": "E07",
+              "acquisition": 14,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_014_qc.png#sha256=9dadba6570382c46"
+            }
+          ],
+          "autofocus_mm": [
+            -1e-05,
+            -1e-05,
+            2e-05
+          ],
+          "pixel_um_measured": 0.46798,
+          "pixel_um_claimed": 0.46802,
+          "pixel_scale_error": -0.0001,
+          "autofocus_repeatability_um": 0.014,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": false,
+            "autofocus_repeatability": true
+          },
+          "ok": false,
+          "recalibratable": false
+        },
+        "4x": {
+          "magnification": "4x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 252,
+              "dots_fitted": 252,
+              "pitch_px": [
+                44.6428,
+                44.642
+              ],
+              "pixel_um": 1.12001,
+              "isotropy": 2e-05,
+              "orthogonality_deg": -0.0013,
+              "orientation_deg": 0.0396,
+              "fit_rms_px": 0.0804,
+              "brightness_fs": 0.3617,
+              "background_fs": 0.3463,
+              "well": "D06",
+              "acquisition": 15,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_015_qc.png#sha256=615c38201cc12a38"
+            },
+            {
+              "ok": true,
+              "dots": 266,
+              "dots_fitted": 266,
+              "pitch_px": [
+                44.6429,
+                44.6443
+              ],
+              "pixel_um": 1.11998,
+              "isotropy": -3e-05,
+              "orthogonality_deg": -0.0012,
+              "orientation_deg": 0.0002,
+              "fit_rms_px": 0.0851,
+              "brightness_fs": 0.3617,
+              "background_fs": 0.3465,
+              "well": "E07",
+              "acquisition": 16,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_016_qc.png#sha256=a0e5f545b0879400"
+            }
+          ],
+          "autofocus_mm": [
+            0.00015,
+            0.00011,
+            2e-05
+          ],
+          "pixel_um_measured": 1.11999,
+          "pixel_um_claimed": 1.11998,
+          "pixel_scale_error": 1e-05,
+          "autofocus_repeatability_um": 0.054,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": false,
+            "autofocus_repeatability": true
+          },
+          "ok": false,
+          "recalibratable": false
+        }
+      },
+      "verdict": "out_of_tolerance",
+      "calibration_issued": null,
+      "invalidated_acquisitions": []
+    },
+    {
+      "qc_id": "QC-L21-2026-10-16-IMG-009",
+      "kind": "imager",
+      "target": "L17",
+      "t": 675.738,
+      "date": "2026-10-16",
+      "reference_artifact_id": "REF-L21-001",
+      "reference": {
+        "kind": "SBS reference plate, dot-grid target in every well",
+        "lot": "SIM-LOT-2026-001",
+        "certified": {
+          "pitch_um": 50.0,
+          "pitch_u_um": 0.05
+        },
+        "valid_until": "2027-04-30",
+        "certificate": "simulated certificate (twin)",
+        "home": "reference_plate_frame"
+      },
+      "acceptance_criterion_id": "L21-ACC-IMG-v1",
+      "acceptance": {
+        "id": "L21-ACC-IMG-v1",
+        "wells": [
+          "D06",
+          "E07"
+        ],
+        "objectives": [
+          "10x",
+          "4x"
+        ],
+        "af_repeats": 3,
+        "pixel_scale_tol": 0.01,
+        "recal_band": 0.1,
+        "isotropy_tol": 0.005,
+        "orientation_tol_deg": 1.0,
+        "brightness_nominal_fs": 0.6,
+        "brightness_tol": 0.1,
+        "af_repeat_um": {
+          "10x": 2.2,
+          "4x": 14.0
+        },
+        "focus_floor": {
+          "10x": 0.04,
+          "4x": 0.15
+        },
+        "validity_days": 30
+      },
+      "identity": {
+        "read_by_L17_at_load": "REF-L21-001",
+        "expected": "REF-L21-001",
+        "events": [
+          {
+            "t": 506.8958,
+            "event": "identity_read",
+            "mode": "BUSY",
+            "where": "stage_home",
+            "expected": "REF-L21-001",
+            "observed": "REF-L21-001"
+          }
+        ]
+      },
+      "device_configuration": {
+        "calibration_as_found": "L17-CAL-2026-10-16-L21-03",
+        "objectives": {
+          "10x": {
+            "na": 0.25,
+            "wd": 12.0,
+            "pixel_um": 0.45,
+            "angle": 180.0
+          },
+          "4x": {
+            "na": 0.1,
+            "wd": 17.0,
+            "pixel_um": 1.12,
+            "angle": 0.0
+          }
+        }
+      },
+      "per_objective": {
+        "10x": {
+          "magnification": "10x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 42,
+              "dots_fitted": 42,
+              "pitch_px": [
+                106.8316,
+                106.675
+              ],
+              "pixel_um": 0.46837,
+              "isotropy": 0.00147,
+              "orthogonality_deg": -0.0026,
+              "orientation_deg": -0.0372,
+              "fit_rms_px": 0.3057,
+              "brightness_fs": 0.6017,
+              "background_fs": 0.5773,
+              "well": "D06",
+              "acquisition": 17,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_017_qc.png#sha256=ddec3fee90948b9a"
+            },
+            {
+              "ok": true,
+              "dots": 42,
+              "dots_fitted": 42,
+              "pitch_px": [
+                106.8301,
+                106.8333
+              ],
+              "pixel_um": 0.46803,
+              "isotropy": -3e-05,
+              "orthogonality_deg": -0.0002,
+              "orientation_deg": 0.0003,
+              "fit_rms_px": 0.044,
+              "brightness_fs": 0.6017,
+              "background_fs": 0.5773,
+              "well": "E07",
+              "acquisition": 18,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_018_qc.png#sha256=13c054110bc3b84f"
+            }
+          ],
+          "autofocus_mm": [
+            2e-05,
+            0.00043,
+            4e-05
+          ],
+          "pixel_um_measured": 0.4682,
+          "pixel_um_claimed": 0.46802,
+          "pixel_scale_error": 0.00038,
+          "autofocus_repeatability_um": 0.189,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": true,
+            "autofocus_repeatability": true
+          },
+          "ok": true,
+          "recalibratable": false
+        },
+        "4x": {
+          "magnification": "4x",
+          "measurements": [
+            {
+              "ok": true,
+              "dots": 252,
+              "dots_fitted": 252,
+              "pitch_px": [
+                44.6426,
+                44.6431
+              ],
+              "pixel_um": 1.12,
+              "isotropy": -1e-05,
+              "orthogonality_deg": -0.0011,
+              "orientation_deg": 0.04,
+              "fit_rms_px": 0.0789,
+              "brightness_fs": 0.6024,
+              "background_fs": 0.5775,
+              "well": "D06",
+              "acquisition": 19,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_019_qc.png#sha256=05d8a3ed5758a3e9"
+            },
+            {
+              "ok": true,
+              "dots": 266,
+              "dots_fitted": 266,
+              "pitch_px": [
+                44.643,
+                44.6437
+              ],
+              "pixel_um": 1.11999,
+              "isotropy": -2e-05,
+              "orthogonality_deg": -0.0012,
+              "orientation_deg": -0.0003,
+              "fit_rms_px": 0.08,
+              "brightness_fs": 0.6022,
+              "background_fs": 0.5775,
+              "well": "E07",
+              "acquisition": 20,
+              "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_020_qc.png#sha256=597f8fe18620af75"
+            }
+          ],
+          "autofocus_mm": [
+            -7e-05,
+            1e-05,
+            -4e-05
+          ],
+          "pixel_um_measured": 1.12,
+          "pixel_um_claimed": 1.11998,
+          "pixel_scale_error": 1e-05,
+          "autofocus_repeatability_um": 0.033,
+          "checks": {
+            "pixel_scale": true,
+            "isotropy": true,
+            "orientation": true,
+            "brightness": true,
+            "autofocus_repeatability": true
+          },
+          "ok": true,
+          "recalibratable": false
+        }
+      },
+      "verdict": "pass",
+      "calibration_issued": "L17-CAL-2026-10-16-L21-04",
+      "invalidated_acquisitions": []
+    }
+  ],
+  "calibrations": [
+    {
+      "calibration_id": "L17-CAL-2026-10-16-L21-01",
+      "source": "L21 validate_imager QC-L21-2026-10-16-IMG-005 (reference REF-L21-001, L21-ACC-IMG-v1)",
+      "issued": "2026-10-16",
+      "status": "valid",
+      "valid_until": "2026-11-15",
+      "objectives": {
+        "10x": {
+          "pixel_um": 0.45002,
+          "focus_floor": 0.04
+        },
+        "4x": {
+          "pixel_um": 1.12,
+          "focus_floor": 0.15
+        }
+      },
+      "sensor": {
+        "gain_e_per_adu": 2.442002442002442,
+        "read_noise_e": 3.0
+      },
+      "stage_offset_mm": [
+        0.0,
+        0.0
+      ],
+      "qc_record": "QC-L21-2026-10-16-IMG-005",
+      "recalibrated": false,
+      "note": ""
+    },
+    {
+      "calibration_id": "L17-CAL-2026-10-16-L21-02",
+      "source": "L21 validate_imager QC-L21-2026-10-16-IMG-006 (reference REF-L21-001, L21-ACC-IMG-v1)",
+      "issued": "2026-10-16",
+      "status": "valid",
+      "valid_until": "2026-11-15",
+      "objectives": {
+        "10x": {
+          "pixel_um": 0.46801,
+          "focus_floor": 0.04
+        },
+        "4x": {
+          "pixel_um": 1.12,
+          "focus_floor": 0.15
+        }
+      },
+      "sensor": {
+        "gain_e_per_adu": 2.442002442002442,
+        "read_noise_e": 3.0
+      },
+      "stage_offset_mm": [
+        0.0,
+        0.0
+      ],
+      "qc_record": "QC-L21-2026-10-16-IMG-006",
+      "recalibrated": true,
+      "note": "recalibrated scale: confirm with a second validate_imager (as-left)"
+    },
+    {
+      "calibration_id": "L17-CAL-2026-10-16-L21-03",
+      "source": "L21 validate_imager QC-L21-2026-10-16-IMG-007 (reference REF-L21-001, L21-ACC-IMG-v1)",
+      "issued": "2026-10-16",
+      "status": "valid",
+      "valid_until": "2026-11-15",
+      "objectives": {
+        "10x": {
+          "pixel_um": 0.46802,
+          "focus_floor": 0.04
+        },
+        "4x": {
+          "pixel_um": 1.11998,
+          "focus_floor": 0.15
+        }
+      },
+      "sensor": {
+        "gain_e_per_adu": 2.442002442002442,
+        "read_noise_e": 3.0
+      },
+      "stage_offset_mm": [
+        0.0,
+        0.0
+      ],
+      "qc_record": "QC-L21-2026-10-16-IMG-007",
+      "recalibrated": false,
+      "note": ""
+    },
+    {
+      "calibration_id": "L17-CAL-2026-10-16-L21-04",
+      "source": "L21 validate_imager QC-L21-2026-10-16-IMG-009 (reference REF-L21-001, L21-ACC-IMG-v1)",
+      "issued": "2026-10-16",
+      "status": "valid",
+      "valid_until": "2026-11-15",
+      "objectives": {
+        "10x": {
+          "pixel_um": 0.4682,
+          "focus_floor": 0.04
+        },
+        "4x": {
+          "pixel_um": 1.12,
+          "focus_floor": 0.15
+        }
+      },
+      "sensor": {
+        "gain_e_per_adu": 2.442002442002442,
+        "read_noise_e": 3.0
+      },
+      "stage_offset_mm": [
+        0.0,
+        0.0
+      ],
+      "qc_record": "QC-L21-2026-10-16-IMG-009",
+      "recalibrated": false,
+      "note": ""
+    }
+  ],
+  "tool_frames": {
+    "T01": {
+      "qc_id": "QC-L21-2026-10-16-TCP-004",
+      "valid": true,
+      "date": "2026-10-16",
+      "t": 476.037,
+      "error_mm": [
+        -0.014,
+        -0.073,
+        -0.005
+      ]
+    }
+  },
+  "l21_events": [
+    {
+      "t": 26.1,
+      "event": "validate_tool_frame_accepted",
+      "mode": "BUSY",
+      "tool_id": "T01"
+    },
+    {
+      "t": 141.7042,
+      "event": "tool_frame_checked",
+      "mode": "READY",
+      "tool_id": "T01",
+      "verdict": "out_of_tolerance",
+      "error_mm": [
+        -0.014,
+        -0.073,
+        0.745
+      ]
+    },
+    {
+      "t": 141.7042,
+      "event": "validate_tool_frame_accepted",
+      "mode": "BUSY",
+      "tool_id": "T01"
+    },
+    {
+      "t": 252.9375,
+      "event": "tool_frame_checked",
+      "mode": "READY",
+      "tool_id": "T01",
+      "verdict": "pass",
+      "error_mm": [
+        -0.014,
+        -0.074,
+        0.007
+      ]
+    },
+    {
+      "t": 252.9375,
+      "event": "validate_tool_frame_accepted",
+      "mode": "BUSY",
+      "tool_id": "T01"
+    },
+    {
+      "t": 364.4958,
+      "event": "tool_frame_checked",
+      "mode": "READY",
+      "tool_id": "T01",
+      "verdict": "out_of_tolerance",
+      "error_mm": [
+        -0.013,
+        -0.074,
+        -1.993
+      ]
+    },
+    {
+      "t": 364.4958,
+      "event": "validate_tool_frame_accepted",
+      "mode": "BUSY",
+      "tool_id": "T01"
+    },
+    {
+      "t": 476.0375,
+      "event": "tool_frame_checked",
+      "mode": "READY",
+      "tool_id": "T01",
+      "verdict": "pass",
+      "error_mm": [
+        -0.014,
+        -0.073,
+        -0.005
+      ]
+    },
+    {
+      "t": 506.9792,
+      "event": "validate_imager_accepted",
+      "mode": "BUSY",
+      "device": "L17",
+      "reference": "REF-L21-001"
+    },
+    {
+      "t": 538.475,
+      "event": "imager_validated",
+      "mode": "BUSY",
+      "qc_id": "QC-L21-2026-10-16-IMG-005",
+      "verdict": "pass",
+      "calibration_issued": "L17-CAL-2026-10-16-L21-01"
+    },
+    {
+      "t": 543.2292,
+      "event": "validate_imager_accepted",
+      "mode": "BUSY",
+      "device": "L17",
+      "reference": "REF-L21-001"
+    },
+    {
+      "t": 575.3167,
+      "event": "imager_validated",
+      "mode": "BUSY",
+      "qc_id": "QC-L21-2026-10-16-IMG-006",
+      "verdict": "out_of_tolerance_recalibrated",
+      "calibration_issued": "L17-CAL-2026-10-16-L21-02"
+    },
+    {
+      "t": 575.4792,
+      "event": "validate_imager_accepted",
+      "mode": "BUSY",
+      "device": "L17",
+      "reference": "REF-L21-001"
+    },
+    {
+      "t": 608.7333,
+      "event": "imager_validated",
+      "mode": "BUSY",
+      "qc_id": "QC-L21-2026-10-16-IMG-007",
+      "verdict": "pass",
+      "calibration_issued": "L17-CAL-2026-10-16-L21-03"
+    },
+    {
+      "t": 608.9792,
+      "event": "validate_imager_accepted",
+      "mode": "BUSY",
+      "device": "L17",
+      "reference": "REF-L21-001"
+    },
+    {
+      "t": 642.2333,
+      "event": "imager_validated",
+      "mode": "BUSY",
+      "qc_id": "QC-L21-2026-10-16-IMG-008",
+      "verdict": "out_of_tolerance",
+      "calibration_issued": null
+    },
+    {
+      "t": 642.4792,
+      "event": "validate_imager_accepted",
+      "mode": "BUSY",
+      "device": "L17",
+      "reference": "REF-L21-001"
+    },
+    {
+      "t": 675.7375,
+      "event": "imager_validated",
+      "mode": "BUSY",
+      "qc_id": "QC-L21-2026-10-16-IMG-009",
+      "verdict": "pass",
+      "calibration_issued": "L17-CAL-2026-10-16-L21-04"
+    },
+    {
+      "t": 675.9792,
+      "event": "validate_imager_refused",
+      "mode": "READY",
+      "reason": "reference artifact REF-L21-001 missing or expired (valid until 2027-04-30)"
+    },
+    {
+      "t": 675.9792,
+      "event": "fault_signal",
+      "mode": "READY",
+      "fault": "reference_expired"
+    }
+  ],
+  "l17_events": [
+    {
+      "t": 476.0375,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 502.7292,
+      "event": "load_plate_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001"
+    },
+    {
+      "t": 506.8958,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "stage_home",
+      "expected": "REF-L21-001",
+      "observed": "REF-L21-001"
+    },
+    {
+      "t": 506.8958,
+      "event": "plate_loaded",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001"
+    },
+    {
+      "t": 506.9833,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 510.775,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": -0.00027,
+      "frames": 34
+    },
+    {
+      "t": 510.775,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 514.425,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 0.00047,
+      "frames": 34
+    },
+    {
+      "t": 514.425,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 518.0792,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 0.00045,
+      "frames": 34
+    },
+    {
+      "t": 518.0792,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 519.9667,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 2e-05,
+      "frames": 20
+    },
+    {
+      "t": 520.0125,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_score": 0.4774,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_000_qc.png#sha256=2df84cf2a25d64e9"
+    },
+    {
+      "t": 520.0125,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 522.175,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_mm": 0.00109,
+      "frames": 20
+    },
+    {
+      "t": 522.2208,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_score": 0.4413,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_001_qc.png#sha256=3e5b68ccb38eb45c"
+    },
+    {
+      "t": 522.2208,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 527.2083,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": -3e-05,
+      "frames": 24
+    },
+    {
+      "t": 527.2083,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 530.3,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 5e-05,
+      "frames": 24
+    },
+    {
+      "t": 530.3,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 533.3958,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": -0.00016,
+      "frames": 24
+    },
+    {
+      "t": 533.3958,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 535.75,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": -4e-05,
+      "frames": 20
+    },
+    {
+      "t": 535.7958,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_score": 1.2281,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_002_qc.png#sha256=ab6568df932190e4"
+    },
+    {
+      "t": 535.7958,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 538.4292,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_mm": 0.00012,
+      "frames": 20
+    },
+    {
+      "t": 538.475,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_score": 1.2066,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_003_qc.png#sha256=1a87cbba4092cd7a"
+    },
+    {
+      "t": 538.475,
+      "event": "calibration_applied",
+      "mode": "LOADED",
+      "calibration_id": "L17-CAL-2026-10-16-L21-01",
+      "by": "L21 QC-L21-2026-10-16-IMG-005"
+    },
+    {
+      "t": 538.4792,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "B03"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 542.975,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "B03",
+      "magnification": "10x",
+      "focus_mm": -0.00022,
+      "frames": 20
+    },
+    {
+      "t": 543.0208,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "B03",
+      "magnification": "10x",
+      "focus_score": 0.5376,
+      "valid": true,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_B03_10x_004.png#sha256=4a75068e6f5da05e"
+    },
+    {
+      "t": 543.2333,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 547.6125,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": -3e-05,
+      "frames": 34
+    },
+    {
+      "t": 547.6125,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 551.2625,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": -0.00047,
+      "frames": 34
+    },
+    {
+      "t": 551.2625,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 554.9125,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 1e-05,
+      "frames": 34
+    },
+    {
+      "t": 554.9125,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 556.8,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 0.0,
+      "frames": 20
+    },
+    {
+      "t": 556.8458,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_score": 0.5316,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_005_qc.png#sha256=924e1ebf68e9a9c9"
+    },
+    {
+      "t": 556.8458,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 559.0125,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_mm": 2e-05,
+      "frames": 20
+    },
+    {
+      "t": 559.0583,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_score": 0.4774,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_006_qc.png#sha256=e7c6846a09ded9cf"
+    },
+    {
+      "t": 559.0583,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 564.0458,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 1e-05,
+      "frames": 24
+    },
+    {
+      "t": 564.0458,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 567.1417,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 1e-05,
+      "frames": 24
+    },
+    {
+      "t": 567.1417,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 570.2375,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": -4e-05,
+      "frames": 24
+    },
+    {
+      "t": 570.2375,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 572.5917,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": -2e-05,
+      "frames": 20
+    },
+    {
+      "t": 572.6375,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_score": 1.1765,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_007_qc.png#sha256=8b207ee9a19245de"
+    },
+    {
+      "t": 572.6375,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 575.2708,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_mm": 3e-05,
+      "frames": 20
+    },
+    {
+      "t": 575.3167,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_score": 1.2067,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_008_qc.png#sha256=862d8af35ce59841"
+    },
+    {
+      "t": 575.3167,
+      "event": "calibration_invalidated",
+      "mode": "LOADED",
+      "calibration_id": "L17-CAL-2026-10-16-L21-01",
+      "reason": "QC-L21-2026-10-16-IMG-006: out_of_tolerance_recalibrated (10x: pixel_scale)",
+      "qc_record": "QC-L21-2026-10-16-IMG-006",
+      "dependent_acquisitions": [
+        4
+      ]
+    },
+    {
+      "t": 575.3167,
+      "event": "calibration_applied",
+      "mode": "LOADED",
+      "calibration_id": "L17-CAL-2026-10-16-L21-02",
+      "by": "L21 QC-L21-2026-10-16-IMG-006"
+    },
+    {
+      "t": 575.4833,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 581.0292,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 6e-05,
+      "frames": 34
+    },
+    {
+      "t": 581.0292,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 584.6833,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": -4e-05,
+      "frames": 34
+    },
+    {
+      "t": 584.6833,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 588.3333,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 2e-05,
+      "frames": 34
+    },
+    {
+      "t": 588.3333,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 590.2208,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 2e-05,
+      "frames": 20
+    },
+    {
+      "t": 590.2667,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_score": 0.5034,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_009_qc.png#sha256=19a8df8d9a8e0ad4"
+    },
+    {
+      "t": 590.2667,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 592.4333,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_mm": -6e-05,
+      "frames": 20
+    },
+    {
+      "t": 592.4792,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_score": 0.5019,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_010_qc.png#sha256=c0307eb33d397101"
+    },
+    {
+      "t": 592.4792,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 597.4625,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 2e-05,
+      "frames": 24
+    },
+    {
+      "t": 597.4625,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 600.5583,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 0.00015,
+      "frames": 24
+    },
+    {
+      "t": 600.5583,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 603.6542,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 0.00016,
+      "frames": 24
+    },
+    {
+      "t": 603.6542,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 606.0083,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 4e-05,
+      "frames": 20
+    },
+    {
+      "t": 606.0542,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_score": 1.2058,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_011_qc.png#sha256=fab6497a947f3206"
+    },
+    {
+      "t": 606.0542,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 608.6875,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_mm": 1e-05,
+      "frames": 20
+    },
+    {
+      "t": 608.7333,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_score": 1.1732,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_012_qc.png#sha256=b48f51d81e671c45"
+    },
+    {
+      "t": 608.7333,
+      "event": "calibration_applied",
+      "mode": "LOADED",
+      "calibration_id": "L17-CAL-2026-10-16-L21-03",
+      "by": "L21 QC-L21-2026-10-16-IMG-007"
+    },
+    {
+      "t": 608.9833,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 614.5292,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": -1e-05,
+      "frames": 34
+    },
+    {
+      "t": 614.5292,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 618.1792,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": -1e-05,
+      "frames": 34
+    },
+    {
+      "t": 618.1792,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 621.8292,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 2e-05,
+      "frames": 34
+    },
+    {
+      "t": 621.8292,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 623.7167,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": -2e-05,
+      "frames": 20
+    },
+    {
+      "t": 623.7625,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_score": 0.5557,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_013_qc.png#sha256=e9c781ec29c10960"
+    },
+    {
+      "t": 623.7625,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 625.9292,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_mm": 0.00023,
+      "frames": 20
+    },
+    {
+      "t": 625.975,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_score": 0.55,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_014_qc.png#sha256=9dadba6570382c46"
+    },
+    {
+      "t": 625.975,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 630.9625,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 0.00015,
+      "frames": 24
+    },
+    {
+      "t": 630.9625,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 634.0583,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 0.00011,
+      "frames": 24
+    },
+    {
+      "t": 634.0583,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 637.1542,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 2e-05,
+      "frames": 24
+    },
+    {
+      "t": 637.1542,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 639.5083,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 0.00012,
+      "frames": 20
+    },
+    {
+      "t": 639.5542,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_score": 1.1833,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_015_qc.png#sha256=615c38201cc12a38"
+    },
+    {
+      "t": 639.5542,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 642.1875,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_mm": 0.00033,
+      "frames": 20
+    },
+    {
+      "t": 642.2333,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_score": 1.236,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_016_qc.png#sha256=a0e5f545b0879400"
+    },
+    {
+      "t": 642.2333,
+      "event": "calibration_invalidated",
+      "mode": "LOADED",
+      "calibration_id": "L17-CAL-2026-10-16-L21-03",
+      "reason": "QC-L21-2026-10-16-IMG-008: out_of_tolerance (10x: brightness, 4x: brightness)",
+      "qc_record": "QC-L21-2026-10-16-IMG-008",
+      "dependent_acquisitions": []
+    },
+    {
+      "t": 642.4792,
+      "event": "image_well_refused",
+      "mode": "LOADED",
+      "reason": "calibration_invalidated: L17-CAL-2026-10-16-L21-03 invalidated by QC-L21-2026-10-16-IMG-008; repair/recalibrate via L21 first"
+    },
+    {
+      "t": 642.4792,
+      "event": "fault_signal",
+      "mode": "LOADED",
+      "fault": "calibration_invalidated"
+    },
+    {
+      "t": 642.4833,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 648.0292,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 2e-05,
+      "frames": 34
+    },
+    {
+      "t": 648.0292,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 651.6833,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 0.00043,
+      "frames": 34
+    },
+    {
+      "t": 651.6833,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x"
+    },
+    {
+      "t": 655.3375,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 4e-05,
+      "frames": 34
+    },
+    {
+      "t": 655.3375,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 657.225,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_mm": 0.0,
+      "frames": 20
+    },
+    {
+      "t": 657.2708,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "10x",
+      "focus_score": 0.5028,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_10x_017_qc.png#sha256=ddec3fee90948b9a"
+    },
+    {
+      "t": 657.2708,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 659.4375,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_mm": 1e-05,
+      "frames": 20
+    },
+    {
+      "t": 659.4833,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "10x",
+      "focus_score": 0.5058,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_10x_018_qc.png#sha256=13c054110bc3b84f"
+    },
+    {
+      "t": 659.4833,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 664.4708,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": -7e-05,
+      "frames": 24
+    },
+    {
+      "t": 664.4708,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 667.5625,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 1e-05,
+      "frames": 24
+    },
+    {
+      "t": 667.5625,
+      "event": "autofocus_accepted",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x"
+    },
+    {
+      "t": 670.6583,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": -4e-05,
+      "frames": 24
+    },
+    {
+      "t": 670.6583,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "D06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 673.0125,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_mm": 4e-05,
+      "frames": 20
+    },
+    {
+      "t": 673.0583,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "D06",
+      "magnification": "4x",
+      "focus_score": 1.1764,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_D06_4x_019_qc.png#sha256=05d8a3ed5758a3e9"
+    },
+    {
+      "t": 673.0583,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 675.6917,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_mm": 1e-05,
+      "frames": 20
+    },
+    {
+      "t": 675.7375,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_score": 1.229,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_REF-L21-001_E07_4x_020_qc.png#sha256=597f8fe18620af75"
+    },
+    {
+      "t": 675.7375,
+      "event": "calibration_applied",
+      "mode": "LOADED",
+      "calibration_id": "L17-CAL-2026-10-16-L21-04",
+      "by": "L21 QC-L21-2026-10-16-IMG-009"
+    },
+    {
+      "t": 675.9792,
+      "event": "present_for_unload_accepted",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001"
+    },
+    {
+      "t": 689.9167,
+      "event": "stow_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 693.7833,
+      "event": "plate_removed",
+      "mode": "BUSY",
+      "plate_id": "REF-L21-001"
+    }
+  ]
+}

@@ -21,4 +21,12 @@ assets/fr3/
 assets/r02/*.usda
 assets/r02/r02.urdf
 assets/r02/usd/
+assets/l17/*.usda
+assets/hn/*.usda
+assets/l21/*.usda
+assets/l12/*.usda
+assets/r03/*.usda
 scenes/*.usda
+
+# raw 16-bit microscope images from L17 runs (large; the reports keep their sha256, contact sheets are committed)
+test_reports/**/l17_images*/

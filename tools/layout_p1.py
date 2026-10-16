@@ -55,9 +55,38 @@ RAIL = dict(x0=-0.85, x1=1.75, y=0.78, top=0.965)
 FIXTURES = {
     "TCM01": dict(prim="/World/Cell01/Tooling/AutomaticToolChanger", origin=(0.30, 1.20, 0.0), yaw_deg=0.0,
                   body=(-0.41, 0.41, -0.07, 0.24), dock_pitch=0.15, dock_z=1.12),
+    # passive R01/R02 handover nest on the bench worktop (assets/hn/build_hn.py), seat at 0.96 m
+    "HN": dict(prim="/World/Cell01/Fixtures/HandoverNest_R01_R02", origin=(-1.05, 0.55, 0.92), yaw_deg=0.0,
+               body=(-0.112, 0.112, -0.062, 0.062), on_bench=True),
+    # H2 dock + the docked R03 AMR (assets/r03): the AMR docks heading west along y = -0.28; its carrier nest sits 60 mm
+    # off-centre toward R01, so the carrier seat is at (-1.45, -0.22), where R01's planner finds well-conditioned
+    # approaches (at (-1.40, -0.28) sigma_min was 0.089). The low chassis passes under the bench edge (the cabinet
+    # stays 15 mm south of it). Docking north (the first idea) put the dock into R01's pedestal and the cabinet into
+    # the bench.
+    "H2": dict(prim="/World/Cell01/Stations/H2_AMR_Dock", origin=(-1.415, -0.28, 0.0), yaw_deg=180.0,
+               body=(-0.25, 0.15, -0.19, 0.19), on_bench=True,             # the docked AMR's tall cabinet
+               low_zones={"chassis": (-0.445, 0.445, -0.29, 0.29),          # AMR chassis: below 0.36 m
+                          "dock": (0.20, 0.545, -0.38, 0.38)}),             # V-guides, stop, tower: below 0.55 m
+}
+# Stations served by R02 (top-down with T01 from the rail). L17 keeps its Cell 01 location (1.65, 1.55), front toward
+# the rail; its XY stage presents the plate 0.33 m in front of the station origin (assets/l17/build_l17.py).
+R02_DEVICES = {
+    "L17": dict(prim="/World/Cell01/Stations/L17_BrightFieldImager", origin=(1.65, 1.55), yaw_deg=0.0,
+                body=(-0.22, 0.22, -0.25, 0.25), nest_y=-0.330, seat=0.200, support="plinth",
+                zones={"stage": (-0.10, 0.18, -0.39, -0.25)}),
+    # L12 liquid handler (assets/l12/build_l12.py) on the central bench at its Cell 01 location; plate nest at local
+    # (0, 0.09), seat 52 mm above the worktop (0.972 m); the gantry parks at the west end, clear of R02's approach
+    "L12": dict(prim="/World/Cell01/Stations/L12_LiquidHandler", origin=(0.15, 0.25), yaw_deg=0.0,
+                body=(-0.46, 0.46, -0.23, 0.23), nest_y=0.09, seat=0.052, support="bench", on_bench=True, zones={},
+                base_z=0.92),
+    # L21 QC bench (assets/l21/build_l21.py), moved from (2.25, 1.20) to clear L17 and bring its nests and tool datum
+    # within R02's comfortable reach; reference nest at local (-0.125, 0), QC nest (+0.125, 0), datum (-0.125, 0.17)
+    "L21": dict(prim="/World/Cell01/Stations/L21_QC_Calibration", origin=(2.20, 1.07), yaw_deg=0.0,
+                body=(-0.25, 0.25, -0.08, 0.27), nest_y=0.0, nest_x=-0.125, seat=0.072, support="side_table", zones={},
+                extra_targets={"L21_qc_nest": (0.125, 0.0, 0.072), "L21_tool_datum": (-0.125, 0.17, 0.120 + 0.008)}),
 }
 EXTRA_SITES = {  # frames only for now (no device asset yet)
-    "AMR_dock_carrier": (-1.40, -0.12),
+    "AMR_dock_carrier": (-1.45, -0.22),   # R03 carrier seat docked in H2 (from (-1.40, -0.12): see FIXTURES H2)
     "handover_nest_R01_R02": (-1.05, 0.55),
 }
 
@@ -122,8 +151,20 @@ def main():
         shapes.append((name, "body", rect_poly(d["body"], origin, yaw)))
         for zn, r in d["zones"].items():
             shapes.append((name, zn, rect_poly(r, origin, yaw)))
+    for name, d in R02_DEVICES.items():
+        nest = to_world((d.get("nest_x", 0.0), d["nest_y"]), d["origin"], d["yaw_deg"])
+        base_z = d.get("base_z", NEST_Z - d["seat"])
+        place[name] = dict(prim=d["prim"], origin=[*d["origin"], round(base_z, 4)], yaw_deg=d["yaw_deg"], approach_deg=0.0,
+                           support=d["support"], support_height=round(base_z, 4),
+                           nest=[round(float(nest[0]), 4), round(float(nest[1]), 4), NEST_Z], footprint=list(d["body"]),
+                           served_by="R02")
+        shapes.append((name, "body", rect_poly(d["body"], d["origin"], d["yaw_deg"])))
+        for zn, r in d["zones"].items():
+            shapes.append((name, zn, rect_poly(r, d["origin"], d["yaw_deg"])))
     for name, f in FIXTURES.items():
         shapes.append((name, "body", rect_poly(f["body"], f["origin"], f["yaw_deg"])))
+        for zn, r in f.get("low_zones", {}).items():   # low parts (< 0.6 m): no conflict with R01's arm (>= 0.72 m)
+            shapes.append((name, f"low_{zn}", rect_poly(r, f["origin"], f["yaw_deg"])))   # or with elevated swings
     rail = np.array([(RAIL["x0"] - 0.25, RAIL["y"] - 0.06), (RAIL["x1"] + 0.25, RAIL["y"] - 0.06),
                      (RAIL["x1"] + 0.25, RAIL["y"] + 0.06), (RAIL["x0"] - 0.25, RAIL["y"] + 0.06)])
     shapes.append(("R02", "rail", rail))
@@ -133,18 +174,24 @@ def main():
         if poly[:, 0].min() < x0 + 0.03 or poly[:, 0].max() > x1 - 0.03 or poly[:, 1].min() < y0 + 0.03 or \
            poly[:, 1].max() > y1 - 0.03:
             problems.append(f"{name}/{part} outside the cell walls")
-        if part in ("body", "service_door") and name != "R02" and sat_overlap(poly, bench):
+        on_bench = FIXTURES.get(name, {}).get("on_bench") or R02_DEVICES.get(name, {}).get("on_bench")
+        if part in ("body", "service_door") and name != "R02" and not on_bench and sat_overlap(poly, bench):
             problems.append(f"{name}/{part} overlaps the central bench")
         if circle_hits(poly, R01[:2], ARM_CLEAR_R if part == "body" else PEDESTAL_R):
             problems.append(f"{name}/{part} intrudes on R01's pedestal/base clearance")
         if poly[:, 1].min() < AMR_LANE_Y:
             problems.append(f"{name}/{part} enters the AMR front lane")
+    elevated = ("tray", "door_swing", "service_door", "stage")      # swing / presentation zones at >= 0.77 m
     for i, (na, pa, a) in enumerate(shapes):
         for nb, pb, b in shapes[i + 1:]:
+            if (pa.startswith("low_") and pb in elevated) or (pb.startswith("low_") and pa in elevated):
+                continue
             if na != nb and sat_overlap(a, b):
                 problems.append(f"{na}/{pa} overlaps {nb}/{pb}")
     reach = {}
     for name, p in place.items():
+        if p.get("served_by") == "R02":
+            continue
         tgt = np.array(p["nest"])
         ok, k = rs.serviceable(fr3, R01, tgt, rng)
         reach[name] = dict(serviceable=bool(ok), yaw_coverage=f"{k}/5", dist=round(float(np.hypot(*(tgt - R01)[:2])), 3))
@@ -152,6 +199,17 @@ def main():
             problems.append(f"{name} nest not serviceable by R01 ({k}/5 yaws)")
     reach.update(r02_dock_reach())
     problems += [f"TCM01 {d} not reachable by R02" for d, r in reach.items() if d.startswith("dock_") and not r["ok"]]
+    for name, p in place.items():
+        if p.get("served_by") == "R02":
+            reach[name] = r02_plate_reach(np.array(p["nest"]))
+            if not reach[name].get("ok"):
+                problems.append(f"{name} nest not serviceable by R02 with T01")
+            d = R02_DEVICES[name]
+            for tname, (lx, ly, lz) in d.get("extra_targets", {}).items():
+                xy = to_world((lx, ly), d["origin"], d["yaw_deg"])
+                reach[tname] = r02_plate_reach(np.array([xy[0], xy[1], d.get("base_z", NEST_Z - d["seat"]) + lz]))
+                if not reach[tname].get("ok"):
+                    problems.append(f"{tname} not serviceable by R02 with T01")
     for name, xy in EXTRA_SITES.items():
         ok, k = rs.serviceable(fr3, R01, np.array([*xy, 0.96]), rng)
         reach[name] = dict(serviceable=bool(ok), yaw_coverage=f"{k}/5", dist=round(float(np.hypot(*(np.array(xy) - R01[:2]))), 3))
@@ -161,8 +219,10 @@ def main():
                 for n, f in FIXTURES.items()}
     out = dict(proposal="P1 R01 cluster", adopted="2026-10-15 (user)", r01_base=R01.tolist(), nest_z=NEST_Z,
                stations=place, fixtures=fixtures, r02_rail=RAIL, extra_frames={k: [*v, 0.96] for k, v in EXTRA_SITES.items()}, reach=reach,
-               notes=["R02 rail shift (2.6 m travel, x -0.85..1.75 at y 0.78) is part of P1 but R02 is not built yet",
-                      "supports (side tables, L10 plinth) are provisional layout furniture"],
+               notes=["R02 rail shift (2.6 m travel, x -0.85..1.75 at y 0.78) is part of P1; R02 is built (assets/r02)",
+                      "supports (side tables, L10 and L17 plinths) are provisional layout furniture",
+                      "L17 keeps its Cell 01 location (1.65, 1.55), front toward R02's rail; served by R02 with T01",
+                      "L21 moved from (2.25, 1.20) to (2.20, 1.07) on a 0.90 m side table; served by R02 with T01"],
                problems=problems)
     os.makedirs(os.path.join(ROOT, "scenes"), exist_ok=True)
     with open(os.path.join(ROOT, "scenes", "layout_p1.json"), "w") as f:
@@ -208,6 +268,36 @@ def r02_dock_reach():
     return out
 
 
+def r02_plate_reach(nest):
+    """R02 with T01 serves a plate seat top-down (plate long axis along X, jaws along Y): grasp TCP 6 mm above the
+    seat and the 0.15 m approach above it, joint margin >= 15 deg, best rail position."""
+    sys.path.insert(0, os.path.join(ROOT))
+    from twin.kinematics import UrdfChain
+    urdf = os.path.join(ROOT, "assets/r02/r02.urdf")
+    if not os.path.exists(urdf):
+        return {}
+    ch = UrdfChain(urdf, "rail_base", "tc_robot_half")
+    tool = np.eye(4)
+    tool[2, 3] = 0.016 + 0.155                          # coupler face + T01 TCP
+    down = np.diag([1.0, -1.0, -1.0])
+    base = np.array([RAIL["x0"], RAIL["y"], 0.0])
+    best = dict(ok=False)
+    for rail in np.clip(nest[0] - base[0] + np.array([0.0, -0.10, 0.10, -0.2, 0.2]), 0.02, 2.58):
+        q0 = np.array([rail, math.pi / 2, -1.2, 1.6, -1.97, -math.pi / 2, 0.0])
+        ok, info = True, {}
+        for lift in (0.15, 0.006):
+            q = ch.ik(nest - base + [0, 0, lift], down, q0, active=range(1, 7), tool=tool)
+            good = q is not None and ch.margin(q, range(1, 7)) > math.radians(15)
+            ok &= good
+            if q is not None:
+                q0 = q
+                info = dict(rail_m=round(float(rail), 3), sigma_min=round(ch.sigma_min(q, range(1, 7), tool), 3),
+                            margin_deg=round(math.degrees(ch.margin(q, range(1, 7))), 1))
+        if ok and (not best["ok"] or info["sigma_min"] > best["sigma_min"]):
+            best = dict(ok=True, **info)
+    return best
+
+
 def plot(shapes, place, out):
     import matplotlib
     matplotlib.use("Agg")
@@ -220,7 +310,8 @@ def plot(shapes, place, out):
     ax.add_patch(Circle(R01[:2], 0.65, color="tab:blue", alpha=0.12, label="R01 top-down reach @ 0.97 m"))
     ax.add_patch(Circle(R01[:2], PEDESTAL_R, color="tab:blue", alpha=0.5))
     ax.plot([-0.85, 1.75], [0.78, 0.78], color="tab:orange", lw=4, label="R02 rail travel (P1)")
-    col = {"body": "0.3", "tray": "tab:purple", "door_swing": "tab:red", "service_door": "tab:red", "rail": "tab:orange"}
+    col = {"body": "0.3", "low_dock": "tab:olive", "low_chassis": "tab:olive", "tray": "tab:purple", "stage": "tab:purple", "door_swing": "tab:red", "service_door": "tab:red",
+           "rail": "tab:orange"}
     for name, part, poly in shapes:
         ax.add_patch(Polygon(poly, closed=True, fill=part == "body", alpha=0.35 if part == "body" else 0.9,
                              edgecolor=col[part], facecolor=col[part], lw=1.5, ls="-" if part == "body" else "--"))
@@ -232,12 +323,13 @@ def plot(shapes, place, out):
     for name, xyz in out["extra_frames"].items():
         ax.plot(*xyz[:2], "^", color="tab:green", ms=9)
         ax.annotate(name.replace("_", " "), xyz[:2], textcoords="offset points", xytext=(6, -12), fontsize=8)
-    ax.set_xlim(-3.1, 2.0)
+    ax.set_xlim(-3.1, 2.6)
     ax.set_ylim(-1.3, 2.35)
     ax.set_aspect("equal")
     ax.grid(alpha=0.3)
     ax.legend(loc="lower right", fontsize=8)
-    ax.set_title("Cell 01 layout P1 (adopted 2026-10-15): R01 cluster, R02 rail + tool magazine  -  dashed: trays / door swings")
+    ax.set_title("Cell 01 layout P1 (adopted 2026-10-15): R01 cluster, R02 rail, tool magazine, L17  -  dashed: trays / "
+                 "door swings")
     fig.tight_layout()
     fig.savefig(os.path.join(ROOT, "renders", "cell01_layout_p1.png"), dpi=110)
 

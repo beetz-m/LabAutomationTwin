@@ -1,0 +1,856 @@
+{
+  "component": "L17",
+  "prim": "/World/L17_BrightFieldImager",
+  "events": [
+    {
+      "t": 1.0,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 6.0,
+      "event": "load_plate_refused",
+      "mode": "PRESENTED_EMPTY",
+      "reason": "plate_misseated: seat gaps [None, 11.144, None, 11.144] mm; reseat"
+    },
+    {
+      "t": 6.0,
+      "event": "fault_signal",
+      "mode": "PRESENTED_EMPTY",
+      "fault": "plate_misseated"
+    },
+    {
+      "t": 7.0,
+      "event": "load_plate_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A"
+    },
+    {
+      "t": 11.1667,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "stage_home",
+      "expected": "P-A",
+      "observed": "P-A"
+    },
+    {
+      "t": 11.1667,
+      "event": "plate_loaded",
+      "mode": "BUSY",
+      "plate_id": "P-A"
+    },
+    {
+      "t": 11.25,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "wells": [
+        "B03"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 15.7625,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "B03",
+      "magnification": "10x",
+      "focus_mm": 0.00016,
+      "frames": 34
+    },
+    {
+      "t": 15.8083,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "B03",
+      "magnification": "10x",
+      "focus_score": 0.0852,
+      "valid": true,
+      "raw_image_reference": "evidence://l17/L17_P-A_B03_10x_000.png#sha256=c16cf52310c773e0"
+    },
+    {
+      "t": 16.0,
+      "event": "image_plate_region_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "wells": [
+        "B04",
+        "B05",
+        "B06"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 18.0708,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "B04",
+      "magnification": "10x",
+      "focus_mm": 3e-05,
+      "frames": 20
+    },
+    {
+      "t": 18.1167,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "B04",
+      "magnification": "10x",
+      "focus_score": 0.0852,
+      "valid": true,
+      "raw_image_reference": "evidence://l17/L17_P-A_B04_10x_001.png#sha256=e4ae097fea20d2aa"
+    },
+    {
+      "t": 20.1833,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "B05",
+      "magnification": "10x",
+      "focus_mm": -5e-05,
+      "frames": 20
+    },
+    {
+      "t": 20.2292,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "B05",
+      "magnification": "10x",
+      "focus_score": 0.0752,
+      "valid": true,
+      "raw_image_reference": "evidence://l17/L17_P-A_B05_10x_002.png#sha256=ef2fcb520be978d5"
+    },
+    {
+      "t": 22.2958,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "B06",
+      "magnification": "10x",
+      "focus_mm": 4e-05,
+      "frames": 20
+    },
+    {
+      "t": 22.3417,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "B06",
+      "magnification": "10x",
+      "focus_score": 0.0664,
+      "valid": true,
+      "raw_image_reference": "evidence://l17/L17_P-A_B06_10x_003.png#sha256=a3a1010cc13346b8"
+    },
+    {
+      "t": 22.5,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "wells": [
+        "E07"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "4x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 27.6667,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_mm": -0.0001,
+      "frames": 24
+    },
+    {
+      "t": 27.7125,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "E07",
+      "magnification": "4x",
+      "focus_score": 0.3879,
+      "valid": true,
+      "raw_image_reference": "evidence://l17/L17_P-A_E07_4x_004.png#sha256=41fae456b82cfb19"
+    },
+    {
+      "t": 27.75,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "wells": [
+        "B03"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "('fixed', 0.06003948873829542)"
+    },
+    {
+      "t": 30.525,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "B03",
+      "magnification": "10x",
+      "focus_score": 0.0092,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_P-A_B03_10x_005.png#sha256=0a19cc7d00cc6341"
+    },
+    {
+      "t": 30.75,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A",
+      "wells": [
+        "B03"
+      ],
+      "exposure_ms": 60.0,
+      "magnification": "10x",
+      "focus_policy": "stored"
+    },
+    {
+      "t": 30.9542,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "B03",
+      "magnification": "10x",
+      "focus_score": -0.0184,
+      "valid": false,
+      "raw_image_reference": "evidence://l17/L17_P-A_B03_10x_006.png#sha256=5ec56002d4d8320a"
+    },
+    {
+      "t": 31.0,
+      "event": "image_well_refused",
+      "mode": "LOADED",
+      "reason": "calibration_expired: L17-CAL-2026-10-16-SIM valid until 2026-11-15, today 2026-12-01; run L21 QC first"
+    },
+    {
+      "t": 31.0,
+      "event": "fault_signal",
+      "mode": "LOADED",
+      "fault": "calibration_expired"
+    },
+    {
+      "t": 31.2,
+      "event": "present_for_unload_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-A"
+    },
+    {
+      "t": 36.2,
+      "event": "stow_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 40.0667,
+      "event": "plate_removed",
+      "mode": "BUSY",
+      "plate_id": "P-A"
+    },
+    {
+      "t": 40.2,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 45.2,
+      "event": "load_plate_accepted",
+      "mode": "BUSY",
+      "plate_id": "P-X"
+    },
+    {
+      "t": 49.3667,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "stage_home",
+      "expected": "P-X",
+      "observed": "P-B"
+    },
+    {
+      "t": 49.3667,
+      "event": "fault",
+      "mode": "FAULT",
+      "fault": "plate_identity_mismatch",
+      "detail": "expected P-X, read 'P-B'; plate held in the chamber; quarantine recommended"
+    },
+    {
+      "t": 49.45,
+      "event": "fault_handled",
+      "mode": "FAULT",
+      "fault": "plate_identity_mismatch",
+      "route": "present_for_removal",
+      "reason": "identity unresolved: route to H4"
+    },
+    {
+      "t": 49.45,
+      "event": "present_for_removal_accepted",
+      "mode": "BUSY"
+    }
+  ],
+  "autofocus_runs": [
+    {
+      "t": 14.454,
+      "plate_id": "P-A",
+      "well": "B03",
+      "magnification": "10x",
+      "seeded": false,
+      "ok": true,
+      "focus_mm": 0.00016,
+      "best_score": 0.0857,
+      "frames": 34,
+      "curve": [
+        [
+          -0.3,
+          0.0012
+        ],
+        [
+          -0.27,
+          0.0009
+        ],
+        [
+          -0.24,
+          0.0007
+        ],
+        [
+          -0.21,
+          0.0007
+        ],
+        [
+          -0.18,
+          0.001
+        ],
+        [
+          -0.15,
+          0.0016
+        ],
+        [
+          -0.12,
+          0.0019
+        ],
+        [
+          -0.09,
+          0.0032
+        ],
+        [
+          -0.06,
+          0.0087
+        ],
+        [
+          -0.03,
+          0.0288
+        ],
+        [
+          -0.0,
+          0.0847
+        ],
+        [
+          0.03,
+          0.0291
+        ],
+        [
+          0.06,
+          0.0082
+        ],
+        [
+          0.09,
+          0.0031
+        ],
+        [
+          0.12,
+          0.0018
+        ],
+        [
+          0.15,
+          0.0009
+        ],
+        [
+          0.18,
+          0.0006
+        ],
+        [
+          0.21,
+          0.0016
+        ],
+        [
+          0.24,
+          0.0012
+        ],
+        [
+          0.27,
+          0.001
+        ],
+        [
+          0.3,
+          0.0008
+        ],
+        [
+          -0.03,
+          0.0287
+        ],
+        [
+          -0.025,
+          0.0354
+        ],
+        [
+          -0.02,
+          0.0441
+        ],
+        [
+          -0.015,
+          0.054
+        ],
+        [
+          -0.01,
+          0.0675
+        ],
+        [
+          -0.005,
+          0.0799
+        ],
+        [
+          -0.0,
+          0.0857
+        ],
+        [
+          0.005,
+          0.0794
+        ],
+        [
+          0.01,
+          0.0682
+        ],
+        [
+          0.015,
+          0.0556
+        ],
+        [
+          0.02,
+          0.0438
+        ],
+        [
+          0.025,
+          0.0357
+        ],
+        [
+          0.03,
+          0.029
+        ]
+      ]
+    },
+    {
+      "t": 16.975,
+      "plate_id": "P-A",
+      "well": "B04",
+      "magnification": "10x",
+      "seeded": true,
+      "ok": true,
+      "focus_mm": 3e-05,
+      "best_score": 0.0855,
+      "frames": 20,
+      "curve": [
+        [
+          -0.0898,
+          0.0032
+        ],
+        [
+          -0.0598,
+          0.0088
+        ],
+        [
+          -0.0298,
+          0.0292
+        ],
+        [
+          0.0002,
+          0.0855
+        ],
+        [
+          0.0302,
+          0.0281
+        ],
+        [
+          0.0602,
+          0.0084
+        ],
+        [
+          0.0902,
+          0.0028
+        ],
+        [
+          -0.0299,
+          0.0279
+        ],
+        [
+          -0.0249,
+          0.0357
+        ],
+        [
+          -0.0199,
+          0.0439
+        ],
+        [
+          -0.0149,
+          0.0547
+        ],
+        [
+          -0.0099,
+          0.0676
+        ],
+        [
+          -0.0049,
+          0.079
+        ],
+        [
+          0.0001,
+          0.0853
+        ],
+        [
+          0.0051,
+          0.0788
+        ],
+        [
+          0.0101,
+          0.0664
+        ],
+        [
+          0.0151,
+          0.054
+        ],
+        [
+          0.0201,
+          0.0441
+        ],
+        [
+          0.0251,
+          0.0348
+        ],
+        [
+          0.0301,
+          0.0277
+        ]
+      ]
+    },
+    {
+      "t": 19.087,
+      "plate_id": "P-A",
+      "well": "B05",
+      "magnification": "10x",
+      "seeded": true,
+      "ok": true,
+      "focus_mm": -5e-05,
+      "best_score": 0.0762,
+      "frames": 20,
+      "curve": [
+        [
+          -0.09,
+          0.004
+        ],
+        [
+          -0.06,
+          0.0091
+        ],
+        [
+          -0.03,
+          0.0273
+        ],
+        [
+          0.0,
+          0.0748
+        ],
+        [
+          0.03,
+          0.0268
+        ],
+        [
+          0.06,
+          0.0092
+        ],
+        [
+          0.09,
+          0.0042
+        ],
+        [
+          -0.03,
+          0.0273
+        ],
+        [
+          -0.025,
+          0.0338
+        ],
+        [
+          -0.02,
+          0.0414
+        ],
+        [
+          -0.015,
+          0.0508
+        ],
+        [
+          -0.01,
+          0.0603
+        ],
+        [
+          -0.005,
+          0.071
+        ],
+        [
+          0.0,
+          0.0762
+        ],
+        [
+          0.005,
+          0.0709
+        ],
+        [
+          0.01,
+          0.0602
+        ],
+        [
+          0.015,
+          0.0503
+        ],
+        [
+          0.02,
+          0.0415
+        ],
+        [
+          0.025,
+          0.0332
+        ],
+        [
+          0.03,
+          0.0268
+        ]
+      ]
+    },
+    {
+      "t": 21.2,
+      "plate_id": "P-A",
+      "well": "B06",
+      "magnification": "10x",
+      "seeded": true,
+      "ok": true,
+      "focus_mm": 4e-05,
+      "best_score": 0.0673,
+      "frames": 20,
+      "curve": [
+        [
+          -0.0901,
+          0.0033
+        ],
+        [
+          -0.0601,
+          0.0078
+        ],
+        [
+          -0.0301,
+          0.0238
+        ],
+        [
+          -0.0001,
+          0.0673
+        ],
+        [
+          0.0299,
+          0.0234
+        ],
+        [
+          0.0599,
+          0.0077
+        ],
+        [
+          0.0899,
+          0.0038
+        ],
+        [
+          -0.0301,
+          0.0234
+        ],
+        [
+          -0.0251,
+          0.0289
+        ],
+        [
+          -0.0201,
+          0.0355
+        ],
+        [
+          -0.0151,
+          0.0441
+        ],
+        [
+          -0.0101,
+          0.0527
+        ],
+        [
+          -0.0051,
+          0.0615
+        ],
+        [
+          -0.0001,
+          0.0666
+        ],
+        [
+          0.0049,
+          0.0623
+        ],
+        [
+          0.0099,
+          0.0538
+        ],
+        [
+          0.0149,
+          0.044
+        ],
+        [
+          0.0199,
+          0.036
+        ],
+        [
+          0.0249,
+          0.0297
+        ],
+        [
+          0.0299,
+          0.0242
+        ]
+      ]
+    },
+    {
+      "t": 26.25,
+      "plate_id": "P-A",
+      "well": "E07",
+      "magnification": "4x",
+      "seeded": false,
+      "ok": true,
+      "focus_mm": -0.0001,
+      "best_score": 0.3887,
+      "frames": 24,
+      "curve": [
+        [
+          -0.3,
+          0.0085
+        ],
+        [
+          -0.24,
+          0.016
+        ],
+        [
+          -0.18,
+          0.0353
+        ],
+        [
+          -0.12,
+          0.0858
+        ],
+        [
+          -0.06,
+          0.2147
+        ],
+        [
+          -0.0,
+          0.3881
+        ],
+        [
+          0.06,
+          0.2158
+        ],
+        [
+          0.12,
+          0.0861
+        ],
+        [
+          0.18,
+          0.0345
+        ],
+        [
+          0.24,
+          0.0155
+        ],
+        [
+          0.3,
+          0.0078
+        ],
+        [
+          -0.06,
+          0.2146
+        ],
+        [
+          -0.05,
+          0.2495
+        ],
+        [
+          -0.04,
+          0.2845
+        ],
+        [
+          -0.03,
+          0.3207
+        ],
+        [
+          -0.02,
+          0.3556
+        ],
+        [
+          -0.01,
+          0.3797
+        ],
+        [
+          -0.0,
+          0.3887
+        ],
+        [
+          0.01,
+          0.379
+        ],
+        [
+          0.02,
+          0.3539
+        ],
+        [
+          0.03,
+          0.3213
+        ],
+        [
+          0.04,
+          0.2841
+        ],
+        [
+          0.05,
+          0.2479
+        ],
+        [
+          0.06,
+          0.2155
+        ]
+      ]
+    }
+  ],
+  "imaging_history": {
+    "P-A": {
+      "B03": {
+        "exposures": 37,
+        "light_dose_rel_ms": 960.0,
+        "autofocus_frames": 34
+      },
+      "B04": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "B05": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "B06": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "E07": {
+        "exposures": 25,
+        "light_dose_rel_ms": 625.0,
+        "autofocus_frames": 24
+      }
+    }
+  }
+}

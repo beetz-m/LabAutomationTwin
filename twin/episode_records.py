@@ -100,8 +100,8 @@ def build_record(sch: Schemas, episode_id: str, d: dict) -> dict:
                      | (set() if commit else {"semantic_event_commit"}))
     cv.update(commit_semantic_event=commit, failure_reasons=reasons, blocked_paths=blocked)
 
-    route = COMMIT_ROUTE if commit else d.get("failure_route") or "human_escalation"
-    target = "CultureSDT" if commit else d.get("failure_target") or "human"
+    route = d.get("commit_route", COMMIT_ROUTE) if commit else d.get("failure_route") or "human_escalation"
+    target = d.get("commit_target", "CultureSDT") if commit else d.get("failure_target") or "human"
     checks = {
         "grounded": not unresolved and not missing,
         "semantic_valid": not failed,
@@ -212,6 +212,15 @@ def build_all(raw: dict, sch: Schemas | None = None) -> dict:
     for ep in raw["episodes"]:
         recs = []
         for d in ep["designators"]:
+            if d["action"] in ("image", "dose"):   # L17 / L12: Cell 01's own validity and record builders
+                rec = (l17_image_record(d["acquisition"], ep["episode_id"], sch) if d["action"] == "image"
+                       else l12_dose_record(d["dose"], ep["episode_id"], sch))
+                rec["designator_id"] = d["id"]
+                rec["provenance"] = {"source": "LabAutomationTwin Isaac Sim twin (simulated devices)",
+                                     "builder": "Cell 01 physical_workflow." + (
+                                         "build_l17_neem_record" if d["action"] == "image" else "build_l12_neem_record")}
+                recs.append(rec)
+                continue
             rec = build_record(sch, ep["episode_id"], d)
             q = d.get("quarantine")
             if q:
@@ -224,6 +233,64 @@ def build_all(raw: dict, sch: Schemas | None = None) -> dict:
                                             "records_checked": len(recs),
                                             "pass": not any(errors.values())}})
     return out
+
+
+def l17_image_record(acq: dict, episode_id: str, schemas: "Schemas | None" = None) -> dict:
+    """NEEM record for one L17 acquisition (twin/l17_controller.py record), built by Cell 01's own L17 helpers.
+
+    Grounding comes from the SDT/USD binding YAML; validity from physical_workflow.validate_l17_image, which needs
+    the five image monitors the controller measured (identity, seating, focus, illumination incl. histogram,
+    calibration) and the raw-image reference.
+    """
+    pw = schemas.pw if schemas else _load_physical_workflow(CELL01_ROOT)
+    root = schemas.root if schemas else CELL01_ROOT
+    g = pw.load_sdt_grounding(root, "L17_BrightFieldImager")
+    d = pw.L17ImageDesignator(
+        plate_id=acq["plate_id"], well_id_or_region=acq["well_id"], imager_component_id=g.component_id,
+        plate_stage_frame=g.require_frame("plate_stage"), objective_frame=g.require_frame("objective_frame"),
+        camera_frame=g.require_frame("camera_frame"), measurement_binding_id=acq["measurement_binding_id"],
+        exposure_ms=float(acq["exposure_ms"]), magnification=acq["magnification"])
+    mons = [pw.MonitorResult(m["name"], bool(m["passed"]), m["observation"], m.get("value")) for m in acq["monitors"]]
+    verdict = pw.validate_l17_image(d, mons, command_completed=acq["command_completed"],
+                                    raw_image_reference=acq["raw_image_reference"])
+    rec = pw.build_l17_neem_record(d, mons, verdict, episode_id=episode_id, timestamp_s=acq["t"],
+                                   raw_image_reference=acq["raw_image_reference"],
+                                   command_completed=acq["command_completed"])
+    rec["imaging_history"] = acq.get("imaging_history")
+    rec["evidence"] = {"raw_image_reference": acq["raw_image_reference"],
+                       "acquisition_parameters": {k: acq.get(k) for k in ("exposure_ms", "magnification", "led_level",
+                                                                          "focus_policy", "focus_score", "histogram")},
+                       "measurement_binding_id": acq["measurement_binding_id"],
+                       "validity_verdict": "admitted" if verdict.commit_semantic_event else "blocked",
+                       "timestamps": {"acquired": acq["t"]}}
+    return rec
+
+def l12_dose_record(dose: dict, episode_id: str, schemas: "Schemas | None" = None) -> dict:
+    """NEEM record for one L12 dose (twin/l12_controller.py record), built by Cell 01's own L12 helpers:
+    build_l12_dose_designator (grounding from the SDT/USD binding YAML), validate_l12_dose (with the dose designator
+    schema and the monitor templates) and build_l12_neem_record."""
+    pw = schemas.pw if schemas else _load_physical_workflow(CELL01_ROOT)
+    root = schemas.root if schemas else CELL01_ROOT
+    g = pw.load_sdt_grounding(root, "L12_LiquidHandler")
+    schema = pw.load_designator_schema(root, "dose")
+    templates = pw.load_monitor_templates(root)
+    d = pw.build_l12_dose_designator(
+        g, plate_id=dose["plate_id"], well_id=dose["well_id"], reagent_id=dose["reagent_id"],
+        reagent_lot=dose["reagent_lot"], tip_id=dose["tip_id"], volume_uL=float(dose["volume_uL"]),
+        dispense_height_mm=float(dose["dispense_height_mm"]), dispense_rate_uL_s=float(dose["dispense_rate_uL_s"]),
+        intended_effect=dose["intended_effect"])
+    mons = [pw.MonitorResult(m["name"], bool(m["passed"]), m["observation"], m.get("value")) for m in dose["monitors"]]
+    verdict = pw.validate_l12_dose(d, mons, command_completed=dose["command_completed"], schema=schema,
+                                   monitor_templates=templates)
+    rec = pw.build_l12_neem_record(d, mons, verdict, episode_id=episode_id, timestamp_s=dose["t"],
+                                   command_completed=dose["command_completed"], required_monitors=tuple(schema["monitors"]))
+    ev = dose.get("evidence", {})
+    rec["evidence"] = {"reagent_lot": dose["reagent_lot"], "tip_id": dose["tip_id"], "volume_commanded_uL": dose["volume_uL"],
+                       "volume_inferred_from_pressure_uL": dose.get("volume_inferred_uL"),
+                       "dispense_height_mm": dose["dispense_height_mm"], "dispense_rate_uL_s": dose["dispense_rate_uL_s"],
+                       "pressure_trace": {k: ev.get(k) for k in ("aspirate", "dispense")}, "well_identity": dose["well_id"],
+                       "aborted": dose.get("aborted"), "timestamps": {"start": ev.get("t_start"), "end": dose["t"]}}
+    return rec
 
 
 def main(argv):
@@ -242,3 +309,4 @@ def main(argv):
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv))
+

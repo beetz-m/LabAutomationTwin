@@ -2,14 +2,14 @@
 
   S  structure: 7 joints (rail + 6), coupler lock, 5 registered tools, every dock reads occupied, binding frames
   R1 rail commands refused before homing (rail_not_homed); R2 homing, rail move residual, soft-limit refusal
-  R3 reach plan (URDF IK, elbow-up, joint margin) for the service frames: R01/R02 handover nest, L12 plate frame,
-     L17 plate load frame, L21 reference plate frame (top-down with T01)
+  R3 reach plan (URDF IK, elbow-up, joint margin) for the service frames: R01/R02 handover nest, L12 plate nest,
+     L17 plate load frame (presented stage), L21 QC nest (top-down with T01)
   T1 change_tool T05: alignment, lock verified, ID read through the coupler, tool follows, dock reads empty
   T2 store_tool T05: tool at rest in its dock, dock occupied
   T3 misaligned approach (2.5 mm belief error): refused before locking (partial_lock), T04 undisturbed
   T4 swapped tools (T03 sits in dock T02): change_tool T02 refused as wrong_tool after the ID read, T03 left docked
   T5 contamination: T03 (liquid_contact) refused for a clean task
-  P1 plate transfer with T01: pick at the handover nest, carry along the whole rail, place on L21's deck, store T01
+  P1 plate transfer with T01: pick from the handover nest, carry along the whole rail, place in L21's QC nest, store T01
 
 Writes test_reports/r02_report.json; exit 1 on any failure.
 Usage: env_isaacsim/bin/python scripts/test_r02.py
@@ -39,7 +39,7 @@ app.update()
 
 import numpy as np  # noqa: E402
 import omni.usd  # noqa: E402
-from pxr import Gf, PhysxSchema, UsdGeom, UsdPhysics  # noqa: E402
+from pxr import Gf, PhysxSchema, UsdGeom  # noqa: E402
 
 from twin.r01_rig import add_plate  # noqa: E402
 from twin.r02_controller import R02Controller, ToolChanger  # noqa: E402
@@ -68,15 +68,11 @@ px.CreateSolverTypeAttr("TGS")
 with open(os.path.join(ROOT, "scenes/layout_p1.json")) as f:
     LAYOUT = json.load(f)
 HN = np.array(LAYOUT["extra_frames"]["handover_nest_R01_R02"])           # (-1.05, 0.55, 0.96)
-L21_DECK = np.array([2.25, 1.20, 0.97])                                    # L21 reference plate frame, on the deck top
+_xc = UsdGeom.XformCache()
+L21_DECK = np.array(_xc.GetLocalToWorldTransform(stage.GetPrimAtPath(                 # L21 QC nest seat
+    "/World/Cell01/Stations/L21_QC_Calibration/qc_nest_frame")).ExtractTranslation())
 
-# test fixtures: plate on a stand at the handover nest; tools T02 and T03 swapped in their docks (T4)
-stand = UsdGeom.Xform.Define(stage, "/World/TestFixtures/HNStand")
-stand.AddTranslateOp().Set(Gf.Vec3d(HN[0], HN[1], (HN[2] + 0.92) / 2))
-c = UsdGeom.Cube.Define(stage, "/World/TestFixtures/HNStand/Box")
-c.CreateSizeAttr(1.0)
-c.AddScaleOp().Set(Gf.Vec3f(0.14, 0.07, float(HN[2] - 0.92)))
-UsdPhysics.CollisionAPI.Apply(c.GetPrim())
+# test fixtures: plate in the handover nest; tools T02 and T03 swapped in their docks (T4)
 add_plate(stage, "/World/TestFixtures/Plate", HN + [0, 0, 0.0005], 0.0, barcode="Plate_R02_T1")
 PhysxSchema.PhysxRigidBodyAPI.Apply(stage.GetPrimAtPath("/World/TestFixtures/Plate")).CreateSleepThresholdAttr(0.0)
 for a, b in (("T02", "T03"), ("T03", "T02")):
@@ -118,9 +114,11 @@ check("R2 homing, rail move residual, soft-limit refusal", ok_h and ok_m and not
 # ---------------------------------------------------------------- reach plan
 plans = {}
 for name, p in (("HN handover nest", HN + [0, 0, 0.006]),
-                ("L12 experiment_plate_frame", np.array([0.15, 0.10, 1.06 + 0.006])),
-                ("L17 plate_load_frame", np.array([1.65, 1.55, 0.94 + 0.006])),
-                ("L21 reference plate (deck top)", L21_DECK + [0, 0, 0.006])):
+                ("L12 plate_nest", np.array(_xc.GetLocalToWorldTransform(stage.GetPrimAtPath(
+                    "/World/Cell01/Stations/L12_LiquidHandler/plate_nest")).ExtractTranslation()) + [0, 0, 0.006]),
+                ("L17 plate_load_frame", np.array(_xc.GetLocalToWorldTransform(stage.GetPrimAtPath(
+                    "/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame")).ExtractTranslation()) + [0, 0, 0.006]),
+                ("L21 QC nest", L21_DECK + [0, 0, 0.006])):
     side = 1.0 if p[1] > rig.base[1] else -1.0
     rail = float(np.clip(p[0] - rig.base[0], 0.02, 2.58))
     q = rig.solve(p, Rdown(0), rig.carry(rail, side=side), rail=rail, extra=0.155)
@@ -182,7 +180,7 @@ if ok_t:
                             "rail_m": round(float(rig.q()[0]), 3)}
     info["store_T01"] = tcm.store_tool()
 off = info.get("plate_on_L21", {}).get("offset_mm", [99, 99, 99])
-check("P1 T01 plate transfer HN -> rail -> L21 deck, T01 stored", ok_t and info["grasp"]["lifted_mm"] > 100
+check("P1 T01 plate transfer HN -> rail -> L21 QC nest, T01 stored", ok_t and info["grasp"]["lifted_mm"] > 100
       and math.hypot(off[0], off[1]) < 5.0 and abs(off[2]) < 1.5 and info["plate_on_L21"]["tilt_deg"] < 1.0
       and info["store_T01"][0], **info)
 

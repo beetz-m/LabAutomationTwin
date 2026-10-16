@@ -8,6 +8,11 @@ $CAD assets/h4/build_h4.py                # H4 + labware/plate_sbs96.usda
 $CAD assets/gripper/build_plate_gripper.py
 $CAD assets/l09/build_l09.py
 $CAD assets/l10/build_l10.py
+$CAD assets/hn/build_hn.py                 # R01/R02 handover nest (passive SBS nest)
+$CAD assets/l12/build_l12.py               # L12 liquid handler + tip
+$CAD assets/r03/build_r03.py               # R03 AMR + H2 dock
+$CAD assets/l21/build_l21.py               # L21 QC bench (reference + QC nests, light-barrier tool datum)
+$CAD assets/l17/build_l17.py               # L17 bright-field imager (load stage, focus, turret, camera)
 $CAD tools/make_fr3_urdf.py               # reads the Cell 01 kit's franka_description in place
 OMNI_KIT_ACCEPT_EULA=YES $ISAAC scripts/import_fr3.py
 $CAD tools/make_r02_urdf.py               # R02 = rail + UR5e (Cell 01 kit's ur_description, read in place) + coupler

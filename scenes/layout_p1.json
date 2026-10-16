@@ -76,6 +76,78 @@
         -0.169,
         0.142
       ]
+    },
+    "L17": {
+      "prim": "/World/Cell01/Stations/L17_BrightFieldImager",
+      "origin": [
+        1.65,
+        1.55,
+        0.772
+      ],
+      "yaw_deg": 0.0,
+      "approach_deg": 0.0,
+      "support": "plinth",
+      "support_height": 0.772,
+      "nest": [
+        1.65,
+        1.22,
+        0.972
+      ],
+      "footprint": [
+        -0.22,
+        0.22,
+        -0.25,
+        0.25
+      ],
+      "served_by": "R02"
+    },
+    "L12": {
+      "prim": "/World/Cell01/Stations/L12_LiquidHandler",
+      "origin": [
+        0.15,
+        0.25,
+        0.92
+      ],
+      "yaw_deg": 0.0,
+      "approach_deg": 0.0,
+      "support": "bench",
+      "support_height": 0.92,
+      "nest": [
+        0.15,
+        0.34,
+        0.972
+      ],
+      "footprint": [
+        -0.46,
+        0.46,
+        -0.23,
+        0.23
+      ],
+      "served_by": "R02"
+    },
+    "L21": {
+      "prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "origin": [
+        2.2,
+        1.07,
+        0.9
+      ],
+      "yaw_deg": 0.0,
+      "approach_deg": 0.0,
+      "support": "side_table",
+      "support_height": 0.9,
+      "nest": [
+        2.075,
+        1.07,
+        0.972
+      ],
+      "footprint": [
+        -0.25,
+        0.25,
+        -0.08,
+        0.27
+      ],
+      "served_by": "R02"
     }
   },
   "fixtures": {
@@ -93,6 +165,36 @@
         -0.07,
         0.24
       ]
+    },
+    "HN": {
+      "prim": "/World/Cell01/Fixtures/HandoverNest_R01_R02",
+      "origin": [
+        -1.05,
+        0.55,
+        0.92
+      ],
+      "yaw_deg": 0.0,
+      "footprint": [
+        -0.112,
+        0.112,
+        -0.062,
+        0.062
+      ]
+    },
+    "H2": {
+      "prim": "/World/Cell01/Stations/H2_AMR_Dock",
+      "origin": [
+        -1.415,
+        -0.28,
+        0.0
+      ],
+      "yaw_deg": 180.0,
+      "footprint": [
+        -0.25,
+        0.15,
+        -0.19,
+        0.19
+      ]
     }
   },
   "r02_rail": {
@@ -103,8 +205,8 @@
   },
   "extra_frames": {
     "AMR_dock_carrier": [
-      -1.4,
-      -0.12,
+      -1.45,
+      -0.22,
       0.96
     ],
     "handover_nest_R01_R02": [
@@ -159,10 +261,40 @@
       "sigma_min": 0.208,
       "margin_deg": 44.2
     },
+    "L17": {
+      "ok": true,
+      "rail_m": 2.3,
+      "sigma_min": 0.238,
+      "margin_deg": 54.6
+    },
+    "L12": {
+      "ok": true,
+      "rail_m": 0.8,
+      "sigma_min": 0.245,
+      "margin_deg": 54.6
+    },
+    "L21": {
+      "ok": true,
+      "rail_m": 2.58,
+      "sigma_min": 0.227,
+      "margin_deg": 49.5
+    },
+    "L21_qc_nest": {
+      "ok": true,
+      "rail_m": 2.58,
+      "sigma_min": 0.22,
+      "margin_deg": 85.7
+    },
+    "L21_tool_datum": {
+      "ok": true,
+      "rail_m": 2.58,
+      "sigma_min": 0.237,
+      "margin_deg": 72.3
+    },
     "AMR_dock_carrier": {
       "serviceable": true,
       "yaw_coverage": "5/5",
-      "dist": 0.493
+      "dist": 0.579
     },
     "handover_nest_R01_R02": {
       "serviceable": true,
@@ -171,8 +303,10 @@
     }
   },
   "notes": [
-    "R02 rail shift (2.6 m travel, x -0.85..1.75 at y 0.78) is part of P1 but R02 is not built yet",
-    "supports (side tables, L10 plinth) are provisional layout furniture"
+    "R02 rail shift (2.6 m travel, x -0.85..1.75 at y 0.78) is part of P1; R02 is built (assets/r02)",
+    "supports (side tables, L10 and L17 plinths) are provisional layout furniture",
+    "L17 keeps its Cell 01 location (1.65, 1.55), front toward R02's rail; served by R02 with T01",
+    "L21 moved from (2.25, 1.20) to (2.20, 1.07) on a 0.90 m side table; served by R02 with T01"
   ],
   "problems": []
 }

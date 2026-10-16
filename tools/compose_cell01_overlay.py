@@ -13,10 +13,13 @@ scene and adds overrides only:
        * H4, L09 and L10 twins (assets/*/) referenced onto their Cell 01 prims, each with its transfer nest
          0.56-0.60 m from R01 and its robot side facing R01; the placeholder Housing cubes are deactivated;
        * provisional supports (side tables, an L10 plinth) put every transfer nest at 0.972 m;
-       * R02's rail shifted west to x -0.85..1.75 at y 0.78 (2.6 m, D004); L21 moved to (2.25, 1.20);
+       * R02's rail shifted west to x -0.85..1.75 at y 0.78 (2.6 m, D004);
        * layout frames for the AMR carrier dock and the R01/R02 handover nest on the bench;
        * the R02 tool magazine TCM01 with tools T01-T05 (assets/r02/tooling.usda) on the Cell 01 tool-changer prim;
-       * a collider on the L21 deck placeholder (it has none in Cell 01; R02 places plates on it).
+       * the L17 imager twin (assets/l17/) on its Cell 01 prim at its Cell 01 location, on a provisional plinth,
+         its load stage presenting toward R02's rail;
+       * the L21 QC bench twin (assets/l21/) at (2.20, 1.07) on a side table, replacing the placeholder deck (which
+         has no collider in Cell 01).
   R02 itself (rail + UR5e, assets/r02/) is added at runtime by the scripts that use it (twin/r02_rig.py), like R01.
 
 Run with the CAD venv:  env_cad/bin/python tools/compose_cell01_overlay.py   (after tools/layout_p1.py)
@@ -36,10 +39,13 @@ OUT = os.path.join(ROOT, "scenes", "cell01_twin.usda")
 LAYOUT = os.path.join(ROOT, "scenes", "layout_p1.json")
 R01 = "/World/Cell01/Robots/R01_FR3"
 ASSETS = {"H4": "assets/h4/h4.usda", "L09": "assets/l09/l09.usda", "L10": "assets/l10/l10.usda",
-          "TCM01": "assets/r02/tooling.usda"}
-NEST_FRAME = {"H4": "transfer_nest", "L09": "transfer_nest", "L10": "transfer_station"}
+          "L12": "assets/l12/l12.usda", "L17": "assets/l17/l17.usda", "L21": "assets/l21/l21.usda", "TCM01": "assets/r02/tooling.usda", "HN": "assets/hn/hn.usda",
+          "H2": "assets/r03/h2_dock.usda", "R03": "assets/r03/r03.usda"}
+R03 = "/World/Cell01/Robots/R03_SampleAMR"
+NEST_FRAME = {"H4": "transfer_nest", "L09": "transfer_nest", "L10": "transfer_station", "L17": "plate_load_frame",
+              "L12": "plate_nest",
+              "L21": "reference_plate_frame"}
 RAIL = dict(x0=-0.85, x1=1.75, y=0.78, z=0.92)
-L21_XY = (2.25, 1.20)
 DECISION = ("2026-10-15 (user): layout P1 'R01 cluster' adopted (tools/reachability_study.py, tools/layout_p1.py); "
             "deviates from floor plan v0.3. Pending a DECISIONS.md entry in Cell 01 (proposals/cell01/README.md).")
 
@@ -104,8 +110,11 @@ def main():
         set_pose(prim, s["origin"], s["yaw_deg"])
         prim.CreateAttribute("sdt:bindingStatus", Sdf.ValueTypeNames.String).Set("articulated_v1")
         prim.CreateAttribute("sdt:placementDecision", Sdf.ValueTypeNames.String, custom=True).Set(DECISION)
-        if src.GetPrimAtPath(s["prim"] + "/Housing"):
-            st.OverridePrim(s["prim"] + "/Housing").SetActive(False)
+        for placeholder in ("Housing", "Deck"):
+            if src.GetPrimAtPath(f"{s['prim']}/{placeholder}"):
+                st.OverridePrim(f"{s['prim']}/{placeholder}").SetActive(False)
+        if s["support"] == "bench":                 # stands on the central bench worktop: no support
+            continue
         x0, x1, y0, y1 = s["footprint"]
         h = s["support_height"]
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
@@ -116,27 +125,33 @@ def main():
         sup.CreateAttribute("sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(
             f"provisional {s['support']} (layout P1), top at {h:.3f} m so the transfer nest is at {lay['nest_z']} m")
 
-    # fixtures: the R02 tool magazine
+    # fixtures: the R02 tool magazine and the R01/R02 handover nest (not Cell 01 components: defined here)
     for name, fx in lay.get("fixtures", {}).items():
-        prim = st.OverridePrim(fx["prim"])
+        prim = st.OverridePrim(fx["prim"]) if src.GetPrimAtPath(fx["prim"]) else UsdGeom.Xform.Define(st, fx["prim"]).GetPrim()
         prim.GetReferences().AddReference(os.path.relpath(os.path.join(ROOT, ASSETS[name]), os.path.dirname(OUT)))
         set_pose(prim, fx["origin"], fx["yaw_deg"])
-        prim.CreateAttribute("sdt:bindingStatus", Sdf.ValueTypeNames.String).Set("proxy_v1")
+        prim.CreateAttribute("sdt:bindingStatus", Sdf.ValueTypeNames.String).Set("static_v1" if name == "H2" else "proxy_v1")
         prim.CreateAttribute("sdt:placementDecision", Sdf.ValueTypeNames.String, custom=True).Set(
-            DECISION + " Tool magazine placed with R02 (layout P1 amendment, 2026-10-15).")
+            DECISION + {"TCM01": " Tool magazine placed with R02 (layout P1 amendment, 2026-10-15).",
+                        "HN": " Handover nest at the P1 handover site (2026-10-16).",
+                        "H2": " H2 dock: AMR docks heading west, carrier seat at the AMR dock site (2026-10-16)."}[name])
 
-    # R02 rail (placeholder geometry, replaced at runtime when R02 is added) and L21 (placeholder deck)
+    # R03 AMR: its map frame is the docked pose in H2 (shared with the dock); the placeholder body is deactivated
+    h2 = lay["fixtures"]["H2"]
+    r03 = st.OverridePrim(R03)
+    r03.GetReferences().AddReference(os.path.relpath(os.path.join(ROOT, ASSETS["R03"]), os.path.dirname(OUT)))
+    set_pose(r03, h2["origin"], h2["yaw_deg"])
+    r03.CreateAttribute("sdt:bindingStatus", Sdf.ValueTypeNames.String).Set("articulated_v1")
+    r03.CreateAttribute("sdt:placementDecision", Sdf.ValueTypeNames.String, custom=True).Set(
+        DECISION + " R03 map frame = docked pose in H2 (2026-10-16).")
+    if src.GetPrimAtPath(f"{R03}/Body"):
+        st.OverridePrim(f"{R03}/Body").SetActive(False)
+
+    # R02 rail (placeholder geometry, replaced at runtime when R02 is added)
     rail = st.OverridePrim("/World/Cell01/Robots/R02_RailSystem/LinearRail")
     set_pose(rail, ((RAIL["x0"] + RAIL["x1"]) / 2, RAIL["y"], RAIL["z"]))
     st.OverridePrim("/World/Cell01/Robots/R02_RailSystem/LinearRail/Rail").GetAttribute("xformOp:scale").Set(
         Gf.Vec3f(RAIL["x1"] - RAIL["x0"], 0.11, 0.09))
-    l21 = st.OverridePrim("/World/Cell01/Stations/L21_QC_Calibration")
-    set_pose(l21, (*L21_XY, 0.94))
-    # the L21 deck placeholder has no collider in Cell 01 (unlike L12's deck); R02 sets plates on it
-    deck = st.OverridePrim("/World/Cell01/Stations/L21_QC_Calibration/Deck")
-    UsdPhysics.CollisionAPI.Apply(deck)
-    deck.CreateAttribute("sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(
-        "collider added by the LabAutomationTwin overlay: plates are placed on the L21 deck by R02")
 
     # layout frames (no device assets yet)
     for name, xyz in lay["extra_frames"].items():
@@ -160,9 +175,24 @@ def main():
         nest = xc.GetLocalToWorldTransform(out.GetPrimAtPath(f"{s['prim']}/{NEST_FRAME[name]}")).ExtractTranslation()
         err = (Gf.Vec3d(*s["nest"]) - nest).GetLength()
         worst = max(worst, err)
-        print(f"  {name:4s} nest at ({nest[0]:.3f}, {nest[1]:.3f}, {nest[2]:.3f}); {math.hypot(nest[0] - base[0], nest[1] - base[1]):.3f} m "
-              f"from R01, {nest[2] - base[2]:.3f} m above its base; layout error {err * 1000:.2f} mm")
+        who = "R02 (rail)" if s.get("served_by") == "R02" else (
+            f"R01, {math.hypot(nest[0] - base[0], nest[1] - base[1]):.3f} m away, {nest[2] - base[2]:.3f} m above its base")
+        print(f"  {name:4s} nest at ({nest[0]:.3f}, {nest[1]:.3f}, {nest[2]:.3f}); served by {who}; "
+              f"layout error {err * 1000:.2f} mm")
     for name, fx in lay.get("fixtures", {}).items():
+        if name == "H2":
+            hf = xc.GetLocalToWorldTransform(out.GetPrimAtPath(f"{R03}/handover_carrier_frame")).ExtractTranslation()
+            exp = Gf.Vec3d(*lay["extra_frames"]["AMR_dock_carrier"])
+            worst = max(worst, (hf - exp).GetLength())
+            print(f"  R03  carrier seat docked at ({hf[0]:.3f}, {hf[1]:.3f}, {hf[2]:.3f}); layout error "
+                  f"{(hf - exp).GetLength() * 1e3:.2f} mm")
+            continue
+        if name == "HN":
+            hf = xc.GetLocalToWorldTransform(out.GetPrimAtPath(f"{fx['prim']}/handover_frame")).ExtractTranslation()
+            exp = Gf.Vec3d(*lay["extra_frames"]["handover_nest_R01_R02"])
+            worst = max(worst, (hf - exp).GetLength())
+            print(f"  HN   seat at ({hf[0]:.3f}, {hf[1]:.3f}, {hf[2]:.3f}); layout error {(hf - exp).GetLength() * 1e3:.2f} mm")
+            continue
         for k in range(5):
             d = xc.GetLocalToWorldTransform(out.GetPrimAtPath(f"{fx['prim']}/dock_T0{k + 1}")).ExtractTranslation()
             exp = Gf.Vec3d(fx["origin"][0] + (k - 2) * 0.15, fx["origin"][1], 1.12)

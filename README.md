@@ -17,7 +17,12 @@ merge-ready proposals for the Cell 01 package are in `proposals/cell01/`.
 | `assets/common/` | Shared CAD → USD helpers, the SBS shuttle nest, and the parametric plate store (L09, L10). |
 | `assets/gripper/`, `assets/labware/` | Plate gripper proxy for R01, SBS 96-well plate. |
 | `assets/r02/` | R02: rail + UR5e (official ur_description) + automatic tool changer, tool magazine TCM01 with tools T01-T05. See its README. |
-| `twin/` | Runtime controllers: `h4_controller.py`, `l09_controller.py` (`PlateStoreController`), `l10_controller.py`. R01: `r01_rig.py` (FR3 + gripper, IK, pick/place), `r01_planner.py` (checked joint-space transits). R02: `r02_rig.py`, `r02_controller.py` (rail + tool-changer contracts), `kinematics.py` (URDF FK/IK). Evidence: `episode_records.py`. |
+| `assets/l17/` | L17 bright-field imager: load gate, XY stage that doubles as the load drawer, focus drive, 2-objective turret, LED condenser, camera. See its README. |
+| `assets/l12/` | L12 liquid handler: deck, plate nest, tip rack, reagent tubes, waste, X/Y/Z gantry with one ZEUS-class channel (tips = rigid bodies picked by a surface gripper). See its README. |
+| `assets/r03/` | R03 clean sample AMR (planar base, sealed cabinet, lid, carrier nest) and the H2 deterministic dock. See its README. |
+| `assets/l21/` | L21 QC / calibration bench: reference plate nest, QC nest, light-barrier tool datum, AprilTag target board. See its README. |
+| `assets/hn/` | The passive R01/R02 handover nest on the bench (shared SBS nest interface, seat sensors). |
+| `twin/` | Runtime controllers: `h4_controller.py`, `l09_controller.py` (`PlateStoreController`), `l10_controller.py`. R01: `r01_rig.py` (FR3 + gripper, IK, pick/place), `r01_planner.py` (checked joint-space transits). R02: `r02_rig.py`, `r02_controller.py` (rail + tool-changer contracts), `kinematics.py` (URDF FK/IK). L17: `l17_controller.py`, `l17_optics.py` (image formation from the simulated state). L21: `l21_controller.py`, `l21_analysis.py` (grid and light-barrier analysis). L12: `l12_controller.py`, `l12_liquid.py` (tracked volumes, cLLD, pressure). R03/H2: `r03_controller.py`. `hn_monitor.py` (handover nest seat sensors). Evidence: `episode_records.py`. |
 | `scripts/` | Isaac Sim tests (`test_*_physics.py`, `test_h4_robot.py`), the end-to-end episodes (`run_cell01_episode.py`), renders, FR3 import. |
 | `tools/` | Layout and reach (`reachability_study.py`, `layout_p1.py`), overlay composer, clearance sweeps, `build_all.sh`. |
 | `scenes/` | `layout_p1.json` (placements) and the generated overlay `cell01_twin.usda`. |
@@ -50,6 +55,12 @@ env_isaacsim/bin/python scripts/test_l09_physics.py     # 11 checks
 env_isaacsim/bin/python scripts/test_l10_physics.py     # 11 checks
 env_isaacsim/bin/python scripts/test_h4_robot.py --scene cell01 [--place-mode compliant|drop]   # 16 FR3 trials
 env_isaacsim/bin/python scripts/test_r02.py              # R02 rail, reach, tool changer, plate transfer (10)
+env_isaacsim/bin/python scripts/test_l17_physics.py      # L17 mechanism + imaging (15)
+env_isaacsim/bin/python scripts/test_l17_robot.py        # R02 loads L17, L17 images, R02 unloads (6)
+env_isaacsim/bin/python scripts/test_l21.py              # L21 tool-frame check, imager validation, fault handling (10)
+env_isaacsim/bin/python scripts/test_l12_physics.py      # L12 dosing, liquid model, faults (10)
+env_isaacsim/bin/python scripts/test_l12_robot.py        # R02 serves L12, airspace interlock, dose (7)
+env_isaacsim/bin/python scripts/test_r03.py              # R03 AMR navigation, H2 docking, cabinet, faults (9)
 env_isaacsim/bin/python scripts/run_cell01_episode.py   # end-to-end episodes, records in test_reports/episodes/
 env_isaacsim/bin/python scripts/render_cell01.py [--quick]
 ```

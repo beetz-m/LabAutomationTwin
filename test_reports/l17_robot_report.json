@@ -1,0 +1,437 @@
+{
+  "results": [
+    {
+      "test": "R1 R02 homed, T01 coupled",
+      "pass": true,
+      "reason": "",
+      "tool": "T01"
+    },
+    {
+      "test": "R2 T01 picks the plate from the handover nest",
+      "pass": true,
+      "seated_before": true,
+      "finger_travel_mm": [
+        3.03,
+        2.1
+      ],
+      "lifted_mm": 150.0
+    },
+    {
+      "test": "R3 R02 places the plate on L17's presented nest: seated",
+      "pass": true,
+      "offset_mm": [
+        0.01,
+        0.23,
+        0.0
+      ],
+      "tilt_deg": 0.0,
+      "yaw_deg": -359.998,
+      "seat_gaps_mm": [
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "rail_m": 2.5,
+      "position": {
+        "t": 57.333,
+        "event": "position_for_station_ok",
+        "station": "L17",
+        "rail_m": 2.5,
+        "q_deg": [
+          72.4,
+          -93.8,
+          121.3,
+          -117.5,
+          -90.0,
+          -17.6
+        ],
+        "tcp_residual_mm": 0.14,
+        "duration_s": 14.22
+      }
+    },
+    {
+      "test": "R4 load_plate + image_well B03 10x: valid, in focus (truth)",
+      "pass": true,
+      "focus_score": 0.1431,
+      "truth": {
+        "acquisition": 0,
+        "defocus_um": -0.52,
+        "imaged_uv_mm": [
+          -31.0469,
+          22.4642
+        ],
+        "well": "B03",
+        "offset_from_well_centre_mm": 0.4545,
+        "psf_sigma_um": 0.518,
+        "objective": "10x"
+      },
+      "monitors": {
+        "plate_identity": true,
+        "plate_seating": true,
+        "focus_quality": true,
+        "illumination_state": true,
+        "calibration_state": true
+      }
+    },
+    {
+      "test": "R5 unload: presented, T01 picks it off the nest, L17 stows, plate seated back in HN",
+      "pass": true,
+      "presented_offset_mm": [
+        0.42,
+        0.04,
+        0.0
+      ],
+      "lifted_mm": 149.8,
+      "hn_offset_mm": [
+        0.42,
+        0.2,
+        0.0
+      ],
+      "hn_seat_gaps_mm": [
+        0.0,
+        0.0,
+        -0.0,
+        -0.0
+      ],
+      "tilt_deg": 0.0
+    },
+    {
+      "test": "R6 T01 stored; L17 READY, empty, no fault",
+      "pass": true,
+      "reason": "",
+      "l17": {
+        "mode": "READY",
+        "fault": "",
+        "plate_id": "",
+        "plate_on_nest": false,
+        "seated": false,
+        "stage_pose": "home",
+        "q_mm": {
+          "gate": 0.0,
+          "y": 0.0,
+          "x": -0.0,
+          "focus": 0.0005
+        },
+        "turret_deg": -0.0,
+        "objective": "10x"
+      }
+    }
+  ],
+  "passed": 6,
+  "total": 6,
+  "wall_s": 355.5,
+  "l17_events": [
+    {
+      "t": 43.1125,
+      "event": "present_for_load_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 68.2958,
+      "event": "load_plate_accepted",
+      "mode": "BUSY",
+      "plate_id": "Plate_L17_R1"
+    },
+    {
+      "t": 72.4625,
+      "event": "identity_read",
+      "mode": "BUSY",
+      "where": "stage_home",
+      "expected": "Plate_L17_R1",
+      "observed": "Plate_L17_R1"
+    },
+    {
+      "t": 72.4625,
+      "event": "plate_loaded",
+      "mode": "BUSY",
+      "plate_id": "Plate_L17_R1"
+    },
+    {
+      "t": 72.5458,
+      "event": "image_well_accepted",
+      "mode": "BUSY",
+      "plate_id": "Plate_L17_R1",
+      "wells": [
+        "B03"
+      ],
+      "exposure_ms": 25.0,
+      "magnification": "10x",
+      "focus_policy": "autofocus"
+    },
+    {
+      "t": 77.0583,
+      "event": "autofocus_done",
+      "mode": "BUSY",
+      "well": "B03",
+      "magnification": "10x",
+      "focus_mm": 0.00052,
+      "frames": 34
+    },
+    {
+      "t": 77.1042,
+      "event": "image_acquired",
+      "mode": "BUSY",
+      "well": "B03",
+      "magnification": "10x",
+      "focus_score": 0.1431,
+      "valid": true,
+      "raw_image_reference": "evidence://l17/L17_Plate_L17_R1_B03_10x_000.png#sha256=8b7ce58311a4ff93"
+    },
+    {
+      "t": 77.2958,
+      "event": "present_for_unload_accepted",
+      "mode": "BUSY",
+      "plate_id": "Plate_L17_R1"
+    },
+    {
+      "t": 91.475,
+      "event": "stow_accepted",
+      "mode": "BUSY"
+    },
+    {
+      "t": 95.3417,
+      "event": "plate_removed",
+      "mode": "BUSY",
+      "plate_id": "Plate_L17_R1"
+    }
+  ],
+  "r02_events": [
+    {
+      "t": 7.304,
+      "event": "home_rail_ok",
+      "rail_m": 0.00014
+    },
+    {
+      "t": 15.408,
+      "event": "position_for_station_ok",
+      "station": "TCM01/dock_T01/approach",
+      "rail_m": 0.85,
+      "q_deg": [
+        71.5,
+        -90.8,
+        129.8,
+        -129.0,
+        -90.0,
+        -18.5
+      ],
+      "tcp_residual_mm": 0.01,
+      "duration_s": 8.1
+    },
+    {
+      "t": 36.021,
+      "event": "position_for_station_ok",
+      "station": "HN",
+      "rail_m": 0.02,
+      "q_deg": [
+        -158.5,
+        -113.3,
+        137.6,
+        -114.3,
+        -90.0,
+        111.5
+      ],
+      "tcp_residual_mm": 0.19,
+      "duration_s": 9.92
+    },
+    {
+      "t": 57.333,
+      "event": "position_for_station_ok",
+      "station": "L17",
+      "rail_m": 2.5,
+      "q_deg": [
+        72.4,
+        -93.8,
+        121.3,
+        -117.5,
+        -90.0,
+        -17.6
+      ],
+      "tcp_residual_mm": 0.14,
+      "duration_s": 14.22
+    },
+    {
+      "t": 84.079,
+      "event": "position_for_station_ok",
+      "station": "L17",
+      "rail_m": 2.5,
+      "q_deg": [
+        72.4,
+        -93.7,
+        121.5,
+        -117.8,
+        -90.0,
+        -17.6
+      ],
+      "tcp_residual_mm": 0.2,
+      "duration_s": 2.28
+    },
+    {
+      "t": 105.546,
+      "event": "position_for_station_ok",
+      "station": "HN",
+      "rail_m": 0.02,
+      "q_deg": [
+        -158.5,
+        -113.5,
+        137.3,
+        -113.9,
+        -90.0,
+        111.5
+      ],
+      "tcp_residual_mm": 0.2,
+      "duration_s": 14.07
+    },
+    {
+      "t": 126.2,
+      "event": "position_for_station_ok",
+      "station": "TCM01/dock_T01/approach",
+      "rail_m": 0.85,
+      "q_deg": [
+        71.5,
+        -99.2,
+        119.9,
+        -110.7,
+        -90.0,
+        -18.5
+      ],
+      "tcp_residual_mm": 0.19,
+      "duration_s": 9.99
+    }
+  ],
+  "tcm_events": [
+    {
+      "t": 20.808,
+      "event": "coupler_alignment",
+      "dock": "T01",
+      "lateral_mm": 0.037,
+      "gap_mm": 0.362,
+      "angle_deg": 0.056
+    },
+    {
+      "t": 21.308,
+      "event": "tool_id_read",
+      "expected": "T01",
+      "read": "T01",
+      "body": "/World/Cell01/Tooling/AutomaticToolChanger/Tools/T01/Body"
+    },
+    {
+      "t": 26.1,
+      "event": "change_tool_ok",
+      "tool_id": "T01",
+      "dock": "T01",
+      "lock": "verified",
+      "id_read": "T01",
+      "alignment": {
+        "lateral_mm": 0.037,
+        "gap_mm": 0.362,
+        "angle_deg": 0.056
+      },
+      "follow_after_lift": {
+        "lateral_mm": 0.036,
+        "gap_mm": 0.725,
+        "angle_deg": 0.062
+      },
+      "utilities": {
+        "electrical": "connected"
+      }
+    },
+    {
+      "t": 140.229,
+      "event": "store_tool_ok",
+      "tool_id": "T01",
+      "dock": "T01",
+      "rest": {
+        "offset_mm": [
+          0.01,
+          0.09,
+          0.0
+        ],
+        "angle_deg": 0.04
+      }
+    }
+  ],
+  "acquisitions": [
+    {
+      "t": 77.104,
+      "plate_id": "Plate_L17_R1",
+      "well_id": "B03",
+      "magnification": "10x",
+      "exposure_ms": 25.0,
+      "led_level": 1.0,
+      "focus_policy": "autofocus",
+      "measurement_binding_id": "brightfield-morphology-v1",
+      "focus_score": 0.1431,
+      "histogram": {
+        "mean_fs": 0.5676,
+        "p01_fs": 0.4166,
+        "p999_fs": 0.6158,
+        "saturated_fraction": 0.0
+      },
+      "monitors": [
+        {
+          "name": "plate_identity",
+          "passed": true,
+          "observation": "barcode read at the stage home position matched the SDT plate id at load",
+          "value": "Plate_L17_R1"
+        },
+        {
+          "name": "plate_seating",
+          "passed": true,
+          "observation": "4 nest seat sensors confirm seating",
+          "value": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ]
+        },
+        {
+          "name": "focus_quality",
+          "passed": true,
+          "observation": "focus score passed threshold (floor 0.04, >= 0.85 x autofocus best 0.1526)",
+          "value": 0.1431
+        },
+        {
+          "name": "illumination_state",
+          "passed": true,
+          "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.5676 FS, saturated 0.0",
+          "value": {
+            "mean_fs": 0.5676,
+            "p01_fs": 0.4166,
+            "p999_fs": 0.6158,
+            "saturated_fraction": 0.0
+          }
+        },
+        {
+          "name": "calibration_state",
+          "passed": true,
+          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "value": "L17-CAL-2026-10-16-SIM"
+        }
+      ],
+      "raw_image_reference": "evidence://l17/L17_Plate_L17_R1_B03_10x_000.png#sha256=8b7ce58311a4ff93",
+      "command_completed": true,
+      "imaging_history": {
+        "exposures": 35,
+        "light_dose_rel_ms": 875.0,
+        "autofocus_frames": 34
+      },
+      "valid": true
+    }
+  ],
+  "truth": [
+    {
+      "acquisition": 0,
+      "defocus_um": -0.52,
+      "imaged_uv_mm": [
+        -31.0469,
+        22.4642
+      ],
+      "well": "B03",
+      "offset_from_well_centre_mm": 0.4545,
+      "psf_sigma_um": 0.518,
+      "objective": "10x"
+    }
+  ]
+}

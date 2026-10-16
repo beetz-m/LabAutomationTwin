@@ -74,13 +74,64 @@ unverified reseller listing.
   - **Magazine location:** the tool magazine has no location in Cell 01 (its frames sit at the origin). The twin
     places TCM01 north of the rail at (0.30, 1.20), with coupling faces at 1.12 m. All five docks are reachable
     (`scenes/layout_p1.json`). Proposed as an amendment to D017.
-  - **L21 deck:** the `L21_QC_Calibration/Deck` placeholder has no collider, unlike L12's deck. The overlay adds one.
+  - **L21 deck:** the `L21_QC_Calibration/Deck` placeholder has no collider, unlike L12's deck. The overlay now
+    replaces it with the L21 twin (below).
   - **Tool identity:** a dock's expected tool is not evidence of identity. The twin reads `tool:id` through the
     coupler and refuses a swapped tool (`wrong_tool`), as the contract's `must_not_assume` requires.
 
+- L17 is built in the twin (`LabAutomationTwin/assets/l17`, 2026-10-16). Notes for the Cell 01 package:
+  - **Location:** L17 keeps its Cell 01 location (1.65, 1.55), with its front turned toward R02's rail. Its XY
+    stage presents the plate at (1.65, 1.22, 0.972), which R02 serves top-down with T01 at rail 2.3–2.5 m
+    (`scenes/layout_p1.json`). The 0.772 m plinth under it is provisional furniture. Proposed as part of the
+    D017 amendment.
+  - **Frames:** the placeholder's five frames all sit at the station origin. The twin gives them their physical
+    meaning: the presented seat, the stage home seat, the focal point at FocusZ = 0, the camera sensor and the
+    condenser exit. The moving versions live under the stage and focus links.
+  - **Exposure monitor:** the contract's monitoring list includes "signal/exposure in usable range" (image
+    histogram). `validate_l17_image` has no exposure monitor, so the twin folds the histogram into
+    `illumination_state`; an overexposed image is blocked. Cell 01 may want a separate `exposure_state` monitor in
+    `cram_designator_schemas.yaml` and `validate_l17_image`.
+  - **Calibration:** L17 needs a calibration record (pixel size, focus floor per objective, sensor gain) from L21.
+    Until L21 is built, the twin uses a simulated record, `L17-CAL-2026-10-16-SIM`, and labels it as such.
+- L21 is built in the twin (`LabAutomationTwin/assets/l21`, 2026-10-16). Notes for the Cell 01 package:
+  - **Location:** L21 moved from (2.25, 1.20) to (2.20, 1.07) on a provisional 0.90 m side table. This clears L17
+    and puts both nests and the tool datum within R02's reach at rail 2.58 m (joint margins 50–86°). Proposed as
+    part of the D017 amendment.
+  - **Artifacts and frames:** the twin adds a QC nest (`qc_nest_frame`) next to the reference nest, a light-barrier
+    tool datum at `tool_calibration_frame`, and an AprilTag board at `camera_calibration_frame`. The reference
+    plate `REF-L21-001` has a dot-grid target and a simulated certificate.
+  - **Calibration records:** L21 now issues L17's calibration records from reference measurements and invalidates
+    dependent measurements when L17 is found out of tolerance. This answers the `calibration_state` evidence source
+    `L21_qc_verdict` in `monitor_templates.yaml`.
+  - **QC records:** the twin's QC records use the `qc` designator unchanged. A passing record commits to the
+    evidence layer (route `evidence_layer_commit`), because a QC verdict is not a Culture SDT event. Cell 01 may
+    want to name that route in `neem_record_schema.yaml`.
+- L12 is built in the twin (`LabAutomationTwin/assets/l12`, 2026-10-16). Notes for the Cell 01 package:
+  - **Location and frames:** L12 keeps its Cell 01 location on the central bench. `plate_nest` is now a real SBS nest
+    at (0.15, 0.34, 0.972), which R02 serves at rail 0.8 m. The placeholder's frames all sit at the station origin
+    (`experiment_plate_frame` at 1.06 m); the twin gives them their physical meaning.
+  - **Airspace interlock:** a robot hovering over the deck blocks the gantry (found in the first R02 test). The twin
+    adds a deck airspace monitor: L12 refuses or pauses motion while a foreign object is in its airspace. Cell 01's
+    L12 contract has no such interlock; proposed as a risk control.
+  - **Executed volume:** the twin reports the volume inferred from the pressure trace, never the commanded one, as
+    `must_not_assume` requires.
+- R03 and H2 are built in the twin (`LabAutomationTwin/assets/r03`, 2026-10-16). Notes for the Cell 01 package:
+  - **H2 prim:** `/World/Cell01/Stations/H2_AMR_Dock` (the contract's `dock_usd_path`) does not exist in the Cell 01
+    USD; the overlay defines it.
+  - **Dock site:** the AMR docks heading west, with its carrier seat at (−1.45, −0.22, 0.96). This is moved from the
+    P1 frame at (−1.40, −0.12): a north-facing dock collides with R01's pedestal and the bench. A centred seat at
+    (−1.40, −0.28) was reachable on paper, but R01 could not approach it with the planner's conditioning and margin
+    criteria. Proposed as part of the D017 amendment.
+  - **Designators:** Cell 01's designator schemas have no `dock` or `handover` action. The twin records an AMR
+    delivery as a `transport` designator, with the dock result (depth, yaw, lateral residual) as evidence.
+- **Handover nest (new fixture):** the R01/R02 handover site now has a passive SBS nest on the bench
+  (`LabAutomationTwin/assets/hn`) with the shared guides, A1 key and seat sensors, at
+  `/World/Cell01/Fixtures/HandoverNest_R01_R02`. Cell 01 has only the site, no device. Proposed as part of the
+  D017 amendment.
+
 ## 5. To merge layout P1 into the authoritative scene later
 
-Copy `LabAutomationTwin/assets/{h4,l09,l10}/` (plus their build scripts) into the handoff, for example under
+Copy `LabAutomationTwin/assets/{h4,l09,l10,l12,l17,l21,r03,hn}/` (plus their build scripts) into the handoff, for example under
 `simulation/isaac_sim/assets/`. Then author what the overlay authors (exact values in `scenes/layout_p1.json`):
 - on `/World/Cell01/Robots/R01_FR3`: `translate (−1.55, 0.35, 0)`;
 - on each station prim: a reference to the asset, `translate` + `rotateZ` from the layout,

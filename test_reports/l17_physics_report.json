@@ -1,0 +1,1002 @@
+{
+  "asset": "/home/mbeetz/Documents/LabAutomationTwin/assets/l17/l17.usda",
+  "physics_hz": 240,
+  "sim_time_s": 53.5,
+  "wall_time_s": 91.0,
+  "results": [
+    {
+      "test": "S structure + Cell 01 binding frames",
+      "pass": true,
+      "joints": [
+        "FocusZ",
+        "GateSlide",
+        "RootJoint",
+        "StageX",
+        "StageY",
+        "TurretRotate"
+      ],
+      "links": [
+        "Body",
+        "Focus",
+        "Gate",
+        "StageX",
+        "StageY",
+        "Turret"
+      ],
+      "binding": [
+        "plate_load_frame",
+        "plate_stage",
+        "objective_frame",
+        "camera_frame",
+        "illumination_frame"
+      ]
+    },
+    {
+      "test": "T1 rest: READY, home, gate closed, 10x indexed, calibration valid",
+      "pass": true,
+      "snapshot": {
+        "mode": "READY",
+        "fault": "",
+        "plate_id": "",
+        "plate_on_nest": false,
+        "seated": false,
+        "stage_pose": "home",
+        "q_mm": {
+          "gate": -0.0,
+          "y": 0.0,
+          "x": -0.0,
+          "focus": -0.0
+        },
+        "turret_deg": -0.0,
+        "objective": "10x"
+      }
+    },
+    {
+      "test": "T2 present_for_load: interlocks held, stage nest at plate_load_frame",
+      "pass": true,
+      "nest_err_mm": 0.0,
+      "violations": []
+    },
+    {
+      "test": "T3 misseated plate (8 mm off): load_plate refused, plate_misseated",
+      "pass": true,
+      "reason": "plate_misseated: seat gaps [None, 11.144, None, 11.144] mm; reseat"
+    },
+    {
+      "test": "T4 reseat + load_plate P-A: seated, home, gate closed, identity read",
+      "pass": true,
+      "seat_gaps_mm": [
+        -0.0,
+        0.0,
+        -0.0,
+        0.0
+      ],
+      "plate_vs_home_mm": [
+        -0.47,
+        0.5,
+        0.0
+      ],
+      "identity": {
+        "t": 11.1667,
+        "event": "identity_read",
+        "mode": "BUSY",
+        "where": "stage_home",
+        "expected": "P-A",
+        "observed": "P-A"
+      }
+    },
+    {
+      "test": "T5 image_well B03 10x autofocus: valid, in focus (truth), right well, admitted by Cell 01's validator",
+      "pass": true,
+      "focus_score": 0.0852,
+      "truth": {
+        "acquisition": 0,
+        "defocus_um": -0.16,
+        "imaged_uv_mm": [
+          -31.0321,
+          22.4967
+        ],
+        "well": "B03",
+        "offset_from_well_centre_mm": 0.4679,
+        "psf_sigma_um": 0.514,
+        "objective": "10x"
+      },
+      "autofocus": {
+        "focus_mm": 0.00016,
+        "best_score": 0.0857,
+        "frames": 34
+      },
+      "routing": "evidence_admission",
+      "ref": "evidence://l17/L17_P-A_B03_10x_000.png#sha256=c16cf52310c773e0"
+    },
+    {
+      "test": "T6 image_plate_region B04:B06: all valid and in focus, seeded autofocus uses fewer frames",
+      "pass": true,
+      "wells": [
+        "B04",
+        "B05",
+        "B06"
+      ],
+      "defocus_um": [
+        -0.03,
+        0.06,
+        -0.05
+      ],
+      "frames": [
+        20,
+        20,
+        20
+      ],
+      "scores": [
+        0.0852,
+        0.0752,
+        0.0664
+      ]
+    },
+    {
+      "test": "T7 4x at E07 after a turret change: indexed, valid, in focus, parfocal",
+      "pass": true,
+      "defocus_um": 0.14,
+      "focus_10x_mm": 0.0,
+      "focus_4x_mm": -0.0001,
+      "turret_deg": 180.0
+    },
+    {
+      "test": "T8 out of focus (+60 um, fixed): retained, focus_quality failed, evidence blocked",
+      "pass": true,
+      "focus_score": 0.0092,
+      "truth_defocus_um": -60.03,
+      "reasons": [
+        "failed image monitors: focus_quality"
+      ]
+    },
+    {
+      "test": "T9 overexposure (60 ms): histogram saturated, illumination_state failed, blocked",
+      "pass": true,
+      "histogram": {
+        "mean_fs": 0.9995,
+        "p01_fs": 1.0,
+        "p999_fs": 1.0,
+        "saturated_fraction": 0.995407
+      },
+      "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.9995 FS, saturated 0.995407 (outside the usable range)"
+    },
+    {
+      "test": "T10 calibration expired: image_well refused, state:calibration_valid false",
+      "pass": true,
+      "reason": "calibration_expired: L17-CAL-2026-10-16-SIM valid until 2026-11-15, today 2026-12-01; run L21 QC first"
+    },
+    {
+      "test": "T11 imaging history: every exposure counted, autofocus frames included",
+      "pass": true,
+      "B03": {
+        "exposures": 37,
+        "light_dose_rel_ms": 960.0,
+        "autofocus_frames": 34
+      },
+      "wells": [
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "E07"
+      ]
+    },
+    {
+      "test": "T12 present_for_unload, removal, stow: READY, plate id cleared",
+      "pass": true,
+      "presented_err_mm": [
+        0.35,
+        0.01,
+        0.0
+      ],
+      "violations": []
+    },
+    {
+      "test": "T13 identity mismatch: held, present_for_removal presents it",
+      "pass": true,
+      "identity": {
+        "expected": "P-X",
+        "observed": "P-B"
+      },
+      "events": [
+        "present_for_load_accepted",
+        "load_plate_accepted",
+        "identity_read",
+        "fault",
+        "fault_handled",
+        "present_for_removal_accepted"
+      ]
+    },
+    {
+      "test": "T14 state attributes mirror the controller",
+      "pass": true,
+      "mode": "PRESENTED_LOADED",
+      "door": "open",
+      "stage_pose": "presented",
+      "magnification": "10x",
+      "focus_score": -0.0184
+    }
+  ],
+  "acquisitions": [
+    {
+      "t": 15.808,
+      "plate_id": "P-A",
+      "well_id": "B03",
+      "magnification": "10x",
+      "exposure_ms": 25.0,
+      "led_level": 1.0,
+      "focus_policy": "autofocus",
+      "measurement_binding_id": "brightfield-morphology-v1",
+      "focus_score": 0.0852,
+      "histogram": {
+        "mean_fs": 0.5709,
+        "p01_fs": 0.4527,
+        "p999_fs": 0.6166,
+        "saturated_fraction": 0.0
+      },
+      "monitors": [
+        {
+          "name": "plate_identity",
+          "passed": true,
+          "observation": "barcode read at the stage home position matched the SDT plate id at load",
+          "value": "P-A"
+        },
+        {
+          "name": "plate_seating",
+          "passed": true,
+          "observation": "4 nest seat sensors confirm seating",
+          "value": [
+            -0.0,
+            -0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "focus_quality",
+          "passed": true,
+          "observation": "focus score passed threshold (floor 0.04, >= 0.85 x autofocus best 0.0857)",
+          "value": 0.0852
+        },
+        {
+          "name": "illumination_state",
+          "passed": true,
+          "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.5709 FS, saturated 0.0",
+          "value": {
+            "mean_fs": 0.5709,
+            "p01_fs": 0.4527,
+            "p999_fs": 0.6166,
+            "saturated_fraction": 0.0
+          }
+        },
+        {
+          "name": "calibration_state",
+          "passed": true,
+          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "value": "L17-CAL-2026-10-16-SIM"
+        }
+      ],
+      "raw_image_reference": "evidence://l17/L17_P-A_B03_10x_000.png#sha256=c16cf52310c773e0",
+      "command_completed": true,
+      "imaging_history": {
+        "exposures": 35,
+        "light_dose_rel_ms": 875.0,
+        "autofocus_frames": 34
+      },
+      "valid": true
+    },
+    {
+      "t": 18.117,
+      "plate_id": "P-A",
+      "well_id": "B04",
+      "magnification": "10x",
+      "exposure_ms": 25.0,
+      "led_level": 1.0,
+      "focus_policy": "autofocus",
+      "measurement_binding_id": "brightfield-morphology-v1",
+      "focus_score": 0.0852,
+      "histogram": {
+        "mean_fs": 0.571,
+        "p01_fs": 0.4615,
+        "p999_fs": 0.6161,
+        "saturated_fraction": 0.0
+      },
+      "monitors": [
+        {
+          "name": "plate_identity",
+          "passed": true,
+          "observation": "barcode read at the stage home position matched the SDT plate id at load",
+          "value": "P-A"
+        },
+        {
+          "name": "plate_seating",
+          "passed": true,
+          "observation": "4 nest seat sensors confirm seating",
+          "value": [
+            -0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "focus_quality",
+          "passed": true,
+          "observation": "focus score passed threshold (floor 0.04, >= 0.85 x autofocus best 0.0855)",
+          "value": 0.0852
+        },
+        {
+          "name": "illumination_state",
+          "passed": true,
+          "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.571 FS, saturated 0.0",
+          "value": {
+            "mean_fs": 0.571,
+            "p01_fs": 0.4615,
+            "p999_fs": 0.6161,
+            "saturated_fraction": 0.0
+          }
+        },
+        {
+          "name": "calibration_state",
+          "passed": true,
+          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "value": "L17-CAL-2026-10-16-SIM"
+        }
+      ],
+      "raw_image_reference": "evidence://l17/L17_P-A_B04_10x_001.png#sha256=e4ae097fea20d2aa",
+      "command_completed": true,
+      "imaging_history": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "valid": true
+    },
+    {
+      "t": 20.229,
+      "plate_id": "P-A",
+      "well_id": "B05",
+      "magnification": "10x",
+      "exposure_ms": 25.0,
+      "led_level": 1.0,
+      "focus_policy": "autofocus",
+      "measurement_binding_id": "brightfield-morphology-v1",
+      "focus_score": 0.0752,
+      "histogram": {
+        "mean_fs": 0.5708,
+        "p01_fs": 0.452,
+        "p999_fs": 0.6166,
+        "saturated_fraction": 0.0
+      },
+      "monitors": [
+        {
+          "name": "plate_identity",
+          "passed": true,
+          "observation": "barcode read at the stage home position matched the SDT plate id at load",
+          "value": "P-A"
+        },
+        {
+          "name": "plate_seating",
+          "passed": true,
+          "observation": "4 nest seat sensors confirm seating",
+          "value": [
+            -0.0,
+            -0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "focus_quality",
+          "passed": true,
+          "observation": "focus score passed threshold (floor 0.04, >= 0.85 x autofocus best 0.0762)",
+          "value": 0.0752
+        },
+        {
+          "name": "illumination_state",
+          "passed": true,
+          "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.5708 FS, saturated 0.0",
+          "value": {
+            "mean_fs": 0.5708,
+            "p01_fs": 0.452,
+            "p999_fs": 0.6166,
+            "saturated_fraction": 0.0
+          }
+        },
+        {
+          "name": "calibration_state",
+          "passed": true,
+          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "value": "L17-CAL-2026-10-16-SIM"
+        }
+      ],
+      "raw_image_reference": "evidence://l17/L17_P-A_B05_10x_002.png#sha256=ef2fcb520be978d5",
+      "command_completed": true,
+      "imaging_history": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "valid": true
+    },
+    {
+      "t": 22.342,
+      "plate_id": "P-A",
+      "well_id": "B06",
+      "magnification": "10x",
+      "exposure_ms": 25.0,
+      "led_level": 1.0,
+      "focus_policy": "autofocus",
+      "measurement_binding_id": "brightfield-morphology-v1",
+      "focus_score": 0.0664,
+      "histogram": {
+        "mean_fs": 0.5719,
+        "p01_fs": 0.4747,
+        "p999_fs": 0.6151,
+        "saturated_fraction": 0.0
+      },
+      "monitors": [
+        {
+          "name": "plate_identity",
+          "passed": true,
+          "observation": "barcode read at the stage home position matched the SDT plate id at load",
+          "value": "P-A"
+        },
+        {
+          "name": "plate_seating",
+          "passed": true,
+          "observation": "4 nest seat sensors confirm seating",
+          "value": [
+            -0.0,
+            -0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "focus_quality",
+          "passed": true,
+          "observation": "focus score passed threshold (floor 0.04, >= 0.85 x autofocus best 0.0673)",
+          "value": 0.0664
+        },
+        {
+          "name": "illumination_state",
+          "passed": true,
+          "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.5719 FS, saturated 0.0",
+          "value": {
+            "mean_fs": 0.5719,
+            "p01_fs": 0.4747,
+            "p999_fs": 0.6151,
+            "saturated_fraction": 0.0
+          }
+        },
+        {
+          "name": "calibration_state",
+          "passed": true,
+          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "value": "L17-CAL-2026-10-16-SIM"
+        }
+      ],
+      "raw_image_reference": "evidence://l17/L17_P-A_B06_10x_003.png#sha256=a3a1010cc13346b8",
+      "command_completed": true,
+      "imaging_history": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "valid": true
+    },
+    {
+      "t": 27.712,
+      "plate_id": "P-A",
+      "well_id": "E07",
+      "magnification": "4x",
+      "exposure_ms": 25.0,
+      "led_level": 1.0,
+      "focus_policy": "autofocus",
+      "measurement_binding_id": "brightfield-morphology-v1",
+      "focus_score": 0.3879,
+      "histogram": {
+        "mean_fs": 0.5704,
+        "p01_fs": 0.4603,
+        "p999_fs": 0.6156,
+        "saturated_fraction": 0.0
+      },
+      "monitors": [
+        {
+          "name": "plate_identity",
+          "passed": true,
+          "observation": "barcode read at the stage home position matched the SDT plate id at load",
+          "value": "P-A"
+        },
+        {
+          "name": "plate_seating",
+          "passed": true,
+          "observation": "4 nest seat sensors confirm seating",
+          "value": [
+            -0.0,
+            -0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "focus_quality",
+          "passed": true,
+          "observation": "focus score passed threshold (floor 0.15, >= 0.85 x autofocus best 0.3887)",
+          "value": 0.3879
+        },
+        {
+          "name": "illumination_state",
+          "passed": true,
+          "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.5704 FS, saturated 0.0",
+          "value": {
+            "mean_fs": 0.5704,
+            "p01_fs": 0.4603,
+            "p999_fs": 0.6156,
+            "saturated_fraction": 0.0
+          }
+        },
+        {
+          "name": "calibration_state",
+          "passed": true,
+          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "value": "L17-CAL-2026-10-16-SIM"
+        }
+      ],
+      "raw_image_reference": "evidence://l17/L17_P-A_E07_4x_004.png#sha256=41fae456b82cfb19",
+      "command_completed": true,
+      "imaging_history": {
+        "exposures": 25,
+        "light_dose_rel_ms": 625.0,
+        "autofocus_frames": 24
+      },
+      "valid": true
+    },
+    {
+      "t": 30.525,
+      "plate_id": "P-A",
+      "well_id": "B03",
+      "magnification": "10x",
+      "exposure_ms": 25.0,
+      "led_level": 1.0,
+      "focus_policy": "('fixed', 0.06003948873829542)",
+      "measurement_binding_id": "brightfield-morphology-v1",
+      "focus_score": 0.0092,
+      "histogram": {
+        "mean_fs": 0.5712,
+        "p01_fs": 0.5033,
+        "p999_fs": 0.6156,
+        "saturated_fraction": 0.0
+      },
+      "monitors": [
+        {
+          "name": "plate_identity",
+          "passed": true,
+          "observation": "barcode read at the stage home position matched the SDT plate id at load",
+          "value": "P-A"
+        },
+        {
+          "name": "plate_seating",
+          "passed": true,
+          "observation": "4 nest seat sensors confirm seating",
+          "value": [
+            -0.0,
+            -0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "focus_quality",
+          "passed": false,
+          "observation": "focus score below validity threshold (floor 0.04)",
+          "value": 0.0092
+        },
+        {
+          "name": "illumination_state",
+          "passed": true,
+          "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.5712 FS, saturated 0.0",
+          "value": {
+            "mean_fs": 0.5712,
+            "p01_fs": 0.5033,
+            "p999_fs": 0.6156,
+            "saturated_fraction": 0.0
+          }
+        },
+        {
+          "name": "calibration_state",
+          "passed": true,
+          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "value": "L17-CAL-2026-10-16-SIM"
+        }
+      ],
+      "raw_image_reference": "evidence://l17/L17_P-A_B03_10x_005.png#sha256=0a19cc7d00cc6341",
+      "command_completed": true,
+      "imaging_history": {
+        "exposures": 36,
+        "light_dose_rel_ms": 900.0,
+        "autofocus_frames": 34
+      },
+      "valid": false
+    },
+    {
+      "t": 30.954,
+      "plate_id": "P-A",
+      "well_id": "B03",
+      "magnification": "10x",
+      "exposure_ms": 60.0,
+      "led_level": 1.0,
+      "focus_policy": "stored",
+      "measurement_binding_id": "brightfield-morphology-v1",
+      "focus_score": -0.0184,
+      "histogram": {
+        "mean_fs": 0.9995,
+        "p01_fs": 1.0,
+        "p999_fs": 1.0,
+        "saturated_fraction": 0.995407
+      },
+      "monitors": [
+        {
+          "name": "plate_identity",
+          "passed": true,
+          "observation": "barcode read at the stage home position matched the SDT plate id at load",
+          "value": "P-A"
+        },
+        {
+          "name": "plate_seating",
+          "passed": true,
+          "observation": "4 nest seat sensors confirm seating",
+          "value": [
+            -0.0,
+            -0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "name": "focus_quality",
+          "passed": false,
+          "observation": "focus score below validity threshold (floor 0.04)",
+          "value": -0.0184
+        },
+        {
+          "name": "illumination_state",
+          "passed": false,
+          "observation": "LED 1.00 of commanded 1.00; gate closed; histogram mean 0.9995 FS, saturated 0.995407 (outside the usable range)",
+          "value": {
+            "mean_fs": 0.9995,
+            "p01_fs": 1.0,
+            "p999_fs": 1.0,
+            "saturated_fraction": 0.995407
+          }
+        },
+        {
+          "name": "calibration_state",
+          "passed": true,
+          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "value": "L17-CAL-2026-10-16-SIM"
+        }
+      ],
+      "raw_image_reference": "evidence://l17/L17_P-A_B03_10x_006.png#sha256=5ec56002d4d8320a",
+      "command_completed": true,
+      "imaging_history": {
+        "exposures": 37,
+        "light_dose_rel_ms": 960.0,
+        "autofocus_frames": 34
+      },
+      "valid": false
+    }
+  ],
+  "truth": [
+    {
+      "acquisition": 0,
+      "defocus_um": -0.16,
+      "imaged_uv_mm": [
+        -31.0321,
+        22.4967
+      ],
+      "well": "B03",
+      "offset_from_well_centre_mm": 0.4679,
+      "psf_sigma_um": 0.514,
+      "objective": "10x"
+    },
+    {
+      "acquisition": 1,
+      "defocus_um": -0.03,
+      "imaged_uv_mm": [
+        -22.2782,
+        22.4825
+      ],
+      "well": "B04",
+      "offset_from_well_centre_mm": 0.2225,
+      "psf_sigma_um": 0.514,
+      "objective": "10x"
+    },
+    {
+      "acquisition": 2,
+      "defocus_um": 0.06,
+      "imaged_uv_mm": [
+        -13.5713,
+        22.4668
+      ],
+      "well": "B05",
+      "offset_from_well_centre_mm": 0.0786,
+      "psf_sigma_um": 0.514,
+      "objective": "10x"
+    },
+    {
+      "acquisition": 3,
+      "defocus_um": -0.05,
+      "imaged_uv_mm": [
+        -4.7978,
+        22.4515
+      ],
+      "well": "B06",
+      "offset_from_well_centre_mm": 0.3017,
+      "psf_sigma_um": 0.514,
+      "objective": "10x"
+    },
+    {
+      "acquisition": 4,
+      "defocus_um": 0.14,
+      "imaged_uv_mm": [
+        4.0563,
+        -4.9938
+      ],
+      "well": "E07",
+      "offset_from_well_centre_mm": 0.6638,
+      "psf_sigma_um": 1.284,
+      "objective": "4x"
+    },
+    {
+      "acquisition": 5,
+      "defocus_um": -60.03,
+      "imaged_uv_mm": [
+        -31.1567,
+        22.433
+      ],
+      "well": "B03",
+      "offset_from_well_centre_mm": 0.3498,
+      "psf_sigma_um": 7.767,
+      "objective": "10x"
+    },
+    {
+      "acquisition": 6,
+      "defocus_um": -0.02,
+      "imaged_uv_mm": [
+        -31.1567,
+        22.433
+      ],
+      "well": "B03",
+      "offset_from_well_centre_mm": 0.3498,
+      "psf_sigma_um": 0.514,
+      "objective": "10x"
+    }
+  ],
+  "autofocus_runs": [
+    {
+      "t": 14.454,
+      "plate_id": "P-A",
+      "well": "B03",
+      "magnification": "10x",
+      "seeded": false,
+      "ok": true,
+      "focus_mm": 0.00016,
+      "best_score": 0.0857,
+      "frames": 34
+    },
+    {
+      "t": 16.975,
+      "plate_id": "P-A",
+      "well": "B04",
+      "magnification": "10x",
+      "seeded": true,
+      "ok": true,
+      "focus_mm": 3e-05,
+      "best_score": 0.0855,
+      "frames": 20
+    },
+    {
+      "t": 19.087,
+      "plate_id": "P-A",
+      "well": "B05",
+      "magnification": "10x",
+      "seeded": true,
+      "ok": true,
+      "focus_mm": -5e-05,
+      "best_score": 0.0762,
+      "frames": 20
+    },
+    {
+      "t": 21.2,
+      "plate_id": "P-A",
+      "well": "B06",
+      "magnification": "10x",
+      "seeded": true,
+      "ok": true,
+      "focus_mm": 4e-05,
+      "best_score": 0.0673,
+      "frames": 20
+    },
+    {
+      "t": 26.25,
+      "plate_id": "P-A",
+      "well": "E07",
+      "magnification": "4x",
+      "seeded": false,
+      "ok": true,
+      "focus_mm": -0.0001,
+      "best_score": 0.3887,
+      "frames": 24
+    }
+  ],
+  "autofocus_curve_T5": [
+    [
+      -0.3,
+      0.0012
+    ],
+    [
+      -0.27,
+      0.0009
+    ],
+    [
+      -0.24,
+      0.0007
+    ],
+    [
+      -0.21,
+      0.0007
+    ],
+    [
+      -0.18,
+      0.001
+    ],
+    [
+      -0.15,
+      0.0016
+    ],
+    [
+      -0.12,
+      0.0019
+    ],
+    [
+      -0.09,
+      0.0032
+    ],
+    [
+      -0.06,
+      0.0087
+    ],
+    [
+      -0.03,
+      0.0288
+    ],
+    [
+      -0.0,
+      0.0847
+    ],
+    [
+      0.03,
+      0.0291
+    ],
+    [
+      0.06,
+      0.0082
+    ],
+    [
+      0.09,
+      0.0031
+    ],
+    [
+      0.12,
+      0.0018
+    ],
+    [
+      0.15,
+      0.0009
+    ],
+    [
+      0.18,
+      0.0006
+    ],
+    [
+      0.21,
+      0.0016
+    ],
+    [
+      0.24,
+      0.0012
+    ],
+    [
+      0.27,
+      0.001
+    ],
+    [
+      0.3,
+      0.0008
+    ],
+    [
+      -0.03,
+      0.0287
+    ],
+    [
+      -0.025,
+      0.0354
+    ],
+    [
+      -0.02,
+      0.0441
+    ],
+    [
+      -0.015,
+      0.054
+    ],
+    [
+      -0.01,
+      0.0675
+    ],
+    [
+      -0.005,
+      0.0799
+    ],
+    [
+      -0.0,
+      0.0857
+    ],
+    [
+      0.005,
+      0.0794
+    ],
+    [
+      0.01,
+      0.0682
+    ],
+    [
+      0.015,
+      0.0556
+    ],
+    [
+      0.02,
+      0.0438
+    ],
+    [
+      0.025,
+      0.0357
+    ],
+    [
+      0.03,
+      0.029
+    ]
+  ],
+  "imaging_history": {
+    "P-A": {
+      "B03": {
+        "exposures": 37,
+        "light_dose_rel_ms": 960.0,
+        "autofocus_frames": 34
+      },
+      "B04": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "B05": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "B06": {
+        "exposures": 21,
+        "light_dose_rel_ms": 525.0,
+        "autofocus_frames": 20
+      },
+      "E07": {
+        "exposures": 25,
+        "light_dose_rel_ms": 625.0,
+        "autofocus_frames": 24
+      }
+    }
+  }
+}

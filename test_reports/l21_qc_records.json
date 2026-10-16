@@ -1,0 +1,2029 @@
+[
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_tcp_001",
+    "event_type": "L21.qc",
+    "timestamp_s": 141.704,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "tool_calibration_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "T01",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "DATUM-L21-LB1",
+          "acceptance_criterion_id": "L21-ACC-TCP-v1"
+        }
+      },
+      "commitment": {
+        "accepted": false,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": false,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [
+          "failed monitor calibration_state: TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(0.745)] mm vs tolerance 0.5 mm",
+          "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.014), np.float64(0.073), np.float64(-0.745)] mm"
+        ],
+        "blocked_paths": [
+          "downstream_action_commitment",
+          "evidence_admission",
+          "semantic_event_commit"
+        ]
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 141.704,
+        "t_start_s": 141.704,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "datum DATUM-L21-LB1 (L21 fixture)",
+            "value": "DATUM-L21-LB1"
+          },
+          {
+            "name": "calibration_state",
+            "passed": false,
+            "observation": "TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(0.745)] mm vs tolerance 0.5 mm",
+            "value": [
+              -0.014,
+              -0.073,
+              0.745
+            ]
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "beam runs z/y/x 1/2/1 (expected >=1/2/1)",
+            "value": {
+              "z": 1293,
+              "y": 9027,
+              "x": 6027
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": false,
+            "observation": "T01 frame INVALID: correction [np.float64(0.014), np.float64(0.073), np.float64(-0.745)] mm",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": [
+          "calibration_state",
+          "tool_frame_validity"
+        ]
+      },
+      "failures": {
+        "reasons": [
+          "failed monitor calibration_state: TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(0.745)] mm vs tolerance 0.5 mm",
+          "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.014), np.float64(0.073), np.float64(-0.745)] mm"
+        ],
+        "blocked_paths": [
+          "downstream_action_commitment",
+          "evidence_admission",
+          "semantic_event_commit"
+        ]
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": false,
+          "grounding_ok": false,
+          "experimental_validity_ok": false,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": false,
+          "failure_reasons": [
+            "failed monitor calibration_state: TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(0.745)] mm vs tolerance 0.5 mm",
+            "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.014), np.float64(0.073), np.float64(-0.745)] mm"
+          ],
+          "blocked_paths": [
+            "downstream_action_commitment",
+            "evidence_admission",
+            "semantic_event_commit"
+          ]
+        },
+        "semantic_event_eligible": false,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "invalidate_dependent_measurements",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "T01",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "acceptance_criterion_id": "L21-ACC-TCP-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "datum DATUM-L21-LB1 (L21 fixture)",
+        "value": "DATUM-L21-LB1"
+      },
+      {
+        "name": "calibration_state",
+        "passed": false,
+        "observation": "TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(0.745)] mm vs tolerance 0.5 mm",
+        "value": [
+          -0.014,
+          -0.073,
+          0.745
+        ]
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "beam runs z/y/x 1/2/1 (expected >=1/2/1)",
+        "value": {
+          "z": 1293,
+          "y": 9027,
+          "x": 6027
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": false,
+        "observation": "T01 frame INVALID: correction [np.float64(0.014), np.float64(0.073), np.float64(-0.745)] mm",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": false,
+      "grounding_ok": false,
+      "experimental_validity_ok": false,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": false,
+      "failure_reasons": [
+        "failed monitor calibration_state: TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(0.745)] mm vs tolerance 0.5 mm",
+        "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.014), np.float64(0.073), np.float64(-0.745)] mm"
+      ],
+      "blocked_paths": [
+        "downstream_action_commitment",
+        "evidence_admission",
+        "semantic_event_commit"
+      ]
+    },
+    "commitment_acceptance": {
+      "accepted": false,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": false,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [
+        "failed monitor calibration_state: TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(0.745)] mm vs tolerance 0.5 mm",
+        "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.014), np.float64(0.073), np.float64(-0.745)] mm"
+      ],
+      "blocked_paths": [
+        "downstream_action_commitment",
+        "evidence_admission",
+        "semantic_event_commit"
+      ]
+    },
+    "semantic_event": {
+      "eligible": false,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "T01: out_of_tolerance"
+    },
+    "routing": "invalidate_dependent_measurements",
+    "evidence": {
+      "qc_target_id": "T01",
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "verdict": "out_of_tolerance",
+      "timestamps": {
+        "checked": 141.704
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_tcp_002",
+    "event_type": "L21.qc",
+    "timestamp_s": 252.937,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "tool_calibration_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "T01",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "DATUM-L21-LB1",
+          "acceptance_criterion_id": "L21-ACC-TCP-v1"
+        }
+      },
+      "commitment": {
+        "accepted": true,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": true,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [],
+        "blocked_paths": []
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 252.937,
+        "t_start_s": 252.937,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "datum DATUM-L21-LB1 (L21 fixture)",
+            "value": "DATUM-L21-LB1"
+          },
+          {
+            "name": "calibration_state",
+            "passed": true,
+            "observation": "TCP error [np.float64(-0.014), np.float64(-0.074), np.float64(0.007)] mm vs tolerance 0.5 mm",
+            "value": [
+              -0.014,
+              -0.074,
+              0.007
+            ]
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "beam runs z/y/x 1/2/1 (expected >=1/2/1)",
+            "value": {
+              "z": 1292,
+              "y": 9027,
+              "x": 6027
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": true,
+            "observation": "T01 frame valid",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": []
+      },
+      "failures": {
+        "reasons": [],
+        "blocked_paths": []
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": true,
+          "grounding_ok": true,
+          "experimental_validity_ok": true,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": true,
+          "failure_reasons": [],
+          "blocked_paths": []
+        },
+        "semantic_event_eligible": true,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "evidence_layer_commit",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "T01",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "acceptance_criterion_id": "L21-ACC-TCP-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "datum DATUM-L21-LB1 (L21 fixture)",
+        "value": "DATUM-L21-LB1"
+      },
+      {
+        "name": "calibration_state",
+        "passed": true,
+        "observation": "TCP error [np.float64(-0.014), np.float64(-0.074), np.float64(0.007)] mm vs tolerance 0.5 mm",
+        "value": [
+          -0.014,
+          -0.074,
+          0.007
+        ]
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "beam runs z/y/x 1/2/1 (expected >=1/2/1)",
+        "value": {
+          "z": 1292,
+          "y": 9027,
+          "x": 6027
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": true,
+        "observation": "T01 frame valid",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": true,
+      "grounding_ok": true,
+      "experimental_validity_ok": true,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": true,
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "commitment_acceptance": {
+      "accepted": true,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": true,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "semantic_event": {
+      "eligible": true,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "T01: pass"
+    },
+    "routing": "evidence_layer_commit",
+    "evidence": {
+      "qc_target_id": "T01",
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "verdict": "pass",
+      "timestamps": {
+        "checked": 252.937
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_tcp_003",
+    "event_type": "L21.qc",
+    "timestamp_s": 364.496,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "tool_calibration_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "T01",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "DATUM-L21-LB1",
+          "acceptance_criterion_id": "L21-ACC-TCP-v1"
+        }
+      },
+      "commitment": {
+        "accepted": false,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": false,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [
+          "failed monitor calibration_state: TCP error [np.float64(-0.013), np.float64(-0.074), np.float64(-1.993)] mm vs tolerance 0.5 mm",
+          "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.013), np.float64(0.074), np.float64(1.993)] mm"
+        ],
+        "blocked_paths": [
+          "downstream_action_commitment",
+          "evidence_admission",
+          "semantic_event_commit"
+        ]
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 364.496,
+        "t_start_s": 364.496,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "datum DATUM-L21-LB1 (L21 fixture)",
+            "value": "DATUM-L21-LB1"
+          },
+          {
+            "name": "calibration_state",
+            "passed": false,
+            "observation": "TCP error [np.float64(-0.013), np.float64(-0.074), np.float64(-1.993)] mm vs tolerance 0.5 mm",
+            "value": [
+              -0.013,
+              -0.074,
+              -1.993
+            ]
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "beam runs z/y/x 1/2/1 (expected >=1/2/1)",
+            "value": {
+              "z": 1291,
+              "y": 9027,
+              "x": 6027
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": false,
+            "observation": "T01 frame INVALID: correction [np.float64(0.013), np.float64(0.074), np.float64(1.993)] mm",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": [
+          "calibration_state",
+          "tool_frame_validity"
+        ]
+      },
+      "failures": {
+        "reasons": [
+          "failed monitor calibration_state: TCP error [np.float64(-0.013), np.float64(-0.074), np.float64(-1.993)] mm vs tolerance 0.5 mm",
+          "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.013), np.float64(0.074), np.float64(1.993)] mm"
+        ],
+        "blocked_paths": [
+          "downstream_action_commitment",
+          "evidence_admission",
+          "semantic_event_commit"
+        ]
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": false,
+          "grounding_ok": false,
+          "experimental_validity_ok": false,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": false,
+          "failure_reasons": [
+            "failed monitor calibration_state: TCP error [np.float64(-0.013), np.float64(-0.074), np.float64(-1.993)] mm vs tolerance 0.5 mm",
+            "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.013), np.float64(0.074), np.float64(1.993)] mm"
+          ],
+          "blocked_paths": [
+            "downstream_action_commitment",
+            "evidence_admission",
+            "semantic_event_commit"
+          ]
+        },
+        "semantic_event_eligible": false,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "invalidate_dependent_measurements",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "T01",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "acceptance_criterion_id": "L21-ACC-TCP-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "datum DATUM-L21-LB1 (L21 fixture)",
+        "value": "DATUM-L21-LB1"
+      },
+      {
+        "name": "calibration_state",
+        "passed": false,
+        "observation": "TCP error [np.float64(-0.013), np.float64(-0.074), np.float64(-1.993)] mm vs tolerance 0.5 mm",
+        "value": [
+          -0.013,
+          -0.074,
+          -1.993
+        ]
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "beam runs z/y/x 1/2/1 (expected >=1/2/1)",
+        "value": {
+          "z": 1291,
+          "y": 9027,
+          "x": 6027
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": false,
+        "observation": "T01 frame INVALID: correction [np.float64(0.013), np.float64(0.074), np.float64(1.993)] mm",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": false,
+      "grounding_ok": false,
+      "experimental_validity_ok": false,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": false,
+      "failure_reasons": [
+        "failed monitor calibration_state: TCP error [np.float64(-0.013), np.float64(-0.074), np.float64(-1.993)] mm vs tolerance 0.5 mm",
+        "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.013), np.float64(0.074), np.float64(1.993)] mm"
+      ],
+      "blocked_paths": [
+        "downstream_action_commitment",
+        "evidence_admission",
+        "semantic_event_commit"
+      ]
+    },
+    "commitment_acceptance": {
+      "accepted": false,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": false,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [
+        "failed monitor calibration_state: TCP error [np.float64(-0.013), np.float64(-0.074), np.float64(-1.993)] mm vs tolerance 0.5 mm",
+        "failed monitor tool_frame_validity: T01 frame INVALID: correction [np.float64(0.013), np.float64(0.074), np.float64(1.993)] mm"
+      ],
+      "blocked_paths": [
+        "downstream_action_commitment",
+        "evidence_admission",
+        "semantic_event_commit"
+      ]
+    },
+    "semantic_event": {
+      "eligible": false,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "T01: out_of_tolerance"
+    },
+    "routing": "invalidate_dependent_measurements",
+    "evidence": {
+      "qc_target_id": "T01",
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "verdict": "out_of_tolerance",
+      "timestamps": {
+        "checked": 364.496
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_tcp_004",
+    "event_type": "L21.qc",
+    "timestamp_s": 476.037,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "tool_calibration_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "T01",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "DATUM-L21-LB1",
+          "acceptance_criterion_id": "L21-ACC-TCP-v1"
+        }
+      },
+      "commitment": {
+        "accepted": true,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": true,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [],
+        "blocked_paths": []
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 476.037,
+        "t_start_s": 476.037,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "datum DATUM-L21-LB1 (L21 fixture)",
+            "value": "DATUM-L21-LB1"
+          },
+          {
+            "name": "calibration_state",
+            "passed": true,
+            "observation": "TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(-0.005)] mm vs tolerance 0.5 mm",
+            "value": [
+              -0.014,
+              -0.073,
+              -0.005
+            ]
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "beam runs z/y/x 1/2/1 (expected >=1/2/1)",
+            "value": {
+              "z": 1291,
+              "y": 9027,
+              "x": 6027
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": true,
+            "observation": "T01 frame valid",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": []
+      },
+      "failures": {
+        "reasons": [],
+        "blocked_paths": []
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": true,
+          "grounding_ok": true,
+          "experimental_validity_ok": true,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": true,
+          "failure_reasons": [],
+          "blocked_paths": []
+        },
+        "semantic_event_eligible": true,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "evidence_layer_commit",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "T01",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "acceptance_criterion_id": "L21-ACC-TCP-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "datum DATUM-L21-LB1 (L21 fixture)",
+        "value": "DATUM-L21-LB1"
+      },
+      {
+        "name": "calibration_state",
+        "passed": true,
+        "observation": "TCP error [np.float64(-0.014), np.float64(-0.073), np.float64(-0.005)] mm vs tolerance 0.5 mm",
+        "value": [
+          -0.014,
+          -0.073,
+          -0.005
+        ]
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "beam runs z/y/x 1/2/1 (expected >=1/2/1)",
+        "value": {
+          "z": 1291,
+          "y": 9027,
+          "x": 6027
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": true,
+        "observation": "T01 frame valid",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": true,
+      "grounding_ok": true,
+      "experimental_validity_ok": true,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": true,
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "commitment_acceptance": {
+      "accepted": true,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": true,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "semantic_event": {
+      "eligible": true,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "T01: pass"
+    },
+    "routing": "evidence_layer_commit",
+    "evidence": {
+      "qc_target_id": "T01",
+      "reference_artifact_id": "DATUM-L21-LB1",
+      "verdict": "pass",
+      "timestamps": {
+        "checked": 476.037
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_img_005",
+    "event_type": "L21.qc",
+    "timestamp_s": 538.475,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "reference_plate_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "L17 (10x, 4x imaging chain)",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "REF-L21-001",
+          "acceptance_criterion_id": "L21-ACC-IMG-v1"
+        }
+      },
+      "commitment": {
+        "accepted": true,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": true,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [],
+        "blocked_paths": []
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 538.475,
+        "t_start_s": 538.475,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+            "value": "REF-L21-001"
+          },
+          {
+            "name": "calibration_state",
+            "passed": true,
+            "observation": "L17 as found (L17-CAL-2026-10-16-SIM) pass: 10x scale error 4e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}",
+            "value": {
+              "10x": 4e-05,
+              "4x": 0.0
+            }
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "autofocus repeatability (std, um) {'10x': 0.344, '4x': 0.087} vs {'10x': 2.2, '4x': 14.0}",
+            "value": {
+              "10x": 0.344,
+              "4x": 0.087
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": true,
+            "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": []
+      },
+      "failures": {
+        "reasons": [],
+        "blocked_paths": []
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": true,
+          "grounding_ok": true,
+          "experimental_validity_ok": true,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": true,
+          "failure_reasons": [],
+          "blocked_paths": []
+        },
+        "semantic_event_eligible": true,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "evidence_layer_commit",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "REF-L21-001",
+      "acceptance_criterion_id": "L21-ACC-IMG-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+        "value": "REF-L21-001"
+      },
+      {
+        "name": "calibration_state",
+        "passed": true,
+        "observation": "L17 as found (L17-CAL-2026-10-16-SIM) pass: 10x scale error 4e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}",
+        "value": {
+          "10x": 4e-05,
+          "4x": 0.0
+        }
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "autofocus repeatability (std, um) {'10x': 0.344, '4x': 0.087} vs {'10x': 2.2, '4x': 14.0}",
+        "value": {
+          "10x": 0.344,
+          "4x": 0.087
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": true,
+        "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": true,
+      "grounding_ok": true,
+      "experimental_validity_ok": true,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": true,
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "commitment_acceptance": {
+      "accepted": true,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": true,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "semantic_event": {
+      "eligible": true,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "L17 (10x, 4x imaging chain): pass; calibration L17-CAL-2026-10-16-L21-01 issued"
+    },
+    "routing": "evidence_layer_commit",
+    "evidence": {
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "reference_artifact_id": "REF-L21-001",
+      "verdict": "pass",
+      "timestamps": {
+        "checked": 538.475
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_img_006",
+    "event_type": "L21.qc",
+    "timestamp_s": 575.317,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "reference_plate_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "L17 (10x, 4x imaging chain)",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "REF-L21-001",
+          "acceptance_criterion_id": "L21-ACC-IMG-v1"
+        }
+      },
+      "commitment": {
+        "accepted": false,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": false,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [
+          "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-01) out_of_tolerance_recalibrated: 10x scale error 0.03999, checks {'pixel_scale': False, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}"
+        ],
+        "blocked_paths": [
+          "evidence_admission",
+          "semantic_event_commit"
+        ]
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 575.317,
+        "t_start_s": 575.317,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+            "value": "REF-L21-001"
+          },
+          {
+            "name": "calibration_state",
+            "passed": false,
+            "observation": "L17 as found (L17-CAL-2026-10-16-L21-01) out_of_tolerance_recalibrated: 10x scale error 0.03999, checks {'pixel_scale': False, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}",
+            "value": {
+              "10x": 0.03999,
+              "4x": 0.0
+            }
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "autofocus repeatability (std, um) {'10x': 0.217, '4x': 0.024} vs {'10x': 2.2, '4x': 14.0}",
+            "value": {
+              "10x": 0.217,
+              "4x": 0.024
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": true,
+            "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": [
+          "calibration_state"
+        ]
+      },
+      "failures": {
+        "reasons": [
+          "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-01) out_of_tolerance_recalibrated: 10x scale error 0.03999, checks {'pixel_scale': False, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}"
+        ],
+        "blocked_paths": [
+          "evidence_admission",
+          "semantic_event_commit"
+        ]
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": true,
+          "grounding_ok": true,
+          "experimental_validity_ok": false,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": false,
+          "failure_reasons": [
+            "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-01) out_of_tolerance_recalibrated: 10x scale error 0.03999, checks {'pixel_scale': False, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}"
+          ],
+          "blocked_paths": [
+            "evidence_admission",
+            "semantic_event_commit"
+          ]
+        },
+        "semantic_event_eligible": false,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "invalidate_dependent_measurements",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "REF-L21-001",
+      "acceptance_criterion_id": "L21-ACC-IMG-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+        "value": "REF-L21-001"
+      },
+      {
+        "name": "calibration_state",
+        "passed": false,
+        "observation": "L17 as found (L17-CAL-2026-10-16-L21-01) out_of_tolerance_recalibrated: 10x scale error 0.03999, checks {'pixel_scale': False, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}",
+        "value": {
+          "10x": 0.03999,
+          "4x": 0.0
+        }
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "autofocus repeatability (std, um) {'10x': 0.217, '4x': 0.024} vs {'10x': 2.2, '4x': 14.0}",
+        "value": {
+          "10x": 0.217,
+          "4x": 0.024
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": true,
+        "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": true,
+      "grounding_ok": true,
+      "experimental_validity_ok": false,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": false,
+      "failure_reasons": [
+        "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-01) out_of_tolerance_recalibrated: 10x scale error 0.03999, checks {'pixel_scale': False, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}"
+      ],
+      "blocked_paths": [
+        "evidence_admission",
+        "semantic_event_commit"
+      ]
+    },
+    "commitment_acceptance": {
+      "accepted": false,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": false,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [
+        "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-01) out_of_tolerance_recalibrated: 10x scale error 0.03999, checks {'pixel_scale': False, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 0.0, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}"
+      ],
+      "blocked_paths": [
+        "evidence_admission",
+        "semantic_event_commit"
+      ]
+    },
+    "semantic_event": {
+      "eligible": false,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "L17 (10x, 4x imaging chain): out_of_tolerance_recalibrated; calibration L17-CAL-2026-10-16-L21-02 issued"
+    },
+    "routing": "invalidate_dependent_measurements",
+    "evidence": {
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "reference_artifact_id": "REF-L21-001",
+      "verdict": "out_of_tolerance_recalibrated",
+      "timestamps": {
+        "checked": 575.317
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_img_007",
+    "event_type": "L21.qc",
+    "timestamp_s": 608.733,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "reference_plate_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "L17 (10x, 4x imaging chain)",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "REF-L21-001",
+          "acceptance_criterion_id": "L21-ACC-IMG-v1"
+        }
+      },
+      "commitment": {
+        "accepted": true,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": true,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [],
+        "blocked_paths": []
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 608.733,
+        "t_start_s": 608.733,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+            "value": "REF-L21-001"
+          },
+          {
+            "name": "calibration_state",
+            "passed": true,
+            "observation": "L17 as found (L17-CAL-2026-10-16-L21-02) pass: 10x scale error 2e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error -2e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}",
+            "value": {
+              "10x": 2e-05,
+              "4x": -2e-05
+            }
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "autofocus repeatability (std, um) {'10x': 0.041, '4x': 0.064} vs {'10x': 2.2, '4x': 14.0}",
+            "value": {
+              "10x": 0.041,
+              "4x": 0.064
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": true,
+            "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": []
+      },
+      "failures": {
+        "reasons": [],
+        "blocked_paths": []
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": true,
+          "grounding_ok": true,
+          "experimental_validity_ok": true,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": true,
+          "failure_reasons": [],
+          "blocked_paths": []
+        },
+        "semantic_event_eligible": true,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "evidence_layer_commit",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "REF-L21-001",
+      "acceptance_criterion_id": "L21-ACC-IMG-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+        "value": "REF-L21-001"
+      },
+      {
+        "name": "calibration_state",
+        "passed": true,
+        "observation": "L17 as found (L17-CAL-2026-10-16-L21-02) pass: 10x scale error 2e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error -2e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}",
+        "value": {
+          "10x": 2e-05,
+          "4x": -2e-05
+        }
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "autofocus repeatability (std, um) {'10x': 0.041, '4x': 0.064} vs {'10x': 2.2, '4x': 14.0}",
+        "value": {
+          "10x": 0.041,
+          "4x": 0.064
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": true,
+        "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": true,
+      "grounding_ok": true,
+      "experimental_validity_ok": true,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": true,
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "commitment_acceptance": {
+      "accepted": true,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": true,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "semantic_event": {
+      "eligible": true,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "L17 (10x, 4x imaging chain): pass; calibration L17-CAL-2026-10-16-L21-03 issued"
+    },
+    "routing": "evidence_layer_commit",
+    "evidence": {
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "reference_artifact_id": "REF-L21-001",
+      "verdict": "pass",
+      "timestamps": {
+        "checked": 608.733
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_img_008",
+    "event_type": "L21.qc",
+    "timestamp_s": 642.233,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "reference_plate_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "L17 (10x, 4x imaging chain)",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "REF-L21-001",
+          "acceptance_criterion_id": "L21-ACC-IMG-v1"
+        }
+      },
+      "commitment": {
+        "accepted": false,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": false,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [
+          "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-03) out_of_tolerance: 10x scale error -0.0001, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}"
+        ],
+        "blocked_paths": [
+          "evidence_admission",
+          "semantic_event_commit"
+        ]
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 642.233,
+        "t_start_s": 642.233,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+            "value": "REF-L21-001"
+          },
+          {
+            "name": "calibration_state",
+            "passed": false,
+            "observation": "L17 as found (L17-CAL-2026-10-16-L21-03) out_of_tolerance: 10x scale error -0.0001, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}",
+            "value": {
+              "10x": -0.0001,
+              "4x": 1e-05
+            }
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "autofocus repeatability (std, um) {'10x': 0.014, '4x': 0.054} vs {'10x': 2.2, '4x': 14.0}",
+            "value": {
+              "10x": 0.014,
+              "4x": 0.054
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": true,
+            "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": [
+          "calibration_state"
+        ]
+      },
+      "failures": {
+        "reasons": [
+          "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-03) out_of_tolerance: 10x scale error -0.0001, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}"
+        ],
+        "blocked_paths": [
+          "evidence_admission",
+          "semantic_event_commit"
+        ]
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": true,
+          "grounding_ok": true,
+          "experimental_validity_ok": false,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": false,
+          "failure_reasons": [
+            "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-03) out_of_tolerance: 10x scale error -0.0001, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}"
+          ],
+          "blocked_paths": [
+            "evidence_admission",
+            "semantic_event_commit"
+          ]
+        },
+        "semantic_event_eligible": false,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "invalidate_dependent_measurements",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "REF-L21-001",
+      "acceptance_criterion_id": "L21-ACC-IMG-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+        "value": "REF-L21-001"
+      },
+      {
+        "name": "calibration_state",
+        "passed": false,
+        "observation": "L17 as found (L17-CAL-2026-10-16-L21-03) out_of_tolerance: 10x scale error -0.0001, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}",
+        "value": {
+          "10x": -0.0001,
+          "4x": 1e-05
+        }
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "autofocus repeatability (std, um) {'10x': 0.014, '4x': 0.054} vs {'10x': 2.2, '4x': 14.0}",
+        "value": {
+          "10x": 0.014,
+          "4x": 0.054
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": true,
+        "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": true,
+      "grounding_ok": true,
+      "experimental_validity_ok": false,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": false,
+      "failure_reasons": [
+        "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-03) out_of_tolerance: 10x scale error -0.0001, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}"
+      ],
+      "blocked_paths": [
+        "evidence_admission",
+        "semantic_event_commit"
+      ]
+    },
+    "commitment_acceptance": {
+      "accepted": false,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": false,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [
+        "failed monitor calibration_state: L17 as found (L17-CAL-2026-10-16-L21-03) out_of_tolerance: 10x scale error -0.0001, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': False, 'autofocus_repeatability': True}"
+      ],
+      "blocked_paths": [
+        "evidence_admission",
+        "semantic_event_commit"
+      ]
+    },
+    "semantic_event": {
+      "eligible": false,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "L17 (10x, 4x imaging chain): out_of_tolerance"
+    },
+    "routing": "invalidate_dependent_measurements",
+    "evidence": {
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "reference_artifact_id": "REF-L21-001",
+      "verdict": "out_of_tolerance",
+      "timestamps": {
+        "checked": 642.233
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  {
+    "episode_id": "test-l21",
+    "designator_id": "test-l21/qc_img_009",
+    "event_type": "L21.qc",
+    "timestamp_s": 675.738,
+    "lifecycle": {
+      "open_designator": {
+        "action": "qc",
+        "requested_bindings": [
+          "acceptance_criterion_id",
+          "qc_component_id",
+          "qc_target_id",
+          "reference_artifact_id"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "L21",
+        "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+        "interaction_frames": {
+          "reference_frame": "reference_plate_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "L21",
+          "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+          "qc_target_id": "L17 (10x, 4x imaging chain)",
+          "qc_component_id": "L21",
+          "reference_artifact_id": "REF-L21-001",
+          "acceptance_criterion_id": "L21-ACC-IMG-v1"
+        }
+      },
+      "commitment": {
+        "accepted": true,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": true,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [],
+        "blocked_paths": []
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 675.738,
+        "t_start_s": 675.738,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "reference_identity",
+          "calibration_state",
+          "measurement_repeatability",
+          "tool_frame_validity"
+        ],
+        "observed": [
+          {
+            "name": "reference_identity",
+            "passed": true,
+            "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+            "value": "REF-L21-001"
+          },
+          {
+            "name": "calibration_state",
+            "passed": true,
+            "observation": "L17 as found (L17-CAL-2026-10-16-L21-03) pass: 10x scale error 0.00038, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}",
+            "value": {
+              "10x": 0.00038,
+              "4x": 1e-05
+            }
+          },
+          {
+            "name": "measurement_repeatability",
+            "passed": true,
+            "observation": "autofocus repeatability (std, um) {'10x': 0.189, '4x': 0.033} vs {'10x': 2.2, '4x': 14.0}",
+            "value": {
+              "10x": 0.189,
+              "4x": 0.033
+            }
+          },
+          {
+            "name": "tool_frame_validity",
+            "passed": true,
+            "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+            "value": "T01"
+          }
+        ],
+        "missing": [],
+        "failed": []
+      },
+      "failures": {
+        "reasons": [],
+        "blocked_paths": []
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "invalidate_dependent_measurements",
+          "repair_or_recalibrate",
+          "human_escalation"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": true,
+          "grounding_ok": true,
+          "experimental_validity_ok": true,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": true,
+          "failure_reasons": [],
+          "blocked_paths": []
+        },
+        "semantic_event_eligible": true,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "evidence_layer_commit",
+        "target": "EvidenceLayer"
+      }
+    },
+    "designator": {
+      "component_id": "L21",
+      "component_prim": "/World/Cell01/Stations/L21_QC_Calibration",
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "qc_component_id": "L21",
+      "reference_artifact_id": "REF-L21-001",
+      "acceptance_criterion_id": "L21-ACC-IMG-v1"
+    },
+    "monitors": [
+      {
+        "name": "reference_identity",
+        "passed": true,
+        "observation": "L17 barcode read 'REF-L21-001'; artifact REF-L21-001 lot SIM-LOT-2026-001 valid until 2027-04-30",
+        "value": "REF-L21-001"
+      },
+      {
+        "name": "calibration_state",
+        "passed": true,
+        "observation": "L17 as found (L17-CAL-2026-10-16-L21-03) pass: 10x scale error 0.00038, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}; 4x scale error 1e-05, checks {'pixel_scale': True, 'isotropy': True, 'orientation': True, 'brightness': True, 'autofocus_repeatability': True}",
+        "value": {
+          "10x": 0.00038,
+          "4x": 1e-05
+        }
+      },
+      {
+        "name": "measurement_repeatability",
+        "passed": true,
+        "observation": "autofocus repeatability (std, um) {'10x': 0.189, '4x': 0.033} vs {'10x': 2.2, '4x': 14.0}",
+        "value": {
+          "10x": 0.189,
+          "4x": 0.033
+        }
+      },
+      {
+        "name": "tool_frame_validity",
+        "passed": true,
+        "observation": "T01 (moved the reference plate) frame validated on the L21 light barrier",
+        "value": "T01"
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": true,
+      "grounding_ok": true,
+      "experimental_validity_ok": true,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": true,
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "commitment_acceptance": {
+      "accepted": true,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": true,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "semantic_event": {
+      "eligible": true,
+      "target": "EvidenceLayer.measurement_binding_validity",
+      "effect": "L17 (10x, 4x imaging chain): pass; calibration L17-CAL-2026-10-16-L21-04 issued"
+    },
+    "routing": "evidence_layer_commit",
+    "evidence": {
+      "qc_target_id": "L17 (10x, 4x imaging chain)",
+      "reference_artifact_id": "REF-L21-001",
+      "verdict": "pass",
+      "timestamps": {
+        "checked": 675.738
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  }
+]

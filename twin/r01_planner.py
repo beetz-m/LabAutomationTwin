@@ -89,7 +89,8 @@ def obstacles_from_stage(stage, layout):
       * each station's housing (the Body link's geometry without its stack light) and its stack light, as boxes
         in the station frame, from the floor up (the supports are covered by the housing footprint + CLEAR);
       * H4's open-door swing zone (tools/layout_p1.py) up to the housing top;
-      * the central bench and the west / north walls.
+      * the central bench and the west / north walls;
+      * the docked R03 AMR's cabinet (H2 fixture body + the lid's open travel), whether or not the AMR is docked.
     Presented trays are not obstacles: they are the targets."""
     from pxr import Gf, Usd, UsdGeom
     bc = UsdGeom.BBoxCache(Usd.TimeCode.Default(), ["default", "render"])
@@ -120,6 +121,10 @@ def obstacles_from_stage(stage, layout):
             top = st["origin"][2] + parts["housing"].GetMax()[2]
             add("H4_open_door", st["origin"], st["yaw_deg"], (-0.20, -0.12, -0.40, -0.13), st["origin"][2], top)
     out.append(Box("bench", 0.10 - base[0], 0.30 - base[1], 1.325, 0.375, 0.0, -base[2], 0.92 - base[2]))
+    h2 = layout.get("fixtures", {}).get("H2")
+    if h2:   # the docked R03's sealed cabinet (up to 1.0 m; its lid slides back over the rear): kept as an obstacle
+        x0, x1, y0, y1 = h2["footprint"]     # whether or not the AMR is docked (conservative)
+        add("R03_cabinet_docked", h2["origin"], h2["yaw_deg"], (x0 - 0.35, x1, y0, y1), 0.0, 1.0)
     for n, (x0, x1, y0, y1) in {"wall_W": (-3.3, -3.0, -2.5, 2.5), "wall_N": (-3.3, 3.3, 2.25, 2.5)}.items():
         out.append(Box(n, (x0 + x1) / 2 - base[0], (y0 + y1) / 2 - base[1], (x1 - x0) / 2, (y1 - y0) / 2, 0.0,
                        -base[2], 3.0))
