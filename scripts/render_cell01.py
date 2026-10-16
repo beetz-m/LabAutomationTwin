@@ -1,7 +1,8 @@
 """Path-traced view of Cell 01 with the stations built so far, posed by their controllers and physics.
 
-Opens scenes/cell01_twin.usda (Cell 01 + collider fixes + layout P1 with the H4, L09 and L10 twins around R01)
-and adds, in this session only: the FR3 + plate gripper on R01's base_link (hovering over H4's presented nest)
+Opens scenes/cell01_twin.usda (Cell 01 + collider fixes + layout P1 with the H4, L09 and L10 twins around R01, and
+R02's tool magazine) and adds, in this session only: R02 (rail + UR5e) reaching over the magazine, the FR3 + plate
+gripper on R01's base_link (hovering over H4's presented nest)
 and plates on the presented transfer nests of H4, L09 and L10. Nothing is saved.
 Usage: python scripts/render_cell01.py [out_dir] [--quick]
 """
@@ -35,6 +36,10 @@ app = SimulationApp({"headless": True, "renderer": "PathTracing", "width": RES[0
 
 import carb  # noqa: E402
 import isaacsim.core.experimental.utils.app as app_utils  # noqa: E402
+
+for _ext in ("isaacsim.robot.surface_gripper", "isaacsim.robot.schema"):  # R02's coupler lock
+    app_utils.enable_extension(_ext)
+app.update()
 import numpy as np  # noqa: E402
 import omni.replicator.core as rep  # noqa: E402
 import omni.usd  # noqa: E402
@@ -46,6 +51,7 @@ from pxr import Gf, PhysxSchema, Sdf, Usd, UsdGeom, UsdLux, UsdPhysics  # noqa: 
 from twin.h4_controller import H4Controller  # noqa: E402
 from twin.l09_controller import L09Controller  # noqa: E402
 from twin.l10_controller import L10Controller  # noqa: E402
+from twin.r02_rig import author_r02, rail_origin  # noqa: E402
 
 s = carb.settings.get_settings()
 s.set("/rtx/rendermode", "PathTracing")
@@ -96,6 +102,9 @@ for i, pid in enumerate(("P-H4-01", "P-L09-01", "P-L10-01")):
     p.GetPrim().CreateAttribute("labware:barcode", Sdf.ValueTypeNames.String, custom=True).Set(pid)
     plates[pid] = str(p.GetPath())
 
+# R02 (rail + UR5e + coupler) next to its tool magazine (the magazine and tools come with the overlay)
+r02_root, _, _ = author_r02(stage)
+
 # a little more light than the scene's dome alone (render-only)
 key = UsdLux.RectLight.Define(stage, "/World/RenderOnly/CeilingPanel")
 key.CreateWidthAttr(2.5)
@@ -140,6 +149,22 @@ pose = [float(v) for v in pose]
 print(f"[render_cell01] FR3 hover pose (deg): {[round(math.degrees(v), 1) for v in pose]}")
 arm.set_dof_positions(np.array([pose], dtype=np.float32), dof_indices=ARM)
 arm.set_dof_position_targets(np.array([pose], dtype=np.float32), dof_indices=ARM)
+
+# R02 at the magazine: coupler 0.10 m above dock T03 (URDF IK, elbow-up), as when it is about to pick a tool
+from twin.kinematics import UrdfChain  # noqa: E402
+_r02k = UrdfChain(os.path.join(ROOT, "assets/r02/r02.urdf"), "rail_base", "r02_tool0")
+_dock = np.array(UsdGeom.XformCache().GetLocalToWorldTransform(
+    stage.GetPrimAtPath("/World/Cell01/Tooling/AutomaticToolChanger/dock_T03")).ExtractTranslation())
+_tool = np.eye(4)
+_tool[2, 3] = 0.016
+_rail = float(_dock[0] - rail_origin()[0])
+q_r02 = _r02k.ik(_dock + [0, 0, 0.10] - rail_origin(), np.diag([1.0, -1.0, -1.0]),
+                 [_rail, math.pi / 2, -1.75, 1.95, -1.77, -math.pi / 2, 0.0], active=range(1, 7), tool=_tool)
+assert q_r02 is not None, "no R02 IK for the magazine pose"
+r02_arm = Articulation(r02_root)
+r02_arm.set_dof_positions(np.array([q_r02], dtype=np.float32))
+r02_arm.set_dof_position_targets(np.array([q_r02], dtype=np.float32))
+print(f"[render_cell01] R02 at the magazine: rail {q_r02[0]:.3f} m, q {np.round(np.degrees(q_r02[1:]), 1).tolist()}")
 
 
 def run(seconds):
@@ -196,7 +221,8 @@ os.makedirs(OUT, exist_ok=True)
 views = [("cell01_overview", UsdGeom.XformCache().GetLocalToWorldTransform(ov.GetPrim()), ov.GetFocalLengthAttr().Get()),
          ("cell01_elevated", ((0.55, -2.05, 2.55), (-1.70, 0.50, 0.95)), 20.0),
          ("cell01_r01_cluster", ((-0.25, -1.35, 1.85), (-1.80, 0.50, 1.00)), 20.0),
-         ("cell01_r01_service", ((-1.60, -0.75, 2.60), (-1.75, 0.55, 0.95)), 16.0)]
+         ("cell01_r01_service", ((-1.60, -0.75, 2.60), (-1.75, 0.55, 0.95)), 16.0),
+         ("cell01_r02_magazine", ((1.45, -0.85, 2.00), (0.25, 1.00, 1.05)), 20.0)]
 if os.environ.get("CELL01_DEBUG"):
     sys.stdout.flush()
     os._exit(0)

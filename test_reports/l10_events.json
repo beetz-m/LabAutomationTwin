@@ -57,18 +57,18 @@
       "slot": 43
     },
     {
-      "t": 66.6458,
+      "t": 66.95,
       "event": "alarm_raised",
       "mode": "READY",
       "alarm": "temperature_excursion",
       "value": 36.499
     },
     {
-      "t": 66.7125,
+      "t": 67.0917,
       "event": "alarm_raised",
       "mode": "READY",
       "alarm": "CO2_excursion",
-      "value": 4.699
+      "value": 4.7
     },
     {
       "t": 71.5,
@@ -77,28 +77,28 @@
       "reason": "environment not valid (['CO2_excursion', 'temperature_excursion'])"
     },
     {
-      "t": 298.1042,
+      "t": 183.5125,
       "event": "alarm_cleared",
       "mode": "READY",
       "alarm": "CO2_excursion",
       "value": 4.7
     },
     {
-      "t": 313.9083,
+      "t": 195.1292,
       "event": "alarm_cleared",
       "mode": "READY",
       "alarm": "temperature_excursion",
       "value": 36.5
     },
     {
-      "t": 314.0,
+      "t": 195.25,
       "event": "retrieve_accepted",
       "mode": "BUSY",
       "plate_id": "P-A",
       "slot": 0
     },
     {
-      "t": 325.7875,
+      "t": 207.0375,
       "event": "identity_read",
       "mode": "BUSY",
       "where": "transfer_nest",
@@ -106,41 +106,27 @@
       "observed": "P-A"
     },
     {
-      "t": 325.7875,
+      "t": 207.0375,
       "event": "retrieved",
       "mode": "BUSY",
       "plate_id": "P-A",
       "slot": 0
     },
     {
-      "t": 325.79,
+      "t": 207.04,
       "event": "release_record",
       "mode": "BUSY",
       "plate_id": "P-A",
       "slot": 0,
       "environment": {
-        "T": 36.524,
-        "CO2": 4.73,
-        "RH": 85.592
+        "T": 36.6,
+        "CO2": 4.804,
+        "RH": 86.636
       },
       "environment_valid": true
     },
     {
-      "t": 328.7542,
-      "event": "alarm_raised",
-      "mode": "BUSY",
-      "alarm": "temperature_excursion",
-      "value": 36.5
-    },
-    {
-      "t": 330.7333,
-      "event": "alarm_raised",
-      "mode": "PRESENTED_LOADED",
-      "alarm": "CO2_excursion",
-      "value": 4.7
-    },
-    {
-      "t": 331.0042,
+      "t": 212.2542,
       "event": "alarm_raised",
       "mode": "PRESENTED_LOADED",
       "alarm": "gate_stuck_open",

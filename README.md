@@ -68,12 +68,19 @@ Plan view: `renders/cell01_layout_p1.png`.
 
 `scripts/run_cell01_episode.py` runs Cell 01 workflows as CRAM designators with every station controller and R01
 in the loop. Monitors read the simulated devices: barcode rays, seat sensors, slot rays, joint states, PhysX contact
-reports and the L10 environment model. The two episodes, verified 2026-10-15:
+reports and the L10 environment model. The three episodes run in sequence in one simulation (2026-10-16):
 
 | Episode | What happens | Records |
 |---|---|---|
 | `nominal` | L10 releases Plate_P17. R01 picks it, transits and places it on L09. L09 reads the barcode again and stores it in slot 3. | retrieve, transport, store: all eligible to commit |
 | `identity_swap` | L10's inventory says slot 5 holds Plate_P18, but the plate there is Plate_P23. L10's reader catches it at release, and L10 presents the plate for removal. R01 carries it to H4, which quarantines and locks it and refuses an unauthorised release. | retrieve: blocked (`plate_identity`), routed to H4, quarantine request executed; transport, quarantine: eligible; escalations: Plate_P18 unaccounted for, quarantine review |
+| `quarantine_release` | Continues the swap. A human review (simulated input, recorded as such) confirms Plate_P23 and authorises its release. The operator turns H4's key to RELEASE; the release is still refused without the token and accepted with it. H4 presents the plate. R01 returns it to L10, which re-reads the barcode and incubates it in slot 5. | retrieve from H4 (identity carried by the containment chain; H4 has no reader), transport, incubate (barcode re-read, seating, T / CO2 / RH and alarm monitors): all eligible; quarantine review resolved; Plate_P18 still unaccounted for |
+
+**Scheduling finding from the twin.** In the first `quarantine_release` run the executive opened L10's gate for loading
+before R01 had even fetched the plate, just after two earlier transfers. L10's chamber left its envelope, and L10
+correctly refused the incubation, leaving the plate on the open tray. The executive now waits until L10's environment
+is at least halfway from each bound back to its setpoint, and opens the gate only once the plate is in the gripper.
+The environment numbers come from the illustrative model (D016); the scheduling logic is the point.
 
 **Records.** `twin/episode_records.py` turns the run log into records that follow Cell 01's
 `neem_record_schema.yaml`:

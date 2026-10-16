@@ -12,9 +12,12 @@ identity at transfer, interlocks) with sdt/components/L10_Incubator.yaml:
 
 Environment model (ILLUSTRATIVE engineering assumptions, not validated incubator data; D016: no biological
 parameters): each variable X exchanges with ambient through openings and is driven back to setpoint by a
-rate-limited controller,
-    dX/dt = -(k_closed + k_gate * f_gate + k_door * f_door) (X - X_amb) + clip((X_set - X) / tau, -r_max, r_max)
-with f_gate / f_door the open fractions read from the simulated joints. The recorded values are the simulated
+rate-limited PI controller,
+    dX/dt = -(k_closed + k_gate * f_gate + k_door * f_door) (X - X_amb) + u,
+    u = clip((X_set - X) / tau + I, -r_max, r_max),   dI/dt = (X_set - X) / (tau * T_I)  (frozen while u saturates)
+with f_gate / f_door the open fractions read from the simulated joints. I starts at the closed-chamber equilibrium
+k_closed (X_set - X_amb). (A proportional-only controller settled below setpoint, e.g. T 36.75 C, RH 86.5 %, and an
+episode waited 600 s for a recovery that could not happen, 2026-10-16.) The recorded values are the simulated
 sensor readings ("nominal setpoint must not be assumed to equal culture exposure").
 """
 
@@ -35,6 +38,7 @@ MODEL = {
     "CO2": dict(k_closed=1 / 3600, k_gate=1 / 600, k_door=1 / 25, tau=120.0, r_max=0.03),
     "RH":  dict(k_closed=1 / 7200, k_gate=1 / 1500, k_door=1 / 60, tau=600.0, r_max=0.02),
 }
+T_I = 300.0  # s, integral time (assumption)
 ENVELOPE = {"T": (36.5, 37.5), "CO2": (4.7, 5.3), "RH": (85.0, 100.0)}
 ALARM_NAME = {"T": "temperature_excursion", "CO2": "CO2_excursion", "RH": "humidity_excursion"}
 
@@ -47,6 +51,7 @@ class L10Controller(PlateStoreController):
 
     def __post_init__(self):
         super().__post_init__()
+        self._integ = {k: m["k_closed"] * (SETPOINT[k] - AMBIENT[k]) for k, m in MODEL.items()}  # equilibrium
         self.alarms = set()
         self.door_open_total_s = 0.0
         self._gate_open_s = 0.0
@@ -88,7 +93,11 @@ class L10Controller(PlateStoreController):
         for k, m in MODEL.items():
             x = self.env[k]
             loss = (m["k_closed"] + m["k_gate"] * f_gate + m["k_door"] * f_door) * (x - AMBIENT[k])
-            ctrl = float(np.clip((SETPOINT[k] - x) / m["tau"], -m["r_max"], m["r_max"]))
+            e = SETPOINT[k] - x
+            u = e / m["tau"] + self._integ[k]
+            ctrl = float(np.clip(u, -m["r_max"], m["r_max"]))
+            if ctrl == u:                                   # anti-windup: integrate only when not saturated
+                self._integ[k] += e / (m["tau"] * T_I) * dt
             self.env[k] = x + (ctrl - loss) * dt
         if f_door > 0.02 or f_gate > 0.02:
             self.door_open_total_s += dt
