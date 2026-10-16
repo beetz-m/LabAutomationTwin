@@ -104,6 +104,24 @@ the twin has no contamination model.
 - Approach, insertion and lift stay Cartesian (`twin/r01_rig.py`).
 - No arm contact occurred in either transit.
 
+## Renders
+
+All renders are path traced. `renders/cell01/` holds the cell: `scripts/render_cell01.py` shows every station
+presenting a plate, R01 over H4, and R02 reaching over its tool magazine (`cell01_r02_magazine.png`).
+
+`renders/episodes/` holds stills of the simulated state at the key moments of the episodes, from
+`scripts/run_cell01_episode.py --frames renders/episodes`:
+
+| Frame | Moment |
+|---|---|
+| `nominal_2_carrying_to_L09` | R01 above L09 with Plate_P17 |
+| `identity_swap_1_identity_fault_at_L10` | The swapped plate presented for removal after L10's barcode mismatch |
+| `identity_swap_2_carrying_to_H4` | R01 above H4's open door with the plate |
+| `identity_swap_3_quarantined_locked` | The plate contained in H4, door closed and locked |
+| `quarantine_release_1_authorised_release` | H4 presents the plate after the key and token |
+| `quarantine_release_2_return_to_L10` | R01 above L10's tray with the released plate |
+| `quarantine_release_3_incubated` | The cell after the plate is back in L10 |
+
 ## Design basis and limits
 
 - All station designs are project-owned parametric designs, not manufacturer models. Manufacturer CAD (LiCONiC,

@@ -44,6 +44,7 @@ ap.add_argument("--episodes", default="nominal,identity_swap,quarantine_release"
 ap.add_argument("--place-mode", choices=("compliant", "drop"), default="compliant")
 ap.add_argument("--frames", default=None, help="directory for path-traced stills at the key moments (presentations)")
 ap.add_argument("--quick", action="store_true", help="with --frames: 1280x800, fewer samples")
+ap.add_argument("--frame-filter", default="", help="with --frames: only frames whose name contains this")
 args = ap.parse_args()
 
 OVERLAY = os.path.join(ROOT, "scenes/cell01_twin.usda")
@@ -127,13 +128,14 @@ by_barcode = {p["barcode"]: plate_paths[n] for n, p in PLATES.items()}
 VIEWS = {"cluster": ((-0.25, -1.35, 1.85), (-1.80, 0.50, 1.00), 20.0),
          "h4": ((-1.25, -0.65, 1.55), (-2.05, 0.10, 1.00), 24.0),
          "l10": ((-1.25, 0.05, 1.60), (-1.95, 0.85, 1.05), 22.0),
+         "l10_side": ((-2.60, 0.30, 1.75), (-1.95, 0.80, 1.00), 22.0),   # from west of H4: R01 does not hide the tray
          "elevated": ((0.55, -2.05, 2.55), (-1.70, 0.50, 0.95), 20.0)}
 cam = StillCamera(stage, RES, *((8, 8) if args.quick else (16, 32))) if args.frames else None
 
 
 def still(name, view):
     """Path-traced still of the current simulated state (only with --frames)."""
-    if cam:
+    if cam and args.frame_filter in name:
         t0 = time.time()
         print(f"[episode]   frame {cam.capture(os.path.join(args.frames, name + '.png'), *VIEWS[view])} "
               f"({time.time() - t0:.0f}s)", flush=True)
@@ -238,7 +240,7 @@ def run_episode(episode_id, scenario, plate_id, store_slot):
     if released and held:
         go_above("L10", held=False)
         if route == "quarantine":
-            still(f"{scenario}_1_identity_fault_at_L10", "l10")
+            still(f"{scenario}_1_identity_fault_at_L10", "l10_side")
     rig.phase = "pick"
     grasp = rig.pick(p_src, yaw_src, "pick_L10", plate=held) if (released and held) else {"lifted": False}
     rig.phase = None
