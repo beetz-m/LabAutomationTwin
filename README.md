@@ -77,21 +77,34 @@ Plan view: `renders/cell01_layout_p1.png`.
 
 ## End-to-end episodes
 
-`scripts/run_cell01_episode.py` runs Cell 01 workflows as CRAM designators with every station controller and R01
-in the loop. Monitors read the simulated devices: barcode rays, seat sensors, slot rays, joint states, PhysX contact
-reports and the L10 environment model. The three episodes run in sequence in one simulation (2026-10-16):
+`scripts/run_cell01_episode.py` runs Cell 01 workflows as CRAM designators with every station controller, R01, R02 and
+R03 in the loop. Monitors read the simulated devices: barcode rays, seat sensors, slot rays, joint states, PhysX
+contact reports, the L10 environment model, L17 images, L12 pressure traces, L21 reference measurements and the H2
+dock sensors. The five episodes run in sequence in one simulation (2026-10-16):
 
 | Episode | What happens | Records |
 |---|---|---|
 | `nominal` | L10 releases Plate_P17. R01 picks it, transits and places it on L09. L09 reads the barcode again and stores it in slot 3. | retrieve, transport, store: all eligible to commit |
 | `identity_swap` | L10's inventory says slot 5 holds Plate_P18, but the plate there is Plate_P23. L10's reader catches it at release, and L10 presents the plate for removal. R01 carries it to H4, which quarantines and locks it and refuses an unauthorised release. | retrieve: blocked (`plate_identity`), routed to H4, quarantine request executed; transport, quarantine: eligible; escalations: Plate_P18 unaccounted for, quarantine review |
 | `quarantine_release` | Continues the swap. A human review (simulated input, recorded as such) confirms Plate_P23 and authorises its release. The operator turns H4's key to RELEASE; the release is still refused without the token and accepted with it. H4 presents the plate. R01 returns it to L10, which re-reads the barcode and incubates it in slot 5. | retrieve from H4 (identity carried by the containment chain; H4 has no reader), transport, incubate (barcode re-read, seating, T / CO2 / RH and alarm monitors): all eligible; quarantine review resolved; Plate_P18 still unaccounted for |
+| `imaging` | Plate_P17 (stored in L09 by `nominal`) goes L09 → R01 → handover nest → R02 with T01 → L17. L17 reads its barcode at load and images B02–B04 at 10x with autofocus. The plate then returns the same way and L09 stores it again. A well that fails `focus_quality` is kept as a blocked image, then refocused from scratch and reacquired. | retrieve, 4 transports, 3 L17 image records (Cell 01's own L17 builder; admitted), store: all eligible |
+| `full_cell` | Start-of-day QC: L21 checks T01's TCP on the light barrier (as found 0.76 mm off, corrected), then validates L17 on the reference plate, which issues a calibration. R03 brings Plate_P30 in its closed cabinet, docks in H2 and opens the cabinet; R01 takes the plate to L10, which incubates it, and R03 leaves. L10 releases it for an intervention: R01 → handover nest → R02 → L12, which doses 10 µL into B05 after an airspace check. R02 takes it to L17, which images B05 and B06, and the plate returns to L10. | 3 QC (the as-found TCP check routes to `invalidate_dependent_measurements`), 2 AMR transports, retrieves, transports, L12 dose (Cell 01's L12 builder), 2 L17 images, 2 incubations: all others eligible |
 
 **Scheduling finding from the twin.** In the first `quarantine_release` run the executive opened L10's gate for loading
 before R01 had even fetched the plate, just after two earlier transfers. L10's chamber left its envelope, and L10
 correctly refused the incubation, leaving the plate on the open tray. The executive now waits until L10's environment
 is at least halfway from each bound back to its setpoint, and opens the gate only once the plate is in the gripper.
 The environment numbers come from the illustrative model (D016); the scheduling logic is the point.
+
+**Findings from the full-cell integration (2026-10-16).**
+- **AMR carrier site:** R01's planner could not reach the first AMR carrier site, although the layout check passed
+  it. The site moved toward R01.
+- **AMR lid:** the AMR's sliding hood jammed on the carrier plate. It is now a fixed shroud with a flat lid.
+- **L12 heights:** the liquid-level descent of L12 mixed world and station heights. It worked only with the station
+  on the floor.
+- **L12 airspace:** a robot hovering over L12 blocked its gantry. L12 now has a deck airspace interlock.
+- **Plate placement:** a runtime pose write to a just-created physics view was dropped silently, so the AMR's plate
+  is now authored before play.
 
 **Records.** `twin/episode_records.py` turns the run log into records that follow Cell 01's
 `neem_record_schema.yaml`:
@@ -118,7 +131,10 @@ the twin has no contamination model.
 ## Renders
 
 All renders are path traced. `renders/cell01/` holds the cell: `scripts/render_cell01.py` shows every station
-presenting a plate, R01 over H4, and R02 reaching over its tool magazine (`cell01_r02_magazine.png`).
+presenting a plate, R01 over H4, R02 reaching over its tool magazine, L12 with tips and reagents, L21 with its
+reference plate, L17's presented stage, the handover nest and R03 docked with its cabinet open (`cell01_east`,
+`cell01_l12`, `cell01_l21`, `cell01_l17`, `cell01_amr_docked`, ...). `--rt --quick` gives a real-time preview that can
+share the GPU with a running simulation (path tracing next to two simulations crashed the 8 GB GPU).
 
 `renders/episodes/` holds stills of the simulated state at the key moments of the episodes, from
 `scripts/run_cell01_episode.py --frames renders/episodes`:

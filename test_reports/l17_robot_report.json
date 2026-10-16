@@ -120,7 +120,7 @@
   ],
   "passed": 6,
   "total": 6,
-  "wall_s": 355.5,
+  "wall_s": 557.1,
   "l17_events": [
     {
       "t": 43.1125,
@@ -406,7 +406,7 @@
         {
           "name": "calibration_state",
           "passed": true,
-          "observation": "L17-CAL-2026-10-16-SIM valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
+          "observation": "L17-CAL-2026-10-16-SIM valid, valid until 2026-11-15 (twin calibration record (simulated input; L21 QC not yet built))",
           "value": "L17-CAL-2026-10-16-SIM"
         }
       ],
@@ -417,6 +417,8 @@
         "light_dose_rel_ms": 875.0,
         "autofocus_frames": 34
       },
+      "purpose": "measurement",
+      "calibration_id": "L17-CAL-2026-10-16-SIM",
       "valid": true
     }
   ],

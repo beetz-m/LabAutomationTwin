@@ -64,10 +64,12 @@ from twin.r01_rig import HZ, R01Rig, add_plate, author_rig, frame_pose, qyaw, to
 if args.scene == "bench":
     SOURCE = np.array([0.55, -0.27, BENCH_Z + 0.04])
     H4_PATH, FR3_PATH, GRIP_PATH = "/World/H4_Quarantine", "/World/FR3", "/World/Gripper"
-else:  # layout P1 (scenes/layout_p1.json): the source plate sits on a test stand at the R01/R02 handover nest
+else:  # layout P1 (scenes/layout_p1.json): the source plate sits on a test stand on the central bench
     with open(os.path.join(ROOT, "scenes/layout_p1.json")) as f:
         LAYOUT = json.load(f)
-    SOURCE = np.array(LAYOUT["extra_frames"]["handover_nest_R01_R02"])
+    # free bench spot next to the R01/R02 handover nest (which is now a real keyed nest at (-1.05, 0.55) and cannot
+    # hold the plate at H4's yaw with pose noise); R01 serves it at 5/5 yaws (tools/reachability_study.py)
+    SOURCE = np.array([-0.98, 0.30, 0.96])
     WORKTOP_Z = 0.92  # central bench top (Cell 01)
     H4_PATH = "/World/Cell01/Stations/H4_Quarantine"
     FR3_PATH, GRIP_PATH = "/World/Cell01/Robots/R01_FR3/FR3", "/World/Cell01/Robots/R01_FR3/PlateGripper"

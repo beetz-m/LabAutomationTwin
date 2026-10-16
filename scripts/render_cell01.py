@@ -1,10 +1,12 @@
 """Path-traced view of Cell 01 with the stations built so far, posed by their controllers and physics.
 
 Opens scenes/cell01_twin.usda (Cell 01 + collider fixes + layout P1 with the H4, L09 and L10 twins around R01, and
-R02's tool magazine) and adds, in this session only: R02 (rail + UR5e) reaching over the magazine, the FR3 + plate
+R02's tool magazine, L12, L17, L21, the handover nest and R03 + H2) and adds, in this session only: R02 (rail + UR5e)
+reaching over the magazine, L12 tips + reagent tubes, plates on L12 and L21, R03 docked with its cabinet open, the FR3 + plate
 gripper on R01's base_link (hovering over H4's presented nest)
-and plates on the presented transfer nests of H4, L09 and L10. Nothing is saved.
-Usage: python scripts/render_cell01.py [out_dir] [--quick]
+and plates on the presented transfer nests of H4, L09, L10 and L17 (stage presented) and in the R01/R02 handover
+nest. Nothing is saved.
+Usage: python scripts/render_cell01.py [out_dir] [--quick] [--rt] [--views=name1,name2]
 """
 
 import math
@@ -20,6 +22,8 @@ FR3_USD = os.path.join(ROOT, "assets/fr3/usd/fr3_arm/fr3_arm.usda")
 GRIPPER_USD = os.path.join(ROOT, "assets/gripper/plate_gripper.usda")
 PLATE_USD = os.path.join(ROOT, "assets/labware/plate_sbs96.usda")
 QUICK = "--quick" in sys.argv
+RT = "--rt" in sys.argv          # real-time ray tracing: far less GPU memory (preview next to running simulations)
+ONLY = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--views=")), None)
 args = [a for a in sys.argv[1:] if not a.startswith("--")]
 OUT = os.path.abspath(args[0] if args else os.path.join(ROOT, "renders/cell01"))
 RES = (1280, 800) if QUICK else (1920, 1200)
@@ -28,11 +32,14 @@ HZ = 240
 H4 = "/World/Cell01/Stations/H4_Quarantine"
 L09 = "/World/Cell01/Stations/L09_PlateHotel"
 L10 = "/World/Cell01/Stations/L10_Incubator"
+L17 = "/World/Cell01/Stations/L17_BrightFieldImager"
+HN = "/World/Cell01/Fixtures/HandoverNest_R01_R02"
 R01 = "/World/Cell01/Robots/R01_FR3"
 
 from isaacsim import SimulationApp  # noqa: E402
 
-app = SimulationApp({"headless": True, "renderer": "PathTracing", "width": RES[0], "height": RES[1]})
+app = SimulationApp({"headless": True, "renderer": "RaytracedLighting" if RT else "PathTracing", "width": RES[0],
+                     "height": RES[1]})
 
 import carb  # noqa: E402
 import isaacsim.core.experimental.utils.app as app_utils  # noqa: E402
@@ -51,10 +58,11 @@ from pxr import Gf, PhysxSchema, Sdf, Usd, UsdGeom, UsdLux, UsdPhysics  # noqa: 
 from twin.h4_controller import H4Controller  # noqa: E402
 from twin.l09_controller import L09Controller  # noqa: E402
 from twin.l10_controller import L10Controller  # noqa: E402
+from twin.l17_controller import L17Controller  # noqa: E402
 from twin.r02_rig import author_r02, rail_origin  # noqa: E402
 
 s = carb.settings.get_settings()
-s.set("/rtx/rendermode", "PathTracing")
+s.set("/rtx/rendermode", "RaytracedLighting" if RT else "PathTracing")
 s.set("/rtx/pathtracing/spp", SPP)
 s.set("/rtx/pathtracing/totalSpp", SPP * SUBFRAMES)
 s.set("/rtx/pathtracing/maxBounces", 8)
@@ -94,7 +102,7 @@ for p in list(Usd.PrimRange(fr3.GetPrim())) + list(Usd.PrimRange(grip.GetPrim())
 PhysxSchema.PhysxArticulationAPI.Apply(stage.GetPrimAtPath(art_root)).CreateSleepThresholdAttr(0.0)
 
 plates = {}
-for i, pid in enumerate(("P-H4-01", "P-L09-01", "P-L10-01")):
+for i, pid in enumerate(("P-H4-01", "P-L09-01", "P-L10-01", "P-L17-01", "P-HN-01")):
     p = UsdGeom.Xform.Define(stage, f"/World/RenderOnly/Plate_{i}")
     p.GetPrim().GetReferences().AddReference(PLATE_USD)
     p.AddTranslateOp().Set(Gf.Vec3d(2.5, -1.5 + 0.2 * i, 0.02))
@@ -104,6 +112,25 @@ for i, pid in enumerate(("P-H4-01", "P-L09-01", "P-L10-01")):
 
 # R02 (rail + UR5e + coupler) next to its tool magazine (the magazine and tools come with the overlay)
 r02_root, _, _ = author_r02(stage)
+# L12 consumables (tips, a reagent tube), L21's reference plate, R03 docked with a carrier plate (opened after play)
+from twin.l12_controller import add_reagent_tube, add_tips  # noqa: E402
+from twin.r03_controller import R03Controller, carrier_seat_world  # noqa: E402
+L12 = "/World/Cell01/Stations/L12_LiquidHandler"
+L21 = "/World/Cell01/Stations/L21_QC_Calibration"
+R03 = "/World/Cell01/Robots/R03_SampleAMR"
+add_tips(stage, L12, [f"{r}{c:02d}" for c in (1, 2, 3, 4) for r in "ABCDEFGH"])
+add_reagent_tube(stage, L12, 1, "RGT-0001", "abstract_challenge_reagent", "SIM-LOT-A", 1000.0)
+add_reagent_tube(stage, L12, 2, "RGT-0002", "abstract_rescue_reagent", "SIM-LOT-B", 800.0)
+for pid, prim in (("REF-L21-001", f"{L21}/reference_plate_frame"), ("P-L12-01", f"{L12}/plate_nest")):
+    _p = UsdGeom.Xform.Define(stage, f"/World/RenderOnly/Plate_{pid.replace('-', '_')}")
+    _p.GetPrim().GetReferences().AddReference(PLATE_USD)
+    _p.AddTranslateOp().Set(UsdGeom.XformCache().GetLocalToWorldTransform(stage.GetPrimAtPath(prim)).ExtractTranslation()
+                            + Gf.Vec3d(0, 0, 0.0005))
+_pc, _yc = carrier_seat_world(stage, R03, (0.0, 0.0, 0.0))
+_p = UsdGeom.Xform.Define(stage, "/World/RenderOnly/Plate_P30")
+_p.GetPrim().GetReferences().AddReference(PLATE_USD)
+_p.AddTranslateOp().Set(Gf.Vec3d(*map(float, _pc + [0, 0, 0.0005])))
+_p.AddRotateZOp().Set(float(_yc))
 
 # a little more light than the scene's dome alone (render-only)
 key = UsdLux.RectLight.Define(stage, "/World/RenderOnly/CeilingPanel")
@@ -118,6 +145,10 @@ app_utils.play(commit=True)
 h4c = H4Controller(stage, H4)
 l9c = L09Controller(stage, L09)
 l10c = L10Controller(stage, L10)
+l17c = L17Controller(stage, L17)
+amr = R03Controller(stage, R03, "/World/Cell01/Stations/H2_AMR_Dock")
+amr.mode = "DOCKED"
+amr.open_cabinet()
 arm = Articulation(art_root)
 names = list(arm.dof_names)
 ARM = [names.index(f"fr3_joint{i}") for i in range(1, 8)]
@@ -170,6 +201,8 @@ print(f"[render_cell01] R02 at the magazine: rail {q_r02[0]:.3f} m, q {np.round(
 def run(seconds):
     def cb(i, n):
         h4c.update(1.0 / HZ)
+        l17c.update(1.0 / HZ)
+        amr.update(1.0 / HZ)
         l9c.update(1.0 / HZ)
         l10c.update(1.0 / HZ)
     SimulationManager.step(steps=int(round(seconds * HZ)), callback=cb)
@@ -190,13 +223,16 @@ run(0.5)
 h4c.present_nest()
 l9c.present_for_load()
 l10c.present_for_load()
+l17c.present_for_load()
 for _ in range(80):  # wait for every station to finish presenting before plates go on the nests
     run(0.25)
-    if h4c.mode == "PRESENTED" and l9c.mode == "PRESENTED_EMPTY" and l10c.mode == "PRESENTED_EMPTY":
+    if h4c.mode == "PRESENTED" and l9c.mode == "PRESENTED_EMPTY" and l10c.mode == "PRESENTED_EMPTY" \
+            and l17c.mode == "PRESENTED_EMPTY":
         break
 run(0.5)
 put("P-H4-01", nest + [0, 0, 0.004], h4_yaw)
-for pid, prim in (("P-L09-01", f"{L09}/transfer_nest"), ("P-L10-01", f"{L10}/transfer_station")):
+for pid, prim in (("P-L09-01", f"{L09}/transfer_nest"), ("P-L10-01", f"{L10}/transfer_station"),
+                  ("P-L17-01", f"{L17}/plate_load_frame"), ("P-HN-01", f"{HN}/handover_frame")):
     p_, y_ = frame(prim)
     put(pid, p_ + [0, 0, 0.004], y_)
 run(1.0)
@@ -222,11 +258,18 @@ views = [("cell01_overview", UsdGeom.XformCache().GetLocalToWorldTransform(ov.Ge
          ("cell01_elevated", ((0.55, -2.05, 2.55), (-1.70, 0.50, 0.95)), 20.0),
          ("cell01_r01_cluster", ((-0.25, -1.35, 1.85), (-1.80, 0.50, 1.00)), 20.0),
          ("cell01_r01_service", ((-1.60, -0.75, 2.60), (-1.75, 0.55, 0.95)), 16.0),
-         ("cell01_r02_magazine", ((1.45, -0.85, 2.00), (0.25, 1.00, 1.05)), 20.0)]
+         ("cell01_r02_magazine", ((1.45, -0.85, 2.00), (0.25, 1.00, 1.05)), 20.0),
+         ("cell01_l17", ((0.80, 0.15, 1.75), (1.62, 1.30, 1.00)), 22.0),
+         ("cell01_l17_close", ((1.20, 0.72, 1.32), (1.65, 1.27, 1.00)), 30.0),
+         ("cell01_handover_nest", ((-0.55, -0.20, 1.40), (-1.05, 0.55, 0.96)), 30.0),
+         ("cell01_l12", ((0.15, -0.85, 1.65), (0.15, 0.25, 0.98)), 24.0),
+         ("cell01_l21", ((1.55, 0.25, 1.55), (2.15, 1.12, 0.98)), 26.0),
+         ("cell01_amr_docked", ((-0.35, -1.35, 1.55), (-1.45, -0.28, 0.65)), 22.0),
+         ("cell01_east", ((2.70, -1.90, 2.40), (0.80, 0.70, 0.95)), 20.0)]
 if os.environ.get("CELL01_DEBUG"):
     sys.stdout.flush()
     os._exit(0)
-for name, pose, focal in views:
+for name, pose, focal in [v for v in views if ONLY is None or v[0] in ONLY]:
     t0 = time.time()
     m = pose if isinstance(pose, Gf.Matrix4d) else Gf.Matrix4d().SetLookAt(
         Gf.Vec3d(*pose[0]), Gf.Vec3d(*pose[1]), Gf.Vec3d(0, 0, 1)).GetInverse()

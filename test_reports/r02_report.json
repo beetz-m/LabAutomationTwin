@@ -61,41 +61,41 @@
           ],
           "margin_deg": 28.7
         },
-        "L12 experiment_plate_frame": {
+        "L12 plate_nest": {
           "rail_m": 1.0,
           "q_deg": [
-            -101.0,
-            -59.0,
-            87.0,
-            -118.0,
+            -108.0,
+            -77.0,
+            132.0,
+            -145.0,
             -90.0,
-            169.0
+            162.0
           ],
-          "margin_deg": 93.3
+          "margin_deg": 47.8
         },
         "L17 plate_load_frame": {
           "rail_m": 2.5,
           "q_deg": [
-            80.0,
-            -39.0,
             72.0,
-            -123.0,
+            -77.0,
+            132.0,
+            -145.0,
             -90.0,
-            -10.0
+            -18.0
           ],
-          "margin_deg": 108.0
+          "margin_deg": 47.8
         },
-        "L21 reference plate (deck top)": {
+        "L21 QC nest": {
           "rail_m": 2.58,
           "q_deg": [
-            27.0,
-            -53.0,
-            93.0,
+            14.0,
+            -54.0,
+            94.0,
             -130.0,
             -90.0,
-            -63.0
+            -76.0
           ],
-          "margin_deg": 86.9
+          "margin_deg": 85.7
         }
       }
     },
@@ -164,7 +164,7 @@
       "reason": "T03 is liquid_contact, task requires clean"
     },
     {
-      "test": "P1 T01 plate transfer HN -> rail -> L21 deck, T01 stored",
+      "test": "P1 T01 plate transfer HN -> rail -> L21 QC nest, T01 stored",
       "pass": true,
       "change_tool": "ok",
       "to_HN": [
@@ -173,8 +173,8 @@
       ],
       "grasp": {
         "finger_travel_mm": [
-          3.03,
-          2.11
+          3.02,
+          2.12
         ],
         "lifted_mm": 150.2
       },
@@ -184,8 +184,8 @@
       ],
       "plate_on_L21": {
         "offset_mm": [
-          0.38,
-          -0.63,
+          0.28,
+          0.1,
           0.0
         ],
         "tilt_deg": 0.0,
@@ -199,7 +199,7 @@
   ],
   "passed": 10,
   "total": 10,
-  "wall_s": 317.4,
+  "wall_s": 557.1,
   "r02_events": [
     {
       "t": 1.0,
@@ -325,23 +325,23 @@
       "duration_s": 9.92
     },
     {
-      "t": 111.558,
+      "t": 111.521,
       "event": "position_for_station_ok",
       "station": "L21",
       "rail_m": 2.58,
       "q_deg": [
-        27.4,
-        -63.6,
-        84.5,
-        -110.9,
+        14.4,
+        -64.6,
+        85.6,
+        -111.0,
         -90.0,
-        -62.6
+        -75.6
       ],
-      "tcp_residual_mm": 0.2,
-      "duration_s": 17.34
+      "tcp_residual_mm": 0.23,
+      "duration_s": 17.3
     },
     {
-      "t": 135.212,
+      "t": 132.846,
       "event": "position_for_station_ok",
       "station": "TCM01/dock_T01/approach",
       "rail_m": 0.85,
@@ -354,7 +354,7 @@
         -18.5
       ],
       "tcp_residual_mm": 0.19,
-      "duration_s": 8.12
+      "duration_s": 8.42
     }
   ],
   "tcm_events": [
@@ -505,7 +505,7 @@
       }
     },
     {
-      "t": 149.237,
+      "t": 146.875,
       "event": "store_tool_ok",
       "tool_id": "T01",
       "dock": "T01",
@@ -515,7 +515,7 @@
           0.09,
           0.0
         ],
-        "angle_deg": 0.0
+        "angle_deg": 0.04
       }
     }
   ]

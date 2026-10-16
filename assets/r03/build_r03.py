@@ -11,7 +11,7 @@ R03 (r03.usda, root = the map frame of the AMR, placed at the docked pose by the
     lateral and yaw drives compliant so the dock's V-guides centre the AMR mechanically
   * BaseLink: 890 x 580 x 352 mm chassis (wheels visual), bumper with a central V-nose dock target, a sealed
     cabinet (shelves visual) with the carrier nest on top (shared static SBS nest, seat 960 mm above the floor)
-  * Lid (prismatic, slides back 340 mm): the cabinet hood over the carrier nest; closed in transit
+  * Lid (prismatic, slides back 340 mm): a flat plate over a fixed shroud around the carrier nest; closed in transit
 H2 (h2_dock.usda): a floor dock with two V-guide wedges (+-45 mm capture, 3 mm clearance when seated), a front stop
   with charging contacts and a notch for the AMR's V-nose, four dock sensor rays (two on the bumper face: depth +
   yaw; two on the V-nose: lateral), status lamps.
@@ -37,7 +37,10 @@ CAB = dict(x=(-250.0, 150.0), y=(-190.0, 190.0), z=(352.0, 900.0))
 # carrier nest 60 mm off the centreline toward the AMR's right (R01's side when docked heading west): at the centred
 # site R01's planner found no approach with sigma_min >= 0.10 / 20 deg joint margin (full-cell run, 2026-10-16)
 NEST = StaticNest(seat_z=60.0, tag_id=31, cx=35.0, cy=-60.0, prefix="Carrier", cz=900.0)   # seat 960 mm
-LID = dict(x=(-85.0, 150.0), y=(-140.0, 20.0), z=(900.0, 1000.0), t=4.0, travel=340.0)   # over the off-centre nest
+# carrier enclosure: a FIXED shroud (walls) around the off-centre nest and a flat LID plate that slides back over it.
+# (A sliding hood with walls swept through the carrier plate and jammed: full-cell run, 2026-10-16.)
+LID = dict(x=(-85.0, 150.0), y=(-140.0, 20.0), z=(990.0, 996.0), t=4.0, travel=340.0)
+SHROUD_Z = (900.0, 988.0)
 NOSE = dict(x0=445.0, tip=470.0, half=25.0, z=(140.0, 240.0))
 BUMPER = dict(x=(440.0, 452.0), y=(-250.0, 250.0), z=(60.0, 260.0))
 X_RANGE, Y_RANGE = (-4000.0, 60.0), (-3500.0, 3500.0)
@@ -81,8 +84,12 @@ def amr_parts():
         p[f"StatusLamp{i}"] = (cyl(6, 3, (C["x"][1], -60 + 30 * i, 860), (1, 0, 0)), lens, "BaseLink")
     for name, (wp, mat) in NEST.parts().items():
         p[name] = (wp, mat, "BaseLink")
-    p["LidHood"] = (lid_solid(), "AmrWhite", "Lid")
-    p["LidHandle"] = (box(LID["x"][1] - 10, 0, LID["z"][1] + 4, 12, 80, 8).edges().fillet(2), "SteelSatin", "Lid")
+    for name, xs, ys, zs in shroud_boxes():
+        p[name] = (box(sum(xs) / 2, sum(ys) / 2, sum(zs) / 2, xs[1] - xs[0], ys[1] - ys[0], zs[1] - zs[0]), "AmrWhite",
+                   "BaseLink")
+    p["LidPlate"] = (lid_solid(), "AmrWhite", "Lid")
+    p["LidHandle"] = (box(LID["x"][1] - 10, sum(LID["y"]) / 2, LID["z"][1] + 4, 12, 80, 8).edges().fillet(2),
+                      "SteelSatin", "Lid")
     return p
 
 
@@ -94,21 +101,21 @@ def nose_solid():
 
 def lid_solid():
     Ld = LID
-    outer = box(sum(Ld["x"]) / 2, 0, sum(Ld["z"]) / 2, Ld["x"][1] - Ld["x"][0], Ld["y"][1] - Ld["y"][0],
-                Ld["z"][1] - Ld["z"][0])
-    inner = box(sum(Ld["x"]) / 2, 0, sum(Ld["z"]) / 2 - Ld["t"], Ld["x"][1] - Ld["x"][0] - 2 * Ld["t"],
-                Ld["y"][1] - Ld["y"][0] - 2 * Ld["t"], Ld["z"][1] - Ld["z"][0])
-    return outer.cut(inner).edges("|Z").fillet(3)
+    return box(sum(Ld["x"]) / 2, sum(Ld["y"]) / 2, sum(Ld["z"]) / 2, Ld["x"][1] - Ld["x"][0], Ld["y"][1] - Ld["y"][0],
+               Ld["z"][1] - Ld["z"][0]).edges("|Z").fillet(3)
+
+
+def shroud_boxes():
+    Ld, t, z = LID, LID["t"], SHROUD_Z
+    return [("ShroudN", Ld["x"], (Ld["y"][1] - t, Ld["y"][1]), z), ("ShroudS", Ld["x"], (Ld["y"][0], Ld["y"][0] + t), z),
+            ("ShroudF", (Ld["x"][1] - t, Ld["x"][1]), Ld["y"], z), ("ShroudR", (Ld["x"][0], Ld["x"][0] + t), Ld["y"], z)]
 
 
 def amr_colliders():
     C, B_, Ld = CAB, BUMPER, LID
     base = [("Chassis", (-L / 2, L / 2), (-Wd / 2, Wd / 2), CH_Z), ("Bumper", B_["x"], B_["y"], B_["z"]),
-            ("Cabinet", C["x"], C["y"], C["z"])]
-    lid = [("Top", Ld["x"], Ld["y"], (Ld["z"][1] - Ld["t"], Ld["z"][1])),
-           ("WallN", Ld["x"], (Ld["y"][1] - Ld["t"], Ld["y"][1]), (Ld["z"][0] + 2, Ld["z"][1])),
-           ("WallS", Ld["x"], (Ld["y"][0], Ld["y"][0] + Ld["t"]), (Ld["z"][0] + 2, Ld["z"][1])),
-           ("WallF", (Ld["x"][1] - Ld["t"], Ld["x"][1]), Ld["y"], (Ld["z"][0] + 2, Ld["z"][1]))]
+            ("Cabinet", C["x"], C["y"], C["z"])] + shroud_boxes()
+    lid = [("Top", Ld["x"], Ld["y"], Ld["z"])]
     return base, lid
 
 
