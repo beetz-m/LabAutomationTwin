@@ -1,0 +1,2510 @@
+{
+ "legs": [
+  {
+   "session": "s0",
+   "robot": "r01",
+   "src": "l10",
+   "dst": "handovernest",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "l10",
+     "z": 0.006,
+     "speed": 0.08,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 1.3,
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "l10",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 5.3,
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "handovernest",
+     "z": 0.019,
+     "speed": 0.08,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 0.6,
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s0",
+   "robot": "r02",
+   "src": "handovernest",
+   "dst": "l12",
+   "motions": [
+    {
+     "type": "coupling",
+     "seat": "dock_t01",
+     "z": 0.0,
+     "pre": 0.05,
+     "speed": 0.02,
+     "tol": 0.004,
+     "held": false,
+     "kernel_leaf": "tool_couple",
+     "estimate_s": 41.6,
+     "timeout_s": 49.92,
+     "cancel": [
+      "duration > 49.92 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "approaching",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "handovernest",
+     "z": 0.006,
+     "speed": 0.05,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 3.1,
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "l12",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 13.2,
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "l12",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "l12",
+     "z": 0.008,
+     "speed": 0.03,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "l12",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "l12",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s0",
+   "robot": "r02",
+   "src": "l12",
+   "dst": "handovernest",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "l12",
+     "z": 0.156,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "l12",
+     "z": 0.006,
+     "speed": 0.05,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 3.1,
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "l12",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "l12",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 13.2,
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "handovernest",
+     "z": 0.008,
+     "speed": 0.03,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s0",
+   "robot": "r01",
+   "src": "handovernest",
+   "dst": "l10",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "handovernest",
+     "z": 0.006,
+     "speed": 0.08,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 1.3,
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 5.3,
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "l10",
+     "z": 0.019,
+     "speed": 0.08,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "l10",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 0.6,
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "robot": "r01",
+   "src": "l10",
+   "dst": "handovernest",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "l10",
+     "z": 0.006,
+     "speed": 0.08,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 1.3,
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "l10",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 5.3,
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "handovernest",
+     "z": 0.019,
+     "speed": 0.08,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 0.6,
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "robot": "r02",
+   "src": "handovernest",
+   "dst": "l12",
+   "motions": [
+    {
+     "type": "coupling",
+     "seat": "dock_t01",
+     "z": 0.0,
+     "pre": 0.05,
+     "speed": 0.02,
+     "tol": 0.004,
+     "held": false,
+     "kernel_leaf": "tool_couple",
+     "estimate_s": 41.6,
+     "timeout_s": 49.92,
+     "cancel": [
+      "duration > 49.92 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "approaching",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "handovernest",
+     "z": 0.006,
+     "speed": 0.05,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 3.1,
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "l12",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 13.2,
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "l12",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "l12",
+     "z": 0.008,
+     "speed": 0.03,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "l12",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "l12",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "robot": "r02",
+   "src": "l12",
+   "dst": "handovernest",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "l12",
+     "z": 0.156,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "l12",
+     "z": 0.006,
+     "speed": 0.05,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 3.1,
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "l12",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "l12",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 13.2,
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "handovernest",
+     "z": 0.008,
+     "speed": 0.03,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "robot": "r01",
+   "src": "handovernest",
+   "dst": "l10",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "handovernest",
+     "z": 0.006,
+     "speed": 0.08,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 1.3,
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 5.3,
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "l10",
+     "z": 0.019,
+     "speed": 0.08,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "l10",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 0.6,
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "robot": "r01",
+   "src": "l10",
+   "dst": "handovernest",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "l10",
+     "z": 0.006,
+     "speed": 0.08,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 1.3,
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "l10",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 5.3,
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "handovernest",
+     "z": 0.019,
+     "speed": 0.08,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 0.6,
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "robot": "r02",
+   "src": "handovernest",
+   "dst": "l17",
+   "motions": [
+    {
+     "type": "coupling",
+     "seat": "dock_t01",
+     "z": 0.0,
+     "pre": 0.05,
+     "speed": 0.02,
+     "tol": 0.004,
+     "held": false,
+     "kernel_leaf": "tool_couple",
+     "estimate_s": 41.6,
+     "timeout_s": 49.92,
+     "cancel": [
+      "duration > 49.92 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "approaching",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "handovernest",
+     "z": 0.006,
+     "speed": 0.05,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 3.1,
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "l17",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 13.2,
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "l17",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "l17",
+     "z": 0.008,
+     "speed": 0.03,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "l17",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "l17",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "robot": "r02",
+   "src": "l17",
+   "dst": "handovernest",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "l17",
+     "z": 0.156,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "l17",
+     "z": 0.006,
+     "speed": 0.05,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 3.1,
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "l17",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "l17",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 13.2,
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "handovernest",
+     "z": 0.156,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 4.7,
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "handovernest",
+     "z": 0.008,
+     "speed": 0.03,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "handovernest",
+     "z": 0.156,
+     "speed": 0.08,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 3.9,
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "robot": "r01",
+   "src": "handovernest",
+   "dst": "l10",
+   "motions": [
+    {
+     "type": "approaching",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "held": false,
+     "tol": 0.005,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "inserting",
+     "seat": "handovernest",
+     "z": 0.006,
+     "speed": 0.08,
+     "held": false,
+     "tol": 0.0004,
+     "kernel_leaf": "insert",
+     "estimate_s": 1.3,
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "grasping",
+     "seat": "handovernest",
+     "held": false,
+     "kernel_leaf": "grasp",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ]
+    },
+    {
+     "type": "lifting",
+     "seat": "handovernest",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": true,
+     "kernel_leaf": "lift",
+     "estimate_s": 0.8,
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "transiting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.005,
+     "kernel_leaf": "transit",
+     "estimate_s": 5.3,
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "aligning",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "approach",
+     "estimate_s": 1.9,
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "placing",
+     "seat": "l10",
+     "z": 0.019,
+     "speed": 0.08,
+     "held": true,
+     "tol": 0.0004,
+     "kernel_leaf": "place",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ]
+    },
+    {
+     "type": "releasing",
+     "seat": "l10",
+     "held": false,
+     "kernel_leaf": "release",
+     "estimate_s": 0.6,
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ]
+    },
+    {
+     "type": "retracting",
+     "seat": "l10",
+     "z": 0.20600000000000002,
+     "speed": 0.1,
+     "held": false,
+     "kernel_leaf": "retract",
+     "estimate_s": 1.6,
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ]
+    }
+   ]
+  }
+ ],
+ "distinct": [
+  {
+   "robot": "r01",
+   "src": "l10",
+   "dst": "handovernest"
+  },
+  {
+   "robot": "r02",
+   "src": "handovernest",
+   "dst": "l12"
+  },
+  {
+   "robot": "r02",
+   "src": "l12",
+   "dst": "handovernest"
+  },
+  {
+   "robot": "r01",
+   "src": "handovernest",
+   "dst": "l10"
+  },
+  {
+   "robot": "r02",
+   "src": "handovernest",
+   "dst": "l17"
+  },
+  {
+   "robot": "r02",
+   "src": "l17",
+   "dst": "handovernest"
+  }
+ ],
+ "import_problems": [],
+ "leaves": 111,
+ "motions": 111,
+ "reach": [
+  {
+   "leg": "r01 l10->handovernest",
+   "phase": "approach",
+   "seat": "l10",
+   "kind": "above",
+   "p": [
+    -1.95,
+    0.8,
+    1.178
+   ],
+   "yaw_deg": 41.63,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "margin_deg": 35.1,
+   "sigma_min": 0.116,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    131.1,
+    9.9,
+    0.6,
+    -76.5,
+    -0.1,
+    86.5,
+    -44.9
+   ]
+  },
+  {
+   "leg": "r01 l10->handovernest",
+   "phase": "insert",
+   "seat": "l10",
+   "kind": "grasp",
+   "p": [
+    -1.95,
+    0.8,
+    0.978
+   ],
+   "yaw_deg": 41.63,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "margin_deg": 35.2,
+   "sigma_min": 0.175,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    131.0,
+    9.4,
+    0.6,
+    -106.8,
+    -0.1,
+    116.2,
+    -44.9
+   ]
+  },
+  {
+   "leg": "r01 l10->handovernest",
+   "phase": "transit",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.166
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "margin_deg": 36.1,
+   "sigma_min": 0.151,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    -41.8,
+    65.1,
+    121.8,
+    -89.6,
+    -61.7,
+    61.3,
+    -72.6
+   ]
+  },
+  {
+   "leg": "r01 l10->handovernest",
+   "phase": "place",
+   "seat": "handovernest",
+   "kind": "place",
+   "p": [
+    -1.05,
+    0.55,
+    0.979
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "margin_deg": 24.3,
+   "sigma_min": 0.202,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    -50.5,
+    80.9,
+    111.2,
+    -114.0,
+    -72.5,
+    74.8,
+    -67.4
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l12",
+   "phase": "approach",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.116
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 0.171,
+   "margin_deg": 56.9,
+   "sigma_min": 0.242,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.171,
+    -166.0,
+    -93.2,
+    123.1,
+    -119.9,
+    -90.0,
+    104.0
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l12",
+   "phase": "insert",
+   "seat": "handovernest",
+   "kind": "grasp",
+   "p": [
+    -1.05,
+    0.55,
+    0.966
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.373,
+   "margin_deg": 77.0,
+   "sigma_min": 0.232,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.373,
+    189.4,
+    -57.6,
+    103.0,
+    -135.5,
+    -90.0,
+    -260.6
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l12",
+   "phase": "transit",
+   "seat": "l12",
+   "kind": "above",
+   "p": [
+    0.15,
+    0.34,
+    1.128
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 1.145,
+   "margin_deg": 61.7,
+   "sigma_min": 0.244,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    1.145,
+    -125.0,
+    -90.3,
+    118.3,
+    -118.0,
+    -90.0,
+    -215.0
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l12",
+   "phase": "place",
+   "seat": "l12",
+   "kind": "place",
+   "p": [
+    0.15,
+    0.34,
+    0.98
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 1.205,
+   "margin_deg": 55.0,
+   "sigma_min": 0.246,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    1.205,
+    81.0,
+    -223.8,
+    125.0,
+    -171.1,
+    -270.0,
+    171.0
+   ]
+  },
+  {
+   "leg": "r02 l12->handovernest",
+   "phase": "approach",
+   "seat": "l12",
+   "kind": "above",
+   "p": [
+    0.15,
+    0.34,
+    1.128
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 1.139,
+   "margin_deg": 61.4,
+   "sigma_min": 0.244,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    1.139,
+    235.7,
+    -90.6,
+    118.6,
+    -118.0,
+    -90.0,
+    145.7
+   ]
+  },
+  {
+   "leg": "r02 l12->handovernest",
+   "phase": "insert",
+   "seat": "l12",
+   "kind": "grasp",
+   "p": [
+    0.15,
+    0.34,
+    0.978
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.709,
+   "margin_deg": 61.8,
+   "sigma_min": 0.242,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.709,
+    -71.2,
+    -67.8,
+    118.2,
+    -140.4,
+    -90.0,
+    -161.2
+   ]
+  },
+  {
+   "leg": "r02 l12->handovernest",
+   "phase": "transit",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.116
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 0.286,
+   "margin_deg": 71.8,
+   "sigma_min": 0.238,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.286,
+    191.0,
+    -79.5,
+    108.2,
+    -118.8,
+    -90.0,
+    101.0
+   ]
+  },
+  {
+   "leg": "r02 l12->handovernest",
+   "phase": "place",
+   "seat": "handovernest",
+   "kind": "place",
+   "p": [
+    -1.05,
+    0.55,
+    0.968
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.249,
+   "margin_deg": 57.7,
+   "sigma_min": 0.24,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.249,
+    -168.2,
+    -68.8,
+    122.3,
+    -143.5,
+    -90.0,
+    101.8
+   ]
+  },
+  {
+   "leg": "r01 handovernest->l10",
+   "phase": "approach",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.166
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "margin_deg": 23.0,
+   "sigma_min": 0.154,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    -31.1,
+    78.0,
+    132.4,
+    -88.1,
+    -75.6,
+    48.2,
+    -67.8
+   ]
+  },
+  {
+   "leg": "r01 handovernest->l10",
+   "phase": "insert",
+   "seat": "handovernest",
+   "kind": "grasp",
+   "p": [
+    -1.05,
+    0.55,
+    0.966
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "margin_deg": 54.7,
+   "sigma_min": 0.193,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    6.9,
+    -0.8,
+    14.8,
+    -121.6,
+    0.2,
+    120.8,
+    -113.4
+   ]
+  },
+  {
+   "leg": "r01 handovernest->l10",
+   "phase": "transit",
+   "seat": "l10",
+   "kind": "above",
+   "p": [
+    -1.95,
+    0.8,
+    1.178
+   ],
+   "yaw_deg": 41.63,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "margin_deg": 35.1,
+   "sigma_min": 0.116,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    131.1,
+    9.9,
+    0.6,
+    -76.5,
+    -0.1,
+    86.5,
+    -44.9
+   ]
+  },
+  {
+   "leg": "r01 handovernest->l10",
+   "phase": "place",
+   "seat": "l10",
+   "kind": "place",
+   "p": [
+    -1.95,
+    0.8,
+    0.991
+   ],
+   "yaw_deg": 41.63,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "margin_deg": 35.2,
+   "sigma_min": 0.173,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    131.0,
+    8.9,
+    0.6,
+    -105.5,
+    -0.1,
+    114.4,
+    -44.9
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l17",
+   "phase": "approach",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.116
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 0.171,
+   "margin_deg": 56.9,
+   "sigma_min": 0.242,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.171,
+    -166.0,
+    -93.2,
+    123.1,
+    -119.9,
+    -90.0,
+    104.0
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l17",
+   "phase": "insert",
+   "seat": "handovernest",
+   "kind": "grasp",
+   "p": [
+    -1.05,
+    0.55,
+    0.966
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.373,
+   "margin_deg": 77.0,
+   "sigma_min": 0.232,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.373,
+    189.4,
+    -57.6,
+    103.0,
+    -135.5,
+    -90.0,
+    -260.6
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l17",
+   "phase": "transit",
+   "seat": "l17",
+   "kind": "above",
+   "p": [
+    1.65,
+    1.22,
+    1.128
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 2.362,
+   "margin_deg": 61.4,
+   "sigma_min": 0.244,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    2.362,
+    55.8,
+    -90.6,
+    118.6,
+    -118.0,
+    -90.0,
+    -34.2
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l17",
+   "phase": "place",
+   "seat": "l17",
+   "kind": "place",
+   "p": [
+    1.65,
+    1.22,
+    0.98
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 2.239,
+   "margin_deg": 59.3,
+   "sigma_min": 0.242,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    2.239,
+    44.2,
+    -69.6,
+    120.7,
+    -141.1,
+    -90.0,
+    -45.8
+   ]
+  },
+  {
+   "leg": "r02 l17->handovernest",
+   "phase": "approach",
+   "seat": "l17",
+   "kind": "above",
+   "p": [
+    1.65,
+    1.22,
+    1.128
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 2.372,
+   "margin_deg": 33.1,
+   "sigma_min": 0.244,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    2.372,
+    56.9,
+    -91.1,
+    119.0,
+    -118.0,
+    -90.0,
+    326.9
+   ]
+  },
+  {
+   "leg": "r02 l17->handovernest",
+   "phase": "insert",
+   "seat": "l17",
+   "kind": "grasp",
+   "p": [
+    1.65,
+    1.22,
+    0.978
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 2.297,
+   "margin_deg": 54.8,
+   "sigma_min": 0.238,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    2.297,
+    49.3,
+    -72.1,
+    125.2,
+    -143.1,
+    -90.0,
+    -40.7
+   ]
+  },
+  {
+   "leg": "r02 l17->handovernest",
+   "phase": "transit",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.116
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 0.286,
+   "margin_deg": 71.8,
+   "sigma_min": 0.238,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.286,
+    191.0,
+    -79.5,
+    108.2,
+    -118.8,
+    -90.0,
+    101.0
+   ]
+  },
+  {
+   "leg": "r02 l17->handovernest",
+   "phase": "place",
+   "seat": "handovernest",
+   "kind": "place",
+   "p": [
+    -1.05,
+    0.55,
+    0.968
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.249,
+   "margin_deg": 57.7,
+   "sigma_min": 0.24,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.249,
+    -168.2,
+    -68.8,
+    122.3,
+    -143.5,
+    -90.0,
+    101.8
+   ]
+  },
+  {
+   "leg": "r02 tool couple",
+   "phase": "tool_couple",
+   "seat": "dock_t01",
+   "kind": "couple",
+   "p": [
+    0.0,
+    1.2,
+    1.12
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.641,
+   "margin_deg": 47.1,
+   "sigma_min": 0.245,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.641,
+    -312.9,
+    -88.9,
+    118.2,
+    -119.3,
+    -90.0,
+    -42.9
+   ]
+  }
+ ],
+ "seats": {
+  "l10": {
+   "prim": "/World/Cell01/Stations/L10_Incubator/transfer_station",
+   "p": [
+    -1.95,
+    0.8,
+    0.972
+   ],
+   "yaw_deg": 41.63
+  },
+  "handovernest": {
+   "prim": "/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame",
+   "p": [
+    -1.05,
+    0.55,
+    0.96
+   ],
+   "yaw_deg": 0.0
+  },
+  "l12": {
+   "prim": "/World/Cell01/Stations/L12_LiquidHandler/plate_nest",
+   "p": [
+    0.15,
+    0.34,
+    0.972
+   ],
+   "yaw_deg": 0.0
+  },
+  "l17": {
+   "prim": "/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame",
+   "p": [
+    1.65,
+    1.22,
+    0.972
+   ],
+   "yaw_deg": 0.0
+  },
+  "dock_t01": {
+   "prim": "/World/Cell01/Tooling/AutomaticToolChanger/dock_T01",
+   "p": [
+    0.0,
+    1.2,
+    1.12
+   ],
+   "yaw_deg": 0.0
+  }
+ },
+ "weights": {
+  "level": 2500,
+  "speed": 2500,
+  "collision": 50,
+  "goal": 1,
+  "posture": 0.1
+ },
+ "qp": {
+  "target_frequency": 50,
+  "prediction_horizon": 7,
+  "control_dt": 0.02,
+  "max_derivative": "jerk",
+  "dof_velocity_weight": 0.01,
+  "horizon_weight_gain_scalar": 0.1,
+  "solver": "PIQP"
+ },
+ "bounds": {
+  "max_tilt_deg": 2.0,
+  "transit_v": 0.25,
+  "transit_w": 0.6,
+  "pose_tol": 0.0004,
+  "ori_tol_deg": 0.2,
+  "lock_gap": 0.004
+ }
+}

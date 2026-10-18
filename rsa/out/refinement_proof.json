@@ -1,0 +1,2745 @@
+{
+ "theorem": "A refinement proof: the motion-level plan executes the culture-level plan and satisfies the stated constraints,\nrelative to explicit assumptions about the controllers, sensors and devices.\n\nTheorem. Let Pi_M be the motion-level plan of the challenge-rescue experiment: the 151 grounded steps of plan_g050 (the\nkernel's expansion, identical step for step), whose 111 robot motions are refined into giskardpy motion statecharts\n(rsa/out/challenge_rescue_giskard.py). Under assumptions A1-A6, every execution of Pi_M either\n  (i) realizes the culture plan: every culture-level physical and knowledge effect, in the derived order, at the\n      design's culture times, with the control culture untreated, and every stated constraint holds on the way\n      (interlocks, L12 airspace, identity, environment before store, calibration before imaging, the 600 s window,\n      contamination freedom, tool hygiene, plate level, collision distance); or\n  (ii) is stopped by a monitor and ends in a failure handler whose guarantee holds (safe state, contained, or the goal).",
+ "assumptions": [
+  "A1 giskardpy semantics: a motion statechart ends only through EndMotion (its end monitor true) or CancelMotion.",
+  "A2 monitor soundness: PoseReached, LocalMinimumReached with the grasp check, VectorsAligned, the collision distance monitors, the simulation clock, the barcode read, the seat sensors and the device monitors observe correctly.",
+  "A3 abstraction: a TCP within 0.4 mm / 0.2 deg of a seat's grasp or release pose has the plate in that seat (the nest guides capture it); within 5 mm of an approach pose it is at that approach pose (free-space waypoint).",
+  "A4 the grasp holds the plate from grasp to release (monitored: grasp_confirmed, lifted, seating).",
+  "A5 device contracts: dose_well delivers within its tolerance when its monitors pass; image_well yields an image when calibration and focus monitors pass; L10 holds the environment profile while the plate is stored.",
+  "A6 the goal frames are the ones the scene defines (rsa/motion_frames.py), and each is reachable (checked). "
+ ],
+ "obligations": {
+  "O1 culture plan well formed": {
+   "holds": true,
+   "links": 13,
+   "establish": [
+    "(a scale (of (an image)) (known true))",
+    "(a scale (of (an image)) (known true))",
+    "(a scale (of (an image)) (known true))"
+   ]
+  },
+  "O2 abstraction: motion-level effects entail the culture plan": {
+   "holds": true,
+   "obligations": {
+    "?c1 challenging ?cr: exposed to challenge 0.85 au at 0 h": true,
+    "?c2 challenging ?cc: exposed to challenge 0.85 au at 0 h": true,
+    "?g1 growing 0 -> 48 h: cultures in their environment between the trips": true,
+    "?c3 rescuing ?cr: exposed to rescue 0.70 au at 48 h": true,
+    "?g2 growing 48 -> 72 h: cultures in their environment between the trips": true,
+    "?o1 observing ?cr: image at 72 h": true,
+    "?o2 observing ?cc: image at 72 h": true,
+    "?o3 observing ?ck: image at 72 h": true,
+    "?i1 interpreting ?cr: image and known scale": true,
+    "?i2 interpreting ?cc: image and known scale": true,
+    "?i3 interpreting ?ck: image and known scale": true,
+    "?a1 analysing: estimates of the rescued, comparator and control cultures": true,
+    "prevents: the control culture is never exposed": true,
+    "order: challenges at 0 h < rescue at 48 h < observations at 72 h": true
+   },
+   "events": [
+    [
+     "dose",
+     "A01",
+     "challenge",
+     85,
+     0
+    ],
+    [
+     "dose",
+     "A02",
+     "challenge",
+     85,
+     0
+    ],
+    [
+     "dose",
+     "A01",
+     "rescue",
+     70,
+     48
+    ],
+    [
+     "image",
+     "A01",
+     null,
+     null,
+     72
+    ],
+    [
+     "image",
+     "A02",
+     null,
+     null,
+     72
+    ],
+    [
+     "image",
+     "A05",
+     null,
+     null,
+     72
+    ]
+   ],
+   "vessel": {
+    "?cr": "A01",
+    "?cc": "A02",
+    "?ck": "A05"
+   }
+  },
+  "O3 lab plan: order, threats, instruments, handlers, guarantees": {
+   "holds": true,
+   "threats": "9/9",
+   "guarantees": "13/13",
+   "negative_controls": "12/12",
+   "order_preserved_culture_to_lab": true
+  },
+  "O4 step level: executability, safety, time, realization (z3 V1-V5)": {
+   "holds": true,
+   "theorems": {
+    "V1 executability / preservation": true,
+    "V2 safety S1 S2 S3 S6 S7": true,
+    "V3 time window (S5), durations +-20 %": true,
+    "V4 realisation (doses, images, session times)": true,
+    "V4b arms E2M3 + control S9": true,
+    "V5 gain met (EIG >= g)": true,
+    "V5b least cost, then max EIG, over all candidates meeting g": true
+   },
+   "negative_controls": "10/10",
+   "validator_exit": 0
+  },
+  "O5 step level: cleanliness": {
+   "holds": true,
+   "tools_used": [
+    "t01"
+   ],
+   "contacts_culture": [
+    "t03",
+    "t04"
+   ],
+   "contamination_free_required": true
+  },
+  "O6 motion refinement: 111 Giskard motions": {
+   "holds": true,
+   "motions": [
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "coupling",
+     "step": "tool_couple",
+     "postcondition": "tool = T01",
+     "end_monitor": "PoseReached within the lock gap",
+     "why": "A2: the coupler locks within 4 mm",
+     "timeout_s": 49.92,
+     "cancel": [
+      "duration > 49.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s0",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "coupling",
+     "step": "tool_couple",
+     "postcondition": "tool = T01",
+     "end_monitor": "PoseReached within the lock gap",
+     "why": "A2: the coupler locks within 4 mm",
+     "timeout_s": 49.92,
+     "cancel": [
+      "duration > 49.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "handovernest->l12",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r02",
+     "leg": "l12->handovernest",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s1",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "l10->handovernest",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "coupling",
+     "step": "tool_couple",
+     "postcondition": "tool = T01",
+     "end_monitor": "PoseReached within the lock gap",
+     "why": "A2: the coupler locks within 4 mm",
+     "timeout_s": 49.92,
+     "cancel": [
+      "duration > 49.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "handovernest->l17",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 3.72,
+     "cancel": [
+      "duration > 3.72 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 15.84,
+     "cancel": [
+      "duration > 15.84 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 5.64,
+     "cancel": [
+      "duration > 5.64 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r02",
+     "leg": "l17->handovernest",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 4.68,
+     "cancel": [
+      "duration > 4.68 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "approaching",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "inserting",
+     "step": "insert",
+     "postcondition": "pos = seat",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the grasp pose, the plate between the jaws",
+     "timeout_s": 1.56,
+     "cancel": [
+      "duration > 1.56 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "grasping",
+     "step": "grasp",
+     "postcondition": "grip and plate = robot",
+     "end_monitor": "LocalMinimumReached + grasp_confirmed",
+     "why": "A4: the jaws stalled on the plate, contact and lift confirmed",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "lifting",
+     "step": "lift",
+     "postcondition": "pos = appr(seat), plate held",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3 + A4: at the approach height, plate held",
+     "timeout_s": 0.96,
+     "cancel": [
+      "duration > 0.96 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "transiting",
+     "step": "transit",
+     "postcondition": "pos = appr(target)",
+     "end_monitor": "CartesianPose observation",
+     "why": "A3: within 5 mm of the target approach pose",
+     "timeout_s": 6.36,
+     "cancel": [
+      "duration > 6.36 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "aligning",
+     "step": "approach",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "PoseReached",
+     "why": "A3: within 0.4 mm / 0.2 deg of the approach pose",
+     "timeout_s": 2.28,
+     "cancel": [
+      "duration > 2.28 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "placing",
+     "step": "place",
+     "postcondition": "pos = seat, plate = seat",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: at the release height over the seat; the guides capture the plate",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "plate tilt > 2.0 deg",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "releasing",
+     "step": "release",
+     "postcondition": "not grip",
+     "end_monitor": "LocalMinimumReached",
+     "why": "A2: the jaws open",
+     "timeout_s": 0.72,
+     "cancel": [
+      "duration > 0.72 s"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    },
+    {
+     "session": "s2",
+     "robot": "r01",
+     "leg": "handovernest->l10",
+     "type": "retracting",
+     "step": "retract",
+     "postcondition": "pos = appr(seat)",
+     "end_monitor": "CartesianPositionStraight observation",
+     "why": "A3: back at the approach height",
+     "timeout_s": 1.92,
+     "cancel": [
+      "duration > 1.92 s",
+      "collision distance violated"
+     ],
+     "checks": {
+      "refines its step": true,
+      "end monitor implies the postcondition": true,
+      "tilt is hold-or-cancel while held": true,
+      "collision is hold-or-cancel": true,
+      "duration is hold-or-cancel within V3's bound": true
+     },
+     "ok": true
+    }
+   ],
+   "code": {
+    "CancelMotion on timeout": true,
+    "CancelMotion on tilt": true,
+    "collision cancel": true
+   },
+   "goals_reachable": "25/25",
+   "capture_m": 0.002
+  },
+  "O7 failure branch: every cancellation reaches a guaranteed handler": {
+   "holds": true,
+   "mapping": {
+    "MotionContractViolated (timeout, tilt)": "propagates to the session; unwind-protect returns the plate; handler prevents-violated: safe-state",
+    "CollisionViolatedError": "the same path",
+    "device monitors": "the failure types of the process models, each with its verified handler"
+   },
+   "guarantees": {
+    "identity-mismatch": true,
+    "measurement-invalid/calibration_expired": true,
+    "measurement-invalid/out_of_focus": true,
+    "measurement-invalid/plate_misseated": true,
+    "validity-effect-unachievable": true,
+    "dose-not-delivered/wrong_reagent": true,
+    "dose-not-delivered/tip_missing_or_dropped": true,
+    "dose-not-delivered/clog_or_air_aspiration": true,
+    "dose-not-delivered/well_misregistration": true,
+    "contamination-suspected": true,
+    "environment-excursion": true,
+    "containment-breach": true,
+    "prevents-violated": true
+   }
+  }
+ },
+ "negative_controls": {
+  "vessel map swaps rescued and comparator": true,
+  "the control well A05 is also dosed": true,
+  "the control well is not imaged": true,
+  "the plate tool T01 touches the culture": true,
+  "one held motion without the tilt cancel": true,
+  "one motion's timeout beyond V3's bound (1.5 x)": true,
+  "a motion that does not refine its step": true,
+  "step level: the validator's own 10 mutated plans": true
+ },
+ "holds": true
+}

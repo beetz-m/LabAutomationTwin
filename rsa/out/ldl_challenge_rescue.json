@@ -1,0 +1,4596 @@
+{
+ "entities": [
+  {
+   "var": "?D",
+   "decl": "(the design ?D (id c_d85_t48_n1))",
+   "det": "the",
+   "ref": "design:c_d85_t48_n1",
+   "grounds": [
+    "plan_g050.selected.id = c_d85_t48_n1",
+    "requirement 0.5 bit, EIG 0.5439 bit"
+   ]
+  },
+  {
+   "var": "?p",
+   "decl": "(the plate ?p (id P17))",
+   "det": "the",
+   "ref": "plate:P17",
+   "sdt": "/World/ExperimentalWorld/Plates/Plate_P17#entity",
+   "grounds": [
+    "experiments.ofn plate P17",
+    "sdt.ofn /World/ExperimentalWorld/Plates/Plate_P17#entity (SBSMicroplate, CulturePlate)"
+   ]
+  },
+  {
+   "var": "?r",
+   "decl": "(the well ?r (of ?p) (role rescued))",
+   "det": "the",
+   "ref": "well:A01",
+   "sdt": "/World/ExperimentalWorld/Plates/Plate_P17/Wells/A01#entity",
+   "grounds": [
+    "design arm rescued = ['A01']",
+    "hasDirectComponent(Plate_P17, Wells/A01)"
+   ]
+  },
+  {
+   "var": "?c",
+   "decl": "(the well ?c (of ?p) (role comparator))",
+   "det": "the",
+   "ref": "well:A02",
+   "sdt": "/World/ExperimentalWorld/Plates/Plate_P17/Wells/A02#entity",
+   "grounds": [
+    "design arm comparator = ['A02']",
+    "hasDirectComponent(Plate_P17, Wells/A02)"
+   ]
+  },
+  {
+   "var": "?k",
+   "decl": "(the well ?k (of ?p) (role control))",
+   "det": "the",
+   "ref": "well:A05",
+   "sdt": "/World/ExperimentalWorld/Plates/Plate_P17/Wells/A05#entity",
+   "grounds": [
+    "design arm control = ['A05']",
+    "hasDirectComponent(Plate_P17, Wells/A05)"
+   ]
+  },
+  {
+   "var": "?ch",
+   "decl": "(some substance ?ch (type challenge))",
+   "det": "some",
+   "ref": "substance:challenge",
+   "grounds": [
+    "registry reagents.challenge lot SIM-LOT-A",
+    "reagent_pose(challenge,stations_l12_liquidhandler_reagent_rack_frames_rack_1_pos_1)"
+   ]
+  },
+  {
+   "var": "?rs",
+   "decl": "(some substance ?rs (type rescue))",
+   "det": "some",
+   "ref": "substance:rescue",
+   "grounds": [
+    "registry reagents.rescue lot SIM-LOT-B",
+    "reagent_pose(rescue,stations_l12_liquidhandler_reagent_rack_frames_rack_1_pos_2)"
+   ]
+  },
+  {
+   "var": "?env",
+   "decl": "(a controlled-environment ?env (profile culture-standard))",
+   "det": "a",
+   "ref": "environment:l10",
+   "answers": [
+    "l10"
+   ],
+   "rejected": [
+    "h4",
+    "handovernest",
+    "l09",
+    "l12",
+    "l17",
+    "l21"
+   ],
+   "grounds": [
+    "has_function(l10,incubation)"
+   ],
+   "note": "profile not modelled in the knowledge (unchecked)"
+  }
+ ],
+ "steps": [
+  {
+   "var": "?x1",
+   "type": "intervening",
+   "text": "(an action ?x1 (type intervening) (into ?r) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))",
+   "time_h": 0.0,
+   "slots": {
+    "into": "?r",
+    "substance": "?ch",
+    "dose": "0.85 au",
+    "at": "(culture-time 0 h)"
+   },
+   "instrument": "(an instrument ?x1.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?r) (of ?ch) (amount 0.85 au))))",
+   "signals": [
+    "identity-mismatch",
+    "dose-not-delivered",
+    "contamination-suspected"
+   ],
+   "requires": [
+    {
+     "cond": "(the plate ?p (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(some substance ?ch (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (contamination none))",
+     "known": true,
+     "grade": {
+      "freshness": "fresh",
+      "source": "inferred"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (culture-time 0 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "prevents": [
+    {
+     "cond": "(an event (type contamination-introduced) (of ?p))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a transfer (of ?x1.u) (into (a well (of ?p) (not ?r))))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": [
+      "(a portion ?x1.u (of ?ch) (drawn-for ?x1))",
+      "(the portion ?x1.u (delivered true))"
+     ]
+    }
+   ],
+   "maintains": [],
+   "achieves": [
+    {
+     "cond": "(a transfer (of ?ch) (into ?r))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a record (of ?x1) (states ?r ?ch 0.85 au 0 h) (original true))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "goal": [
+    {
+     "cond": "(the well ?r (received ?ch 0.85 au))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":tolerance": "5 %",
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ]
+  },
+  {
+   "var": "?x2",
+   "type": "intervening",
+   "text": "(an action ?x2 (type intervening) (into ?c) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))",
+   "time_h": 0.0,
+   "slots": {
+    "into": "?c",
+    "substance": "?ch",
+    "dose": "0.85 au",
+    "at": "(culture-time 0 h)"
+   },
+   "instrument": "(an instrument ?x2.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?c) (of ?ch) (amount 0.85 au))))",
+   "signals": [
+    "identity-mismatch",
+    "dose-not-delivered",
+    "contamination-suspected"
+   ],
+   "requires": [
+    {
+     "cond": "(the plate ?p (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(some substance ?ch (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (contamination none))",
+     "known": true,
+     "grade": {
+      "freshness": "fresh",
+      "source": "inferred"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (culture-time 0 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "prevents": [
+    {
+     "cond": "(an event (type contamination-introduced) (of ?p))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a transfer (of ?x2.u) (into (a well (of ?p) (not ?c))))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": [
+      "(a portion ?x2.u (of ?ch) (drawn-for ?x2))",
+      "(the portion ?x2.u (delivered true))"
+     ]
+    }
+   ],
+   "maintains": [],
+   "achieves": [
+    {
+     "cond": "(a transfer (of ?ch) (into ?c))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a record (of ?x2) (states ?c ?ch 0.85 au 0 h) (original true))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "goal": [
+    {
+     "cond": "(the well ?c (received ?ch 0.85 au))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":tolerance": "5 %",
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ]
+  },
+  {
+   "var": "?w1",
+   "type": "incubating",
+   "text": "(an action ?w1 (type incubating) (plate ?p) (in ?env) (from (culture-time 0 h)) (to (culture-time 48 h)) (requires (the well ?r (received ?ch)) (the well ?c (received ?ch))))",
+   "time_h": 48.0,
+   "slots": {
+    "plate": "?p",
+    "in": "?env",
+    "from": "(culture-time 0 h)",
+    "to": "(culture-time 48 h)",
+    "requires": "(the well ?r (received ?ch)) (the well ?c (received ?ch))"
+   },
+   "instrument": "(an instrument ?w1.d (slot (a plate-slot (accepts ?p))) (process (a process (type incubation) (maintains ?env))))",
+   "signals": [
+    "environment-excursion"
+   ],
+   "requires": [
+    {
+     "cond": "(the plate ?p (culture-time 0 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (in ?env))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":establishable": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the well ?r (received ?ch))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "step",
+     "scope": null
+    },
+    {
+     "cond": "(the well ?c (received ?ch))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "step",
+     "scope": null
+    }
+   ],
+   "prevents": [
+    {
+     "cond": "(an excursion (of ?p))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "maintains": [
+    {
+     "cond": "(the plate ?p (in ?env))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "achieves": [
+    {
+     "cond": "(a record (of ?w1) (environment-history ?env))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "goal": [
+    {
+     "cond": "(the plate ?p (culture-time 48 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ]
+  },
+  {
+   "var": "?x3",
+   "type": "intervening",
+   "text": "(an action ?x3 (type intervening) (into ?r) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h)))",
+   "time_h": 48.0,
+   "slots": {
+    "into": "?r",
+    "substance": "?rs",
+    "dose": "0.70 au",
+    "at": "(culture-time 48 h)"
+   },
+   "instrument": "(an instrument ?x3.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?r) (of ?rs) (amount 0.70 au))))",
+   "signals": [
+    "identity-mismatch",
+    "dose-not-delivered",
+    "contamination-suspected"
+   ],
+   "requires": [
+    {
+     "cond": "(the plate ?p (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(some substance ?rs (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (contamination none))",
+     "known": true,
+     "grade": {
+      "freshness": "fresh",
+      "source": "inferred"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (culture-time 48 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "prevents": [
+    {
+     "cond": "(an event (type contamination-introduced) (of ?p))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a transfer (of ?x3.u) (into (a well (of ?p) (not ?r))))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": [
+      "(a portion ?x3.u (of ?rs) (drawn-for ?x3))",
+      "(the portion ?x3.u (delivered true))"
+     ]
+    }
+   ],
+   "maintains": [],
+   "achieves": [
+    {
+     "cond": "(a transfer (of ?rs) (into ?r))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a record (of ?x3) (states ?r ?rs 0.70 au 48 h) (original true))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "goal": [
+    {
+     "cond": "(the well ?r (received ?rs 0.70 au))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":tolerance": "5 %",
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ]
+  },
+  {
+   "var": "?w2",
+   "type": "incubating",
+   "text": "(an action ?w2 (type incubating) (plate ?p) (in ?env) (from (culture-time 48 h)) (to (culture-time 72 h)) (requires (the well ?r (received ?rs))))",
+   "time_h": 72.0,
+   "slots": {
+    "plate": "?p",
+    "in": "?env",
+    "from": "(culture-time 48 h)",
+    "to": "(culture-time 72 h)",
+    "requires": "(the well ?r (received ?rs))"
+   },
+   "instrument": "(an instrument ?w2.d (slot (a plate-slot (accepts ?p))) (process (a process (type incubation) (maintains ?env))))",
+   "signals": [
+    "environment-excursion"
+   ],
+   "requires": [
+    {
+     "cond": "(the plate ?p (culture-time 48 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (in ?env))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":establishable": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the well ?r (received ?rs))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "step",
+     "scope": null
+    }
+   ],
+   "prevents": [
+    {
+     "cond": "(an excursion (of ?p))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "maintains": [
+    {
+     "cond": "(the plate ?p (in ?env))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "achieves": [
+    {
+     "cond": "(a record (of ?w2) (environment-history ?env))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "goal": [
+    {
+     "cond": "(the plate ?p (culture-time 72 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ]
+  },
+  {
+   "var": "?m1",
+   "type": "measuring",
+   "text": "(an action ?m1 (type measuring) (of ?r) (readout organoid-radius) (at (culture-time 72 h)))",
+   "time_h": 72.0,
+   "slots": {
+    "of": "?r",
+    "readout": "organoid-radius",
+    "at": "(culture-time 72 h)"
+   },
+   "instrument": "(an instrument ?m1.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?r) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "signals": [
+    "identity-mismatch",
+    "measurement-invalid",
+    "validity-effect-unachievable"
+   ],
+   "requires": [
+    {
+     "cond": "(the plate ?p (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (culture-time 72 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(an instrument (function imaging) (qualified-for organoid-radius) (calibration current))",
+     "known": true,
+     "grade": {
+      "freshness": "fresh",
+      "source": "observed"
+     },
+     "ann": {
+      ":establishable": true,
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "prevents": [
+    {
+     "cond": "(an event (type contamination-introduced) (of ?p))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "maintains": [],
+   "achieves": [
+    {
+     "cond": "(the measurement (of ?r) (binding validated))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a record (of ?m1) (raw-data original) (hash-chained true))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "goal": [
+    {
+     "cond": "(a measurement (of ?r) (readout organoid-radius) (culture-time 72 h))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ]
+  },
+  {
+   "var": "?m2",
+   "type": "measuring",
+   "text": "(an action ?m2 (type measuring) (of ?c) (readout organoid-radius) (at (culture-time 72 h)))",
+   "time_h": 72.0,
+   "slots": {
+    "of": "?c",
+    "readout": "organoid-radius",
+    "at": "(culture-time 72 h)"
+   },
+   "instrument": "(an instrument ?m2.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?c) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "signals": [
+    "identity-mismatch",
+    "measurement-invalid",
+    "validity-effect-unachievable"
+   ],
+   "requires": [
+    {
+     "cond": "(the plate ?p (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (culture-time 72 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(an instrument (function imaging) (qualified-for organoid-radius) (calibration current))",
+     "known": true,
+     "grade": {
+      "freshness": "fresh",
+      "source": "observed"
+     },
+     "ann": {
+      ":establishable": true,
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "prevents": [
+    {
+     "cond": "(an event (type contamination-introduced) (of ?p))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "maintains": [],
+   "achieves": [
+    {
+     "cond": "(the measurement (of ?c) (binding validated))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a record (of ?m2) (raw-data original) (hash-chained true))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "goal": [
+    {
+     "cond": "(a measurement (of ?c) (readout organoid-radius) (culture-time 72 h))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ]
+  },
+  {
+   "var": "?m3",
+   "type": "measuring",
+   "text": "(an action ?m3 (type measuring) (of ?k) (readout organoid-radius) (at (culture-time 72 h)))",
+   "time_h": 72.0,
+   "slots": {
+    "of": "?k",
+    "readout": "organoid-radius",
+    "at": "(culture-time 72 h)"
+   },
+   "instrument": "(an instrument ?m3.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?k) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "signals": [
+    "identity-mismatch",
+    "measurement-invalid",
+    "validity-effect-unachievable"
+   ],
+   "requires": [
+    {
+     "cond": "(the plate ?p (identity verified))",
+     "known": true,
+     "grade": {
+      "source": "observed",
+      "freshness": "fresh"
+     },
+     "ann": {
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(the plate ?p (culture-time 72 h))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(an instrument (function imaging) (qualified-for organoid-radius) (calibration current))",
+     "known": true,
+     "grade": {
+      "freshness": "fresh",
+      "source": "observed"
+     },
+     "ann": {
+      ":establishable": true,
+      ":consequential": true
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "prevents": [
+    {
+     "cond": "(an event (type contamination-introduced) (of ?p))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "maintains": [],
+   "achieves": [
+    {
+     "cond": "(the measurement (of ?k) (binding validated))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    },
+    {
+     "cond": "(a record (of ?m3) (raw-data original) (hash-chained true))",
+     "known": false,
+     "grade": null,
+     "ann": {},
+     "source": "contract",
+     "scope": null
+    }
+   ],
+   "goal": [
+    {
+     "cond": "(a measurement (of ?k) (readout organoid-radius) (culture-time 72 h))",
+     "known": false,
+     "grade": null,
+     "ann": {
+      ":column": "validity"
+     },
+     "source": "contract",
+     "scope": null
+    }
+   ]
+  }
+ ],
+ "links": [
+  {
+   "frm": "start",
+   "to": "?x1",
+   "cond": "(the plate ?p (culture-time 0 h))"
+  },
+  {
+   "frm": "start",
+   "to": "?x2",
+   "cond": "(the plate ?p (culture-time 0 h))"
+  },
+  {
+   "frm": "start",
+   "to": "?w1",
+   "cond": "(the plate ?p (culture-time 0 h))"
+  },
+  {
+   "frm": "start",
+   "to": "?w1",
+   "cond": "(the plate ?p (in ?env))"
+  },
+  {
+   "frm": "?x1",
+   "to": "?w1",
+   "cond": "(the well ?r (received ?ch))"
+  },
+  {
+   "frm": "?x2",
+   "to": "?w1",
+   "cond": "(the well ?c (received ?ch))"
+  },
+  {
+   "frm": "?w1",
+   "to": "?x3",
+   "cond": "(the plate ?p (culture-time 48 h))"
+  },
+  {
+   "frm": "?w1",
+   "to": "?w2",
+   "cond": "(the plate ?p (culture-time 48 h))"
+  },
+  {
+   "frm": "start",
+   "to": "?w2",
+   "cond": "(the plate ?p (in ?env))"
+  },
+  {
+   "frm": "?x3",
+   "to": "?w2",
+   "cond": "(the well ?r (received ?rs))"
+  },
+  {
+   "frm": "?w2",
+   "to": "?m1",
+   "cond": "(the plate ?p (culture-time 72 h))"
+  },
+  {
+   "frm": "?w2",
+   "to": "?m2",
+   "cond": "(the plate ?p (culture-time 72 h))"
+  },
+  {
+   "frm": "?w2",
+   "to": "?m3",
+   "cond": "(the plate ?p (culture-time 72 h))"
+  }
+ ],
+ "hasse": [
+  [
+   "?w1",
+   "?x3"
+  ],
+  [
+   "?w2",
+   "?m1"
+  ],
+  [
+   "?w2",
+   "?m2"
+  ],
+  [
+   "?w2",
+   "?m3"
+  ],
+  [
+   "?x1",
+   "?w1"
+  ],
+  [
+   "?x2",
+   "?w1"
+  ],
+  [
+   "?x3",
+   "?w2"
+  ]
+ ],
+ "linear_extensions": 12,
+ "verified": [
+  [
+   "?x1",
+   "(the plate ?p (identity verified))"
+  ],
+  [
+   "?x1",
+   "(some substance ?ch (identity verified))"
+  ],
+  [
+   "?x1",
+   "(the plate ?p (contamination none))"
+  ],
+  [
+   "?x2",
+   "(the plate ?p (identity verified))"
+  ],
+  [
+   "?x2",
+   "(some substance ?ch (identity verified))"
+  ],
+  [
+   "?x2",
+   "(the plate ?p (contamination none))"
+  ],
+  [
+   "?x3",
+   "(the plate ?p (identity verified))"
+  ],
+  [
+   "?x3",
+   "(some substance ?rs (identity verified))"
+  ],
+  [
+   "?x3",
+   "(the plate ?p (contamination none))"
+  ],
+  [
+   "?m1",
+   "(the plate ?p (identity verified))"
+  ],
+  [
+   "?m1",
+   "(an instrument (function imaging) (qualified-for organoid-radius) (calibration current))"
+  ],
+  [
+   "?m2",
+   "(the plate ?p (identity verified))"
+  ],
+  [
+   "?m2",
+   "(an instrument (function imaging) (qualified-for organoid-radius) (calibration current))"
+  ],
+  [
+   "?m3",
+   "(the plate ?p (identity verified))"
+  ],
+  [
+   "?m3",
+   "(an instrument (function imaging) (qualified-for organoid-radius) (calibration current))"
+  ]
+ ],
+ "established": [],
+ "unsupported": [],
+ "threats": [
+  {
+   "link": "start -> ?x1",
+   "cond": "(the plate ?p (culture-time 0 h))",
+   "by": "?w1",
+   "achieves": "(the plate ?p (culture-time 48 h))",
+   "resolved": true,
+   "how": "promoted"
+  },
+  {
+   "link": "start -> ?x1",
+   "cond": "(the plate ?p (culture-time 0 h))",
+   "by": "?w2",
+   "achieves": "(the plate ?p (culture-time 72 h))",
+   "resolved": true,
+   "how": "promoted"
+  },
+  {
+   "link": "start -> ?x2",
+   "cond": "(the plate ?p (culture-time 0 h))",
+   "by": "?w1",
+   "achieves": "(the plate ?p (culture-time 48 h))",
+   "resolved": true,
+   "how": "promoted"
+  },
+  {
+   "link": "start -> ?x2",
+   "cond": "(the plate ?p (culture-time 0 h))",
+   "by": "?w2",
+   "achieves": "(the plate ?p (culture-time 72 h))",
+   "resolved": true,
+   "how": "promoted"
+  },
+  {
+   "link": "start -> ?w1",
+   "cond": "(the plate ?p (culture-time 0 h))",
+   "by": "?w2",
+   "achieves": "(the plate ?p (culture-time 72 h))",
+   "resolved": true,
+   "how": "promoted"
+  },
+  {
+   "link": "?w1 -> ?x3",
+   "cond": "(the plate ?p (culture-time 48 h))",
+   "by": "?w2",
+   "achieves": "(the plate ?p (culture-time 72 h))",
+   "resolved": true,
+   "how": "promoted"
+  },
+  {
+   "link": "?w2 -> ?m1",
+   "cond": "(the plate ?p (culture-time 72 h))",
+   "by": "?w1",
+   "achieves": "(the plate ?p (culture-time 48 h))",
+   "resolved": true,
+   "how": "demoted"
+  },
+  {
+   "link": "?w2 -> ?m2",
+   "cond": "(the plate ?p (culture-time 72 h))",
+   "by": "?w1",
+   "achieves": "(the plate ?p (culture-time 48 h))",
+   "resolved": true,
+   "how": "demoted"
+  },
+  {
+   "link": "?w2 -> ?m3",
+   "cond": "(the plate ?p (culture-time 72 h))",
+   "by": "?w1",
+   "achieves": "(the plate ?p (culture-time 48 h))",
+   "resolved": true,
+   "how": "demoted"
+  }
+ ],
+ "exclusions": [],
+ "experiment": [
+  {
+   "clause": "requires",
+   "cond": "(the plate ?p (contamination none))",
+   "status": "verified by the realization"
+  },
+  {
+   "clause": "requires",
+   "cond": "(the design ?D (arm (role control)))",
+   "status": "holds in the design",
+   "ok": true,
+   "column": "validity"
+  },
+  {
+   "clause": "prevents",
+   "cond": "(an excursion (of ?p) (duration (> 600 s)))",
+   "ok": true,
+   "status": "no step achieves it (statically)"
+  },
+  {
+   "clause": "prevents",
+   "cond": "(a transfer (of (some substance)) (into ?k))",
+   "ok": true,
+   "status": "no step achieves it (statically)"
+  },
+  {
+   "clause": "prevents",
+   "cond": "(an event (type contamination-introduced) (of ?p))",
+   "ok": true,
+   "status": "no step achieves it (statically)"
+  },
+  {
+   "clause": "achieves",
+   "cond": "(the plate ?p (in ?env))",
+   "ok": true,
+   "status": "established by the realization",
+   "column": "realization"
+  },
+  {
+   "clause": "achieves",
+   "cond": "(a measurement (of ?r) (readout organoid-radius))",
+   "ok": true,
+   "status": "achieved by ['?m1']",
+   "column": "validity"
+  },
+  {
+   "clause": "achieves",
+   "cond": "(a measurement (of ?c) (readout organoid-radius))",
+   "ok": true,
+   "status": "achieved by ['?m2']",
+   "column": "validity"
+  },
+  {
+   "clause": "achieves",
+   "cond": "(a measurement (of ?k) (readout organoid-radius))",
+   "ok": true,
+   "status": "achieved by ['?m3']",
+   "column": "validity"
+  },
+  {
+   "clause": "goal",
+   "cond": "(a result (of ?D) (information-gain (>= 0.5 bit)))",
+   "ok": true,
+   "status": "supported: the design's EIG 0.5439 bit >= 0.5 bit (requirement 0.5 bit), given the achieved measurements"
+  }
+ ],
+ "lint": [],
+ "ok": true,
+ "negative_controls": {
+  "N1 design anchors removed": {
+   "caught": true,
+   "by": [
+    "?w1 threatens start -> ?x1 ((the plate ?p (culture-time 0 h)))",
+    "?w2 threatens start -> ?x1 ((the plate ?p (culture-time 0 h)))",
+    "?w1 threatens start -> ?x2 ((the plate ?p (culture-time 0 h)))",
+    "?w2 threatens start -> ?x2 ((the plate ?p (culture-time 0 h)))"
+   ]
+  },
+  "N2 control well dosed": {
+   "caught": true,
+   "by": [
+    "VIOLATED by ['?x9']"
+   ]
+  },
+  "N3 design without a control arm": {
+   "caught": true,
+   "by": [
+    "?k",
+    "VIOLATED"
+   ]
+  },
+  "N4 device named in lab text": {
+   "caught": true,
+   "by": [
+    "device or robot id 'l17' in (on l17)"
+   ]
+  },
+  "N5 rescue at a culture time nothing achieves": {
+   "caught": true,
+   "by": [
+    "?x3: (the plate ?p (culture-time 36 h))"
+   ]
+  },
+  "N6 identity-mismatch handler removed": {
+   "caught": true,
+   "by": [
+    "?m1: identity-mismatch unhandled",
+    "?m2: identity-mismatch unhandled"
+   ]
+  },
+  "N7 instrument process no device offers": {
+   "caught": true,
+   "by": [
+    "?m1: ['h4', 'no device function realises process sequencing']",
+    "?m2: ['h4', 'no device function realises process sequencing']"
+   ]
+  },
+  "N8 a step whose goal serves nothing": {
+   "caught": true,
+   "by": [
+    "?m9 unjustified"
+   ]
+  },
+  "N9 focus retry without re-seating (F17)": {
+   "caught": true,
+   "by": [
+    "out_of_focus is persistent and the handler does not re-establish (the plate ?p (seated true)): a retry meets the same cause (autofocus runs before every acquisition, so a refocus is part of each attempt; at the same field and seating a repeat is deterministic)"
+   ]
+  },
+  "N10 process fault not in the component record": {
+   "caught": true,
+   "by": [
+    "L12_LiquidHandler: [\"fault pipette_crash not in the record's failure_modes\"] unmodelled ['well_misregistration']"
+   ]
+  },
+  "N11 repair claims the goal after the irreversible phase": {
+   "caught": true,
+   "by": [
+    "well_misregistration occurs at dispense, at or after the irreversible phase dispense; the goal cannot be re-achieved"
+   ]
+  },
+  "N12 meta model without rules for weak consequential beliefs": {
+   "caught": true,
+   "by": [
+    "(the plate ?p (identity verified)): ['inferred', 'assumed'] untreated"
+   ]
+  }
+ },
+ "instruments": [
+  {
+   "step": "?x1",
+   "process": "substance-transfer",
+   "function": "dispensing",
+   "capability": "dose_well",
+   "description": "(an instrument ?x1.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?r) (of ?ch) (amount 0.85 au))))",
+   "answers": [
+    {
+     "device": "l12",
+     "slot": "stations_l12_liquidhandler_plate_nest",
+     "grounds": [
+      "has_function(l12,dispensing)",
+      "capabilities(l12)\u220bdose_well",
+      "seat(l12,stations_l12_liquidhandler_plate_nest)"
+     ]
+    }
+   ],
+   "rejected": [
+    [
+     "h4",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l09",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l10",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l17",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l21",
+     "no function dispensing; no capability dose_well"
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "step": "?x2",
+   "process": "substance-transfer",
+   "function": "dispensing",
+   "capability": "dose_well",
+   "description": "(an instrument ?x2.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?c) (of ?ch) (amount 0.85 au))))",
+   "answers": [
+    {
+     "device": "l12",
+     "slot": "stations_l12_liquidhandler_plate_nest",
+     "grounds": [
+      "has_function(l12,dispensing)",
+      "capabilities(l12)\u220bdose_well",
+      "seat(l12,stations_l12_liquidhandler_plate_nest)"
+     ]
+    }
+   ],
+   "rejected": [
+    [
+     "h4",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l09",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l10",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l17",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l21",
+     "no function dispensing; no capability dose_well"
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "step": "?w1",
+   "process": "incubation",
+   "function": "incubation",
+   "capability": "incubate_plate",
+   "description": "(an instrument ?w1.d (slot (a plate-slot (accepts ?p))) (process (a process (type incubation) (maintains ?env))))",
+   "answers": [
+    {
+     "device": "l10",
+     "slot": "stations_l10_incubator_transfer_station",
+     "grounds": [
+      "has_function(l10,incubation)",
+      "capabilities(l10)\u220bincubate_plate",
+      "seat(l10,stations_l10_incubator_transfer_station)"
+     ]
+    }
+   ],
+   "rejected": [
+    [
+     "h4",
+     "no function incubation; no capability incubate_plate"
+    ],
+    [
+     "l09",
+     "no function incubation; no capability incubate_plate"
+    ],
+    [
+     "l12",
+     "no function incubation; no capability incubate_plate"
+    ],
+    [
+     "l17",
+     "no function incubation; no capability incubate_plate"
+    ],
+    [
+     "l21",
+     "no function incubation; no capability incubate_plate"
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "step": "?x3",
+   "process": "substance-transfer",
+   "function": "dispensing",
+   "capability": "dose_well",
+   "description": "(an instrument ?x3.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?r) (of ?rs) (amount 0.70 au))))",
+   "answers": [
+    {
+     "device": "l12",
+     "slot": "stations_l12_liquidhandler_plate_nest",
+     "grounds": [
+      "has_function(l12,dispensing)",
+      "capabilities(l12)\u220bdose_well",
+      "seat(l12,stations_l12_liquidhandler_plate_nest)"
+     ]
+    }
+   ],
+   "rejected": [
+    [
+     "h4",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l09",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l10",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l17",
+     "no function dispensing; no capability dose_well"
+    ],
+    [
+     "l21",
+     "no function dispensing; no capability dose_well"
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "step": "?w2",
+   "process": "incubation",
+   "function": "incubation",
+   "capability": "incubate_plate",
+   "description": "(an instrument ?w2.d (slot (a plate-slot (accepts ?p))) (process (a process (type incubation) (maintains ?env))))",
+   "answers": [
+    {
+     "device": "l10",
+     "slot": "stations_l10_incubator_transfer_station",
+     "grounds": [
+      "has_function(l10,incubation)",
+      "capabilities(l10)\u220bincubate_plate",
+      "seat(l10,stations_l10_incubator_transfer_station)"
+     ]
+    }
+   ],
+   "rejected": [
+    [
+     "h4",
+     "no function incubation; no capability incubate_plate"
+    ],
+    [
+     "l09",
+     "no function incubation; no capability incubate_plate"
+    ],
+    [
+     "l12",
+     "no function incubation; no capability incubate_plate"
+    ],
+    [
+     "l17",
+     "no function incubation; no capability incubate_plate"
+    ],
+    [
+     "l21",
+     "no function incubation; no capability incubate_plate"
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "step": "?m1",
+   "process": "imaging",
+   "function": "imaging",
+   "capability": "image_well",
+   "description": "(an instrument ?m1.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?r) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "answers": [
+    {
+     "device": "l17",
+     "slot": "stations_l17_brightfieldimager_plate_load_frame",
+     "grounds": [
+      "has_function(l17,imaging)",
+      "capabilities(l17)\u220bimage_well",
+      "seat(l17,stations_l17_brightfieldimager_plate_load_frame)",
+      "measurement_binding(l17,organoid_radius_um) = validated"
+     ]
+    }
+   ],
+   "rejected": [
+    [
+     "h4",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l09",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l10",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l12",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l21",
+     "no function imaging; no capability image_well"
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "step": "?m2",
+   "process": "imaging",
+   "function": "imaging",
+   "capability": "image_well",
+   "description": "(an instrument ?m2.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?c) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "answers": [
+    {
+     "device": "l17",
+     "slot": "stations_l17_brightfieldimager_plate_load_frame",
+     "grounds": [
+      "has_function(l17,imaging)",
+      "capabilities(l17)\u220bimage_well",
+      "seat(l17,stations_l17_brightfieldimager_plate_load_frame)",
+      "measurement_binding(l17,organoid_radius_um) = validated"
+     ]
+    }
+   ],
+   "rejected": [
+    [
+     "h4",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l09",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l10",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l12",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l21",
+     "no function imaging; no capability image_well"
+    ]
+   ],
+   "ok": true
+  },
+  {
+   "step": "?m3",
+   "process": "imaging",
+   "function": "imaging",
+   "capability": "image_well",
+   "description": "(an instrument ?m3.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?k) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "answers": [
+    {
+     "device": "l17",
+     "slot": "stations_l17_brightfieldimager_plate_load_frame",
+     "grounds": [
+      "has_function(l17,imaging)",
+      "capabilities(l17)\u220bimage_well",
+      "seat(l17,stations_l17_brightfieldimager_plate_load_frame)",
+      "measurement_binding(l17,organoid_radius_um) = validated"
+     ]
+    }
+   ],
+   "rejected": [
+    [
+     "h4",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l09",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l10",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l12",
+     "no function imaging; no capability image_well"
+    ],
+    [
+     "l21",
+     "no function imaging; no capability image_well"
+    ]
+   ],
+   "ok": true
+  }
+ ],
+ "justified": {
+  "?x1": true,
+  "?x2": true,
+  "?w1": true,
+  "?x3": true,
+  "?w2": true,
+  "?m1": true,
+  "?m2": true,
+  "?m3": true
+ },
+ "failures": [
+  {
+   "step": "?x1",
+   "failure": "identity-mismatch",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "identity-mismatch",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material (the plate (identity mismatched))))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?x1",
+   "failure": "dose-not-delivered",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "dose-not-delivered",
+     "cause": "wrong_reagent",
+     "do": [
+      "(re-establish (some substance ?s (identity verified)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "tip_missing_or_dropped",
+     "do": [],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "clog_or_air_aspiration",
+     "do": [],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "well_misregistration",
+     "do": [
+      "(an action (type quarantining) (material ?p))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?x1",
+   "failure": "contamination-suspected",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "contamination-suspected",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material ?p))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?x2",
+   "failure": "identity-mismatch",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "identity-mismatch",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material (the plate (identity mismatched))))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?x2",
+   "failure": "dose-not-delivered",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "dose-not-delivered",
+     "cause": "wrong_reagent",
+     "do": [
+      "(re-establish (some substance ?s (identity verified)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "tip_missing_or_dropped",
+     "do": [],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "clog_or_air_aspiration",
+     "do": [],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "well_misregistration",
+     "do": [
+      "(an action (type quarantining) (material ?p))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?x2",
+   "failure": "contamination-suspected",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "contamination-suspected",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material ?p))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?w1",
+   "failure": "environment-excursion",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "environment-excursion",
+     "cause": null,
+     "do": [
+      "(restore (the plate ?p (in ?env)))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?x3",
+   "failure": "identity-mismatch",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "identity-mismatch",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material (the plate (identity mismatched))))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?x3",
+   "failure": "dose-not-delivered",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "dose-not-delivered",
+     "cause": "wrong_reagent",
+     "do": [
+      "(re-establish (some substance ?s (identity verified)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "tip_missing_or_dropped",
+     "do": [],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "clog_or_air_aspiration",
+     "do": [],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    },
+    {
+     "type": "dose-not-delivered",
+     "cause": "well_misregistration",
+     "do": [
+      "(an action (type quarantining) (material ?p))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?x3",
+   "failure": "contamination-suspected",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "contamination-suspected",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material ?p))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?w2",
+   "failure": "environment-excursion",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "environment-excursion",
+     "cause": null,
+     "do": [
+      "(restore (the plate ?p (in ?env)))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?m1",
+   "failure": "identity-mismatch",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "identity-mismatch",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material (the plate (identity mismatched))))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?m1",
+   "failure": "measurement-invalid",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "measurement-invalid",
+     "cause": "calibration_expired",
+     "do": [
+      "(re-establish (an instrument (function imaging) (calibration current)))"
+     ],
+     "then": [
+      "replan"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "measurement-invalid",
+     "cause": "out_of_focus",
+     "do": [
+      "(re-establish (the plate ?p (seated true)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "measurement-invalid",
+     "cause": "plate_misseated",
+     "do": [
+      "(re-establish (the plate ?p (seated true)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    }
+   ]
+  },
+  {
+   "step": "?m1",
+   "failure": "validity-effect-unachievable",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "validity-effect-unachievable",
+     "cause": null,
+     "do": [],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?m2",
+   "failure": "identity-mismatch",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "identity-mismatch",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material (the plate (identity mismatched))))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?m2",
+   "failure": "measurement-invalid",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "measurement-invalid",
+     "cause": "calibration_expired",
+     "do": [
+      "(re-establish (an instrument (function imaging) (calibration current)))"
+     ],
+     "then": [
+      "replan"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "measurement-invalid",
+     "cause": "out_of_focus",
+     "do": [
+      "(re-establish (the plate ?p (seated true)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "measurement-invalid",
+     "cause": "plate_misseated",
+     "do": [
+      "(re-establish (the plate ?p (seated true)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    }
+   ]
+  },
+  {
+   "step": "?m2",
+   "failure": "validity-effect-unachievable",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "validity-effect-unachievable",
+     "cause": null,
+     "do": [],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?m3",
+   "failure": "identity-mismatch",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "identity-mismatch",
+     "cause": null,
+     "do": [
+      "(an action (type quarantining) (material (the plate (identity mismatched))))"
+     ],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?m3",
+   "failure": "measurement-invalid",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "measurement-invalid",
+     "cause": "calibration_expired",
+     "do": [
+      "(re-establish (an instrument (function imaging) (calibration current)))"
+     ],
+     "then": [
+      "replan"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "measurement-invalid",
+     "cause": "out_of_focus",
+     "do": [
+      "(re-establish (the plate ?p (seated true)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    },
+    {
+     "type": "measurement-invalid",
+     "cause": "plate_misseated",
+     "do": [
+      "(re-establish (the plate ?p (seated true)))"
+     ],
+     "then": [
+      "(retry (max 1))"
+     ],
+     "orelse": [
+      "escalate"
+     ]
+    }
+   ]
+  },
+  {
+   "step": "?m3",
+   "failure": "validity-effect-unachievable",
+   "handled": true,
+   "handlers": [
+    {
+     "type": "validity-effect-unachievable",
+     "cause": null,
+     "do": [],
+     "then": [
+      "escalate"
+     ],
+     "orelse": []
+    }
+   ]
+  },
+  {
+   "step": "?E",
+   "failure": "prevents-violated",
+   "handled": true,
+   "handlers": []
+  }
+ ],
+ "epistemic": [
+  {
+   "item": "(the plate ?p (identity verified))",
+   "context": "intervening",
+   "needs": {
+    "source": "observed",
+    "freshness": "fresh"
+   },
+   "consequential": true,
+   "treatments": {
+    "stale": {
+     "treat": "re-observe",
+     "rule": "stale"
+    },
+    "contradicted": {
+     "treat": "contain-and-escalate",
+     "rule": "contradiction"
+    },
+    "reported": {
+     "treat": "verify-before-commit",
+     "rule": "reported"
+    },
+    "inferred": {
+     "treat": "verify-if-sensable-else-escalate",
+     "rule": "inferred-consequential"
+    },
+    "assumed": {
+     "treat": "verify-before-commit",
+     "rule": "assumed-consequential"
+    },
+    "predicted": {
+     "treat": "plan-only",
+     "rule": "prediction"
+    },
+    "unknown": {
+     "treat": "sense-or-abstain",
+     "rule": "no-belief"
+    }
+   },
+   "ok": true,
+   "where": "?x1"
+  },
+  {
+   "item": "(some substance ?ch (identity verified))",
+   "context": "intervening",
+   "needs": {
+    "source": "observed",
+    "freshness": "fresh"
+   },
+   "consequential": true,
+   "treatments": {
+    "stale": {
+     "treat": "re-observe",
+     "rule": "stale"
+    },
+    "contradicted": {
+     "treat": "contain-and-escalate",
+     "rule": "contradiction"
+    },
+    "reported": {
+     "treat": "verify-before-commit",
+     "rule": "reported"
+    },
+    "inferred": {
+     "treat": "verify-if-sensable-else-escalate",
+     "rule": "inferred-consequential"
+    },
+    "assumed": {
+     "treat": "verify-before-commit",
+     "rule": "assumed-consequential"
+    },
+    "predicted": {
+     "treat": "plan-only",
+     "rule": "prediction"
+    },
+    "unknown": {
+     "treat": "sense-or-abstain",
+     "rule": "no-belief"
+    }
+   },
+   "ok": true,
+   "where": "?x1"
+  },
+  {
+   "item": "(the plate ?p (contamination none))",
+   "context": "intervening",
+   "needs": {
+    "freshness": "fresh",
+    "source": "inferred"
+   },
+   "consequential": true,
+   "treatments": {
+    "stale": {
+     "treat": "re-observe",
+     "rule": "stale"
+    },
+    "contradicted": {
+     "treat": "contain-and-escalate",
+     "rule": "contradiction"
+    },
+    "assumed": {
+     "treat": "verify-before-commit",
+     "rule": "assumed-consequential"
+    },
+    "predicted": {
+     "treat": "plan-only",
+     "rule": "prediction"
+    },
+    "unknown": {
+     "treat": "sense-or-abstain",
+     "rule": "no-belief"
+    }
+   },
+   "ok": true,
+   "where": "?x1"
+  },
+  {
+   "item": "(the plate ?p (identity verified))",
+   "context": "measuring",
+   "needs": {
+    "source": "observed",
+    "freshness": "fresh"
+   },
+   "consequential": true,
+   "treatments": {
+    "stale": {
+     "treat": "re-observe",
+     "rule": "stale"
+    },
+    "contradicted": {
+     "treat": "contain-and-escalate",
+     "rule": "contradiction"
+    },
+    "reported": {
+     "treat": "verify-before-commit",
+     "rule": "reported"
+    },
+    "inferred": {
+     "treat": "verify-if-sensable-else-escalate",
+     "rule": "inferred-consequential"
+    },
+    "assumed": {
+     "treat": "verify-before-commit",
+     "rule": "assumed-consequential"
+    },
+    "predicted": {
+     "treat": "plan-only",
+     "rule": "prediction"
+    },
+    "unknown": {
+     "treat": "sense-or-abstain",
+     "rule": "no-belief"
+    }
+   },
+   "ok": true,
+   "where": "?m1"
+  },
+  {
+   "item": "(an instrument (function imaging) (qualified-for organoid-radius) (calibration current))",
+   "context": "measuring",
+   "needs": {
+    "freshness": "fresh",
+    "source": "observed"
+   },
+   "consequential": true,
+   "treatments": {
+    "stale": {
+     "treat": "re-observe",
+     "rule": "stale"
+    },
+    "contradicted": {
+     "treat": "contain-and-escalate",
+     "rule": "contradiction"
+    },
+    "reported": {
+     "treat": "verify-before-commit",
+     "rule": "reported"
+    },
+    "inferred": {
+     "treat": "verify-if-sensable-else-escalate",
+     "rule": "inferred-consequential"
+    },
+    "assumed": {
+     "treat": "verify-before-commit",
+     "rule": "assumed-consequential"
+    },
+    "predicted": {
+     "treat": "plan-only",
+     "rule": "prediction"
+    },
+    "unknown": {
+     "treat": "sense-or-abstain",
+     "rule": "no-belief"
+    }
+   },
+   "ok": true,
+   "where": "?m1"
+  },
+  {
+   "item": "(the plate ?p (contamination none))",
+   "context": "experimenting",
+   "needs": {
+    "freshness": "fresh",
+    "source": "inferred"
+   },
+   "consequential": true,
+   "treatments": {
+    "stale": {
+     "treat": "re-observe",
+     "rule": "stale"
+    },
+    "contradicted": {
+     "treat": "contain-and-escalate",
+     "rule": "contradiction"
+    },
+    "assumed": {
+     "treat": "verify-before-commit",
+     "rule": "assumed-consequential"
+    },
+    "predicted": {
+     "treat": "plan-only",
+     "rule": "prediction"
+    },
+    "unknown": {
+     "treat": "sense-or-abstain",
+     "rule": "no-belief"
+    }
+   },
+   "ok": true,
+   "where": "?E"
+  },
+  {
+   "item": "(the plate ?p (identity verified))",
+   "context": "experimenting",
+   "needs": {
+    "source": "observed",
+    "freshness": "fresh"
+   },
+   "consequential": true,
+   "treatments": {
+    "stale": {
+     "treat": "re-observe",
+     "rule": "stale"
+    },
+    "contradicted": {
+     "treat": "contain-and-escalate",
+     "rule": "contradiction"
+    },
+    "reported": {
+     "treat": "verify-before-commit",
+     "rule": "reported"
+    },
+    "inferred": {
+     "treat": "verify-if-sensable-else-escalate",
+     "rule": "inferred-consequential"
+    },
+    "assumed": {
+     "treat": "verify-before-commit",
+     "rule": "assumed-consequential"
+    },
+    "predicted": {
+     "treat": "plan-only",
+     "rule": "prediction"
+    },
+    "unknown": {
+     "treat": "sense-or-abstain",
+     "rule": "no-belief"
+    }
+   },
+   "ok": true,
+   "where": "?E"
+  }
+ ],
+ "quality": {
+  "kpis": [
+   {
+    "name": "safety",
+    "of": "(each violation (of (a prevents-item (in ?E))))",
+    "aggregate": "count",
+    "unit": "",
+    "op": "<=",
+    "target": 0.0,
+    "direction": "minimize",
+    "weights": null
+   },
+   {
+    "name": "reliability",
+    "of": "(each goal (of (an action (in ?E))))",
+    "aggregate": "first-attempt-fraction",
+    "unit": "",
+    "op": ">=",
+    "target": 1.0,
+    "direction": "maximize",
+    "weights": null
+   },
+   {
+    "name": "auditability",
+    "of": "(each goal (of (an action (in ?E))))",
+    "aggregate": "evidenced-fraction",
+    "unit": "",
+    "op": ">=",
+    "target": 1.0,
+    "direction": "maximize",
+    "weights": null
+   },
+   {
+    "name": "excursion-time",
+    "of": "(each excursion (of ?p))",
+    "aggregate": "max",
+    "unit": "s",
+    "op": "<=",
+    "target": 300.0,
+    "direction": "minimize",
+    "weights": null
+   },
+   {
+    "name": "cost",
+    "of": "(each resource (used-by ?E))",
+    "aggregate": "weighted-sum",
+    "unit": "cost-units",
+    "op": "<=",
+    "target": 10.0,
+    "direction": "minimize",
+    "weights": "(weights (consumable 1) (instrument-minute 0.2) (escalation 50))"
+   },
+   {
+    "name": "dose-deviation",
+    "of": "(each transfer (into (a well (of ?p))))",
+    "aggregate": "max",
+    "unit": "%",
+    "op": "<=",
+    "target": 2.0,
+    "direction": "minimize",
+    "weights": null
+   },
+   {
+    "name": "time-to-result",
+    "of": "?E",
+    "aggregate": "span",
+    "unit": "h",
+    "op": "<=",
+    "target": 72.5,
+    "direction": "minimize",
+    "weights": null
+   }
+  ],
+  "prefers": [
+   "safety",
+   "reliability",
+   "auditability",
+   "excursion-time",
+   "cost",
+   "dose-deviation",
+   "time-to-result"
+  ],
+  "weights": {
+   "consumable": 1.0,
+   "instrument-minute": 0.2,
+   "escalation": 50.0
+  },
+  "goals": 6,
+  "runs": [
+   {
+    "run": "nominal",
+    "end": "executed",
+    "sessions": {
+     "s0": 298.9,
+     "s1": 263.3,
+     "s2": 256.4
+    },
+    "safety": 0,
+    "reliability": 1.0,
+    "auditability": 1.0,
+    "excursion-time": 298.9,
+    "cost": 4.22,
+    "dose-deviation": 0.0,
+    "time-to-result": 72.153,
+    "cost_parts": {
+     "consumables": 3,
+     "instrument_minutes": 6.09,
+     "escalations": 0
+    },
+    "met": {
+     "safety": true,
+     "reliability": true,
+     "auditability": true,
+     "excursion-time": true,
+     "cost": true,
+     "dose-deviation": true,
+     "time-to-result": true
+    }
+   },
+   {
+    "run": "calibration_lapsed",
+    "end": "executed",
+    "sessions": {
+     "s0": 298.9,
+     "s1": 263.3,
+     "s2": 478.7
+    },
+    "safety": 0,
+    "reliability": 0.833,
+    "auditability": 1.0,
+    "excursion-time": 478.7,
+    "cost": 4.69,
+    "dose-deviation": 0.0,
+    "time-to-result": 72.215,
+    "cost_parts": {
+     "consumables": 3,
+     "instrument_minutes": 8.47,
+     "escalations": 0
+    },
+    "met": {
+     "safety": true,
+     "reliability": false,
+     "auditability": true,
+     "excursion-time": false,
+     "cost": true,
+     "dose-deviation": true,
+     "time-to-result": true
+    }
+   },
+   {
+    "run": "tip_lost",
+    "end": "executed",
+    "sessions": {
+     "s0": 298.9,
+     "s1": 281.1,
+     "s2": 256.4
+    },
+    "safety": 0,
+    "reliability": 0.833,
+    "auditability": 1.0,
+    "excursion-time": 298.9,
+    "cost": 5.24,
+    "dose-deviation": 0.0,
+    "time-to-result": 72.158,
+    "cost_parts": {
+     "consumables": 4,
+     "instrument_minutes": 6.21,
+     "escalations": 0
+    },
+    "met": {
+     "safety": true,
+     "reliability": false,
+     "auditability": true,
+     "excursion-time": true,
+     "cost": true,
+     "dose-deviation": true,
+     "time-to-result": true
+    }
+   },
+   {
+    "run": "tool_changer_slow",
+    "end": "escalated",
+    "sessions": {
+     "s0": 298.9,
+     "s1": 708.3
+    },
+    "safety": 1,
+    "reliability": 0.333,
+    "auditability": 1.0,
+    "excursion-time": 708.3,
+    "cost": 52.75,
+    "dose-deviation": 0.0,
+    "time-to-result": null,
+    "cost_parts": {
+     "consumables": 2,
+     "instrument_minutes": 3.74,
+     "escalations": 1
+    },
+    "met": {
+     "safety": false,
+     "reliability": false,
+     "auditability": true,
+     "excursion-time": false,
+     "cost": false,
+     "dose-deviation": true,
+     "time-to-result": null
+    }
+   },
+   {
+    "run": "identity_swap",
+    "end": "escalated",
+    "sessions": {
+     "s0": 298.9,
+     "s1": 50.3
+    },
+    "safety": 0,
+    "reliability": 0.333,
+    "auditability": 1.0,
+    "excursion-time": 298.9,
+    "cost": 52.61,
+    "dose-deviation": 0.0,
+    "time-to-result": null,
+    "cost_parts": {
+     "consumables": 2,
+     "instrument_minutes": 3.04,
+     "escalations": 1
+    },
+    "met": {
+     "safety": true,
+     "reliability": false,
+     "auditability": true,
+     "excursion-time": true,
+     "cost": false,
+     "dose-deviation": true,
+     "time-to-result": null
+    }
+   },
+   {
+    "run": "isaac_nominal",
+    "end": "executed",
+    "sessions": {
+     "s0": 305.71,
+     "s1": 230.08,
+     "s2": 207.3
+    },
+    "safety": 0,
+    "reliability": 1.0,
+    "auditability": 1.0,
+    "excursion-time": 305.71,
+    "cost": 3.89,
+    "dose-deviation": 0.112,
+    "time-to-result": 72.132,
+    "cost_parts": {
+     "consumables": 3,
+     "instrument_minutes": 4.47,
+     "escalations": 0
+    },
+    "met": {
+     "safety": true,
+     "reliability": true,
+     "auditability": true,
+     "excursion-time": false,
+     "cost": true,
+     "dose-deviation": true,
+     "time-to-result": true
+    }
+   },
+   {
+    "run": "isaac_calibration_lapsed",
+    "end": "escalated",
+    "sessions": {
+     "s0": 305.71,
+     "s1": 230.08,
+     "s2": 414.59
+    },
+    "safety": 0,
+    "reliability": 0.5,
+    "auditability": 1.0,
+    "excursion-time": 414.59,
+    "cost": 54.28,
+    "dose-deviation": 0.112,
+    "time-to-result": 72.188,
+    "cost_parts": {
+     "consumables": 3,
+     "instrument_minutes": 6.4,
+     "escalations": 1
+    },
+    "met": {
+     "safety": true,
+     "reliability": false,
+     "auditability": true,
+     "excursion-time": false,
+     "cost": false,
+     "dose-deviation": true,
+     "time-to-result": true
+    }
+   }
+  ],
+  "ranking": [
+   "nominal",
+   "isaac_nominal",
+   "tip_lost",
+   "calibration_lapsed",
+   "isaac_calibration_lapsed",
+   "identity_swap",
+   "tool_changer_slow"
+  ]
+ },
+ "grounding": [
+  {
+   "process": "substance-transfer",
+   "component": "L12_LiquidHandler",
+   "contract": "dose_well",
+   "faults": 4,
+   "record_faults": 4,
+   "unmodelled": [],
+   "problems": [],
+   "ok": true
+  },
+  {
+   "process": "imaging",
+   "component": "L17_BrightFieldImager",
+   "contract": "image_well",
+   "faults": 3,
+   "record_faults": 3,
+   "unmodelled": [],
+   "problems": [],
+   "ok": true
+  },
+  {
+   "process": "incubation",
+   "component": "L10_Incubator",
+   "contract": "incubate",
+   "faults": 3,
+   "record_faults": 3,
+   "unmodelled": [],
+   "problems": [],
+   "ok": true
+  },
+  {
+   "process": "containment",
+   "component": "H4_Quarantine",
+   "contract": "quarantine_sample",
+   "faults": 1,
+   "record_faults": 1,
+   "unmodelled": [],
+   "problems": [],
+   "ok": true
+  }
+ ],
+ "trust": [
+  {
+   "step": "?x1",
+   "process": "substance-transfer",
+   "component": "L12_LiquidHandler",
+   "faults": [
+    {
+     "fault": "wrong_reagent",
+     "at": "verify-reagent",
+     "detected": "full",
+     "monitor": "reagent identity check",
+     "timing": "before the irreversible phase",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause wrong_reagent)) (do (re-establish (some substance ?s (identity verified)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "tip_missing_or_dropped",
+     "at": "pick-tip",
+     "detected": "full",
+     "monitor": "tip-presence sensor",
+     "timing": "before the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause tip_missing_or_dropped)) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "clog_or_air_aspiration",
+     "at": "aspirate",
+     "detected": "full",
+     "monitor": "pressure trace",
+     "timing": "before the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause clog_or_air_aspiration)) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "well_misregistration",
+     "at": "dispense",
+     "detected": "partial",
+     "monitor": "nest sensor + vision",
+     "timing": "after the irreversible phase",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause well_misregistration)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))",
+     "silent": true,
+     "irreparable": true
+    }
+   ],
+   "silent": [
+    "well_misregistration"
+   ],
+   "irreparable": [
+    "well_misregistration"
+   ],
+   "unhandled": [],
+   "must_not_assume": [
+    "commanded volume equals delivered volume",
+    "delivered dose equals biological injury"
+   ],
+   "evidence": [
+    "reagent lot",
+    "tip ID/type",
+    "volume",
+    "pressure trace",
+    "well identity"
+   ]
+  },
+  {
+   "step": "?x2",
+   "process": "substance-transfer",
+   "component": "L12_LiquidHandler",
+   "faults": [
+    {
+     "fault": "wrong_reagent",
+     "at": "verify-reagent",
+     "detected": "full",
+     "monitor": "reagent identity check",
+     "timing": "before the irreversible phase",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause wrong_reagent)) (do (re-establish (some substance ?s (identity verified)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "tip_missing_or_dropped",
+     "at": "pick-tip",
+     "detected": "full",
+     "monitor": "tip-presence sensor",
+     "timing": "before the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause tip_missing_or_dropped)) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "clog_or_air_aspiration",
+     "at": "aspirate",
+     "detected": "full",
+     "monitor": "pressure trace",
+     "timing": "before the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause clog_or_air_aspiration)) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "well_misregistration",
+     "at": "dispense",
+     "detected": "partial",
+     "monitor": "nest sensor + vision",
+     "timing": "after the irreversible phase",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause well_misregistration)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))",
+     "silent": true,
+     "irreparable": true
+    }
+   ],
+   "silent": [
+    "well_misregistration"
+   ],
+   "irreparable": [
+    "well_misregistration"
+   ],
+   "unhandled": [],
+   "must_not_assume": [
+    "commanded volume equals delivered volume",
+    "delivered dose equals biological injury"
+   ],
+   "evidence": [
+    "reagent lot",
+    "tip ID/type",
+    "volume",
+    "pressure trace",
+    "well identity"
+   ]
+  },
+  {
+   "step": "?w1",
+   "process": "incubation",
+   "component": "L10_Incubator",
+   "faults": [
+    {
+     "fault": "temperature_excursion",
+     "at": "hold",
+     "detected": "full",
+     "monitor": "temperature sensor",
+     "timing": "after the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": true
+    },
+    {
+     "fault": "CO2_excursion",
+     "at": "hold",
+     "detected": "full",
+     "monitor": "CO2 sensor",
+     "timing": "after the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": true
+    },
+    {
+     "fault": "gate_stuck_open",
+     "at": "release",
+     "detected": "full",
+     "monitor": "gate position sensor",
+     "timing": "after the irreversible phase",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": true
+    }
+   ],
+   "silent": [],
+   "irreparable": [
+    "temperature_excursion",
+    "CO2_excursion",
+    "gate_stuck_open"
+   ],
+   "unhandled": [],
+   "must_not_assume": [
+    "nominal setpoint equals actual culture exposure without sensor evidence"
+   ],
+   "evidence": [
+    "environment time series",
+    "door events"
+   ]
+  },
+  {
+   "step": "?x3",
+   "process": "substance-transfer",
+   "component": "L12_LiquidHandler",
+   "faults": [
+    {
+     "fault": "wrong_reagent",
+     "at": "verify-reagent",
+     "detected": "full",
+     "monitor": "reagent identity check",
+     "timing": "before the irreversible phase",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause wrong_reagent)) (do (re-establish (some substance ?s (identity verified)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "tip_missing_or_dropped",
+     "at": "pick-tip",
+     "detected": "full",
+     "monitor": "tip-presence sensor",
+     "timing": "before the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause tip_missing_or_dropped)) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "clog_or_air_aspiration",
+     "at": "aspirate",
+     "detected": "full",
+     "monitor": "pressure trace",
+     "timing": "before the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause clog_or_air_aspiration)) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "well_misregistration",
+     "at": "dispense",
+     "detected": "partial",
+     "monitor": "nest sensor + vision",
+     "timing": "after the irreversible phase",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type dose-not-delivered) (cause well_misregistration)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))",
+     "silent": true,
+     "irreparable": true
+    }
+   ],
+   "silent": [
+    "well_misregistration"
+   ],
+   "irreparable": [
+    "well_misregistration"
+   ],
+   "unhandled": [],
+   "must_not_assume": [
+    "commanded volume equals delivered volume",
+    "delivered dose equals biological injury"
+   ],
+   "evidence": [
+    "reagent lot",
+    "tip ID/type",
+    "volume",
+    "pressure trace",
+    "well identity"
+   ]
+  },
+  {
+   "step": "?w2",
+   "process": "incubation",
+   "component": "L10_Incubator",
+   "faults": [
+    {
+     "fault": "temperature_excursion",
+     "at": "hold",
+     "detected": "full",
+     "monitor": "temperature sensor",
+     "timing": "after the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": true
+    },
+    {
+     "fault": "CO2_excursion",
+     "at": "hold",
+     "detected": "full",
+     "monitor": "CO2 sensor",
+     "timing": "after the irreversible phase",
+     "persistence": "transient",
+     "handled": true,
+     "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": true
+    },
+    {
+     "fault": "gate_stuck_open",
+     "at": "release",
+     "detected": "full",
+     "monitor": "gate position sensor",
+     "timing": "after the irreversible phase",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+     "silent": false,
+     "irreparable": true
+    }
+   ],
+   "silent": [],
+   "irreparable": [
+    "temperature_excursion",
+    "CO2_excursion",
+    "gate_stuck_open"
+   ],
+   "unhandled": [],
+   "must_not_assume": [
+    "nominal setpoint equals actual culture exposure without sensor evidence"
+   ],
+   "evidence": [
+    "environment time series",
+    "door events"
+   ]
+  },
+  {
+   "step": "?m1",
+   "process": "imaging",
+   "component": "L17_BrightFieldImager",
+   "faults": [
+    {
+     "fault": "calibration_expired",
+     "at": "load",
+     "detected": "full",
+     "monitor": "calibration record",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause calibration_expired)) (do (re-establish (an instrument (function imaging) (calibration current)))) (then replan) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "plate_misseated",
+     "at": "load",
+     "detected": "partial",
+     "monitor": "nest sensor + pose",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause plate_misseated)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": true,
+     "irreparable": false
+    },
+    {
+     "fault": "out_of_focus",
+     "at": "autofocus",
+     "detected": "full",
+     "monitor": "computed focus score",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause out_of_focus)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    }
+   ],
+   "silent": [
+    "plate_misseated"
+   ],
+   "irreparable": [],
+   "unhandled": [],
+   "must_not_assume": [
+    "morphology image directly equals biological state"
+   ],
+   "evidence": [
+    "raw image",
+    "settings",
+    "focus score",
+    "calibration id",
+    "plate/well id"
+   ]
+  },
+  {
+   "step": "?m2",
+   "process": "imaging",
+   "component": "L17_BrightFieldImager",
+   "faults": [
+    {
+     "fault": "calibration_expired",
+     "at": "load",
+     "detected": "full",
+     "monitor": "calibration record",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause calibration_expired)) (do (re-establish (an instrument (function imaging) (calibration current)))) (then replan) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "plate_misseated",
+     "at": "load",
+     "detected": "partial",
+     "monitor": "nest sensor + pose",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause plate_misseated)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": true,
+     "irreparable": false
+    },
+    {
+     "fault": "out_of_focus",
+     "at": "autofocus",
+     "detected": "full",
+     "monitor": "computed focus score",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause out_of_focus)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    }
+   ],
+   "silent": [
+    "plate_misseated"
+   ],
+   "irreparable": [],
+   "unhandled": [],
+   "must_not_assume": [
+    "morphology image directly equals biological state"
+   ],
+   "evidence": [
+    "raw image",
+    "settings",
+    "focus score",
+    "calibration id",
+    "plate/well id"
+   ]
+  },
+  {
+   "step": "?m3",
+   "process": "imaging",
+   "component": "L17_BrightFieldImager",
+   "faults": [
+    {
+     "fault": "calibration_expired",
+     "at": "load",
+     "detected": "full",
+     "monitor": "calibration record",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause calibration_expired)) (do (re-establish (an instrument (function imaging) (calibration current)))) (then replan) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    },
+    {
+     "fault": "plate_misseated",
+     "at": "load",
+     "detected": "partial",
+     "monitor": "nest sensor + pose",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause plate_misseated)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": true,
+     "irreparable": false
+    },
+    {
+     "fault": "out_of_focus",
+     "at": "autofocus",
+     "detected": "full",
+     "monitor": "computed focus score",
+     "timing": "non-destructive process",
+     "persistence": "persistent",
+     "handled": true,
+     "handler": "(on (a failure (type measurement-invalid) (cause out_of_focus)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+     "silent": false,
+     "irreparable": false
+    }
+   ],
+   "silent": [
+    "plate_misseated"
+   ],
+   "irreparable": [],
+   "unhandled": [],
+   "must_not_assume": [
+    "morphology image directly equals biological state"
+   ],
+   "evidence": [
+    "raw image",
+    "settings",
+    "focus score",
+    "calibration id",
+    "plate/well id"
+   ]
+  }
+ ],
+ "guarantees": [
+  {
+   "type": "identity-mismatch",
+   "cause": null,
+   "claims": [
+    "safe-state",
+    "contained"
+   ],
+   "text": "(on (a failure (type identity-mismatch)) (do (an action (type quarantining) (material (the plate (identity mismatched))))) (then escalate) (guarantees safe-state contained))",
+   "steps": [
+    "?x1",
+    "?x2",
+    "?x3",
+    "?m1",
+    "?m2",
+    "?m3"
+   ],
+   "checks": {
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    },
+    "contained": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "quarantining achieves (the plate ?x (contained true)); H4 fills its instrument role"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "measurement-invalid",
+   "cause": "calibration_expired",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "text": "(on (a failure (type measurement-invalid) (cause calibration_expired)) (do (re-establish (an instrument (function imaging) (calibration current)))) (then replan) (else escalate) (guarantees goal-or-safe-state))",
+   "steps": [
+    "?m1",
+    "?m2",
+    "?m3"
+   ],
+   "checks": {
+    "goal": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "no second fault occurs",
+      "the excursion limit (600 s) is not reached; the window policy enforces it, else escalate",
+      "re-establishing (an instrument (function imaging) (calibration current)) removes calibration_expired (process model)"
+     ]
+    },
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "measurement-invalid",
+   "cause": "out_of_focus",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "text": "(on (a failure (type measurement-invalid) (cause out_of_focus)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+   "steps": [
+    "?m1",
+    "?m2",
+    "?m3"
+   ],
+   "checks": {
+    "goal": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "no second fault occurs",
+      "the excursion limit (600 s) is not reached; the window policy enforces it, else escalate",
+      "re-establishing (the plate ?p (seated true)) removes out_of_focus (process model)"
+     ]
+    },
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "measurement-invalid",
+   "cause": "plate_misseated",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "text": "(on (a failure (type measurement-invalid) (cause plate_misseated)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+   "steps": [
+    "?m1",
+    "?m2",
+    "?m3"
+   ],
+   "checks": {
+    "goal": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "no second fault occurs",
+      "the excursion limit (600 s) is not reached; the window policy enforces it, else escalate",
+      "plate_misseated is detected (coverage partial: 'nest sensor + pose')",
+      "re-establishing (the plate ?p (seated true)) removes plate_misseated (process model)"
+     ]
+    },
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "validity-effect-unachievable",
+   "cause": null,
+   "claims": [
+    "safe-state"
+   ],
+   "text": "(on (a failure (type validity-effect-unachievable)) (then escalate) (guarantees safe-state))",
+   "steps": [
+    "?m1",
+    "?m2",
+    "?m3"
+   ],
+   "checks": {
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "dose-not-delivered",
+   "cause": "wrong_reagent",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "text": "(on (a failure (type dose-not-delivered) (cause wrong_reagent)) (do (re-establish (some substance ?s (identity verified)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+   "steps": [
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "checks": {
+    "goal": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "no second fault occurs",
+      "the excursion limit (600 s) is not reached; the window policy enforces it, else escalate",
+      "re-establishing (some substance ?s (identity verified)) removes wrong_reagent (process model)"
+     ]
+    },
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "dose-not-delivered",
+   "cause": "tip_missing_or_dropped",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "text": "(on (a failure (type dose-not-delivered) (cause tip_missing_or_dropped)) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+   "steps": [
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "checks": {
+    "goal": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "no second fault occurs",
+      "the excursion limit (600 s) is not reached; the window policy enforces it, else escalate",
+      "tip_missing_or_dropped is transient; a repeat meets a fresh cause"
+     ]
+    },
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "dose-not-delivered",
+   "cause": "clog_or_air_aspiration",
+   "claims": [
+    "safe-state"
+   ],
+   "text": "(on (a failure (type dose-not-delivered) (cause clog_or_air_aspiration)) (then escalate) (guarantees safe-state))",
+   "steps": [
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "checks": {
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "dose-not-delivered",
+   "cause": "well_misregistration",
+   "claims": [
+    "safe-state",
+    "contained"
+   ],
+   "text": "(on (a failure (type dose-not-delivered) (cause well_misregistration)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))",
+   "steps": [
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "checks": {
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    },
+    "contained": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "quarantining achieves (the plate ?x (contained true)); H4 fills its instrument role"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "contamination-suspected",
+   "cause": null,
+   "claims": [
+    "safe-state",
+    "contained"
+   ],
+   "text": "(on (a failure (type contamination-suspected)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))",
+   "steps": [
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "checks": {
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    },
+    "contained": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "quarantining achieves (the plate ?x (contained true)); H4 fills its instrument role"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "environment-excursion",
+   "cause": null,
+   "claims": [
+    "safe-state"
+   ],
+   "text": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+   "steps": [
+    "?w1",
+    "?w2"
+   ],
+   "checks": {
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "containment-breach",
+   "cause": null,
+   "claims": [
+    "safe-state"
+   ],
+   "text": "(on (a failure (type containment-breach)) (then escalate) (guarantees safe-state))",
+   "steps": [],
+   "checks": {
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  },
+  {
+   "type": "prevents-violated",
+   "cause": null,
+   "claims": [
+    "safe-state"
+   ],
+   "text": "(on (a failure (type prevents-violated)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+   "steps": [],
+   "checks": {
+    "safe-state": {
+     "ok": true,
+     "why": [],
+     "conditions": [
+      "plate restored to its controlled environment (experiment achieves, :establishable; kernel unwind-protect F10)",
+      "nothing committed (escalation; commit needs both columns, D009)",
+      "evidence of the failed attempt retained (contract record; kernel logs failed leaves, F4)"
+     ]
+    }
+   },
+   "ok": true
+  }
+ ],
+ "fault_coverage": [
+  {
+   "step": "?x1",
+   "fault": "wrong_reagent",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x1",
+   "fault": "tip_missing_or_dropped",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x1",
+   "fault": "clog_or_air_aspiration",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x1",
+   "fault": "well_misregistration",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x2",
+   "fault": "wrong_reagent",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x2",
+   "fault": "tip_missing_or_dropped",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x2",
+   "fault": "clog_or_air_aspiration",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x2",
+   "fault": "well_misregistration",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?w1",
+   "fault": "temperature_excursion",
+   "signals": "environment-excursion",
+   "handled": true
+  },
+  {
+   "step": "?w1",
+   "fault": "CO2_excursion",
+   "signals": "environment-excursion",
+   "handled": true
+  },
+  {
+   "step": "?w1",
+   "fault": "gate_stuck_open",
+   "signals": "environment-excursion",
+   "handled": true
+  },
+  {
+   "step": "?x3",
+   "fault": "wrong_reagent",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x3",
+   "fault": "tip_missing_or_dropped",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x3",
+   "fault": "clog_or_air_aspiration",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?x3",
+   "fault": "well_misregistration",
+   "signals": "dose-not-delivered",
+   "handled": true
+  },
+  {
+   "step": "?w2",
+   "fault": "temperature_excursion",
+   "signals": "environment-excursion",
+   "handled": true
+  },
+  {
+   "step": "?w2",
+   "fault": "CO2_excursion",
+   "signals": "environment-excursion",
+   "handled": true
+  },
+  {
+   "step": "?w2",
+   "fault": "gate_stuck_open",
+   "signals": "environment-excursion",
+   "handled": true
+  },
+  {
+   "step": "?m1",
+   "fault": "calibration_expired",
+   "signals": "measurement-invalid",
+   "handled": true
+  },
+  {
+   "step": "?m1",
+   "fault": "plate_misseated",
+   "signals": "measurement-invalid",
+   "handled": true
+  },
+  {
+   "step": "?m1",
+   "fault": "out_of_focus",
+   "signals": "measurement-invalid",
+   "handled": true
+  },
+  {
+   "step": "?m2",
+   "fault": "calibration_expired",
+   "signals": "measurement-invalid",
+   "handled": true
+  },
+  {
+   "step": "?m2",
+   "fault": "plate_misseated",
+   "signals": "measurement-invalid",
+   "handled": true
+  },
+  {
+   "step": "?m2",
+   "fault": "out_of_focus",
+   "signals": "measurement-invalid",
+   "handled": true
+  },
+  {
+   "step": "?m3",
+   "fault": "calibration_expired",
+   "signals": "measurement-invalid",
+   "handled": true
+  },
+  {
+   "step": "?m3",
+   "fault": "plate_misseated",
+   "signals": "measurement-invalid",
+   "handled": true
+  },
+  {
+   "step": "?m3",
+   "fault": "out_of_focus",
+   "signals": "measurement-invalid",
+   "handled": true
+  }
+ ],
+ "empirical": [
+  {
+   "run": "calibration_lapsed",
+   "failure": "calibration_invalid",
+   "at": "image",
+   "handler": "measurement-invalid/calibration_expired",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "repair": [
+    "transport_lab",
+    "calibrate"
+   ],
+   "prescribed": [
+    "(re-establish (an instrument (function imaging) (calibration current)))"
+   ],
+   "as_prescribed": true,
+   "outcome": "goal achieved after the repair",
+   "held": true
+  },
+  {
+   "run": "tip_lost",
+   "failure": "tip_missing",
+   "at": "dose",
+   "handler": "dose-not-delivered/tip_missing_or_dropped",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "repair": [
+    "tip_pick"
+   ],
+   "prescribed": [],
+   "as_prescribed": true,
+   "outcome": "goal achieved after the repair",
+   "held": true
+  },
+  {
+   "run": "tool_changer_slow",
+   "failure": "window_exceeded",
+   "at": "run_session",
+   "handler": "prevents-violated",
+   "claims": [
+    "safe-state"
+   ],
+   "repair": [
+    "transport_lab",
+    "store"
+   ],
+   "prescribed": [
+    "(restore (the plate ?p (in ?env)))"
+   ],
+   "as_prescribed": true,
+   "outcome": "safe state: escalated, plate restored or contained",
+   "held": true
+  },
+  {
+   "run": "identity_swap",
+   "failure": "identity_mismatch",
+   "at": "retrieve",
+   "handler": "identity-mismatch",
+   "claims": [
+    "safe-state",
+    "contained"
+   ],
+   "repair": [
+    "quarantine"
+   ],
+   "prescribed": [
+    "(an action (type quarantining) (material (the plate (identity mismatched))))"
+   ],
+   "as_prescribed": true,
+   "outcome": "safe state: escalated, plate restored or contained",
+   "held": true
+  },
+  {
+   "run": "isaac_calibration_lapsed",
+   "failure": "calibration_invalid",
+   "at": "image",
+   "handler": "measurement-invalid/calibration_expired",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "repair": [
+    "transport_lab",
+    "calibrate"
+   ],
+   "prescribed": [
+    "(re-establish (an instrument (function imaging) (calibration current)))"
+   ],
+   "as_prescribed": true,
+   "outcome": "goal achieved after the repair",
+   "held": true
+  },
+  {
+   "run": "isaac_calibration_lapsed",
+   "failure": "focus_invalid",
+   "at": "image",
+   "handler": "measurement-invalid/out_of_focus",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "repair": [
+    "autofocus"
+   ],
+   "prescribed": [
+    "(re-establish (the plate ?p (seated true)))"
+   ],
+   "as_prescribed": false,
+   "outcome": "safe state: escalated, plate restored or contained",
+   "held": true
+  },
+  {
+   "run": "isaac_calibration_lapsed",
+   "failure": "focus_invalid",
+   "at": "run_session",
+   "handler": "measurement-invalid/out_of_focus",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "repair": [
+    "transport_lab",
+    "store"
+   ],
+   "prescribed": [
+    "(re-establish (the plate ?p (seated true)))"
+   ],
+   "as_prescribed": false,
+   "outcome": "safe state: escalated, plate restored or contained",
+   "held": true
+  }
+ ],
+ "models": {
+  "substance-transfer": {
+   "component": "L12_LiquidHandler",
+   "contract": "dose_well",
+   "function": "dispensing",
+   "phases": [
+    "verify-reagent",
+    "pick-tip",
+    "aspirate",
+    "dispense",
+    "eject-tip"
+   ],
+   "irreversible": "dispense",
+   "produces": "(the well ?w (received ?s ?q))",
+   "evidence": [
+    "reagent lot",
+    "tip ID/type",
+    "volume",
+    "pressure trace",
+    "well identity"
+   ],
+   "must_not_assume": [
+    "commanded volume equals delivered volume",
+    "delivered dose equals biological injury"
+   ],
+   "faults": [
+    {
+     "name": "wrong_reagent",
+     "signals": "dose-not-delivered",
+     "at": "verify-reagent",
+     "corrupts": "(the well ?w (received ?s ?q))",
+     "monitor": "reagent identity check",
+     "coverage": "full",
+     "persistence": "persistent",
+     "removed_by": "(some substance ?s (identity verified))",
+     "record_recovery": "abort before aspiration; quarantine if dispense occurred",
+     "twin": ""
+    },
+    {
+     "name": "tip_missing_or_dropped",
+     "signals": "dose-not-delivered",
+     "at": "pick-tip",
+     "corrupts": "(the well ?w (received ?s ?q))",
+     "monitor": "tip-presence sensor",
+     "coverage": "full",
+     "persistence": "transient",
+     "removed_by": null,
+     "record_recovery": "abort; replace tip; evaluate plate exposure",
+     "twin": ""
+    },
+    {
+     "name": "clog_or_air_aspiration",
+     "signals": "dose-not-delivered",
+     "at": "aspirate",
+     "corrupts": "(the well ?w (received ?s ?q))",
+     "monitor": "pressure trace",
+     "coverage": "full",
+     "persistence": "transient",
+     "removed_by": null,
+     "record_recovery": "mark dose uncertain; repeat only if protocol allows",
+     "twin": ""
+    },
+    {
+     "name": "well_misregistration",
+     "signals": "dose-not-delivered",
+     "at": "dispense",
+     "corrupts": "(the well ?w (received ?s ?q))",
+     "monitor": "nest sensor + vision",
+     "coverage": "partial",
+     "persistence": "persistent",
+     "removed_by": "(the plate ?p (seated true))",
+     "record_recovery": "quarantine affected plate; do not silently correct provenance",
+     "twin": ""
+    }
+   ]
+  },
+  "imaging": {
+   "component": "L17_BrightFieldImager",
+   "contract": "image_well",
+   "function": "imaging",
+   "phases": [
+    "load",
+    "autofocus",
+    "acquire",
+    "assess",
+    "export"
+   ],
+   "irreversible": "none",
+   "produces": "(a measurement (of ?w) (readout ?r))",
+   "evidence": [
+    "raw image",
+    "settings",
+    "focus score",
+    "calibration id",
+    "plate/well id"
+   ],
+   "must_not_assume": [
+    "morphology image directly equals biological state"
+   ],
+   "faults": [
+    {
+     "name": "calibration_expired",
+     "signals": "measurement-invalid",
+     "at": "load",
+     "corrupts": "(a measurement (of ?w) (readout ?r))",
+     "monitor": "calibration record",
+     "coverage": "full",
+     "persistence": "persistent",
+     "removed_by": "(an instrument (function imaging) (calibration current))",
+     "record_recovery": "run QC/calibration before scientific use",
+     "twin": ""
+    },
+    {
+     "name": "plate_misseated",
+     "signals": "measurement-invalid",
+     "at": "load",
+     "corrupts": "(a measurement (of ?w) (readout ?r))",
+     "monitor": "nest sensor + pose",
+     "coverage": "partial",
+     "persistence": "persistent",
+     "removed_by": "(the plate ?p (seated true))",
+     "record_recovery": "R01/R02 reseat and reacquire",
+     "twin": ""
+    },
+    {
+     "name": "out_of_focus",
+     "signals": "measurement-invalid",
+     "at": "autofocus",
+     "corrupts": "(a measurement (of ?w) (readout ?r))",
+     "monitor": "computed focus score",
+     "coverage": "full",
+     "persistence": "persistent",
+     "removed_by": "(the plate ?p (seated true))",
+     "record_recovery": "re-seat/refocus/reacquire; retain rejected image in audit trail",
+     "twin": "autofocus runs before every acquisition, so a refocus is part of each attempt; at the same field and seating a repeat is deterministic"
+    }
+   ]
+  },
+  "incubation": {
+   "component": "L10_Incubator",
+   "contract": "incubate",
+   "function": "incubation",
+   "phases": [
+    "store",
+    "hold",
+    "release"
+   ],
+   "irreversible": "hold",
+   "produces": "(the plate ?p (culture-time ?t1))",
+   "evidence": [
+    "environment time series",
+    "door events"
+   ],
+   "must_not_assume": [
+    "nominal setpoint equals actual culture exposure without sensor evidence"
+   ],
+   "faults": [
+    {
+     "name": "temperature_excursion",
+     "signals": "environment-excursion",
+     "at": "hold",
+     "corrupts": "(the plate ?p (in ?e))",
+     "monitor": "temperature sensor",
+     "coverage": "full",
+     "persistence": "transient",
+     "removed_by": null,
+     "record_recovery": "alarm; update Culture SDT; evaluate admissibility/quarantine",
+     "twin": ""
+    },
+    {
+     "name": "CO2_excursion",
+     "signals": "environment-excursion",
+     "at": "hold",
+     "corrupts": "(the plate ?p (in ?e))",
+     "monitor": "CO2 sensor",
+     "coverage": "full",
+     "persistence": "transient",
+     "removed_by": null,
+     "record_recovery": "same",
+     "twin": ""
+    },
+    {
+     "name": "gate_stuck_open",
+     "signals": "environment-excursion",
+     "at": "release",
+     "corrupts": "(the plate ?p (in ?e))",
+     "monitor": "gate position sensor",
+     "coverage": "full",
+     "persistence": "persistent",
+     "removed_by": null,
+     "record_recovery": "stop transfers; protect/quarantine affected plates",
+     "twin": ""
+    }
+   ]
+  },
+  "containment": {
+   "component": "H4_Quarantine",
+   "contract": "quarantine_sample",
+   "function": "quarantine",
+   "phases": [
+    "receive",
+    "isolate",
+    "hold"
+   ],
+   "irreversible": "none",
+   "produces": "(the plate ?x (contained true))",
+   "evidence": [
+    "reason",
+    "timestamp",
+    "preceding anomaly",
+    "sample history"
+   ],
+   "must_not_assume": [
+    "quarantine implies biological failure"
+   ],
+   "faults": [
+    {
+     "name": "unauthorized_release",
+     "signals": "containment-breach",
+     "at": "hold",
+     "corrupts": "(the plate ?x (contained true))",
+     "monitor": "lock/occupancy",
+     "coverage": "full",
+     "persistence": "persistent",
+     "removed_by": "(a record (type sign-off) (by (a person (role reviewer))))",
+     "record_recovery": "stop workflow; trace all affected material",
+     "twin": ""
+    }
+   ]
+  }
+ },
+ "meta": {
+  "order": [
+   "observed",
+   "reported",
+   "inferred",
+   "assumed",
+   "predicted",
+   "unknown"
+  ],
+  "rules": [
+   {
+    "name": "quarantine-of-the-contradicted",
+    "when": [
+     "(a belief (of (the plate (identity verified))) (grade (corroboration contradicted)))",
+     "(in (an action (type quarantining)))"
+    ],
+    "treat": "proceed",
+    "because": "containing a plate whose identity is contradicted is the treatment, not something it may block"
+   },
+   {
+    "name": "contradiction",
+    "when": [
+     "(a belief (grade (corroboration contradicted)))"
+    ],
+    "treat": "contain-and-escalate",
+    "because": "two observations disagree; nothing that depends on the item may proceed"
+   },
+   {
+    "name": "no-belief",
+    "when": [
+     "(a belief (grade (source unknown)))"
+    ],
+    "treat": "sense-or-abstain",
+    "because": "no belief at all: sense if a sensor can, otherwise refuse the step"
+   },
+   {
+    "name": "stale",
+    "when": [
+     "(a belief (grade (freshness stale)))"
+    ],
+    "treat": "re-observe",
+    "because": "the observation predates a session boundary (kernel freshness rule F2)"
+   },
+   {
+    "name": "prediction",
+    "when": [
+     "(a belief (grade (source predicted)))"
+    ],
+    "treat": "plan-only",
+    "because": "a projection may guide planning, never a commitment"
+   },
+   {
+    "name": "reported-by-a-qualified-instrument",
+    "when": [
+     "(a belief (grade (source reported)) (from (an instrument (binding validated))))"
+    ],
+    "treat": "proceed",
+    "because": "a device report counts when the device's binding for it is validated"
+   },
+   {
+    "name": "reported",
+    "when": [
+     "(a belief (grade (source reported)))",
+     "(use consequential)"
+    ],
+    "treat": "verify-before-commit",
+    "because": "an unqualified report is not enough for a consequential step"
+   },
+   {
+    "name": "assumed-consequential",
+    "when": [
+     "(a belief (grade (source (<= assumed))))",
+     "(use consequential)"
+    ],
+    "treat": "verify-before-commit",
+    "because": "a consequential step may not rest on a default"
+   },
+   {
+    "name": "weak-routine",
+    "when": [
+     "(a belief (grade (source (<= reported))))",
+     "(use routine)"
+    ],
+    "treat": "proceed-flagged",
+    "because": "routine use of a weaker belief is allowed and recorded"
+   },
+   {
+    "name": "inferred-consequential",
+    "when": [
+     "(a belief (grade (source (<= inferred))))",
+     "(use consequential)"
+    ],
+    "treat": "verify-if-sensable-else-escalate",
+    "because": "an inference is enough only where the contract says so"
+   }
+  ],
+  "treatments": {
+   "proceed": {
+    "text": "(treatment proceed (then proceed))",
+    "do": [],
+    "then": [
+     "proceed"
+    ],
+    "orelse": [],
+    "cost": [],
+    "kernel": ""
+   },
+   "contain-and-escalate": {
+    "text": "(treatment contain-and-escalate (do (an action (type quarantining) (material ?subject))) (then escalate) (cost (escalation 1)) (kernel \"Retrieve.recover identity_mismatch -> Quarantine, fail escalated\"))",
+    "do": [
+     "(an action (type quarantining) (material ?subject))"
+    ],
+    "then": [
+     "escalate"
+    ],
+    "orelse": [],
+    "cost": [
+     "((escalation 1))"
+    ],
+    "kernel": "Retrieve.recover identity_mismatch -> Quarantine, fail escalated"
+   },
+   "sense-or-abstain": {
+    "text": "(treatment sense-or-abstain (do (an action (type sensing) (of ?item))) (then proceed) (else abstain) (cost (instrument-minute 0.2)) (kernel \"understanding gate / projection refuses when nothing can be sensed\"))",
+    "do": [
+     "(an action (type sensing) (of ?item))"
+    ],
+    "then": [
+     "proceed"
+    ],
+    "orelse": [
+     "abstain"
+    ],
+    "cost": [
+     "((instrument-minute 0.2))"
+    ],
+    "kernel": "understanding gate / projection refuses when nothing can be sensed"
+   },
+   "re-observe": {
+    "text": "(treatment re-observe (do (an action (type sensing) (of ?item))) (then proceed) (cost (instrument-minute 0.2)) (kernel \"RunSession marks shared state stale; verify_identity and check_interlocks read again\"))",
+    "do": [
+     "(an action (type sensing) (of ?item))"
+    ],
+    "then": [
+     "proceed"
+    ],
+    "orelse": [],
+    "cost": [
+     "((instrument-minute 0.2))"
+    ],
+    "kernel": "RunSession marks shared state stale; verify_identity and check_interlocks read again"
+   },
+   "plan-only": {
+    "text": "(treatment plan-only (then refuse-commit) (kernel \"projection_succeeds uses belief; commitment needs observation\"))",
+    "do": [],
+    "then": [
+     "refuse-commit"
+    ],
+    "orelse": [],
+    "cost": [],
+    "kernel": "projection_succeeds uses belief; commitment needs observation"
+   },
+   "verify-before-commit": {
+    "text": "(treatment verify-before-commit (do (an action (type sensing) (of ?item))) (then proceed) (else escalate) (cost (instrument-minute 0.2)) (kernel \"a sensing leaf before the consequential step\"))",
+    "do": [
+     "(an action (type sensing) (of ?item))"
+    ],
+    "then": [
+     "proceed"
+    ],
+    "orelse": [
+     "escalate"
+    ],
+    "cost": [
+     "((instrument-minute 0.2))"
+    ],
+    "kernel": "a sensing leaf before the consequential step"
+   },
+   "proceed-flagged": {
+    "text": "(treatment proceed-flagged (then proceed) (record flagged) (kernel \"audit entry with provenance assumed\"))",
+    "do": [],
+    "then": [
+     "proceed"
+    ],
+    "orelse": [],
+    "cost": [],
+    "kernel": "audit entry with provenance assumed"
+   },
+   "verify-if-sensable-else-escalate": {
+    "text": "(treatment verify-if-sensable-else-escalate (do (an action (type sensing) (of ?item))) (then proceed) (else escalate) (cost (instrument-minute 0.2)) (kernel \"a sensing leaf if a monitor exists, otherwise fail escalated\"))",
+    "do": [
+     "(an action (type sensing) (of ?item))"
+    ],
+    "then": [
+     "proceed"
+    ],
+    "orelse": [
+     "escalate"
+    ],
+    "cost": [
+     "((instrument-minute 0.2))"
+    ],
+    "kernel": "a sensing leaf if a monitor exists, otherwise fail escalated"
+   }
+  }
+ },
+ "experiment_goal": [
+  "(a result (of ?D) (information-gain (>= 0.5 bit)))"
+ ],
+ "handles": [
+  {
+   "type": "identity-mismatch",
+   "text": "(on (a failure (type identity-mismatch)) (do (an action (type quarantining) (material (the plate (identity mismatched))))) (then escalate) (guarantees safe-state contained))"
+  },
+  {
+   "type": "measurement-invalid",
+   "text": "(on (a failure (type measurement-invalid) (cause calibration_expired)) (do (re-establish (an instrument (function imaging) (calibration current)))) (then replan) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "measurement-invalid",
+   "text": "(on (a failure (type measurement-invalid) (cause out_of_focus)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "measurement-invalid",
+   "text": "(on (a failure (type measurement-invalid) (cause plate_misseated)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "validity-effect-unachievable",
+   "text": "(on (a failure (type validity-effect-unachievable)) (then escalate) (guarantees safe-state))"
+  },
+  {
+   "type": "dose-not-delivered",
+   "text": "(on (a failure (type dose-not-delivered) (cause wrong_reagent)) (do (re-establish (some substance ?s (identity verified)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "dose-not-delivered",
+   "text": "(on (a failure (type dose-not-delivered) (cause tip_missing_or_dropped)) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "dose-not-delivered",
+   "text": "(on (a failure (type dose-not-delivered) (cause clog_or_air_aspiration)) (then escalate) (guarantees safe-state))"
+  },
+  {
+   "type": "dose-not-delivered",
+   "text": "(on (a failure (type dose-not-delivered) (cause well_misregistration)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))"
+  },
+  {
+   "type": "contamination-suspected",
+   "text": "(on (a failure (type contamination-suspected)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))"
+  },
+  {
+   "type": "environment-excursion",
+   "text": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))"
+  },
+  {
+   "type": "containment-breach",
+   "text": "(on (a failure (type containment-breach)) (then escalate) (guarantees safe-state))"
+  },
+  {
+   "type": "prevents-violated",
+   "text": "(on (a failure (type prevents-violated)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))"
+  }
+ ],
+ "kernel": {
+  "sessions": [
+   {
+    "session": "s0",
+    "trip": 1,
+    "t_h": 0,
+    "material": [
+     [
+      "dose",
+      "a01",
+      "challenge",
+      85
+     ],
+     [
+      "dose",
+      "a02",
+      "challenge",
+      85
+     ]
+    ]
+   },
+   {
+    "session": "s1",
+    "trip": 1,
+    "t_h": 48,
+    "material": [
+     [
+      "dose",
+      "a01",
+      "rescue",
+      70
+     ]
+    ]
+   },
+   {
+    "session": "s2",
+    "trip": 1,
+    "t_h": 72,
+    "material": [
+     [
+      "image",
+      "a01"
+     ],
+     [
+      "image",
+      "a02"
+     ],
+     [
+      "image",
+      "a05"
+     ]
+    ]
+   }
+  ],
+  "ldl": {
+   "entries": 498,
+   "end": "executed",
+   "clock_s": 260018.6,
+   "realization": true,
+   "validity": true
+  },
+  "plan": {
+   "entries": 498,
+   "end": "executed",
+   "clock_s": 260018.6,
+   "realization": true,
+   "validity": true
+  },
+  "leaves": 153,
+  "identical": true,
+  "planner_order": [
+   "?x1",
+   "?x2",
+   "?w1",
+   "?x3",
+   "?w2",
+   "?m1",
+   "?m2",
+   "?m3"
+  ],
+  "planner_order_consistent": true
+ }
+}

@@ -1,0 +1,115 @@
+{
+ "scenario": "nominal",
+ "about": "the derived 0.5-bit experiment, fault-free",
+ "error": null,
+ "end": "executed",
+ "n_entries": 498,
+ "n_leaves": 153,
+ "clock_s": 260018.6,
+ "crosscheck": [
+  {
+   "session": "s0",
+   "steps": 52,
+   "planner_steps": 52,
+   "same": true,
+   "duration_s": 298.9,
+   "planner_duration_s": 298.9,
+   "projected_s": 298.9
+  },
+  {
+   "session": "s1",
+   "steps": 48,
+   "planner_steps": 48,
+   "same": true,
+   "duration_s": 263.3,
+   "planner_duration_s": 263.3,
+   "projected_s": 263.3
+  },
+  {
+   "session": "s2",
+   "steps": 51,
+   "planner_steps": 51,
+   "same": true,
+   "duration_s": 256.4,
+   "planner_duration_s": 256.4,
+   "projected_s": 256.4
+  }
+ ],
+ "audit": {
+  "verify": {
+   "ok": true,
+   "n": 498,
+   "attributable": true,
+   "evidence_hashed": true
+  },
+  "tampered_detected": true,
+  "tampered_first_bad_seq": 13
+ },
+ "verdict": {
+  "realization": {
+   "ok": true,
+   "violated": [],
+   "run_ended": "executed"
+  },
+  "validity": {
+   "ok": true,
+   "checks": {
+    "V1_identity_continuity": {
+     "ok": true,
+     "observation": "identity reads ['P17', 'P17', 'P17']"
+    },
+    "V2_calibration_at_measurement": {
+     "ok": true,
+     "observation": "3 readouts, calibration observed valid for all"
+    },
+    "V3_binding_validated": {
+     "ok": true,
+     "observation": "binding(l17,organoid_radius_um) = validated"
+    },
+    "V4_controls_present": {
+     "ok": true,
+     "observation": "control ['A05'], imaged ['A01', 'A02', 'A05']"
+    },
+    "V5_dose_delivered": {
+     "ok": true,
+     "observation": "3 dispenses within 5.0 %: True"
+    },
+    "V6_sample_integrity": {
+     "ok": true,
+     "observation": "window kept on every trip"
+    },
+    "V7_design_realised": {
+     "ok": true,
+     "observation": "all designed interventions and measurements executed"
+    }
+   },
+   "refused_by": []
+  },
+  "promotable": true,
+  "nr3": false,
+  "disposition": "commit: result may update the culture belief",
+  "design": {
+   "id": "c_d85_t48_n1",
+   "requirement_bits": 0.5,
+   "eig_bits": 0.5439
+  }
+ },
+ "repairs": [],
+ "expected": {
+  "end": "executed",
+  "realization": true,
+  "validity": true,
+  "promotable": true,
+  "repaired_at": []
+ },
+ "got": {
+  "end": "executed",
+  "realization": true,
+  "validity": true,
+  "promotable": true,
+  "nr3": false,
+  "repaired_at": []
+ },
+ "expectation_ok": true,
+ "plate": "P17"
+}

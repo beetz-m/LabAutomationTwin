@@ -1,0 +1,27 @@
+# Twin-side extensions of Cell 01 component records and measurement bindings. ILLUSTRATIVE (D016): these are the
+# twin's defaults, not lab parameters; each value names where it comes from.
+extensions:
+  l12:
+    dispense_height_mm: {value: 1.2, source: scripts/run_cell01_episode.py (twin default)}
+    dispense_rate_uL_s: {value: 2.0, source: scripts/run_cell01_episode.py (twin default)}
+    volume_tolerance_pct: {value: 5, source: illustrative}
+    tip_type: {value: rigid_tip_twin, source: assets/l12}
+  l17:
+    readout: organoid_radius_um
+# Reagent stocks (material, not device): identity, lot and stock concentration (au per uL; e2m mapping 0.85 au = 17 uL)
+reagents:
+  challenge: {id: abstract_challenge_reagent, barcode: RGT-0001, lot: SIM-LOT-A, conc_au_per_uL: 0.05}
+  rescue: {id: abstract_rescue_reagent, barcode: RGT-0002, lot: SIM-LOT-B, conc_au_per_uL: 0.05}
+# keyed by the component record's identity.component_id (the device model + configuration), not by station
+measurement_bindings:
+  L17:
+    organoid_radius_um: {level: validated, source: "twin/l17_optics.py focus + L21 reference grid (test_reports/l21_report.json)"}
+# A second imager model used by the device-swap scenario: same capability verbs, no validated binding for the readout.
+alternative_components:
+  l17_generic:
+    identity: {component_id: L17-alt, canonical_name: Generic bright-field imager (scenario)}
+    capabilities: [load_plate, autofocus, image_well, export_raw_image]
+    note: capability-matched replacement; its radius readout has not been validated against the L21 reference
+  l17_incapable:
+    identity: {component_id: L17-alt2, canonical_name: Plate reader without well imaging (scenario)}
+    capabilities: [load_plate, read_absorbance]

@@ -1,0 +1,95 @@
+;; Category contracts of the lab action types, LDL v0.2 (docs/rsa/LAB-DESIGNATOR-LANGUAGE.md). A contract is owned by
+;; the action type; a step only binds its roles. Role patterns are unified with the step's slots and, through a
+;; variable, with the experiment's entity declaration (so ?p is reached through the well). ?self is the step.
+;;
+;; v0.2, after the user's decisions of 2026-10-17:
+;;   instrument  every lab action is performed by an instrument that fills a role: it has a plate slot the plate is
+;;               inserted into and a process that, once started, performs the action. Attributive only; the
+;;               realization resolves it (a device with that slot and process).
+;;   goal        what the step is for; achieves keeps the further effects that must be enforced (evidence, events).
+;;   signals     the failures the action may signal (raised as coraplex PlanFailure subclasses carrying the failure
+;;               designator); the control program says how each is handled (experiment `handles`).
+;;   believed    epistemic grade a requires-item needs: (known φ) = observed and fresh; rich grades feed the meta
+;;               model (registry/lab/epistemic.yaml).
+;;   scope       prevents/maintains run as monitors inside a scope opened and closed by fluents (RPL); without a
+;;               scope they hold for the whole action and evaporate with it.
+;; Annotations: :column validity | :tolerance <q> <unit> | :establishable | :consequential. Values ILLUSTRATIVE (D016).
+
+(contract intervening
+  (roles (into (the well ?w (of ?p))) (substance ?s) (dose ?q) (at (culture-time ?t)))
+  (instrument (an instrument ?d
+    (slot (a plate-slot (accepts ?p)))
+    (process (a process (type substance-transfer) (into ?w) (of ?s) (amount ?q)))))
+  (goal (the well ?w (received ?s ?q)) :tolerance 5 % :column validity)
+  (requires
+    (known (the plate ?p (identity verified))) :consequential
+    (known (some substance ?s (identity verified))) :consequential
+    (believed (the plate ?p (contamination none)) (grade (source inferred))) :consequential
+    (the plate ?p (culture-time ?t)))
+  (prevents
+    (an event (type contamination-introduced) (of ?p)))
+  (scope (begins-when (a portion ?u (of ?s) (drawn-for ?self)))
+         (ends-when (the portion ?u (delivered true)))
+    (prevents (a transfer (of ?u) (into (a well (of ?p) (not ?w))))))
+  (achieves
+    (a transfer (of ?s) (into ?w))
+    (a record (of ?self) (states ?w ?s ?q ?t) (original true)))
+  (signals
+    (a failure (type identity-mismatch))
+    (a failure (type dose-not-delivered))
+    (a failure (type contamination-suspected))))
+
+(contract incubating
+  (roles (plate (the plate ?p)) (in ?e) (from (culture-time ?t0)) (to (culture-time ?t1)))
+  (instrument (an instrument ?d
+    (slot (a plate-slot (accepts ?p)))
+    (process (a process (type incubation) (maintains ?e)))))
+  (goal (the plate ?p (culture-time ?t1)))
+  (requires
+    (the plate ?p (culture-time ?t0))
+    (the plate ?p (in ?e)) :establishable)
+  (prevents
+    (an excursion (of ?p)))
+  (maintains
+    (the plate ?p (in ?e)))
+  (achieves
+    (a record (of ?self) (environment-history ?e)))
+  (signals
+    (a failure (type environment-excursion))))
+
+(contract measuring
+  (roles (of (the well ?w (of ?p))) (readout ?r) (at (culture-time ?t)))
+  (instrument (an instrument ?d
+    (slot (a plate-slot (accepts ?p)))
+    (process (a process (type imaging) (of ?w) (readout ?r)))
+    (qualified-for ?r)))
+  (goal (a measurement (of ?w) (readout ?r) (culture-time ?t)) :column validity)
+  (requires
+    (known (the plate ?p (identity verified))) :consequential
+    (the plate ?p (culture-time ?t))
+    (believed (an instrument (function imaging) (qualified-for ?r) (calibration current)) (grade (source observed))) :establishable :consequential)
+  (prevents
+    (an event (type contamination-introduced) (of ?p)))
+  (achieves
+    (the measurement (of ?w) (binding validated)) :column validity
+    (a record (of ?self) (raw-data original) (hash-chained true)))
+  (signals
+    (a failure (type identity-mismatch))
+    (a failure (type measurement-invalid))
+    (a failure (type validity-effect-unachievable))))
+
+(contract quarantining
+  (roles (material (the plate ?x)))
+  (instrument (an instrument ?d
+    (slot (a plate-slot (accepts ?x)))
+    (process (a process (type containment) (of ?x)))))
+  (goal (the plate ?x (contained true)))
+  (requires
+    (believed (the plate ?x (identity verified)) (grade (source observed))) :consequential)
+  (prevents
+    (an event (type release) (of ?x) (without (a record (type sign-off) (by (a person (role reviewer)))))))
+  (achieves
+    (a request (for (a review (of ?x))) (to (a person (role reviewer))))
+    (a record (of ?self) (reason ?x)))
+  (signals
+    (a failure (type containment-breach))))

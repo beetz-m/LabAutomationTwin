@@ -1,0 +1,5732 @@
+{
+ "instantiation": [
+  {
+   "abstract": "?cr",
+   "role": "rescued",
+   "kind": "culture",
+   "particular": "the organoid in P17:A01",
+   "sdt": [
+    "\u2026/Plate_P17/Wells/A01/Physical/Organoid (WellOrganoid)",
+    "\u2026/Plate_P17/Wells/A01/Biological/LatentState (WellBeliefEstimate)"
+   ],
+   "grounds": [
+    "P17 is the experiment's culture plate (experiments ABox; SDT CulturePlate, barcode Plate_P17)",
+    "A01 is free: not used by Cell 01's own design (wells A03, A04, B03, B04, C03, C04, \u2026 12 in all)",
+    "lowest free index for the rescued arm; wells are interchangeable units, roles ordered rescued < comparator < control (experiment_to_motion.lp symmetry breaking)"
+   ],
+   "rejected": [
+    "A03: used by Cell 01's design",
+    "A04: used by Cell 01's design",
+    "B03: used by Cell 01's design",
+    "B04: used by Cell 01's design"
+   ]
+  },
+  {
+   "abstract": "?cc",
+   "role": "comparator",
+   "kind": "culture",
+   "particular": "the organoid in P17:A02",
+   "sdt": [
+    "\u2026/Plate_P17/Wells/A02/Physical/Organoid (WellOrganoid)",
+    "\u2026/Plate_P17/Wells/A02/Biological/LatentState (WellBeliefEstimate)"
+   ],
+   "grounds": [
+    "P17 is the experiment's culture plate (experiments ABox; SDT CulturePlate, barcode Plate_P17)",
+    "A02 is free: not used by Cell 01's own design (wells A03, A04, B03, B04, C03, C04, \u2026 12 in all)",
+    "lowest free index for the comparator arm; wells are interchangeable units, roles ordered rescued < comparator < control (experiment_to_motion.lp symmetry breaking)"
+   ],
+   "rejected": [
+    "A03: used by Cell 01's design",
+    "A04: used by Cell 01's design",
+    "B03: used by Cell 01's design",
+    "B04: used by Cell 01's design"
+   ]
+  },
+  {
+   "abstract": "?ck",
+   "role": "control",
+   "kind": "culture",
+   "particular": "the organoid in P17:A05",
+   "sdt": [
+    "\u2026/Plate_P17/Wells/A05/Physical/Organoid (WellOrganoid)",
+    "\u2026/Plate_P17/Wells/A05/Biological/LatentState (WellBeliefEstimate)"
+   ],
+   "grounds": [
+    "P17 is the experiment's culture plate (experiments ABox; SDT CulturePlate, barcode Plate_P17)",
+    "A05 is free: not used by Cell 01's own design (wells A03, A04, B03, B04, C03, C04, \u2026 12 in all)",
+    "lowest free index for the control arm; wells are interchangeable units, roles ordered rescued < comparator < control (experiment_to_motion.lp symmetry breaking)"
+   ],
+   "rejected": [
+    "A03: used by Cell 01's design",
+    "A04: used by Cell 01's design",
+    "B03: used by Cell 01's design",
+    "B04: used by Cell 01's design"
+   ]
+  },
+  {
+   "abstract": "?ch",
+   "role": "challenge",
+   "kind": "substance",
+   "particular": "reagent abstract_challenge_reagent (barcode RGT-0001, lot SIM-LOT-A) at l12_liquidhandler_reagent_rack_frames_rack_1_pos_1",
+   "sdt": [
+    "l12_liquidhandler_reagent_rack_frames_rack_1_pos_1"
+   ],
+   "grounds": [
+    "registry reagents.challenge: stock 0.05 au/uL (ILLUSTRATIVE)",
+    "reagent_pose(challenge,l12_liquidhandler_reagent_rack_frames_rack_1_pos_1)"
+   ],
+   "rejected": []
+  },
+  {
+   "abstract": "?rs",
+   "role": "rescue",
+   "kind": "substance",
+   "particular": "reagent abstract_rescue_reagent (barcode RGT-0002, lot SIM-LOT-B) at l12_liquidhandler_reagent_rack_frames_rack_1_pos_2",
+   "sdt": [
+    "l12_liquidhandler_reagent_rack_frames_rack_1_pos_2"
+   ],
+   "grounds": [
+    "registry reagents.rescue: stock 0.05 au/uL (ILLUSTRATIVE)",
+    "reagent_pose(rescue,l12_liquidhandler_reagent_rack_frames_rack_1_pos_2)"
+   ],
+   "rejected": []
+  },
+  {
+   "abstract": "(the plate ?p)",
+   "role": "carrier",
+   "kind": "plate",
+   "particular": "Plate_P17 in L10 cassette slot 2",
+   "sdt": [
+    "/World/ExperimentalWorld/Plates/Plate_P17 (SBSMicroplate, CulturePlate)",
+    "runtime: /World/Episode/Plate_P17"
+   ],
+   "grounds": [
+    "belief plate_at:P17 = slot:l10 (observed at the start of each trip by the barcode read)",
+    "scripts/run_cell01_episode.py PLATES: P17 in L10 slot 2"
+   ],
+   "rejected": [
+    "P30: arrives with the AMR, not a culture plate of this experiment",
+    "RefPlate (L21): QC reference plate"
+   ]
+  }
+ ],
+ "trips": [
+  {
+   "session": "s0",
+   "t_h": 0,
+   "duration_s": 305.7,
+   "lab_steps": [
+    "?x1",
+    "?x2"
+   ],
+   "culture_steps": [
+    "?c1",
+    "?c2"
+   ],
+   "t0": 1.0,
+   "phases": [
+    {
+     "task": "check_interlocks",
+     "ldl": null,
+     "bindings": {},
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "check_interlocks",
+       "agent": "cell01",
+       "term": "[\"cmd\", \"cell01\", \"check_interlocks\"]",
+       "status": "executed",
+       "t": 0.0,
+       "duration_s": 0.0,
+       "realised_by": null,
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "Cell 01 scene: no door model; the enclosure interlock is not simulated (assumed closed, epistemic: assumption)"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "0.0 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "check"
+      }
+     ]
+    },
+    {
+     "task": "retrieve",
+     "ldl": null,
+     "bindings": {
+      "source": "l10"
+     },
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "verify_identity",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"verify_identity\"]",
+       "status": "executed",
+       "t": 0.0,
+       "duration_s": 16.75,
+       "realised_by": "L10 release_plate (barcode read at the transfer nest)",
+       "monitors": [
+        {
+         "name": "plate_identity",
+         "passed": true,
+         "observation": "read P17, expected P17"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "16.75 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "barcode_read": "{\"device\": \"l10\", \"read\": \"P17\"}"
+       },
+       "hashed": true,
+       "kind": "check"
+      },
+      {
+       "op": "present",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"present\"]",
+       "status": "executed",
+       "t": 16.8,
+       "duration_s": 0.0,
+       "realised_by": "L10 release_plate (presented with the identity read)",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode PRESENTED_LOADED"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "16.75 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      }
+     ]
+    },
+    {
+     "task": "transport_lab",
+     "ldl": null,
+     "bindings": {
+      "target": "l12"
+     },
+     "sub": [
+      "transporting",
+      "transporting"
+     ],
+     "robots": [
+      "r01",
+      "r02"
+     ],
+     "leaves": [
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 16.8,
+       "duration_s": 13.73,
+       "realised_by": "R01 go_above + rig.pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "30.48 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r01",
+       "term": "[\"insert\", \"r01\", \"l10_incubator_transfer_station\"]",
+       "status": "executed",
+       "t": 30.5,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "30.48 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r01",
+       "term": "[\"grasp\", \"r01\"]",
+       "status": "executed",
+       "t": 30.5,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"lifted\": true, \"contact\": true}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "30.48 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r01",
+       "term": "[\"lift\", \"r01\"]",
+       "status": "executed",
+       "t": 30.5,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "30.48 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "stow",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"stow\"]",
+       "status": "executed",
+       "t": 30.5,
+       "duration_s": 3.25,
+       "realised_by": "L10 stow",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode READY"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "33.73 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "transit",
+       "agent": "r01",
+       "term": "[\"transit\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 33.7,
+       "duration_s": 5.04,
+       "realised_by": "R01 r01_planner transit",
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "planned joint-space transit to HN"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "38.77 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 38.8,
+       "duration_s": 11.39,
+       "realised_by": "R01 rig.place (compliant)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "50.16 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r01",
+       "term": "[\"place\", \"r01\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 50.2,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "50.16 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r01",
+       "term": "[\"release\", \"r01\"]",
+       "status": "executed",
+       "t": 50.2,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 134.2}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "50.16 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r01",
+       "term": "[\"retract\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 50.2,
+       "duration_s": 5.17,
+       "realised_by": "R01 retract to L09 approach (clear of HN)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "55.33 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "tool_couple",
+       "agent": "r02",
+       "term": "[\"tool_couple\", \"r02\", \"t01\", \"automatictoolchanger_dock_t01\"]",
+       "status": "executed",
+       "t": 55.3,
+       "duration_s": 22.65,
+       "realised_by": "R02 tool changer (TCM01) change_tool",
+       "monitors": [
+        {
+         "name": "tool_frame_validity",
+         "passed": true,
+         "observation": "tool T01"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "77.97 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 78.0,
+       "duration_s": 17.15,
+       "realised_by": "R02 r02_pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "95.12 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r02",
+       "term": "[\"insert\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 95.1,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "95.12 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r02",
+       "term": "[\"grasp\", \"r02\"]",
+       "status": "executed",
+       "t": 95.1,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 150.1}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "95.12 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r02",
+       "term": "[\"lift\", \"r02\"]",
+       "status": "executed",
+       "t": 95.1,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "95.12 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "transit",
+       "agent": "r02",
+       "term": "[\"transit\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l12_liquidhandler_plate_nest\"]]",
+       "status": "executed",
+       "t": 95.1,
+       "duration_s": 0.0,
+       "realised_by": "realised within R02's place skill (rail + arm path)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "95.12 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"l12_liquidhandler_plate_nest\"]]",
+       "status": "executed",
+       "t": 95.1,
+       "duration_s": 24.4,
+       "realised_by": "R02 r02_place",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "119.53 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r02",
+       "term": "[\"place\", \"r02\", \"l12_liquidhandler_plate_nest\"]",
+       "status": "executed",
+       "t": 119.5,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "119.53 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r02",
+       "term": "[\"release\", \"r02\"]",
+       "status": "executed",
+       "t": 119.5,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"seated\": true, \"offset_mm\": [0.08, 0.13, -0.0], \"tilt_deg\": 0.0}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "119.53 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r02",
+       "term": "[\"retract\", \"r02\", [\"appr\", \"l12_liquidhandler_plate_nest\"]]",
+       "status": "executed",
+       "t": 119.5,
+       "duration_s": 6.54,
+       "realised_by": "R02 r02_clear",
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "L12 airspace clear after retract"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "126.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      }
+     ]
+    },
+    {
+     "task": "intervene",
+     "ldl": "?x1",
+     "bindings": {
+      "well": "A01",
+      "reagent": "challenge",
+      "dose_au": 0.85
+     },
+     "sub": [
+      "dose"
+     ],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "tip_pick",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"tip_pick\", \"l12_liquidhandler_tip_rack_frames_rack_1\"]]",
+       "status": "executed",
+       "t": 126.1,
+       "duration_s": 43.0,
+       "realised_by": "L12 dose_well (contract action; phases tip_pick, aspirate, dispense, tip_eject)",
+       "monitors": [
+        {
+         "name": "tip_state",
+         "passed": true,
+         "observation": "tip_pick event in L12's log"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "169.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "aspirate",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"aspirate\", \"l12_liquidhandler_reagent_rack_frames_rack_1_pos_1\"]]",
+       "status": "executed",
+       "t": 169.1,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase aspirate)",
+       "monitors": [
+        {
+         "name": "reagent_identity",
+         "passed": true,
+         "observation": "RGT-0001 abstract_challenge_reagent lot SIM-LOT-A"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "169.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "reagent": "{\"id\": \"abstract_challenge_reagent\", \"lot\": \"SIM-LOT-A\", \"barcode\": \"RGT-0001\", \"volume_uL\": 17.0}"
+       },
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "dispense",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"dispense\", \"P17:A01/pipette_target_frame\", 85]]",
+       "status": "executed",
+       "t": 169.1,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase dispense; volume inferred by L12's liquid model)",
+       "monitors": [
+        {
+         "name": "dispense_completion",
+         "passed": true,
+         "observation": "17.003 uL of 17.0 uL"
+        },
+        {
+         "name": "well_binding",
+         "passed": true,
+         "observation": "A01"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "169.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "plate": "P17",
+        "well": "A01",
+        "reagent": "challenge",
+        "volume_commanded_uL": "17.0",
+        "volume_delivered_uL": "17.003",
+        "dose_au": "0.85",
+        "culture_time_h": "0.0",
+        "dispense_height_mm": "1.2",
+        "dispense_rate_uL_s": "2.0",
+        "tip_id": "TIP-RACK1-A01"
+       },
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "tip_eject",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"tip_eject\", \"l12_liquidhandler_waste_frame\"]]",
+       "status": "executed",
+       "t": 169.1,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase tip_eject)",
+       "monitors": [
+        {
+         "name": "tip_state",
+         "passed": true,
+         "observation": "tip ejected to waste after the dispense"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "169.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "device program"
+      }
+     ]
+    },
+    {
+     "task": "intervene",
+     "ldl": "?x2",
+     "bindings": {
+      "well": "A02",
+      "reagent": "challenge",
+      "dose_au": 0.85
+     },
+     "sub": [
+      "dose"
+     ],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "tip_pick",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"tip_pick\", \"l12_liquidhandler_tip_rack_frames_rack_1\"]]",
+       "status": "executed",
+       "t": 169.1,
+       "duration_s": 41.0,
+       "realised_by": "L12 dose_well (contract action; phases tip_pick, aspirate, dispense, tip_eject)",
+       "monitors": [
+        {
+         "name": "tip_state",
+         "passed": true,
+         "observation": "tip_pick event in L12's log"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "210.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "aspirate",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"aspirate\", \"l12_liquidhandler_reagent_rack_frames_rack_1_pos_1\"]]",
+       "status": "executed",
+       "t": 210.1,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase aspirate)",
+       "monitors": [
+        {
+         "name": "reagent_identity",
+         "passed": true,
+         "observation": "RGT-0001 abstract_challenge_reagent lot SIM-LOT-A"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "210.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "reagent": "{\"id\": \"abstract_challenge_reagent\", \"lot\": \"SIM-LOT-A\", \"barcode\": \"RGT-0001\", \"volume_uL\": 17.0}"
+       },
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "dispense",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"dispense\", \"P17:A02/pipette_target_frame\", 85]]",
+       "status": "executed",
+       "t": 210.1,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase dispense; volume inferred by L12's liquid model)",
+       "monitors": [
+        {
+         "name": "dispense_completion",
+         "passed": true,
+         "observation": "17.019 uL of 17.0 uL"
+        },
+        {
+         "name": "well_binding",
+         "passed": true,
+         "observation": "A02"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "210.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "plate": "P17",
+        "well": "A02",
+        "reagent": "challenge",
+        "volume_commanded_uL": "17.0",
+        "volume_delivered_uL": "17.019",
+        "dose_au": "0.85",
+        "culture_time_h": "0.0",
+        "dispense_height_mm": "1.2",
+        "dispense_rate_uL_s": "2.0",
+        "tip_id": "TIP-RACK1-B01"
+       },
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "tip_eject",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"tip_eject\", \"l12_liquidhandler_waste_frame\"]]",
+       "status": "executed",
+       "t": 210.1,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase tip_eject)",
+       "monitors": [
+        {
+         "name": "tip_state",
+         "passed": true,
+         "observation": "tip ejected to waste after the dispense"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "210.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "device program"
+      }
+     ]
+    },
+    {
+     "task": "transport_lab",
+     "ldl": null,
+     "bindings": {
+      "target": "l10"
+     },
+     "sub": [
+      "transporting",
+      "transporting"
+     ],
+     "robots": [
+      "r01",
+      "r02"
+     ],
+     "leaves": [
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"l12_liquidhandler_plate_nest\"]]",
+       "status": "executed",
+       "t": 210.1,
+       "duration_s": 14.63,
+       "realised_by": "R02 r02_pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "224.7 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r02",
+       "term": "[\"insert\", \"r02\", \"l12_liquidhandler_plate_nest\"]",
+       "status": "executed",
+       "t": 224.7,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "224.7 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r02",
+       "term": "[\"grasp\", \"r02\"]",
+       "status": "executed",
+       "t": 224.7,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.8}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "224.7 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r02",
+       "term": "[\"lift\", \"r02\"]",
+       "status": "executed",
+       "t": 224.7,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "224.7 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "transit",
+       "agent": "r02",
+       "term": "[\"transit\", \"r02\", [\"appr\", \"l12_liquidhandler_plate_nest\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 224.7,
+       "duration_s": 0.0,
+       "realised_by": "realised within R02's place skill (rail + arm path)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "224.7 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 224.7,
+       "duration_s": 25.0,
+       "realised_by": "R02 r02_place",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "249.7 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r02",
+       "term": "[\"place\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 249.7,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "249.7 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r02",
+       "term": "[\"release\", \"r02\"]",
+       "status": "executed",
+       "t": 249.7,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"seated\": true, \"offset_mm\": [-0.02, 0.14, 0.0], \"tilt_deg\": 0.0}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "249.7 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r02",
+       "term": "[\"retract\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 249.7,
+       "duration_s": 6.58,
+       "realised_by": "R02 r02_park",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "256.27 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 256.3,
+       "duration_s": 11.73,
+       "realised_by": "R01 go_above + rig.pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "268.01 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r01",
+       "term": "[\"insert\", \"r01\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 268.0,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "268.01 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r01",
+       "term": "[\"grasp\", \"r01\"]",
+       "status": "executed",
+       "t": 268.0,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"lifted\": true, \"contact\": true}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "268.01 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r01",
+       "term": "[\"lift\", \"r01\"]",
+       "status": "executed",
+       "t": 268.0,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "268.01 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "transit",
+       "agent": "r01",
+       "term": "[\"transit\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 268.0,
+       "duration_s": 1.98,
+       "realised_by": "R01 r01_planner transit",
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "planned joint-space transit to L10"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "269.99 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "present",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"present\"]",
+       "status": "executed",
+       "t": 270.0,
+       "duration_s": 3.5,
+       "realised_by": "L10 present_for_load",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode PRESENTED_EMPTY"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "273.49 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 273.5,
+       "duration_s": 12.12,
+       "realised_by": "R01 rig.place (compliant)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "285.61 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r01",
+       "term": "[\"place\", \"r01\", \"l10_incubator_transfer_station\"]",
+       "status": "executed",
+       "t": 285.6,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "285.61 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r01",
+       "term": "[\"release\", \"r01\"]",
+       "status": "executed",
+       "t": 285.6,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 158.9}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "285.61 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r01",
+       "term": "[\"retract\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 285.6,
+       "duration_s": 3.35,
+       "realised_by": "R01 retract to L10 approach",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "288.96 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      }
+     ]
+    },
+    {
+     "task": "store",
+     "ldl": null,
+     "bindings": {},
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "wait_environment",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"wait_environment\"]",
+       "status": "executed",
+       "t": 289.0,
+       "duration_s": 0.25,
+       "realised_by": "L10 environment control",
+       "monitors": [
+        {
+         "name": "environment_accepted",
+         "passed": true,
+         "observation": "L10 environment valid (ILLUSTRATIVE profile)"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "289.21 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "environment_snapshot": "{\"T\": 36.813, \"CO2\": 4.877, \"RH\": 89.185}"
+       },
+       "hashed": true,
+       "kind": "check"
+      },
+      {
+       "op": "store_cmd",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"store\"]",
+       "status": "executed",
+       "t": 289.2,
+       "duration_s": 16.5,
+       "realised_by": "L10 incubate (identity read + slot store)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "slot 2, read Plate_P17"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "305.71 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "barcode_read": "{\"device\": \"l10\", \"read\": \"P17\"}"
+       },
+       "hashed": true,
+       "kind": "loading / unloading"
+      }
+     ]
+    }
+   ],
+   "session_constraints": [
+    {
+     "id": "interlocks_closed",
+     "verdict": "ENFORCED",
+     "observation": "fact interlocks_closed"
+    },
+    {
+     "id": "projection_succeeds",
+     "verdict": "ENFORCED",
+     "observation": "projected to completion in 298.9 s"
+    },
+    {
+     "id": "window_prospective",
+     "verdict": "ENFORCED",
+     "observation": "projected 298.9 s x 1.20 = 358.68 s <= window 600.0 s"
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "t_h": 48,
+   "duration_s": 230.1,
+   "lab_steps": [
+    "?x3"
+   ],
+   "culture_steps": [
+    "?c3"
+   ],
+   "t0": 173106.71,
+   "phases": [
+    {
+     "task": "check_interlocks",
+     "ldl": null,
+     "bindings": {},
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "check_interlocks",
+       "agent": "cell01",
+       "term": "[\"cmd\", \"cell01\", \"check_interlocks\"]",
+       "status": "executed",
+       "t": 0.0,
+       "duration_s": 0.0,
+       "realised_by": null,
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "Cell 01 scene: no door model; the enclosure interlock is not simulated (assumed closed, epistemic: assumption)"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "0.0 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "check"
+      }
+     ]
+    },
+    {
+     "task": "retrieve",
+     "ldl": null,
+     "bindings": {
+      "source": "l10"
+     },
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "verify_identity",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"verify_identity\"]",
+       "status": "executed",
+       "t": 0.0,
+       "duration_s": 16.25,
+       "realised_by": "L10 release_plate (barcode read at the transfer nest)",
+       "monitors": [
+        {
+         "name": "plate_identity",
+         "passed": true,
+         "observation": "read P17, expected P17"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "16.25 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "barcode_read": "{\"device\": \"l10\", \"read\": \"P17\"}"
+       },
+       "hashed": true,
+       "kind": "check"
+      },
+      {
+       "op": "present",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"present\"]",
+       "status": "executed",
+       "t": 16.2,
+       "duration_s": 0.0,
+       "realised_by": "L10 release_plate (presented with the identity read)",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode PRESENTED_LOADED"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "16.25 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      }
+     ]
+    },
+    {
+     "task": "transport_lab",
+     "ldl": null,
+     "bindings": {
+      "target": "l12"
+     },
+     "sub": [
+      "transporting",
+      "transporting"
+     ],
+     "robots": [
+      "r01",
+      "r02"
+     ],
+     "leaves": [
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 16.2,
+       "duration_s": 10.47,
+       "realised_by": "R01 go_above + rig.pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "26.72 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r01",
+       "term": "[\"insert\", \"r01\", \"l10_incubator_transfer_station\"]",
+       "status": "executed",
+       "t": 26.7,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "26.72 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r01",
+       "term": "[\"grasp\", \"r01\"]",
+       "status": "executed",
+       "t": 26.7,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"lifted\": true, \"contact\": true}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "26.72 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r01",
+       "term": "[\"lift\", \"r01\"]",
+       "status": "executed",
+       "t": 26.7,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "26.72 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "stow",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"stow\"]",
+       "status": "executed",
+       "t": 26.7,
+       "duration_s": 3.25,
+       "realised_by": "L10 stow",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode READY"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "29.97 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "transit",
+       "agent": "r01",
+       "term": "[\"transit\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 30.0,
+       "duration_s": 5.05,
+       "realised_by": "R01 r01_planner transit",
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "planned joint-space transit to HN"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "35.01 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 35.0,
+       "duration_s": 11.24,
+       "realised_by": "R01 rig.place (compliant)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "46.25 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r01",
+       "term": "[\"place\", \"r01\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 46.2,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "46.25 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r01",
+       "term": "[\"release\", \"r01\"]",
+       "status": "executed",
+       "t": 46.2,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 133.3}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "46.25 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r01",
+       "term": "[\"retract\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 46.2,
+       "duration_s": 5.17,
+       "realised_by": "R01 retract to L09 approach (clear of HN)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "51.42 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "tool_couple",
+       "agent": "r02",
+       "term": "[\"tool_couple\", \"r02\", \"t01\", \"automatictoolchanger_dock_t01\"]",
+       "status": "executed",
+       "t": 51.4,
+       "duration_s": 0.0,
+       "realised_by": "R02 tool changer (TCM01) change_tool",
+       "monitors": [
+        {
+         "name": "tool_frame_validity",
+         "passed": true,
+         "observation": "tool T01"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "51.42 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 51.4,
+       "duration_s": 14.2,
+       "realised_by": "R02 r02_pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.62 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r02",
+       "term": "[\"insert\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 65.6,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.62 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r02",
+       "term": "[\"grasp\", \"r02\"]",
+       "status": "executed",
+       "t": 65.6,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 150.0}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.62 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r02",
+       "term": "[\"lift\", \"r02\"]",
+       "status": "executed",
+       "t": 65.6,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.62 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "transit",
+       "agent": "r02",
+       "term": "[\"transit\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l12_liquidhandler_plate_nest\"]]",
+       "status": "executed",
+       "t": 65.6,
+       "duration_s": 0.0,
+       "realised_by": "realised within R02's place skill (rail + arm path)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.62 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"l12_liquidhandler_plate_nest\"]]",
+       "status": "executed",
+       "t": 65.6,
+       "duration_s": 24.4,
+       "realised_by": "R02 r02_place",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "90.02 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r02",
+       "term": "[\"place\", \"r02\", \"l12_liquidhandler_plate_nest\"]",
+       "status": "executed",
+       "t": 90.0,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "90.02 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r02",
+       "term": "[\"release\", \"r02\"]",
+       "status": "executed",
+       "t": 90.0,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"seated\": true, \"offset_mm\": [0.1, 0.06, 0.0], \"tilt_deg\": 0.0}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "90.02 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r02",
+       "term": "[\"retract\", \"r02\", [\"appr\", \"l12_liquidhandler_plate_nest\"]]",
+       "status": "executed",
+       "t": 90.0,
+       "duration_s": 6.54,
+       "realised_by": "R02 r02_clear",
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "L12 airspace clear after retract"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "96.57 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      }
+     ]
+    },
+    {
+     "task": "intervene",
+     "ldl": "?x3",
+     "bindings": {
+      "well": "A01",
+      "reagent": "rescue",
+      "dose_au": 0.7
+     },
+     "sub": [
+      "dose"
+     ],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "tip_pick",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"tip_pick\", \"l12_liquidhandler_tip_rack_frames_rack_1\"]]",
+       "status": "executed",
+       "t": 96.6,
+       "duration_s": 38.0,
+       "realised_by": "L12 dose_well (contract action; phases tip_pick, aspirate, dispense, tip_eject)",
+       "monitors": [
+        {
+         "name": "tip_state",
+         "passed": true,
+         "observation": "tip_pick event in L12's log"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "134.57 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "aspirate",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"aspirate\", \"l12_liquidhandler_reagent_rack_frames_rack_1_pos_2\"]]",
+       "status": "executed",
+       "t": 134.6,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase aspirate)",
+       "monitors": [
+        {
+         "name": "reagent_identity",
+         "passed": true,
+         "observation": "RGT-0002 abstract_rescue_reagent lot SIM-LOT-B"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "134.57 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "reagent": "{\"id\": \"abstract_rescue_reagent\", \"lot\": \"SIM-LOT-B\", \"barcode\": \"RGT-0002\", \"volume_uL\": 14.0}"
+       },
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "dispense",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"dispense\", \"P17:A01/pipette_target_frame\", 70]]",
+       "status": "executed",
+       "t": 134.6,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase dispense; volume inferred by L12's liquid model)",
+       "monitors": [
+        {
+         "name": "dispense_completion",
+         "passed": true,
+         "observation": "14.005 uL of 14.0 uL"
+        },
+        {
+         "name": "well_binding",
+         "passed": true,
+         "observation": "A01"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "134.57 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "plate": "P17",
+        "well": "A01",
+        "reagent": "rescue",
+        "volume_commanded_uL": "14.0",
+        "volume_delivered_uL": "14.005",
+        "dose_au": "0.7",
+        "culture_time_h": "48.0",
+        "dispense_height_mm": "1.2",
+        "dispense_rate_uL_s": "2.0",
+        "tip_id": "TIP-RACK1-C01"
+       },
+       "hashed": true,
+       "kind": "device program"
+      },
+      {
+       "op": "tip_eject",
+       "agent": "l12",
+       "term": "[\"cmd\", \"l12\", [\"tip_eject\", \"l12_liquidhandler_waste_frame\"]]",
+       "status": "executed",
+       "t": 134.6,
+       "duration_s": 0.0,
+       "realised_by": "L12 dose_well (phase tip_eject)",
+       "monitors": [
+        {
+         "name": "tip_state",
+         "passed": true,
+         "observation": "tip ejected to waste after the dispense"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "l12_airspace_clear",
+         "verdict": "ENFORCED",
+         "observation": "l12 airspace clear"
+        },
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "134.57 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "device program"
+      }
+     ]
+    },
+    {
+     "task": "transport_lab",
+     "ldl": null,
+     "bindings": {
+      "target": "l10"
+     },
+     "sub": [
+      "transporting",
+      "transporting"
+     ],
+     "robots": [
+      "r01",
+      "r02"
+     ],
+     "leaves": [
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"l12_liquidhandler_plate_nest\"]]",
+       "status": "executed",
+       "t": 134.6,
+       "duration_s": 14.63,
+       "realised_by": "R02 r02_pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "149.2 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r02",
+       "term": "[\"insert\", \"r02\", \"l12_liquidhandler_plate_nest\"]",
+       "status": "executed",
+       "t": 149.2,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "149.2 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r02",
+       "term": "[\"grasp\", \"r02\"]",
+       "status": "executed",
+       "t": 149.2,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.9}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "149.2 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r02",
+       "term": "[\"lift\", \"r02\"]",
+       "status": "executed",
+       "t": 149.2,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "149.2 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "transit",
+       "agent": "r02",
+       "term": "[\"transit\", \"r02\", [\"appr\", \"l12_liquidhandler_plate_nest\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 149.2,
+       "duration_s": 0.0,
+       "realised_by": "realised within R02's place skill (rail + arm path)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "149.2 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 149.2,
+       "duration_s": 24.87,
+       "realised_by": "R02 r02_place",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "174.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r02",
+       "term": "[\"place\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 174.1,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "174.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r02",
+       "term": "[\"release\", \"r02\"]",
+       "status": "executed",
+       "t": 174.1,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"seated\": true, \"offset_mm\": [0.03, 0.16, 0.0], \"tilt_deg\": 0.0}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "174.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r02",
+       "term": "[\"retract\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 174.1,
+       "duration_s": 6.58,
+       "realised_by": "R02 r02_park",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "180.65 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 180.6,
+       "duration_s": 11.73,
+       "realised_by": "R01 go_above + rig.pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "192.38 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r01",
+       "term": "[\"insert\", \"r01\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 192.4,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "192.38 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r01",
+       "term": "[\"grasp\", \"r01\"]",
+       "status": "executed",
+       "t": 192.4,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"lifted\": true, \"contact\": true}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "192.38 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r01",
+       "term": "[\"lift\", \"r01\"]",
+       "status": "executed",
+       "t": 192.4,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "192.38 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "transit",
+       "agent": "r01",
+       "term": "[\"transit\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 192.4,
+       "duration_s": 1.98,
+       "realised_by": "R01 r01_planner transit",
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "planned joint-space transit to L10"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "194.36 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "present",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"present\"]",
+       "status": "executed",
+       "t": 194.4,
+       "duration_s": 3.5,
+       "realised_by": "L10 present_for_load",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode PRESENTED_EMPTY"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "197.86 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 197.9,
+       "duration_s": 12.12,
+       "realised_by": "R01 rig.place (compliant)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "209.98 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r01",
+       "term": "[\"place\", \"r01\", \"l10_incubator_transfer_station\"]",
+       "status": "executed",
+       "t": 210.0,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "209.98 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r01",
+       "term": "[\"release\", \"r01\"]",
+       "status": "executed",
+       "t": 210.0,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 140.3}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "209.98 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r01",
+       "term": "[\"retract\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 210.0,
+       "duration_s": 3.35,
+       "realised_by": "R01 retract to L10 approach",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "213.33 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      }
+     ]
+    },
+    {
+     "task": "store",
+     "ldl": null,
+     "bindings": {},
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "wait_environment",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"wait_environment\"]",
+       "status": "executed",
+       "t": 213.3,
+       "duration_s": 0.25,
+       "realised_by": "L10 environment control",
+       "monitors": [
+        {
+         "name": "environment_accepted",
+         "passed": true,
+         "observation": "L10 environment valid (ILLUSTRATIVE profile)"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "213.58 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "environment_snapshot": "{\"T\": 36.839, \"CO2\": 4.894, \"RH\": 88.798}"
+       },
+       "hashed": true,
+       "kind": "check"
+      },
+      {
+       "op": "store_cmd",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"store\"]",
+       "status": "executed",
+       "t": 213.6,
+       "duration_s": 16.5,
+       "realised_by": "L10 incubate (identity read + slot store)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "slot 2, read Plate_P17"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "230.08 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "barcode_read": "{\"device\": \"l10\", \"read\": \"P17\"}"
+       },
+       "hashed": true,
+       "kind": "loading / unloading"
+      }
+     ]
+    }
+   ],
+   "session_constraints": [
+    {
+     "id": "interlocks_closed",
+     "verdict": "ENFORCED",
+     "observation": "fact interlocks_closed"
+    },
+    {
+     "id": "projection_succeeds",
+     "verdict": "ENFORCED",
+     "observation": "projected to completion in 263.3 s"
+    },
+    {
+     "id": "window_prospective",
+     "verdict": "ENFORCED",
+     "observation": "projected 263.3 s x 1.20 = 315.96 s <= window 600.0 s"
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "t_h": 72,
+   "duration_s": 207.3,
+   "lab_steps": [
+    "?m1",
+    "?m2",
+    "?m3"
+   ],
+   "culture_steps": [
+    "?o1",
+    "?o2",
+    "?o3"
+   ],
+   "t0": 259736.79,
+   "phases": [
+    {
+     "task": "check_interlocks",
+     "ldl": null,
+     "bindings": {},
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "check_interlocks",
+       "agent": "cell01",
+       "term": "[\"cmd\", \"cell01\", \"check_interlocks\"]",
+       "status": "executed",
+       "t": 0.0,
+       "duration_s": 0.0,
+       "realised_by": null,
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "Cell 01 scene: no door model; the enclosure interlock is not simulated (assumed closed, epistemic: assumption)"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "0.0 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "check"
+      }
+     ]
+    },
+    {
+     "task": "retrieve",
+     "ldl": null,
+     "bindings": {
+      "source": "l10"
+     },
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "verify_identity",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"verify_identity\"]",
+       "status": "executed",
+       "t": 0.0,
+       "duration_s": 16.25,
+       "realised_by": "L10 release_plate (barcode read at the transfer nest)",
+       "monitors": [
+        {
+         "name": "plate_identity",
+         "passed": true,
+         "observation": "read P17, expected P17"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "16.25 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "barcode_read": "{\"device\": \"l10\", \"read\": \"P17\"}"
+       },
+       "hashed": true,
+       "kind": "check"
+      },
+      {
+       "op": "present",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"present\"]",
+       "status": "executed",
+       "t": 16.2,
+       "duration_s": 0.0,
+       "realised_by": "L10 release_plate (presented with the identity read)",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode PRESENTED_LOADED"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "16.25 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      }
+     ]
+    },
+    {
+     "task": "transport_lab",
+     "ldl": null,
+     "bindings": {
+      "target": "l17"
+     },
+     "sub": [
+      "transporting",
+      "transporting"
+     ],
+     "robots": [
+      "r01",
+      "r02"
+     ],
+     "leaves": [
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 16.2,
+       "duration_s": 10.47,
+       "realised_by": "R01 go_above + rig.pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "26.72 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r01",
+       "term": "[\"insert\", \"r01\", \"l10_incubator_transfer_station\"]",
+       "status": "executed",
+       "t": 26.7,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "26.72 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r01",
+       "term": "[\"grasp\", \"r01\"]",
+       "status": "executed",
+       "t": 26.7,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"lifted\": true, \"contact\": true}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "26.72 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r01",
+       "term": "[\"lift\", \"r01\"]",
+       "status": "executed",
+       "t": 26.7,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "26.72 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "stow",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"stow\"]",
+       "status": "executed",
+       "t": 26.7,
+       "duration_s": 3.25,
+       "realised_by": "L10 stow",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode READY"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "29.97 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "transit",
+       "agent": "r01",
+       "term": "[\"transit\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 30.0,
+       "duration_s": 5.05,
+       "realised_by": "R01 r01_planner transit",
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "planned joint-space transit to HN"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "35.02 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 35.0,
+       "duration_s": 11.38,
+       "realised_by": "R01 rig.place (compliant)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "46.4 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r01",
+       "term": "[\"place\", \"r01\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 46.4,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "46.4 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r01",
+       "term": "[\"release\", \"r01\"]",
+       "status": "executed",
+       "t": 46.4,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 130.3}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "46.4 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r01",
+       "term": "[\"retract\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 46.4,
+       "duration_s": 5.18,
+       "realised_by": "R01 retract to L09 approach (clear of HN)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "51.57 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "tool_couple",
+       "agent": "r02",
+       "term": "[\"tool_couple\", \"r02\", \"t01\", \"automatictoolchanger_dock_t01\"]",
+       "status": "executed",
+       "t": 51.6,
+       "duration_s": 0.0,
+       "realised_by": "R02 tool changer (TCM01) change_tool",
+       "monitors": [
+        {
+         "name": "tool_frame_validity",
+         "passed": true,
+         "observation": "tool T01"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "51.57 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 51.6,
+       "duration_s": 14.35,
+       "realised_by": "R02 r02_pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.92 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r02",
+       "term": "[\"insert\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 65.9,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.92 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r02",
+       "term": "[\"grasp\", \"r02\"]",
+       "status": "executed",
+       "t": 65.9,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.9}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.92 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r02",
+       "term": "[\"lift\", \"r02\"]",
+       "status": "executed",
+       "t": 65.9,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.92 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "transit",
+       "agent": "r02",
+       "term": "[\"transit\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+       "status": "executed",
+       "t": 65.9,
+       "duration_s": 0.0,
+       "realised_by": "realised within R02's place skill (rail + arm path)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "65.92 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "present",
+       "agent": "l17",
+       "term": "[\"cmd\", \"l17\", \"present\"]",
+       "status": "executed",
+       "t": 65.9,
+       "duration_s": 4.0,
+       "realised_by": "L17 present_for_load",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l17 mode PRESENTED_EMPTY"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "69.92 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+       "status": "executed",
+       "t": 69.9,
+       "duration_s": 24.93,
+       "realised_by": "R02 r02_place",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "94.85 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r02",
+       "term": "[\"place\", \"r02\", \"l17_brightfieldimager_plate_load_frame\"]",
+       "status": "executed",
+       "t": 94.9,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "94.85 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r02",
+       "term": "[\"release\", \"r02\"]",
+       "status": "executed",
+       "t": 94.9,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"seated\": true, \"offset_mm\": [0.26, 0.34, 0.0], \"tilt_deg\": 0.0}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "94.85 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r02",
+       "term": "[\"retract\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+       "status": "executed",
+       "t": 94.9,
+       "duration_s": 0.0,
+       "realised_by": "R02 stay",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "94.85 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      }
+     ]
+    },
+    {
+     "task": "measure",
+     "ldl": "?m1",
+     "bindings": {
+      "well": "A01"
+     },
+     "sub": [
+      "image"
+     ],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "load",
+       "agent": "l17",
+       "term": "[\"cmd\", \"l17\", \"load\"]",
+       "status": "executed",
+       "t": 94.9,
+       "duration_s": 4.25,
+       "realised_by": "L17 load_plate",
+       "monitors": [
+        {
+         "name": "plate_seating",
+         "passed": true,
+         "observation": "L17 mode LOADED"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "99.1 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "image_well",
+       "agent": "l17",
+       "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A01/imaging_target_frame\"]]",
+       "status": "executed",
+       "t": 99.1,
+       "duration_s": 5.25,
+       "realised_by": "L17 image_well (autofocus, capture, validity monitors)",
+       "monitors": [
+        {
+         "name": "calibration_state",
+         "passed": true,
+         "observation": "calibration L17-CAL-2026-10-16-SIM valid=True"
+        },
+        {
+         "name": "focus_quality",
+         "passed": true,
+         "observation": "failed monitors []"
+        },
+        {
+         "name": "illumination_state",
+         "passed": true,
+         "observation": "nominal"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "104.35 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "image": "{\"ref\": \"evidence://l17/L17_Plate_P17_A01_10x_000.png#sha256=48fc5193319d1f76\", \"plate\": \"P17\", \"well\": \"A01\", \"device\": \"l17\", \"t_h\": 72.0, \"valid\": true}",
+        "well": "A01"
+       },
+       "hashed": true,
+       "kind": "device program"
+      }
+     ]
+    },
+    {
+     "task": "measure",
+     "ldl": "?m2",
+     "bindings": {
+      "well": "A02"
+     },
+     "sub": [
+      "image"
+     ],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "image_well",
+       "agent": "l17",
+       "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A02/imaging_target_frame\"]]",
+       "status": "executed",
+       "t": 104.4,
+       "duration_s": 2.25,
+       "realised_by": "L17 image_well (autofocus, capture, validity monitors)",
+       "monitors": [
+        {
+         "name": "calibration_state",
+         "passed": true,
+         "observation": "calibration L17-CAL-2026-10-16-SIM valid=True"
+        },
+        {
+         "name": "focus_quality",
+         "passed": true,
+         "observation": "failed monitors []"
+        },
+        {
+         "name": "illumination_state",
+         "passed": true,
+         "observation": "nominal"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "106.6 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "image": "{\"ref\": \"evidence://l17/L17_Plate_P17_A02_10x_001.png#sha256=e44850df89f39d94\", \"plate\": \"P17\", \"well\": \"A02\", \"device\": \"l17\", \"t_h\": 72.0, \"valid\": true}",
+        "well": "A02"
+       },
+       "hashed": true,
+       "kind": "device program"
+      }
+     ]
+    },
+    {
+     "task": "measure",
+     "ldl": "?m3",
+     "bindings": {
+      "well": "A05"
+     },
+     "sub": [
+      "image"
+     ],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "image_well",
+       "agent": "l17",
+       "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A05/imaging_target_frame\"]]",
+       "status": "executed",
+       "t": 106.6,
+       "duration_s": 2.5,
+       "realised_by": "L17 image_well (autofocus, capture, validity monitors)",
+       "monitors": [
+        {
+         "name": "calibration_state",
+         "passed": true,
+         "observation": "calibration L17-CAL-2026-10-16-SIM valid=True"
+        },
+        {
+         "name": "focus_quality",
+         "passed": true,
+         "observation": "failed monitors []"
+        },
+        {
+         "name": "illumination_state",
+         "passed": true,
+         "observation": "nominal"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "109.1 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "image": "{\"ref\": \"evidence://l17/L17_Plate_P17_A05_10x_002.png#sha256=9d01d3e81515e2bc\", \"plate\": \"P17\", \"well\": \"A05\", \"device\": \"l17\", \"t_h\": 72.0, \"valid\": true}",
+        "well": "A05"
+       },
+       "hashed": true,
+       "kind": "device program"
+      }
+     ]
+    },
+    {
+     "task": "transport_lab",
+     "ldl": null,
+     "bindings": {
+      "target": "l10"
+     },
+     "sub": [
+      "transporting",
+      "transporting"
+     ],
+     "robots": [
+      "r01",
+      "r02"
+     ],
+     "leaves": [
+      {
+       "op": "present",
+       "agent": "l17",
+       "term": "[\"cmd\", \"l17\", \"present\"]",
+       "status": "executed",
+       "t": 109.1,
+       "duration_s": 4.0,
+       "realised_by": "L17 present_for_unload",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l17 mode PRESENTED_LOADED"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "113.1 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+       "status": "executed",
+       "t": 113.1,
+       "duration_s": 9.68,
+       "realised_by": "R02 r02_pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "122.78 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r02",
+       "term": "[\"insert\", \"r02\", \"l17_brightfieldimager_plate_load_frame\"]",
+       "status": "executed",
+       "t": 122.8,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "122.78 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r02",
+       "term": "[\"grasp\", \"r02\"]",
+       "status": "executed",
+       "t": 122.8,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.9}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "122.78 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r02",
+       "term": "[\"lift\", \"r02\"]",
+       "status": "executed",
+       "t": 122.8,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "122.78 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "stow",
+       "agent": "l17",
+       "term": "[\"cmd\", \"l17\", \"stow\"]",
+       "status": "executed",
+       "t": 122.8,
+       "duration_s": 4.0,
+       "realised_by": "L17 stow",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l17 mode READY"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "126.78 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "transit",
+       "agent": "r02",
+       "term": "[\"transit\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 126.8,
+       "duration_s": 0.0,
+       "realised_by": "realised within R02's place skill (rail + arm path)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "126.78 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r02",
+       "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 126.8,
+       "duration_s": 24.49,
+       "realised_by": "R02 r02_place",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "151.28 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r02",
+       "term": "[\"place\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 151.3,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "151.28 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r02",
+       "term": "[\"release\", \"r02\"]",
+       "status": "executed",
+       "t": 151.3,
+       "duration_s": 0.0,
+       "realised_by": "R02 r02_place (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"seated\": true, \"offset_mm\": [0.42, 0.19, 0.0], \"tilt_deg\": 0.0}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "151.28 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r02",
+       "term": "[\"retract\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 151.3,
+       "duration_s": 6.58,
+       "realised_by": "R02 r02_park",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "157.85 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+       "status": "executed",
+       "t": 157.9,
+       "duration_s": 11.73,
+       "realised_by": "R01 go_above + rig.pick",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "169.59 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "insert",
+       "agent": "r01",
+       "term": "[\"insert\", \"r01\", \"handovernest_r01_r02_handover_frame\"]",
+       "status": "executed",
+       "t": 169.6,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase insert)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "169.59 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "grasp",
+       "agent": "r01",
+       "term": "[\"grasp\", \"r01\"]",
+       "status": "executed",
+       "t": 169.6,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase grasp)",
+       "monitors": [
+        {
+         "name": "grasp_confirmed",
+         "passed": true,
+         "observation": "{\"lifted\": true, \"contact\": true}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "169.59 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "lift",
+       "agent": "r01",
+       "term": "[\"lift\", \"r01\"]",
+       "status": "executed",
+       "t": 169.6,
+       "duration_s": 0.0,
+       "realised_by": "R01 go_above + rig.pick (phase lift)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "169.59 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "transit",
+       "agent": "r01",
+       "term": "[\"transit\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 169.6,
+       "duration_s": 1.98,
+       "realised_by": "R01 r01_planner transit",
+       "monitors": [
+        {
+         "name": "route_clear",
+         "passed": true,
+         "observation": "planned joint-space transit to L10"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "171.57 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "present",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"present\"]",
+       "status": "executed",
+       "t": 171.6,
+       "duration_s": 3.5,
+       "realised_by": "L10 present_for_load",
+       "monitors": [
+        {
+         "name": "source_release_state",
+         "passed": true,
+         "observation": "l10 mode PRESENTED_EMPTY"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "175.07 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "loading / unloading"
+      },
+      {
+       "op": "approach",
+       "agent": "r01",
+       "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 175.1,
+       "duration_s": 12.12,
+       "realised_by": "R01 rig.place (compliant)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "187.19 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "place",
+       "agent": "r01",
+       "term": "[\"place\", \"r01\", \"l10_incubator_transfer_station\"]",
+       "status": "executed",
+       "t": 187.2,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase place)",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "187.19 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "release",
+       "agent": "r01",
+       "term": "[\"release\", \"r01\"]",
+       "status": "executed",
+       "t": 187.2,
+       "duration_s": 0.0,
+       "realised_by": "R01 rig.place (compliant) (phase release)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 164.4}"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "187.19 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      },
+      {
+       "op": "retract",
+       "agent": "r01",
+       "term": "[\"retract\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+       "status": "executed",
+       "t": 187.2,
+       "duration_s": 3.35,
+       "realised_by": "R01 retract to L10 approach",
+       "monitors": [],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "190.55 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {},
+       "hashed": true,
+       "kind": "manipulation"
+      }
+     ]
+    },
+    {
+     "task": "store",
+     "ldl": null,
+     "bindings": {},
+     "sub": [],
+     "robots": [],
+     "leaves": [
+      {
+       "op": "wait_environment",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"wait_environment\"]",
+       "status": "executed",
+       "t": 190.5,
+       "duration_s": 0.25,
+       "realised_by": "L10 environment control",
+       "monitors": [
+        {
+         "name": "environment_accepted",
+         "passed": true,
+         "observation": "L10 environment valid (ILLUSTRATIVE profile)"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "190.8 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "environment_snapshot": "{\"T\": 36.878, \"CO2\": 4.919, \"RH\": 88.706}"
+       },
+       "hashed": true,
+       "kind": "check"
+      },
+      {
+       "op": "store_cmd",
+       "agent": "l10",
+       "term": "[\"cmd\", \"l10\", \"store\"]",
+       "status": "executed",
+       "t": 190.8,
+       "duration_s": 16.5,
+       "realised_by": "L10 incubate (identity read + slot store)",
+       "monitors": [
+        {
+         "name": "seating_confirmed",
+         "passed": true,
+         "observation": "slot 2, read Plate_P17"
+        }
+       ],
+       "constraints": [
+        {
+         "id": "window_kept",
+         "verdict": "ENFORCED",
+         "observation": "207.3 s outside the incubator (window 600.0 s)"
+        }
+       ],
+       "evidence": {
+        "barcode_read": "{\"device\": \"l10\", \"read\": \"P17\"}"
+       },
+       "hashed": true,
+       "kind": "loading / unloading"
+      }
+     ]
+    }
+   ],
+   "session_constraints": [
+    {
+     "id": "interlocks_closed",
+     "verdict": "ENFORCED",
+     "observation": "fact interlocks_closed"
+    },
+    {
+     "id": "projection_succeeds",
+     "verdict": "ENFORCED",
+     "observation": "projected to completion in 256.4 s"
+    },
+    {
+     "id": "window_prospective",
+     "verdict": "ENFORCED",
+     "observation": "projected 256.4 s x 1.20 = 307.68 s <= window 600.0 s"
+    }
+   ]
+  }
+ ],
+ "waits": [
+  {
+   "lab_step": "?w1",
+   "culture_step": "?g1",
+   "leaves": [
+    {
+     "op": "incubate",
+     "agent": "l10",
+     "term": "[\"cmd\", \"l10\", [\"incubate\", 48]]",
+     "status": "executed",
+     "t": 306.71,
+     "duration_s": 172800.0,
+     "realised_by": "culture time advanced (no physics simulated between sessions)",
+     "monitors": [],
+     "constraints": [],
+     "evidence": {
+      "culture_time_h": "48.0"
+     },
+     "hashed": true
+    }
+   ]
+  },
+  {
+   "lab_step": "?w2",
+   "culture_step": "?g2",
+   "leaves": [
+    {
+     "op": "incubate",
+     "agent": "l10",
+     "term": "[\"cmd\", \"l10\", [\"incubate\", 72]]",
+     "status": "executed",
+     "t": 173336.79,
+     "duration_s": 86400.0,
+     "realised_by": "culture time advanced (no physics simulated between sessions)",
+     "monitors": [],
+     "constraints": [],
+     "evidence": {
+      "culture_time_h": "72.0"
+     },
+     "hashed": true
+    }
+   ]
+  }
+ ],
+ "computations": [
+  {
+   "step": "?i1",
+   "culture": "?cr",
+   "input_image": "evidence://l17/L17_Plate_P17_A01_10x_000.png#sha256=48fc5193319d1f76",
+   "image_sha256": "11c0be49a3214138",
+   "calibration": "calibration L17-CAL-2026-10-16-SIM valid=True",
+   "algorithm": "twin/culture/optics.analyse: flat-field, threshold, largest component -> equivalent radius from the CALIBRATED pixel size",
+   "output": "radius estimate, sigma 2.4868461964265425 um (observation_model_v1.json)",
+   "note": "the Isaac run images the twin's synthetic test sample, not organoids; the surrogate radii in section 2 come from the culture model (ILLUSTRATIVE)"
+  },
+  {
+   "step": "?i2",
+   "culture": "?cc",
+   "input_image": "evidence://l17/L17_Plate_P17_A02_10x_001.png#sha256=e44850df89f39d94",
+   "image_sha256": "188a7306d9d8b2e6",
+   "calibration": "calibration L17-CAL-2026-10-16-SIM valid=True",
+   "algorithm": "twin/culture/optics.analyse: flat-field, threshold, largest component -> equivalent radius from the CALIBRATED pixel size",
+   "output": "radius estimate, sigma 2.4868461964265425 um (observation_model_v1.json)",
+   "note": "the Isaac run images the twin's synthetic test sample, not organoids; the surrogate radii in section 2 come from the culture model (ILLUSTRATIVE)"
+  },
+  {
+   "step": "?i3",
+   "culture": "?ck",
+   "input_image": "evidence://l17/L17_Plate_P17_A05_10x_002.png#sha256=9d01d3e81515e2bc",
+   "image_sha256": "d5b7d0ca4b229570",
+   "calibration": "calibration L17-CAL-2026-10-16-SIM valid=True",
+   "algorithm": "twin/culture/optics.analyse: flat-field, threshold, largest component -> equivalent radius from the CALIBRATED pixel size",
+   "output": "radius estimate, sigma 2.4868461964265425 um (observation_model_v1.json)",
+   "note": "the Isaac run images the twin's synthetic test sample, not organoids; the surrogate radii in section 2 come from the culture model (ILLUSTRATIVE)"
+  },
+  {
+   "step": "?a1",
+   "culture": null,
+   "input_image": null,
+   "image_sha256": null,
+   "calibration": null,
+   "algorithm": "twin/culture/eig.posterior_over_models on (rescued - comparator radius, mean radius)",
+   "output": "posterior {'M1_graded': 0.6778, 'M2_threshold': 0.1522, 'M3_protective': 0.1699}; 0.3568 bit gained",
+   "note": "requires the control's estimate within its baseline (critic V4: controls present)"
+  }
+ ],
+ "reactions": [
+  {
+   "step": "?x1",
+   "process": "substance-transfer",
+   "fault": "wrong_reagent",
+   "detected_by": "reagent identity check",
+   "detection": "full",
+   "timing": "before the irreversible phase",
+   "handler": "(on (a failure (type dose-not-delivered) (cause wrong_reagent)) (do (re-establish (some substance ?s (identity verified)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?x1",
+   "process": "substance-transfer",
+   "fault": "tip_missing_or_dropped",
+   "detected_by": "tip-presence sensor",
+   "detection": "full",
+   "timing": "before the irreversible phase",
+   "handler": "(on (a failure (type dose-not-delivered) (cause tip_missing_or_dropped)) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?x1",
+   "process": "substance-transfer",
+   "fault": "clog_or_air_aspiration",
+   "detected_by": "pressure trace",
+   "detection": "full",
+   "timing": "before the irreversible phase",
+   "handler": "(on (a failure (type dose-not-delivered) (cause clog_or_air_aspiration)) (then escalate) (guarantees safe-state))",
+   "claims": [
+    "safe-state"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?x1",
+   "process": "substance-transfer",
+   "fault": "well_misregistration",
+   "detected_by": "nest sensor + vision",
+   "detection": "partial",
+   "timing": "after the irreversible phase",
+   "handler": "(on (a failure (type dose-not-delivered) (cause well_misregistration)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))",
+   "claims": [
+    "safe-state",
+    "contained"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?w1",
+   "process": "incubation",
+   "fault": "temperature_excursion",
+   "detected_by": "temperature sensor",
+   "detection": "full",
+   "timing": "after the irreversible phase",
+   "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+   "claims": [
+    "safe-state"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?w1",
+   "process": "incubation",
+   "fault": "CO2_excursion",
+   "detected_by": "CO2 sensor",
+   "detection": "full",
+   "timing": "after the irreversible phase",
+   "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+   "claims": [
+    "safe-state"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?w1",
+   "process": "incubation",
+   "fault": "gate_stuck_open",
+   "detected_by": "gate position sensor",
+   "detection": "full",
+   "timing": "after the irreversible phase",
+   "handler": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))",
+   "claims": [
+    "safe-state"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?m1",
+   "process": "imaging",
+   "fault": "calibration_expired",
+   "detected_by": "calibration record",
+   "detection": "full",
+   "timing": "non-destructive process",
+   "handler": "(on (a failure (type measurement-invalid) (cause calibration_expired)) (do (re-establish (an instrument (function imaging) (calibration current)))) (then replan) (else escalate) (guarantees goal-or-safe-state))",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?m1",
+   "process": "imaging",
+   "fault": "plate_misseated",
+   "detected_by": "nest sensor + pose",
+   "detection": "partial",
+   "timing": "non-destructive process",
+   "handler": "(on (a failure (type measurement-invalid) (cause plate_misseated)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "holds": true
+  },
+  {
+   "step": "?m1",
+   "process": "imaging",
+   "fault": "out_of_focus",
+   "detected_by": "computed focus score",
+   "detection": "full",
+   "timing": "non-destructive process",
+   "handler": "(on (a failure (type measurement-invalid) (cause out_of_focus)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))",
+   "claims": [
+    "goal-or-safe-state"
+   ],
+   "holds": true
+  }
+ ],
+ "episodes": [
+  {
+   "run": "calibration_lapsed",
+   "at": "image",
+   "failure": "calibration_invalid",
+   "detail": "l17: calibration check failed at imaging",
+   "failed_leaf": {
+    "op": "image_well",
+    "agent": "l17",
+    "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A01/imaging_target_frame\"]]",
+    "monitors": [
+     {
+      "name": "calibration_state",
+      "passed": false,
+      "observation": "reference focus check failed: calibration lapsed"
+     },
+     {
+      "name": "focus_quality",
+      "passed": false,
+      "observation": "focus score 0.41 (below acceptance)"
+     }
+    ]
+   },
+   "repair": [
+    "transport_lab",
+    "calibrate"
+   ],
+   "mode": "replan",
+   "steps": [
+    {
+     "op": "present",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"present\"]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"insert\", \"r02\", \"l17_brightfieldimager_plate_load_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"grasp\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "P17 in gripper"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"lift\", \"r02\"]",
+     "monitors": []
+    },
+    {
+     "op": "stow",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"stow\"]",
+     "monitors": []
+    },
+    {
+     "op": "transit",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"transit\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"place\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"release\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "P17 seated at handovernest"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"retract\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "validate",
+     "agent": "l21",
+     "status": "executed",
+     "term": "[\"cmd\", \"l21\", [\"validate\", \"l17\"]]",
+     "monitors": [
+      {
+       "name": "calibration_state",
+       "passed": true,
+       "observation": "l17 validated on the reference plate"
+      },
+      {
+       "name": "reference_identity",
+       "passed": true,
+       "observation": "reference plate REF-L21 (twin)"
+      }
+     ]
+    },
+    {
+     "op": "replanned",
+     "agent": null,
+     "status": "replanned",
+     "term": null,
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"insert\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"grasp\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "P17 in gripper"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"lift\", \"r02\"]",
+     "monitors": []
+    },
+    {
+     "op": "transit",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"transit\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "present",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"present\"]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"place\", \"r02\", \"l17_brightfieldimager_plate_load_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"release\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "P17 seated at l17"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"retract\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "load",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"load\"]",
+     "monitors": [
+      {
+       "name": "plate_seating",
+       "passed": true,
+       "observation": "P17 on stage"
+      }
+     ]
+    },
+    {
+     "op": "image_well",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A01/imaging_target_frame\"]]",
+     "monitors": [
+      {
+       "name": "calibration_state",
+       "passed": true,
+       "observation": "reference focus check passed"
+      },
+      {
+       "name": "focus_quality",
+       "passed": true,
+       "observation": "focus score 0.93"
+      },
+      {
+       "name": "illumination_state",
+       "passed": true,
+       "observation": "nominal"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired",
+   "experiment_end": "executed"
+  },
+  {
+   "run": "tip_lost",
+   "at": "dose",
+   "failure": "tip_missing",
+   "detail": "tip-presence sensor: no tip before aspiration (aborted before aspiration)",
+   "failed_leaf": {
+    "op": "aspirate",
+    "agent": "l12",
+    "term": "[\"cmd\", \"l12\", [\"aspirate\", \"l12_liquidhandler_reagent_rack_frames_rack_1_pos_2\"]]",
+    "monitors": [
+     {
+      "name": "tip_state",
+      "passed": false,
+      "observation": "no tip on the channel before aspiration"
+     }
+    ]
+   },
+   "repair": [
+    "tip_pick"
+   ],
+   "mode": "retry",
+   "steps": [
+    {
+     "op": "tip_pick",
+     "agent": "l12",
+     "status": "executed",
+     "term": "[\"cmd\", \"l12\", [\"tip_pick\", \"l12_liquidhandler_tip_rack_frames_rack_1\"]]",
+     "monitors": [
+      {
+       "name": "tip_state",
+       "passed": true,
+       "observation": "TIP-004 attached"
+      }
+     ]
+    },
+    {
+     "op": "aspirate",
+     "agent": "l12",
+     "status": "executed",
+     "term": "[\"cmd\", \"l12\", [\"aspirate\", \"l12_liquidhandler_reagent_rack_frames_rack_1_pos_2\"]]",
+     "monitors": [
+      {
+       "name": "tip_state",
+       "passed": true,
+       "observation": "tip present"
+      },
+      {
+       "name": "reagent_identity",
+       "passed": true,
+       "observation": "RGT-0002 abstract_rescue_reagent lot SIM-LOT-B"
+      },
+      {
+       "name": "liquid_level",
+       "passed": true,
+       "observation": "surface detected"
+      },
+      {
+       "name": "pressure_profile",
+       "passed": true,
+       "observation": "nominal (symbolic)"
+      }
+     ]
+    },
+    {
+     "op": "dispense",
+     "agent": "l12",
+     "status": "executed",
+     "term": "[\"cmd\", \"l12\", [\"dispense\", \"P17:A01/pipette_target_frame\", 70]]",
+     "monitors": [
+      {
+       "name": "well_binding",
+       "passed": true,
+       "observation": "P17/A01"
+      },
+      {
+       "name": "dispense_completion",
+       "passed": true,
+       "observation": "14.0 uL"
+      }
+     ]
+    },
+    {
+     "op": "tip_eject",
+     "agent": "l12",
+     "status": "executed",
+     "term": "[\"cmd\", \"l12\", [\"tip_eject\", \"l12_liquidhandler_waste_frame\"]]",
+     "monitors": [
+      {
+       "name": "tip_state",
+       "passed": true,
+       "observation": "tip ejected to waste"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired",
+   "experiment_end": "executed"
+  },
+  {
+   "run": "identity_swap",
+   "at": "retrieve",
+   "failure": "identity_mismatch",
+   "detail": "l10 read P18, expected P17",
+   "failed_leaf": {
+    "op": "verify_identity",
+    "agent": "l10",
+    "term": "[\"cmd\", \"l10\", \"verify_identity\"]",
+    "monitors": [
+     {
+      "name": "plate_identity",
+      "passed": false,
+      "observation": "read P18, expected P17"
+     }
+    ]
+   },
+   "repair": [
+    "quarantine"
+   ],
+   "mode": "fail",
+   "steps": [
+    {
+     "op": "present",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"present\"]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"insert\", \"r01\", \"l10_incubator_transfer_station\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"grasp\", \"r01\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "P18 in gripper"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"lift\", \"r01\"]",
+     "monitors": []
+    },
+    {
+     "op": "stow",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"stow\"]",
+     "monitors": []
+    },
+    {
+     "op": "transit",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"transit\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"], [\"appr\", \"h4_quarantine_transfer_nest\"]]",
+     "monitors": []
+    },
+    {
+     "op": "present",
+     "agent": "h4",
+     "status": "executed",
+     "term": "[\"cmd\", \"h4\", \"present\"]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"approach\", \"r01\", [\"appr\", \"h4_quarantine_transfer_nest\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"place\", \"r01\", \"h4_quarantine_transfer_nest\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"release\", \"r01\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "P18 seated at h4"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"retract\", \"r01\", [\"appr\", \"h4_quarantine_transfer_nest\"]]",
+     "monitors": []
+    },
+    {
+     "op": "contain",
+     "agent": "h4",
+     "status": "executed",
+     "term": "[\"cmd\", \"h4\", \"contain\"]",
+     "monitors": [
+      {
+       "name": "containment_state",
+       "passed": true,
+       "observation": "P18 contained; release requires authorisation"
+      }
+     ]
+    }
+   ],
+   "outcome": "escalated",
+   "experiment_end": "escalated"
+  },
+  {
+   "run": "tool_changer_slow",
+   "at": "run_session",
+   "failure": "window_exceeded",
+   "detail": "policy window: 645.3 s outside the incubator (window 600.0 s)",
+   "failed_leaf": null,
+   "repair": [
+    "transport_lab",
+    "store"
+   ],
+   "mode": "fail",
+   "steps": [
+    {
+     "op": "approach",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"approach\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"insert\", \"r01\", \"handovernest_r01_r02_handover_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"grasp\", \"r01\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "P17 in gripper"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"lift\", \"r01\"]",
+     "monitors": []
+    },
+    {
+     "op": "transit",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"transit\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l10_incubator_transfer_station\"]]",
+     "monitors": []
+    },
+    {
+     "op": "present",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"present\"]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"place\", \"r01\", \"l10_incubator_transfer_station\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"release\", \"r01\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "P17 seated at l10"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"retract\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+     "monitors": []
+    },
+    {
+     "op": "wait_environment",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"wait_environment\"]",
+     "monitors": [
+      {
+       "name": "environment_accepted",
+       "passed": true,
+       "observation": "environment within profile (ILLUSTRATIVE)"
+      }
+     ]
+    },
+    {
+     "op": "store_cmd",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"store\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "P17 in slot"
+      }
+     ]
+    }
+   ],
+   "outcome": "escalated",
+   "experiment_end": "escalated"
+  },
+  {
+   "run": "isaac_identity_swap",
+   "at": "retrieve",
+   "failure": "identity_mismatch",
+   "detail": "l10 read P23, expected P18",
+   "failed_leaf": {
+    "op": "verify_identity",
+    "agent": "l10",
+    "term": "[\"cmd\", \"l10\", \"verify_identity\"]",
+    "monitors": [
+     {
+      "name": "plate_identity",
+      "passed": false,
+      "observation": "read P23, expected P18"
+     }
+    ]
+   },
+   "repair": [
+    "quarantine"
+   ],
+   "mode": "fail",
+   "steps": [
+    {
+     "op": "present",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"present\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "l10 mode PRESENTED_LOADED"
+      }
+     ]
+    },
+    {
+     "op": "approach",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"insert\", \"r01\", \"l10_incubator_transfer_station\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"grasp\", \"r01\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"lifted\": true, \"contact\": true}"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"lift\", \"r01\"]",
+     "monitors": []
+    },
+    {
+     "op": "stow",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"stow\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "l10 mode READY"
+      }
+     ]
+    },
+    {
+     "op": "transit",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"transit\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"], [\"appr\", \"h4_quarantine_transfer_nest\"]]",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "planned joint-space transit to H4"
+      }
+     ]
+    },
+    {
+     "op": "present",
+     "agent": "h4",
+     "status": "executed",
+     "term": "[\"cmd\", \"h4\", \"present\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "h4 mode PRESENTED"
+      }
+     ]
+    },
+    {
+     "op": "approach",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"approach\", \"r01\", [\"appr\", \"h4_quarantine_transfer_nest\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"place\", \"r01\", \"h4_quarantine_transfer_nest\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"release\", \"r01\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 131.4}"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"retract\", \"r01\", [\"appr\", \"h4_quarantine_transfer_nest\"]]",
+     "monitors": []
+    },
+    {
+     "op": "contain",
+     "agent": "h4",
+     "status": "executed",
+     "term": "[\"cmd\", \"h4\", \"contain\"]",
+     "monitors": [
+      {
+       "name": "containment_state",
+       "passed": true,
+       "observation": "{\"mode\": \"QUARANTINED\", \"locked\": true, \"occupied\": true}"
+      },
+      {
+       "name": "reentry_prevented",
+       "passed": true,
+       "observation": "unauthorised release refused: 'authorization token missing'"
+      }
+     ]
+    }
+   ],
+   "outcome": "escalated",
+   "experiment_end": "escalated"
+  },
+  {
+   "run": "isaac_calibration_lapsed",
+   "at": "image",
+   "failure": "calibration_invalid",
+   "detail": "L17 refused imaging: calibration_invalidated: L17-CAL-2026-10-16-SIM invalidated by QC-SCENARIO-LAPSE; repair/recalibrate via L21 first",
+   "failed_leaf": {
+    "op": "image_well",
+    "agent": "l17",
+    "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A01/imaging_target_frame\"]]",
+    "monitors": [
+     {
+      "name": "calibration_state",
+      "passed": false,
+      "observation": "calibration_invalidated: L17-CAL-2026-10-16-SIM invalidated by QC-SCENARIO-LAPSE; repair/recalibrate via L21 first"
+     },
+     {
+      "name": "focus_quality",
+      "passed": false,
+      "observation": "failed monitors []"
+     }
+    ]
+   },
+   "repair": [
+    "transport_lab",
+    "calibrate"
+   ],
+   "mode": "replan",
+   "steps": [
+    {
+     "op": "present",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"present\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "l17 mode PRESENTED_LOADED"
+      }
+     ]
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"insert\", \"r02\", \"l17_brightfieldimager_plate_load_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"grasp\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.8}"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"lift\", \"r02\"]",
+     "monitors": []
+    },
+    {
+     "op": "stow",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"stow\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "l17 mode READY"
+      }
+     ]
+    },
+    {
+     "op": "transit",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"transit\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"place\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"release\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [0.34, 0.22, 0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"retract\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "validate",
+     "agent": "l21",
+     "status": "executed",
+     "term": "[\"cmd\", \"l21\", [\"validate\", \"l17\"]]",
+     "monitors": [
+      {
+       "name": "calibration_state",
+       "passed": true,
+       "observation": "QC verdict pass; L17 calibration valid=True"
+      },
+      {
+       "name": "reference_identity",
+       "passed": true,
+       "observation": "REF-L21-001"
+      }
+     ]
+    },
+    {
+     "op": "replanned",
+     "agent": null,
+     "status": "replanned",
+     "term": null,
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"insert\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"grasp\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.9}"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"lift\", \"r02\"]",
+     "monitors": []
+    },
+    {
+     "op": "transit",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"transit\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "present",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"present\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "l17 mode PRESENTED_EMPTY"
+      }
+     ]
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"place\", \"r02\", \"l17_brightfieldimager_plate_load_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"release\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [0.2, 0.25, 0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"retract\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "load",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"load\"]",
+     "monitors": [
+      {
+       "name": "plate_seating",
+       "passed": true,
+       "observation": "L17 mode LOADED"
+      }
+     ]
+    },
+    {
+     "op": "image_well",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A01/imaging_target_frame\"]]",
+     "monitors": [
+      {
+       "name": "calibration_state",
+       "passed": true,
+       "observation": "calibration L17-CAL-2026-10-16-L21-01 valid=True"
+      },
+      {
+       "name": "focus_quality",
+       "passed": true,
+       "observation": "failed monitors []"
+      },
+      {
+       "name": "illumination_state",
+       "passed": true,
+       "observation": "nominal"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired",
+   "experiment_end": "escalated"
+  },
+  {
+   "run": "isaac_calibration_lapsed",
+   "at": "image",
+   "failure": "focus_invalid",
+   "detail": "A02 out of focus; retained",
+   "failed_leaf": {
+    "op": "image_well",
+    "agent": "l17",
+    "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A02/imaging_target_frame\"]]",
+    "monitors": [
+     {
+      "name": "calibration_state",
+      "passed": true,
+      "observation": "calibration L17-CAL-2026-10-16-L21-01 valid=True"
+     },
+     {
+      "name": "focus_quality",
+      "passed": false,
+      "observation": "failed monitors ['focus_quality']"
+     }
+    ]
+   },
+   "repair": [
+    "autofocus"
+   ],
+   "mode": "retry",
+   "steps": [
+    {
+     "op": "autofocus",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", [\"autofocus\", \"P17:A02/imaging_target_frame\"]]",
+     "monitors": [
+      {
+       "name": "focus_quality",
+       "passed": true,
+       "observation": "focus memory cleared"
+      }
+     ]
+    },
+    {
+     "op": "image_well",
+     "agent": "l17",
+     "status": "failed",
+     "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A02/imaging_target_frame\"]]",
+     "monitors": [
+      {
+       "name": "calibration_state",
+       "passed": true,
+       "observation": "calibration L17-CAL-2026-10-16-L21-01 valid=True"
+      },
+      {
+       "name": "focus_quality",
+       "passed": false,
+       "observation": "failed monitors ['focus_quality']"
+      }
+     ]
+    }
+   ],
+   "outcome": "failed",
+   "experiment_end": "escalated"
+  },
+  {
+   "run": "isaac_calibration_lapsed",
+   "at": "run_session",
+   "failure": "focus_invalid",
+   "detail": "A02 out of focus; retained",
+   "failed_leaf": {
+    "op": "image_well",
+    "agent": "l17",
+    "term": "[\"cmd\", \"l17\", [\"image_well\", \"P17:A02/imaging_target_frame\"]]",
+    "monitors": [
+     {
+      "name": "calibration_state",
+      "passed": true,
+      "observation": "calibration L17-CAL-2026-10-16-L21-01 valid=True"
+     },
+     {
+      "name": "focus_quality",
+      "passed": false,
+      "observation": "failed monitors ['focus_quality']"
+     }
+    ]
+   },
+   "repair": [
+    "transport_lab",
+    "store"
+   ],
+   "mode": "fail",
+   "steps": [
+    {
+     "op": "present",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"present\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "l17 mode PRESENTED_LOADED"
+      }
+     ]
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"insert\", \"r02\", \"l17_brightfieldimager_plate_load_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"grasp\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.9}"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"lift\", \"r02\"]",
+     "monitors": []
+    },
+    {
+     "op": "stow",
+     "agent": "l17",
+     "status": "executed",
+     "term": "[\"cmd\", \"l17\", \"stow\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "l17 mode READY"
+      }
+     ]
+    },
+    {
+     "op": "transit",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"transit\", \"r02\", [\"appr\", \"l17_brightfieldimager_plate_load_frame\"], [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"approach\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"place\", \"r02\", \"handovernest_r01_r02_handover_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"release\", \"r02\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [0.26, 0.23, 0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r02",
+     "status": "executed",
+     "term": "[\"retract\", \"r02\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "approach",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"approach\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"]]",
+     "monitors": []
+    },
+    {
+     "op": "insert",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"insert\", \"r01\", \"handovernest_r01_r02_handover_frame\"]",
+     "monitors": []
+    },
+    {
+     "op": "grasp",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"grasp\", \"r01\"]",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"lifted\": true, \"contact\": true}"
+      }
+     ]
+    },
+    {
+     "op": "lift",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"lift\", \"r01\"]",
+     "monitors": []
+    },
+    {
+     "op": "transit",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"transit\", \"r01\", [\"appr\", \"handovernest_r01_r02_handover_frame\"], [\"appr\", \"l10_incubator_transfer_station\"]]",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "planned joint-space transit to L10"
+      }
+     ]
+    },
+    {
+     "op": "present",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"present\"]",
+     "monitors": [
+      {
+       "name": "source_release_state",
+       "passed": true,
+       "observation": "l10 mode PRESENTED_EMPTY"
+      }
+     ]
+    },
+    {
+     "op": "approach",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"approach\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+     "monitors": []
+    },
+    {
+     "op": "place",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"place\", \"r01\", \"l10_incubator_transfer_station\"]",
+     "monitors": []
+    },
+    {
+     "op": "release",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"release\", \"r01\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 122.5}"
+      }
+     ]
+    },
+    {
+     "op": "retract",
+     "agent": "r01",
+     "status": "executed",
+     "term": "[\"retract\", \"r01\", [\"appr\", \"l10_incubator_transfer_station\"]]",
+     "monitors": []
+    },
+    {
+     "op": "wait_environment",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"wait_environment\"]",
+     "monitors": [
+      {
+       "name": "environment_accepted",
+       "passed": true,
+       "observation": "L10 environment valid (ILLUSTRATIVE profile)"
+      }
+     ]
+    },
+    {
+     "op": "store_cmd",
+     "agent": "l10",
+     "status": "executed",
+     "term": "[\"cmd\", \"l10\", \"store\"]",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "slot 2, read Plate_P17"
+      }
+     ]
+    }
+   ],
+   "outcome": "escalated",
+   "experiment_end": "escalated"
+  }
+ ],
+ "source": "rsa/out/trail_isaac_nominal.json (Isaac twin, 17 Oct 2026)"
+}

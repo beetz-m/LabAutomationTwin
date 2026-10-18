@@ -1,0 +1,31 @@
+# Regulation clause registry (WP3.5). ILLUSTRATIVE mapping for a research cell (not a GMP site): clauses are cited by
+# identifier only, their text is not reproduced, and no compliance is claimed. Each clause names how it is realised:
+#   runtime     a registry constraint checked during execution
+#   audit_field a property every audit entry must have (checked by rsa/audit.py)
+#   documentary a human sign-off record outside the robot (reported as not covered unless a record exists)
+clauses:
+  EU-GMP-Annex11-9:
+    topic: audit trail of GMP-relevant changes and actions
+    realised_by: {audit_field: [hash_chain, lifecycle_entry_per_transition]}
+  ALCOA-attributable:
+    topic: data attributable to who/what produced it
+    realised_by: {audit_field: [agent, software]}
+  ALCOA-contemporaneous:
+    topic: recorded when it happened
+    realised_by: {audit_field: [t_sim]}
+    note: simulated clock only in the symbolic backend
+  ALCOA-original:
+    topic: original record / true copy preserved
+    realised_by: {audit_field: [evidence_sha256]}
+  21CFR11-11.50:
+    topic: signature manifestations (who, when, meaning)
+    realised_by: {documentary: [quarantine_release_signoff]}
+  OECD-GLP-study-plan:
+    topic: study plan approved before the study starts
+    realised_by: {documentary: [study_plan_approval]}
+  ISO10218-2-safeguarding:
+    topic: safeguarding of the robot cell
+    realised_by: {runtime: [interlocks_closed]}
+  biosafety-contamination:
+    topic: no handling of potentially contaminated cultures without containment
+    realised_by: {runtime: [contamination_free]}

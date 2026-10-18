@@ -1,0 +1,106 @@
+{
+ "scenario": "identity_swap",
+ "about": "L10 holds P18 instead of P17 at the rescue session; quarantine P18, escalate",
+ "error": "escalated: l10 read P18, expected P17 (after quarantine P18 (Cell 01 routing H4_quarantine_if_identity_unresolved); P17 location unknown, human escalation)",
+ "end": "escalated",
+ "n_entries": 224,
+ "n_leaves": 68,
+ "clock_s": 173149.2,
+ "audit": {
+  "verify": {
+   "ok": true,
+   "n": 224,
+   "attributable": true,
+   "evidence_hashed": true
+  },
+  "tampered_detected": true,
+  "tampered_first_bad_seq": 13
+ },
+ "verdict": {
+  "realization": {
+   "ok": false,
+   "violated": [],
+   "run_ended": "escalated"
+  },
+  "validity": {
+   "ok": false,
+   "checks": {
+    "V1_identity_continuity": {
+     "ok": false,
+     "observation": "identity reads ['P17', 'P18']; mismatch at seq [181]"
+    },
+    "V2_calibration_at_measurement": {
+     "ok": false,
+     "observation": "0 readouts, calibration observed valid for all"
+    },
+    "V3_binding_validated": {
+     "ok": false,
+     "observation": "no readout"
+    },
+    "V4_controls_present": {
+     "ok": false,
+     "observation": "control ['A05'], imaged []"
+    },
+    "V5_dose_delivered": {
+     "ok": true,
+     "observation": "2 dispenses within 5.0 %: True"
+    },
+    "V6_sample_integrity": {
+     "ok": true,
+     "observation": "window kept on every trip"
+    },
+    "V7_design_realised": {
+     "ok": false,
+     "observation": "missing [('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+    }
+   },
+   "refused_by": []
+  },
+  "promotable": false,
+  "nr3": false,
+  "disposition": "escalated: human decision required; nothing committed",
+  "design": {
+   "id": "c_d85_t48_n1",
+   "requirement_bits": 0.5,
+   "eig_bits": 0.5439
+  }
+ },
+ "repairs": [
+  {
+   "failure": "identity_mismatch",
+   "detail": "l10 read P18, expected P17",
+   "at": "d0081-verify_identity",
+   "repairs": [
+    "(an action (type quarantine) (plate P18) (reason identity mismatch: read P18, expected P17))"
+   ],
+   "repair_categories": [
+    "quarantine"
+   ],
+   "then": "fail",
+   "why": "quarantine P18 (Cell 01 routing H4_quarantine_if_identity_unresolved); P17 location unknown, human escalation",
+   "category": "retrieve",
+   "node": "d0080-retrieve"
+  }
+ ],
+ "expected": {
+  "end": "escalated",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "repaired_at": [
+   "retrieve"
+  ]
+ },
+ "got": {
+  "end": "escalated",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "nr3": false,
+  "repaired_at": [
+   "retrieve"
+  ]
+ },
+ "expectation_ok": true,
+ "plate": "P17"
+}

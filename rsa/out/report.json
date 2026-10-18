@@ -1,0 +1,2757 @@
+{
+ "kernel": "rsa-kernel/0.1",
+ "lint": [],
+ "scenarios": {
+  "nominal": {
+   "scenario": "nominal",
+   "about": "the derived 0.5-bit experiment, fault-free",
+   "error": null,
+   "end": "executed",
+   "n_entries": 498,
+   "n_leaves": 153,
+   "clock_s": 260018.6,
+   "crosscheck": [
+    {
+     "session": "s0",
+     "steps": 52,
+     "planner_steps": 52,
+     "same": true,
+     "duration_s": 298.9,
+     "planner_duration_s": 298.9,
+     "projected_s": 298.9
+    },
+    {
+     "session": "s1",
+     "steps": 48,
+     "planner_steps": 48,
+     "same": true,
+     "duration_s": 263.3,
+     "planner_duration_s": 263.3,
+     "projected_s": 263.3
+    },
+    {
+     "session": "s2",
+     "steps": 51,
+     "planner_steps": 51,
+     "same": true,
+     "duration_s": 256.4,
+     "planner_duration_s": 256.4,
+     "projected_s": 256.4
+    }
+   ],
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 498,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 13
+   },
+   "verdict": {
+    "realization": {
+     "ok": true,
+     "violated": [],
+     "run_ended": "executed"
+    },
+    "validity": {
+     "ok": true,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads ['P17', 'P17', 'P17']"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": true,
+       "observation": "3 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": true,
+       "observation": "binding(l17,organoid_radius_um) = validated"
+      },
+      "V4_controls_present": {
+       "ok": true,
+       "observation": "control ['A05'], imaged ['A01', 'A02', 'A05']"
+      },
+      "V5_dose_delivered": {
+       "ok": true,
+       "observation": "3 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": true,
+       "observation": "all designed interventions and measurements executed"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": true,
+    "nr3": false,
+    "disposition": "commit: result may update the culture belief",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [],
+   "expected": {
+    "end": "executed",
+    "realization": true,
+    "validity": true,
+    "promotable": true,
+    "repaired_at": []
+   },
+   "got": {
+    "end": "executed",
+    "realization": true,
+    "validity": true,
+    "promotable": true,
+    "nr3": false,
+    "repaired_at": []
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "uncalibrated_known": {
+   "scenario": "uncalibrated_known",
+   "about": "the KB does not assert calibrated(l17); a QC calibration is planned before imaging (step insertion by knowledge)",
+   "error": null,
+   "end": "executed",
+   "n_entries": 504,
+   "n_leaves": 154,
+   "clock_s": 260138.6,
+   "crosscheck": [
+    {
+     "session": "s0",
+     "steps": 52,
+     "planner_steps": 52,
+     "same": true,
+     "duration_s": 298.9,
+     "planner_duration_s": 298.9,
+     "projected_s": 298.9
+    },
+    {
+     "session": "s1",
+     "steps": 48,
+     "planner_steps": 48,
+     "same": true,
+     "duration_s": 263.3,
+     "planner_duration_s": 263.3,
+     "projected_s": 263.3
+    },
+    {
+     "session": "s2",
+     "steps": 52,
+     "planner_steps": 52,
+     "same": true,
+     "duration_s": 376.4,
+     "planner_duration_s": 376.4,
+     "projected_s": 376.4
+    }
+   ],
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 504,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 13
+   },
+   "verdict": {
+    "realization": {
+     "ok": true,
+     "violated": [],
+     "run_ended": "executed"
+    },
+    "validity": {
+     "ok": true,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads ['P17', 'P17', 'P17']"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": true,
+       "observation": "3 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": true,
+       "observation": "binding(l17,organoid_radius_um) = validated"
+      },
+      "V4_controls_present": {
+       "ok": true,
+       "observation": "control ['A05'], imaged ['A01', 'A02', 'A05']"
+      },
+      "V5_dose_delivered": {
+       "ok": true,
+       "observation": "3 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": true,
+       "observation": "all designed interventions and measurements executed"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": true,
+    "nr3": false,
+    "disposition": "commit: result may update the culture belief",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [],
+   "expected": {
+    "end": "executed",
+    "realization": true,
+    "validity": true,
+    "promotable": true,
+    "repaired_at": []
+   },
+   "got": {
+    "end": "executed",
+    "realization": true,
+    "validity": true,
+    "promotable": true,
+    "nr3": false,
+    "repaired_at": []
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "calibration_lapsed": {
+   "scenario": "calibration_lapsed",
+   "about": "the KB believes L17 calibrated but it lapsed; detected at imaging, repaired by QC and re-imaging",
+   "error": null,
+   "end": "executed",
+   "n_entries": 569,
+   "n_leaves": 177,
+   "clock_s": 260240.9,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 569,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 13
+   },
+   "verdict": {
+    "realization": {
+     "ok": true,
+     "violated": [],
+     "run_ended": "executed"
+    },
+    "validity": {
+     "ok": true,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads ['P17', 'P17', 'P17']"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": true,
+       "observation": "3 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": true,
+       "observation": "binding(l17,organoid_radius_um) = validated"
+      },
+      "V4_controls_present": {
+       "ok": true,
+       "observation": "control ['A05'], imaged ['A01', 'A02', 'A05']"
+      },
+      "V5_dose_delivered": {
+       "ok": true,
+       "observation": "3 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": true,
+       "observation": "all designed interventions and measurements executed"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": true,
+    "nr3": false,
+    "disposition": "commit: result may update the culture belief",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [
+    {
+     "failure": "calibration_invalid",
+     "detail": "l17: calibration check failed at imaging",
+     "at": "d0185-image_well",
+     "repairs": [
+      "(an action (type transport-lab) (plate P17) (target handovernest))",
+      "(an action (type calibrate) (target l17))"
+     ],
+     "repair_categories": [
+      "transport_lab",
+      "calibrate"
+     ],
+     "then": "replan",
+     "why": "calibration lapsed at imaging: set the plate aside, recalibrate the imager at its QC station (needs the stage), re-plan the measurement (Cell 01 routing L21_qc)",
+     "category": "image",
+     "node": "d0183-image"
+    }
+   ],
+   "expected": {
+    "end": "executed",
+    "realization": true,
+    "validity": true,
+    "promotable": true,
+    "repaired_at": [
+     "image"
+    ]
+   },
+   "got": {
+    "end": "executed",
+    "realization": true,
+    "validity": true,
+    "promotable": true,
+    "nr3": false,
+    "repaired_at": [
+     "image"
+    ]
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "tip_lost": {
+   "scenario": "tip_lost",
+   "about": "the tip falls off after the pick at the rescue dose; detected before aspiration, tip replaced",
+   "error": null,
+   "end": "executed",
+   "n_entries": 501,
+   "n_leaves": 155,
+   "clock_s": 260036.4,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 501,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 13
+   },
+   "verdict": {
+    "realization": {
+     "ok": true,
+     "violated": [],
+     "run_ended": "executed"
+    },
+    "validity": {
+     "ok": true,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads ['P17', 'P17', 'P17']"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": true,
+       "observation": "3 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": true,
+       "observation": "binding(l17,organoid_radius_um) = validated"
+      },
+      "V4_controls_present": {
+       "ok": true,
+       "observation": "control ['A05'], imaged ['A01', 'A02', 'A05']"
+      },
+      "V5_dose_delivered": {
+       "ok": true,
+       "observation": "3 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": true,
+       "observation": "all designed interventions and measurements executed"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": true,
+    "nr3": false,
+    "disposition": "commit: result may update the culture belief",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [
+    {
+     "failure": "tip_missing",
+     "detail": "tip-presence sensor: no tip before aspiration (aborted before aspiration)",
+     "at": "d0114-aspirate",
+     "repairs": [
+      "(a command (type tip-pick) (command tip_pick) (device l12) (args ['stations_l12_liquidhandler_tip_rack_frames_rack_1']) (material ['dose', 'a01', 'rescue', 70]))"
+     ],
+     "repair_categories": [
+      "tip_pick"
+     ],
+     "then": "retry",
+     "why": "replace tip and retry; aborted before aspiration, so no plate exposure",
+     "category": "dose",
+     "node": "d0112-dose"
+    }
+   ],
+   "expected": {
+    "end": "executed",
+    "realization": true,
+    "validity": true,
+    "promotable": true,
+    "repaired_at": [
+     "dose"
+    ]
+   },
+   "got": {
+    "end": "executed",
+    "realization": true,
+    "validity": true,
+    "promotable": true,
+    "nr3": false,
+    "repaired_at": [
+     "dose"
+    ]
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "identity_swap": {
+   "scenario": "identity_swap",
+   "about": "L10 holds P18 instead of P17 at the rescue session; quarantine P18, escalate",
+   "error": "escalated: l10 read P18, expected P17 (after quarantine P18 (Cell 01 routing H4_quarantine_if_identity_unresolved); P17 location unknown, human escalation)",
+   "end": "escalated",
+   "n_entries": 224,
+   "n_leaves": 68,
+   "clock_s": 173149.2,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 224,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 13
+   },
+   "verdict": {
+    "realization": {
+     "ok": false,
+     "violated": [],
+     "run_ended": "escalated"
+    },
+    "validity": {
+     "ok": false,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": false,
+       "observation": "identity reads ['P17', 'P18']; mismatch at seq [181]"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": false,
+       "observation": "0 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": false,
+       "observation": "no readout"
+      },
+      "V4_controls_present": {
+       "ok": false,
+       "observation": "control ['A05'], imaged []"
+      },
+      "V5_dose_delivered": {
+       "ok": true,
+       "observation": "2 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": false,
+       "observation": "missing [('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": false,
+    "nr3": false,
+    "disposition": "escalated: human decision required; nothing committed",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [
+    {
+     "failure": "identity_mismatch",
+     "detail": "l10 read P18, expected P17",
+     "at": "d0081-verify_identity",
+     "repairs": [
+      "(an action (type quarantine) (plate P18) (reason identity mismatch: read P18, expected P17))"
+     ],
+     "repair_categories": [
+      "quarantine"
+     ],
+     "then": "fail",
+     "why": "quarantine P18 (Cell 01 routing H4_quarantine_if_identity_unresolved); P17 location unknown, human escalation",
+     "category": "retrieve",
+     "node": "d0080-retrieve"
+    }
+   ],
+   "expected": {
+    "end": "escalated",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "repaired_at": [
+     "retrieve"
+    ]
+   },
+   "got": {
+    "end": "escalated",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "nr3": false,
+    "repaired_at": [
+     "retrieve"
+    ]
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "tool_changer_slow": {
+   "scenario": "tool_changer_slow",
+   "about": "the tool changer takes 600 s at the rescue session; window exceeded, safe return",
+   "error": "session_failed: policy window: 645.3 s outside the incubator (window 600.0 s) (after safe return of the plate to its controlled environment (window exceeded))",
+   "end": "escalated",
+   "n_entries": 266,
+   "n_leaves": 79,
+   "clock_s": 173807.2,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 266,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 13
+   },
+   "verdict": {
+    "realization": {
+     "ok": false,
+     "violated": [
+      "window_kept"
+     ],
+     "run_ended": "escalated"
+    },
+    "validity": {
+     "ok": false,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads ['P17', 'P17']"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": false,
+       "observation": "0 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": false,
+       "observation": "no readout"
+      },
+      "V4_controls_present": {
+       "ok": false,
+       "observation": "control ['A05'], imaged []"
+      },
+      "V5_dose_delivered": {
+       "ok": true,
+       "observation": "2 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": false,
+       "observation": "window violated: 645.3 s outside the incubator (window 600.0 s)"
+      },
+      "V7_design_realised": {
+       "ok": false,
+       "observation": "missing [('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": false,
+    "nr3": false,
+    "disposition": "escalated: human decision required; nothing committed",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [
+    {
+     "failure": "window_exceeded",
+     "detail": "policy window: 645.3 s outside the incubator (window 600.0 s)",
+     "at": "d0083-transport_lab",
+     "repairs": [
+      "(an action (type transport-lab) (plate P17) (target l10))",
+      "(an action (type store) (plate P17) (location l10))"
+     ],
+     "repair_categories": [
+      "transport_lab",
+      "store"
+     ],
+     "then": "fail",
+     "why": "safe return of the plate to its controlled environment (window exceeded)",
+     "category": "run_session",
+     "node": "d0078-run_session"
+    }
+   ],
+   "expected": {
+    "end": "escalated",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "repaired_at": [
+     "run_session"
+    ]
+   },
+   "got": {
+    "end": "escalated",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "nr3": false,
+    "repaired_at": [
+     "run_session"
+    ]
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "imager_swapped": {
+   "scenario": "imager_swapped",
+   "about": "L17 replaced by a capability-matched imager without a validated binding for the readout (device exchange)",
+   "error": null,
+   "end": "executed",
+   "n_entries": 498,
+   "n_leaves": 153,
+   "clock_s": 260018.6,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 498,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 13
+   },
+   "verdict": {
+    "realization": {
+     "ok": true,
+     "violated": [],
+     "run_ended": "executed"
+    },
+    "validity": {
+     "ok": false,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads ['P17', 'P17', 'P17']"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": true,
+       "observation": "3 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": false,
+       "observation": "binding(l17,organoid_radius_um) = capability_match"
+      },
+      "V4_controls_present": {
+       "ok": true,
+       "observation": "control ['A05'], imaged ['A01', 'A02', 'A05']"
+      },
+      "V5_dose_delivered": {
+       "ok": true,
+       "observation": "3 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": true,
+       "observation": "all designed interventions and measurements executed"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": false,
+    "nr3": true,
+    "disposition": "NR3: physically realised but not valid evidence; nothing committed",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [],
+   "expected": {
+    "end": "executed",
+    "realization": true,
+    "validity": false,
+    "promotable": false,
+    "nr3": true,
+    "repaired_at": []
+   },
+   "got": {
+    "end": "executed",
+    "realization": true,
+    "validity": false,
+    "promotable": false,
+    "nr3": true,
+    "repaired_at": []
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "imager_incapable": {
+   "scenario": "imager_incapable",
+   "about": "L17 replaced by a device without well imaging; the measurement session cannot be grounded",
+   "error": "refused: refused by projection_succeeds",
+   "end": "abstained",
+   "n_entries": 3,
+   "n_leaves": 0,
+   "clock_s": 0.0,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 3,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 1
+   },
+   "verdict": {
+    "realization": {
+     "ok": false,
+     "violated": [
+      "projection_succeeds"
+     ],
+     "run_ended": "abstained"
+    },
+    "validity": {
+     "ok": false,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads []"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": false,
+       "observation": "0 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": false,
+       "observation": "no readout"
+      },
+      "V4_controls_present": {
+       "ok": false,
+       "observation": "control ['A05'], imaged []"
+      },
+      "V5_dose_delivered": {
+       "ok": false,
+       "observation": "0 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": false,
+       "observation": "missing [('A01', 'challenge', 0), ('A02', 'challenge', 0), ('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": false,
+    "nr3": false,
+    "disposition": "refused before execution",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [],
+   "expected": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "repaired_at": []
+   },
+   "got": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "nr3": false,
+    "repaired_at": []
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "rescue_unbound": {
+   "scenario": "rescue_unbound",
+   "about": "the rescue reagent is not bound to a rack position; the rescue dose cannot be grounded",
+   "error": "refused: refused by projection_succeeds",
+   "end": "abstained",
+   "n_entries": 3,
+   "n_leaves": 0,
+   "clock_s": 0.0,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 3,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 1
+   },
+   "verdict": {
+    "realization": {
+     "ok": false,
+     "violated": [
+      "projection_succeeds"
+     ],
+     "run_ended": "abstained"
+    },
+    "validity": {
+     "ok": false,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads []"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": false,
+       "observation": "0 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": false,
+       "observation": "no readout"
+      },
+      "V4_controls_present": {
+       "ok": false,
+       "observation": "control ['A05'], imaged []"
+      },
+      "V5_dose_delivered": {
+       "ok": false,
+       "observation": "0 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": false,
+       "observation": "missing [('A01', 'challenge', 0), ('A02', 'challenge', 0), ('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": false,
+    "nr3": false,
+    "disposition": "refused before execution",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [],
+   "expected": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "repaired_at": []
+   },
+   "got": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "nr3": false,
+    "repaired_at": []
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "control_dropped": {
+   "scenario": "control_dropped",
+   "about": "the workflow is changed to drop the control well; the experiment is refused before any motion",
+   "error": "refused: refused by projection_succeeds, challenge_requires_controls",
+   "end": "abstained",
+   "n_entries": 3,
+   "n_leaves": 0,
+   "clock_s": 0.0,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 3,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 1
+   },
+   "verdict": {
+    "realization": {
+     "ok": false,
+     "violated": [
+      "projection_succeeds"
+     ],
+     "run_ended": "abstained"
+    },
+    "validity": {
+     "ok": false,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads []"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": false,
+       "observation": "0 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": false,
+       "observation": "no readout"
+      },
+      "V4_controls_present": {
+       "ok": false,
+       "observation": "control [], imaged []"
+      },
+      "V5_dose_delivered": {
+       "ok": false,
+       "observation": "0 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": false,
+       "observation": "missing [('A01', 'challenge', 0), ('A02', 'challenge', 0), ('A01', 'rescue', 48), ('A01', 72), ('A02', 72)]"
+      }
+     },
+     "refused_by": [
+      "challenge_requires_controls"
+     ]
+    },
+    "promotable": false,
+    "nr3": false,
+    "disposition": "refused before execution",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [],
+   "expected": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "repaired_at": []
+   },
+   "got": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "nr3": false,
+    "repaired_at": []
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "contamination": {
+   "scenario": "contamination",
+   "about": "contamination is suspected; challenge and rescue are refused",
+   "error": "refused: refused by projection_succeeds, contamination_free",
+   "end": "abstained",
+   "n_entries": 3,
+   "n_leaves": 0,
+   "clock_s": 0.0,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 3,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 1
+   },
+   "verdict": {
+    "realization": {
+     "ok": false,
+     "violated": [
+      "contamination_free",
+      "projection_succeeds"
+     ],
+     "run_ended": "abstained"
+    },
+    "validity": {
+     "ok": false,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads []"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": false,
+       "observation": "0 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": false,
+       "observation": "no readout"
+      },
+      "V4_controls_present": {
+       "ok": false,
+       "observation": "control ['A05'], imaged []"
+      },
+      "V5_dose_delivered": {
+       "ok": false,
+       "observation": "0 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": false,
+       "observation": "missing [('A01', 'challenge', 0), ('A02', 'challenge', 0), ('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": false,
+    "nr3": false,
+    "disposition": "refused before execution",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [],
+   "expected": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "repaired_at": []
+   },
+   "got": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "nr3": false,
+    "repaired_at": []
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  },
+  "card_incomplete": {
+   "scenario": "card_incomplete",
+   "about": "the dose category card lacks its evidence obligations; the understanding gate refuses the dose",
+   "error": "refused: refused by projection_succeeds",
+   "end": "abstained",
+   "n_entries": 3,
+   "n_leaves": 0,
+   "clock_s": 0.0,
+   "audit": {
+    "verify": {
+     "ok": true,
+     "n": 3,
+     "attributable": true,
+     "evidence_hashed": true
+    },
+    "tampered_detected": true,
+    "tampered_first_bad_seq": 1
+   },
+   "verdict": {
+    "realization": {
+     "ok": false,
+     "violated": [
+      "projection_succeeds"
+     ],
+     "run_ended": "abstained"
+    },
+    "validity": {
+     "ok": false,
+     "checks": {
+      "V1_identity_continuity": {
+       "ok": true,
+       "observation": "identity reads []"
+      },
+      "V2_calibration_at_measurement": {
+       "ok": false,
+       "observation": "0 readouts, calibration observed valid for all"
+      },
+      "V3_binding_validated": {
+       "ok": false,
+       "observation": "no readout"
+      },
+      "V4_controls_present": {
+       "ok": false,
+       "observation": "control ['A05'], imaged []"
+      },
+      "V5_dose_delivered": {
+       "ok": false,
+       "observation": "0 dispenses within 5.0 %: True"
+      },
+      "V6_sample_integrity": {
+       "ok": true,
+       "observation": "window kept on every trip"
+      },
+      "V7_design_realised": {
+       "ok": false,
+       "observation": "missing [('A01', 'challenge', 0), ('A02', 'challenge', 0), ('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+      }
+     },
+     "refused_by": []
+    },
+    "promotable": false,
+    "nr3": false,
+    "disposition": "refused before execution",
+    "design": {
+     "id": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439
+    }
+   },
+   "repairs": [],
+   "expected": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "repaired_at": []
+   },
+   "got": {
+    "end": "abstained",
+    "realization": false,
+    "validity": false,
+    "promotable": false,
+    "nr3": false,
+    "repaired_at": []
+   },
+   "expectation_ok": true,
+   "plate": "P17"
+  }
+ },
+ "cq": {
+  "ok": true,
+  "n": 52,
+  "correct": 52,
+  "grounded": 52,
+  "by_family": {
+   "what": [
+    3,
+    3
+   ],
+   "why": [
+    4,
+    4
+   ],
+   "how": [
+    2,
+    2
+   ],
+   "constraints": [
+    3,
+    3
+   ],
+   "capability": [
+    4,
+    4
+   ],
+   "what-if": [
+    3,
+    3
+   ],
+   "evidence": [
+    4,
+    4
+   ],
+   "retrospective": [
+    13,
+    13
+   ],
+   "normative": [
+    4,
+    4
+   ],
+   "verdict": [
+    8,
+    8
+   ],
+   "epistemic": [
+    2,
+    2
+   ],
+   "taxonomy": [
+    1,
+    1
+   ],
+   "modularity": [
+    1,
+    1
+   ]
+  },
+  "results": [
+   {
+    "id": "CQ-01",
+    "family": "what",
+    "scenario": "nominal",
+    "question": "What are you doing at the first dispense -- which device, plate, well, reagent and volume?",
+    "ok": true,
+    "answer": {
+     "category": "dispense",
+     "device": "l12",
+     "plate": "P17",
+     "well": "A01",
+     "reagent": "challenge",
+     "volume_uL": 17.0,
+     "culture_time_h": 0.0
+    },
+    "expected": {
+     "category": "dispense",
+     "device": "l12",
+     "plate": "P17",
+     "well": "A01",
+     "reagent": "challenge",
+     "volume_uL": 17.0,
+     "culture_time_h": 0.0
+    },
+    "grounds": [
+     "trail#86:dispense/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-01",
+    "family": "what",
+    "scenario": "tip_lost",
+    "question": "What are you doing at the first dispense -- which device, plate, well, reagent and volume?",
+    "ok": true,
+    "answer": {
+     "category": "dispense",
+     "device": "l12",
+     "plate": "P17",
+     "well": "A01",
+     "reagent": "challenge",
+     "volume_uL": 17.0,
+     "culture_time_h": 0.0
+    },
+    "expected": {
+     "category": "dispense",
+     "device": "l12",
+     "plate": "P17",
+     "well": "A01",
+     "reagent": "challenge",
+     "volume_uL": 17.0
+    },
+    "grounds": [
+     "trail#86:dispense/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-02",
+    "family": "why",
+    "scenario": "nominal",
+    "question": "Why are you dispensing into this well?",
+    "ok": true,
+    "answer": {
+     "chain": [
+      "dispense",
+      "dose",
+      "intervene",
+      "run_session",
+      "experiment"
+     ],
+     "design": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439,
+     "role": "rescued",
+     "session": "s0"
+    },
+    "expected": {
+     "chain": [
+      "dispense",
+      "dose",
+      "intervene",
+      "run_session",
+      "experiment"
+     ],
+     "design": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439,
+     "role": "rescued",
+     "session": "s0"
+    },
+    "grounds": [
+     "trail#86:dispense/executed",
+     "trail#81:dose/grounded",
+     "trail#77:intervene/grounded",
+     "trail#5:run_session/grounded",
+     "trail#1:experiment/grounded"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-03",
+    "family": "why",
+    "scenario": "nominal",
+    "question": "Why was this device chosen for dosing, and which alternatives were rejected?",
+    "ok": true,
+    "answer": {
+     "device": "l12",
+     "grounds": [
+      "automated(l12)",
+      "has_function(l12,dispensing)",
+      "component:L12_LiquidHandler.capabilities\u220bdose_well"
+     ],
+     "rejected": []
+    },
+    "expected": {
+     "device": "l12",
+     "grounds": {
+      "$contains": [
+       "automated(l12)",
+       "has_function(l12,dispensing)",
+       "component:L12_LiquidHandler.capabilities\u220bdose_well"
+      ]
+     }
+    },
+    "grounds": [
+     "trail#81:dose/grounded",
+     "automated(l12)",
+     "has_function(l12,dispensing)",
+     "component:L12_LiquidHandler.capabilities\u220bdose_well"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-04",
+    "family": "why",
+    "scenario": "nominal",
+    "question": "Why does the plate go via the handover nest?",
+    "ok": true,
+    "answer": {
+     "legs": [
+      [
+       "r01",
+       "l10",
+       "handovernest"
+      ],
+      [
+       "r02",
+       "handovernest",
+       "l12"
+      ]
+     ],
+     "serves_source": [
+      "r01"
+     ],
+     "serves_target": [
+      "r02"
+     ]
+    },
+    "expected": {
+     "legs": [
+      [
+       "r01",
+       "l10",
+       "handovernest"
+      ],
+      [
+       "r02",
+       "handovernest",
+       "l12"
+      ]
+     ],
+     "serves_source": [
+      "r01"
+     ],
+     "serves_target": [
+      "r02"
+     ]
+    },
+    "grounds": [
+     "trail#17:transport_lab/grounded",
+     "serves(r01,l10)",
+     "serves(r01,handovernest)",
+     "holds_plate(l10)",
+     "holds_plate(handovernest)",
+     "serves(r02,handovernest)",
+     "serves(r02,l12)",
+     "holds_plate(handovernest)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-05",
+    "family": "why",
+    "scenario": "nominal",
+    "question": "Why does R02 couple its tool in every session?",
+    "ok": true,
+    "answer": {
+     "couplings": {
+      "s0": 1,
+      "s1": 1,
+      "s2": 1
+     },
+     "grounds": [
+      "requires_tool(r02,t01)",
+      "tool_pose(t01,tooling_automatictoolchanger_dock_t01)"
+     ],
+     "belief_before": {
+      "s0": "assumed",
+      "s1": "stale",
+      "s2": "stale"
+     }
+    },
+    "expected": {
+     "couplings": {
+      "s0": 1,
+      "s1": 1,
+      "s2": 1
+     },
+     "grounds": {
+      "$contains": [
+       "requires_tool(r02,t01)"
+      ]
+     },
+     "belief_before": {
+      "s0": "assumed",
+      "s1": "stale",
+      "s2": "stale"
+     }
+    },
+    "grounds": [
+     "trail#46:transporting/grounded",
+     "requires_tool(r02,t01)",
+     "tool_pose(t01,tooling_automatictoolchanger_dock_t01)",
+     "trail#214:transporting/grounded",
+     "requires_tool(r02,t01)",
+     "tool_pose(t01,tooling_automatictoolchanger_dock_t01)",
+     "trail#368:transporting/grounded",
+     "requires_tool(r02,t01)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-06",
+    "family": "how",
+    "scenario": "nominal",
+    "question": "How long was the plate outside the incubator in each session, and what is the limit?",
+    "ok": true,
+    "answer": {
+     "s0": 298.9,
+     "s1": 263.3,
+     "s2": 256.4,
+     "window_s": 600.0,
+     "margin_pct": 20
+    },
+    "expected": {
+     "s0": 298.9,
+     "s1": 263.3,
+     "s2": 256.4,
+     "window_s": 600.0,
+     "margin_pct": 20
+    },
+    "grounds": [
+     "trail#8:check_interlocks/executed",
+     "trail#165:run_session/executed",
+     "trail#176:check_interlocks/executed",
+     "trail#319:run_session/executed",
+     "trail#330:check_interlocks/executed",
+     "trail#496:run_session/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-06",
+    "family": "how",
+    "scenario": "uncalibrated_known",
+    "question": "How long was the plate outside the incubator in each session, and what is the limit?",
+    "ok": true,
+    "answer": {
+     "s0": 298.9,
+     "s1": 263.3,
+     "s2": 256.4,
+     "window_s": 600.0,
+     "margin_pct": 20
+    },
+    "expected": {
+     "s2": 256.4
+    },
+    "grounds": [
+     "trail#8:check_interlocks/executed",
+     "trail#165:run_session/executed",
+     "trail#176:check_interlocks/executed",
+     "trail#319:run_session/executed",
+     "trail#336:check_interlocks/executed",
+     "trail#502:run_session/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-07",
+    "family": "constraints",
+    "scenario": "nominal",
+    "question": "Which constraints were checked in session s0, with which verdicts?",
+    "ok": true,
+    "answer": {
+     "interlocks_closed": [
+      "ENFORCED"
+     ],
+     "projection_succeeds": [
+      "ENFORCED"
+     ],
+     "window_prospective": [
+      "ENFORCED"
+     ],
+     "window_kept": [
+      "ENFORCED"
+     ],
+     "identity_verified": [
+      "ENFORCED"
+     ],
+     "contamination_free": [
+      "ENFORCED"
+     ],
+     "tool_compatible": [
+      "ENFORCED"
+     ],
+     "reagent_bound": [
+      "ENFORCED"
+     ],
+     "l12_airspace_clear": [
+      "ENFORCED"
+     ],
+     "dispense_completed": [
+      "ENFORCED"
+     ],
+     "environment_before_store": [
+      "ENFORCED"
+     ]
+    },
+    "expected": {
+     "interlocks_closed": [
+      "ENFORCED"
+     ],
+     "projection_succeeds": [
+      "ENFORCED"
+     ],
+     "window_prospective": [
+      "ENFORCED"
+     ],
+     "window_kept": [
+      "ENFORCED"
+     ],
+     "identity_verified": [
+      "ENFORCED"
+     ],
+     "contamination_free": [
+      "ENFORCED"
+     ],
+     "tool_compatible": [
+      "ENFORCED"
+     ],
+     "reagent_bound": [
+      "ENFORCED"
+     ],
+     "l12_airspace_clear": [
+      "ENFORCED"
+     ],
+     "dispense_completed": [
+      "ENFORCED"
+     ],
+     "environment_before_store": [
+      "ENFORCED"
+     ]
+    },
+    "grounds": [
+     "trail#100:dispense/executed",
+     "trail#101:tip_eject/executed",
+     "trail#102:dose/executed",
+     "trail#106:transport_lab/accepted",
+     "trail#116:approach/executed",
+     "... 62 entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-07b",
+    "family": "constraints",
+    "scenario": "tool_changer_slow",
+    "question": "Which constraints were violated in session s1?",
+    "ok": true,
+    "answer": {
+     "interlocks_closed": [
+      "ENFORCED"
+     ],
+     "projection_succeeds": [
+      "ENFORCED"
+     ],
+     "window_prospective": [
+      "ENFORCED"
+     ],
+     "window_kept": [
+      "ENFORCED",
+      "VIOLATED"
+     ],
+     "identity_verified": [
+      "ENFORCED"
+     ],
+     "contamination_free": [
+      "ENFORCED"
+     ],
+     "tool_compatible": [
+      "ENFORCED"
+     ],
+     "environment_before_store": [
+      "ENFORCED"
+     ]
+    },
+    "expected": {
+     "window_kept": [
+      "ENFORCED",
+      "VIOLATED"
+     ]
+    },
+    "grounds": [
+     "trail#174:run_session/accepted",
+     "trail#176:check_interlocks/executed",
+     "trail#181:verify_identity/executed",
+     "trail#182:present/executed",
+     "trail#183:retrieve/executed",
+     "... 21 entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-08",
+    "family": "constraints",
+    "scenario": "nominal",
+    "question": "What must hold before and while you dispense?",
+    "ok": true,
+    "answer": {
+     "kernel": [
+      "contamination_free",
+      "reagent_bound",
+      "dispense_completed",
+      "l12_airspace_clear"
+     ],
+     "cell01_contract": [
+      "plate ID verified",
+      "well bound",
+      "reagent lot verified",
+      "tip attached and compatible",
+      "device calibrated"
+     ]
+    },
+    "expected": {
+     "kernel": {
+      "$set": [
+       "contamination_free",
+       "reagent_bound",
+       "dispense_completed",
+       "l12_airspace_clear"
+      ]
+     },
+     "cell01_contract": [
+      "plate ID verified",
+      "well bound",
+      "reagent lot verified",
+      "tip attached and compatible",
+      "device calibrated"
+     ]
+    },
+    "grounds": [
+     "registry:constraints.contamination_free",
+     "registry:constraints.reagent_bound",
+     "registry:constraints.dispense_completed",
+     "registry:constraints.l12_airspace_clear",
+     "component:L12_LiquidHandler.action_contracts.dose_well"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-09",
+    "family": "capability",
+    "scenario": "nominal",
+    "question": "Which devices can image the plate now, and how far is their readout validated?",
+    "ok": true,
+    "answer": {
+     "l17": "validated"
+    },
+    "expected": {
+     "l17": "validated"
+    },
+    "grounds": [
+     "automated(l17)",
+     "has_function(l17,imaging)",
+     "component:L17_BrightFieldImager.capabilities\u220bimage_well",
+     "registry:devices.measurement_bindings.L17.organoid_radius_um (twin/l17_optics.py focus + L21 reference grid (test_reports/l21_report.json))"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-09",
+    "family": "capability",
+    "scenario": "imager_swapped",
+    "question": "Which devices can image the plate now, and how far is their readout validated?",
+    "ok": true,
+    "answer": {
+     "l17": "capability_match"
+    },
+    "expected": {
+     "l17": "capability_match"
+    },
+    "grounds": [
+     "automated(l17)",
+     "has_function(l17,imaging)",
+     "component:L17_BrightFieldImager.capabilities\u220bimage_well",
+     "component L17-alt: capabilities\u220bimage_well, no validated binding for organoid_radius_um"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-09",
+    "family": "capability",
+    "scenario": "imager_incapable",
+    "question": "Which devices can image the plate now, and how far is their readout validated?",
+    "ok": true,
+    "answer": {},
+    "expected": {},
+    "grounds": [
+     "rejected l17: component record lacks capability ['image_well']",
+     "no automated device with imaging + image_well"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-10",
+    "family": "capability",
+    "scenario": "nominal",
+    "question": "Can R02 carry the plate from L10 to the handover nest?",
+    "ok": true,
+    "answer": {
+     "possible": false,
+     "missing": [
+      "serves(r02,l10)"
+     ]
+    },
+    "expected": {
+     "possible": false,
+     "missing": [
+      "serves(r02,l10)"
+     ]
+    },
+    "grounds": [
+     "serves(r02,handovernest)",
+     "not serves(r02,l10)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-11",
+    "family": "what-if",
+    "scenario": "nominal",
+    "question": "What would change in the imaging session if L17 were not known to be calibrated?",
+    "ok": true,
+    "answer": {
+     "outcome": "completes",
+     "refused_by": [],
+     "inserted": [
+      "calibrate"
+     ],
+     "plan_changed": true,
+     "duration_s": 376.4,
+     "within_window": true,
+     "validity_violations": [],
+     "qc_station": "l21"
+    },
+    "expected": {
+     "outcome": "completes",
+     "inserted": [
+      "calibrate"
+     ],
+     "qc_station": "l21",
+     "duration_s": 376.4,
+     "within_window": true
+    },
+    "grounds": [
+     "dry run on facts_g050+nominal+whatif (52 leaves vs 51)",
+     "not calibrated(l17)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-12",
+    "family": "what-if",
+    "scenario": "nominal",
+    "question": "What would happen if a tool change took 600 s?",
+    "ok": true,
+    "answer": {
+     "outcome": "refused",
+     "refused_by": [
+      "window_prospective"
+     ],
+     "inserted": [],
+     "plan_changed": true,
+     "duration_s": 0.0,
+     "within_window": true,
+     "validity_violations": []
+    },
+    "expected": {
+     "outcome": "refused",
+     "refused_by": {
+      "$contains": [
+       "window_prospective"
+      ]
+     }
+    },
+    "grounds": [
+     "dry run on facts_g050+nominal+whatif (0 leaves vs 52)",
+     "dur(tool_couple,6000)",
+     "not dur(tool_couple,416)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-13",
+    "family": "what-if",
+    "scenario": "nominal",
+    "question": "What would happen if contamination were suspected?",
+    "ok": true,
+    "answer": {
+     "outcome": "refused",
+     "refused_by": [
+      "contamination_free",
+      "projection_succeeds"
+     ],
+     "inserted": [],
+     "plan_changed": true,
+     "duration_s": 0.0,
+     "validity_violations": []
+    },
+    "expected": {
+     "outcome": "refused",
+     "refused_by": {
+      "$contains": [
+       "contamination_free"
+      ]
+     }
+    },
+    "grounds": [
+     "dry run on facts_g050+nominal+whatif (0 leaves vs 153)",
+     "contamination_suspected"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-14",
+    "family": "evidence",
+    "scenario": "nominal",
+    "question": "How do you know that A01 received the challenge?",
+    "ok": true,
+    "answer": {
+     "well": "A01",
+     "reagent": "challenge",
+     "lot": "SIM-LOT-A",
+     "delivered_uL": 17.0,
+     "commanded_uL": 17.0,
+     "tip_id": "TIP-001",
+     "identity_read_in_session": "P17",
+     "culture_time_h": 0.0,
+     "hash_chained": true
+    },
+    "expected": {
+     "well": "A01",
+     "reagent": "challenge",
+     "lot": "SIM-LOT-A",
+     "delivered_uL": 17.0,
+     "commanded_uL": 17.0,
+     "identity_read_in_session": "P17",
+     "culture_time_h": 0.0,
+     "hash_chained": true
+    },
+    "grounds": [
+     "trail#86:dispense/executed",
+     "trail#85:aspirate/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-15",
+    "family": "evidence",
+    "scenario": "nominal",
+    "question": "Is your record intact, and would you notice if someone edited it?",
+    "ok": true,
+    "answer": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "expected": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "grounds": [
+     "verify over 498 entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-15",
+    "family": "evidence",
+    "scenario": "identity_swap",
+    "question": "Is your record intact, and would you notice if someone edited it?",
+    "ok": true,
+    "answer": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "expected": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "grounds": [
+     "verify over 224 entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-15",
+    "family": "evidence",
+    "scenario": "imager_swapped",
+    "question": "Is your record intact, and would you notice if someone edited it?",
+    "ok": true,
+    "answer": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "expected": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "grounds": [
+     "verify over 498 entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-16",
+    "family": "retrospective",
+    "scenario": "nominal",
+    "question": "What went wrong, and what did you repair?",
+    "ok": true,
+    "answer": [],
+    "expected": [],
+    "grounds": [
+     "no repairing entry among 498 trail entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-16",
+    "family": "retrospective",
+    "scenario": "calibration_lapsed",
+    "question": "What went wrong, and what did you repair?",
+    "ok": true,
+    "answer": [
+     {
+      "failure": "calibration_invalid",
+      "at": "image",
+      "repair": [
+       "transport_lab",
+       "calibrate"
+      ]
+     }
+    ],
+    "expected": [
+     {
+      "failure": "calibration_invalid",
+      "at": "image",
+      "repair": [
+       "transport_lab",
+       "calibrate"
+      ]
+     }
+    ],
+    "grounds": [
+     "trail#409:image/repairing"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-16",
+    "family": "retrospective",
+    "scenario": "tip_lost",
+    "question": "What went wrong, and what did you repair?",
+    "ok": true,
+    "answer": [
+     {
+      "failure": "tip_missing",
+      "at": "dose",
+      "repair": [
+       "tip_pick"
+      ]
+     }
+    ],
+    "expected": [
+     {
+      "failure": "tip_missing",
+      "at": "dose",
+      "repair": [
+       "tip_pick"
+      ]
+     }
+    ],
+    "grounds": [
+     "trail#254:dose/repairing"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-16",
+    "family": "retrospective",
+    "scenario": "identity_swap",
+    "question": "What went wrong, and what did you repair?",
+    "ok": true,
+    "answer": [
+     {
+      "failure": "identity_mismatch",
+      "at": "retrieve",
+      "repair": [
+       "quarantine"
+      ]
+     }
+    ],
+    "expected": [
+     {
+      "failure": "identity_mismatch",
+      "at": "retrieve",
+      "repair": [
+       "quarantine"
+      ]
+     }
+    ],
+    "grounds": [
+     "trail#182:retrieve/repairing"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-16",
+    "family": "retrospective",
+    "scenario": "tool_changer_slow",
+    "question": "What went wrong, and what did you repair?",
+    "ok": true,
+    "answer": [
+     {
+      "failure": "window_exceeded",
+      "at": "run_session",
+      "repair": [
+       "transport_lab",
+       "store"
+      ]
+     }
+    ],
+    "expected": [
+     {
+      "failure": "window_exceeded",
+      "at": "run_session",
+      "repair": [
+       "transport_lab",
+       "store"
+      ]
+     }
+    ],
+    "grounds": [
+     "trail#226:run_session/repairing"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-17",
+    "family": "retrospective",
+    "scenario": "nominal",
+    "question": "Was the rescue given? If not, why not?",
+    "ok": true,
+    "answer": {
+     "rescue_given": true,
+     "wells": [
+      "A01"
+     ],
+     "culture_time_h": 48.0
+    },
+    "expected": {
+     "rescue_given": true,
+     "wells": [
+      "A01"
+     ],
+     "culture_time_h": 48.0
+    },
+    "grounds": [
+     "trail#254:dispense/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-17",
+    "family": "retrospective",
+    "scenario": "tip_lost",
+    "question": "Was the rescue given? If not, why not?",
+    "ok": true,
+    "answer": {
+     "rescue_given": true,
+     "wells": [
+      "A01"
+     ],
+     "culture_time_h": 48.0
+    },
+    "expected": {
+     "rescue_given": true,
+     "wells": [
+      "A01"
+     ],
+     "culture_time_h": 48.0
+    },
+    "grounds": [
+     "trail#257:dispense/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-17",
+    "family": "retrospective",
+    "scenario": "identity_swap",
+    "question": "Was the rescue given? If not, why not?",
+    "ok": true,
+    "answer": {
+     "rescue_given": false,
+     "reason": "identity_mismatch: l10 read P18, expected P17"
+    },
+    "expected": {
+     "rescue_given": false,
+     "reason": "~identity_mismatch"
+    },
+    "grounds": [
+     "trail#181:verify_identity/failed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-17",
+    "family": "retrospective",
+    "scenario": "tool_changer_slow",
+    "question": "Was the rescue given? If not, why not?",
+    "ok": true,
+    "answer": {
+     "rescue_given": false,
+     "reason": "window_kept: 645.3 s outside the incubator (window 600.0 s); window_kept: 645.3 s outside the incubator (window 600.0 s)"
+    },
+    "expected": {
+     "rescue_given": false,
+     "reason": "~window"
+    },
+    "grounds": [
+     "trail#222:tool_couple/policy_violation"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-17",
+    "family": "retrospective",
+    "scenario": "rescue_unbound",
+    "question": "Was the rescue given? If not, why not?",
+    "ok": true,
+    "answer": {
+     "rescue_given": false,
+     "reason": "refused by projection_succeeds; projection_succeeds: projection failed after 173224.7 s: unresolved: reagent_pose(rescue); no reagent_pose fact: reagent not bound to a rack position"
+    },
+    "expected": {
+     "rescue_given": false,
+     "reason": "~reagent_pose(rescue)"
+    },
+    "grounds": [
+     "trail#2:experiment/abstained"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-18",
+    "family": "retrospective",
+    "scenario": "nominal",
+    "question": "Where is the experiment's plate now, and how do you know?",
+    "ok": true,
+    "answer": {
+     "plate": "P17",
+     "at": "slot:l10",
+     "source": "observed"
+    },
+    "expected": {
+     "plate": "P17",
+     "at": "slot:l10",
+     "source": "observed"
+    },
+    "grounds": [
+     "belief plate_at:P17 (d0222-store_cmd)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-18",
+    "family": "retrospective",
+    "scenario": "identity_swap",
+    "question": "Where is the experiment's plate now, and how do you know?",
+    "ok": true,
+    "answer": {
+     "plate": "P17",
+     "at": "unknown",
+     "source": "observed"
+    },
+    "expected": {
+     "plate": "P17",
+     "at": "unknown",
+     "source": "observed"
+    },
+    "grounds": [
+     "belief plate_at:P17 (d0081-verify_identity)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-18",
+    "family": "retrospective",
+    "scenario": "control_dropped",
+    "question": "Where is the experiment's plate now, and how do you know?",
+    "ok": true,
+    "answer": {
+     "plate": "P17",
+     "at": "slot:l10",
+     "source": "inferred"
+    },
+    "expected": {
+     "plate": "P17",
+     "at": "slot:l10",
+     "source": "inferred"
+    },
+    "grounds": [
+     "belief plate_at:P17 (home + experiment ABox (plate P17 in L10))"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-19",
+    "family": "normative",
+    "scenario": "nominal",
+    "question": "Which regulation clauses does this run cover, which not?",
+    "ok": true,
+    "answer": {
+     "covered": [
+      "EU-GMP-Annex11-9",
+      "ALCOA-attributable",
+      "ALCOA-contemporaneous",
+      "ALCOA-original",
+      "ISO10218-2-safeguarding",
+      "biosafety-contamination"
+     ],
+     "not_covered": [
+      "21CFR11-11.50",
+      "OECD-GLP-study-plan"
+     ],
+     "violated": []
+    },
+    "expected": {
+     "covered": {
+      "$set": [
+       "EU-GMP-Annex11-9",
+       "ALCOA-attributable",
+       "ALCOA-contemporaneous",
+       "ALCOA-original",
+       "ISO10218-2-safeguarding",
+       "biosafety-contamination"
+      ]
+     },
+     "not_covered": {
+      "$set": [
+       "21CFR11-11.50",
+       "OECD-GLP-study-plan"
+      ]
+     },
+     "violated": []
+    },
+    "grounds": [
+     "registry:norms",
+     "verify ok=True"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-19",
+    "family": "normative",
+    "scenario": "contamination",
+    "question": "Which regulation clauses does this run cover, which not?",
+    "ok": true,
+    "answer": {
+     "covered": [
+      "EU-GMP-Annex11-9",
+      "ALCOA-attributable",
+      "ALCOA-contemporaneous",
+      "ALCOA-original"
+     ],
+     "not_covered": [
+      "21CFR11-11.50",
+      "OECD-GLP-study-plan",
+      "ISO10218-2-safeguarding"
+     ],
+     "violated": [
+      "biosafety-contamination"
+     ]
+    },
+    "expected": {
+     "violated": [
+      "biosafety-contamination"
+     ]
+    },
+    "grounds": [
+     "registry:norms",
+     "verify ok=True"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-20",
+    "family": "normative",
+    "scenario": "nominal",
+    "question": "Which material did you quarantine, and who authorised it?",
+    "ok": true,
+    "answer": {
+     "quarantined": []
+    },
+    "expected": {
+     "quarantined": []
+    },
+    "grounds": [
+     "no contain entry among 498 trail entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-20",
+    "family": "normative",
+    "scenario": "identity_swap",
+    "question": "Which material did you quarantine, and who authorised it?",
+    "ok": true,
+    "answer": {
+     "quarantined": [
+      {
+       "plate": "P18",
+       "status": "requested",
+       "authorization": "human_review_required"
+      }
+     ]
+    },
+    "expected": {
+     "quarantined": [
+      {
+       "plate": "P18",
+       "status": "requested",
+       "authorization": "human_review_required"
+      }
+     ]
+    },
+    "grounds": [
+     "trail#219:contain/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-21",
+    "family": "verdict",
+    "scenario": "nominal",
+    "question": "Is the result a valid experiment?",
+    "ok": true,
+    "answer": {
+     "realization": true,
+     "validity": true,
+     "nr3": false,
+     "failed_checks": []
+    },
+    "expected": {
+     "realization": true,
+     "validity": true,
+     "nr3": false,
+     "failed_checks": []
+    },
+    "grounds": [
+     "critic over trail"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-21",
+    "family": "verdict",
+    "scenario": "calibration_lapsed",
+    "question": "Is the result a valid experiment?",
+    "ok": true,
+    "answer": {
+     "realization": true,
+     "validity": true,
+     "nr3": false,
+     "failed_checks": []
+    },
+    "expected": {
+     "realization": true,
+     "validity": true,
+     "nr3": false
+    },
+    "grounds": [
+     "critic over trail"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-21",
+    "family": "verdict",
+    "scenario": "imager_swapped",
+    "question": "Is the result a valid experiment?",
+    "ok": true,
+    "answer": {
+     "realization": true,
+     "validity": false,
+     "nr3": true,
+     "failed_checks": [
+      "V3_binding_validated"
+     ]
+    },
+    "expected": {
+     "realization": true,
+     "validity": false,
+     "nr3": true,
+     "failed_checks": [
+      "V3_binding_validated"
+     ]
+    },
+    "grounds": [
+     "critic over trail"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-21",
+    "family": "verdict",
+    "scenario": "identity_swap",
+    "question": "Is the result a valid experiment?",
+    "ok": true,
+    "answer": {
+     "realization": false,
+     "validity": false,
+     "nr3": false,
+     "failed_checks": [
+      "V1_identity_continuity",
+      "V2_calibration_at_measurement",
+      "V3_binding_validated",
+      "V4_controls_present",
+      "V7_design_realised"
+     ]
+    },
+    "expected": {
+     "realization": false,
+     "validity": false,
+     "failed_checks": {
+      "$set": [
+       "V1_identity_continuity",
+       "V2_calibration_at_measurement",
+       "V3_binding_validated",
+       "V4_controls_present",
+       "V7_design_realised"
+      ]
+     }
+    },
+    "grounds": [
+     "critic over trail"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-22",
+    "family": "verdict",
+    "scenario": "nominal",
+    "question": "May this result update the culture belief?",
+    "ok": true,
+    "answer": {
+     "promotable": true,
+     "reason": "commit: result may update the culture belief"
+    },
+    "expected": {
+     "promotable": true
+    },
+    "grounds": [
+     "critic over trail",
+     "D009"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-22",
+    "family": "verdict",
+    "scenario": "calibration_lapsed",
+    "question": "May this result update the culture belief?",
+    "ok": true,
+    "answer": {
+     "promotable": true,
+     "reason": "commit: result may update the culture belief"
+    },
+    "expected": {
+     "promotable": true
+    },
+    "grounds": [
+     "critic over trail",
+     "D009"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-22",
+    "family": "verdict",
+    "scenario": "imager_swapped",
+    "question": "May this result update the culture belief?",
+    "ok": true,
+    "answer": {
+     "promotable": false,
+     "reason": "NR3: physically realised but not valid evidence; nothing committed"
+    },
+    "expected": {
+     "promotable": false,
+     "reason": "~NR3"
+    },
+    "grounds": [
+     "critic over trail",
+     "D009"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-22",
+    "family": "verdict",
+    "scenario": "identity_swap",
+    "question": "May this result update the culture belief?",
+    "ok": true,
+    "answer": {
+     "promotable": false,
+     "reason": "escalated: human decision required; nothing committed"
+    },
+    "expected": {
+     "promotable": false,
+     "reason": "~escalated"
+    },
+    "grounds": [
+     "critic over trail",
+     "D009"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-23",
+    "family": "epistemic",
+    "scenario": "nominal",
+    "question": "What do you not know?",
+    "ok": true,
+    "answer": [
+     "shuttle:h4 = stowed",
+     "shuttle:l09 = stowed",
+     "L12: Executed volume is not equivalent to biological effective dose."
+    ],
+    "expected": {
+     "$contains": [
+      "L12: Executed volume is not equivalent to biological effective dose."
+     ]
+    },
+    "grounds": [
+     "belief provenance",
+     "component:L12_LiquidHandler.constraints"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-23",
+    "family": "epistemic",
+    "scenario": "identity_swap",
+    "question": "What do you not know?",
+    "ok": true,
+    "answer": [
+     "plate_at:P17 = unknown",
+     "pose:r02 = None",
+     "shuttle:l09 = stowed",
+     "shuttle:l17 = stowed",
+     "tool:r02 = None",
+     "L12: Executed volume is not equivalent to biological effective dose."
+    ],
+    "expected": {
+     "$contains": [
+      "plate_at:P17 = unknown"
+     ]
+    },
+    "grounds": [
+     "belief provenance",
+     "component:L12_LiquidHandler.constraints"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-24",
+    "family": "what",
+    "scenario": "nominal",
+    "question": "What did R02 do in the rescue session?",
+    "ok": true,
+    "answer": {
+     "tool_couple": 1,
+     "approach": 4,
+     "insert": 2,
+     "grasp": 2,
+     "lift": 2,
+     "transit": 2,
+     "place": 2,
+     "release": 2,
+     "retract": 2
+    },
+    "expected": {
+     "tool_couple": 1,
+     "approach": 4,
+     "insert": 2,
+     "grasp": 2,
+     "lift": 2,
+     "transit": 2,
+     "place": 2,
+     "release": 2,
+     "retract": 2
+    },
+    "grounds": [
+     "trail motion entries of r02 in s1"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-25",
+    "family": "taxonomy",
+    "scenario": "nominal",
+    "question": "What kind of action is a dispense, and what does it realise?",
+    "ok": true,
+    "answer": {
+     "level": "command",
+     "effect_class": "SubstanceManipulation",
+     "facet": "transformation",
+     "okf_class": "DeviceCommandDesignator",
+     "realises": [
+      "dose",
+      "intervene"
+     ]
+    },
+    "expected": {
+     "level": "command",
+     "effect_class": "SubstanceManipulation",
+     "facet": "transformation",
+     "okf_class": "DeviceCommandDesignator",
+     "realises": [
+      "dose",
+      "intervene"
+     ]
+    },
+    "grounds": [
+     "registry:categories.dispense",
+     "trail#86:dispense/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-26",
+    "family": "modularity",
+    "scenario": "nominal",
+    "question": "If L17 were exchanged for the generic imager, what would change?",
+    "ok": true,
+    "answer": {
+     "outcome": "completes",
+     "refused_by": [],
+     "inserted": [],
+     "plan_changed": false,
+     "duration_s": 260018.6,
+     "validity_violations": [
+      "measurement_binding_validated"
+     ]
+    },
+    "expected": {
+     "outcome": "completes",
+     "plan_changed": false,
+     "validity_violations": [
+      "measurement_binding_validated"
+     ]
+    },
+    "grounds": [
+     "dry run on facts_g050+nominal+whatif (153 leaves vs 153)"
+    ],
+    "error": null
+   }
+  ]
+ },
+ "ok": true
+}

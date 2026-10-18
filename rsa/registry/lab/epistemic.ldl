@@ -1,0 +1,78 @@
+;; The epistemic meta model, LDL v0.3: how a belief that falls short of what a requirement needs is treated.
+;; User decisions 2026-10-17: grades rich enough to build a meta model (v0.2); for now the language needs the
+;; expressive power, the rules themselves are to be worked out thoroughly later (v0.3). So the rules below are a
+;; first, illustrative set; what is fixed is what a rule can say:
+;;   (when <condition>+)  over the belief's grade (source with comparisons over the order, freshness, corroboration),
+;;                        the believed item (an entity description, matched by subsumption), its use
+;;                        (consequential | routine), the action it is used in (context), and where the belief came from
+;;   (treat <treatment>)  a named treatment: a plan (`do` an action designator), what follows (`then`, `else`), its cost
+;;   (because "...")      the justification, kept for the audit trail and the competency questions
+;; Rules are tried in order; the first whose conditions all hold applies.
+
+(meta-model epistemic
+  (order (source observed reported inferred assumed predicted unknown))
+
+  (rule quarantine-of-the-contradicted
+    (when (a belief (of (the plate (identity verified))) (grade (corroboration contradicted)))
+          (in (an action (type quarantining))))
+    (treat proceed)
+    (because "containing a plate whose identity is contradicted is the treatment, not something it may block"))
+  (rule contradiction
+    (when (a belief (grade (corroboration contradicted))))
+    (treat contain-and-escalate)
+    (because "two observations disagree; nothing that depends on the item may proceed"))
+  (rule no-belief
+    (when (a belief (grade (source unknown))))
+    (treat sense-or-abstain)
+    (because "no belief at all: sense if a sensor can, otherwise refuse the step"))
+  (rule stale
+    (when (a belief (grade (freshness stale))))
+    (treat re-observe)
+    (because "the observation predates a session boundary (kernel freshness rule F2)"))
+  (rule prediction
+    (when (a belief (grade (source predicted))))
+    (treat plan-only)
+    (because "a projection may guide planning, never a commitment"))
+  (rule reported-by-a-qualified-instrument
+    (when (a belief (grade (source reported)) (from (an instrument (binding validated)))))
+    (treat proceed)
+    (because "a device report counts when the device's binding for it is validated"))
+  (rule reported
+    (when (a belief (grade (source reported))) (use consequential))
+    (treat verify-before-commit)
+    (because "an unqualified report is not enough for a consequential step"))
+  (rule assumed-consequential
+    (when (a belief (grade (source (<= assumed)))) (use consequential))
+    (treat verify-before-commit)
+    (because "a consequential step may not rest on a default"))
+  (rule weak-routine
+    (when (a belief (grade (source (<= reported)))) (use routine))
+    (treat proceed-flagged)
+    (because "routine use of a weaker belief is allowed and recorded"))
+  (rule inferred-consequential
+    (when (a belief (grade (source (<= inferred)))) (use consequential))
+    (treat verify-if-sensable-else-escalate)
+    (because "an inference is enough only where the contract says so"))
+
+  (treatment proceed (then proceed))
+  (treatment contain-and-escalate
+    (do (an action (type quarantining) (material ?subject))) (then escalate) (cost (escalation 1))
+    (kernel "Retrieve.recover identity_mismatch -> Quarantine, fail escalated"))
+  (treatment sense-or-abstain
+    (do (an action (type sensing) (of ?item))) (then proceed) (else abstain) (cost (instrument-minute 0.2))
+    (kernel "understanding gate / projection refuses when nothing can be sensed"))
+  (treatment re-observe
+    (do (an action (type sensing) (of ?item))) (then proceed) (cost (instrument-minute 0.2))
+    (kernel "RunSession marks shared state stale; verify_identity and check_interlocks read again"))
+  (treatment plan-only
+    (then refuse-commit)
+    (kernel "projection_succeeds uses belief; commitment needs observation"))
+  (treatment verify-before-commit
+    (do (an action (type sensing) (of ?item))) (then proceed) (else escalate) (cost (instrument-minute 0.2))
+    (kernel "a sensing leaf before the consequential step"))
+  (treatment proceed-flagged
+    (then proceed) (record flagged)
+    (kernel "audit entry with provenance assumed"))
+  (treatment verify-if-sensable-else-escalate
+    (do (an action (type sensing) (of ?item))) (then proceed) (else escalate) (cost (instrument-minute 0.2))
+    (kernel "a sensing leaf if a monitor exists, otherwise fail escalated")))

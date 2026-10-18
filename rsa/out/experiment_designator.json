@@ -1,0 +1,424 @@
+{
+ "logic": [
+  {
+   "comparison": "validity",
+   "between": [
+    "comparator",
+    "control"
+   ],
+   "differ_in": [
+    [
+     "challenge",
+     "(0.85 au)",
+     "(culture-time 0 h)"
+    ]
+   ],
+   "determines": "challenge",
+   "ok": true
+  },
+  {
+   "comparison": "primary",
+   "between": [
+    "rescued",
+    "comparator"
+   ],
+   "differ_in": [
+    [
+     "rescue",
+     "(0.70 au)",
+     "(culture-time 48 h)"
+    ]
+   ],
+   "determines": "rescue",
+   "ok": true
+  }
+ ],
+ "derived": {
+  "links": [
+   {
+    "frm": "?x1",
+    "to": "?g1",
+    "kind": "physical",
+    "cond": "(the culture ?rescued (exposed-to ?challenge))"
+   },
+   {
+    "frm": "?x2",
+    "to": "?g1",
+    "kind": "physical",
+    "cond": "(the culture ?comparator (exposed-to ?challenge))"
+   },
+   {
+    "frm": "?g1",
+    "to": "?x3",
+    "kind": "physical",
+    "cond": "(the experiment ?E (culture-time 48 h))"
+   },
+   {
+    "frm": "?x3",
+    "to": "?g2",
+    "kind": "physical",
+    "cond": "(the culture ?rescued (exposed-to ?rescue))"
+   },
+   {
+    "frm": "?g2",
+    "to": "?o1",
+    "kind": "physical",
+    "cond": "(the experiment ?E (culture-time 72 h))"
+   },
+   {
+    "frm": "?g2",
+    "to": "?o2",
+    "kind": "physical",
+    "cond": "(the experiment ?E (culture-time 72 h))"
+   },
+   {
+    "frm": "?g2",
+    "to": "?o3",
+    "kind": "physical",
+    "cond": "(the experiment ?E (culture-time 72 h))"
+   },
+   {
+    "frm": "?o1",
+    "to": "?i1",
+    "kind": "knowledge",
+    "cond": "(an image (of ?rescued) (raw true))"
+   },
+   {
+    "frm": "?o2",
+    "to": "?i2",
+    "kind": "knowledge",
+    "cond": "(an image (of ?comparator) (raw true))"
+   },
+   {
+    "frm": "?o3",
+    "to": "?i3",
+    "kind": "knowledge",
+    "cond": "(an image (of ?control) (raw true))"
+   },
+   {
+    "frm": "?i2",
+    "to": "?v1",
+    "kind": "knowledge",
+    "cond": "(an estimate (of ?comparator) (organoid-radius))"
+   },
+   {
+    "frm": "?i3",
+    "to": "?v1",
+    "kind": "knowledge",
+    "cond": "(an estimate (of ?control) (organoid-radius))"
+   },
+   {
+    "frm": "?i1",
+    "to": "?a1",
+    "kind": "knowledge",
+    "cond": "(an estimate (of ?rescued) (organoid-radius))"
+   },
+   {
+    "frm": "?i2",
+    "to": "?a1",
+    "kind": "knowledge",
+    "cond": "(an estimate (of ?comparator) (organoid-radius))"
+   },
+   {
+    "frm": "?v1",
+    "to": "?a1",
+    "kind": "knowledge",
+    "cond": "(a finding (of (the effect (of ?challenge))) (established true))"
+   }
+  ],
+  "unsupported": [],
+  "establish": [
+   {
+    "step": "?i1",
+    "cond": "(a scale (of (an image)) (known true))"
+   },
+   {
+    "step": "?i2",
+    "cond": "(a scale (of (an image)) (known true))"
+   },
+   {
+    "step": "?i3",
+    "cond": "(a scale (of (an image)) (known true))"
+   }
+  ],
+  "hasse": [
+   [
+    "?g1",
+    "?x3"
+   ],
+   [
+    "?g2",
+    "?o1"
+   ],
+   [
+    "?g2",
+    "?o2"
+   ],
+   [
+    "?g2",
+    "?o3"
+   ],
+   [
+    "?i1",
+    "?a1"
+   ],
+   [
+    "?i2",
+    "?v1"
+   ],
+   [
+    "?i3",
+    "?v1"
+   ],
+   [
+    "?o1",
+    "?i1"
+   ],
+   [
+    "?o2",
+    "?i2"
+   ],
+   [
+    "?o3",
+    "?i3"
+   ],
+   [
+    "?v1",
+    "?a1"
+   ],
+   [
+    "?x1",
+    "?g1"
+   ],
+   [
+    "?x2",
+    "?g1"
+   ],
+   [
+    "?x3",
+    "?g2"
+   ]
+  ],
+  "level": {
+   "?x1": 0,
+   "?x2": 0,
+   "?g1": 1,
+   "?x3": 2,
+   "?g2": 3,
+   "?o1": 4,
+   "?o2": 4,
+   "?o3": 4,
+   "?i1": 5,
+   "?i2": 5,
+   "?i3": 5,
+   "?v1": 6,
+   "?a1": 7
+  },
+  "cyclic": [],
+  "before": {
+   "?x1": [],
+   "?x2": [],
+   "?g1": [
+    "?x1",
+    "?x2"
+   ],
+   "?x3": [
+    "?g1",
+    "?x1",
+    "?x2"
+   ],
+   "?g2": [
+    "?g1",
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "?o1": [
+    "?g1",
+    "?g2",
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "?o2": [
+    "?g1",
+    "?g2",
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "?o3": [
+    "?g1",
+    "?g2",
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "?i1": [
+    "?g1",
+    "?g2",
+    "?o1",
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "?i2": [
+    "?g1",
+    "?g2",
+    "?o2",
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "?i3": [
+    "?g1",
+    "?g2",
+    "?o3",
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "?v1": [
+    "?g1",
+    "?g2",
+    "?i2",
+    "?i3",
+    "?o2",
+    "?o3",
+    "?x1",
+    "?x2",
+    "?x3"
+   ],
+   "?a1": [
+    "?g1",
+    "?g2",
+    "?i1",
+    "?i2",
+    "?i3",
+    "?o1",
+    "?o2",
+    "?o3",
+    "?v1",
+    "?x1",
+    "?x2",
+    "?x3"
+   ]
+  },
+  "extensions": null
+ },
+ "comparison": {
+  "matched": {
+   "?c1": "?x1",
+   "?c2": "?x2",
+   "?g1": "?g1",
+   "?c3": "?x3",
+   "?g2": "?g2",
+   "?o1": "?o1",
+   "?o2": "?o2",
+   "?o3": "?o3",
+   "?i1": "?i1",
+   "?i2": "?i2",
+   "?i3": "?i3",
+   "?a1": "?a1"
+  },
+  "missing": [],
+  "added": [
+   "?v1"
+  ],
+  "edges_kept": [
+   [
+    "?g1",
+    "?x3"
+   ],
+   [
+    "?g2",
+    "?o1"
+   ],
+   [
+    "?g2",
+    "?o2"
+   ],
+   [
+    "?g2",
+    "?o3"
+   ],
+   [
+    "?i1",
+    "?a1"
+   ],
+   [
+    "?o1",
+    "?i1"
+   ],
+   [
+    "?o2",
+    "?i2"
+   ],
+   [
+    "?o3",
+    "?i3"
+   ],
+   [
+    "?x1",
+    "?g1"
+   ],
+   [
+    "?x2",
+    "?g1"
+   ],
+   [
+    "?x3",
+    "?g2"
+   ]
+  ],
+  "edges_removed": [
+   [
+    "?i2",
+    "?a1"
+   ],
+   [
+    "?i3",
+    "?a1"
+   ]
+  ],
+  "edges_added": [
+   [
+    "?i2",
+    "?v1"
+   ],
+   [
+    "?i3",
+    "?v1"
+   ],
+   [
+    "?v1",
+    "?a1"
+   ]
+  ],
+  "effects_not_stated": [
+   [
+    "?g1",
+    "(the culture ?rescued (injury-burden accumulated))"
+   ],
+   [
+    "?g2",
+    "(the culture ?rescued (viability settled))"
+   ]
+  ]
+ },
+ "kinds": {
+  "?x1": "intervention",
+  "?x2": "intervention",
+  "?x3": "intervention",
+  "?g1": "growth",
+  "?g2": "growth",
+  "?o1": "observation",
+  "?o2": "observation",
+  "?o3": "observation",
+  "?i1": "interpretation",
+  "?i2": "interpretation",
+  "?i3": "interpretation",
+  "?v1": "comparison:validity",
+  "?a1": "comparison:primary"
+ }
+}

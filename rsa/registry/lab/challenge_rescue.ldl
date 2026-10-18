@@ -1,0 +1,112 @@
+;; The challenge-rescue experiment (design c_d85_t48_n1, required gain 0.5 bit) as a partially ordered set of lab
+;; action designators over entity designators, LDL v0.3. No order is written: rsa/ldl.py derives it from causal links
+;; (a goal- or achieves-item of one step entails a requires-item of another), checks threats on functional state
+;; (culture-time), resolves the instrument role of every step, checks that every signalled failure is handled, and
+;; hands one linear extension to the kernel. No robot, device, pose or volume appears (lint).
+;; Doses (arbitrary units) and culture times are the e2m design's; the 600 s limit and every KPI target are
+;; ILLUSTRATIVE (D016).
+
+(the action ?E (type experimenting)
+  (entities
+    (the design ?D (id c_d85_t48_n1))
+    (the plate ?p (id P17))
+    (the well ?r (of ?p) (role rescued))
+    (the well ?c (of ?p) (role comparator))
+    (the well ?k (of ?p) (role control))
+    (some substance ?ch (type challenge))
+    (some substance ?rs (type rescue))
+    (a controlled-environment ?env (profile culture-standard)))
+  (goal (a result (of ?D) (information-gain (>= 0.5 bit))))
+  (given
+    (the plate ?p (in ?env))
+    (the plate ?p (culture-time 0 h)))
+  (requires
+    (believed (the plate ?p (contamination none)) (grade (source inferred))) :consequential
+    (the design ?D (arm (role control))) :column validity)
+  (prevents
+    (an excursion (of ?p) (duration (> 600 s)))
+    (a transfer (of (some substance)) (into ?k))
+    (an event (type contamination-introduced) (of ?p)))
+  (maintains
+    (known (the plate ?p (identity verified))) :consequential)
+  (achieves
+    (the plate ?p (in ?env)) :establishable
+    (a measurement (of ?r) (readout organoid-radius)) :column validity
+    (a measurement (of ?c) (readout organoid-radius)) :column validity
+    (a measurement (of ?k) (readout organoid-radius)) :column validity)
+  (quality                                             ; targets and weights ILLUSTRATIVE; to be set with the lab later
+    (a kpi (name safety) (of (each violation (of (a prevents-item (in ?E))))) (aggregate count)
+           (target (<= 0)) (direction minimize))
+    (a kpi (name reliability) (of (each goal (of (an action (in ?E))))) (aggregate first-attempt-fraction)
+           (target (>= 1)) (direction maximize))
+    (a kpi (name auditability) (of (each goal (of (an action (in ?E))))) (aggregate evidenced-fraction)
+           (target (>= 1)) (direction maximize))
+    (a kpi (name excursion-time) (of (each excursion (of ?p))) (aggregate max) (unit s)
+           (target (<= 300 s)) (direction minimize))
+    (a kpi (name cost) (of (each resource (used-by ?E))) (aggregate weighted-sum) (unit cost-units)
+           (weights (consumable 1) (instrument-minute 0.2) (escalation 50))
+           (target (<= 10)) (direction minimize))
+    (a kpi (name dose-deviation) (of (each transfer (into (a well (of ?p))))) (aggregate max) (unit %)
+           (target (<= 2 %)) (direction minimize))
+    (a kpi (name time-to-result) (of ?E) (aggregate span) (unit h) (target (<= 72.5 h)) (direction minimize))
+    (prefers (lexicographic safety reliability auditability excursion-time cost dose-deviation time-to-result)))
+  (handles                                             ; every handler states the guarantee it claims; rsa/ldl.py checks it
+    (on (a failure (type identity-mismatch))
+        (do (an action (type quarantining) (material (the plate (identity mismatched)))))
+        (then escalate)
+        (guarantees safe-state contained))
+    (on (a failure (type measurement-invalid) (cause calibration_expired))
+        (do (re-establish (an instrument (function imaging) (calibration current))))
+        (then replan) (else escalate)
+        (guarantees goal-or-safe-state))
+    (on (a failure (type measurement-invalid) (cause out_of_focus))
+        (do (re-establish (the plate ?p (seated true))))
+        (then (retry (max 1))) (else escalate)
+        (guarantees goal-or-safe-state))
+    (on (a failure (type measurement-invalid) (cause plate_misseated))
+        (do (re-establish (the plate ?p (seated true))))
+        (then (retry (max 1))) (else escalate)
+        (guarantees goal-or-safe-state))
+    (on (a failure (type validity-effect-unachievable))
+        (then escalate)
+        (guarantees safe-state))
+    (on (a failure (type dose-not-delivered) (cause wrong_reagent))
+        (do (re-establish (some substance ?s (identity verified))))
+        (then (retry (max 1))) (else escalate)
+        (guarantees goal-or-safe-state))
+    (on (a failure (type dose-not-delivered) (cause tip_missing_or_dropped))
+        (then (retry (max 1))) (else escalate)
+        (guarantees goal-or-safe-state))
+    (on (a failure (type dose-not-delivered) (cause clog_or_air_aspiration))
+        (then escalate)
+        (guarantees safe-state))
+    (on (a failure (type dose-not-delivered) (cause well_misregistration))
+        (do (an action (type quarantining) (material ?p)))
+        (then escalate)
+        (guarantees safe-state contained))
+    (on (a failure (type contamination-suspected))
+        (do (an action (type quarantining) (material ?p)))
+        (then escalate)
+        (guarantees safe-state contained))
+    (on (a failure (type environment-excursion))
+        (do (restore (the plate ?p (in ?env))))
+        (then escalate)
+        (guarantees safe-state))
+    (on (a failure (type containment-breach))
+        (then escalate)
+        (guarantees safe-state))
+    (on (a failure (type prevents-violated))            ; signalled by the experiment's own prevents monitors
+        (do (restore (the plate ?p (in ?env))))
+        (then escalate)
+        (guarantees safe-state)))
+  (steps
+    (an action ?x1 (type intervening) (into ?r) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))
+    (an action ?x2 (type intervening) (into ?c) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))
+    (an action ?w1 (type incubating) (plate ?p) (in ?env) (from (culture-time 0 h)) (to (culture-time 48 h))
+      (requires (the well ?r (received ?ch)) (the well ?c (received ?ch))))     ; the design's clock starts at the challenge
+    (an action ?x3 (type intervening) (into ?r) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h)))
+    (an action ?w2 (type incubating) (plate ?p) (in ?env) (from (culture-time 48 h)) (to (culture-time 72 h))
+      (requires (the well ?r (received ?rs))))                                  ; the readout is 24 h after the rescue
+    (an action ?m1 (type measuring) (of ?r) (readout organoid-radius) (at (culture-time 72 h)))
+    (an action ?m2 (type measuring) (of ?c) (readout organoid-radius) (at (culture-time 72 h)))
+    (an action ?m3 (type measuring) (of ?k) (readout organoid-radius) (at (culture-time 72 h)))))

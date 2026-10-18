@@ -1,0 +1,2260 @@
+{
+ "run": "challenge-rescue/isaac_identity_swap",
+ "genesis": "0000000000000000000000000000000000000000000000000000000000000000",
+ "software": {
+  "kernel": "rsa-kernel/0.1",
+  "kb": "facts_g050+isaac_identity_swap",
+  "registry": "5237b924cd8a",
+  "backend": "isaac-cell01-twin/0.1"
+ },
+ "n": 56,
+ "entries": [
+  {
+   "seq": 0,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0001-experiment",
+   "parent": null,
+   "kind": "action",
+   "category": "experiment",
+   "transition": "open",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(an action (type experiment) (design c_d85_t48_n1) (requirement_bits 0.5) (eig_bits 0.5439) (plate P18) (wells {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}) (sessions [{'session': 's0', 'trip': 1, 't_h': 0, 'material': [['dose', 'a01', 'challenge', 85], ['dose', 'a02', 'challenge', 85]]}, {'session': 's1', 'trip': 1, 't_h': 48, 'material': [['dose', 'a01', 'rescue', 70]]}, {'session': 's2', 'trip': 1, 't_h': 72, 'material': [['image', 'a01'], ['image', 'a02'], ['image', 'a05']]}]))",
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "8deb6647a69b24e471597a232d14af151fbecf88ca01d9ca65813fdde8160875"
+  },
+  {
+   "seq": 1,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0001-experiment",
+   "parent": null,
+   "kind": "action",
+   "category": "experiment",
+   "transition": "grounded",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "bindings": {
+    "design": "c_d85_t48_n1",
+    "requirement_bits": 0.5,
+    "eig_bits": 0.5439,
+    "plate": "P18",
+    "wells": {
+     "rescued": [
+      "A01"
+     ],
+     "comparator": [
+      "A02"
+     ],
+     "control": [
+      "A05"
+     ]
+    },
+    "sessions": [
+     {
+      "session": "s0",
+      "trip": 1,
+      "t_h": 0,
+      "material": [
+       [
+        "dose",
+        "a01",
+        "challenge",
+        85
+       ],
+       [
+        "dose",
+        "a02",
+        "challenge",
+        85
+       ]
+      ]
+     },
+     {
+      "session": "s1",
+      "trip": 1,
+      "t_h": 48,
+      "material": [
+       [
+        "dose",
+        "a01",
+        "rescue",
+        70
+       ]
+      ]
+     },
+     {
+      "session": "s2",
+      "trip": 1,
+      "t_h": 72,
+      "material": [
+       [
+        "image",
+        "a01"
+       ],
+       [
+        "image",
+        "a02"
+       ],
+       [
+        "image",
+        "a05"
+       ]
+      ]
+     }
+    ]
+   },
+   "resolutions": [],
+   "plan": [
+    "(an action (type run-session) (session s0) (trip 1) (t_h 0) (plate P18) (material [['dose', 'a01', 'challenge', 85], ['dose', 'a02', 'challenge', 85]]) (roles {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}))",
+    "(an action (type wait) (until_h 48) (plate P18))",
+    "(an action (type run-session) (session s1) (trip 1) (t_h 48) (plate P18) (material [['dose', 'a01', 'rescue', 70]]) (roles {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}))",
+    "(an action (type wait) (until_h 72) (plate P18))",
+    "(an action (type run-session) (session s2) (trip 1) (t_h 72) (plate P18) (material [['image', 'a01'], ['image', 'a02'], ['image', 'a05']]) (roles {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}))"
+   ],
+   "prev": "8deb6647a69b24e471597a232d14af151fbecf88ca01d9ca65813fdde8160875",
+   "hash": "ccc1e05934191d4b8e1416bdfdcf4c3fa91f9c2e99784642c6c2a67cec692673"
+  },
+  {
+   "seq": 2,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0001-experiment",
+   "parent": null,
+   "kind": "action",
+   "category": "experiment",
+   "transition": "accepted",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [
+    {
+     "id": "projection_succeeds",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "projected to completion in 260018.6 s",
+     "source": "CRAM projection / Ground & Emulate gate (cram_viz); kernel iteration 1 findings F5, F6"
+    },
+    {
+     "id": "contamination_free",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "no contamination_suspected fact",
+     "source": "safety rule contamination_suspected_blocks"
+    },
+    {
+     "id": "challenge_requires_controls",
+     "column": "validity",
+     "verdict": "ENFORCED",
+     "observation": "challenge=True, control wells=['A05']",
+     "source": "safety rule challenge_requires_controls; uc_ccr negative control (NR3)"
+    }
+   ],
+   "understanding": {
+    "missing": [],
+    "slots": {
+     "what": "run the selected experiment",
+     "target": {
+      "design": "c_d85_t48_n1",
+      "plate": "P18",
+      "wells": {
+       "rescued": [
+        "A01"
+       ],
+       "comparator": [
+        "A02"
+       ],
+       "control": [
+        "A05"
+       ]
+      }
+     },
+     "purpose": [
+      "realise the selected experiment that discriminates the competing recovery models"
+     ],
+     "mechanism": "scientific",
+     "preconditions": [
+      "challenge_requires_controls",
+      "contamination_free"
+     ],
+     "realization": [
+      "no device binding required"
+     ],
+     "expected_effects": [
+      "all workflow sessions executed or the run escalated"
+     ],
+     "risks": [
+      "invalid evidence promoted into the culture belief"
+     ],
+     "controls": [
+      "projection_succeeds",
+      "contamination_free",
+      "challenge_requires_controls"
+     ],
+     "monitors": [],
+     "recovery": {},
+     "evidence": [
+      "selected experiment",
+      "requirement",
+      "workflow version"
+     ],
+     "epistemic_state": {
+      "plate_at:P18": "inferred"
+     }
+    },
+    "chain": [
+     "experiment"
+    ]
+   },
+   "prev": "ccc1e05934191d4b8e1416bdfdcf4c3fa91f9c2e99784642c6c2a67cec692673",
+   "hash": "4821240bc98380de9191e7927458c29cfc558402dcf15cd8c36e5bb3ae5fd1c3"
+  },
+  {
+   "seq": 3,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0001-experiment",
+   "parent": null,
+   "kind": "action",
+   "category": "experiment",
+   "transition": "executing",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "prev": "4821240bc98380de9191e7927458c29cfc558402dcf15cd8c36e5bb3ae5fd1c3",
+   "hash": "4ebb1eec870846a1631bd6a6b793a64a90096255e853fa0f7ee85a5454b4e9ba"
+  },
+  {
+   "seq": 4,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0002-run_session",
+   "parent": "d0001-experiment",
+   "kind": "action",
+   "category": "run_session",
+   "transition": "open",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(an action (type run-session) (session s0) (trip 1) (t_h 0) (plate P18) (material [['dose', 'a01', 'challenge', 85], ['dose', 'a02', 'challenge', 85]]) (roles {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}))",
+   "prev": "4ebb1eec870846a1631bd6a6b793a64a90096255e853fa0f7ee85a5454b4e9ba",
+   "hash": "c18d283e02c610b4f544c7f431a8f553e6fe9bc14e0283a6cff9e02030a41d4e"
+  },
+  {
+   "seq": 5,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0002-run_session",
+   "parent": "d0001-experiment",
+   "kind": "action",
+   "category": "run_session",
+   "transition": "grounded",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "bindings": {
+    "session": "s0",
+    "trip": 1,
+    "t_h": 0,
+    "plate": "P18",
+    "material": [
+     [
+      "dose",
+      "a01",
+      "challenge",
+      85
+     ],
+     [
+      "dose",
+      "a02",
+      "challenge",
+      85
+     ]
+    ],
+    "roles": {
+     "rescued": [
+      "A01"
+     ],
+     "comparator": [
+      "A02"
+     ],
+     "control": [
+      "A05"
+     ]
+    }
+   },
+   "resolutions": [
+    {
+     "query": "home",
+     "value": "l10",
+     "grounds": [
+      "home(l10)"
+     ],
+     "rejected": []
+    },
+    {
+     "query": "devices_for(functions=['dispensing'], capabilities=['dose_well'])",
+     "value": [
+      "l12"
+     ],
+     "grounds": [
+      "automated(l12)",
+      "has_function(l12,dispensing)",
+      "component:L12_LiquidHandler.capabilities\u220bdose_well"
+     ],
+     "rejected": []
+    },
+    {
+     "query": "interlock_monitor",
+     "value": "cell01",
+     "grounds": [
+      "interlock_monitor(cell01)"
+     ],
+     "rejected": []
+    }
+   ],
+   "bound_device": "l12",
+   "plan": [
+    "(a command (type check-interlocks) (command check_interlocks) (device cell01))",
+    "(an action (type retrieve) (plate P18) (source l10))",
+    "(an action (type transport-lab) (plate P18) (target l12))",
+    "(an action (type intervene) (plate P18) (well A01) (reagent challenge) (dose_au 0.85) (role rescued))",
+    "(an action (type intervene) (plate P18) (well A02) (reagent challenge) (dose_au 0.85) (role comparator))",
+    "(an action (type transport-lab) (plate P18) (target l10))",
+    "(an action (type store) (plate P18) (location l10))"
+   ],
+   "prev": "c18d283e02c610b4f544c7f431a8f553e6fe9bc14e0283a6cff9e02030a41d4e",
+   "hash": "488158edc1ef81c2546654ebf8c9d2e9d70aac5667357948131858d7d6f99c3f"
+  },
+  {
+   "seq": 6,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0002-run_session",
+   "parent": "d0001-experiment",
+   "kind": "action",
+   "category": "run_session",
+   "transition": "accepted",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [
+    {
+     "id": "interlocks_closed",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "fact interlocks_closed",
+     "source": "safety.ofn enclosure_door_interlock; Cell 01 safety enclosure"
+    },
+    {
+     "id": "projection_succeeds",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "projected to completion in 298.9 s",
+     "source": "CRAM projection / Ground & Emulate gate (cram_viz); kernel iteration 1 findings F5, F6"
+    },
+    {
+     "id": "window_prospective",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "projected 298.9 s x 1.20 = 358.68 s <= window 600.0 s",
+     "source": "e2m E2M8 S5 (600 s, 20 % margin; ILLUSTRATIVE window)"
+    }
+   ],
+   "understanding": {
+    "missing": [],
+    "slots": {
+     "what": "run one session trip",
+     "target": {
+      "plate": "P18"
+     },
+     "purpose": [
+      "bring the plate from its home to the device that realises the session's materials and back",
+      "realise the selected experiment that discriminates the competing recovery models"
+     ],
+     "mechanism": "lab_task",
+     "preconditions": [
+      "interlocks_closed",
+      "window_prospective"
+     ],
+     "realization": [
+      "['l12']"
+     ],
+     "expected_effects": [
+      "plate returned to home",
+      "session materials executed"
+     ],
+     "risks": [
+      "sample integrity loss outside the incubator"
+     ],
+     "controls": [
+      "interlocks_closed",
+      "projection_succeeds",
+      "window_prospective",
+      "window_kept"
+     ],
+     "monitors": [
+      "time_outside_environment",
+      "elapsed_time"
+     ],
+     "recovery": {
+      "window_exceeded": "safe_return"
+     },
+     "evidence": [
+      "trip duration",
+      "window",
+      "materials executed"
+     ],
+     "epistemic_state": {
+      "plate_at:P18": "inferred"
+     }
+    },
+    "chain": [
+     "run_session",
+     "experiment"
+    ]
+   },
+   "prev": "488158edc1ef81c2546654ebf8c9d2e9d70aac5667357948131858d7d6f99c3f",
+   "hash": "72ae86b08686aa0a16a7f8aa48d5773f52293b29f03f9f1a7bed4798ff4a6005"
+  },
+  {
+   "seq": 7,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0002-run_session",
+   "parent": "d0001-experiment",
+   "kind": "action",
+   "category": "run_session",
+   "transition": "executing",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "prev": "72ae86b08686aa0a16a7f8aa48d5773f52293b29f03f9f1a7bed4798ff4a6005",
+   "hash": "56e25b85662017d5813aeb6d208caa574b57b447d03f95f154b83043ef707951"
+  },
+  {
+   "seq": 8,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0003-check_interlocks",
+   "parent": "d0002-run_session",
+   "kind": "command",
+   "category": "check_interlocks",
+   "transition": "executed",
+   "agent": "cell01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a command (type check-interlocks) (command check_interlocks) (device cell01))",
+   "term": [
+    "cmd",
+    "cell01",
+    "check_interlocks"
+   ],
+   "monitors": [
+    {
+     "name": "route_clear",
+     "passed": true,
+     "observation": "Cell 01 scene: no door model; the enclosure interlock is not simulated (assumed closed, epistemic: assumption)"
+    }
+   ],
+   "evidence": [],
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "0.0 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 0.0,
+   "prev": "56e25b85662017d5813aeb6d208caa574b57b447d03f95f154b83043ef707951",
+   "hash": "db1b0e1c37610cab9c047b93089c7d134cd8fcfdbc29caa6c6d5c02f8df762bc"
+  },
+  {
+   "seq": 9,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0004-retrieve",
+   "parent": "d0002-run_session",
+   "kind": "action",
+   "category": "retrieve",
+   "transition": "open",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(an action (type retrieve) (plate P18) (source l10))",
+   "prev": "db1b0e1c37610cab9c047b93089c7d134cd8fcfdbc29caa6c6d5c02f8df762bc",
+   "hash": "194055e7502b025b2b6050676dcc220ec65c296ddf5380152bb5d571431e0d0e"
+  },
+  {
+   "seq": 10,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0004-retrieve",
+   "parent": "d0002-run_session",
+   "kind": "action",
+   "category": "retrieve",
+   "transition": "grounded",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "bindings": {
+    "plate": "P18",
+    "source": "l10"
+   },
+   "resolutions": [],
+   "plan": [
+    "(a command (type verify-identity) (command verify_identity) (device l10) (expect P18))",
+    "(a command (type present) (command present) (device l10))"
+   ],
+   "prev": "194055e7502b025b2b6050676dcc220ec65c296ddf5380152bb5d571431e0d0e",
+   "hash": "718cf52d599d0876629d4133dd0fe92052cce701eb12467de4e35aa4b7bf258c"
+  },
+  {
+   "seq": 11,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0004-retrieve",
+   "parent": "d0002-run_session",
+   "kind": "action",
+   "category": "retrieve",
+   "transition": "accepted",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "understanding": {
+    "missing": [],
+    "slots": {
+     "what": "retrieve the plate from storage",
+     "target": {
+      "plate": "P18"
+     },
+     "purpose": [
+      "make the identified plate available at the storage device's transfer position",
+      "bring the plate from its home to the device that realises the session's materials and back",
+      "realise the selected experiment that discriminates the competing recovery models"
+     ],
+     "mechanism": "ObjectDisplacement",
+     "preconditions": [],
+     "realization": [
+      "no device binding required"
+     ],
+     "expected_effects": [
+      "plate presented at the home transfer station"
+     ],
+     "risks": [
+      "wrong sample processed"
+     ],
+     "controls": [
+      "identity_verified"
+     ],
+     "monitors": [
+      "plate_identity",
+      "source_release_state"
+     ],
+     "recovery": {
+      "identity_mismatch": "quarantine_and_escalate"
+     },
+     "evidence": [
+      "object_id",
+      "identity_observation",
+      "source_component_id",
+      "timestamps"
+     ],
+     "epistemic_state": {
+      "plate_at:P18": "inferred"
+     }
+    },
+    "chain": [
+     "retrieve",
+     "run_session",
+     "experiment"
+    ]
+   },
+   "prev": "718cf52d599d0876629d4133dd0fe92052cce701eb12467de4e35aa4b7bf258c",
+   "hash": "77023c0bc5dcc82e0abf5f3f110f6b903b64cd06147470c162d68053a6499fae"
+  },
+  {
+   "seq": 12,
+   "t_sim": 1.0,
+   "t": "2026-10-17T08:00:01",
+   "designator": "d0004-retrieve",
+   "parent": "d0002-run_session",
+   "kind": "action",
+   "category": "retrieve",
+   "transition": "executing",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "prev": "77023c0bc5dcc82e0abf5f3f110f6b903b64cd06147470c162d68053a6499fae",
+   "hash": "e88918c0fac3b29e53e39e53f8f348aaa0d807fedf561b4d97908a6767006aac"
+  },
+  {
+   "seq": 13,
+   "t_sim": 16.5,
+   "t": "2026-10-17T08:00:16",
+   "designator": "d0005-verify_identity",
+   "parent": "d0004-retrieve",
+   "kind": "command",
+   "category": "verify_identity",
+   "transition": "failed",
+   "agent": "l10",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a command (type verify-identity) (command verify_identity) (device l10) (expect P18))",
+   "term": [
+    "cmd",
+    "l10",
+    "verify_identity"
+   ],
+   "monitors": [
+    {
+     "name": "plate_identity",
+     "passed": false,
+     "observation": "read P23, expected P18"
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "barcode_read",
+     "value": {
+      "device": "l10",
+      "read": "P23"
+     },
+     "sha256": "4b01fd5121ed26c855b9c4369d8da71f16f892797c02884b3b226a70fe028e92"
+    }
+   ],
+   "belief": {
+    "identity_read": "P23",
+    "plate_at:P18": "unknown",
+    "plate_at:P23": "slot:l10"
+   },
+   "duration_s": 15.5,
+   "reason": "identity_mismatch: l10 read P23, expected P18",
+   "prev": "e88918c0fac3b29e53e39e53f8f348aaa0d807fedf561b4d97908a6767006aac",
+   "hash": "eaf566b620d355d29eb497e290f9acec0a74753c06f426f2c3c28e28b8438c0e"
+  },
+  {
+   "seq": 14,
+   "t_sim": 16.5,
+   "t": "2026-10-17T08:00:16",
+   "designator": "d0004-retrieve",
+   "parent": "d0002-run_session",
+   "kind": "action",
+   "category": "retrieve",
+   "transition": "repairing",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "reason": "identity_mismatch: l10 read P23, expected P18",
+   "repair": {
+    "failure": "identity_mismatch",
+    "detail": "l10 read P23, expected P18",
+    "at": "d0005-verify_identity",
+    "repairs": [
+     "(an action (type quarantine) (plate P23) (reason identity mismatch: read P23, expected P18))"
+    ],
+    "repair_categories": [
+     "quarantine"
+    ],
+    "then": "fail",
+    "why": "quarantine P23 (Cell 01 routing H4_quarantine_if_identity_unresolved); P18 location unknown, human escalation"
+   },
+   "prev": "eaf566b620d355d29eb497e290f9acec0a74753c06f426f2c3c28e28b8438c0e",
+   "hash": "5a0245f6623a4212128be5e6e22f4f33ae9c01c209d0c53c9d0ecf0fced5b3fd"
+  },
+  {
+   "seq": 15,
+   "t_sim": 16.5,
+   "t": "2026-10-17T08:00:16",
+   "designator": "d0006-quarantine",
+   "parent": "d0004-retrieve",
+   "kind": "action",
+   "category": "quarantine",
+   "transition": "open",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(an action (type quarantine) (plate P23) (reason identity mismatch: read P23, expected P18))",
+   "prev": "5a0245f6623a4212128be5e6e22f4f33ae9c01c209d0c53c9d0ecf0fced5b3fd",
+   "hash": "50ad48f120b79df5d6855cef76e1d3c7ab87aa1ce27c14586563d134a37b6eaa"
+  },
+  {
+   "seq": 16,
+   "t_sim": 16.5,
+   "t": "2026-10-17T08:00:16",
+   "designator": "d0006-quarantine",
+   "parent": "d0004-retrieve",
+   "kind": "action",
+   "category": "quarantine",
+   "transition": "grounded",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "bindings": {
+    "plate": "P23",
+    "reason": "identity mismatch: read P23, expected P18"
+   },
+   "resolutions": [
+    {
+     "query": "devices_for(functions=['quarantine'], capabilities=[])",
+     "value": [
+      "h4"
+     ],
+     "grounds": [
+      "automated(h4)",
+      "has_function(h4,quarantine)"
+     ],
+     "rejected": []
+    },
+    {
+     "query": "plate_at(P23)",
+     "value": "slot:l10",
+     "grounds": [
+      "belief plate_at:P23 (observed)"
+     ],
+     "rejected": []
+    }
+   ],
+   "plan": [
+    "(a command (type present) (command present) (device l10))",
+    "(an action (type transport-lab) (plate P23) (target h4))",
+    "(a command (type contain) (command contain) (device h4) (material ['quarantine', 'P23']))"
+   ],
+   "prev": "50ad48f120b79df5d6855cef76e1d3c7ab87aa1ce27c14586563d134a37b6eaa",
+   "hash": "9c0bcc0c2f6ee2c9bad76612c83de7b473f8f89561e0f695ee635782d512a1f8"
+  },
+  {
+   "seq": 17,
+   "t_sim": 16.5,
+   "t": "2026-10-17T08:00:16",
+   "designator": "d0006-quarantine",
+   "parent": "d0004-retrieve",
+   "kind": "action",
+   "category": "quarantine",
+   "transition": "accepted",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "understanding": {
+    "missing": [],
+    "slots": {
+     "what": "quarantine a plate",
+     "target": {
+      "plate": "P23"
+     },
+     "purpose": [
+      "contain material whose identity or validity is unresolved, pending human authorisation",
+      "make the identified plate available at the storage device's transfer position",
+      "bring the plate from its home to the device that realises the session's materials and back",
+      "realise the selected experiment that discriminates the competing recovery models"
+     ],
+     "mechanism": "ObjectDisplacement",
+     "preconditions": [],
+     "realization": [
+      "['h4']"
+     ],
+     "expected_effects": [
+      "plate contained",
+      "release only by authorisation"
+     ],
+     "risks": [
+      "unresolved material re-entering the workflow"
+     ],
+     "controls": [],
+     "monitors": [
+      "object_identity_or_uncertainty",
+      "containment_state",
+      "reentry_prevented"
+     ],
+     "recovery": {},
+     "evidence": [
+      "object_id",
+      "quarantine_reason",
+      "release_authorization_policy"
+     ],
+     "epistemic_state": {
+      "plate_at:P23": "observed",
+      "identity_read": "observed"
+     }
+    },
+    "chain": [
+     "quarantine",
+     "retrieve",
+     "run_session",
+     "experiment"
+    ]
+   },
+   "prev": "9c0bcc0c2f6ee2c9bad76612c83de7b473f8f89561e0f695ee635782d512a1f8",
+   "hash": "360298cca95c3a0513a42690079aabe525fb5cf10808ca37e0a90e60c4931b8a"
+  },
+  {
+   "seq": 18,
+   "t_sim": 16.5,
+   "t": "2026-10-17T08:00:16",
+   "designator": "d0006-quarantine",
+   "parent": "d0004-retrieve",
+   "kind": "action",
+   "category": "quarantine",
+   "transition": "executing",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "prev": "360298cca95c3a0513a42690079aabe525fb5cf10808ca37e0a90e60c4931b8a",
+   "hash": "46e476d7b2fd5d6abe45d157a74e0291bd8c87940b449b859f4780cd9ba948db"
+  },
+  {
+   "seq": 19,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0007-present",
+   "parent": "d0006-quarantine",
+   "kind": "command",
+   "category": "present",
+   "transition": "executed",
+   "agent": "l10",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a command (type present) (command present) (device l10))",
+   "term": [
+    "cmd",
+    "l10",
+    "present"
+   ],
+   "monitors": [
+    {
+     "name": "source_release_state",
+     "passed": true,
+     "observation": "l10 mode PRESENTED_LOADED"
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "L10 present_for_removal",
+     "sha256": "9dd0b6deba616c69201be68f92e53db63457e15e7c1194b1586ddfc535e2e648"
+    }
+   ],
+   "belief": {
+    "plate_at:P23": "l10",
+    "shuttle:l10": "presented"
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "18.75 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 3.25,
+   "prev": "46e476d7b2fd5d6abe45d157a74e0291bd8c87940b449b859f4780cd9ba948db",
+   "hash": "670744e0303c8e0f1478dacf228ddedc57a34a041fc2df4212d0356d0875f1ae"
+  },
+  {
+   "seq": 20,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0008-transport_lab",
+   "parent": "d0006-quarantine",
+   "kind": "action",
+   "category": "transport_lab",
+   "transition": "open",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(an action (type transport-lab) (plate P23) (target h4))",
+   "prev": "670744e0303c8e0f1478dacf228ddedc57a34a041fc2df4212d0356d0875f1ae",
+   "hash": "d3c3c806c0054ef0ed90dffdd6e08dd55f124e4a2e1dedbc8b0c1b729e742103"
+  },
+  {
+   "seq": 21,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0008-transport_lab",
+   "parent": "d0006-quarantine",
+   "kind": "action",
+   "category": "transport_lab",
+   "transition": "grounded",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "bindings": {
+    "plate": "P23",
+    "target": "h4"
+   },
+   "resolutions": [
+    {
+     "query": "plate_at(P23)",
+     "value": "l10",
+     "grounds": [
+      "belief plate_at:P23 (observed)"
+     ],
+     "rejected": []
+    },
+    {
+     "query": "route(l10,h4)",
+     "value": [
+      [
+       "r01",
+       "l10",
+       "h4"
+      ]
+     ],
+     "grounds": [
+      "serves(r01,l10)",
+      "serves(r01,h4)",
+      "holds_plate(l10)",
+      "holds_plate(h4)"
+     ],
+     "rejected": []
+    }
+   ],
+   "plan": [
+    "(an action (type transporting) (plate P23) (robot r01) (source l10) (target h4))"
+   ],
+   "prev": "d3c3c806c0054ef0ed90dffdd6e08dd55f124e4a2e1dedbc8b0c1b729e742103",
+   "hash": "f181d15860585c574371ae2d445b18afd2b73dc10d151e8f4d2227ab462c41b4"
+  },
+  {
+   "seq": 22,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0008-transport_lab",
+   "parent": "d0006-quarantine",
+   "kind": "action",
+   "category": "transport_lab",
+   "transition": "accepted",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [
+    {
+     "id": "contamination_free",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "no contamination_suspected fact",
+     "source": "safety rule contamination_suspected_blocks"
+    }
+   ],
+   "understanding": {
+    "missing": [],
+    "slots": {
+     "what": "transport the plate between stations",
+     "target": {
+      "plate": "P23",
+      "target": "h4"
+     },
+     "purpose": [
+      "move the plate to the station where the next operation can be realised",
+      "contain material whose identity or validity is unresolved, pending human authorisation",
+      "make the identified plate available at the storage device's transfer position",
+      "bring the plate from its home to the device that realises the session's materials and back",
+      "realise the selected experiment that discriminates the competing recovery models"
+     ],
+     "mechanism": "ObjectDisplacement",
+     "preconditions": [
+      "contamination_free"
+     ],
+     "realization": [
+      "[('r01', 'l10', 'h4')]"
+     ],
+     "expected_effects": [
+      "plate seated at the target station"
+     ],
+     "risks": [
+      "drop",
+      "collision",
+      "identity loss"
+     ],
+     "controls": [
+      "contamination_free"
+     ],
+     "monitors": [
+      "route_clear",
+      "object_identity",
+      "object_pose_or_grasp",
+      "elapsed_time"
+     ],
+     "recovery": {},
+     "evidence": [
+      "route",
+      "object_id",
+      "source_frame",
+      "target_frame",
+      "timestamps"
+     ],
+     "epistemic_state": {
+      "plate_at:P23": "observed",
+      "identity_read": "observed"
+     }
+    },
+    "chain": [
+     "transport_lab",
+     "quarantine",
+     "retrieve",
+     "run_session",
+     "experiment"
+    ]
+   },
+   "prev": "f181d15860585c574371ae2d445b18afd2b73dc10d151e8f4d2227ab462c41b4",
+   "hash": "908778f7d4c3ed36625dd57a4978fb190df60c8d2acc3174208b2bdacce98e29"
+  },
+  {
+   "seq": 23,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0008-transport_lab",
+   "parent": "d0006-quarantine",
+   "kind": "action",
+   "category": "transport_lab",
+   "transition": "executing",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "prev": "908778f7d4c3ed36625dd57a4978fb190df60c8d2acc3174208b2bdacce98e29",
+   "hash": "2865cc4e58ae7b826192460db7a46bcb4de5213cb5833f5a161951b92c5867d9"
+  },
+  {
+   "seq": 24,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0009-transporting",
+   "parent": "d0008-transport_lab",
+   "kind": "action",
+   "category": "transporting",
+   "transition": "open",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(an action (type transporting) (plate P23) (robot r01) (source l10) (target h4))",
+   "prev": "2865cc4e58ae7b826192460db7a46bcb4de5213cb5833f5a161951b92c5867d9",
+   "hash": "37a71ca7efc677fd91ba442cb45eabcae70be09a2f30a739c38357d36b5c8c6b"
+  },
+  {
+   "seq": 25,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0009-transporting",
+   "parent": "d0008-transport_lab",
+   "kind": "action",
+   "category": "transporting",
+   "transition": "grounded",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "bindings": {
+    "plate": "P23",
+    "robot": "r01",
+    "source": "l10",
+    "target": "h4"
+   },
+   "resolutions": [
+    {
+     "query": "seat(l10)",
+     "value": "stations_l10_incubator_transfer_station",
+     "grounds": [
+      "seat(l10,stations_l10_incubator_transfer_station)"
+     ],
+     "rejected": []
+    },
+    {
+     "query": "seat(h4)",
+     "value": "stations_h4_quarantine_transfer_nest",
+     "grounds": [
+      "seat(h4,stations_h4_quarantine_transfer_nest)"
+     ],
+     "rejected": []
+    },
+    {
+     "query": "tool_for(r01)",
+     "value": "none",
+     "grounds": [
+      "not requires_tool(r01,_)"
+     ],
+     "rejected": []
+    },
+    {
+     "query": "belief tool:r01",
+     "value": null,
+     "grounds": [
+      "belief tool:r01 (None)"
+     ],
+     "rejected": []
+    }
+   ],
+   "plan": [
+    "(an action (type picking-up) (plate P23) (robot r01) (station l10) (seat stations_l10_incubator_transfer_station))",
+    "(a command (type stow) (command stow) (device l10))",
+    "(a motion (type transit) (primitive transit) (robot r01) (args [['appr', 'stations_l10_incubator_transfer_station'], ['appr', 'stations_h4_quarantine_transfer_nest']]))",
+    "(an action (type placing) (plate P23) (robot r01) (station h4) (seat stations_h4_quarantine_transfer_nest))"
+   ],
+   "prev": "37a71ca7efc677fd91ba442cb45eabcae70be09a2f30a739c38357d36b5c8c6b",
+   "hash": "bca4bdf36bb880caea3a8db0e554bd09f302d0e4ea928dbdad54bc5b053243d7"
+  },
+  {
+   "seq": 26,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0009-transporting",
+   "parent": "d0008-transport_lab",
+   "kind": "action",
+   "category": "transporting",
+   "transition": "accepted",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "understanding": {
+    "missing": [],
+    "slots": {}
+   },
+   "prev": "bca4bdf36bb880caea3a8db0e554bd09f302d0e4ea928dbdad54bc5b053243d7",
+   "hash": "9e27f05b405123abf58582fb9914ff127ded63f282db3c069a9177713bbd4705"
+  },
+  {
+   "seq": 27,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0009-transporting",
+   "parent": "d0008-transport_lab",
+   "kind": "action",
+   "category": "transporting",
+   "transition": "executing",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "prev": "9e27f05b405123abf58582fb9914ff127ded63f282db3c069a9177713bbd4705",
+   "hash": "c380a126140f41760e2e0a0accc2d290e248afc8cf8badafb3602c8389289b1b"
+  },
+  {
+   "seq": 28,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0010-picking_up",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "picking_up",
+   "transition": "open",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(an action (type picking-up) (plate P23) (robot r01) (station l10) (seat stations_l10_incubator_transfer_station))",
+   "prev": "c380a126140f41760e2e0a0accc2d290e248afc8cf8badafb3602c8389289b1b",
+   "hash": "f12cd4ea907d28f531078fee9dccea2fcf96817a46fe853faf8f1ed8eb492195"
+  },
+  {
+   "seq": 29,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0010-picking_up",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "picking_up",
+   "transition": "grounded",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "bindings": {
+    "plate": "P23",
+    "robot": "r01",
+    "station": "l10",
+    "seat": "stations_l10_incubator_transfer_station"
+   },
+   "resolutions": [],
+   "plan": [
+    "(a motion (type approach) (primitive approach) (robot r01) (args [['appr', 'stations_l10_incubator_transfer_station']]))",
+    "(a motion (type insert) (primitive insert) (robot r01) (args ['stations_l10_incubator_transfer_station']))",
+    "(a motion (type grasp) (primitive grasp) (robot r01))",
+    "(a motion (type lift) (primitive lift) (robot r01))"
+   ],
+   "prev": "f12cd4ea907d28f531078fee9dccea2fcf96817a46fe853faf8f1ed8eb492195",
+   "hash": "bbf2799809276ae4b51fd4356af4a740c8c5ee7d8555ae051629767944b15964"
+  },
+  {
+   "seq": 30,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0010-picking_up",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "picking_up",
+   "transition": "accepted",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "understanding": {
+    "missing": [],
+    "slots": {}
+   },
+   "prev": "bbf2799809276ae4b51fd4356af4a740c8c5ee7d8555ae051629767944b15964",
+   "hash": "833bfbba12b0df57998e5476e98fe7b9acd201bfa7bf2a7fdf5765a37eee47cf"
+  },
+  {
+   "seq": 31,
+   "t_sim": 19.75,
+   "t": "2026-10-17T08:00:19",
+   "designator": "d0010-picking_up",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "picking_up",
+   "transition": "executing",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "prev": "833bfbba12b0df57998e5476e98fe7b9acd201bfa7bf2a7fdf5765a37eee47cf",
+   "hash": "23c482514fb16cad85afb60426777ce9118a85a5b7e7152fe61ac7a0fa938b33"
+  },
+  {
+   "seq": 32,
+   "t_sim": 33.48,
+   "t": "2026-10-17T08:00:33",
+   "designator": "d0011-approach",
+   "parent": "d0010-picking_up",
+   "kind": "motion",
+   "category": "approach",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type approach) (primitive approach) (robot r01) (args [['appr', 'stations_l10_incubator_transfer_station']]))",
+   "term": [
+    "approach",
+    "r01",
+    [
+     "appr",
+     "stations_l10_incubator_transfer_station"
+    ]
+   ],
+   "monitors": [],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 go_above + rig.pick",
+     "sha256": "d2c9fa17265bc1d68b715063144c97cbccb3406984b83bd1a2b2d1888d5e12b4"
+    }
+   ],
+   "belief": {
+    "pose:r01": [
+     "appr",
+     "stations_l10_incubator_transfer_station"
+    ]
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "32.48 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 13.73,
+   "prev": "23c482514fb16cad85afb60426777ce9118a85a5b7e7152fe61ac7a0fa938b33",
+   "hash": "c5ca92398ed278a43c7fa2034714e4be5e61b0286969776f75e95598591ed25f"
+  },
+  {
+   "seq": 33,
+   "t_sim": 33.48,
+   "t": "2026-10-17T08:00:33",
+   "designator": "d0012-insert",
+   "parent": "d0010-picking_up",
+   "kind": "motion",
+   "category": "insert",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type insert) (primitive insert) (robot r01) (args ['stations_l10_incubator_transfer_station']))",
+   "term": [
+    "insert",
+    "r01",
+    "stations_l10_incubator_transfer_station"
+   ],
+   "monitors": [],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 go_above + rig.pick (phase insert)",
+     "sha256": "518b8a0c2bfba73301324e3a11b1a948363675aec038106aa471d5e9da22910a"
+    }
+   ],
+   "belief": {
+    "pose:r01": [
+     "seat",
+     "stations_l10_incubator_transfer_station"
+    ]
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "32.48 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 0.0,
+   "prev": "c5ca92398ed278a43c7fa2034714e4be5e61b0286969776f75e95598591ed25f",
+   "hash": "f6ec8728862fdde6f6111207d9d82f536a749c07bab99df7b434b5dbbd380350"
+  },
+  {
+   "seq": 34,
+   "t_sim": 33.48,
+   "t": "2026-10-17T08:00:33",
+   "designator": "d0013-grasp",
+   "parent": "d0010-picking_up",
+   "kind": "motion",
+   "category": "grasp",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type grasp) (primitive grasp) (robot r01))",
+   "term": [
+    "grasp",
+    "r01"
+   ],
+   "monitors": [
+    {
+     "name": "grasp_confirmed",
+     "passed": true,
+     "observation": "{\"lifted\": true, \"contact\": true}"
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 go_above + rig.pick (phase grasp)",
+     "sha256": "38cf490828e0a7742494f5b017d2c865e12751d8cec00e98fe1950553beed434"
+    }
+   ],
+   "belief": {
+    "pose:r01": [
+     "seat",
+     "stations_l10_incubator_transfer_station"
+    ]
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "32.48 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 0.0,
+   "prev": "f6ec8728862fdde6f6111207d9d82f536a749c07bab99df7b434b5dbbd380350",
+   "hash": "f4469ad06a987e041e2ee44d56d935391c8fff6a7cfbbd6938d7a4e7b592c424"
+  },
+  {
+   "seq": 35,
+   "t_sim": 33.48,
+   "t": "2026-10-17T08:00:33",
+   "designator": "d0014-lift",
+   "parent": "d0010-picking_up",
+   "kind": "motion",
+   "category": "lift",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type lift) (primitive lift) (robot r01))",
+   "term": [
+    "lift",
+    "r01"
+   ],
+   "monitors": [],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 go_above + rig.pick (phase lift)",
+     "sha256": "5cee9e9af629dcf65535a5a0ce04697a93b5993b7f9d8a72d2dde5e06b3a0129"
+    }
+   ],
+   "belief": {
+    "pose:r01": [
+     "appr",
+     "stations_l10_incubator_transfer_station"
+    ],
+    "plate_at:P23": "robot:r01"
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "32.48 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 0.0,
+   "prev": "f4469ad06a987e041e2ee44d56d935391c8fff6a7cfbbd6938d7a4e7b592c424",
+   "hash": "1bcc11da2bc150301319aa1738095c53df62dbded14aae1562f0f1f90f93ff1d"
+  },
+  {
+   "seq": 36,
+   "t_sim": 33.48,
+   "t": "2026-10-17T08:00:33",
+   "designator": "d0010-picking_up",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "picking_up",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "prev": "1bcc11da2bc150301319aa1738095c53df62dbded14aae1562f0f1f90f93ff1d",
+   "hash": "ffd02a5f87b43614679589dc3553a758d8335d305425844732621c89435da7a1"
+  },
+  {
+   "seq": 37,
+   "t_sim": 36.73,
+   "t": "2026-10-17T08:00:36",
+   "designator": "d0015-stow",
+   "parent": "d0009-transporting",
+   "kind": "command",
+   "category": "stow",
+   "transition": "executed",
+   "agent": "l10",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a command (type stow) (command stow) (device l10))",
+   "term": [
+    "cmd",
+    "l10",
+    "stow"
+   ],
+   "monitors": [
+    {
+     "name": "source_release_state",
+     "passed": true,
+     "observation": "l10 mode READY"
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "L10 stow",
+     "sha256": "c89717bf00268a30fd3c564eccd874aa316c299c0790ddca565354dc98e0fe7a"
+    }
+   ],
+   "belief": {
+    "shuttle:l10": "stowed"
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "35.73 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 3.25,
+   "prev": "ffd02a5f87b43614679589dc3553a758d8335d305425844732621c89435da7a1",
+   "hash": "4821f79ecce1dc3038be91366da430bcb74f152c11fec955834c3328e5ee181c"
+  },
+  {
+   "seq": 38,
+   "t_sim": 40.73,
+   "t": "2026-10-17T08:00:40",
+   "designator": "d0016-transit",
+   "parent": "d0009-transporting",
+   "kind": "motion",
+   "category": "transit",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type transit) (primitive transit) (robot r01) (args [['appr', 'stations_l10_incubator_transfer_station'], ['appr', 'stations_h4_quarantine_transfer_nest']]))",
+   "term": [
+    "transit",
+    "r01",
+    [
+     "appr",
+     "stations_l10_incubator_transfer_station"
+    ],
+    [
+     "appr",
+     "stations_h4_quarantine_transfer_nest"
+    ]
+   ],
+   "monitors": [
+    {
+     "name": "route_clear",
+     "passed": true,
+     "observation": "planned joint-space transit to H4"
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 r01_planner transit",
+     "sha256": "d3a3899b2db71f19b62ccca1d3f1bf44c16ec7efdd86b13bed2547846d1943c0"
+    }
+   ],
+   "belief": {
+    "pose:r01": [
+     "appr",
+     "stations_h4_quarantine_transfer_nest"
+    ]
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "39.73 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 4.0,
+   "prev": "4821f79ecce1dc3038be91366da430bcb74f152c11fec955834c3328e5ee181c",
+   "hash": "b9ca03d75d7f9e0e8cf6c4d7768a2738e5abf7da7b7d52c97a72abc5657be630"
+  },
+  {
+   "seq": 39,
+   "t_sim": 40.73,
+   "t": "2026-10-17T08:00:40",
+   "designator": "d0017-placing",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "placing",
+   "transition": "open",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(an action (type placing) (plate P23) (robot r01) (station h4) (seat stations_h4_quarantine_transfer_nest))",
+   "prev": "b9ca03d75d7f9e0e8cf6c4d7768a2738e5abf7da7b7d52c97a72abc5657be630",
+   "hash": "e753d729e07e7d8e5fef36b72ccea1d99b1108f884447913d278e87087c58b19"
+  },
+  {
+   "seq": 40,
+   "t_sim": 40.73,
+   "t": "2026-10-17T08:00:40",
+   "designator": "d0017-placing",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "placing",
+   "transition": "grounded",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "bindings": {
+    "plate": "P23",
+    "robot": "r01",
+    "station": "h4",
+    "seat": "stations_h4_quarantine_transfer_nest"
+   },
+   "resolutions": [],
+   "plan": [
+    "(a command (type present) (command present) (device h4))",
+    "(a motion (type approach) (primitive approach) (robot r01) (args [['appr', 'stations_h4_quarantine_transfer_nest']]))",
+    "(a motion (type place) (primitive place) (robot r01) (args ['stations_h4_quarantine_transfer_nest']))",
+    "(a motion (type release) (primitive release) (robot r01))",
+    "(a motion (type retract) (primitive retract) (robot r01) (args [['appr', 'stations_h4_quarantine_transfer_nest']]))"
+   ],
+   "prev": "e753d729e07e7d8e5fef36b72ccea1d99b1108f884447913d278e87087c58b19",
+   "hash": "9f557263d85c57557866b112473bf11b115ee363e6a855fd11e9f29024296904"
+  },
+  {
+   "seq": 41,
+   "t_sim": 40.73,
+   "t": "2026-10-17T08:00:40",
+   "designator": "d0017-placing",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "placing",
+   "transition": "accepted",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "understanding": {
+    "missing": [],
+    "slots": {}
+   },
+   "prev": "9f557263d85c57557866b112473bf11b115ee363e6a855fd11e9f29024296904",
+   "hash": "9fc60ac935be6b201b8b6341fe229a91d1f92ce7f4b42d4a9d6fcd6d30b4f2fd"
+  },
+  {
+   "seq": 42,
+   "t_sim": 40.73,
+   "t": "2026-10-17T08:00:40",
+   "designator": "d0017-placing",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "placing",
+   "transition": "executing",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "prev": "9fc60ac935be6b201b8b6341fe229a91d1f92ce7f4b42d4a9d6fcd6d30b4f2fd",
+   "hash": "05390c866e5ec55ef2df9904fc241708399773057094a1587a4a7c7958f5af70"
+  },
+  {
+   "seq": 43,
+   "t_sim": 41.48,
+   "t": "2026-10-17T08:00:41",
+   "designator": "d0018-present",
+   "parent": "d0017-placing",
+   "kind": "command",
+   "category": "present",
+   "transition": "executed",
+   "agent": "h4",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a command (type present) (command present) (device h4))",
+   "term": [
+    "cmd",
+    "h4",
+    "present"
+   ],
+   "monitors": [
+    {
+     "name": "source_release_state",
+     "passed": true,
+     "observation": "h4 mode PRESENTED"
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "H4 present_nest",
+     "sha256": "5eb51b375a50b54eb0aa69c8e20131b7eca7e4be2e151aa2e3df2f6edada8f94"
+    }
+   ],
+   "belief": {
+    "shuttle:h4": "presented"
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "40.48 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 0.75,
+   "prev": "05390c866e5ec55ef2df9904fc241708399773057094a1587a4a7c7958f5af70",
+   "hash": "336d6c1c5de97b2d160aaefc11936e041386996620be125e66a492ce414f641e"
+  },
+  {
+   "seq": 44,
+   "t_sim": 51.85,
+   "t": "2026-10-17T08:00:51",
+   "designator": "d0019-approach",
+   "parent": "d0017-placing",
+   "kind": "motion",
+   "category": "approach",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type approach) (primitive approach) (robot r01) (args [['appr', 'stations_h4_quarantine_transfer_nest']]))",
+   "term": [
+    "approach",
+    "r01",
+    [
+     "appr",
+     "stations_h4_quarantine_transfer_nest"
+    ]
+   ],
+   "monitors": [],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 rig.place (compliant)",
+     "sha256": "7141047d0dc80fca44164f22fd64f78cd304e1468add942bc8a4468e7acf8382"
+    }
+   ],
+   "belief": {
+    "pose:r01": [
+     "appr",
+     "stations_h4_quarantine_transfer_nest"
+    ]
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "50.85 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 10.37,
+   "prev": "336d6c1c5de97b2d160aaefc11936e041386996620be125e66a492ce414f641e",
+   "hash": "85a429bd2b14d8a5510bab2a7fc6fc3859523541de06a269a08d035a8c6c6353"
+  },
+  {
+   "seq": 45,
+   "t_sim": 51.85,
+   "t": "2026-10-17T08:00:51",
+   "designator": "d0020-place",
+   "parent": "d0017-placing",
+   "kind": "motion",
+   "category": "place",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type place) (primitive place) (robot r01) (args ['stations_h4_quarantine_transfer_nest']))",
+   "term": [
+    "place",
+    "r01",
+    "stations_h4_quarantine_transfer_nest"
+   ],
+   "monitors": [],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 rig.place (compliant) (phase place)",
+     "sha256": "7aa3ed0609e4bd6534e81fd2bd36db4f9834c20d3160dd562d1a575277eea1c4"
+    }
+   ],
+   "belief": {
+    "pose:r01": [
+     "seat",
+     "stations_h4_quarantine_transfer_nest"
+    ]
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "50.85 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 0.0,
+   "prev": "85a429bd2b14d8a5510bab2a7fc6fc3859523541de06a269a08d035a8c6c6353",
+   "hash": "fb5310fc1d212663b30ced77a4d6c6909b3ac77818882374b2877064ed9c195b"
+  },
+  {
+   "seq": 46,
+   "t_sim": 51.85,
+   "t": "2026-10-17T08:00:51",
+   "designator": "d0021-release",
+   "parent": "d0017-placing",
+   "kind": "motion",
+   "category": "release",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type release) (primitive release) (robot r01))",
+   "term": [
+    "release",
+    "r01"
+   ],
+   "monitors": [
+    {
+     "name": "seating_confirmed",
+     "passed": true,
+     "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 131.4}"
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 rig.place (compliant) (phase release)",
+     "sha256": "d85eb15fffae0abbe8e397152f5784aa7c85d31a1f7b43fe67997aa91415cca8"
+    }
+   ],
+   "belief": {
+    "plate_at:P23": "h4",
+    "pose:r01": [
+     "seat",
+     "stations_h4_quarantine_transfer_nest"
+    ]
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "50.85 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 0.0,
+   "prev": "fb5310fc1d212663b30ced77a4d6c6909b3ac77818882374b2877064ed9c195b",
+   "hash": "49bc424656a709767d27da5cee5f72d21881ade1a2e0318a70e60c4fd064d51e"
+  },
+  {
+   "seq": 47,
+   "t_sim": 54.81,
+   "t": "2026-10-17T08:00:54",
+   "designator": "d0022-retract",
+   "parent": "d0017-placing",
+   "kind": "motion",
+   "category": "retract",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a motion (type retract) (primitive retract) (robot r01) (args [['appr', 'stations_h4_quarantine_transfer_nest']]))",
+   "term": [
+    "retract",
+    "r01",
+    [
+     "appr",
+     "stations_h4_quarantine_transfer_nest"
+    ]
+   ],
+   "monitors": [],
+   "evidence": [
+    {
+     "kind": "realised_by",
+     "value": "R01 retract to H4 approach",
+     "sha256": "17810bfc8e42b57bf0a1a1ce0f6e39d32368d31db8bfa56422c8cc28c6f55775"
+    }
+   ],
+   "belief": {
+    "pose:r01": [
+     "appr",
+     "stations_h4_quarantine_transfer_nest"
+    ]
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "53.81 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 2.96,
+   "prev": "49bc424656a709767d27da5cee5f72d21881ade1a2e0318a70e60c4fd064d51e",
+   "hash": "c3aaf2af28d75dc7f05902c6d76f9331c2300e74c8e4232a2aed836a12ce91c0"
+  },
+  {
+   "seq": 48,
+   "t_sim": 54.81,
+   "t": "2026-10-17T08:00:54",
+   "designator": "d0017-placing",
+   "parent": "d0009-transporting",
+   "kind": "action",
+   "category": "placing",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "prev": "c3aaf2af28d75dc7f05902c6d76f9331c2300e74c8e4232a2aed836a12ce91c0",
+   "hash": "42b52488b30beea5b99d0dd2d182b97288126d97127a0cdcd1dbed772e4fbce2"
+  },
+  {
+   "seq": 49,
+   "t_sim": 54.81,
+   "t": "2026-10-17T08:00:54",
+   "designator": "d0009-transporting",
+   "parent": "d0008-transport_lab",
+   "kind": "action",
+   "category": "transporting",
+   "transition": "executed",
+   "agent": "r01",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "prev": "42b52488b30beea5b99d0dd2d182b97288126d97127a0cdcd1dbed772e4fbce2",
+   "hash": "aa6d97a9f242527620bd2ba41ea4db60f325e13629774ba003988839e9a28c55"
+  },
+  {
+   "seq": 50,
+   "t_sim": 54.81,
+   "t": "2026-10-17T08:00:54",
+   "designator": "d0008-transport_lab",
+   "parent": "d0006-quarantine",
+   "kind": "action",
+   "category": "transport_lab",
+   "transition": "executed",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "prev": "aa6d97a9f242527620bd2ba41ea4db60f325e13629774ba003988839e9a28c55",
+   "hash": "8f8c9ed92b2446d0fc957dd4dfd5ed7724242b09e1ec2f35dc6d50d6065cf4a6"
+  },
+  {
+   "seq": 51,
+   "t_sim": 56.31,
+   "t": "2026-10-17T08:00:56",
+   "designator": "d0023-contain",
+   "parent": "d0006-quarantine",
+   "kind": "command",
+   "category": "contain",
+   "transition": "executed",
+   "agent": "h4",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "hadl": "(a command (type contain) (command contain) (device h4) (material ['quarantine', 'P23']))",
+   "term": [
+    "cmd",
+    "h4",
+    "contain"
+   ],
+   "monitors": [
+    {
+     "name": "containment_state",
+     "passed": true,
+     "observation": "{\"mode\": \"QUARANTINED\", \"locked\": true, \"occupied\": true}"
+    },
+    {
+     "name": "reentry_prevented",
+     "passed": true,
+     "observation": "unauthorised release refused: 'authorization token missing'"
+    }
+   ],
+   "evidence": [
+    {
+     "kind": "quarantine_request",
+     "value": {
+      "plate": "P23",
+      "device": "h4",
+      "status": "requested",
+      "authorization": "human_review_required"
+     },
+     "sha256": "179622955cd28cbe88aa2a5f3559f4eb6dba927f2032db0dff9aaca5af983905"
+    },
+    {
+     "kind": "realised_by",
+     "value": "H4 quarantine_sample (door closed, bolt locked)",
+     "sha256": "c96f7cb1bd6606c3a411cf63c0fe695530159e72aa53b8b2098beac6cbceeb6d"
+    }
+   ],
+   "belief": {
+    "plate_at:P23": "contained:h4"
+   },
+   "constraints": [
+    {
+     "id": "window_kept",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "55.31 s outside the incubator (window 600.0 s)",
+     "policy": "window",
+     "when": "after"
+    }
+   ],
+   "duration_s": 1.5,
+   "prev": "8f8c9ed92b2446d0fc957dd4dfd5ed7724242b09e1ec2f35dc6d50d6065cf4a6",
+   "hash": "b82c4903a0c8e0f4e62567cca0d0add826f211d7531a13ed95cbb5d79c0118d1"
+  },
+  {
+   "seq": 52,
+   "t_sim": 56.31,
+   "t": "2026-10-17T08:00:56",
+   "designator": "d0006-quarantine",
+   "parent": "d0004-retrieve",
+   "kind": "action",
+   "category": "quarantine",
+   "transition": "executed",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "constraints": [],
+   "prev": "b82c4903a0c8e0f4e62567cca0d0add826f211d7531a13ed95cbb5d79c0118d1",
+   "hash": "aed7edd4a07045edfbc07565606228f72ff20998f62bd86c3af264b6bcdb61e3"
+  },
+  {
+   "seq": 53,
+   "t_sim": 56.31,
+   "t": "2026-10-17T08:00:56",
+   "designator": "d0004-retrieve",
+   "parent": "d0002-run_session",
+   "kind": "action",
+   "category": "retrieve",
+   "transition": "escalated",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "reason": "escalated: l10 read P23, expected P18 (after quarantine P23 (Cell 01 routing H4_quarantine_if_identity_unresolved); P18 location unknown, human escalation)",
+   "prev": "aed7edd4a07045edfbc07565606228f72ff20998f62bd86c3af264b6bcdb61e3",
+   "hash": "7701a3e8bccc9bc745c6c2501eeba92407a7ecbee56f5e94bdbff9a89b400cf8"
+  },
+  {
+   "seq": 54,
+   "t_sim": 56.31,
+   "t": "2026-10-17T08:00:56",
+   "designator": "d0002-run_session",
+   "parent": "d0001-experiment",
+   "kind": "action",
+   "category": "run_session",
+   "transition": "escalated",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "reason": "escalated: l10 read P23, expected P18 (after quarantine P23 (Cell 01 routing H4_quarantine_if_identity_unresolved); P18 location unknown, human escalation)",
+   "prev": "7701a3e8bccc9bc745c6c2501eeba92407a7ecbee56f5e94bdbff9a89b400cf8",
+   "hash": "df81f4f4e1161bdc71f28563757ee547466e5a8afccba0addd40c050c1ec19ed"
+  },
+  {
+   "seq": 55,
+   "t_sim": 56.31,
+   "t": "2026-10-17T08:00:56",
+   "designator": "d0001-experiment",
+   "parent": null,
+   "kind": "action",
+   "category": "experiment",
+   "transition": "escalated",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "reason": "escalated: l10 read P23, expected P18 (after quarantine P23 (Cell 01 routing H4_quarantine_if_identity_unresolved); P18 location unknown, human escalation)",
+   "prev": "df81f4f4e1161bdc71f28563757ee547466e5a8afccba0addd40c050c1ec19ed",
+   "hash": "57705bd4e6e4b5f7ab5ea12c0cebd39c44dbb6d537f2f4aca530351bb3334246"
+  }
+ ]
+}

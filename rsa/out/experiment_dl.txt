@@ -1,0 +1,283 @@
+EXPERIMENT CONCEPTS IN DESCRIPTION LOGIC (SROIQ(D) = OWL 2 DL), generated from experiment_concepts.ldl
+
+RBOX (role hierarchy, partonomy)
+  hasPhase ⊑ hasPart
+  hasStep ⊑ hasPart
+  hasComponent ⊑ hasPart
+  hasExposure ⊑ hasComponent
+  hasObservation ⊑ hasComponent
+  hasCandidate ⊑ hasComponent
+  hasWell ⊑ hasPart
+  hasUnit ⊑ hasParticipant
+  hasCulture ⊑ hasUnit
+  hasSubstance ⊑ hasParticipant
+  hasSite ⊑ hasParticipant
+  hasQuestion ⊑ specifies
+  hasGoal ⊑ specifies
+  hasSharedConditions ⊑ specifies
+  hasComparison ⊑ specifies
+  prevents ⊑ specifies
+  maintains ⊑ specifies
+  hasInsight ⊑ hasOutput
+  Trans(hasPart)
+  partOf ≡ hasPart⁻
+  containedIn ≡ contains⁻
+  containedIn ∘ partOf ⊑ locatedIn
+  hasPart ∘ hasParticipant ⊑ hasParticipant
+  non-simple roles: ['hasPart', 'hasParticipant', 'locatedIn', 'partOf']; roles in number restrictions: ['contains', 'hasBelief', 'hasCandidate', 'hasComparison', 'hasGoal', 'hasInsight', 'hasPhase', 'hasQuestion', 'hasSharedConditions', 'hasSite', 'hasSubstance', 'hasUnit']
+
+KINDS (disjoint; parthood never crosses kinds)
+  Process ⊓ MaterialEntity ⊑ ⊥
+  Process ⊓ PlanSpecification ⊑ ⊥
+  Process ⊓ InformationEntity ⊑ ⊥
+  MaterialEntity ⊓ PlanSpecification ⊑ ⊥
+  MaterialEntity ⊓ InformationEntity ⊑ ⊥
+  PlanSpecification ⊓ InformationEntity ⊑ ⊥
+  Process ⊑ ∀hasPart.Process
+  MaterialEntity ⊑ ∀hasPart.MaterialEntity
+  PlanSpecification ⊑ ∀hasPart.PlanSpecification
+  InformationEntity ⊑ ∀hasPart.InformationEntity
+
+ENTITIES
+  Action ⊑ Process
+  Culture ⊑ MaterialEntity
+  Substance ⊑ MaterialEntity
+  Plate ⊑ MaterialEntity
+  Plate ⊑ ∃hasWell.Well
+  Well ⊑ MaterialEntity
+  Well ⊑ (≤1 contains.⊤)
+  ControlledEnvironment ⊑ MaterialEntity
+  Treatment ⊑ PlanSpecification
+  Treatment ⊑ ∀hasExposure.(Exposure ⊓ ∃exposedTo.⊤ ⊓ ∃dose.⊤ ⊓ ∃atTime.⊤)
+  Exposure ⊑ PlanSpecification
+  Condition ⊑ PlanSpecification
+  Observation ⊑ PlanSpecification
+  Estimate ⊑ InformationEntity
+  Scale ⊑ InformationEntity
+  Image ⊑ InformationEntity
+  Comparison ⊑ PlanSpecification
+  Question ⊑ InformationEntity
+  RecoveryModel ⊑ InformationEntity
+  Belief ⊑ InformationEntity
+  Posterior ⊑ InformationEntity
+  Insight ⊑ InformationEntity
+  Effect ⊑ InformationEntity
+  InterventionAction ⊑ Action
+  GrowthAction ⊑ Action
+  ObservationAction ⊑ Action
+  InterpretationAction ⊑ Action
+  AnalysisAction ⊑ Action
+  EmptyTreatment ≡ Treatment ⊓ ¬∃hasExposure.⊤
+
+PHASES
+  -- Phase: a temporal part of an experiment
+  Phase ⊑ Process
+  Phase ⊑ ∃hasStep.Action
+  -- CultivationPhase: the units are treated and kept under the shared conditions
+  CultivationPhase ⊑ Phase
+  CultivationPhase ⊑ ∀hasStep.(InterventionAction ⊔ GrowthAction)
+  -- ObservationPhase: the units are observed
+  ObservationPhase ⊑ Phase
+  ObservationPhase ⊑ ∀hasStep.ObservationAction
+  -- AnalysisPhase: the observations are interpreted and compared
+  AnalysisPhase ⊑ Phase
+  AnalysisPhase ⊑ ∀hasStep.(InterpretationAction ⊔ AnalysisAction)
+
+EXPERIMENTS
+  -- Experiment: an activity that answers a question by producing insights
+  Experiment ⊑ Process
+  Experiment ⊑ (=1 hasQuestion.Question)
+  Experiment ⊑ (=1 hasGoal.⊤)
+  Experiment ⊑ ∃hasInsight.Insight
+     further constraints: parthood-preserves-kind
+  -- HypothesisDiscriminatingExperiment: the question asks which of several candidate hypotheses holds; the experiment changes a belief
+over them, and its answer is the posterior
+  HypothesisDiscriminatingExperiment ⊑ Experiment
+  HypothesisDiscriminatingExperiment ⊑ ∃hasQuestion.(≥2 hasCandidate.⊤)
+  HypothesisDiscriminatingExperiment ⊑ (=1 hasBelief.(Belief ⊓ ∃over.⊤ ⊓ ∃hasPrior.⊤))
+  HypothesisDiscriminatingExperiment ⊑ (=1 hasGoal.(Belief ⊓ ∃expectedInformationGain.⊤))
+  HypothesisDiscriminatingExperiment ⊑ (=1 hasInsight.(Insight ⊓ ∃hasRole.AnswerRole ⊓ ∃hasForm.Posterior))
+     further constraints: answer-from-a-comparison-that-updates-the-belief
+  -- ComparativeExperiment: units are treated differently, kept under shared conditions and observed the same way;
+comparisons between units determine the effects of the treatments. Its procedure yields three phases
+  ComparativeExperiment ⊑ Experiment
+  ComparativeExperiment ⊑ (≥2 hasUnit.∃hasTreatment.⊤)
+  ComparativeExperiment ⊑ (=1 hasSharedConditions.(Condition ⊓ ∃fromTime.⊤ ⊓ ∃toTime.⊤ ⊓ ∃hasObservation.(Observation ⊓ ∃atTime.⊤ ⊓ ∃interpretedAs.⊤)))
+  ComparativeExperiment ⊑ ∃hasComparison.(Comparison ⊓ ∃between.⊤ ⊓ ∃determines.Effect)
+  ComparativeExperiment ⊑ ∃hasInsight.(Insight ⊓ ∃hasRole.EffectRole)
+  ComparativeExperiment ⊑ (=1 hasPhase.CultivationPhase)
+  ComparativeExperiment ⊑ (=1 hasPhase.ObservationPhase)
+  ComparativeExperiment ⊑ (=1 hasPhase.AnalysisPhase)
+  ComparativeExperiment ⊑ (=1 hasSite.Plate)
+     further constraints: comparisons-between-units, an-effect-insight-per-comparison, parts-conform-to-their-concepts, each-step-in-one-phase, each-exposure-realized-once, each-unit-observed-once, each-comparison-realized-once, units-in-distinct-wells-of-the-site, phases-in-time-order
+  -- ControlledExperiment: one unit is an untreated control, it stays untreated, and every comparison isolates exactly one
+exposure: its two units differ in that exposure only, and it is the exposure whose effect the comparison determines
+  ControlledExperiment ⊑ ComparativeExperiment
+  ControlledExperiment ⊑ (=1 hasUnit.(∃hasRole.ControlRole ⊓ ∃hasTreatment.EmptyTreatment))
+  ControlledExperiment ⊑ ∃prevents.(Exposure ⊓ ∃of.(Culture ⊓ ∃hasRole.ControlRole))
+     further constraints: single-difference
+  -- ChallengeRescueExperiment: units are injured by a challenge; one is then given a rescue after a delay. A validity comparison
+(comparator vs control) establishes the challenge's effect and licenses the primary comparison (rescued vs
+comparator), which determines the rescue's effect and updates the belief over models of recovery
+  ChallengeRescueExperiment ⊑ ControlledExperiment ⊓ HypothesisDiscriminatingExperiment
+  ChallengeRescueExperiment ⊑ (=1 hasSubstance.(Substance ⊓ ∃hasRole.ChallengeRole))
+  ChallengeRescueExperiment ⊑ (=1 hasSubstance.(Substance ⊓ ∃hasRole.RescueRole))
+  ChallengeRescueExperiment ⊑ (=1 hasUnit.(Culture ⊓ ∃hasRole.RescuedRole ⊓ ∃hasTreatment.(Treatment ⊓ ∃hasExposure.(Exposure ⊓ ∃exposedTo.(Substance ⊓ ∃hasRole.ChallengeRole)) ⊓ ∃hasExposure.(Exposure ⊓ ∃exposedTo.(Substance ⊓ ∃hasRole.RescueRole)))))
+  ChallengeRescueExperiment ⊑ (=1 hasUnit.(Culture ⊓ ∃hasRole.ComparatorRole ⊓ ∃hasTreatment.(Treatment ⊓ ∃hasExposure.(Exposure ⊓ ∃exposedTo.(Substance ⊓ ∃hasRole.ChallengeRole)))))
+  ChallengeRescueExperiment ⊑ (=1 hasComparison.(Comparison ⊓ ∃hasRole.ValidityRole ⊓ ∃between.(Culture ⊓ ∃hasRole.ComparatorRole) ⊓ ∃between.(Culture ⊓ ∃hasRole.ControlRole) ⊓ ∃determines.(Effect ⊓ ∃of.(Substance ⊓ ∃hasRole.ChallengeRole)) ⊓ ∃licenses.(Comparison ⊓ ∃hasRole.PrimaryRole)))
+  ChallengeRescueExperiment ⊑ (=1 hasComparison.(Comparison ⊓ ∃hasRole.PrimaryRole ⊓ ∃between.(Culture ⊓ ∃hasRole.RescuedRole) ⊓ ∃between.(Culture ⊓ ∃hasRole.ComparatorRole) ⊓ ∃determines.(Effect ⊓ ∃of.(Substance ⊓ ∃hasRole.RescueRole)) ⊓ ∃updates.Belief))
+     further constraints: rescue-after-challenge
+
+CONSTRAINTS BEYOND THE TBOX AXIOMS
+  parthood-preserves-kind [OWL 2 DL]
+      Process ⊑ ∀hasPart.Process
+      MaterialEntity ⊑ ∀hasPart.MaterialEntity
+      PlanSpecification ⊑ ∀hasPart.PlanSpecification
+      InformationEntity ⊑ ∀hasPart.InformationEntity
+      (stated in the kinds section; parthood never crosses kinds)
+  answer-from-a-comparison-that-updates-the-belief [OWL 2 DL]
+      Insight ⊓ ∃hasRole.AnswerRole ⊑ ∃from.(Comparison ⊓ ∃updates.Belief)
+      (that the comparison is one of the same experiment needs variable sharing (FOL))
+  comparisons-between-units [SROIQ role inclusion]
+      hasComparison ∘ between ⊑ hasUnit
+      (read as an integrity constraint: under the open world an OWL reasoner would infer the unit, not report it)
+  an-effect-insight-per-comparison [FOL]
+      ∀e,c. hasComparison(e,c) → ∃i. hasInsight(e,i) ∧ from(i,c) ∧ ∀s. (determines∘of)(c,s) → of(i,s)
+      (OWL 2 states only Comparison ⊑ ∃from⁻.(Insight ⊓ ∃hasRole.EffectRole))
+  parts-conform-to-their-concepts [DL semantics]
+      (every TBox axiom holds of every individual)
+      (the closed-world checker evaluates each part against its own concept)
+  each-step-in-one-phase [OWL 2 DL]
+      Action ⊑ (=1 hasStep⁻.Phase)
+  each-exposure-realized-once [OWL 2 DL + rule]
+      Exposure ⊑ (=1 realizes⁻.InterventionAction)
+      realizes(a,x) ← hasCulture(a,u) ∧ hasTreatment(u,t) ∧ hasExposure(t,x) ∧  same substance, dose and time
+      (the rule that computes realizes compares data values of two individuals (SWRL))
+  each-unit-observed-once [FOL]
+      ∀e,u. hasUnit(e,u) → ∃=1 s. hasPart(e,s) ∧ ObservationAction(s) ∧ hasCulture(s,u)
+      (OWL 2 states only Culture ⊑ (=1 hasCulture⁻.ObservationAction), not 'within the same experiment')
+  each-comparison-realized-once [OWL 2 DL + rule]
+      Comparison ⊑ (=1 realizes⁻.AnalysisAction)
+      (realizes is computed from the analysis's statistic (the pair of units it compares))
+  units-in-distinct-wells-of-the-site [FOL (path agreement)]
+      Culture ⊑ (=1 containedIn.Well),   Well ⊑ (≤1 contains.⊤)
+      ∀e,u,v. hasUnit(e,u) ∧ hasUnit(e,v) → (containedIn∘partOf)(u) = (containedIn∘partOf)(v)
+      (the first line is OWL 2 DL; 'one plate for all units' is a role-value map, undecidable with the rest)
+  phases-in-time-order [ALC(D) feature chains]
+      ComparativeExperiment ⊑ ∃(cultivation∘toTime, observationPhase∘atTime).≤
+      (compares two data values reached by different paths: a concrete-domain predicate, not available in OWL 2)
+  single-difference [FOL with counting]
+      ∀c,u,v. between(c,u) ∧ between(c,v) ∧ u≠v → |X(u) △ X(v)| = 1 ∧ ∀x ∈ X(u) △ X(v). exposedTo(x) = (determines∘of)(c)
+      (X(u): the exposures of the treatment of u, as substance, dose and time)
+      (beyond SROIQ: compares two individuals' sets of exposures (rule with aggregation, SPARQL, or the checker))
+  rescue-after-challenge [ALC(D) feature chains]
+      ∃hasRole.RescuedRole ⊑ ∃(rescueExposure∘atTime, challengeExposure∘atTime).>
+      (with rescueExposure, challengeExposure functional subroles of hasTreatment∘hasExposure; not OWL 2)
+
+ABOX (the experiment as derived and placed)
+  ChallengeRescueExperiment(e)
+  hasQuestion(e, q)
+  RecoveryModel(M1_graded)
+  hasCandidate(q, M1_graded)
+  RecoveryModel(M2_threshold)
+  hasCandidate(q, M2_threshold)
+  RecoveryModel(M3_protective)
+  hasCandidate(q, M3_protective)
+  Belief(b)
+  hasBelief(e, b)
+  Substance(s_challenge)
+  hasRole(s_challenge, challengeRole)
+  hasSubstance(e, s_challenge)
+  Substance(s_rescue)
+  hasRole(s_rescue, rescueRole)
+  hasSubstance(e, s_rescue)
+  Culture(rescued)
+  hasCulture(e, rescued)
+  hasRole(rescued, rescuedRole)
+  Treatment(t_rescued)
+  hasTreatment(rescued, t_rescued)
+  Exposure(x_rescued_challenge)
+  hasExposure(t_rescued, x_rescued_challenge)
+  exposedTo(x_rescued_challenge, s_challenge)
+  Exposure(x_rescued_rescue)
+  hasExposure(t_rescued, x_rescued_rescue)
+  exposedTo(x_rescued_rescue, s_rescue)
+  Culture(comparator)
+  hasCulture(e, comparator)
+  hasRole(comparator, comparatorRole)
+  Treatment(t_comparator)
+  hasTreatment(comparator, t_comparator)
+  Exposure(x_comparator_challenge)
+  hasExposure(t_comparator, x_comparator_challenge)
+  exposedTo(x_comparator_challenge, s_challenge)
+  Culture(control)
+  hasCulture(e, control)
+  hasRole(control, controlRole)
+  EmptyTreatment(t_control)
+  hasTreatment(control, t_control)
+  Comparison(c_validity)
+  hasComparison(e, c_validity)
+  between(c_validity, comparator)
+  between(c_validity, control)
+  licenses(c_validity, c_primary)
+  Comparison(c_primary)
+  hasComparison(e, c_primary)
+  between(c_primary, rescued)
+  between(c_primary, comparator)
+  Insight(ins_answer)
+  hasInsight(e, ins_answer)
+  from(ins_answer, c_primary)
+  Insight(ins_effect_rescue)
+  hasInsight(e, ins_effect_rescue)
+  from(ins_effect_rescue, c_primary)
+  Insight(ins_effect_challenge)
+  hasInsight(e, ins_effect_challenge)
+  from(ins_effect_challenge, c_validity)
+  CultivationPhase(cultivation)
+  hasPhase(e, cultivation)
+  InterventionAction(x1)
+  hasStep(cultivation, x1)
+  InterventionAction(x2)
+  hasStep(cultivation, x2)
+  GrowthAction(g1)
+  hasStep(cultivation, g1)
+  InterventionAction(x3)
+  hasStep(cultivation, x3)
+  GrowthAction(g2)
+  hasStep(cultivation, g2)
+  ObservationPhase(observation)
+  hasPhase(e, observation)
+  ObservationAction(o1)
+  hasStep(observation, o1)
+  ObservationAction(o2)
+  hasStep(observation, o2)
+  ObservationAction(o3)
+  hasStep(observation, o3)
+  AnalysisPhase(analysis)
+  hasPhase(e, analysis)
+  InterpretationAction(i1)
+  hasStep(analysis, i1)
+  InterpretationAction(i2)
+  hasStep(analysis, i2)
+  InterpretationAction(i3)
+  hasStep(analysis, i3)
+  AnalysisAction(v1)
+  hasStep(analysis, v1)
+  AnalysisAction(a1)
+  hasStep(analysis, a1)
+  realizes(x1, x_rescued_challenge)
+  realizes(x2, x_comparator_challenge)
+  realizes(x3, x_rescued_rescue)
+  realizes(v1, c_validity)
+  realizes(a1, c_primary)
+  Plate(P17)
+  hasSite(e, P17)
+  Well(A01)
+  hasWell(P17, A01)
+  contains(A01, rescued)
+  Well(A02)
+  hasWell(P17, A02)
+  contains(A02, comparator)
+  Well(A05)
+  hasWell(P17, A05)
+  contains(A05, control)

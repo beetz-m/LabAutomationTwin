@@ -1,0 +1,259 @@
+{
+ "scenario": "isaac_calibration_lapsed",
+ "about": "L17's calibration is invalidated just before the first image of s2; set aside, recalibrate at L21, re-plan",
+ "backend": "isaac-cell01-twin/0.1",
+ "error": "session_failed: A02 out of focus; retained (after safe return of the plate to its controlled environment (focus_invalid in measure))",
+ "end": "escalated",
+ "n_entries": 562,
+ "n_leaves": 178,
+ "wall_s": 5109.7,
+ "audit": {
+  "verify": {
+   "ok": true,
+   "n": 562,
+   "attributable": true,
+   "evidence_hashed": true
+  },
+  "tampered_detected": true
+ },
+ "verdict": {
+  "realization": {
+   "ok": false,
+   "violated": [],
+   "run_ended": "escalated"
+  },
+  "validity": {
+   "ok": false,
+   "checks": {
+    "V1_identity_continuity": {
+     "ok": true,
+     "observation": "identity reads ['P17', 'P17', 'P17']"
+    },
+    "V2_calibration_at_measurement": {
+     "ok": true,
+     "observation": "1 readouts, calibration observed valid for all"
+    },
+    "V3_binding_validated": {
+     "ok": true,
+     "observation": "binding(l17,organoid_radius_um) = validated"
+    },
+    "V4_controls_present": {
+     "ok": false,
+     "observation": "control ['A05'], imaged ['A01']"
+    },
+    "V5_dose_delivered": {
+     "ok": true,
+     "observation": "3 dispenses within 5.0 %: True"
+    },
+    "V6_sample_integrity": {
+     "ok": true,
+     "observation": "window kept on every trip"
+    },
+    "V7_design_realised": {
+     "ok": false,
+     "observation": "missing [('A02', 72), ('A05', 72)]"
+    }
+   },
+   "refused_by": []
+  },
+  "promotable": false,
+  "nr3": false,
+  "disposition": "escalated: human decision required; nothing committed",
+  "design": {
+   "id": "c_d85_t48_n1",
+   "requirement_bits": 0.5,
+   "eig_bits": 0.5439
+  }
+ },
+ "repairs": [
+  {
+   "failure": "focus_invalid",
+   "detail": "A02 out of focus; retained",
+   "at": "d0219-measure",
+   "repairs": [
+    "(an action (type transport-lab) (plate P17) (target l10))",
+    "(an action (type store) (plate P17) (location l10))"
+   ],
+   "repair_categories": [
+    "transport_lab",
+    "store"
+   ],
+   "then": "fail",
+   "why": "safe return of the plate to its controlled environment (focus_invalid in measure)",
+   "category": "run_session",
+   "node": "d0148-run_session"
+  },
+  {
+   "failure": "calibration_invalid",
+   "detail": "L17 refused imaging: calibration_invalidated: L17-CAL-2026-10-16-SIM invalidated by QC-SCENARIO-LAPSE; repair/recalibrate via L21 first",
+   "at": "d0185-image_well",
+   "repairs": [
+    "(an action (type transport-lab) (plate P17) (target handovernest))",
+    "(an action (type calibrate) (target l17))"
+   ],
+   "repair_categories": [
+    "transport_lab",
+    "calibrate"
+   ],
+   "then": "replan",
+   "why": "calibration lapsed at imaging: set the plate aside, recalibrate the imager at its QC station (needs the stage), re-plan the measurement (Cell 01 routing L21_qc)",
+   "category": "image",
+   "node": "d0183-image"
+  },
+  {
+   "failure": "focus_invalid",
+   "detail": "A02 out of focus; retained",
+   "at": "d0221-image_well",
+   "repairs": [
+    "(a command (type autofocus) (command autofocus) (device l17) (args ['https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a02_interfaces_imaging_target_frame']) (material ['image', 'a02']))"
+   ],
+   "repair_categories": [
+    "autofocus"
+   ],
+   "then": "retry",
+   "why": "out-of-focus acquisition retained; fresh autofocus and reacquire (Cell 01 routing reacquire_if_binding_recoverable)",
+   "category": "image",
+   "node": "d0220-image"
+  }
+ ],
+ "sessions": [
+  {
+   "session": "s0",
+   "kernel_s": 305.71,
+   "planner_s": 298.9,
+   "leaves": 52
+  },
+  {
+   "session": "s1",
+   "kernel_s": 230.08,
+   "planner_s": 263.3,
+   "leaves": 48
+  },
+  {
+   "session": "s2",
+   "kernel_s": 414.58,
+   "planner_s": 256.4,
+   "leaves": 76
+  }
+ ],
+ "expected": {
+  "end": "executed",
+  "realization": true,
+  "validity": true,
+  "promotable": true
+ },
+ "got": {
+  "end": "escalated",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "nr3": false,
+  "repaired_at": [
+   "run_session",
+   "image",
+   "image"
+  ]
+ },
+ "expectation_ok": false,
+ "plate": "P17",
+ "cq": {
+  "correct": 2,
+  "n": 3,
+  "grounded": 3,
+  "results": [
+   {
+    "id": "CQ-15",
+    "family": "evidence",
+    "scenario": "isaac_calibration_lapsed",
+    "question": "Is your record intact, and would you notice if someone edited it?",
+    "ok": true,
+    "answer": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "expected": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "grounds": [
+     "verify over 562 entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-16",
+    "family": "retrospective",
+    "scenario": "isaac_calibration_lapsed",
+    "question": "What went wrong, and what did you repair?",
+    "ok": true,
+    "answer": [
+     {
+      "failure": "calibration_invalid",
+      "at": "image",
+      "repair": [
+       "transport_lab",
+       "calibrate"
+      ]
+     },
+     {
+      "failure": "focus_invalid",
+      "at": "image",
+      "repair": [
+       "autofocus"
+      ]
+     },
+     {
+      "failure": "focus_invalid",
+      "at": "run_session",
+      "repair": [
+       "transport_lab",
+       "store"
+      ]
+     }
+    ],
+    "expected": {
+     "$contains": [
+      {
+       "failure": "calibration_invalid",
+       "at": "image",
+       "repair": [
+        "transport_lab",
+        "calibrate"
+       ]
+      }
+     ]
+    },
+    "grounds": [
+     "trail#409:image/repairing",
+     "trail#491:image/repairing",
+     "trail#496:run_session/repairing"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-21",
+    "family": "verdict",
+    "scenario": "isaac_calibration_lapsed",
+    "question": "Is the result a valid experiment?",
+    "ok": false,
+    "answer": {
+     "realization": false,
+     "validity": false,
+     "nr3": false,
+     "failed_checks": [
+      "V4_controls_present",
+      "V7_design_realised"
+     ]
+    },
+    "expected": {
+     "realization": true,
+     "validity": true
+    },
+    "grounds": [
+     "critic over trail"
+    ],
+    "error": null
+   }
+  ]
+ }
+}

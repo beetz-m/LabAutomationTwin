@@ -1,0 +1,1790 @@
+{
+ "roles": {
+  "has-part": {
+   "parent": null,
+   "transitive": true,
+   "inverse": "part-of",
+   "chain": null,
+   "doc": "parthood: a process has temporal parts, a material entity material parts, a plan its components"
+  },
+  "phase": {
+   "parent": "has-part",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "a phase of an experiment: a temporal part that is a process"
+  },
+  "step": {
+   "parent": "has-part",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "an action that is part of a phase"
+  },
+  "has-component": {
+   "parent": "has-part",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "a part of a plan or of an information entity"
+  },
+  "exposure": {
+   "parent": "has-component",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "observation": {
+   "parent": "has-component",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "candidate": {
+   "parent": "has-component",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "well": {
+   "parent": "has-part",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "contains": {
+   "parent": null,
+   "transitive": false,
+   "inverse": "contained-in",
+   "chain": null,
+   "doc": "location: a culture is in a well, it is not part of it"
+  },
+  "located-in": {
+   "parent": null,
+   "transitive": false,
+   "inverse": null,
+   "chain": [
+    "contained-in",
+    "part-of"
+   ],
+   "doc": "what is contained in a part is located in the whole"
+  },
+  "realizes": {
+   "parent": null,
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "an action realizes a part of the plan: an exposure, an observation, a comparison"
+  },
+  "has-participant": {
+   "parent": null,
+   "transitive": false,
+   "inverse": null,
+   "chain": [
+    "has-part",
+    "has-participant"
+   ],
+   "doc": "a participant of a part of a process participates in the process"
+  },
+  "unit": {
+   "parent": "has-participant",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "an experimental unit: what is treated, kept and observed"
+  },
+  "culture": {
+   "parent": "unit",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "substance": {
+   "parent": "has-participant",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "site": {
+   "parent": "has-participant",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "the material entity that holds the units"
+  },
+  "specifies": {
+   "parent": null,
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "the plan of an experiment: neither parthood nor participation"
+  },
+  "question": {
+   "parent": "specifies",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "goal": {
+   "parent": "specifies",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "shared-conditions": {
+   "parent": "specifies",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "comparison": {
+   "parent": "specifies",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "prevents": {
+   "parent": "specifies",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "maintains": {
+   "parent": "specifies",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "treatment": {
+   "parent": null,
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "the plan assigned to a unit"
+  },
+  "belief": {
+   "parent": null,
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": "the information entity an experiment reads and updates"
+  },
+  "has-output": {
+   "parent": null,
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  },
+  "insight": {
+   "parent": "has-output",
+   "transitive": false,
+   "inverse": null,
+   "chain": null,
+   "doc": ""
+  }
+ },
+ "concepts": {
+  "process": {
+   "name": "process",
+   "parents": [],
+   "doc": "something that happens; its parts are processes",
+   "kind": true,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "material-entity": {
+   "name": "material-entity",
+   "parents": [],
+   "doc": "a thing; its parts are things",
+   "kind": true,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "plan-specification": {
+   "name": "plan-specification",
+   "parents": [],
+   "doc": "what is to be done; its components are plan specifications",
+   "kind": true,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "information-entity": {
+   "name": "information-entity",
+   "parents": [],
+   "doc": "what is known or asked; its components are information entities",
+   "kind": true,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "action": {
+   "name": "action",
+   "parents": [
+    "process"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "culture": {
+   "name": "culture",
+   "parents": [
+    "material-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "substance": {
+   "name": "substance",
+   "parents": [
+    "material-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "plate": {
+   "name": "plate",
+   "parents": [
+    "material-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [
+    {
+     "path": [
+      "well"
+     ],
+     "pattern": [
+      "a",
+      "well"
+     ],
+     "card": [
+      "at-least",
+      "1"
+     ]
+    }
+   ],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "well": {
+   "name": "well",
+   "parents": [
+    "material-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [
+    {
+     "path": [
+      "contains"
+     ],
+     "pattern": "any",
+     "card": [
+      "at-most",
+      "1"
+     ]
+    }
+   ],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "controlled-environment": {
+   "name": "controlled-environment",
+   "parents": [
+    "material-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "treatment": {
+   "name": "treatment",
+   "parents": [
+    "plan-specification"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [
+    {
+     "path": [
+      "exposure"
+     ],
+     "pattern": [
+      "an",
+      "exposure",
+      [
+       "to"
+      ],
+      [
+       "dose"
+      ],
+      [
+       "at"
+      ]
+     ]
+    }
+   ],
+   "checks": [],
+   "procedure": []
+  },
+  "exposure": {
+   "name": "exposure",
+   "parents": [
+    "plan-specification"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "condition": {
+   "name": "condition",
+   "parents": [
+    "plan-specification"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "observation": {
+   "name": "observation",
+   "parents": [
+    "plan-specification"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "estimate": {
+   "name": "estimate",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "scale": {
+   "name": "scale",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "image": {
+   "name": "image",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "comparison": {
+   "name": "comparison",
+   "parents": [
+    "plan-specification"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "question": {
+   "name": "question",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "recovery-model": {
+   "name": "recovery-model",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "belief": {
+   "name": "belief",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "posterior": {
+   "name": "posterior",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "insight": {
+   "name": "insight",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "effect": {
+   "name": "effect",
+   "parents": [
+    "information-entity"
+   ],
+   "doc": "",
+   "kind": false,
+   "has": [],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "phase": {
+   "name": "phase",
+   "parents": [
+    "process"
+   ],
+   "doc": "a temporal part of an experiment",
+   "kind": false,
+   "has": [
+    {
+     "path": [
+      "step"
+     ],
+     "pattern": [
+      "an",
+      "action"
+     ],
+     "card": [
+      "at-least",
+      "1"
+     ]
+    }
+   ],
+   "only": [],
+   "checks": [],
+   "procedure": []
+  },
+  "cultivation-phase": {
+   "name": "cultivation-phase",
+   "parents": [
+    "phase"
+   ],
+   "doc": "the units are treated and kept under the shared conditions",
+   "kind": false,
+   "has": [],
+   "only": [
+    {
+     "path": [
+      "step"
+     ],
+     "pattern": [
+      "or",
+      [
+       "an",
+       "action",
+       [
+        "kind",
+        "intervention"
+       ]
+      ],
+      [
+       "an",
+       "action",
+       [
+        "kind",
+        "growth"
+       ]
+      ]
+     ]
+    }
+   ],
+   "checks": [],
+   "procedure": []
+  },
+  "observation-phase": {
+   "name": "observation-phase",
+   "parents": [
+    "phase"
+   ],
+   "doc": "the units are observed",
+   "kind": false,
+   "has": [],
+   "only": [
+    {
+     "path": [
+      "step"
+     ],
+     "pattern": [
+      "an",
+      "action",
+      [
+       "kind",
+       "observation"
+      ]
+     ]
+    }
+   ],
+   "checks": [],
+   "procedure": []
+  },
+  "analysis-phase": {
+   "name": "analysis-phase",
+   "parents": [
+    "phase"
+   ],
+   "doc": "the observations are interpreted and compared",
+   "kind": false,
+   "has": [],
+   "only": [
+    {
+     "path": [
+      "step"
+     ],
+     "pattern": [
+      "or",
+      [
+       "an",
+       "action",
+       [
+        "kind",
+        "interpretation"
+       ]
+      ],
+      [
+       "an",
+       "action",
+       [
+        "kind",
+        "analysis"
+       ]
+      ]
+     ]
+    }
+   ],
+   "checks": [],
+   "procedure": []
+  },
+  "experiment": {
+   "name": "experiment",
+   "parents": [
+    "process"
+   ],
+   "doc": "an activity that answers a question by producing insights",
+   "kind": false,
+   "has": [
+    {
+     "path": [
+      "question"
+     ],
+     "pattern": [
+      "a",
+      "question"
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "goal"
+     ],
+     "pattern": "any",
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "insight"
+     ],
+     "pattern": [
+      "an",
+      "insight"
+     ],
+     "card": [
+      "at-least",
+      "1"
+     ]
+    }
+   ],
+   "only": [],
+   "checks": [
+    "parthood-preserves-kind"
+   ],
+   "procedure": []
+  },
+  "hypothesis-discriminating-experiment": {
+   "name": "hypothesis-discriminating-experiment",
+   "parents": [
+    "experiment"
+   ],
+   "doc": "the question asks which of several candidate hypotheses holds; the experiment changes a belief\nover them, and its answer is the posterior",
+   "kind": false,
+   "has": [
+    {
+     "path": [
+      "question",
+      "candidate"
+     ],
+     "pattern": "any",
+     "card": [
+      "at-least",
+      "2"
+     ]
+    },
+    {
+     "path": [
+      "belief"
+     ],
+     "pattern": [
+      "a",
+      "belief",
+      [
+       "over"
+      ],
+      [
+       "prior"
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "goal"
+     ],
+     "pattern": [
+      "the",
+      "belief",
+      [
+       "expected-information-gain"
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "insight"
+     ],
+     "pattern": [
+      "an",
+      "insight",
+      [
+       "role",
+       "answer"
+      ],
+      [
+       "form",
+       [
+        "a",
+        "posterior"
+       ]
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    }
+   ],
+   "only": [],
+   "checks": [
+    "answer-from-a-comparison-that-updates-the-belief"
+   ],
+   "procedure": []
+  },
+  "comparative-experiment": {
+   "name": "comparative-experiment",
+   "parents": [
+    "experiment"
+   ],
+   "doc": "units are treated differently, kept under shared conditions and observed the same way;\ncomparisons between units determine the effects of the treatments. Its procedure yields three phases",
+   "kind": false,
+   "has": [
+    {
+     "path": [
+      "unit"
+     ],
+     "pattern": [
+      "an",
+      "entity",
+      [
+       "treatment"
+      ]
+     ],
+     "card": [
+      "at-least",
+      "2"
+     ]
+    },
+    {
+     "path": [
+      "shared-conditions"
+     ],
+     "pattern": [
+      "a",
+      "condition",
+      [
+       "from"
+      ],
+      [
+       "to"
+      ],
+      [
+       "observation",
+       [
+        "an",
+        "observation",
+        [
+         "at"
+        ],
+        [
+         "interpreted-as"
+        ]
+       ]
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "comparison"
+     ],
+     "pattern": [
+      "a",
+      "comparison",
+      [
+       "between"
+      ],
+      [
+       "determines",
+       [
+        "the",
+        "effect"
+       ]
+      ]
+     ],
+     "card": [
+      "at-least",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "insight"
+     ],
+     "pattern": [
+      "an",
+      "insight",
+      [
+       "role",
+       "effect"
+      ]
+     ],
+     "card": [
+      "at-least",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "phase"
+     ],
+     "pattern": [
+      "a",
+      "cultivation-phase"
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "phase"
+     ],
+     "pattern": [
+      "an",
+      "observation-phase"
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "phase"
+     ],
+     "pattern": [
+      "an",
+      "analysis-phase"
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "site"
+     ],
+     "pattern": [
+      "a",
+      "plate"
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    }
+   ],
+   "only": [],
+   "checks": [
+    "comparisons-between-units",
+    "an-effect-insight-per-comparison",
+    "parts-conform-to-their-concepts",
+    "each-step-in-one-phase",
+    "each-exposure-realized-once",
+    "each-unit-observed-once",
+    "each-comparison-realized-once",
+    "units-in-distinct-wells-of-the-site",
+    "phases-in-time-order"
+   ],
+   "procedure": [
+    "(rule (each exposure (of (a unit))) (yields (an action (kind intervention) (in (the cultivation-phase)))))",
+    "(rule (each interval (between (consecutive treatment-times))) (yields (an action (kind growth) (in (the cultivation-phase)))))",
+    "(rule (each unit) (yields (an action (kind observation) (in (the observation-phase))) (an action (kind interpretation) (in (the analysis-phase)))))",
+    "(rule (each comparison) (yields (an action (kind analysis) (in (the analysis-phase)))))",
+    "(rule (a comparison (licenses ?c)) (orders (its analysis) (before (the analysis (of ?c)))))"
+   ]
+  },
+  "controlled-experiment": {
+   "name": "controlled-experiment",
+   "parents": [
+    "comparative-experiment"
+   ],
+   "doc": "one unit is an untreated control, it stays untreated, and every comparison isolates exactly one\nexposure: its two units differ in that exposure only, and it is the exposure whose effect the comparison determines",
+   "kind": false,
+   "has": [
+    {
+     "path": [
+      "unit"
+     ],
+     "pattern": [
+      "an",
+      "entity",
+      [
+       "role",
+       "control"
+      ],
+      [
+       "treatment",
+       [
+        "no",
+        "treatment"
+       ]
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "prevents"
+     ],
+     "pattern": [
+      "an",
+      "exposure",
+      [
+       "of",
+       [
+        "the",
+        "culture",
+        [
+         "role",
+         "control"
+        ]
+       ]
+      ]
+     ],
+     "card": [
+      "at-least",
+      "1"
+     ]
+    }
+   ],
+   "only": [],
+   "checks": [
+    "single-difference"
+   ],
+   "procedure": []
+  },
+  "challenge-rescue-experiment": {
+   "name": "challenge-rescue-experiment",
+   "parents": [
+    "controlled-experiment",
+    "hypothesis-discriminating-experiment"
+   ],
+   "doc": "units are injured by a challenge; one is then given a rescue after a delay. A validity comparison\n(comparator vs control) establishes the challenge's effect and licenses the primary comparison (rescued vs\ncomparator), which determines the rescue's effect and updates the belief over models of recovery",
+   "kind": false,
+   "has": [
+    {
+     "path": [
+      "substance"
+     ],
+     "pattern": [
+      "a",
+      "substance",
+      [
+       "role",
+       "challenge"
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "substance"
+     ],
+     "pattern": [
+      "a",
+      "substance",
+      [
+       "role",
+       "rescue"
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "unit"
+     ],
+     "pattern": [
+      "a",
+      "culture",
+      [
+       "role",
+       "rescued"
+      ],
+      [
+       "treatment",
+       [
+        "a",
+        "treatment",
+        [
+         "exposure",
+         [
+          "an",
+          "exposure",
+          [
+           "to",
+           [
+            "the",
+            "substance",
+            [
+             "role",
+             "challenge"
+            ]
+           ]
+          ]
+         ]
+        ],
+        [
+         "exposure",
+         [
+          "an",
+          "exposure",
+          [
+           "to",
+           [
+            "the",
+            "substance",
+            [
+             "role",
+             "rescue"
+            ]
+           ]
+          ]
+         ]
+        ]
+       ]
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "unit"
+     ],
+     "pattern": [
+      "a",
+      "culture",
+      [
+       "role",
+       "comparator"
+      ],
+      [
+       "treatment",
+       [
+        "a",
+        "treatment",
+        [
+         "exposure",
+         [
+          "an",
+          "exposure",
+          [
+           "to",
+           [
+            "the",
+            "substance",
+            [
+             "role",
+             "challenge"
+            ]
+           ]
+          ]
+         ]
+        ]
+       ]
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "comparison"
+     ],
+     "pattern": [
+      "a",
+      "comparison",
+      [
+       "role",
+       "validity"
+      ],
+      [
+       "between",
+       [
+        "the",
+        "culture",
+        [
+         "role",
+         "comparator"
+        ]
+       ],
+       [
+        "the",
+        "culture",
+        [
+         "role",
+         "control"
+        ]
+       ]
+      ],
+      [
+       "determines",
+       [
+        "the",
+        "effect",
+        [
+         "of",
+         [
+          "the",
+          "substance",
+          [
+           "role",
+           "challenge"
+          ]
+         ]
+        ]
+       ]
+      ],
+      [
+       "licenses",
+       [
+        "the",
+        "comparison",
+        [
+         "role",
+         "primary"
+        ]
+       ]
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    },
+    {
+     "path": [
+      "comparison"
+     ],
+     "pattern": [
+      "a",
+      "comparison",
+      [
+       "role",
+       "primary"
+      ],
+      [
+       "between",
+       [
+        "the",
+        "culture",
+        [
+         "role",
+         "rescued"
+        ]
+       ],
+       [
+        "the",
+        "culture",
+        [
+         "role",
+         "comparator"
+        ]
+       ]
+      ],
+      [
+       "determines",
+       [
+        "the",
+        "effect",
+        [
+         "of",
+         [
+          "the",
+          "substance",
+          [
+           "role",
+           "rescue"
+          ]
+         ]
+        ]
+       ]
+      ],
+      [
+       "updates",
+       [
+        "the",
+        "belief"
+       ]
+      ]
+     ],
+     "card": [
+      "exactly",
+      "1"
+     ]
+    }
+   ],
+   "only": [],
+   "checks": [
+    "rescue-after-challenge"
+   ],
+   "procedure": []
+  }
+ },
+ "declared": "challenge-rescue-experiment",
+ "instance": "(an experiment (instance-of challenge-rescue-experiment) (name challenge-rescue) (question (a question (asks (which (a recovery-model))) (explains (the rescue-efficacy (after (a delay (of 48 h))))) (candidate (a recovery-model (name M1_graded))) (candidate (a recovery-model (name M2_threshold))) (candidate (a recovery-model (name M3_protective))))) (goal (the belief (expected-information-gain (>= 0.5 bit)))) (belief (a belief (over (M1_graded M2_threshold M3_protective)) (prior uniform) (entropy 1.585 bit))) (substance (a substance (role challenge) (causes (injury rising)))) (substance (a substance (role rescue) (causes (recovery possible)))) (culture (a culture (role rescued) (state baseline) (treatment (a treatment (exposure (an exposure (to (the substance (role challenge))) (dose 0.85 au) (at (culture-time 0 h)))) (exposure (an exposure (to (the substance (role rescue))) (dose 0.70 au) (at (culture-time 48 h)))))))) (culture (a culture (role comparator) (state baseline) (treatment (a treatment (exposure (an exposure (to (the substance (role challenge))) (dose 0.85 au) (at (culture-time 0 h)))))))) (culture (a culture (role control) (state baseline) (treatment (no treatment)))) (shared-conditions (a condition (environment culture-standard) (from (culture-time 0 h)) (to (culture-time 72 h)) (observation (an observation (readout morphology) (at (culture-time 72 h)) (side-effect (light-dose increased)) (interpreted-as (an estimate (quantity organoid-radius) (sigma 2.5 um))) (needs (a scale (of (an image)) (known true))))))) (comparison (a comparison (role validity) (between (the culture (role comparator)) (the culture (role control))) (determines (the effect (of (the substance (role challenge))))) (established-when (the effect (below 0 um) (by-more-than 2 sd))) (licenses (the comparison (role primary))))) (comparison (a comparison (role primary) (between (the culture (role rescued)) (the culture (role comparator))) (determines (the effect (of (the substance (role rescue))))) (updates (the belief)))) (prevents (an exposure (of (the culture (role control))) (to (some substance))) (an event (type contamination) (of (a culture)))) (maintains (each culture (environment culture-standard))) (insight (an insight (role answer) (answers (the question)) (form (a posterior (over (the belief)))) (from (the comparison (role primary))))) (insight (an insight (role effect) (of (the substance (role rescue))) (from (the comparison (role primary))))) (insight (an insight (role effect) (of (the substance (role challenge))) (from (the comparison (role validity))))) (phase (a cultivation-phase (from (culture-time 0 h)) (to (culture-time 72 h)) (step (an action (name x1) (kind intervention) (type challenging) (culture (the culture (role rescued))) (substance (the substance (role challenge))) (dose 0.85 au) (at (culture-time 0 h)))) (step (an action (name x2) (kind intervention) (type challenging) (culture (the culture (role comparator))) (substance (the substance (role challenge))) (dose 0.85 au) (at (culture-time 0 h)))) (step (an action (name g1) (kind growth) (type growing) (culture (the culture (role rescued))) (culture (the culture (role comparator))) (culture (the culture (role control))) (from (culture-time 0 h)) (to (culture-time 48 h)))) (step (an action (name x3) (kind intervention) (type rescuing) (culture (the culture (role rescued))) (substance (the substance (role rescue))) (dose 0.70 au) (at (culture-time 48 h)))) (step (an action (name g2) (kind growth) (type growing) (culture (the culture (role rescued))) (culture (the culture (role comparator))) (culture (the culture (role control))) (from (culture-time 48 h)) (to (culture-time 72 h)))))) (phase (an observation-phase (at (culture-time 72 h)) (step (an action (name o1) (kind observation) (type observing) (culture (the culture (role rescued))) (readout morphology) (at (culture-time 72 h)))) (step (an action (name o2) (kind observation) (type observing) (culture (the culture (role comparator))) (readout morphology) (at (culture-time 72 h)))) (step (an action (name o3) (kind observation) (type observing) (culture (the culture (role control))) (readout morphology) (at (culture-time 72 h)))))) (phase (an analysis-phase (begins-after (the observation-phase)) (step (an action (name i1) (kind interpretation) (type interpreting) (about (the culture (role rescued))) (into organoid-radius))) (step (an action (name i2) (kind interpretation) (type interpreting) (about (the culture (role comparator))) (into organoid-radius))) (step (an action (name i3) (kind interpretation) (type interpreting) (about (the culture (role control))) (into organoid-radius))) (step (an action (name v1) (kind analysis) (type analysing) (statistic (difference (radius (the culture (role comparator))) (radius (the culture (role control))))) (criterion (the effect (below 0 um) (by-more-than 2 sd))))) (step (an action (name a1) (kind analysis) (type analysing) (updates (the belief)) (statistic (difference (radius (the culture (role rescued))) (radius (the culture (role comparator))))))))) (site (a plate (id P17) (located-in (a controlled-environment (profile culture-standard))) (well (a well (id A01) (contains (the culture (role rescued))))) (well (a well (id A02) (contains (the culture (role comparator))))) (well (a well (id A05) (contains (the culture (role control))))))))",
+ "conformance": {
+  "experiment": [
+   {
+    "kind": "role",
+    "what": "question: (a question)",
+    "short": "question",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "goal: any",
+    "short": "goal",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "insight: (an insight)",
+    "short": "insight",
+    "card": "\u22651",
+    "found": 3,
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "parthood-preserves-kind: parthood never crosses kinds (process, material entity, plan, information)",
+    "short": "parthood-preserves-kind",
+    "ok": true
+   }
+  ],
+  "comparative-experiment": [
+   {
+    "kind": "role",
+    "what": "unit: (an entity (treatment))",
+    "short": "unit",
+    "card": "\u22652",
+    "found": 3,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "shared-conditions: (a condition (from) (to) (observation (an observation (at) (interpreted-as))))",
+    "short": "shared-conditions [condition]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "comparison: (a comparison (between) (determines (the effect)))",
+    "short": "comparison",
+    "card": "\u22651",
+    "found": 2,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "insight: (an insight (role effect))",
+    "short": "insight [effect]",
+    "card": "\u22651",
+    "found": 2,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "phase: (a cultivation-phase)",
+    "short": "phase [cultivation-phase]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "phase: (an observation-phase)",
+    "short": "phase [observation-phase]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "phase: (an analysis-phase)",
+    "short": "phase [analysis-phase]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "site: (a plate)",
+    "short": "site [plate]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "comparisons-between-units: every comparison is between two units of the experiment",
+    "short": "comparisons-between-units",
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "an-effect-insight-per-comparison: an effect insight from each comparison",
+    "short": "an-effect-insight-per-comparison",
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "parts-conform-to-their-concepts: every part satisfies its own concept",
+    "short": "parts-conform-to-their-concepts",
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "each-step-in-one-phase: each of the 13 steps is part of exactly one phase",
+    "short": "each-step-in-one-phase",
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "each-exposure-realized-once: each exposure is realized by exactly one intervention (3 exposures, 3 interventions)",
+    "short": "each-exposure-realized-once",
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "each-unit-observed-once: each unit is observed exactly once",
+    "short": "each-unit-observed-once",
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "each-comparison-realized-once: each comparison is realized by exactly one analysis",
+    "short": "each-comparison-realized-once",
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "units-in-distinct-wells-of-the-site: every unit is in exactly one well, all wells part of one plate (['P17'])",
+    "short": "units-in-distinct-wells-of-the-site",
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "phases-in-time-order: cultivation 0-72 h, then observation at 72 h, then analysis",
+    "short": "phases-in-time-order",
+    "ok": true
+   }
+  ],
+  "controlled-experiment": [
+   {
+    "kind": "role",
+    "what": "unit: (an entity (role control) (treatment (no treatment)))",
+    "short": "unit [control]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "prevents: (an exposure (of (the culture (role control))))",
+    "short": "prevents [exposure]",
+    "card": "\u22651",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "single-difference: every comparison isolates exactly the exposure whose effect it determines",
+    "short": "single-difference",
+    "ok": true
+   }
+  ],
+  "hypothesis-discriminating-experiment": [
+   {
+    "kind": "role",
+    "what": "question candidate: any",
+    "short": "question candidate",
+    "card": "\u22652",
+    "found": 3,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "belief: (a belief (over) (prior))",
+    "short": "belief",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "goal: (the belief (expected-information-gain))",
+    "short": "goal [belief]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "insight: (an insight (role answer) (form (a posterior)))",
+    "short": "insight [answer]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "answer-from-a-comparison-that-updates-the-belief: the answer comes from a comparison that updates the belief",
+    "short": "answer-from-a-comparison-that-updates-the-belief",
+    "ok": true
+   }
+  ],
+  "challenge-rescue-experiment": [
+   {
+    "kind": "role",
+    "what": "substance: (a substance (role challenge))",
+    "short": "substance [challenge]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "substance: (a substance (role rescue))",
+    "short": "substance [rescue]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "unit: (a culture (role rescued) (treatment (a treatment (exposure (an exposure (to (the substanc",
+    "short": "unit [rescued]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "unit: (a culture (role comparator) (treatment (a treatment (exposure (an exposure (to (the subst",
+    "short": "unit [comparator]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "comparison: (a comparison (role validity) (between (the culture (role comparator)) (the culture (role ",
+    "short": "comparison [validity]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "role",
+    "what": "comparison: (a comparison (role primary) (between (the culture (role rescued)) (the culture (role comp",
+    "short": "comparison [primary]",
+    "card": "=1",
+    "found": 1,
+    "ok": true
+   },
+   {
+    "kind": "check",
+    "what": "rescue-after-challenge: the rescue is given after the challenge (0.0 h, 48.0 h)",
+    "short": "rescue-after-challenge",
+    "ok": true
+   }
+  ]
+ },
+ "parts": {
+  "question": [
+   1,
+   1
+  ],
+  "recovery-model": [
+   4,
+   4
+  ],
+  "belief": [
+   1,
+   1
+  ],
+  "substance": [
+   2,
+   2
+  ],
+  "culture": [
+   4,
+   4
+  ],
+  "treatment": [
+   2,
+   2
+  ],
+  "exposure": [
+   4,
+   4
+  ],
+  "condition": [
+   1,
+   1
+  ],
+  "observation": [
+   1,
+   1
+  ],
+  "estimate": [
+   1,
+   1
+  ],
+  "scale": [
+   1,
+   1
+  ],
+  "image": [
+   1,
+   1
+  ],
+  "comparison": [
+   2,
+   2
+  ],
+  "insight": [
+   3,
+   3
+  ],
+  "posterior": [
+   1,
+   1
+  ],
+  "cultivation-phase": [
+   1,
+   1
+  ],
+  "action": [
+   13,
+   13
+  ],
+  "observation-phase": [
+   1,
+   1
+  ],
+  "analysis-phase": [
+   1,
+   1
+  ],
+  "plate": [
+   1,
+   1
+  ],
+  "controlled-environment": [
+   1,
+   1
+  ],
+  "well": [
+   3,
+   3
+  ]
+ },
+ "satisfied": {
+  "experiment": true,
+  "hypothesis-discriminating-experiment": true,
+  "comparative-experiment": true,
+  "controlled-experiment": true,
+  "challenge-rescue-experiment": true
+ },
+ "most_specific": [
+  "challenge-rescue-experiment"
+ ],
+ "negative_controls": {
+  "comparator dose 0.60 au": {
+   "fails_at": [
+    "controlled-experiment"
+   ],
+   "most_specific": [
+    "hypothesis-discriminating-experiment",
+    "comparative-experiment"
+   ],
+   "expected_to_fail_at": "controlled-experiment",
+   "ok": true,
+   "broken": [
+    "single-difference: every comparison isolates exactly the exposure whose effect it determines; primary differs in 3 exposures"
+   ]
+  },
+  "control culture removed": {
+   "fails_at": [
+    "comparative-experiment",
+    "controlled-experiment"
+   ],
+   "most_specific": [
+    "hypothesis-discriminating-experiment"
+   ],
+   "expected_to_fail_at": "comparative-experiment",
+   "ok": true,
+   "broken": [
+    "comparisons-between-units: every comparison is between two units of the experiment; not: ['validity']",
+    "each-comparison-realized-once: each comparison is realized by exactly one analysis; ['validity: 0']",
+    "unit: (an entity (role control) (treatment (no treatment)))",
+    "single-difference: every comparison isolates exactly the exposure whose effect it determines; validity: a unit is missing"
+   ]
+  },
+  "rescue given with the challenge (0 h)": {
+   "fails_at": [
+    "challenge-rescue-experiment"
+   ],
+   "most_specific": [
+    "hypothesis-discriminating-experiment",
+    "controlled-experiment"
+   ],
+   "expected_to_fail_at": "challenge-rescue-experiment",
+   "ok": true,
+   "broken": [
+    "rescue-after-challenge: the rescue is given after the challenge (0.0 h, 0.0 h)"
+   ]
+  },
+  "belief and answer removed": {
+   "fails_at": [
+    "hypothesis-discriminating-experiment"
+   ],
+   "most_specific": [
+    "controlled-experiment"
+   ],
+   "expected_to_fail_at": "hypothesis-discriminating-experiment",
+   "ok": true,
+   "broken": [
+    "belief: (a belief (over) (prior))",
+    "insight: (an insight (role answer) (form (a posterior)))",
+    "answer-from-a-comparison-that-updates-the-belief: the answer comes from a comparison that updates the belief"
+   ]
+  },
+  "rescue intervention missing from the plan": {
+   "fails_at": [
+    "comparative-experiment"
+   ],
+   "most_specific": [
+    "hypothesis-discriminating-experiment"
+   ],
+   "expected_to_fail_at": "comparative-experiment",
+   "ok": true,
+   "broken": [
+    "each-exposure-realized-once: each exposure is realized by exactly one intervention (3 exposures, 2 interventions); ['rescued/rescue: 0']"
+   ]
+  },
+  "comparator on another plate": {
+   "fails_at": [
+    "comparative-experiment"
+   ],
+   "most_specific": [
+    "hypothesis-discriminating-experiment"
+   ],
+   "expected_to_fail_at": "comparative-experiment",
+   "ok": true,
+   "broken": [
+    "site: (a plate)",
+    "units-in-distinct-wells-of-the-site: every unit is in exactly one well, all wells part of one plate (['P17', 'P18'])"
+   ]
+  },
+  "an observation step in two phases": {
+   "fails_at": [
+    "comparative-experiment"
+   ],
+   "most_specific": [
+    "hypothesis-discriminating-experiment"
+   ],
+   "expected_to_fail_at": "comparative-experiment",
+   "ok": true,
+   "broken": [
+    "parts-conform-to-their-concepts: every part satisfies its own concept; not: ['analysis-phase']",
+    "each-step-in-one-phase: each of the 13 steps is part of exactly one phase; in several: ['o1']",
+    "each-unit-observed-once: each unit is observed exactly once; not: ['rescued']"
+   ]
+  },
+  "a well as part of a treatment": {
+   "fails_at": [
+    "experiment",
+    "comparative-experiment"
+   ],
+   "most_specific": [],
+   "expected_to_fail_at": "experiment",
+   "ok": true,
+   "broken": [
+    "parthood-preserves-kind: parthood never crosses kinds (process, material entity, plan, information); ['treatment -exposure-> well']",
+    "parts-conform-to-their-concepts: every part satisfies its own concept; not: ['treatment']"
+   ]
+  }
+ }
+}

@@ -1,0 +1,409 @@
+{
+ "registry_now": "5d901b7f8087",
+ "trails": [
+  {
+   "scenario": "calibration_lapsed",
+   "n": 569,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 51,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": true,
+   "head": "e71f6e131dfa3c98b2ae39b432092d77da07a39f6600d8c8030a1ff6a6707d7e",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+calibration_lapsed",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "executed",
+   "realization": true,
+   "validity": true,
+   "disposition": "commit: result may update the culture belief"
+  },
+  {
+   "scenario": "card_incomplete",
+   "n": 3,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 0,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 1,
+   "reexecuted_identical": true,
+   "head": "d75e11ff5b379e9b0c80bac6a380aaae2db1feffbcc7d02f1d7a7585fe437abc",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+card_incomplete",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "abstained",
+   "realization": false,
+   "validity": false,
+   "disposition": "refused before execution"
+  },
+  {
+   "scenario": "contamination",
+   "n": 3,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 0,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 1,
+   "reexecuted_identical": true,
+   "head": "c060395b5c2dfde567f69a6bc17eeb503f41a338575f74506f616edf61767e71",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+contamination",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "abstained",
+   "realization": false,
+   "validity": false,
+   "disposition": "refused before execution"
+  },
+  {
+   "scenario": "control_dropped",
+   "n": 3,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 0,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 1,
+   "reexecuted_identical": true,
+   "head": "703458117a2aca69ab8674f71b906f361b57e2446899b512bbce66f304577b31",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+control_dropped",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "abstained",
+   "realization": false,
+   "validity": false,
+   "disposition": "refused before execution"
+  },
+  {
+   "scenario": "identity_swap",
+   "n": 224,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 29,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": true,
+   "head": "d55ba8ba256e9a11cbdd3bcadfca693f430a7ccea9828a101cdafcc3541dae46",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+identity_swap",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "escalated",
+   "realization": false,
+   "validity": false,
+   "disposition": "escalated: human decision required; nothing committed"
+  },
+  {
+   "scenario": "imager_incapable",
+   "n": 3,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 0,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 1,
+   "reexecuted_identical": true,
+   "head": "abf299839f520dff569429d240fca3703bc526705c8ef106ba6a82abb5a6af4e",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+imager_incapable",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "abstained",
+   "realization": false,
+   "validity": false,
+   "disposition": "refused before execution"
+  },
+  {
+   "scenario": "imager_swapped",
+   "n": 498,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 50,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": true,
+   "head": "f863454d7bb6bcedd71fc539f28e03e81c6649cfa2d66a78da23064e427a524b",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+imager_swapped",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "executed",
+   "realization": true,
+   "validity": false,
+   "disposition": "NR3: physically realised but not valid evidence; nothing committed"
+  },
+  {
+   "scenario": "isaac_calibration_lapsed",
+   "n": 562,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 219,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": null,
+   "head": "3305922c8bf7df496cef98948d3d11352c7a7884964fd14d132e8da43f10f5c4",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_calibration_lapsed",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "registry_current": false,
+   "end": "escalated",
+   "realization": false,
+   "validity": false,
+   "disposition": "escalated: human decision required; nothing committed"
+  },
+  {
+   "scenario": "isaac_identity_swap",
+   "n": 56,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 15,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": null,
+   "head": "57705bd4e6e4b5f7ab5ea12c0cebd39c44dbb6d537f2f4aca530351bb3334246",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_identity_swap",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "registry_current": false,
+   "end": "escalated",
+   "realization": false,
+   "validity": false,
+   "disposition": "escalated: human decision required; nothing committed"
+  },
+  {
+   "scenario": "isaac_nominal",
+   "n": 498,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 200,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": null,
+   "head": "c4b3059613d605cfe42e981b0ea0f107c05da2d0ae3d56541f2ac4384a219faa",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+isaac_nominal",
+    "registry": "5237b924cd8a",
+    "backend": "isaac-cell01-twin/0.1"
+   },
+   "registry_current": false,
+   "end": "executed",
+   "realization": true,
+   "validity": true,
+   "disposition": "commit: result may update the culture belief"
+  },
+  {
+   "scenario": "nominal",
+   "n": 498,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 50,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": true,
+   "head": "3f92c88e4e25011f7620a5398eb7dd6f10b67419b5d71d2d1bea4c7b8a37f456",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+nominal",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "executed",
+   "realization": true,
+   "validity": true,
+   "disposition": "commit: result may update the culture belief"
+  },
+  {
+   "scenario": "rescue_unbound",
+   "n": 3,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 0,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 1,
+   "reexecuted_identical": true,
+   "head": "cfac4baec9177f6c72e4b5de24e494c37807e23864b1a1654afb2eecf568a961",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+rescue_unbound",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "abstained",
+   "realization": false,
+   "validity": false,
+   "disposition": "refused before execution"
+  },
+  {
+   "scenario": "tip_lost",
+   "n": 501,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 51,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": true,
+   "head": "84b02ae69e46d4c7b74cdb53b9566af81ca4714ec3de3c211a3fc0cdf1906b6c",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+tip_lost",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "executed",
+   "realization": true,
+   "validity": true,
+   "disposition": "commit: result may update the culture belief"
+  },
+  {
+   "scenario": "tool_changer_slow",
+   "n": 266,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 29,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": true,
+   "head": "bae2c3c0aae7a77b03ff50afb0f691c674c1d70216c980651aee6435a379be9e",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+tool_changer_slow",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "escalated",
+   "realization": false,
+   "validity": false,
+   "disposition": "escalated: human decision required; nothing committed"
+  },
+  {
+   "scenario": "uncalibrated_known",
+   "n": 504,
+   "chain_ok": true,
+   "attributable": true,
+   "evidence_hashed": true,
+   "evidence": 51,
+   "tamper_detected": true,
+   "tamper_first_bad_seq": 13,
+   "reexecuted_identical": true,
+   "head": "8b8b4b0343ff2fea3d103ba3851766e6ec0f59721e0ac2b9e299efe0c6d9e4af",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050_uncal+uncalibrated_known",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "registry_current": true,
+   "end": "executed",
+   "realization": true,
+   "validity": true,
+   "disposition": "commit: result may update the culture belief"
+  }
+ ],
+ "competency_questions": {
+  "n": 52,
+  "correct": 52,
+  "by_family": {
+   "what": [
+    3,
+    3
+   ],
+   "why": [
+    4,
+    4
+   ],
+   "how": [
+    2,
+    2
+   ],
+   "constraints": [
+    3,
+    3
+   ],
+   "capability": [
+    4,
+    4
+   ],
+   "what-if": [
+    3,
+    3
+   ],
+   "evidence": [
+    4,
+    4
+   ],
+   "retrospective": [
+    13,
+    13
+   ],
+   "normative": [
+    4,
+    4
+   ],
+   "verdict": [
+    8,
+    8
+   ],
+   "epistemic": [
+    2,
+    2
+   ],
+   "taxonomy": [
+    1,
+    1
+   ],
+   "modularity": [
+    1,
+    1
+   ]
+  }
+ },
+ "ok": true
+}

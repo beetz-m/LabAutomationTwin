@@ -1,0 +1,88 @@
+{
+ "scenario": "rescue_unbound",
+ "about": "the rescue reagent is not bound to a rack position; the rescue dose cannot be grounded",
+ "error": "refused: refused by projection_succeeds",
+ "end": "abstained",
+ "n_entries": 3,
+ "n_leaves": 0,
+ "clock_s": 0.0,
+ "audit": {
+  "verify": {
+   "ok": true,
+   "n": 3,
+   "attributable": true,
+   "evidence_hashed": true
+  },
+  "tampered_detected": true,
+  "tampered_first_bad_seq": 1
+ },
+ "verdict": {
+  "realization": {
+   "ok": false,
+   "violated": [
+    "projection_succeeds"
+   ],
+   "run_ended": "abstained"
+  },
+  "validity": {
+   "ok": false,
+   "checks": {
+    "V1_identity_continuity": {
+     "ok": true,
+     "observation": "identity reads []"
+    },
+    "V2_calibration_at_measurement": {
+     "ok": false,
+     "observation": "0 readouts, calibration observed valid for all"
+    },
+    "V3_binding_validated": {
+     "ok": false,
+     "observation": "no readout"
+    },
+    "V4_controls_present": {
+     "ok": false,
+     "observation": "control ['A05'], imaged []"
+    },
+    "V5_dose_delivered": {
+     "ok": false,
+     "observation": "0 dispenses within 5.0 %: True"
+    },
+    "V6_sample_integrity": {
+     "ok": true,
+     "observation": "window kept on every trip"
+    },
+    "V7_design_realised": {
+     "ok": false,
+     "observation": "missing [('A01', 'challenge', 0), ('A02', 'challenge', 0), ('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+    }
+   },
+   "refused_by": []
+  },
+  "promotable": false,
+  "nr3": false,
+  "disposition": "refused before execution",
+  "design": {
+   "id": "c_d85_t48_n1",
+   "requirement_bits": 0.5,
+   "eig_bits": 0.5439
+  }
+ },
+ "repairs": [],
+ "expected": {
+  "end": "abstained",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "repaired_at": []
+ },
+ "got": {
+  "end": "abstained",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "nr3": false,
+  "repaired_at": []
+ },
+ "expectation_ok": true,
+ "plate": "P17"
+}

@@ -1,0 +1,110 @@
+{
+ "scenario": "tool_changer_slow",
+ "about": "the tool changer takes 600 s at the rescue session; window exceeded, safe return",
+ "error": "session_failed: policy window: 645.3 s outside the incubator (window 600.0 s) (after safe return of the plate to its controlled environment (window exceeded))",
+ "end": "escalated",
+ "n_entries": 266,
+ "n_leaves": 79,
+ "clock_s": 173807.2,
+ "audit": {
+  "verify": {
+   "ok": true,
+   "n": 266,
+   "attributable": true,
+   "evidence_hashed": true
+  },
+  "tampered_detected": true,
+  "tampered_first_bad_seq": 13
+ },
+ "verdict": {
+  "realization": {
+   "ok": false,
+   "violated": [
+    "window_kept"
+   ],
+   "run_ended": "escalated"
+  },
+  "validity": {
+   "ok": false,
+   "checks": {
+    "V1_identity_continuity": {
+     "ok": true,
+     "observation": "identity reads ['P17', 'P17']"
+    },
+    "V2_calibration_at_measurement": {
+     "ok": false,
+     "observation": "0 readouts, calibration observed valid for all"
+    },
+    "V3_binding_validated": {
+     "ok": false,
+     "observation": "no readout"
+    },
+    "V4_controls_present": {
+     "ok": false,
+     "observation": "control ['A05'], imaged []"
+    },
+    "V5_dose_delivered": {
+     "ok": true,
+     "observation": "2 dispenses within 5.0 %: True"
+    },
+    "V6_sample_integrity": {
+     "ok": false,
+     "observation": "window violated: 645.3 s outside the incubator (window 600.0 s)"
+    },
+    "V7_design_realised": {
+     "ok": false,
+     "observation": "missing [('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+    }
+   },
+   "refused_by": []
+  },
+  "promotable": false,
+  "nr3": false,
+  "disposition": "escalated: human decision required; nothing committed",
+  "design": {
+   "id": "c_d85_t48_n1",
+   "requirement_bits": 0.5,
+   "eig_bits": 0.5439
+  }
+ },
+ "repairs": [
+  {
+   "failure": "window_exceeded",
+   "detail": "policy window: 645.3 s outside the incubator (window 600.0 s)",
+   "at": "d0083-transport_lab",
+   "repairs": [
+    "(an action (type transport-lab) (plate P17) (target l10))",
+    "(an action (type store) (plate P17) (location l10))"
+   ],
+   "repair_categories": [
+    "transport_lab",
+    "store"
+   ],
+   "then": "fail",
+   "why": "safe return of the plate to its controlled environment (window exceeded)",
+   "category": "run_session",
+   "node": "d0078-run_session"
+  }
+ ],
+ "expected": {
+  "end": "escalated",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "repaired_at": [
+   "run_session"
+  ]
+ },
+ "got": {
+  "end": "escalated",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "nr3": false,
+  "repaired_at": [
+   "run_session"
+  ]
+ },
+ "expectation_ok": true,
+ "plate": "P17"
+}

@@ -1,0 +1,169 @@
+;; Concepts of experiments (LDL v0.3, TBox): a specialization hierarchy with a partonomy. Each concept states the
+;; roles its instances must fill (a pattern and a cardinality per role), the roles whose fillers are restricted
+;; (only), the checks they must pass and, where it has one, the procedure by which the experiment's actions are
+;; derived. A concept inherits everything from the concepts it specializes.
+;; An experiment (registry/lab/experiment.ldl) declares the concept it is an instance of; rsa/experiment_concepts.py
+;; verifies it, as derived (its phases and steps) and placed (its plate and wells), against that concept and all its
+;; ancestors, checks every part against its own concept, and classifies the experiment under every concept it
+;; satisfies. rsa/experiment_dl.py states the same concepts in description logic.
+;;
+;; Notation:  (has <role path> <pattern> <cardinality>)   the fillers of the role that match the pattern
+;;            (only <role> <pattern>)                      every filler of the role matches the pattern
+;;            (check <name>)                               a constraint over several roles (rsa/experiment_concepts.py)
+;; Patterns are descriptions: a filler matches if it has every slot of the pattern (and the pattern's class or a
+;; specialization of it, unless the class is `entity`); `any` matches every filler; (or P Q) matches either.
+
+;; ---------------------------------------------------------------------------------------------- roles
+;; parthood: transitive; its kinds never cross kinds of entities (a process has processes as parts, ...)
+(a role has-part (transitive) (inverse part-of)
+  (documentation "parthood: a process has temporal parts, a material entity material parts, a plan its components"))
+(a role phase (specializes has-part) (documentation "a phase of an experiment: a temporal part that is a process"))
+(a role step (specializes has-part) (documentation "an action that is part of a phase"))
+(a role has-component (specializes has-part) (documentation "a part of a plan or of an information entity"))
+(a role exposure (specializes has-component))
+(a role observation (specializes has-component))
+(a role candidate (specializes has-component))
+(a role well (specializes has-part))
+
+;; not parthood
+(a role contains (inverse contained-in) (documentation "location: a culture is in a well, it is not part of it"))
+(a role located-in (chain contained-in part-of) (documentation "what is contained in a part is located in the whole"))
+(a role realizes (documentation "an action realizes a part of the plan: an exposure, an observation, a comparison"))
+(a role has-participant (chain has-part has-participant)
+  (documentation "a participant of a part of a process participates in the process"))
+(a role unit (specializes has-participant) (documentation "an experimental unit: what is treated, kept and observed"))
+(a role culture (specializes unit))
+(a role substance (specializes has-participant))
+(a role site (specializes has-participant) (documentation "the material entity that holds the units"))
+(a role specifies (documentation "the plan of an experiment: neither parthood nor participation"))
+(a role question (specializes specifies))
+(a role goal (specializes specifies))
+(a role shared-conditions (specializes specifies))
+(a role comparison (specializes specifies))
+(a role prevents (specializes specifies))
+(a role maintains (specializes specifies))
+(a role treatment (documentation "the plan assigned to a unit"))
+(a role belief (documentation "the information entity an experiment reads and updates"))
+(a role has-output)
+(a role insight (specializes has-output))
+
+;; ---------------------------------------------------------------------------------------------- kinds
+(a concept process (kind) (documentation "something that happens; its parts are processes"))
+(a concept material-entity (kind) (documentation "a thing; its parts are things"))
+(a concept plan-specification (kind) (documentation "what is to be done; its components are plan specifications"))
+(a concept information-entity (kind) (documentation "what is known or asked; its components are information entities"))
+
+(a concept action (specializes process))
+(a concept culture (specializes material-entity))
+(a concept substance (specializes material-entity))
+(a concept plate (specializes material-entity)
+  (has well (a well) (at-least 1)))
+(a concept well (specializes material-entity)
+  (has contains any (at-most 1)))
+(a concept controlled-environment (specializes material-entity))
+(a concept treatment (specializes plan-specification)
+  (only exposure (an exposure (to) (dose) (at))))
+(a concept exposure (specializes plan-specification))
+(a concept condition (specializes plan-specification))
+(a concept observation (specializes plan-specification))
+(a concept estimate (specializes information-entity))
+(a concept scale (specializes information-entity))
+(a concept image (specializes information-entity))
+(a concept comparison (specializes plan-specification))
+(a concept question (specializes information-entity))
+(a concept recovery-model (specializes information-entity))
+(a concept belief (specializes information-entity))
+(a concept posterior (specializes information-entity))
+(a concept insight (specializes information-entity))
+(a concept effect (specializes information-entity))
+
+;; ---------------------------------------------------------------------------------------------- phases
+(a concept phase (specializes process)
+  (documentation "a temporal part of an experiment")
+  (has step (an action) (at-least 1)))
+(a concept cultivation-phase (specializes phase)
+  (documentation "the units are treated and kept under the shared conditions")
+  (only step (or (an action (kind intervention)) (an action (kind growth)))))
+(a concept observation-phase (specializes phase)
+  (documentation "the units are observed")
+  (only step (an action (kind observation))))
+(a concept analysis-phase (specializes phase)
+  (documentation "the observations are interpreted and compared")
+  (only step (or (an action (kind interpretation)) (an action (kind analysis)))))
+
+;; ---------------------------------------------------------------------------------------------- experiments
+(a concept experiment
+  (specializes process)
+  (documentation "an activity that answers a question by producing insights")
+  (has question (a question) (exactly 1))
+  (has goal any (exactly 1))
+  (has insight (an insight) (at-least 1))
+  (check parthood-preserves-kind))
+
+(a concept hypothesis-discriminating-experiment
+  (specializes experiment)
+  (documentation "the question asks which of several candidate hypotheses holds; the experiment changes a belief
+over them, and its answer is the posterior")
+  (has (question candidate) any (at-least 2))
+  (has belief (a belief (over) (prior)) (exactly 1))
+  (has goal (the belief (expected-information-gain)) (exactly 1))
+  (has insight (an insight (role answer) (form (a posterior))) (exactly 1))
+  (check answer-from-a-comparison-that-updates-the-belief))
+
+(a concept comparative-experiment
+  (specializes experiment)
+  (documentation "units are treated differently, kept under shared conditions and observed the same way;
+comparisons between units determine the effects of the treatments. Its procedure yields three phases")
+  (has unit (an entity (treatment)) (at-least 2))
+  (has shared-conditions (a condition (from) (to) (observation (an observation (at) (interpreted-as)))) (exactly 1))
+  (has comparison (a comparison (between) (determines (the effect))) (at-least 1))
+  (has insight (an insight (role effect)) (at-least 1))
+  (has phase (a cultivation-phase) (exactly 1))
+  (has phase (an observation-phase) (exactly 1))
+  (has phase (an analysis-phase) (exactly 1))
+  (has site (a plate) (exactly 1))
+  (check comparisons-between-units)
+  (check an-effect-insight-per-comparison)
+  (check parts-conform-to-their-concepts)
+  (check each-step-in-one-phase)
+  (check each-exposure-realized-once)
+  (check each-unit-observed-once)
+  (check each-comparison-realized-once)
+  (check units-in-distinct-wells-of-the-site)
+  (check phases-in-time-order)
+  (procedure
+    (rule (each exposure (of (a unit))) (yields (an action (kind intervention) (in (the cultivation-phase)))))
+    (rule (each interval (between (consecutive treatment-times))) (yields (an action (kind growth) (in (the cultivation-phase)))))
+    (rule (each unit) (yields (an action (kind observation) (in (the observation-phase)))
+                              (an action (kind interpretation) (in (the analysis-phase)))))
+    (rule (each comparison) (yields (an action (kind analysis) (in (the analysis-phase)))))
+    (rule (a comparison (licenses ?c)) (orders (its analysis) (before (the analysis (of ?c)))))))
+
+(a concept controlled-experiment
+  (specializes comparative-experiment)
+  (documentation "one unit is an untreated control, it stays untreated, and every comparison isolates exactly one
+exposure: its two units differ in that exposure only, and it is the exposure whose effect the comparison determines")
+  (has unit (an entity (role control) (treatment (no treatment))) (exactly 1))
+  (has prevents (an exposure (of (the culture (role control)))) (at-least 1))
+  (check single-difference))
+
+(a concept challenge-rescue-experiment
+  (specializes controlled-experiment hypothesis-discriminating-experiment)
+  (documentation "units are injured by a challenge; one is then given a rescue after a delay. A validity comparison
+(comparator vs control) establishes the challenge's effect and licenses the primary comparison (rescued vs
+comparator), which determines the rescue's effect and updates the belief over models of recovery")
+  (has substance (a substance (role challenge)) (exactly 1))
+  (has substance (a substance (role rescue)) (exactly 1))
+  (has unit (a culture (role rescued)
+              (treatment (a treatment (exposure (an exposure (to (the substance (role challenge)))))
+                                      (exposure (an exposure (to (the substance (role rescue))))))))
+       (exactly 1))
+  (has unit (a culture (role comparator) (treatment (a treatment (exposure (an exposure (to (the substance (role challenge))))))))
+       (exactly 1))
+  (has comparison (a comparison (role validity) (between (the culture (role comparator)) (the culture (role control)))
+                    (determines (the effect (of (the substance (role challenge))))) (licenses (the comparison (role primary))))
+       (exactly 1))
+  (has comparison (a comparison (role primary) (between (the culture (role rescued)) (the culture (role comparator)))
+                    (determines (the effect (of (the substance (role rescue))))) (updates (the belief)))
+       (exactly 1))
+  (check rescue-after-challenge))

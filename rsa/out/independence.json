@@ -1,0 +1,1584 @@
+{
+ "culture_plan": {
+  "sha": "a5e27614c98a",
+  "terms": [
+   "0",
+   "0.5",
+   "0.70",
+   "0.85",
+   "1.585",
+   "2.5",
+   "48",
+   "72",
+   ":establishable",
+   ">=",
+   "a",
+   "accumulated",
+   "action",
+   "after",
+   "an",
+   "analysing",
+   "at",
+   "au",
+   "baseline",
+   "belief",
+   "bit",
+   "challenge",
+   "challenging",
+   "comparator",
+   "contamination",
+   "control",
+   "culture",
+   "culture-standard",
+   "culture-time",
+   "cultures",
+   "delay",
+   "difference",
+   "dose",
+   "entities",
+   "entropy",
+   "environment",
+   "environment-history",
+   "estimate",
+   "event",
+   "expected-information-gain",
+   "experiment",
+   "explains",
+   "exposed-to",
+   "exposure",
+   "from",
+   "given",
+   "goal",
+   "growing",
+   "h",
+   "image",
+   "in",
+   "increased",
+   "information-gain",
+   "injury",
+   "injury-burden",
+   "interpreting",
+   "into",
+   "knowledge",
+   "known",
+   "light-dose",
+   "m1_graded",
+   "m2_threshold",
+   "m3_protective",
+   "maintains",
+   "measured",
+   "morphology",
+   "observing",
+   "of",
+   "organoid-radius",
+   "over",
+   "physical",
+   "possible",
+   "posterior",
+   "prevents",
+   "prior",
+   "question",
+   "radius",
+   "raw",
+   "readout",
+   "record",
+   "recovery",
+   "recovery-model",
+   "requires",
+   "rescue",
+   "rescue-efficacy",
+   "rescued",
+   "rescuing",
+   "rising",
+   "role",
+   "scale",
+   "settled",
+   "sigma",
+   "some",
+   "state",
+   "states",
+   "statistic",
+   "steps",
+   "substance",
+   "the",
+   "to",
+   "true",
+   "type",
+   "um",
+   "uniform",
+   "updated",
+   "viability",
+   "which"
+  ],
+  "order": [
+   [
+    "?c1",
+    "?g1"
+   ],
+   [
+    "?c2",
+    "?g1"
+   ],
+   [
+    "?c3",
+    "?g2"
+   ],
+   [
+    "?g1",
+    "?c3"
+   ],
+   [
+    "?g2",
+    "?o1"
+   ],
+   [
+    "?g2",
+    "?o2"
+   ],
+   [
+    "?g2",
+    "?o3"
+   ],
+   [
+    "?i1",
+    "?a1"
+   ],
+   [
+    "?i2",
+    "?a1"
+   ],
+   [
+    "?i3",
+    "?a1"
+   ],
+   [
+    "?o1",
+    "?i1"
+   ],
+   [
+    "?o2",
+    "?i2"
+   ],
+   [
+    "?o3",
+    "?i3"
+   ]
+  ],
+  "inputs": [
+   "registry/lab/culture_plan.ldl"
+  ]
+ },
+ "lab_plan": {
+  "sha": "bf81a40c17e9",
+  "order": [
+   [
+    "?w1",
+    "?x3"
+   ],
+   [
+    "?w2",
+    "?m1"
+   ],
+   [
+    "?w2",
+    "?m2"
+   ],
+   [
+    "?w2",
+    "?m3"
+   ],
+   [
+    "?x1",
+    "?w1"
+   ],
+   [
+    "?x2",
+    "?w1"
+   ],
+   [
+    "?x3",
+    "?w2"
+   ]
+  ]
+ },
+ "vocabularies": {
+  "robots": {
+   "size": 16,
+   "sample": [
+    "arm",
+    "end-effector",
+    "fr3",
+    "gripper",
+    "joint",
+    "plate_grasp_frame",
+    "r01",
+    "r01_fr3_platearm",
+    "r02",
+    "r02_railmounted_ur5e",
+    "r03_amr_h2_dock",
+    "rail",
+    "t01",
+    "tcp"
+   ],
+   "hits": []
+  },
+  "devices": {
+   "size": 85,
+   "sample": [
+    "aspirate",
+    "autofocus",
+    "buffer_plate",
+    "calibration",
+    "change_tool",
+    "compute_focus_quality",
+    "detect_liquid_surface",
+    "dispense",
+    "dispensing",
+    "dock_precisely",
+    "dock_tool",
+    "dose_well",
+    "eject_tip",
+    "export_raw_image"
+   ],
+   "hits": []
+  },
+  "lab setup": {
+   "size": 119,
+   "sample": [
+    "a01",
+    "a02",
+    "a03",
+    "a04",
+    "a05",
+    "a06",
+    "a07",
+    "a08",
+    "a09",
+    "a10",
+    "a11",
+    "a12",
+    "automatictoolchanger",
+    "b01"
+   ],
+   "hits": []
+  },
+  "safety constraints": {
+   "size": 37,
+   "sample": [
+    "21cfr11-11.50",
+    "airspace",
+    "alcoa-attributable",
+    "alcoa-contemporaneous",
+    "alcoa-original",
+    "biosafety-contamination",
+    "calibration_before_imaging",
+    "challenge_requires_controls",
+    "collision",
+    "contamination_free",
+    "dispense_completed",
+    "e-stop",
+    "enclosure",
+    "environment_before_store"
+   ],
+   "hits": []
+  },
+  "cleanliness": {
+   "size": 14,
+   "sample": [
+    "clean",
+    "contacts_culture",
+    "contamination_class",
+    "decontaminate",
+    "hood",
+    "sterile",
+    "sterility",
+    "t03",
+    "t04",
+    "tip",
+    "tip_eject",
+    "tip_pick",
+    "tool_compatible",
+    "waste"
+   ],
+   "hits": []
+  },
+  "temperature control": {
+   "size": 13,
+   "sample": [
+    "celsius",
+    "co2",
+    "co2_excursion",
+    "environment_valid",
+    "excursion_alarm",
+    "humidity",
+    "maintain_environment",
+    "report_environment",
+    "setpoint",
+    "temperature",
+    "temperature_excursion",
+    "wait_environment",
+    "\u00b0c"
+   ],
+   "hits": []
+  }
+ },
+ "labs": [
+  {
+   "id": "cell01",
+   "dimension": "(reference)",
+   "title": "Cell 01 as built (layout P1)",
+   "edit": [],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "realized",
+   "end": "executed",
+   "error": null,
+   "refused_by": [],
+   "devices": {
+    "cell01": 3,
+    "l10": 20,
+    "r01": 54,
+    "r02": 57,
+    "l12": 12,
+    "l17": 7
+   },
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l12"
+     ]
+    ],
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l17"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l12",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l17",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ]
+   ],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "executed",
+     "duration_s": 298.9
+    },
+    {
+     "session": "s1",
+     "end": "executed",
+     "duration_s": 263.3
+    },
+    {
+     "session": "s2",
+     "end": "executed",
+     "duration_s": 256.4
+    }
+   ],
+   "leaves": 153,
+   "categories": {
+    "check_interlocks": 3,
+    "verify_identity": 3,
+    "present": 8,
+    "approach": 24,
+    "insert": 12,
+    "grasp": 12,
+    "lift": 12,
+    "stow": 4,
+    "transit": 12,
+    "place": 12,
+    "release": 12,
+    "retract": 12,
+    "tool_couple": 3,
+    "tip_pick": 3,
+    "aspirate": 3,
+    "dispense": 3,
+    "tip_eject": 3,
+    "wait_environment": 3,
+    "store_cmd": 3,
+    "incubate": 2,
+    "load": 1,
+    "image_well": 3
+   },
+   "realization": true,
+   "validity": true,
+   "environment": [
+    "l10"
+   ],
+   "differs": []
+  },
+  {
+   "id": "one-robot",
+   "dimension": "robots",
+   "title": "one rail robot serves every station (no R01, no handover)",
+   "edit": [
+    [
+     "drop",
+     "serves\\(r01,[^)]*\\)\\."
+    ],
+    [
+     "add",
+     "serves(r02,l10)."
+    ]
+   ],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "realized",
+   "end": "executed",
+   "error": null,
+   "refused_by": [],
+   "devices": {
+    "cell01": 3,
+    "l10": 20,
+    "r02": 57,
+    "l12": 12,
+    "l17": 7
+   },
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [
+    [
+     [
+      "r02",
+      "l10",
+      "l12"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l10",
+      "l17"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l12",
+      "l10"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l17",
+      "l10"
+     ]
+    ]
+   ],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "executed",
+     "duration_s": 267.3
+    },
+    {
+     "session": "s1",
+     "end": "executed",
+     "duration_s": 231.7
+    },
+    {
+     "session": "s2",
+     "end": "executed",
+     "duration_s": 224.8
+    }
+   ],
+   "leaves": 99,
+   "categories": {
+    "check_interlocks": 3,
+    "verify_identity": 3,
+    "present": 8,
+    "tool_couple": 3,
+    "approach": 12,
+    "insert": 6,
+    "grasp": 6,
+    "lift": 6,
+    "stow": 4,
+    "transit": 6,
+    "place": 6,
+    "release": 6,
+    "retract": 6,
+    "tip_pick": 3,
+    "aspirate": 3,
+    "dispense": 3,
+    "tip_eject": 3,
+    "wait_environment": 3,
+    "store_cmd": 3,
+    "incubate": 2,
+    "load": 1,
+    "image_well": 3
+   },
+   "realization": true,
+   "validity": true,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "devices",
+    "routes",
+    "trips",
+    "leaves"
+   ]
+  },
+  {
+   "id": "tool-kept",
+   "dimension": "robots",
+   "title": "R02 keeps its plate tool coupled between trips",
+   "edit": [
+    [
+     "add",
+     "coupled(r02,t01)."
+    ]
+   ],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "realized",
+   "end": "executed",
+   "error": null,
+   "refused_by": [],
+   "devices": {
+    "cell01": 3,
+    "l10": 20,
+    "r01": 54,
+    "r02": 57,
+    "l12": 12,
+    "l17": 7
+   },
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l12"
+     ]
+    ],
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l17"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l12",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l17",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ]
+   ],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "executed",
+     "duration_s": 298.9
+    },
+    {
+     "session": "s1",
+     "end": "executed",
+     "duration_s": 263.3
+    },
+    {
+     "session": "s2",
+     "end": "executed",
+     "duration_s": 256.4
+    }
+   ],
+   "leaves": 153,
+   "categories": {
+    "check_interlocks": 3,
+    "verify_identity": 3,
+    "present": 8,
+    "approach": 24,
+    "insert": 12,
+    "grasp": 12,
+    "lift": 12,
+    "stow": 4,
+    "transit": 12,
+    "place": 12,
+    "release": 12,
+    "retract": 12,
+    "tool_couple": 3,
+    "tip_pick": 3,
+    "aspirate": 3,
+    "dispense": 3,
+    "tip_eject": 3,
+    "wait_environment": 3,
+    "store_cmd": 3,
+    "incubate": 2,
+    "load": 1,
+    "image_well": 3
+   },
+   "realization": true,
+   "validity": true,
+   "environment": [
+    "l10"
+   ],
+   "differs": []
+  },
+  {
+   "id": "hotel-handover",
+   "dimension": "lab setup",
+   "title": "R01 and R02 hand the plate over in the plate hotel L09, not a handover nest",
+   "edit": [
+    [
+     "drop",
+     "serves\\((r01|r02),handovernest\\)\\."
+    ],
+    [
+     "drop",
+     "holds_plate\\(handovernest\\)\\."
+    ],
+    [
+     "add",
+     "serves(r02,l09)."
+    ]
+   ],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "realized",
+   "end": "executed",
+   "error": null,
+   "refused_by": [],
+   "devices": {
+    "cell01": 3,
+    "l10": 20,
+    "r01": 54,
+    "l09": 12,
+    "r02": 57,
+    "l12": 12,
+    "l17": 7
+   },
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [
+    [
+     [
+      "r01",
+      "l10",
+      "l09"
+     ],
+     [
+      "r02",
+      "l09",
+      "l12"
+     ]
+    ],
+    [
+     [
+      "r01",
+      "l10",
+      "l09"
+     ],
+     [
+      "r02",
+      "l09",
+      "l17"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l12",
+      "l09"
+     ],
+     [
+      "r01",
+      "l09",
+      "l10"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l17",
+      "l09"
+     ],
+     [
+      "r01",
+      "l09",
+      "l10"
+     ]
+    ]
+   ],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "executed",
+     "duration_s": 314.9
+    },
+    {
+     "session": "s1",
+     "end": "executed",
+     "duration_s": 279.3
+    },
+    {
+     "session": "s2",
+     "end": "executed",
+     "duration_s": 272.4
+    }
+   ],
+   "leaves": 165,
+   "categories": {
+    "check_interlocks": 3,
+    "verify_identity": 3,
+    "present": 14,
+    "approach": 24,
+    "insert": 12,
+    "grasp": 12,
+    "lift": 12,
+    "stow": 10,
+    "transit": 12,
+    "place": 12,
+    "release": 12,
+    "retract": 12,
+    "tool_couple": 3,
+    "tip_pick": 3,
+    "aspirate": 3,
+    "dispense": 3,
+    "tip_eject": 3,
+    "wait_environment": 3,
+    "store_cmd": 3,
+    "incubate": 2,
+    "load": 1,
+    "image_well": 3
+   },
+   "realization": true,
+   "validity": true,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "devices",
+    "routes",
+    "trips",
+    "leaves"
+   ]
+  },
+  {
+   "id": "imager-capability-only",
+   "dimension": "devices",
+   "title": "the imager replaced by a capability-matched model without a validated binding",
+   "components": {
+    "l17": "l17_generic"
+   },
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "realized, result not valid evidence (NR3)",
+   "end": "executed",
+   "error": null,
+   "refused_by": [
+    "measurement_binding_validated: binding(l17,organoid_radius_um) = capability_match"
+   ],
+   "devices": {
+    "cell01": 3,
+    "l10": 20,
+    "r01": 54,
+    "r02": 57,
+    "l12": 12,
+    "l17": 7
+   },
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17-alt"
+   },
+   "routes": [
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l12"
+     ]
+    ],
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l17"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l12",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l17",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ]
+   ],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "executed",
+     "duration_s": 298.9
+    },
+    {
+     "session": "s1",
+     "end": "executed",
+     "duration_s": 263.3
+    },
+    {
+     "session": "s2",
+     "end": "executed",
+     "duration_s": 256.4
+    }
+   ],
+   "leaves": 153,
+   "categories": {
+    "check_interlocks": 3,
+    "verify_identity": 3,
+    "present": 8,
+    "approach": 24,
+    "insert": 12,
+    "grasp": 12,
+    "lift": 12,
+    "stow": 4,
+    "transit": 12,
+    "place": 12,
+    "release": 12,
+    "retract": 12,
+    "tool_couple": 3,
+    "tip_pick": 3,
+    "aspirate": 3,
+    "dispense": 3,
+    "tip_eject": 3,
+    "wait_environment": 3,
+    "store_cmd": 3,
+    "incubate": 2,
+    "load": 1,
+    "image_well": 3
+   },
+   "realization": true,
+   "validity": false,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "models",
+    "outcome"
+   ]
+  },
+  {
+   "id": "imager-validated",
+   "dimension": "devices",
+   "title": "the imager replaced by another model with a validated binding for the readout",
+   "components": {
+    "l17": "l17_validated"
+   },
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "realized",
+   "end": "executed",
+   "error": null,
+   "refused_by": [],
+   "devices": {
+    "cell01": 3,
+    "l10": 20,
+    "r01": 54,
+    "r02": 57,
+    "l12": 12,
+    "l17": 7
+   },
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17-alt3"
+   },
+   "routes": [
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l12"
+     ]
+    ],
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l17"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l12",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l17",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ]
+   ],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "executed",
+     "duration_s": 298.9
+    },
+    {
+     "session": "s1",
+     "end": "executed",
+     "duration_s": 263.3
+    },
+    {
+     "session": "s2",
+     "end": "executed",
+     "duration_s": 256.4
+    }
+   ],
+   "leaves": 153,
+   "categories": {
+    "check_interlocks": 3,
+    "verify_identity": 3,
+    "present": 8,
+    "approach": 24,
+    "insert": 12,
+    "grasp": 12,
+    "lift": 12,
+    "stow": 4,
+    "transit": 12,
+    "place": 12,
+    "release": 12,
+    "retract": 12,
+    "tool_couple": 3,
+    "tip_pick": 3,
+    "aspirate": 3,
+    "dispense": 3,
+    "tip_eject": 3,
+    "wait_environment": 3,
+    "store_cmd": 3,
+    "incubate": 2,
+    "load": 1,
+    "image_well": 3
+   },
+   "realization": true,
+   "validity": true,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "models"
+   ]
+  },
+  {
+   "id": "handler-replaced",
+   "dimension": "devices",
+   "title": "the liquid handler replaced by another model with the same capabilities",
+   "components": {
+    "l12": "l12_other"
+   },
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "realized",
+   "end": "executed",
+   "error": null,
+   "refused_by": [],
+   "devices": {
+    "cell01": 3,
+    "l10": 20,
+    "r01": 54,
+    "r02": 57,
+    "l12": 12,
+    "l17": 7
+   },
+   "models": {
+    "l10": "L10",
+    "l12": "L12-alt",
+    "l17": "L17"
+   },
+   "routes": [
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l12"
+     ]
+    ],
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l17"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l12",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l17",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ]
+   ],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "executed",
+     "duration_s": 298.9
+    },
+    {
+     "session": "s1",
+     "end": "executed",
+     "duration_s": 263.3
+    },
+    {
+     "session": "s2",
+     "end": "executed",
+     "duration_s": 256.4
+    }
+   ],
+   "leaves": 153,
+   "categories": {
+    "check_interlocks": 3,
+    "verify_identity": 3,
+    "present": 8,
+    "approach": 24,
+    "insert": 12,
+    "grasp": 12,
+    "lift": 12,
+    "stow": 4,
+    "transit": 12,
+    "place": 12,
+    "release": 12,
+    "retract": 12,
+    "tool_couple": 3,
+    "tip_pick": 3,
+    "aspirate": 3,
+    "dispense": 3,
+    "tip_eject": 3,
+    "wait_environment": 3,
+    "store_cmd": 3,
+    "incubate": 2,
+    "load": 1,
+    "image_well": 3
+   },
+   "realization": true,
+   "validity": true,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "models"
+   ]
+  },
+  {
+   "id": "window-300",
+   "dimension": "safety constraints",
+   "title": "the lab allows the plate only 300 s outside the incubator",
+   "edit": [
+    [
+     "drop",
+     "window\\(\\d+\\)\\."
+    ],
+    [
+     "add",
+     "window(3000)."
+    ]
+   ],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "refused before anything moved",
+   "end": "failed",
+   "error": "refused: refused by window_prospective",
+   "refused_by": [
+    "window_prospective: projected 298.9 s x 1.20 = 358.68 s > window 300.0 s"
+   ],
+   "devices": {},
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "abstained",
+     "duration_s": 0.0
+    }
+   ],
+   "leaves": 0,
+   "categories": {},
+   "realization": false,
+   "validity": false,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "devices",
+    "routes",
+    "trips",
+    "leaves",
+    "outcome"
+   ]
+  },
+  {
+   "id": "interlocks-open",
+   "dimension": "safety constraints",
+   "title": "the enclosure interlocks are open",
+   "edit": [
+    [
+     "drop",
+     "interlocks_closed\\."
+    ]
+   ],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "refused before anything moved",
+   "end": "abstained",
+   "error": "refused: refused by projection_succeeds",
+   "refused_by": [
+    "projection_succeeds: projection failed after 0.0 s: refused: refused by interlocks_closed"
+   ],
+   "devices": {},
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [],
+   "trips": [],
+   "leaves": 0,
+   "categories": {},
+   "realization": false,
+   "validity": false,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "devices",
+    "routes",
+    "trips",
+    "leaves",
+    "outcome"
+   ]
+  },
+  {
+   "id": "contamination-suspected",
+   "dimension": "cleanliness",
+   "title": "contamination is suspected on the plate",
+   "edit": [
+    [
+     "add",
+     "contamination_suspected."
+    ]
+   ],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "refused before anything moved",
+   "end": "abstained",
+   "error": "refused: refused by projection_succeeds, contamination_free",
+   "refused_by": [
+    "contamination_free: contamination_suspected",
+    "projection_succeeds: projection failed after 0.0 s: refused: refused by contamination_free"
+   ],
+   "devices": {},
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [],
+   "trips": [],
+   "leaves": 0,
+   "categories": {},
+   "realization": false,
+   "validity": false,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "devices",
+    "routes",
+    "trips",
+    "leaves",
+    "outcome"
+   ]
+  },
+  {
+   "id": "tool-contacts-culture",
+   "dimension": "cleanliness",
+   "title": "the lab classes the plate tool T01 as touching the culture",
+   "edit": [
+    [
+     "add",
+     "contacts_culture(t01)."
+    ]
+   ],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "refused before anything moved",
+   "end": "abstained",
+   "error": "refused: refused by projection_succeeds",
+   "refused_by": [
+    "projection_succeeds: projection failed after 45.3 s: refused: refused by tool_compatible"
+   ],
+   "devices": {},
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [],
+   "trips": [],
+   "leaves": 0,
+   "categories": {},
+   "realization": false,
+   "validity": false,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "devices",
+    "routes",
+    "trips",
+    "leaves",
+    "outcome"
+   ]
+  },
+  {
+   "id": "profile-mismatch",
+   "dimension": "temperature control",
+   "title": "the incubator keeps a different environment profile than culture-standard",
+   "profiles": {
+    "l10": "culture-30C"
+   },
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "refused at mapping",
+   "refused_by": [
+    "(a controlled-environment (profile culture-standard)) resolves to nothing: L10 keeps culture-30C"
+   ],
+   "devices": {},
+   "routes": [],
+   "trips": [],
+   "leaves": 0,
+   "realization": null,
+   "validity": null,
+   "environment": null,
+   "differs": [
+    "models",
+    "devices",
+    "routes",
+    "trips",
+    "leaves",
+    "outcome"
+   ]
+  },
+  {
+   "id": "uncalibrated",
+   "dimension": "calibration",
+   "title": "the imager's calibration is not current",
+   "edit": [
+    [
+     "drop",
+     "calibrated\\(l17\\)\\."
+    ]
+   ],
+   "culture_plan_sha": "a5e27614c98a",
+   "culture_order_same": true,
+   "lab_plan_sha": "bf81a40c17e9",
+   "lab_order_same": true,
+   "outcome": "realized",
+   "end": "executed",
+   "error": null,
+   "refused_by": [],
+   "devices": {
+    "cell01": 3,
+    "l10": 20,
+    "r01": 54,
+    "r02": 57,
+    "l12": 12,
+    "l21": 1,
+    "l17": 7
+   },
+   "models": {
+    "l10": "L10",
+    "l12": "L12",
+    "l17": "L17"
+   },
+   "routes": [
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l12"
+     ]
+    ],
+    [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l17"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l12",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    [
+     [
+      "r02",
+      "l17",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ]
+   ],
+   "trips": [
+    {
+     "session": "s0",
+     "end": "executed",
+     "duration_s": 298.9
+    },
+    {
+     "session": "s1",
+     "end": "executed",
+     "duration_s": 263.3
+    },
+    {
+     "session": "s2",
+     "end": "executed",
+     "duration_s": 376.4
+    }
+   ],
+   "leaves": 154,
+   "categories": {
+    "check_interlocks": 3,
+    "verify_identity": 3,
+    "present": 8,
+    "approach": 24,
+    "insert": 12,
+    "grasp": 12,
+    "lift": 12,
+    "stow": 4,
+    "transit": 12,
+    "place": 12,
+    "release": 12,
+    "retract": 12,
+    "tool_couple": 3,
+    "tip_pick": 3,
+    "aspirate": 3,
+    "dispense": 3,
+    "tip_eject": 3,
+    "wait_environment": 3,
+    "store_cmd": 3,
+    "incubate": 2,
+    "validate": 1,
+    "load": 1,
+    "image_well": 3
+   },
+   "realization": true,
+   "validity": true,
+   "environment": [
+    "l10"
+   ],
+   "differs": [
+    "devices",
+    "trips",
+    "leaves"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,401 @@
+{
+ "scenario": "isaac_nominal",
+ "about": "the derived 0.5-bit experiment on the Cell 01 twin",
+ "backend": "isaac-cell01-twin/0.1",
+ "error": null,
+ "end": "executed",
+ "n_entries": 498,
+ "n_leaves": 153,
+ "wall_s": 4292.5,
+ "audit": {
+  "verify": {
+   "ok": true,
+   "n": 498,
+   "attributable": true,
+   "evidence_hashed": true
+  },
+  "tampered_detected": true
+ },
+ "verdict": {
+  "realization": {
+   "ok": true,
+   "violated": [],
+   "run_ended": "executed"
+  },
+  "validity": {
+   "ok": true,
+   "checks": {
+    "V1_identity_continuity": {
+     "ok": true,
+     "observation": "identity reads ['P17', 'P17', 'P17']"
+    },
+    "V2_calibration_at_measurement": {
+     "ok": true,
+     "observation": "3 readouts, calibration observed valid for all"
+    },
+    "V3_binding_validated": {
+     "ok": true,
+     "observation": "binding(l17,organoid_radius_um) = validated"
+    },
+    "V4_controls_present": {
+     "ok": true,
+     "observation": "control ['A05'], imaged ['A01', 'A02', 'A05']"
+    },
+    "V5_dose_delivered": {
+     "ok": true,
+     "observation": "3 dispenses within 5.0 %: True"
+    },
+    "V6_sample_integrity": {
+     "ok": true,
+     "observation": "window kept on every trip"
+    },
+    "V7_design_realised": {
+     "ok": true,
+     "observation": "all designed interventions and measurements executed"
+    }
+   },
+   "refused_by": []
+  },
+  "promotable": true,
+  "nr3": false,
+  "disposition": "commit: result may update the culture belief",
+  "design": {
+   "id": "c_d85_t48_n1",
+   "requirement_bits": 0.5,
+   "eig_bits": 0.5439
+  }
+ },
+ "repairs": [],
+ "sessions": [
+  {
+   "session": "s0",
+   "kernel_s": 305.71,
+   "planner_s": 298.9,
+   "leaves": 52
+  },
+  {
+   "session": "s1",
+   "kernel_s": 230.08,
+   "planner_s": 263.3,
+   "leaves": 48
+  },
+  {
+   "session": "s2",
+   "kernel_s": 207.3,
+   "planner_s": 256.4,
+   "leaves": 51
+  }
+ ],
+ "expected": {
+  "end": "executed",
+  "realization": true,
+  "validity": true,
+  "promotable": true
+ },
+ "got": {
+  "end": "executed",
+  "realization": true,
+  "validity": true,
+  "promotable": true,
+  "nr3": false,
+  "repaired_at": []
+ },
+ "expectation_ok": true,
+ "plate": "P17",
+ "cq": {
+  "correct": 10,
+  "n": 10,
+  "grounded": 10,
+  "results": [
+   {
+    "id": "CQ-01",
+    "family": "what",
+    "scenario": "isaac_nominal",
+    "question": "What are you doing at the first dispense -- which device, plate, well, reagent and volume?",
+    "ok": true,
+    "answer": {
+     "category": "dispense",
+     "device": "l12",
+     "plate": "P17",
+     "well": "A01",
+     "reagent": "challenge",
+     "volume_uL": 17.003,
+     "culture_time_h": 0.0
+    },
+    "expected": {
+     "category": "dispense",
+     "device": "l12",
+     "plate": "P17",
+     "well": "A01",
+     "reagent": "challenge",
+     "culture_time_h": 0.0
+    },
+    "grounds": [
+     "trail#86:dispense/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-02",
+    "family": "why",
+    "scenario": "isaac_nominal",
+    "question": "Why are you dispensing into this well?",
+    "ok": true,
+    "answer": {
+     "chain": [
+      "dispense",
+      "dose",
+      "intervene",
+      "run_session",
+      "experiment"
+     ],
+     "design": "c_d85_t48_n1",
+     "requirement_bits": 0.5,
+     "eig_bits": 0.5439,
+     "role": "rescued",
+     "session": "s0"
+    },
+    "expected": {
+     "chain": [
+      "dispense",
+      "dose",
+      "intervene",
+      "run_session",
+      "experiment"
+     ],
+     "design": "c_d85_t48_n1",
+     "role": "rescued",
+     "session": "s0"
+    },
+    "grounds": [
+     "trail#86:dispense/executed",
+     "trail#81:dose/grounded",
+     "trail#77:intervene/grounded",
+     "trail#5:run_session/grounded",
+     "trail#1:experiment/grounded"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-04",
+    "family": "why",
+    "scenario": "isaac_nominal",
+    "question": "Why does the plate go via the handover nest?",
+    "ok": true,
+    "answer": {
+     "legs": [
+      [
+       "r01",
+       "l10",
+       "handovernest"
+      ],
+      [
+       "r02",
+       "handovernest",
+       "l12"
+      ]
+     ],
+     "serves_source": [
+      "r01"
+     ],
+     "serves_target": [
+      "r02"
+     ]
+    },
+    "expected": {
+     "legs": [
+      [
+       "r01",
+       "l10",
+       "handovernest"
+      ],
+      [
+       "r02",
+       "handovernest",
+       "l12"
+      ]
+     ]
+    },
+    "grounds": [
+     "trail#17:transport_lab/grounded",
+     "serves(r01,l10)",
+     "serves(r01,handovernest)",
+     "holds_plate(l10)",
+     "holds_plate(handovernest)",
+     "serves(r02,handovernest)",
+     "serves(r02,l12)",
+     "holds_plate(handovernest)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-14",
+    "family": "evidence",
+    "scenario": "isaac_nominal",
+    "question": "How do you know that A01 received the challenge?",
+    "ok": true,
+    "answer": {
+     "well": "A01",
+     "reagent": "challenge",
+     "lot": "SIM-LOT-A",
+     "delivered_uL": 17.003,
+     "commanded_uL": 17.0,
+     "tip_id": "TIP-RACK1-A01",
+     "identity_read_in_session": "P17",
+     "culture_time_h": 0.0,
+     "hash_chained": true
+    },
+    "expected": {
+     "well": "A01",
+     "reagent": "challenge",
+     "lot": "SIM-LOT-A",
+     "identity_read_in_session": "P17",
+     "culture_time_h": 0.0,
+     "hash_chained": true
+    },
+    "grounds": [
+     "trail#86:dispense/executed",
+     "trail#85:aspirate/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-15",
+    "family": "evidence",
+    "scenario": "isaac_nominal",
+    "question": "Is your record intact, and would you notice if someone edited it?",
+    "ok": true,
+    "answer": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "expected": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "grounds": [
+     "verify over 498 entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-17",
+    "family": "retrospective",
+    "scenario": "isaac_nominal",
+    "question": "Was the rescue given? If not, why not?",
+    "ok": true,
+    "answer": {
+     "rescue_given": true,
+     "wells": [
+      "A01"
+     ],
+     "culture_time_h": 48.0
+    },
+    "expected": {
+     "rescue_given": true,
+     "wells": [
+      "A01"
+     ],
+     "culture_time_h": 48.0
+    },
+    "grounds": [
+     "trail#254:dispense/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-18",
+    "family": "retrospective",
+    "scenario": "isaac_nominal",
+    "question": "Where is the experiment's plate now, and how do you know?",
+    "ok": true,
+    "answer": {
+     "plate": "P17",
+     "at": "slot:l10",
+     "source": "observed"
+    },
+    "expected": {
+     "plate": "P17",
+     "at": "slot:l10",
+     "source": "observed"
+    },
+    "grounds": [
+     "belief plate_at:P17 (d0222-store_cmd)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-20",
+    "family": "normative",
+    "scenario": "isaac_nominal",
+    "question": "Which material did you quarantine, and who authorised it?",
+    "ok": true,
+    "answer": {
+     "quarantined": []
+    },
+    "expected": {
+     "quarantined": []
+    },
+    "grounds": [
+     "no contain entry among 498 trail entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-21",
+    "family": "verdict",
+    "scenario": "isaac_nominal",
+    "question": "Is the result a valid experiment?",
+    "ok": true,
+    "answer": {
+     "realization": true,
+     "validity": true,
+     "nr3": false,
+     "failed_checks": []
+    },
+    "expected": {
+     "realization": true,
+     "validity": true,
+     "nr3": false
+    },
+    "grounds": [
+     "critic over trail"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-24",
+    "family": "what",
+    "scenario": "isaac_nominal",
+    "question": "What did R02 do in the rescue session?",
+    "ok": true,
+    "answer": {
+     "tool_couple": 1,
+     "approach": 4,
+     "insert": 2,
+     "grasp": 2,
+     "lift": 2,
+     "transit": 2,
+     "place": 2,
+     "release": 2,
+     "retract": 2
+    },
+    "expected": {
+     "tool_couple": 1,
+     "approach": 4,
+     "insert": 2,
+     "grasp": 2,
+     "lift": 2,
+     "transit": 2,
+     "place": 2,
+     "release": 2,
+     "retract": 2
+    },
+    "grounds": [
+     "trail motion entries of r02 in s1"
+    ],
+    "error": null
+   }
+  ]
+ }
+}

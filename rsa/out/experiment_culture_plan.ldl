@@ -1,0 +1,142 @@
+;; The culture actions derived from rsa/registry/lab/experiment.ldl by rsa/experiment_designator.py (LDL v0.3,
+;; culture level, the format of culture_plan.ldl). Generated; do not edit. The order is derived from the
+;; causal links by rsa/culture_plan.py. ILLUSTRATIVE (D016).
+
+(the experiment ?E
+    (question (which (a recovery-model (in (M1_graded M2_threshold M3_protective)))
+                     (explains (the rescue-efficacy (after (a delay (of 48 h)))))))
+    (entities
+      (the culture ?rescued (role rescued))
+      (the culture ?comparator (role comparator))
+      (the culture ?control (role control))
+      (some substance ?challenge (type challenge))
+      (some substance ?rescue (type rescue))
+      (the belief ?B (over (M1_graded M2_threshold M3_protective)) (prior uniform)))
+    (goal (the belief ?B (expected-information-gain (>= 0.5 bit))))
+    (given
+      (the culture ?rescued (state baseline))
+      (the culture ?comparator (state baseline))
+      (the culture ?control (state baseline))
+      (the belief ?B (entropy 1.585 bit))
+      (the experiment ?E (culture-time 0 h)))
+    (prevents
+      (an exposure (of ?control) (to (some substance)))
+      (an event (type contamination) (of (a culture))))
+    (maintains
+      (the culture ?rescued (environment culture-standard))
+      (the culture ?comparator (environment culture-standard))
+      (the culture ?control (environment culture-standard)))
+    (steps
+      (an action ?x1
+          (type challenging)
+          (culture ?rescued)
+          (substance ?challenge)
+          (dose 0.85 au)
+          (at (culture-time 0 h))
+          (physical (the culture ?rescued (exposed-to ?challenge 0.85 au))
+                    (the culture ?rescued (injury rising)))
+          (knowledge (a record (of ?x1) (states ?rescued ?challenge 0.85 au 0 h))))
+      (an action ?x2
+          (type challenging)
+          (culture ?comparator)
+          (substance ?challenge)
+          (dose 0.85 au)
+          (at (culture-time 0 h))
+          (physical (the culture ?comparator (exposed-to ?challenge 0.85 au))
+                    (the culture ?comparator (injury rising)))
+          (knowledge (a record (of ?x2) (states ?comparator ?challenge 0.85 au 0 h))))
+      (an action ?g1
+          (type growing)
+          (cultures ?rescued ?comparator ?control)
+          (from (culture-time 0 h))
+          (to (culture-time 48 h))
+          (requires
+            (the culture ?rescued (exposed-to ?challenge))
+            (the culture ?comparator (exposed-to ?challenge)))
+          (physical (the experiment ?E (culture-time 48 h)))
+          (knowledge (a record (of ?g1) (environment-history culture-standard))))
+      (an action ?x3
+          (type rescuing)
+          (culture ?rescued)
+          (substance ?rescue)
+          (dose 0.70 au)
+          (at (culture-time 48 h))
+          (requires (the experiment ?E (culture-time 48 h)))
+          (physical (the culture ?rescued (exposed-to ?rescue 0.70 au))
+                    (the culture ?rescued (recovery possible)))
+          (knowledge (a record (of ?x3) (states ?rescued ?rescue 0.70 au 48 h))))
+      (an action ?g2
+          (type growing)
+          (cultures ?rescued ?comparator ?control)
+          (from (culture-time 48 h))
+          (to (culture-time 72 h))
+          (requires (the culture ?rescued (exposed-to ?rescue)))
+          (physical (the experiment ?E (culture-time 72 h)))
+          (knowledge (a record (of ?g2) (environment-history culture-standard))))
+      (an action ?o1
+          (type observing)
+          (culture ?rescued)
+          (readout morphology)
+          (at (culture-time 72 h))
+          (requires (the experiment ?E (culture-time 72 h)))
+          (physical (the culture ?rescued (light-dose increased)))
+          (knowledge (an image ?y1 (of ?rescued) (culture-time 72 h) (raw true))))
+      (an action ?o2
+          (type observing)
+          (culture ?comparator)
+          (readout morphology)
+          (at (culture-time 72 h))
+          (requires (the experiment ?E (culture-time 72 h)))
+          (physical (the culture ?comparator (light-dose increased)))
+          (knowledge (an image ?y2 (of ?comparator) (culture-time 72 h) (raw true))))
+      (an action ?o3
+          (type observing)
+          (culture ?control)
+          (readout morphology)
+          (at (culture-time 72 h))
+          (requires (the experiment ?E (culture-time 72 h)))
+          (physical (the culture ?control (light-dose increased)))
+          (knowledge (an image ?y3 (of ?control) (culture-time 72 h) (raw true))))
+      (an action ?i1
+          (type interpreting)
+          (image ?y1)
+          (into organoid-radius)
+          (requires
+            (an image (of ?rescued) (raw true))
+            (a scale (of (an image)) (known true)) :establishable)
+          (knowledge (an estimate (of ?rescued) (organoid-radius) (sigma 2.5 um))))
+      (an action ?i2
+          (type interpreting)
+          (image ?y2)
+          (into organoid-radius)
+          (requires
+            (an image (of ?comparator) (raw true))
+            (a scale (of (an image)) (known true)) :establishable)
+          (knowledge (an estimate (of ?comparator) (organoid-radius) (sigma 2.5 um))))
+      (an action ?i3
+          (type interpreting)
+          (image ?y3)
+          (into organoid-radius)
+          (requires
+            (an image (of ?control) (raw true))
+            (a scale (of (an image)) (known true)) :establishable)
+          (knowledge (an estimate (of ?control) (organoid-radius) (sigma 2.5 um))))
+      (an action ?v1
+          (type analysing)
+          (statistic (difference (radius ?comparator) (radius ?control)))
+          (criterion (the effect (below 0 um) (by-more-than 2 sd)))
+          (requires
+            (an estimate (of ?comparator) (organoid-radius))
+            (an estimate (of ?control) (organoid-radius)))
+          (knowledge (a finding (of (the effect (of ?challenge))) (established true))))
+      (an action ?a1
+          (type analysing)
+          (belief ?B)
+          (statistic (difference (radius ?rescued) (radius ?comparator)))
+          (requires
+            (an estimate (of ?rescued) (organoid-radius))
+            (an estimate (of ?comparator) (organoid-radius))
+            (a finding (of (the effect (of ?challenge))) (established true)))
+          (knowledge (the belief ?B (posterior updated))
+                     (the belief ?B (information-gain measured))
+                     (a finding (of (the effect (of ?rescue))) (measured true))))))

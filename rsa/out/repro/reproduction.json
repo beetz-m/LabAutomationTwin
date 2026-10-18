@@ -1,0 +1,120 @@
+{
+ "reproduced": true,
+ "manifest_recorded": "a8a39851a44328aac152ee46629decd9cddc691b1e8c2b835c422bba7cd32659",
+ "manifest_now": "a8a39851a44328aac152ee46629decd9cddc691b1e8c2b835c422bba7cd32659",
+ "stages": {
+  "design": {
+   "outputs": 4,
+   "identical": 4,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "step-proof": {
+   "outputs": 1,
+   "identical": 1,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "culture": {
+   "outputs": 1,
+   "identical": 1,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "lab-plan": {
+   "outputs": 1,
+   "identical": 1,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "controller": {
+   "outputs": 3,
+   "identical": 3,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "execution": {
+   "outputs": 26,
+   "identical": 26,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "grounding": {
+   "outputs": 1,
+   "identical": 1,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "frames": {
+   "outputs": 1,
+   "identical": 1,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "motions": {
+   "outputs": 3,
+   "identical": 3,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "independence": {
+   "outputs": 1,
+   "identical": 1,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "refinement-proof": {
+   "outputs": 2,
+   "identical": 2,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  },
+  "protocol": {
+   "outputs": 3,
+   "identical": 3,
+   "differing": [],
+   "code_same": true,
+   "exit_same": true
+  }
+ },
+ "other": [],
+ "timings_recorded": {
+  "design": 33.4,
+  "step-proof": 0.6,
+  "culture": 1.7,
+  "lab-plan": 0.8,
+  "controller": 0.2,
+  "execution": 1.9,
+  "grounding": 0.0,
+  "frames": 37.4,
+  "motions": 0.1,
+  "independence": 1.8,
+  "refinement-proof": 0.7,
+  "protocol": 1.7
+ },
+ "timings_now": {
+  "design": 33.7,
+  "step-proof": 0.6,
+  "culture": 1.8,
+  "lab-plan": 0.8,
+  "controller": 0.2,
+  "execution": 1.9,
+  "grounding": 0.1,
+  "frames": 37.4,
+  "motions": 0.1,
+  "independence": 1.8,
+  "refinement-proof": 0.7,
+  "protocol": 1.7
+ }
+}

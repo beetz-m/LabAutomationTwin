@@ -1,0 +1,17 @@
+(partial-order
+    (
+     (:tag x1 (perform (an action (type intervening) (into ?r) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))))
+     (:tag x2 (perform (an action (type intervening) (into ?c) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))))
+     (:tag w1 (perform (an action (type incubating) (plate ?p) (in ?env) (from (culture-time 0 h)) (to (culture-time 48 h)))))
+     (:tag x3 (perform (an action (type intervening) (into ?r) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h)))))
+     (:tag w2 (perform (an action (type incubating) (plate ?p) (in ?env) (from (culture-time 48 h)) (to (culture-time 72 h)))))
+     (:tag m1 (perform (an action (type measuring) (of ?r) (readout organoid-radius) (at (culture-time 72 h)))))
+     (:tag m2 (perform (an action (type measuring) (of ?c) (readout organoid-radius) (at (culture-time 72 h)))))
+     (:tag m3 (perform (an action (type measuring) (of ?k) (readout organoid-radius) (at (culture-time 72 h))))))
+  (:order x1 w1)        ; (the well ?r (received ?ch))
+  (:order x2 w1)        ; (the well ?c (received ?ch))
+  (:order w1 x3)        ; (the plate ?p (culture-time 48 h))
+  (:order x3 w2)        ; (the well ?r (received ?rs))
+  (:order w2 m1)        ; (the plate ?p (culture-time 72 h))
+  (:order w2 m2)        ; (the plate ?p (culture-time 72 h))
+  (:order w2 m3))       ; (the plate ?p (culture-time 72 h))

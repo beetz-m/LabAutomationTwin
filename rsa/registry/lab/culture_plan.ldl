@@ -1,0 +1,83 @@
+;; The challenge-rescue experiment as an abstract plan over the cultures only (LDL v0.3, culture level).
+;; It says what is done to the cultures, how they are observed, and how the observations are interpreted and
+;; analysed. No plate, well, instrument, robot or device appears: those are chosen by the mapping to the laboratory
+;; (rsa/culture_plan.py). Every action states two kinds of effect:
+;;   (physical  ...)  the change of the cultures' state (exposure, injury, protection, viability, light dose)
+;;   (knowledge ...)  the change of what is known: records, images, estimates, the belief over the hypotheses
+;; The order is derived from causal links over both kinds of effect (physical and knowledge flow).
+;; Biology and numbers: Cell 01's ILLUSTRATIVE surrogate and its models M1-M3 (twin/culture/eig.py, D016).
+
+(the experiment ?E
+  (question (which (a recovery-model (in (M1_graded M2_threshold M3_protective)))
+                   (explains (the rescue-efficacy (after (a delay (of 48 h)))))))
+  (entities
+    (the culture ?cr (role rescued))
+    (the culture ?cc (role comparator))
+    (the culture ?ck (role control))
+    (some substance ?ch (type challenge))
+    (some substance ?rs (type rescue))
+    (the belief ?B (over (M1_graded M2_threshold M3_protective)) (prior uniform)))
+  ;; the design guarantees the gain in expectation (e2m); what one execution yields is measured, not promised
+  (goal (the belief ?B (expected-information-gain (>= 0.5 bit))))
+  (given
+    (the culture ?cr (state baseline))
+    (the culture ?cc (state baseline))
+    (the culture ?ck (state baseline))
+    (the belief ?B (entropy 1.585 bit))
+    (the experiment ?E (culture-time 0 h)))
+  (prevents
+    (an exposure (of ?ck) (to (some substance)))           ; the control stays untreated
+    (an event (type contamination) (of (a culture))))
+  (maintains
+    (the culture ?cr (environment culture-standard))
+    (the culture ?cc (environment culture-standard))
+    (the culture ?ck (environment culture-standard)))
+  (steps
+    ;; what is done to the cultures
+    (an action ?c1 (type challenging) (culture ?cr) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h))
+      (physical (the culture ?cr (exposed-to ?ch 0.85 au)) (the culture ?cr (injury rising)))
+      (knowledge (a record (of ?c1) (states ?cr ?ch 0.85 au 0 h))))
+    (an action ?c2 (type challenging) (culture ?cc) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h))
+      (physical (the culture ?cc (exposed-to ?ch 0.85 au)) (the culture ?cc (injury rising)))
+      (knowledge (a record (of ?c2) (states ?cc ?ch 0.85 au 0 h))))
+    (an action ?g1 (type growing) (cultures ?cr ?cc ?ck) (from (culture-time 0 h)) (to (culture-time 48 h))
+      (requires (the culture ?cr (exposed-to ?ch)) (the culture ?cc (exposed-to ?ch)))
+      (physical (the experiment ?E (culture-time 48 h)) (the culture ?cr (injury-burden accumulated)))
+      (knowledge (a record (of ?g1) (environment-history culture-standard))))
+    (an action ?c3 (type rescuing) (culture ?cr) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h))
+      (requires (the experiment ?E (culture-time 48 h)))
+      (physical (the culture ?cr (exposed-to ?rs 0.70 au)) (the culture ?cr (recovery possible)))
+      (knowledge (a record (of ?c3) (states ?cr ?rs 0.70 au 48 h))))
+    (an action ?g2 (type growing) (cultures ?cr ?cc ?ck) (from (culture-time 48 h)) (to (culture-time 72 h))
+      (requires (the culture ?cr (exposed-to ?rs)))
+      (physical (the experiment ?E (culture-time 72 h)) (the culture ?cr (viability settled)))
+      (knowledge (a record (of ?g2) (environment-history culture-standard))))
+    ;; how they are observed
+    (an action ?o1 (type observing) (culture ?cr) (readout morphology) (at (culture-time 72 h))
+      (requires (the experiment ?E (culture-time 72 h)))
+      (physical (the culture ?cr (light-dose increased)))                 ; imaging is not free (Cell 01 L17)
+      (knowledge (an image ?y1 (of ?cr) (culture-time 72 h) (raw true))))
+    (an action ?o2 (type observing) (culture ?cc) (readout morphology) (at (culture-time 72 h))
+      (requires (the experiment ?E (culture-time 72 h)))
+      (physical (the culture ?cc (light-dose increased)))
+      (knowledge (an image ?y2 (of ?cc) (culture-time 72 h) (raw true))))
+    (an action ?o3 (type observing) (culture ?ck) (readout morphology) (at (culture-time 72 h))
+      (requires (the experiment ?E (culture-time 72 h)))
+      (physical (the culture ?ck (light-dose increased)))
+      (knowledge (an image ?y3 (of ?ck) (culture-time 72 h) (raw true))))
+    ;; how the observations are interpreted
+    (an action ?i1 (type interpreting) (image ?y1) (into organoid-radius)
+      (requires (an image (of ?cr) (raw true)) (a scale (of (an image)) (known true)) :establishable)
+      (knowledge (an estimate (of ?cr) (organoid-radius) (sigma 2.5 um))))
+    (an action ?i2 (type interpreting) (image ?y2) (into organoid-radius)
+      (requires (an image (of ?cc) (raw true)) (a scale (of (an image)) (known true)) :establishable)
+      (knowledge (an estimate (of ?cc) (organoid-radius) (sigma 2.5 um))))
+    (an action ?i3 (type interpreting) (image ?y3) (into organoid-radius)
+      (requires (an image (of ?ck) (raw true)) (a scale (of (an image)) (known true)) :establishable)
+      (knowledge (an estimate (of ?ck) (organoid-radius) (sigma 2.5 um))))
+    ;; how they are analysed
+    (an action ?a1 (type analysing) (belief ?B) (statistic (difference (radius ?cr) (radius ?cc)))
+      (requires (an estimate (of ?cr) (organoid-radius))
+                (an estimate (of ?cc) (organoid-radius))
+                (an estimate (of ?ck) (organoid-radius)))                 ; the control licenses the comparison
+      (knowledge (the belief ?B (posterior updated)) (the belief ?B (information-gain measured))))))

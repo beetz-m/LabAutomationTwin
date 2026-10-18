@@ -1,0 +1,493 @@
+{
+ "results": {
+  "challenge_rescue": {
+   "consistent": true,
+   "seconds": 0.57,
+   "unsat": [],
+   "realization": {
+    "challenge_rescue_design": [
+     "FactorialDesign",
+     "HypothesisDiscriminatingDesign",
+     "PreSpecifiedDesign",
+     "RequiresImaging",
+     "SufficientlyInformativeDesign",
+     "ValidatedInjuryRescueDesign",
+     "WellContrastedDesign"
+    ],
+    "objective": [
+     "DiscriminationObjective"
+    ],
+    "agent_challenge": [
+     "ChallengeAgent"
+    ],
+    "agent_rescue": [
+     "RescueAgent"
+    ],
+    "arm_rescued": [
+     "ChallengeRescueArm"
+    ],
+    "arm_comparator": [
+     "ChallengeOnlyArm"
+    ],
+    "arm_control": [
+     "UntreatedArm"
+    ],
+    "cmp_validity": [
+     "CoveredComparison",
+     "InjuryValidityComparison",
+     "SingleFactorComparison"
+    ],
+    "cmp_primary": [
+     "CoveredComparison",
+     "RescueEffectComparison",
+     "SingleFactorComparison"
+    ],
+    "experiment_challenge_rescue": [
+     "FactorialExperiment",
+     "HypothesisDiscriminatingExperiment",
+     "ValidatedInjuryRescueExperiment"
+    ],
+    "step_x1": [
+     "ChallengeAdministration"
+    ],
+    "step_x3": [
+     "RescueAdministration"
+    ],
+    "step_a1": [
+     "ModelUpdate",
+     "StatisticalComparison"
+    ]
+   },
+   "closed_world": [
+    {
+     "check": "every arm has one level of every factor",
+     "ok": true,
+     "detail": "3 arms \u00d7 2 factors"
+    },
+    {
+     "check": "single factor: validity",
+     "ok": true,
+     "detail": "comparator vs control differ in challenge"
+    },
+    {
+     "check": "schedules matched: validity",
+     "ok": true,
+     "detail": "administrations differ at 0 h, all belonging to the contrasted factor"
+    },
+    {
+     "check": "single factor: primary",
+     "ok": true,
+     "detail": "rescued vs comparator differ in rescue"
+    },
+    {
+     "check": "schedules matched: primary",
+     "ok": true,
+     "detail": "administrations differ at 48 h, all belonging to the contrasted factor"
+    },
+    {
+     "check": "full factorial (information, not required)",
+     "ok": false,
+     "info": true,
+     "detail": "3 of 4 level combinations; missing: challenge=none, rescue=0p7au_48h"
+    },
+    {
+     "check": "interaction estimable",
+     "ok": false,
+     "detail": "no complete 2\u00d72 sub-table"
+    },
+    {
+     "check": "every comparison has a decision rule",
+     "ok": true,
+     "detail": "2 of 2"
+    },
+    {
+     "check": "positive control licenses the primary comparison",
+     "ok": false,
+     "detail": "no positive-control arm"
+    },
+    {
+     "check": "replicates \u2265 3 per arm",
+     "ok": false,
+     "detail": "rescued 1, comparator 1, control 1"
+    },
+    {
+     "check": "units off the plate edge",
+     "ok": false,
+     "detail": "edge wells: ['A01', 'A02', 'A05']"
+    },
+    {
+     "check": "all units on one plate",
+     "ok": true,
+     "detail": "plate_P17"
+    },
+    {
+     "check": "each administration specification executed once",
+     "ok": true,
+     "detail": "3 administrations for 3 specifications"
+    }
+   ]
+  },
+  "improved": {
+   "consistent": true,
+   "seconds": 0.74,
+   "unsat": [],
+   "realization": {
+    "improved_design": [
+     "AdequatelyControlledInjuryRescueDesign",
+     "DeviationAwareDesign",
+     "FactorialDesign",
+     "HypothesisDiscriminatingDesign",
+     "InteractionAwareDesign",
+     "RequiresImaging",
+     "SufficientlyInformativeDesign",
+     "TherapeuticWindowDesign"
+    ],
+    "improved_objective": [
+     "DiscriminationObjective"
+    ],
+    "agent_challenge": [
+     "ChallengeAgent"
+    ],
+    "agent_rescue": [
+     "RescueAgent"
+    ],
+    "agent_vehicle": [
+     "Vehicle"
+    ],
+    "improved_arm_vehicle": [
+     "ReplicatedArm",
+     "VehicleControlArm"
+    ],
+    "improved_arm_rescue_only": [
+     "ReplicatedArm",
+     "RescueOnlyArm"
+    ],
+    "improved_arm_challenge_only": [
+     "ChallengeOnlyArm",
+     "ReplicatedArm"
+    ],
+    "improved_arm_challenge_late_rescue": [
+     "ChallengeRescueArm",
+     "ReplicatedArm"
+    ],
+    "improved_arm_challenge_early_rescue": [
+     "ChallengeRescueArm",
+     "PositiveControlArm",
+     "ReplicatedArm"
+    ],
+    "improved_cmp_validity": [
+     "CoveredComparison",
+     "InjuryValidityComparison",
+     "SingleFactorComparison"
+    ],
+    "improved_cmp_primary": [
+     "CoveredComparison",
+     "RescueEffectComparison",
+     "SingleFactorComparison"
+    ],
+    "improved_cmp_agent_alone": [
+     "AgentAloneComparison",
+     "CoveredComparison",
+     "SingleFactorComparison"
+    ],
+    "improved_cmp_positive_control": [
+     "CoveredComparison",
+     "PositiveControlComparison",
+     "RescueEffectComparison",
+     "SingleFactorComparison"
+    ],
+    "improved_cmp_window": [
+     "CoveredComparison",
+     "RescueTimingComparison",
+     "SingleFactorComparison"
+    ]
+   },
+   "closed_world": [
+    {
+     "check": "every arm has one level of every factor",
+     "ok": true,
+     "detail": "5 arms \u00d7 2 factors"
+    },
+    {
+     "check": "single factor: validity",
+     "ok": true,
+     "detail": "challenge_only vs vehicle differ in challenge"
+    },
+    {
+     "check": "schedules matched: validity",
+     "ok": true,
+     "detail": "administrations differ at 0 h, all belonging to the contrasted factor"
+    },
+    {
+     "check": "single factor: primary",
+     "ok": true,
+     "detail": "challenge_late_rescue vs challenge_only differ in rescue_time"
+    },
+    {
+     "check": "schedules matched: primary",
+     "ok": true,
+     "detail": "administrations differ at 48 h, all belonging to the contrasted factor"
+    },
+    {
+     "check": "single factor: agent_alone",
+     "ok": true,
+     "detail": "rescue_only vs vehicle differ in rescue_time"
+    },
+    {
+     "check": "schedules matched: agent_alone",
+     "ok": true,
+     "detail": "administrations differ at 48 h, all belonging to the contrasted factor"
+    },
+    {
+     "check": "single factor: positive_control",
+     "ok": true,
+     "detail": "challenge_early_rescue vs challenge_only differ in rescue_time"
+    },
+    {
+     "check": "schedules matched: positive_control",
+     "ok": true,
+     "detail": "administrations differ at 6 h, all belonging to the contrasted factor"
+    },
+    {
+     "check": "single factor: window",
+     "ok": true,
+     "detail": "challenge_late_rescue vs challenge_early_rescue differ in rescue_time"
+    },
+    {
+     "check": "schedules matched: window",
+     "ok": true,
+     "detail": "administrations differ at 6 h, 48 h, all belonging to the contrasted factor"
+    },
+    {
+     "check": "full factorial (information, not required)",
+     "ok": false,
+     "info": true,
+     "detail": "5 of 6 level combinations; missing: challenge=vehicle, rescue_time=h6"
+    },
+    {
+     "check": "interaction estimable",
+     "ok": true,
+     "detail": "challenge vehicle/c085 \u00d7 rescue_time none/h48"
+    },
+    {
+     "check": "every comparison has a decision rule",
+     "ok": true,
+     "detail": "5 of 5"
+    },
+    {
+     "check": "positive control licenses the primary comparison",
+     "ok": true,
+     "detail": "present"
+    },
+    {
+     "check": "replicates \u2265 3 per arm",
+     "ok": true,
+     "detail": "vehicle 3, rescue_only 3, challenge_only 3, challenge_late_rescue 3, challenge_early_rescue 3"
+    },
+    {
+     "check": "units off the plate edge",
+     "ok": true,
+     "detail": "15 interior wells"
+    },
+    {
+     "check": "all units on one plate",
+     "ok": true,
+     "detail": "plate_P18"
+    }
+   ]
+  }
+ },
+ "negative_controls": {
+  "a well as part of an arm (parthood crosses kinds)": true,
+  "a culture assigned to two arms (assignedTo is functional)": true,
+  "an administration added to the untreated arm (closure)": true,
+  "the graded hypothesis posits a loss of recovery capacity": true,
+  "the challenge agent also bears the rescue role (disjoint agents)": true,
+  "one decision rule applied to two comparisons": true,
+  "an incubation function realized in an imaging assay": true,
+  "a factor level that is also an arm (disjoint plan parts)": true
+ },
+ "with_bio": {
+  "consistent": true,
+  "seconds": 0.63,
+  "unsat": []
+ },
+ "inferred_subsumptions": [
+  [
+   "AdequatelyControlledInjuryRescueDesign",
+   "RequiresDosing"
+  ],
+  [
+   "AdequatelyControlledInjuryRescueExperiment",
+   "ValidatedInjuryRescueExperiment"
+  ],
+  [
+   "AgentControlledInjuryRescueDesign",
+   "RequiresDosing"
+  ],
+  [
+   "ComparativeDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "ControlledDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "ControlledExperiment",
+   "ComparativeExperiment"
+  ],
+  [
+   "DeviationAwareDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "FactorialDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "HypothesisDiscriminatingDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "InjuryRescueDesign",
+   "RequiresDosing"
+  ],
+  [
+   "InjuryRescueExperiment",
+   "ControlledExperiment"
+  ],
+  [
+   "InteractionAwareDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "NegativeControlArm",
+   "ArmSpecification"
+  ],
+  [
+   "PositiveControlledDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "PreSpecifiedDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "ReplicatedDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "RequiresAbsorbance",
+   "RequiresEndpointHandling"
+  ],
+  [
+   "RequiresDosing",
+   "RequiresCultivation"
+  ],
+  [
+   "RequiresEndpointHandling",
+   "RequiresCultivation"
+  ],
+  [
+   "RequiresImaging",
+   "RequiresCultivation"
+  ],
+  [
+   "RequiresLuminescence",
+   "RequiresEndpointHandling"
+  ],
+  [
+   "RequiresMultipleEnvironments",
+   "RequiresCultivation"
+  ],
+  [
+   "SufficientlyInformativeDesign",
+   "RequiresCultivation"
+  ],
+  [
+   "TherapeuticWindowDesign",
+   "RequiresDosing"
+  ],
+  [
+   "TherapeuticWindowExperiment",
+   "InjuryRescueExperiment"
+  ],
+  [
+   "UntreatedArm",
+   "NegativeControlArm"
+  ],
+  [
+   "ValidatedInjuryRescueDesign",
+   "RequiresDosing"
+  ],
+  [
+   "ValidatedInjuryRescueExperiment",
+   "InjuryRescueExperiment"
+  ],
+  [
+   "VehicleControlArm",
+   "NegativeControlArm"
+  ],
+  [
+   "WellContrastedDesign",
+   "RequiresCultivation"
+  ]
+ ],
+ "variants": {
+  "improved without the positive-control arm": {
+   "consistent": true,
+   "design": [
+    "AgentControlledInjuryRescueDesign",
+    "DeviationAwareDesign",
+    "FactorialDesign",
+    "HypothesisDiscriminatingDesign",
+    "InteractionAwareDesign",
+    "ReplicatedDesign",
+    "RequiresImaging",
+    "SufficientlyInformativeDesign",
+    "WellContrastedDesign"
+   ],
+   "failed": [
+    "positive control licenses the primary comparison"
+   ]
+  },
+  "improved with one unit per arm": {
+   "consistent": true,
+   "design": [
+    "AgentControlledInjuryRescueDesign",
+    "DeviationAwareDesign",
+    "FactorialDesign",
+    "HypothesisDiscriminatingDesign",
+    "InteractionAwareDesign",
+    "PositiveControlledDesign",
+    "RequiresImaging",
+    "SufficientlyInformativeDesign",
+    "TherapeuticWindowDesign",
+    "WellContrastedDesign"
+   ],
+   "failed": [
+    "replicates \u2265 3 per arm"
+   ]
+  },
+  "improved without a pre-specified analysis": {
+   "consistent": true,
+   "design": [
+    "AgentControlledInjuryRescueDesign",
+    "FactorialDesign",
+    "HypothesisDiscriminatingDesign",
+    "InteractionAwareDesign",
+    "PositiveControlledDesign",
+    "ReplicatedDesign",
+    "RequiresImaging",
+    "StudyDesign",
+    "SufficientlyInformativeDesign",
+    "TherapeuticWindowDesign",
+    "WellContrastedDesign"
+   ],
+   "failed": [
+    "every comparison has a decision rule"
+   ]
+  }
+ }
+}

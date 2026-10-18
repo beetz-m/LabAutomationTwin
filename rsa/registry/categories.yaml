@@ -1,0 +1,309 @@
+# Action-designator categories of the kernel (KERNEL.md concepts 2-3). One card per category, owned by the category;
+# instances carry only bindings. Fields:
+#   level         scientific | lab_task | manipulation | motion | command
+#   okf_class     alignment: a designator class (the category's designators are subclasses of it) or a LabAction class
+#                 (the category's designators designate actions of that type); checked by HermiT in the OKF module
+#                 lab-twin-rsa-kernel (generated from this file by src/tbox.py)
+#   parent        specialisation (⊑) only: a parent's designators include the child's (same level)
+#   parts         realisation / partonomy (◁): the category is realised through these lower categories (refinesInto);
+#                 kept apart from specialisation, as in CRAM action-category-dl (iteration 2, F14: HermiT found 6
+#                 unsatisfiable categories while `parent` conflated ⊑ with phases and realisation)
+#   effect_class  AICOR action-category-dl effect partition (manipulation level)
+#   facet         GARMI three manipulation classes: transport | operation | transformation (orthogonal to effect_class)
+#   requires      functions (ASP has_function) and capability verbs (Cell 01 component records)
+#   pre / post    constraint ids (registry/constraints.yaml), evaluated at accept / after execution
+#   monitors      Cell 01 monitor template ids (sdt/schemas/monitor_templates.yaml)
+#   recovery      failure code -> repair (implemented in rsa/library.py, CRAM with-failure-handling)
+#   evidence      evidence obligations the audit entry must carry
+#   consequential the understanding gate (U(a), B21/B22) applies
+#   cell01        the Cell 01 CRAM designator schema this card realises (cram_designator_schemas.yaml)
+#   sources       where the card comes from (material map)
+
+experiment:
+  label: run the selected experiment
+  level: scientific
+  okf_class: LabActionDesignator
+  hadl: (an action (type experiment) (design ?d) (requirement (eig >= ?g)))
+  purpose: realise the selected experiment that discriminates the competing recovery models
+  pre: [challenge_requires_controls, contamination_free]
+  effects: [all workflow sessions executed or the run escalated]
+  hazards: [invalid evidence promoted into the culture belief]
+  monitors: []
+  recovery: {}
+  evidence: [selected experiment, requirement, workflow version]
+  consequential: true
+  sources: [e2m derive_plan selection, RSV experimental-workflow-dl, uc_ccr se_loop]
+
+wait:
+  label: wait for culture time
+  level: scientific
+  okf_class: LabActionDesignator
+  hadl: (an action (type wait) (until (culture-time ?t)))
+  purpose: let the culture develop until the next session of the design
+  effects: [culture time advanced]
+  sources: [RSV scientific-action-designator-dl Wait]
+
+intervene:
+  label: intervene on a culture well
+  level: scientific
+  okf_class: MaterialStepDesignator
+  hadl: (an action (type intervene) (reagent ?r) (dose ?au) (well (the well ?w)))
+  purpose: expose a well to a reagent dose as required by the design
+  realised_by: dose
+  sources: [RSV scientific-action-designator-dl Intervene, C01 report §9]
+
+measure:
+  label: measure a culture well
+  level: scientific
+  okf_class: ImageWellDesignator
+  hadl: (an action (type measure) (readout organoid-radius) (well (the well ?w)))
+  purpose: acquire the readout that discriminates the models
+  realised_by: image
+  sources: [RSV scientific-action-designator-dl Measure]
+
+run_session:
+  label: run one session trip
+  level: lab_task
+  okf_class: LabActionDesignator
+  hadl: (an action (type run-session) (plate (the plate ?p)) (materials ?m))
+  purpose: bring the plate from its home to the device that realises the session's materials and back
+  pre: [interlocks_closed, window_prospective]
+  effects: [plate returned to home, session materials executed]
+  hazards: [sample integrity loss outside the incubator]
+  monitors: [time_outside_environment, elapsed_time]
+  recovery: {window_exceeded: safe_return}
+  evidence: [trip duration, window, materials executed]
+  consequential: true
+  sources: [e2m E2M4 sessions, C01 SESSION_HANDOFF first slice]
+
+retrieve:
+  label: retrieve the plate from storage
+  level: lab_task
+  okf_class: RetrieveAction
+  cell01: retrieve
+  effect_class: ObjectDisplacement
+  facet: transport
+  requires: {functions: [plate_storage]}
+  hadl: (an action (type retrieve) (object (the plate ?p)) (source (the location home)))
+  purpose: make the identified plate available at the storage device's transfer position
+  pre: []
+  post: [identity_verified]
+  effects: [plate presented at the home transfer station]
+  hazards: [wrong sample processed]
+  monitors: [plate_identity, source_release_state]
+  recovery: {identity_mismatch: quarantine_and_escalate}
+  evidence: [object_id, identity_observation, source_component_id, timestamps]
+  consequential: true
+  sources: [C01 cram_designator_schemas retrieve, e2m S7]
+
+store:
+  label: store the plate in the incubator
+  level: lab_task
+  okf_class: StoreAction
+  cell01: store
+  effect_class: ObjectDisplacement
+  facet: transport
+  requires: {functions: [plate_storage]}
+  hadl: (an action (type store) (object (the plate ?p)) (location (the location home)))
+  purpose: return the plate to its controlled environment
+  pre: []
+  post: [environment_before_store]
+  effects: [plate stored in the incubator]
+  hazards: [environment excursion]
+  monitors: [identity_preserved, seating_confirmed, environment_accepted]
+  recovery: {}
+  evidence: [storage_component_id, object_id, environment_snapshot, timestamps]
+  consequential: true
+  sources: [C01 cram_designator_schemas store, e2m S2]
+
+transport_lab:
+  label: transport the plate between stations
+  level: lab_task
+  parts: [transporting]
+  okf_class: TransferAction
+  cell01: transport
+  effect_class: ObjectDisplacement
+  facet: transport
+  hadl: (an action (type transport) (object (the plate ?p)) (target (a location (serves ?function))))
+  purpose: move the plate to the station where the next operation can be realised
+  pre: [contamination_free]
+  effects: [plate seated at the target station]
+  hazards: [drop, collision, identity loss]
+  monitors: [route_clear, object_identity, object_pose_or_grasp, elapsed_time]
+  recovery: {}
+  evidence: [route, object_id, source_frame, target_frame, timestamps]
+  consequential: true
+  sources: [C01 cram_designator_schemas transport, e2m E2M6 routes, coraplex TransportAction]
+
+dose:
+  label: dose a culture well
+  level: lab_task
+  okf_class: DoseAction
+  cell01: dose
+  effect_class: SubstanceManipulation
+  facet: transformation
+  requires: {functions: [dispensing], capabilities: [dose_well]}
+  hadl: (an action (type dose) (device (a device (capable dose_well))) (well (the well ?w)) (reagent (the reagent ?r)) (volume ?v))
+  purpose: deliver a controlled abstract intervention to a designated culture well
+  pre: [reagent_bound, contamination_free]
+  post: [dispense_completed]
+  effects: [volume transferred into the well, intervention eligible for commit after validity checks]
+  hazards: [wrong reagent, wrong well, tip contamination, dose uncertainty]
+  monitors: [plate_identity, well_binding, reagent_identity, tip_state, plate_seating, liquid_level, pressure_profile, dispense_completion]
+  recovery: {tip_missing: replace_tip_and_retry}
+  evidence: [reagent lot, tip id, volume, height, rate, timestamps, pressure trace]
+  consequential: true
+  sources: [C01 cram_designator_schemas dose, C01 L12 action_contracts dose_well, e2m E2M5]
+
+image:
+  label: image a culture well
+  level: lab_task
+  okf_class: ImageAction
+  cell01: image
+  effect_class: Perception
+  facet: operation
+  requires: {functions: [imaging], capabilities: [image_well]}
+  hadl: (an action (type image) (device (a device (capable image_well))) (well (the well ?w)))
+  purpose: acquire a measurement that is admissible as evidence
+  pre: [calibration_before_imaging]
+  post: [measurement_binding_validated]
+  effects: [raw image and readout bound to the well]
+  hazards: [invalid measurement admitted as evidence]
+  monitors: [plate_identity, plate_seating, focus_quality, illumination_state, calibration_state]
+  recovery: {calibration_invalid: set_aside_calibrate_replan, focus_invalid: refocus_and_reacquire}
+  evidence: [image ref, focus score, calibration state, measurement binding]
+  consequential: true
+  sources: [C01 cram_designator_schemas image, C01 L17 record, RSV measurement-binding lever]
+
+calibrate:
+  label: calibrate a measurement device at its QC station
+  level: lab_task
+  okf_class: QCAction
+  cell01: qc
+  effect_class: MaintenanceAction
+  facet: operation
+  requires: {functions: [calibration]}
+  hadl: (an action (type calibrate) (target (the device ?d)) (station (a device (qc-station-for ?d))))
+  purpose: re-establish a valid calibration before measurements depend on it
+  pre: []
+  effects: [target device calibrated]
+  hazards: [measurements acquired before the recalibration silently admitted]
+  monitors: [reference_identity, calibration_state, measurement_repeatability]
+  recovery: {}
+  evidence: [qc target, reference artifact, acceptance criterion, result]
+  consequential: true
+  sources: [C01 cram_designator_schemas qc, e2m S3]
+
+quarantine:
+  label: quarantine a plate
+  level: lab_task
+  okf_class: QuarantineAction
+  cell01: quarantine
+  effect_class: ObjectDisplacement
+  facet: transport
+  requires: {functions: [quarantine]}
+  hadl: (an action (type quarantine) (object (the plate ?p)) (reason ?why))
+  purpose: contain material whose identity or validity is unresolved, pending human authorisation
+  pre: []
+  effects: [plate contained, release only by authorisation]
+  hazards: [unresolved material re-entering the workflow]
+  monitors: [object_identity_or_uncertainty, containment_state, reentry_prevented]
+  recovery: {}
+  evidence: [object_id, quarantine_reason, release_authorization_policy]
+  consequential: true
+  sources: [C01 cram_designator_schemas quarantine, C01 H4 record]
+
+# ---------------------------------------------------------------- manipulation level
+transporting:
+  label: transport by one robot (one leg)
+  level: manipulation
+  parts: [picking_up, placing]
+  okf_class: PlateTransferDesignator
+  effect_class: ObjectDisplacement
+  facet: transport
+  hadl: (an action (type transporting) (agent (a robot (serves ?src ?dst))) (object (the plate ?p)) (from ?src) (to ?dst))
+  monitors: [grasp_confirmed, seating_confirmed]
+  sources: [coraplex TransportAction, CRAM TASK-TAXONOMY A]
+
+picking_up:
+  label: pick up the plate
+  level: manipulation
+  okf_class: PlateTransferDesignator
+  effect_class: ObjectDisplacement
+  facet: transport
+  hadl: (an action (type picking-up) (object (the plate ?p)) (location (the seat ?s)))
+  phases: [approach, insert, grasp, lift]
+  monitors: [grasp_confirmed]
+  sources: [coraplex PickUpAction, Flanagan reach-lift]
+
+placing:
+  label: place the plate
+  level: manipulation
+  okf_class: PlateTransferDesignator
+  effect_class: ObjectDisplacement
+  facet: transport
+  hadl: (an action (type placing) (object (the plate ?p)) (location (the seat ?s)))
+  phases: [approach, place, release, retract]
+  monitors: [seating_confirmed]
+  sources: [coraplex PlaceAction]
+
+coupling_tool:
+  label: couple the plate gripper tool
+  level: manipulation
+  parts: [tool_couple]
+  okf_class: SceneStepDesignator
+  effect_class: ConnectingAction
+  facet: transport
+  hadl: (an action (type coupling-tool) (agent ?r) (tool (the tool ?t)))
+  pre: [tool_compatible]
+  monitors: [tool_frame_validity]
+  sources: [OKF tool-use (tool extends body), e2m S4]
+
+presenting:
+  label: present the device's plate shuttle
+  level: manipulation
+  parts: [present]
+  okf_class: DeviceOperationDesignator
+  effect_class: ConfigurationChange
+  facet: operation
+  hadl: (an action (type presenting) (device ?d))
+  sources: [CRAM TASK-TAXONOMY B tend (access), H4 v2 shuttle]
+
+stowing:
+  label: stow the device's plate shuttle
+  level: manipulation
+  parts: [stow]
+  okf_class: DeviceOperationDesignator
+  effect_class: ConfigurationChange
+  facet: operation
+  hadl: (an action (type stowing) (device ?d))
+  sources: [CRAM TASK-TAXONOMY B tend (access)]
+
+# ---------------------------------------------------------------- command level (devices act themselves)
+check_interlocks: {label: check enclosure interlocks, level: command, effect_class: Perception, okf_class: SafetyStepDesignator, monitors: [route_clear]}
+verify_identity: {label: read plate identity, level: command, effect_class: Perception, okf_class: SafetyStepDesignator, monitors: [plate_identity]}
+present: {label: present shuttle, level: command, effect_class: ConfigurationChange, okf_class: DeviceCommandDesignator}
+stow: {label: stow shuttle, level: command, effect_class: ConfigurationChange, okf_class: DeviceCommandDesignator}
+wait_environment: {label: wait for environment, level: command, effect_class: RegulationAction, okf_class: SafetyStepDesignator, monitors: [environment_accepted]}
+store_cmd: {label: store plate in slot, level: command, effect_class: ObjectDisplacement, okf_class: DeviceCommandDesignator, monitors: [seating_confirmed]}
+tip_pick: {label: pick a tip, level: command, effect_class: ConnectingAction, facet: transformation, okf_class: DeviceCommandDesignator, monitors: [tip_state]}
+aspirate: {label: aspirate reagent, level: command, effect_class: SubstanceManipulation, facet: transformation, okf_class: DeviceCommandDesignator, monitors: [reagent_identity, liquid_level, pressure_profile]}
+dispense: {label: dispense into well, level: command, effect_class: SubstanceManipulation, facet: transformation, okf_class: DeviceCommandDesignator, monitors: [well_binding, pressure_profile, dispense_completion]}
+tip_eject: {label: eject tip to waste, level: command, effect_class: ConnectingAction, facet: transformation, okf_class: DeviceCommandDesignator, monitors: [tip_state]}
+load: {label: load plate onto stage, level: command, effect_class: ObjectDisplacement, facet: operation, okf_class: DeviceCommandDesignator, monitors: [plate_seating]}
+image_well: {label: image a well, level: command, effect_class: Perception, facet: operation, okf_class: DeviceCommandDesignator, monitors: [focus_quality, illumination_state, calibration_state]}
+autofocus: {label: fresh autofocus on a well, level: command, effect_class: Perception, facet: operation, okf_class: DeviceCommandDesignator, monitors: [focus_quality]}
+incubate: {label: hold the plate in the incubator until a culture time, level: command, effect_class: RegulationAction, facet: operation, okf_class: DeviceCommandDesignator, monitors: [temperature_state, humidity_state]}
+contain: {label: contain a plate in quarantine, level: command, effect_class: ConfigurationChange, facet: operation, okf_class: DeviceCommandDesignator, monitors: [containment_state, reentry_prevented]}
+validate: {label: run reference-plate validation, level: command, effect_class: MaintenanceAction, okf_class: SafetyStepDesignator, monitors: [reference_identity, calibration_state]}
+
+# ---------------------------------------------------------------- motion level (phases of picking-up / placing)
+approach: {label: approach, level: motion, okf_class: ApproachMotion}
+insert: {label: insert, level: motion, okf_class: InsertMotion}
+grasp: {label: grasp, level: motion, okf_class: GraspMotion, monitors: [grasp_confirmed]}
+lift: {label: lift, level: motion, okf_class: LiftMotion}
+transit: {label: transit, level: motion, okf_class: TransitMotion}
+place: {label: place, level: motion, okf_class: PlaceMotion, monitors: [seating_confirmed]}
+release: {label: release, level: motion, okf_class: ReleaseMotion}
+retract: {label: retract, level: motion, okf_class: RetractMotion}
+tool_couple: {label: couple tool, level: motion, okf_class: ToolCoupleMotion, monitors: [tool_frame_validity]}

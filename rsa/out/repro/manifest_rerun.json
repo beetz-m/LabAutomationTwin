@@ -1,0 +1,319 @@
+{
+ "experiment": "challenge-rescue",
+ "culture_plan": "rsa/registry/lab/culture_plan.ldl",
+ "inputs": {
+  "culture plan and lab designators (LDL)": {
+   "rsa/registry/lab": "96cd481e0c09e8e4f76ed192fb50d710eb64c74c7a0bc4d563fabf892c464f73"
+  },
+  "kernel registry (categories, constraints, devices, norms, scenarios, competency questions)": {
+   "rsa/registry/categories.yaml": "913f6adfbb00c8ca01ee6adeb930e46558cfab1ea68721ac618473117942b139",
+   "rsa/registry/constraints.yaml": "8de3c640bb687c32f5202812406d8ac96182ff1f7911e8f15ad75d25ee510ea0",
+   "rsa/registry/devices.yaml": "e6a148880ab56d3c1202c94476467eac0e367f0c6b6934ffff45f423b88c4c48",
+   "rsa/registry/norms.yaml": "bdeceb9ea0c675e26b2b1a54bb7632c12d99b01580a368af03a9936910eb3d76",
+   "rsa/registry/scenarios.yaml": "2eb7c6867b0da63e44b64045595f0e5792163bd924946add54eab9e1d7b70366",
+   "rsa/registry/cq.yaml": "695c0890a0dcc61e731f14ae828df7a33ae31dde69b23d4aee602d8179403576"
+  },
+  "lab ontology ABox (semantic digital twin, safety, experiments)": {
+   "okf/lab-automation-twin/abox/sdt.ofn": "ad6743c73784a2c3bc3b198c0621e5b803eb38bdb081c6cf9492f04e7c59e1a7",
+   "okf/lab-automation-twin/abox/safety.ofn": "ed3d2a9a452f5a92786ed8df160ef4f7c83d366d89ed87b6d784d22742caef66",
+   "okf/lab-automation-twin/abox/experiments.ofn": "04bb8afcc391db6bb7f3b6d646a8473f532888324a273a38ad2aaedab205dc7c"
+  },
+  "experiment-to-motion axioms (ASP)": {
+   "okf/lab-automation-twin/L3-logical-axiomatization/derivation/experiment_to_motion.lp": "0fc82df2f9b6dd8263127807b9004ffa06d081c5cc73343dcee92558880e3784"
+  },
+  "Cell 01 scene (composed overlay)": {
+   "scenes/cell01_twin.usda": "6f1aa9b4f18258b50d8f5c47d19c4d5af9ee79e50c4aa830786d219a48b68ad3"
+  },
+  "culture surrogate (ILLUSTRATIVE, D016)": {
+   "twin/culture": "eb16756e1583619693f9c202ca0c862bc3267799e7338e24a61d32cee45dfc10"
+  },
+  "twin duration traces": {
+   "test_reports/episodes/cell01_episodes_raw.json": "306cad4baa5d8d31889e9baec51d5acef546c2d69cd6337cca4e404d04c5a8f8"
+  },
+  "recorded Isaac Sim runs (physics; read, not re-executed, by this pipeline)": {
+   "rsa/out/trail_isaac_nominal.json": "583d3b3f201fbaf2ee378efbc3f6054801009de7848251a8934aa22cdb2ef02e",
+   "rsa/out/trail_isaac_identity_swap.json": "1f700253c8b38ea4e07310cd30ad90c8e7f3152e83758c783b48f6b8dd64f7d8",
+   "rsa/out/trail_isaac_calibration_lapsed.json": "b3938e6fc36a6519cd01f89d1983bfc064d340cc042746fd04879c174d3376e5"
+  }
+ },
+ "environment": {
+  "python": "3.12.3",
+  "clingo": "5.8.2",
+  "z3": "5.3.1",
+  "numpy": "2.5.4",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "usd": "pxr"
+ },
+ "volatile_fields": [
+  "ground_s",
+  "solve_s",
+  "validator_wall_s",
+  "wall_s"
+ ],
+ "stages": [
+  {
+   "id": "design",
+   "derives": "EIG over the competing recovery models; least-cost safe plan meeting 0.5 bit (clingo)",
+   "command": "python okf/lab-automation-twin/L3-logical-axiomatization/derivation/derive_plan.py --gain-bits 0.5 --refresh",
+   "code": {
+    "okf/lab-automation-twin/L3-logical-axiomatization/derivation/derive_plan.py": "0d10c35692eadeb703a095d7a83c4506ac7c967e7c7307b0e97d88e1a4f49e10"
+   },
+   "exit": 0,
+   "outputs": {
+    "okf/lab-automation-twin/L3-logical-axiomatization/derivation/out/plan_g050.json": "acc7e1ddd807119275ac2161808434d922a976619a4061f8a9fbaf28924a12ae",
+    "okf/lab-automation-twin/L3-logical-axiomatization/derivation/out/plan_g050.md": "6884cc1337bb7a6907a934e029e686dd09b001783b8c141333d871ef04b0bb2c",
+    "okf/lab-automation-twin/build/e2m/eig_candidates.json": "11264ae04012c2e0023c35f26ac2189c35138abb4bf93c2e571de76aa1e67a78",
+    "okf/lab-automation-twin/build/e2m/facts_g050.lp": "bbb106789cafb45aa4eddee7e45ce2ae628ac2c70045dd8aec16a361c6e41eca"
+   }
+  },
+  {
+   "id": "step-proof",
+   "derives": "SMT validation of the plan: executability, safety, time, realization, gain, least cost (z3)",
+   "command": "python okf/lab-automation-twin/L3-logical-axiomatization/derivation/validate_plan_z3.py okf/lab-automation-twin/L3-logical-axiomatization/derivation/out/plan_g050.json",
+   "code": {
+    "okf/lab-automation-twin/L3-logical-axiomatization/derivation/validate_plan_z3.py": "4c10ee18bb7ca99e0ecaf33cb2dac23092513ef1d56b198a5511ae4fc614da1d"
+   },
+   "exit": 0,
+   "outputs": {
+    "okf/lab-automation-twin/L3-logical-axiomatization/derivation/out/proof_g050.json": "4ede06a5c0f889d790481a5d6e4a70c462ee0b650219cc065c3a098096d5bad8"
+   }
+  },
+  {
+   "id": "culture",
+   "derives": "culture plan: causal order, surrogate execution, mapping to the lab, transport and tending feasibility",
+   "command": "python -m rsa.culture_plan",
+   "code": {
+    "rsa/culture_plan.py": "469a6f93e4c7e70f7ad46cedf798713fdb134ed09cb5a54f3b91bba9885fd0cd",
+    "rsa/ldl.py": "3ac9a550435ea9609637fbc36fdeceeb5fd27850ca0616fffc8fc5c3d1a66271"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/culture_plan.json": "91f22c19961bc9ad65d5c9eebd0c02d00893e52c49d01774ea76042afc4dbab5"
+   }
+  },
+  {
+   "id": "lab-plan",
+   "derives": "lab action designators: order, threats, instruments, process models, handlers, guarantees, KPIs",
+   "command": "python -m rsa.ldl",
+   "code": {
+    "rsa/ldl.py": "3ac9a550435ea9609637fbc36fdeceeb5fd27850ca0616fffc8fc5c3d1a66271",
+    "rsa/ldl_trust.py": "49c1a21a148b1dda832872a79c9112dfd58c501ff31309a613d2dc2f62354a55"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/ldl_challenge_rescue.json": "ea7c09af3d6348ac3d544d24e993590b76f60951c750eb3e4e1cd7ab9b79e3a3"
+   }
+  },
+  {
+   "id": "controller",
+   "derives": "CRAM/RPL structured reactive controller (Lisp)",
+   "command": "python -m rsa.ldl_to_cram",
+   "code": {
+    "rsa/ldl_to_cram.py": "40f9d5cbe4668711710a7e2a45ec3ec68cd6912dd3a912e7bafb79b9b6543da5",
+    "rsa/sexp_pretty.py": "c7c84903ba86fa5f802e61f5c17f4e8fc6ad1b77260f7108d35a2d26c14b0b3c"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/challenge_rescue.pretty.ldl": "f4da62784c47f92f9827d3bb5d84dfffccd89c418976a54aeaf18b605799cb00",
+    "rsa/out/challenge_rescue_src.lisp": "ddb76e7d0e191d995b7265ce3513a9ff96b7a6e5f79099146507f2a6f07dae4e",
+    "rsa/out/challenge_rescue_src_sections.json": "644c8d2553a5ccf3b058f87ac577fc91d2aa6065baa5b24545da7a62cf0fa807"
+   }
+  },
+  {
+   "id": "execution",
+   "derives": "kernel execution on the symbolic backend: 12 scenarios, audit trails, critic, tamper test, competency questions",
+   "command": "python -m rsa.run_example nominal uncalibrated_known calibration_lapsed tip_lost identity_swap tool_changer_slow imager_swapped imager_incapable rescue_unbound control_dropped contamination card_incomplete",
+   "code": {
+    "rsa/run_example.py": "c74d591526c81ece16b20b9bc970b1c79dbaea7442c1edb6632af33d31db8914",
+    "rsa/core.py": "b75ee1f15bc4a3ef10de502f1b20f8db9b6126004f1b4f5c086f64f7da4fbe71",
+    "rsa/library.py": "44c7053449c1e2acf93edcdd361a72771df9868850cca7b42c965a6f079c2e3b",
+    "rsa/backend.py": "b920eb2f1a264af4c1e55e171153aadaa2e87337c006d2dd6bf5d29fda5138b7",
+    "rsa/audit.py": "c93fd2ede131233cd11f28de4ce6777ccd7ce7808d28ce364da66e2f3c9b51e3",
+    "rsa/critic.py": "f95f658162bd2aea794d8bd86a854f167fcd753dfd0ad19597b70f18f0c4a452",
+    "rsa/kb.py": "41d4848986fde19b4cf19eaa26517e8196e005537821855f3390e5fd91f90bfe",
+    "rsa/cq.py": "48e284bfee72e9e62188d94bfd9a7772ce50948bfe68b252c4bf23fa21176d9d",
+    "rsa/checks.py": "eb6f23c48f628cb4333df7aa074ac3b37b80efe5b9ccaf45bccebfecccefdcb5"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/report.json": "5d769ffe28e5a70f6dfaeb59c03669ef3ac8bd7479c1a388ddb661343a341280",
+    "rsa/out/report.md": "9bebc50270c306156ee4fcf38c786d4367a29f3721f3a27102a74fe516686c95",
+    "rsa/out/run_calibration_lapsed.json": "c573d615ba2111a1b842543fbd28a141a70409ee35fc183df3265e78fc0f56e4",
+    "rsa/out/run_card_incomplete.json": "5cc6265c5a36f1acb682412892d5fa3e68ee43cbd99b45f646609b01fc381993",
+    "rsa/out/run_contamination.json": "f3d46ad26263f0781062b0b01ffc518d074c1ede16cad758d670d4de5e080935",
+    "rsa/out/run_control_dropped.json": "ffd333a39a8b93cf9ddcc76b2fe4c621560b4402dd9102fedae423b95a8ca019",
+    "rsa/out/run_identity_swap.json": "f82448c8ee70d5a386c7ec25d76f36e2a12f23f2804e3873339576bdec241b28",
+    "rsa/out/run_imager_incapable.json": "56ada7e25ee58f9fe6085cb714650057fb1036fcab9ef7b712091d163cb72688",
+    "rsa/out/run_imager_swapped.json": "f15d7bd5ca0c835183a1069ee92d09428cddad77a39f3e97d44e7e237292db35",
+    "rsa/out/run_nominal.json": "d1961d93975e6eb66820f8aa84c76c24f5ff33e2a8f56f20034bbb73b7015119",
+    "rsa/out/run_rescue_unbound.json": "aa75aa09e3648b6d5a260c1b16b25447a4ef00a4bad1bcc15b69e9eed505800a",
+    "rsa/out/run_tip_lost.json": "e7109b12f4da19418830de9e95a5fa966a19c9ae50b4e994dc332fef3fe0079d",
+    "rsa/out/run_tool_changer_slow.json": "a8dd4839208763e7ef220f2e02b6467204de304bb000f48a54d1c7e32a774a67",
+    "rsa/out/run_uncalibrated_known.json": "7b5d67b65520a6722d2b2a6a7f7486445018721608726e268daca4af5b3a9929",
+    "rsa/out/trail_calibration_lapsed.json": "7d64e7d26a5ec71a01482fb3ea11659fd8e0a7e8db64aee7552158c0e6097e3a",
+    "rsa/out/trail_card_incomplete.json": "f369d39d3df47dce36b87087db0fd77bdee2a962c7eafbd94e8de21febe9d0aa",
+    "rsa/out/trail_contamination.json": "f68e69b3fdd3a42ef43e51c696c29119b25cf4e38c1845d8123426531f8d01cb",
+    "rsa/out/trail_control_dropped.json": "4197f818c02dab600235928054ff49ff5a4602941aba5e97ba38d0e422b85797",
+    "rsa/out/trail_identity_swap.json": "23b259050163d50b432e931507e40be893b8da86fef0839fe91f3cca3cdc780a",
+    "rsa/out/trail_imager_incapable.json": "a8a899464ddb42b85846added095fd4ff28e34b769730f3a68be1c4a24e8083f",
+    "rsa/out/trail_imager_swapped.json": "54c87603e30389d4b1679d4095a23395951f27b5581a14dbcca980d2844ebc79",
+    "rsa/out/trail_nominal.json": "bfb1572100f91664d5a7e168f21177a3d955bd2f0ceb7680654994248c158e14",
+    "rsa/out/trail_rescue_unbound.json": "336ede4bd82d95810fc370a23196ad675e7c27dbf61b77745ec1aa44f5116c4b",
+    "rsa/out/trail_tip_lost.json": "687f01a335173816d5e3cca99c0cd8e258fb524872473033e9053b24f105c716",
+    "rsa/out/trail_tool_changer_slow.json": "6c26119d40b671f90229d536dfc14866d61509bae906584397e4e7c85c4b68e2",
+    "rsa/out/trail_uncalibrated_known.json": "e60b8901d664b098269fb3d02bb4585f012fd89d4f98059561066db8e7ee96f3"
+   }
+  },
+  {
+   "id": "grounding",
+   "derives": "cultures on plates, trips, device programs, monitors, reactions",
+   "command": "python -m rsa.grounding",
+   "code": {
+    "rsa/grounding.py": "e34e566ce2fdba2a02bc02b33d1651a9238590a26896759bd5b19f3ddf686d6b"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/grounding.json": "2670402c8bfecc15a27fc75ab4d5ae554e9035a491c73369b873793cc2901567"
+   }
+  },
+  {
+   "id": "frames",
+   "derives": "goal frames from the scene; reachability (IK) of every goal",
+   "command": "python -m rsa.motion_frames",
+   "code": {
+    "rsa/motion_frames.py": "b639d850c0e7631f7e18b1d59352c12b46c6c63f7457c9b3662b3407d53903e4"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/motion_frames.json": "c5a9194f0dc62874fb6b736d3799ea9334c148c36d306db7c3aa639211d6545f"
+   }
+  },
+  {
+   "id": "motions",
+   "derives": "Giskard motion statecharts: frames, constraints, monitors, cancels",
+   "command": "python -m rsa.giskard_motions",
+   "code": {
+    "rsa/giskard_motions.py": "c83c7d9a305a75bd7706174245a141092326519a75575c82cebbeafc8d9a9eac"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/challenge_rescue_giskard.py": "72a46491d3ed8d43f6093729514d2fd3e711288f1e7af1f7671ce674e5ab1e15",
+    "rsa/out/challenge_rescue_motions.lisp": "f0cca9008d1fce57f2cb36c9646f9c736f1b8800be7dc26f911a23a51e715235",
+    "rsa/out/giskard_motions.json": "c4f3706e57377e82d4406f8ee5178ed03d35b4cfb3c5abaf0f301f55ac240762"
+   }
+  },
+  {
+   "id": "independence",
+   "derives": "the culture plan in 13 lab variants",
+   "command": "python -m rsa.independence",
+   "code": {
+    "rsa/independence.py": "b7d189eb5b88a6ebca08712e4a126e4ca38cd0635b09b197101fb623cf2a9fd1"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/independence.json": "a2c3f01caeeb75e082599e9a52c749ea0b979986424fe828e233acc42ff80c91"
+   }
+  },
+  {
+   "id": "refinement-proof",
+   "derives": "motion plan refines the culture plan (O1-O7, negative controls)",
+   "command": "python -m rsa.refinement_proof",
+   "code": {
+    "rsa/refinement_proof.py": "c056bce64ab32632541138abdbd2630fe615ced8db661173ed1917a4e997430e"
+   },
+   "exit": 0,
+   "outputs": {
+    "okf/lab-automation-twin/L3-logical-axiomatization/derivation/out/proof_g050.json": "4ede06a5c0f889d790481a5d6e4a70c462ee0b650219cc065c3a098096d5bad8",
+    "rsa/out/refinement_proof.json": "3c2712f0df5916373430e38c26e5e53537d4bafc73bc2783d29a13817631639d"
+   }
+  },
+  {
+   "id": "protocol",
+   "derives": "experimentation plan (protocol) and audit certificate: chains, tamper test, re-execution of every symbolic trail",
+   "command": "python -m rsa.protocol",
+   "code": {
+    "rsa/protocol.py": "3126318c445816bd372144a30bc56d5888f7b0cbbca72d7eea489fe1ed6631af"
+   },
+   "exit": 0,
+   "outputs": {
+    "rsa/out/repro/audit.json": "de581ba2b6fd4fab359b13c71aa68f17c92bf59928554363fa5a2326bb584548",
+    "rsa/out/repro/protocol.json": "da2b695addbced53b4a9812ea8a43ae444d7f13c12d364953d9ebecbdcd8f643",
+    "rsa/out/repro/protocol.md": "1f1aad7cab7c32d2f01135e1f54b08807b5eb3578df67276309bdcbb3b69944c"
+   }
+  }
+ ],
+ "manifest_sha256": "a8a39851a44328aac152ee46629decd9cddc691b1e8c2b835c422bba7cd32659",
+ "timings": {
+  "design": 33.7,
+  "step-proof": 0.6,
+  "culture": 1.8,
+  "lab-plan": 0.8,
+  "controller": 0.2,
+  "execution": 1.9,
+  "grounding": 0.1,
+  "frames": 37.4,
+  "motions": 0.1,
+  "independence": 1.8,
+  "refinement-proof": 0.7,
+  "protocol": 1.7
+ },
+ "logs": {
+  "design": [
+   "[e2m]   s0_trip1     t=   0 h  l12  52 steps  298.9 s",
+   "[e2m]   s1_trip1     t=  48 h  l12  48 steps  263.3 s",
+   "[e2m]   s2_trip1     t=  72 h  l17  51 steps  256.4 s"
+  ],
+  "step-proof": [
+   "[z3] negative control N9 window shortened to 250 s: caught by ['V3 time window (S5), durations +-20 %']",
+   "[z3] negative control N10 control well not imaged: caught by ['V4 realisation (doses, images, session times)']",
+   "[z3] ALL PROVED; negative controls caught 10/10 -> L3-logical-axiomatization/derivation/out/proof_g050.json"
+  ],
+  "culture": [
+   "[feasible] s1 (48 h, L12): OK; legs ['R01 l10->handovernest', 'R02 handovernest->l12', 'R02 l12->handovernest', 'R01 handovernest->l10']; conditional ['device calibrated']",
+   "[feasible] s2 (72 h, L17): OK; legs ['R01 l10->handovernest', 'R02 handovernest->l17', 'R02 l17->handovernest', 'R01 handovernest->l10']; conditional ['device healthy']",
+   "[culture] PASS: plan well-formed True, order preserved by the mapping True, transports and tending feasible True"
+  ],
+  "lab-plan": [
+   "[ldl] kernel from the LDL poset: 153 leaves, 498 entries, end executed, R=True V=True; from the planner's plan: 153 leaves, 498 entries; leaf sequences identical: True",
+   "[ldl] the planner's executed order ['?x1', '?x2', '?w1', '?x3', '?w2', '?m1', '?m2', '?m3'] is a linear extension of the LDL order: True",
+   "[ldl] PASS: well-formed=True, negative controls 12/12, kernel identical=True"
+  ],
+  "controller": [
+   "[ldl->cram] wrote /home/mbeetz/Documents/LabAutomationTwin/rsa/out/challenge_rescue_src.lisp: 409 lines; parentheses balanced True; 7 :order constraints = derived Hasse edges True; device or robot names in code none; code lines over 110 chars 1"
+  ],
+  "execution": [
+   "[rsa] lint: plan code names no device/robot/pose/plate",
+   "[cq] 52/52 answers correct, 52/52 grounded, over 27 questions x scenarios; by family: what 3/3, why 4/4, how 2/2, constraints 3/3, capability 4/4, what-if 3/3, evidence 4/4, retrospective 13/13, normative 4/4, verdict 8/8, epistemic 2/2, taxonomy 1/1, modularity 1/1",
+   "[rsa] PASS"
+  ],
+  "grounding": [
+   "[grounding] reaction in isaac_calibration_lapsed: calibration_invalid at image -> ['transport_lab', 'calibrate'] (25 steps) -> repaired; experiment escalated",
+   "[grounding] reaction in isaac_calibration_lapsed: focus_invalid at image -> ['autofocus'] (2 steps) -> failed; experiment escalated",
+   "[grounding] reaction in isaac_calibration_lapsed: focus_invalid at run_session -> ['transport_lab', 'store'] (23 steps) -> escalated; experiment escalated"
+  ],
+  "frames": [
+   "[frames] r02 l17->handovernest  place       handovernest p=[-1.05, 0.55, 0.968] yaw    0.00: reachable margin 57.7 deg sigma 0.24 collision-free None",
+   "[frames] r02 tool couple        tool_couple dock_t01     p=[0.0, 1.2, 1.12] yaw    0.00: reachable margin 47.1 deg sigma 0.245 collision-free None",
+   "[frames] 12 legs (6 distinct), 25 goals, 25 reachable with joint margin"
+  ],
+  "motions": [
+   "[giskard] 12 legs (6 distinct), 111 motion designators for 111 kernel motion leaves (one-to-one: True); module compiles; imports verified against the checkout: all resolve",
+   "[giskard] wrote /home/mbeetz/Documents/LabAutomationTwin/rsa/out/challenge_rescue_giskard.py (1958 lines) and rsa/out/challenge_rescue_motions.lisp (833 lines)"
+  ],
+  "independence": [
+   "[independence] profile-mismatch         temperature control  culture plan a5e27614c98a order same True; lab plan bf81a40c17e9; -> refused at mapping refused by ['(a controlled-environment (profile culture-standard)) resolves to nothing: L10 keeps culture-30C']; devices {}; trips []; differs in ['models', 'devices', 'routes', 'trips', 'leaves', 'outcome']",
+   "[independence] uncalibrated             calibration          culture plan a5e27614c98a order same True; lab plan bf81a40c17e9; -> realized; devices {'cell01': 3, 'l10': 20, 'r01': 54, 'r02': 57, 'l12': 12, 'l21': 1, 'l17': 7}; trips [('s0', 298.9), ('s1', 263.3), ('s2', 376.4)]; differs in ['devices', 'trips', 'leaves']",
+   "[independence] PASS: no realization term in the culture plan, and its derived order is the same in all 13 labs"
+  ],
+  "refinement-proof": [
+   "[proof] negative control 'a motion that does not refine its step': caught",
+   "[proof] negative control 'step level: the validator's own 10 mutated plans': caught",
+   "[proof] QED (relative to A1-A6)"
+  ],
+  "protocol": [
+   "[protocol] challenge-rescue/c_d85_t48_n1: 12 culture actions, 8 lab actions, 3 sessions, 111 motions; input digest d514d47b1ad1b075",
+   "[audit] 15 trails: chains intact 15, tamper detected 15, re-executed identical 12/12, under the current registry 12"
+  ]
+ },
+ "ok": true
+}

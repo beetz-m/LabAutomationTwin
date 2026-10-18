@@ -1,0 +1,115 @@
+;; Process models of the instruments' processes, LDL v0.3 (user decision 2026-10-17: the processes within the devices
+;; have to be modelled and reasoned about; they decide the trustworthiness of an experiment).
+;;
+;; A process model is written once per lab process type and grounded in the Cell 01 component record of the device
+;; that fills the instrument role (read-only, sdt/components/*.yaml): every fault must be one of the record's
+;; failure_modes, every detecting monitor one of its monitoring observations or risk controls, every evidence item one
+;; of its action contract's evidence outputs. rsa/ldl.py checks that grounding and reasons over the model:
+;;   coverage       which faults that corrupt a step's goal are detected, partly detected or silent;
+;;   timing         whether detection comes before the process's irreversible phase (abort) or after (reject);
+;;   persistence    whether repeating the process meets the same cause (a retry cannot help) or not;
+;;   removed-by     which re-established condition removes a persistent cause (what a repair must do);
+;;   must-not-assume what the device's evidence does not license (it stays an assumption of the result).
+;; Fault slots: (signals <failure type>) (corrupts <goal pattern>) (detected-by <monitor> | none) (coverage full | partial) (at <phase>)
+;; (persistence transient | persistent) (removed-by <condition>) (record-recovery "<the record's text>").
+;; Twin knowledge used beyond the record is marked (twin ...).
+
+(process-model substance-transfer
+  (realised-by (an instrument (function dispensing)))
+  (component L12_LiquidHandler)
+  (contract dose_well)
+  (phases verify-reagent pick-tip aspirate dispense eject-tip)
+  (irreversible-at dispense)
+  (produces (the well ?w (received ?s ?q)))
+  (faults
+    (a fault (name wrong_reagent) (signals dose-not-delivered) (at verify-reagent)
+      (corrupts (the well ?w (received ?s ?q)))
+      (detected-by (a monitor (control "reagent identity check"))) (coverage full)
+      (persistence persistent) (removed-by (some substance ?s (identity verified)))
+      (record-recovery "abort before aspiration; quarantine if dispense occurred"))
+    (a fault (name tip_missing_or_dropped) (signals dose-not-delivered) (at pick-tip)
+      (corrupts (the well ?w (received ?s ?q)))
+      (detected-by (a monitor (observation "tip-presence sensor"))) (coverage full)
+      (persistence transient)
+      (record-recovery "abort; replace tip; evaluate plate exposure"))
+    (a fault (name clog_or_air_aspiration) (signals dose-not-delivered) (at aspirate)
+      (corrupts (the well ?w (received ?s ?q)))
+      (detected-by (a monitor (observation "pressure trace"))) (coverage full)
+      (persistence transient)
+      (record-recovery "mark dose uncertain; repeat only if protocol allows"))
+    (a fault (name well_misregistration) (signals dose-not-delivered) (at dispense)
+      (corrupts (the well ?w (received ?s ?q)))
+      (detected-by (a monitor (observation "nest sensor + vision"))) (coverage partial)   ; sees a misseated plate, not the dispense position
+      (persistence persistent) (removed-by (the plate ?p (seated true)))
+      (record-recovery "quarantine affected plate; do not silently correct provenance")))
+  (evidence "reagent lot" "tip ID/type" "volume" "pressure trace" "well identity")
+  (must-not-assume "commanded volume equals delivered volume" "delivered dose equals biological injury"))
+
+(process-model imaging
+  (realised-by (an instrument (function imaging)))
+  (component L17_BrightFieldImager)
+  (contract image_well)
+  (phases load autofocus acquire assess export)
+  (irreversible-at none)                        ; non-destructive, but every exposure adds to the imaging history
+  (produces (a measurement (of ?w) (readout ?r)))
+  (faults
+    (a fault (name calibration_expired) (signals measurement-invalid) (at load)
+      (corrupts (a measurement (of ?w) (readout ?r)))
+      (detected-by (a monitor (observation "calibration record"))) (coverage full)
+      (persistence persistent) (removed-by (an instrument (function imaging) (calibration current)))
+      (record-recovery "run QC/calibration before scientific use"))
+    (a fault (name plate_misseated) (signals measurement-invalid) (at load)
+      (corrupts (a measurement (of ?w) (readout ?r)))
+      (detected-by (a monitor (observation "nest sensor + pose"))) (coverage partial)   ; seat gaps, not a lateral shift (F17)
+      (persistence persistent) (removed-by (the plate ?p (seated true)))
+      (record-recovery "R01/R02 reseat and reacquire"))
+    (a fault (name out_of_focus) (signals measurement-invalid) (at autofocus)
+      (corrupts (a measurement (of ?w) (readout ?r)))
+      (detected-by (a monitor (observation "computed focus score"))) (coverage full)
+      (persistence persistent) (removed-by (the plate ?p (seated true)))
+      (twin "autofocus runs before every acquisition, so a refocus is part of each attempt; at the same field and seating a repeat is deterministic")
+      (record-recovery "re-seat/refocus/reacquire; retain rejected image in audit trail")))
+  (evidence "raw image" "settings" "focus score" "calibration id" "plate/well id")
+  (must-not-assume "morphology image directly equals biological state"))
+
+(process-model incubation
+  (realised-by (an instrument (function incubation)))
+  (component L10_Incubator)
+  (contract incubate)
+  (phases store hold release)
+  (irreversible-at hold)                        ; elapsed culture time cannot be undone
+  (produces (the plate ?p (culture-time ?t1)))
+  (faults
+    (a fault (name temperature_excursion) (signals environment-excursion) (at hold)
+      (corrupts (the plate ?p (in ?e)))
+      (detected-by (a monitor (observation "temperature sensor"))) (coverage full)
+      (persistence transient)
+      (record-recovery "alarm; update Culture SDT; evaluate admissibility/quarantine"))
+    (a fault (name CO2_excursion) (signals environment-excursion) (at hold)
+      (corrupts (the plate ?p (in ?e)))
+      (detected-by (a monitor (observation "CO2 sensor"))) (coverage full)
+      (persistence transient)
+      (record-recovery "same"))
+    (a fault (name gate_stuck_open) (signals environment-excursion) (at release)
+      (corrupts (the plate ?p (in ?e)))
+      (detected-by (a monitor (observation "gate position sensor"))) (coverage full)
+      (persistence persistent)
+      (record-recovery "stop transfers; protect/quarantine affected plates")))
+  (evidence "environment time series" "door events")
+  (must-not-assume "nominal setpoint equals actual culture exposure without sensor evidence"))
+
+(process-model containment
+  (realised-by (an instrument (function quarantine)))
+  (component H4_Quarantine)
+  (contract quarantine_sample)
+  (phases receive isolate hold)
+  (irreversible-at none)
+  (produces (the plate ?x (contained true)))
+  (faults
+    (a fault (name unauthorized_release) (signals containment-breach) (at hold)
+      (corrupts (the plate ?x (contained true)))
+      (detected-by (a monitor (observation "lock/occupancy"))) (coverage full)
+      (persistence persistent) (removed-by (a record (type sign-off) (by (a person (role reviewer)))))
+      (record-recovery "stop workflow; trace all affected material")))
+  (evidence "reason" "timestamp" "preceding anomaly" "sample history")
+  (must-not-assume "quarantine implies biological failure"))

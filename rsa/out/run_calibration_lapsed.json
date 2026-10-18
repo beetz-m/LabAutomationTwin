@@ -1,0 +1,108 @@
+{
+ "scenario": "calibration_lapsed",
+ "about": "the KB believes L17 calibrated but it lapsed; detected at imaging, repaired by QC and re-imaging",
+ "error": null,
+ "end": "executed",
+ "n_entries": 569,
+ "n_leaves": 177,
+ "clock_s": 260240.9,
+ "audit": {
+  "verify": {
+   "ok": true,
+   "n": 569,
+   "attributable": true,
+   "evidence_hashed": true
+  },
+  "tampered_detected": true,
+  "tampered_first_bad_seq": 13
+ },
+ "verdict": {
+  "realization": {
+   "ok": true,
+   "violated": [],
+   "run_ended": "executed"
+  },
+  "validity": {
+   "ok": true,
+   "checks": {
+    "V1_identity_continuity": {
+     "ok": true,
+     "observation": "identity reads ['P17', 'P17', 'P17']"
+    },
+    "V2_calibration_at_measurement": {
+     "ok": true,
+     "observation": "3 readouts, calibration observed valid for all"
+    },
+    "V3_binding_validated": {
+     "ok": true,
+     "observation": "binding(l17,organoid_radius_um) = validated"
+    },
+    "V4_controls_present": {
+     "ok": true,
+     "observation": "control ['A05'], imaged ['A01', 'A02', 'A05']"
+    },
+    "V5_dose_delivered": {
+     "ok": true,
+     "observation": "3 dispenses within 5.0 %: True"
+    },
+    "V6_sample_integrity": {
+     "ok": true,
+     "observation": "window kept on every trip"
+    },
+    "V7_design_realised": {
+     "ok": true,
+     "observation": "all designed interventions and measurements executed"
+    }
+   },
+   "refused_by": []
+  },
+  "promotable": true,
+  "nr3": false,
+  "disposition": "commit: result may update the culture belief",
+  "design": {
+   "id": "c_d85_t48_n1",
+   "requirement_bits": 0.5,
+   "eig_bits": 0.5439
+  }
+ },
+ "repairs": [
+  {
+   "failure": "calibration_invalid",
+   "detail": "l17: calibration check failed at imaging",
+   "at": "d0185-image_well",
+   "repairs": [
+    "(an action (type transport-lab) (plate P17) (target handovernest))",
+    "(an action (type calibrate) (target l17))"
+   ],
+   "repair_categories": [
+    "transport_lab",
+    "calibrate"
+   ],
+   "then": "replan",
+   "why": "calibration lapsed at imaging: set the plate aside, recalibrate the imager at its QC station (needs the stage), re-plan the measurement (Cell 01 routing L21_qc)",
+   "category": "image",
+   "node": "d0183-image"
+  }
+ ],
+ "expected": {
+  "end": "executed",
+  "realization": true,
+  "validity": true,
+  "promotable": true,
+  "repaired_at": [
+   "image"
+  ]
+ },
+ "got": {
+  "end": "executed",
+  "realization": true,
+  "validity": true,
+  "promotable": true,
+  "nr3": false,
+  "repaired_at": [
+   "image"
+  ]
+ },
+ "expectation_ok": true,
+ "plate": "P17"
+}

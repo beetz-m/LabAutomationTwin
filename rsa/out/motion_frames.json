@@ -1,0 +1,2518 @@
+{
+ "seats": {
+  "l10": {
+   "prim": "/World/Cell01/Stations/L10_Incubator/transfer_station",
+   "p": [
+    -1.95,
+    0.8,
+    0.972
+   ],
+   "yaw_deg": 41.63
+  },
+  "handovernest": {
+   "prim": "/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame",
+   "p": [
+    -1.05,
+    0.55,
+    0.96
+   ],
+   "yaw_deg": 0.0
+  },
+  "l12": {
+   "prim": "/World/Cell01/Stations/L12_LiquidHandler/plate_nest",
+   "p": [
+    0.15,
+    0.34,
+    0.972
+   ],
+   "yaw_deg": 0.0
+  },
+  "l17": {
+   "prim": "/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame",
+   "p": [
+    1.65,
+    1.22,
+    0.972
+   ],
+   "yaw_deg": 0.0
+  },
+  "dock_t01": {
+   "prim": "/World/Cell01/Tooling/AutomaticToolChanger/dock_T01",
+   "p": [
+    0.0,
+    1.2,
+    1.12
+   ],
+   "yaw_deg": 0.0
+  }
+ },
+ "robots": {
+  "r01": {
+   "tool_frame": "plate_grasp_frame",
+   "tcp_beyond_flange_m": 0.171,
+   "approach_m": 0.2,
+   "grasp_above_bottom_m": 0.006,
+   "place_entry_m": 0.013,
+   "insert_speed": 0.08,
+   "lift_speed": 0.1,
+   "place_speed": 0.08,
+   "root": "fr3_link0",
+   "tip": "plate_grasp_frame"
+  },
+  "r02": {
+   "tool_frame": "t01_tcp",
+   "tcp_beyond_flange_m": 0.17099999999999999,
+   "approach_m": 0.15,
+   "grasp_above_bottom_m": 0.006,
+   "place_entry_m": 0.002,
+   "insert_speed": 0.05,
+   "lift_speed": 0.08,
+   "place_speed": 0.03,
+   "root": "rail_base",
+   "tip": "t01_tcp"
+  }
+ },
+ "legs": [
+  {
+   "session": "s0",
+   "robot": "r01",
+   "src": "l10",
+   "dst": "handovernest",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 13.73,
+     "realised_by": "R01 go_above + rig.pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"lifted\": true, \"contact\": true}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 5.04,
+     "realised_by": "R01 r01_planner transit",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "planned joint-space transit to HN"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 11.39,
+     "realised_by": "R01 rig.place (compliant)",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 134.2}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 5.17,
+     "realised_by": "R01 retract to L09 approach (clear of HN)",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s0",
+   "robot": "r02",
+   "src": "handovernest",
+   "dst": "l12",
+   "leaves": [
+    {
+     "phase": "tool_couple",
+     "term": [
+      "tool_couple",
+      "r02",
+      "t01",
+      "tooling_automatictoolchanger_dock_t01"
+     ],
+     "duration_s": 22.65,
+     "realised_by": "R02 tool changer (TCM01) change_tool",
+     "monitors": [
+      {
+       "name": "tool_frame_validity",
+       "passed": true,
+       "observation": "tool T01"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 17.15,
+     "realised_by": "R02 r02_pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 150.1}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "duration_s": 0.0,
+     "realised_by": "realised within R02's place skill (rail + arm path)",
+     "monitors": []
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "duration_s": 24.4,
+     "realised_by": "R02 r02_place",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r02",
+      "stations_l12_liquidhandler_plate_nest"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [0.08, 0.13, -0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "duration_s": 6.54,
+     "realised_by": "R02 r02_clear",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "L12 airspace clear after retract"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s0",
+   "robot": "r02",
+   "src": "l12",
+   "dst": "handovernest",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "duration_s": 14.63,
+     "realised_by": "R02 r02_pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r02",
+      "stations_l12_liquidhandler_plate_nest"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.8}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 0.0,
+     "realised_by": "realised within R02's place skill (rail + arm path)",
+     "monitors": []
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 25.0,
+     "realised_by": "R02 r02_place",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [-0.02, 0.14, 0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 6.58,
+     "realised_by": "R02 r02_park",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s0",
+   "robot": "r01",
+   "src": "handovernest",
+   "dst": "l10",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 11.73,
+     "realised_by": "R01 go_above + rig.pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"lifted\": true, \"contact\": true}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 1.98,
+     "realised_by": "R01 r01_planner transit",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "planned joint-space transit to L10"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 12.12,
+     "realised_by": "R01 rig.place (compliant)",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 158.9}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 3.35,
+     "realised_by": "R01 retract to L10 approach",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "robot": "r01",
+   "src": "l10",
+   "dst": "handovernest",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 10.47,
+     "realised_by": "R01 go_above + rig.pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"lifted\": true, \"contact\": true}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 5.05,
+     "realised_by": "R01 r01_planner transit",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "planned joint-space transit to HN"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 11.24,
+     "realised_by": "R01 rig.place (compliant)",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 133.3}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 5.17,
+     "realised_by": "R01 retract to L09 approach (clear of HN)",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "robot": "r02",
+   "src": "handovernest",
+   "dst": "l12",
+   "leaves": [
+    {
+     "phase": "tool_couple",
+     "term": [
+      "tool_couple",
+      "r02",
+      "t01",
+      "tooling_automatictoolchanger_dock_t01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 tool changer (TCM01) change_tool",
+     "monitors": [
+      {
+       "name": "tool_frame_validity",
+       "passed": true,
+       "observation": "tool T01"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 14.2,
+     "realised_by": "R02 r02_pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 150.0}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "duration_s": 0.0,
+     "realised_by": "realised within R02's place skill (rail + arm path)",
+     "monitors": []
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "duration_s": 24.4,
+     "realised_by": "R02 r02_place",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r02",
+      "stations_l12_liquidhandler_plate_nest"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [0.1, 0.06, 0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "duration_s": 6.54,
+     "realised_by": "R02 r02_clear",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "L12 airspace clear after retract"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "robot": "r02",
+   "src": "l12",
+   "dst": "handovernest",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "duration_s": 14.63,
+     "realised_by": "R02 r02_pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r02",
+      "stations_l12_liquidhandler_plate_nest"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.9}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 0.0,
+     "realised_by": "realised within R02's place skill (rail + arm path)",
+     "monitors": []
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 24.87,
+     "realised_by": "R02 r02_place",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [0.03, 0.16, 0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 6.58,
+     "realised_by": "R02 r02_park",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s1",
+   "robot": "r01",
+   "src": "handovernest",
+   "dst": "l10",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 11.73,
+     "realised_by": "R01 go_above + rig.pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"lifted\": true, \"contact\": true}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 1.98,
+     "realised_by": "R01 r01_planner transit",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "planned joint-space transit to L10"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 12.12,
+     "realised_by": "R01 rig.place (compliant)",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 140.3}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 3.35,
+     "realised_by": "R01 retract to L10 approach",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "robot": "r01",
+   "src": "l10",
+   "dst": "handovernest",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 10.47,
+     "realised_by": "R01 go_above + rig.pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"lifted\": true, \"contact\": true}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 5.05,
+     "realised_by": "R01 r01_planner transit",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "planned joint-space transit to HN"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 11.38,
+     "realised_by": "R01 rig.place (compliant)",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 130.3}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 5.18,
+     "realised_by": "R01 retract to L09 approach (clear of HN)",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "robot": "r02",
+   "src": "handovernest",
+   "dst": "l17",
+   "leaves": [
+    {
+     "phase": "tool_couple",
+     "term": [
+      "tool_couple",
+      "r02",
+      "t01",
+      "tooling_automatictoolchanger_dock_t01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 tool changer (TCM01) change_tool",
+     "monitors": [
+      {
+       "name": "tool_frame_validity",
+       "passed": true,
+       "observation": "tool T01"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 14.35,
+     "realised_by": "R02 r02_pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.9}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ]
+     ],
+     "duration_s": 0.0,
+     "realised_by": "realised within R02's place skill (rail + arm path)",
+     "monitors": []
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ]
+     ],
+     "duration_s": 24.93,
+     "realised_by": "R02 r02_place",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r02",
+      "stations_l17_brightfieldimager_plate_load_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [0.26, 0.34, 0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ]
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 stay",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "robot": "r02",
+   "src": "l17",
+   "dst": "handovernest",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ]
+     ],
+     "duration_s": 9.68,
+     "realised_by": "R02 r02_pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r02",
+      "stations_l17_brightfieldimager_plate_load_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"positioned\": true, \"converged\": true, \"lifted_mm\": 149.9}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 0.0,
+     "realised_by": "realised within R02's place skill (rail + arm path)",
+     "monitors": []
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 24.49,
+     "realised_by": "R02 r02_place",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r02"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R02 r02_place (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"seated\": true, \"offset_mm\": [0.42, 0.19, 0.0], \"tilt_deg\": 0.0}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 6.58,
+     "realised_by": "R02 r02_park",
+     "monitors": []
+    }
+   ]
+  },
+  {
+   "session": "s2",
+   "robot": "r01",
+   "src": "handovernest",
+   "dst": "l10",
+   "leaves": [
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "duration_s": 11.73,
+     "realised_by": "R01 go_above + rig.pick",
+     "monitors": []
+    },
+    {
+     "phase": "insert",
+     "term": [
+      "insert",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase insert)",
+     "monitors": []
+    },
+    {
+     "phase": "grasp",
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase grasp)",
+     "monitors": [
+      {
+       "name": "grasp_confirmed",
+       "passed": true,
+       "observation": "{\"lifted\": true, \"contact\": true}"
+      }
+     ]
+    },
+    {
+     "phase": "lift",
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 go_above + rig.pick (phase lift)",
+     "monitors": []
+    },
+    {
+     "phase": "transit",
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 1.98,
+     "realised_by": "R01 r01_planner transit",
+     "monitors": [
+      {
+       "name": "route_clear",
+       "passed": true,
+       "observation": "planned joint-space transit to L10"
+      }
+     ]
+    },
+    {
+     "phase": "approach",
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 12.12,
+     "realised_by": "R01 rig.place (compliant)",
+     "monitors": []
+    },
+    {
+     "phase": "place",
+     "term": [
+      "place",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase place)",
+     "monitors": []
+    },
+    {
+     "phase": "release",
+     "term": [
+      "release",
+      "r01"
+     ],
+     "duration_s": 0.0,
+     "realised_by": "R01 rig.place (compliant) (phase release)",
+     "monitors": [
+      {
+       "name": "seating_confirmed",
+       "passed": true,
+       "observation": "{\"placed\": true, \"seated\": true, \"landing_speed_mm_s\": 164.4}"
+      }
+     ]
+    },
+    {
+     "phase": "retract",
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "duration_s": 3.35,
+     "realised_by": "R01 retract to L10 approach",
+     "monitors": []
+    }
+   ]
+  }
+ ],
+ "goals": [
+  {
+   "leg": "r01 l10->handovernest",
+   "phase": "approach",
+   "seat": "l10",
+   "kind": "above",
+   "p": [
+    -1.95,
+    0.8,
+    1.178
+   ],
+   "yaw_deg": 41.63,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "margin_deg": 35.1,
+   "sigma_min": 0.116,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    131.1,
+    9.9,
+    0.6,
+    -76.5,
+    -0.1,
+    86.5,
+    -44.9
+   ]
+  },
+  {
+   "leg": "r01 l10->handovernest",
+   "phase": "insert",
+   "seat": "l10",
+   "kind": "grasp",
+   "p": [
+    -1.95,
+    0.8,
+    0.978
+   ],
+   "yaw_deg": 41.63,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "margin_deg": 35.2,
+   "sigma_min": 0.175,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    131.0,
+    9.4,
+    0.6,
+    -106.8,
+    -0.1,
+    116.2,
+    -44.9
+   ]
+  },
+  {
+   "leg": "r01 l10->handovernest",
+   "phase": "transit",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.166
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "margin_deg": 36.1,
+   "sigma_min": 0.151,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    -41.8,
+    65.1,
+    121.8,
+    -89.6,
+    -61.7,
+    61.3,
+    -72.6
+   ]
+  },
+  {
+   "leg": "r01 l10->handovernest",
+   "phase": "place",
+   "seat": "handovernest",
+   "kind": "place",
+   "p": [
+    -1.05,
+    0.55,
+    0.979
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "margin_deg": 24.3,
+   "sigma_min": 0.202,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    -50.5,
+    80.9,
+    111.2,
+    -114.0,
+    -72.5,
+    74.8,
+    -67.4
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l12",
+   "phase": "approach",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.116
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 0.171,
+   "margin_deg": 56.9,
+   "sigma_min": 0.242,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.171,
+    -166.0,
+    -93.2,
+    123.1,
+    -119.9,
+    -90.0,
+    104.0
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l12",
+   "phase": "insert",
+   "seat": "handovernest",
+   "kind": "grasp",
+   "p": [
+    -1.05,
+    0.55,
+    0.966
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.373,
+   "margin_deg": 77.0,
+   "sigma_min": 0.232,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.373,
+    189.4,
+    -57.6,
+    103.0,
+    -135.5,
+    -90.0,
+    -260.6
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l12",
+   "phase": "transit",
+   "seat": "l12",
+   "kind": "above",
+   "p": [
+    0.15,
+    0.34,
+    1.128
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 1.145,
+   "margin_deg": 61.7,
+   "sigma_min": 0.244,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    1.145,
+    -125.0,
+    -90.3,
+    118.3,
+    -118.0,
+    -90.0,
+    -215.0
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l12",
+   "phase": "place",
+   "seat": "l12",
+   "kind": "place",
+   "p": [
+    0.15,
+    0.34,
+    0.98
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 1.205,
+   "margin_deg": 55.0,
+   "sigma_min": 0.246,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    1.205,
+    81.0,
+    -223.8,
+    125.0,
+    -171.1,
+    -270.0,
+    171.0
+   ]
+  },
+  {
+   "leg": "r02 l12->handovernest",
+   "phase": "approach",
+   "seat": "l12",
+   "kind": "above",
+   "p": [
+    0.15,
+    0.34,
+    1.128
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 1.139,
+   "margin_deg": 61.4,
+   "sigma_min": 0.244,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    1.139,
+    235.7,
+    -90.6,
+    118.6,
+    -118.0,
+    -90.0,
+    145.7
+   ]
+  },
+  {
+   "leg": "r02 l12->handovernest",
+   "phase": "insert",
+   "seat": "l12",
+   "kind": "grasp",
+   "p": [
+    0.15,
+    0.34,
+    0.978
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.709,
+   "margin_deg": 61.8,
+   "sigma_min": 0.242,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.709,
+    -71.2,
+    -67.8,
+    118.2,
+    -140.4,
+    -90.0,
+    -161.2
+   ]
+  },
+  {
+   "leg": "r02 l12->handovernest",
+   "phase": "transit",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.116
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 0.286,
+   "margin_deg": 71.8,
+   "sigma_min": 0.238,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.286,
+    191.0,
+    -79.5,
+    108.2,
+    -118.8,
+    -90.0,
+    101.0
+   ]
+  },
+  {
+   "leg": "r02 l12->handovernest",
+   "phase": "place",
+   "seat": "handovernest",
+   "kind": "place",
+   "p": [
+    -1.05,
+    0.55,
+    0.968
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.249,
+   "margin_deg": 57.7,
+   "sigma_min": 0.24,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.249,
+    -168.2,
+    -68.8,
+    122.3,
+    -143.5,
+    -90.0,
+    101.8
+   ]
+  },
+  {
+   "leg": "r01 handovernest->l10",
+   "phase": "approach",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.166
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "margin_deg": 23.0,
+   "sigma_min": 0.154,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    -31.1,
+    78.0,
+    132.4,
+    -88.1,
+    -75.6,
+    48.2,
+    -67.8
+   ]
+  },
+  {
+   "leg": "r01 handovernest->l10",
+   "phase": "insert",
+   "seat": "handovernest",
+   "kind": "grasp",
+   "p": [
+    -1.05,
+    0.55,
+    0.966
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "margin_deg": 54.7,
+   "sigma_min": 0.193,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    6.9,
+    -0.8,
+    14.8,
+    -121.6,
+    0.2,
+    120.8,
+    -113.4
+   ]
+  },
+  {
+   "leg": "r01 handovernest->l10",
+   "phase": "transit",
+   "seat": "l10",
+   "kind": "above",
+   "p": [
+    -1.95,
+    0.8,
+    1.178
+   ],
+   "yaw_deg": 41.63,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "margin_deg": 35.1,
+   "sigma_min": 0.116,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    131.1,
+    9.9,
+    0.6,
+    -76.5,
+    -0.1,
+    86.5,
+    -44.9
+   ]
+  },
+  {
+   "leg": "r01 handovernest->l10",
+   "phase": "place",
+   "seat": "l10",
+   "kind": "place",
+   "p": [
+    -1.95,
+    0.8,
+    0.991
+   ],
+   "yaw_deg": 41.63,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "margin_deg": 35.2,
+   "sigma_min": 0.173,
+   "collision_free": true,
+   "margin_ok": true,
+   "conditioning_ok": true,
+   "q_deg": [
+    131.0,
+    8.9,
+    0.6,
+    -105.5,
+    -0.1,
+    114.4,
+    -44.9
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l17",
+   "phase": "approach",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.116
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 0.171,
+   "margin_deg": 56.9,
+   "sigma_min": 0.242,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.171,
+    -166.0,
+    -93.2,
+    123.1,
+    -119.9,
+    -90.0,
+    104.0
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l17",
+   "phase": "insert",
+   "seat": "handovernest",
+   "kind": "grasp",
+   "p": [
+    -1.05,
+    0.55,
+    0.966
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.373,
+   "margin_deg": 77.0,
+   "sigma_min": 0.232,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.373,
+    189.4,
+    -57.6,
+    103.0,
+    -135.5,
+    -90.0,
+    -260.6
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l17",
+   "phase": "transit",
+   "seat": "l17",
+   "kind": "above",
+   "p": [
+    1.65,
+    1.22,
+    1.128
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 2.362,
+   "margin_deg": 61.4,
+   "sigma_min": 0.244,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    2.362,
+    55.8,
+    -90.6,
+    118.6,
+    -118.0,
+    -90.0,
+    -34.2
+   ]
+  },
+  {
+   "leg": "r02 handovernest->l17",
+   "phase": "place",
+   "seat": "l17",
+   "kind": "place",
+   "p": [
+    1.65,
+    1.22,
+    0.98
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 2.239,
+   "margin_deg": 59.3,
+   "sigma_min": 0.242,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    2.239,
+    44.2,
+    -69.6,
+    120.7,
+    -141.1,
+    -90.0,
+    -45.8
+   ]
+  },
+  {
+   "leg": "r02 l17->handovernest",
+   "phase": "approach",
+   "seat": "l17",
+   "kind": "above",
+   "p": [
+    1.65,
+    1.22,
+    1.128
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 2.372,
+   "margin_deg": 33.1,
+   "sigma_min": 0.244,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    2.372,
+    56.9,
+    -91.1,
+    119.0,
+    -118.0,
+    -90.0,
+    326.9
+   ]
+  },
+  {
+   "leg": "r02 l17->handovernest",
+   "phase": "insert",
+   "seat": "l17",
+   "kind": "grasp",
+   "p": [
+    1.65,
+    1.22,
+    0.978
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 2.297,
+   "margin_deg": 54.8,
+   "sigma_min": 0.238,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    2.297,
+    49.3,
+    -72.1,
+    125.2,
+    -143.1,
+    -90.0,
+    -40.7
+   ]
+  },
+  {
+   "leg": "r02 l17->handovernest",
+   "phase": "transit",
+   "seat": "handovernest",
+   "kind": "above",
+   "p": [
+    -1.05,
+    0.55,
+    1.116
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": false,
+   "reachable": true,
+   "rail_m": 0.286,
+   "margin_deg": 71.8,
+   "sigma_min": 0.238,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.286,
+    191.0,
+    -79.5,
+    108.2,
+    -118.8,
+    -90.0,
+    101.0
+   ]
+  },
+  {
+   "leg": "r02 l17->handovernest",
+   "phase": "place",
+   "seat": "handovernest",
+   "kind": "place",
+   "p": [
+    -1.05,
+    0.55,
+    0.968
+   ],
+   "yaw_deg": 0.0,
+   "held": true,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.249,
+   "margin_deg": 57.7,
+   "sigma_min": 0.24,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.249,
+    -168.2,
+    -68.8,
+    122.3,
+    -143.5,
+    -90.0,
+    101.8
+   ]
+  },
+  {
+   "leg": "r02 tool couple",
+   "phase": "tool_couple",
+   "seat": "dock_t01",
+   "kind": "couple",
+   "p": [
+    0.0,
+    1.2,
+    1.12
+   ],
+   "yaw_deg": 0.0,
+   "held": false,
+   "at_seat": true,
+   "reachable": true,
+   "rail_m": 0.641,
+   "margin_deg": 47.1,
+   "sigma_min": 0.245,
+   "margin_ok": true,
+   "collision_free": null,
+   "conditioning_ok": true,
+   "q_deg": [
+    0.641,
+    -312.9,
+    -88.9,
+    118.2,
+    -119.3,
+    -90.0,
+    -42.9
+   ]
+  }
+ ],
+ "r01_base": [
+  -1.55,
+  0.35,
+  0.72
+ ],
+ "r02_rail": {
+  "x0": -0.85,
+  "x1": 1.75,
+  "y": 0.78,
+  "top": 0.965
+ }
+}

@@ -1,0 +1,173 @@
+{
+ "run": "challenge-rescue/imager_incapable",
+ "genesis": "0000000000000000000000000000000000000000000000000000000000000000",
+ "software": {
+  "kernel": "rsa-kernel/0.1",
+  "kb": "facts_g050+imager_incapable",
+  "registry": "5d901b7f8087",
+  "backend": "symbolic-world/0.1"
+ },
+ "n": 3,
+ "entries": [
+  {
+   "seq": 0,
+   "t_sim": 0.0,
+   "t": "2026-10-17T08:00:00",
+   "designator": "d0001-experiment",
+   "parent": null,
+   "kind": "action",
+   "category": "experiment",
+   "transition": "open",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+imager_incapable",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "hadl": "(an action (type experiment) (design c_d85_t48_n1) (requirement_bits 0.5) (eig_bits 0.5439) (plate P17) (wells {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}) (sessions [{'session': 's0', 'trip': 1, 't_h': 0, 'material': [['dose', 'a01', 'challenge', 85], ['dose', 'a02', 'challenge', 85]]}, {'session': 's1', 'trip': 1, 't_h': 48, 'material': [['dose', 'a01', 'rescue', 70]]}, {'session': 's2', 'trip': 1, 't_h': 72, 'material': [['image', 'a01'], ['image', 'a02'], ['image', 'a05']]}]))",
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "42f1f0f909b757f2556c5b61282ac9482aa2d0d1c9bf0f390a65745cd7a5cb4f"
+  },
+  {
+   "seq": 1,
+   "t_sim": 0.0,
+   "t": "2026-10-17T08:00:00",
+   "designator": "d0001-experiment",
+   "parent": null,
+   "kind": "action",
+   "category": "experiment",
+   "transition": "grounded",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+imager_incapable",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "bindings": {
+    "design": "c_d85_t48_n1",
+    "requirement_bits": 0.5,
+    "eig_bits": 0.5439,
+    "plate": "P17",
+    "wells": {
+     "rescued": [
+      "A01"
+     ],
+     "comparator": [
+      "A02"
+     ],
+     "control": [
+      "A05"
+     ]
+    },
+    "sessions": [
+     {
+      "session": "s0",
+      "trip": 1,
+      "t_h": 0,
+      "material": [
+       [
+        "dose",
+        "a01",
+        "challenge",
+        85
+       ],
+       [
+        "dose",
+        "a02",
+        "challenge",
+        85
+       ]
+      ]
+     },
+     {
+      "session": "s1",
+      "trip": 1,
+      "t_h": 48,
+      "material": [
+       [
+        "dose",
+        "a01",
+        "rescue",
+        70
+       ]
+      ]
+     },
+     {
+      "session": "s2",
+      "trip": 1,
+      "t_h": 72,
+      "material": [
+       [
+        "image",
+        "a01"
+       ],
+       [
+        "image",
+        "a02"
+       ],
+       [
+        "image",
+        "a05"
+       ]
+      ]
+     }
+    ]
+   },
+   "resolutions": [],
+   "plan": [
+    "(an action (type run-session) (session s0) (trip 1) (t_h 0) (plate P17) (material [['dose', 'a01', 'challenge', 85], ['dose', 'a02', 'challenge', 85]]) (roles {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}))",
+    "(an action (type wait) (until_h 48) (plate P17))",
+    "(an action (type run-session) (session s1) (trip 1) (t_h 48) (plate P17) (material [['dose', 'a01', 'rescue', 70]]) (roles {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}))",
+    "(an action (type wait) (until_h 72) (plate P17))",
+    "(an action (type run-session) (session s2) (trip 1) (t_h 72) (plate P17) (material [['image', 'a01'], ['image', 'a02'], ['image', 'a05']]) (roles {'rescued': ['A01'], 'comparator': ['A02'], 'control': ['A05']}))"
+   ],
+   "prev": "42f1f0f909b757f2556c5b61282ac9482aa2d0d1c9bf0f390a65745cd7a5cb4f",
+   "hash": "d7786aa5af25b8e65173f16ab9dcc8f9b7d0e5192b9a5acbeb23f3f68e7268ab"
+  },
+  {
+   "seq": 2,
+   "t_sim": 0.0,
+   "t": "2026-10-17T08:00:00",
+   "designator": "d0001-experiment",
+   "parent": null,
+   "kind": "action",
+   "category": "experiment",
+   "transition": "abstained",
+   "agent": "rsa-kernel (manipulation executive)",
+   "software": {
+    "kernel": "rsa-kernel/0.1",
+    "kb": "facts_g050+imager_incapable",
+    "registry": "5d901b7f8087",
+    "backend": "symbolic-world/0.1"
+   },
+   "constraints": [
+    {
+     "id": "projection_succeeds",
+     "column": "realization",
+     "verdict": "VIOLATED",
+     "observation": "projection failed after 259762.2 s: unresolved: devices_for(functions=['imaging'], capabilities=['image_well']); component record lacks capability ['image_well']",
+     "source": "CRAM projection / Ground & Emulate gate (cram_viz); kernel iteration 1 findings F5, F6"
+    },
+    {
+     "id": "contamination_free",
+     "column": "realization",
+     "verdict": "ENFORCED",
+     "observation": "no contamination_suspected fact",
+     "source": "safety rule contamination_suspected_blocks"
+    },
+    {
+     "id": "challenge_requires_controls",
+     "column": "validity",
+     "verdict": "ENFORCED",
+     "observation": "challenge=True, control wells=['A05']",
+     "source": "safety rule challenge_requires_controls; uc_ccr negative control (NR3)"
+    }
+   ],
+   "reason": "refused by projection_succeeds",
+   "prev": "d7786aa5af25b8e65173f16ab9dcc8f9b7d0e5192b9a5acbeb23f3f68e7268ab",
+   "hash": "abf299839f520dff569429d240fca3703bc526705c8ef106ba6a82abb5a6af4e"
+  }
+ ]
+}

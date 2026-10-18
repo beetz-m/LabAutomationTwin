@@ -1,0 +1,72 @@
+;; The challenge-rescue experiment as one entity designator (LDL v0.3, culture level), organised by its logic:
+;; three cultures, each defined by its treatment, kept under shared conditions and observed the same way;
+;; comparisons between cultures that differ in exactly one exposure determine the effects of the treatments,
+;; and the primary comparison updates the belief over the recovery models.
+;; This is the authored source. rsa/experiment_designator.py derives from it the culture actions and their order
+;; (causal links over physical and knowledge effects) and checks that every comparison isolates one exposure.
+;; No plate, well, instrument or robot appears: the mapping to the laboratory chooses them.
+;; No variables: every mention is a description that identifies what it denotes.
+;; Biology and numbers: Cell 01's ILLUSTRATIVE surrogate and its models M1-M3 (twin/culture/eig.py, D016).
+
+(an experiment
+  (instance-of challenge-rescue-experiment)        ; registry/lab/experiment_concepts.ldl; checked by rsa/experiment_concepts.py
+  (name challenge-rescue)
+  (question (a question
+              (asks (which (a recovery-model)))
+              (explains (the rescue-efficacy (after (a delay (of 48 h)))))
+              (candidate (a recovery-model (name M1_graded)))
+              (candidate (a recovery-model (name M2_threshold)))
+              (candidate (a recovery-model (name M3_protective)))))
+  ;; the design guarantees the gain in expectation (e2m); what one execution yields is measured, not promised
+  (goal (the belief (expected-information-gain (>= 0.5 bit))))
+  (belief (a belief (over (M1_graded M2_threshold M3_protective)) (prior uniform) (entropy 1.585 bit)))
+
+  ;; what the treatments are made of, and what exposure to them does to a culture
+  (substance (a substance (role challenge) (causes (injury rising))))
+  (substance (a substance (role rescue) (causes (recovery possible))))
+
+  ;; the cultures: each is defined by its treatment
+  (culture (a culture (role rescued) (state baseline)
+             (treatment (a treatment
+                          (exposure (an exposure (to (the substance (role challenge))) (dose 0.85 au) (at (culture-time 0 h))))
+                          (exposure (an exposure (to (the substance (role rescue))) (dose 0.70 au) (at (culture-time 48 h))))))))
+  (culture (a culture (role comparator) (state baseline)
+             (treatment (a treatment
+                          (exposure (an exposure (to (the substance (role challenge))) (dose 0.85 au) (at (culture-time 0 h))))))))
+  (culture (a culture (role control) (state baseline)
+             (treatment (no treatment))))
+
+  ;; everything but the treatment is shared, so that a difference between cultures is a difference of treatment
+  (shared-conditions (a condition
+                       (environment culture-standard)
+                       (from (culture-time 0 h))
+                       (to (culture-time 72 h))
+                       (observation (an observation
+                                      (readout morphology)
+                                      (at (culture-time 72 h))
+                                      (side-effect (light-dose increased))      ; imaging is not free (Cell 01 L17)
+                                      (interpreted-as (an estimate (quantity organoid-radius) (sigma 2.5 um)))
+                                      (needs (a scale (of (an image)) (known true)))))))
+
+  ;; the comparisons: each between two cultures whose treatments differ in exactly one exposure (checked)
+  (comparison (a comparison (role validity)
+                (between (the culture (role comparator)) (the culture (role control)))
+                (determines (the effect (of (the substance (role challenge)))))
+                (established-when (the effect (below 0 um) (by-more-than 2 sd)))   ; ILLUSTRATIVE criterion
+                (licenses (the comparison (role primary)))))
+  (comparison (a comparison (role primary)
+                (between (the culture (role rescued)) (the culture (role comparator)))
+                (determines (the effect (of (the substance (role rescue)))))
+                (updates (the belief))))
+
+  (prevents
+    (an exposure (of (the culture (role control))) (to (some substance)))   ; the control stays untreated
+    (an event (type contamination) (of (a culture))))
+  (maintains
+    (each culture (environment culture-standard)))
+
+  ;; what the experiment produces
+  (insight (an insight (role answer) (answers (the question)) (form (a posterior (over (the belief))))
+             (from (the comparison (role primary)))))
+  (insight (an insight (role effect) (of (the substance (role rescue))) (from (the comparison (role primary)))))
+  (insight (an insight (role effect) (of (the substance (role challenge))) (from (the comparison (role validity))))))

@@ -1,0 +1,2974 @@
+{
+ "plan": {
+  "question": "(which (a recovery-model (in (M1_graded M2_threshold M3_protective))) (explains (the rescue-efficacy (after (a delay (of 48 h))))))",
+  "entities": {
+   "?cr": "(the culture ?cr (role rescued))",
+   "?cc": "(the culture ?cc (role comparator))",
+   "?ck": "(the culture ?ck (role control))",
+   "?ch": "(some substance ?ch (type challenge))",
+   "?rs": "(some substance ?rs (type rescue))",
+   "?B": "(the belief ?B (over (M1_graded M2_threshold M3_protective)) (prior uniform))"
+  },
+  "goal": [
+   "(the belief ?B (expected-information-gain (>= 0.5 bit)))"
+  ],
+  "steps": [
+   {
+    "var": "?c1",
+    "type": "challenging",
+    "text": "(an action ?c1 (type challenging) (culture ?cr) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)) (physical (the culture ?cr (exposed-to ?ch 0.85 au)) (the culture ?cr (injury rising))) (knowledge (a record (of ?c1) (states ?cr ?ch 0.85 au 0 h))))",
+    "slots": {
+     "culture": "?cr",
+     "substance": "?ch",
+     "dose": "0.85 au",
+     "at": "(culture-time 0 h)"
+    },
+    "requires": [],
+    "physical": [
+     {
+      "cond": "(the culture ?cr (exposed-to ?ch 0.85 au))",
+      "ann": {}
+     },
+     {
+      "cond": "(the culture ?cr (injury rising))",
+      "ann": {}
+     }
+    ],
+    "knowledge": [
+     {
+      "cond": "(a record (of ?c1) (states ?cr ?ch 0.85 au 0 h))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?c2",
+    "type": "challenging",
+    "text": "(an action ?c2 (type challenging) (culture ?cc) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)) (physical (the culture ?cc (exposed-to ?ch 0.85 au)) (the culture ?cc (injury rising))) (knowledge (a record (of ?c2) (states ?cc ?ch 0.85 au 0 h))))",
+    "slots": {
+     "culture": "?cc",
+     "substance": "?ch",
+     "dose": "0.85 au",
+     "at": "(culture-time 0 h)"
+    },
+    "requires": [],
+    "physical": [
+     {
+      "cond": "(the culture ?cc (exposed-to ?ch 0.85 au))",
+      "ann": {}
+     },
+     {
+      "cond": "(the culture ?cc (injury rising))",
+      "ann": {}
+     }
+    ],
+    "knowledge": [
+     {
+      "cond": "(a record (of ?c2) (states ?cc ?ch 0.85 au 0 h))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?g1",
+    "type": "growing",
+    "text": "(an action ?g1 (type growing) (cultures ?cr ?cc ?ck) (from (culture-time 0 h)) (to (culture-time 48 h)) (requires (the culture ?cr (exposed-to ?ch)) (the culture ?cc (exposed-to ?ch))) (physical (the experiment ?E (culture-time 48 h)) (the culture ?cr (injury-burden accumulated))) (knowledge (a record (of ?g1) (environment-history culture-standard))))",
+    "slots": {
+     "cultures": "?cr ?cc ?ck",
+     "from": "(culture-time 0 h)",
+     "to": "(culture-time 48 h)"
+    },
+    "requires": [
+     {
+      "cond": "(the culture ?cr (exposed-to ?ch))",
+      "ann": {}
+     },
+     {
+      "cond": "(the culture ?cc (exposed-to ?ch))",
+      "ann": {}
+     }
+    ],
+    "physical": [
+     {
+      "cond": "(the experiment ?E (culture-time 48 h))",
+      "ann": {}
+     },
+     {
+      "cond": "(the culture ?cr (injury-burden accumulated))",
+      "ann": {}
+     }
+    ],
+    "knowledge": [
+     {
+      "cond": "(a record (of ?g1) (environment-history culture-standard))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?c3",
+    "type": "rescuing",
+    "text": "(an action ?c3 (type rescuing) (culture ?cr) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h)) (requires (the experiment ?E (culture-time 48 h))) (physical (the culture ?cr (exposed-to ?rs 0.70 au)) (the culture ?cr (recovery possible))) (knowledge (a record (of ?c3) (states ?cr ?rs 0.70 au 48 h))))",
+    "slots": {
+     "culture": "?cr",
+     "substance": "?rs",
+     "dose": "0.70 au",
+     "at": "(culture-time 48 h)"
+    },
+    "requires": [
+     {
+      "cond": "(the experiment ?E (culture-time 48 h))",
+      "ann": {}
+     }
+    ],
+    "physical": [
+     {
+      "cond": "(the culture ?cr (exposed-to ?rs 0.70 au))",
+      "ann": {}
+     },
+     {
+      "cond": "(the culture ?cr (recovery possible))",
+      "ann": {}
+     }
+    ],
+    "knowledge": [
+     {
+      "cond": "(a record (of ?c3) (states ?cr ?rs 0.70 au 48 h))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?g2",
+    "type": "growing",
+    "text": "(an action ?g2 (type growing) (cultures ?cr ?cc ?ck) (from (culture-time 48 h)) (to (culture-time 72 h)) (requires (the culture ?cr (exposed-to ?rs))) (physical (the experiment ?E (culture-time 72 h)) (the culture ?cr (viability settled))) (knowledge (a record (of ?g2) (environment-history culture-standard))))",
+    "slots": {
+     "cultures": "?cr ?cc ?ck",
+     "from": "(culture-time 48 h)",
+     "to": "(culture-time 72 h)"
+    },
+    "requires": [
+     {
+      "cond": "(the culture ?cr (exposed-to ?rs))",
+      "ann": {}
+     }
+    ],
+    "physical": [
+     {
+      "cond": "(the experiment ?E (culture-time 72 h))",
+      "ann": {}
+     },
+     {
+      "cond": "(the culture ?cr (viability settled))",
+      "ann": {}
+     }
+    ],
+    "knowledge": [
+     {
+      "cond": "(a record (of ?g2) (environment-history culture-standard))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?o1",
+    "type": "observing",
+    "text": "(an action ?o1 (type observing) (culture ?cr) (readout morphology) (at (culture-time 72 h)) (requires (the experiment ?E (culture-time 72 h))) (physical (the culture ?cr (light-dose increased))) (knowledge (an image ?y1 (of ?cr) (culture-time 72 h) (raw true))))",
+    "slots": {
+     "culture": "?cr",
+     "readout": "morphology",
+     "at": "(culture-time 72 h)"
+    },
+    "requires": [
+     {
+      "cond": "(the experiment ?E (culture-time 72 h))",
+      "ann": {}
+     }
+    ],
+    "physical": [
+     {
+      "cond": "(the culture ?cr (light-dose increased))",
+      "ann": {}
+     }
+    ],
+    "knowledge": [
+     {
+      "cond": "(an image ?y1 (of ?cr) (culture-time 72 h) (raw true))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?o2",
+    "type": "observing",
+    "text": "(an action ?o2 (type observing) (culture ?cc) (readout morphology) (at (culture-time 72 h)) (requires (the experiment ?E (culture-time 72 h))) (physical (the culture ?cc (light-dose increased))) (knowledge (an image ?y2 (of ?cc) (culture-time 72 h) (raw true))))",
+    "slots": {
+     "culture": "?cc",
+     "readout": "morphology",
+     "at": "(culture-time 72 h)"
+    },
+    "requires": [
+     {
+      "cond": "(the experiment ?E (culture-time 72 h))",
+      "ann": {}
+     }
+    ],
+    "physical": [
+     {
+      "cond": "(the culture ?cc (light-dose increased))",
+      "ann": {}
+     }
+    ],
+    "knowledge": [
+     {
+      "cond": "(an image ?y2 (of ?cc) (culture-time 72 h) (raw true))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?o3",
+    "type": "observing",
+    "text": "(an action ?o3 (type observing) (culture ?ck) (readout morphology) (at (culture-time 72 h)) (requires (the experiment ?E (culture-time 72 h))) (physical (the culture ?ck (light-dose increased))) (knowledge (an image ?y3 (of ?ck) (culture-time 72 h) (raw true))))",
+    "slots": {
+     "culture": "?ck",
+     "readout": "morphology",
+     "at": "(culture-time 72 h)"
+    },
+    "requires": [
+     {
+      "cond": "(the experiment ?E (culture-time 72 h))",
+      "ann": {}
+     }
+    ],
+    "physical": [
+     {
+      "cond": "(the culture ?ck (light-dose increased))",
+      "ann": {}
+     }
+    ],
+    "knowledge": [
+     {
+      "cond": "(an image ?y3 (of ?ck) (culture-time 72 h) (raw true))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?i1",
+    "type": "interpreting",
+    "text": "(an action ?i1 (type interpreting) (image ?y1) (into organoid-radius) (requires (an image (of ?cr) (raw true)) (a scale (of (an image)) (known true)) :establishable) (knowledge (an estimate (of ?cr) (organoid-radius) (sigma 2.5 um))))",
+    "slots": {
+     "image": "?y1",
+     "into": "organoid-radius"
+    },
+    "requires": [
+     {
+      "cond": "(an image (of ?cr) (raw true))",
+      "ann": {}
+     },
+     {
+      "cond": "(a scale (of (an image)) (known true))",
+      "ann": {
+       ":establishable": true
+      }
+     }
+    ],
+    "physical": [],
+    "knowledge": [
+     {
+      "cond": "(an estimate (of ?cr) (organoid-radius) (sigma 2.5 um))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?i2",
+    "type": "interpreting",
+    "text": "(an action ?i2 (type interpreting) (image ?y2) (into organoid-radius) (requires (an image (of ?cc) (raw true)) (a scale (of (an image)) (known true)) :establishable) (knowledge (an estimate (of ?cc) (organoid-radius) (sigma 2.5 um))))",
+    "slots": {
+     "image": "?y2",
+     "into": "organoid-radius"
+    },
+    "requires": [
+     {
+      "cond": "(an image (of ?cc) (raw true))",
+      "ann": {}
+     },
+     {
+      "cond": "(a scale (of (an image)) (known true))",
+      "ann": {
+       ":establishable": true
+      }
+     }
+    ],
+    "physical": [],
+    "knowledge": [
+     {
+      "cond": "(an estimate (of ?cc) (organoid-radius) (sigma 2.5 um))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?i3",
+    "type": "interpreting",
+    "text": "(an action ?i3 (type interpreting) (image ?y3) (into organoid-radius) (requires (an image (of ?ck) (raw true)) (a scale (of (an image)) (known true)) :establishable) (knowledge (an estimate (of ?ck) (organoid-radius) (sigma 2.5 um))))",
+    "slots": {
+     "image": "?y3",
+     "into": "organoid-radius"
+    },
+    "requires": [
+     {
+      "cond": "(an image (of ?ck) (raw true))",
+      "ann": {}
+     },
+     {
+      "cond": "(a scale (of (an image)) (known true))",
+      "ann": {
+       ":establishable": true
+      }
+     }
+    ],
+    "physical": [],
+    "knowledge": [
+     {
+      "cond": "(an estimate (of ?ck) (organoid-radius) (sigma 2.5 um))",
+      "ann": {}
+     }
+    ]
+   },
+   {
+    "var": "?a1",
+    "type": "analysing",
+    "text": "(an action ?a1 (type analysing) (belief ?B) (statistic (difference (radius ?cr) (radius ?cc))) (requires (an estimate (of ?cr) (organoid-radius)) (an estimate (of ?cc) (organoid-radius)) (an estimate (of ?ck) (organoid-radius))) (knowledge (the belief ?B (posterior updated)) (the belief ?B (information-gain measured))))",
+    "slots": {
+     "belief": "?B",
+     "statistic": "(difference (radius ?cr) (radius ?cc))"
+    },
+    "requires": [
+     {
+      "cond": "(an estimate (of ?cr) (organoid-radius))",
+      "ann": {}
+     },
+     {
+      "cond": "(an estimate (of ?cc) (organoid-radius))",
+      "ann": {}
+     },
+     {
+      "cond": "(an estimate (of ?ck) (organoid-radius))",
+      "ann": {}
+     }
+    ],
+    "physical": [],
+    "knowledge": [
+     {
+      "cond": "(the belief ?B (posterior updated))",
+      "ann": {}
+     },
+     {
+      "cond": "(the belief ?B (information-gain measured))",
+      "ann": {}
+     }
+    ]
+   }
+  ]
+ },
+ "derived": {
+  "links": [
+   {
+    "frm": "?c1",
+    "to": "?g1",
+    "kind": "physical",
+    "cond": "(the culture ?cr (exposed-to ?ch))"
+   },
+   {
+    "frm": "?c2",
+    "to": "?g1",
+    "kind": "physical",
+    "cond": "(the culture ?cc (exposed-to ?ch))"
+   },
+   {
+    "frm": "?g1",
+    "to": "?c3",
+    "kind": "physical",
+    "cond": "(the experiment ?E (culture-time 48 h))"
+   },
+   {
+    "frm": "?c3",
+    "to": "?g2",
+    "kind": "physical",
+    "cond": "(the culture ?cr (exposed-to ?rs))"
+   },
+   {
+    "frm": "?g2",
+    "to": "?o1",
+    "kind": "physical",
+    "cond": "(the experiment ?E (culture-time 72 h))"
+   },
+   {
+    "frm": "?g2",
+    "to": "?o2",
+    "kind": "physical",
+    "cond": "(the experiment ?E (culture-time 72 h))"
+   },
+   {
+    "frm": "?g2",
+    "to": "?o3",
+    "kind": "physical",
+    "cond": "(the experiment ?E (culture-time 72 h))"
+   },
+   {
+    "frm": "?o1",
+    "to": "?i1",
+    "kind": "knowledge",
+    "cond": "(an image (of ?cr) (raw true))"
+   },
+   {
+    "frm": "?o2",
+    "to": "?i2",
+    "kind": "knowledge",
+    "cond": "(an image (of ?cc) (raw true))"
+   },
+   {
+    "frm": "?o3",
+    "to": "?i3",
+    "kind": "knowledge",
+    "cond": "(an image (of ?ck) (raw true))"
+   },
+   {
+    "frm": "?i1",
+    "to": "?a1",
+    "kind": "knowledge",
+    "cond": "(an estimate (of ?cr) (organoid-radius))"
+   },
+   {
+    "frm": "?i2",
+    "to": "?a1",
+    "kind": "knowledge",
+    "cond": "(an estimate (of ?cc) (organoid-radius))"
+   },
+   {
+    "frm": "?i3",
+    "to": "?a1",
+    "kind": "knowledge",
+    "cond": "(an estimate (of ?ck) (organoid-radius))"
+   }
+  ],
+  "unsupported": [],
+  "establish": [
+   {
+    "step": "?i1",
+    "cond": "(a scale (of (an image)) (known true))"
+   },
+   {
+    "step": "?i2",
+    "cond": "(a scale (of (an image)) (known true))"
+   },
+   {
+    "step": "?i3",
+    "cond": "(a scale (of (an image)) (known true))"
+   }
+  ],
+  "hasse": [
+   [
+    "?c1",
+    "?g1"
+   ],
+   [
+    "?c2",
+    "?g1"
+   ],
+   [
+    "?c3",
+    "?g2"
+   ],
+   [
+    "?g1",
+    "?c3"
+   ],
+   [
+    "?g2",
+    "?o1"
+   ],
+   [
+    "?g2",
+    "?o2"
+   ],
+   [
+    "?g2",
+    "?o3"
+   ],
+   [
+    "?i1",
+    "?a1"
+   ],
+   [
+    "?i2",
+    "?a1"
+   ],
+   [
+    "?i3",
+    "?a1"
+   ],
+   [
+    "?o1",
+    "?i1"
+   ],
+   [
+    "?o2",
+    "?i2"
+   ],
+   [
+    "?o3",
+    "?i3"
+   ]
+  ],
+  "level": {
+   "?c1": 0,
+   "?c2": 0,
+   "?g1": 1,
+   "?c3": 2,
+   "?g2": 3,
+   "?o1": 4,
+   "?o2": 4,
+   "?o3": 4,
+   "?i1": 5,
+   "?i2": 5,
+   "?i3": 5,
+   "?a1": 6
+  },
+  "cyclic": [],
+  "before": {
+   "?c1": [],
+   "?c2": [],
+   "?g1": [
+    "?c1",
+    "?c2"
+   ],
+   "?c3": [
+    "?c1",
+    "?c2",
+    "?g1"
+   ],
+   "?g2": [
+    "?c1",
+    "?c2",
+    "?c3",
+    "?g1"
+   ],
+   "?o1": [
+    "?c1",
+    "?c2",
+    "?c3",
+    "?g1",
+    "?g2"
+   ],
+   "?o2": [
+    "?c1",
+    "?c2",
+    "?c3",
+    "?g1",
+    "?g2"
+   ],
+   "?o3": [
+    "?c1",
+    "?c2",
+    "?c3",
+    "?g1",
+    "?g2"
+   ],
+   "?i1": [
+    "?c1",
+    "?c2",
+    "?c3",
+    "?g1",
+    "?g2",
+    "?o1"
+   ],
+   "?i2": [
+    "?c1",
+    "?c2",
+    "?c3",
+    "?g1",
+    "?g2",
+    "?o2"
+   ],
+   "?i3": [
+    "?c1",
+    "?c2",
+    "?c3",
+    "?g1",
+    "?g2",
+    "?o3"
+   ],
+   "?a1": [
+    "?c1",
+    "?c2",
+    "?c3",
+    "?g1",
+    "?g2",
+    "?i1",
+    "?i2",
+    "?i3",
+    "?o1",
+    "?o2",
+    "?o3"
+   ]
+  },
+  "extensions": null
+ },
+ "knowledge": {
+  "trajectories": {
+   "cr": [
+    {
+     "t_h": 0.0,
+     "I": 0.0593,
+     "P": 0.0297,
+     "V": 0.9859,
+     "radius_um": 268.73
+    },
+    {
+     "t_h": 1.0,
+     "I": 0.2082,
+     "P": 0.0346,
+     "V": 0.9779,
+     "radius_um": 268.01
+    },
+    {
+     "t_h": 2.0,
+     "I": 0.3263,
+     "P": 0.0445,
+     "V": 0.9624,
+     "radius_um": 266.61
+    },
+    {
+     "t_h": 3.0,
+     "I": 0.4196,
+     "P": 0.0582,
+     "V": 0.9411,
+     "radius_um": 264.7
+    },
+    {
+     "t_h": 4.0,
+     "I": 0.493,
+     "P": 0.0746,
+     "V": 0.9158,
+     "radius_um": 262.42
+    },
+    {
+     "t_h": 5.0,
+     "I": 0.5503,
+     "P": 0.0927,
+     "V": 0.8877,
+     "radius_um": 259.9
+    },
+    {
+     "t_h": 6.0,
+     "I": 0.5947,
+     "P": 0.112,
+     "V": 0.8579,
+     "radius_um": 257.22
+    },
+    {
+     "t_h": 7.0,
+     "I": 0.6288,
+     "P": 0.1318,
+     "V": 0.8272,
+     "radius_um": 254.45
+    },
+    {
+     "t_h": 8.0,
+     "I": 0.6545,
+     "P": 0.1518,
+     "V": 0.7962,
+     "radius_um": 251.66
+    },
+    {
+     "t_h": 9.0,
+     "I": 0.6737,
+     "P": 0.1716,
+     "V": 0.7653,
+     "radius_um": 248.88
+    },
+    {
+     "t_h": 10.0,
+     "I": 0.6876,
+     "P": 0.191,
+     "V": 0.7349,
+     "radius_um": 246.14
+    },
+    {
+     "t_h": 11.0,
+     "I": 0.6974,
+     "P": 0.2099,
+     "V": 0.7052,
+     "radius_um": 243.47
+    },
+    {
+     "t_h": 12.0,
+     "I": 0.7041,
+     "P": 0.2282,
+     "V": 0.6764,
+     "radius_um": 240.87
+    },
+    {
+     "t_h": 13.0,
+     "I": 0.7082,
+     "P": 0.2457,
+     "V": 0.6485,
+     "radius_um": 238.37
+    },
+    {
+     "t_h": 14.0,
+     "I": 0.7104,
+     "P": 0.2625,
+     "V": 0.6217,
+     "radius_um": 235.95
+    },
+    {
+     "t_h": 15.0,
+     "I": 0.7112,
+     "P": 0.2786,
+     "V": 0.5959,
+     "radius_um": 233.63
+    },
+    {
+     "t_h": 16.0,
+     "I": 0.7109,
+     "P": 0.2938,
+     "V": 0.5712,
+     "radius_um": 231.41
+    },
+    {
+     "t_h": 17.0,
+     "I": 0.7098,
+     "P": 0.3084,
+     "V": 0.5476,
+     "radius_um": 229.28
+    },
+    {
+     "t_h": 18.0,
+     "I": 0.7081,
+     "P": 0.3221,
+     "V": 0.5249,
+     "radius_um": 227.24
+    },
+    {
+     "t_h": 19.0,
+     "I": 0.7061,
+     "P": 0.3352,
+     "V": 0.5033,
+     "radius_um": 225.3
+    },
+    {
+     "t_h": 20.0,
+     "I": 0.7038,
+     "P": 0.3476,
+     "V": 0.4826,
+     "radius_um": 223.44
+    },
+    {
+     "t_h": 21.0,
+     "I": 0.7013,
+     "P": 0.3593,
+     "V": 0.4628,
+     "radius_um": 221.66
+    },
+    {
+     "t_h": 22.0,
+     "I": 0.6987,
+     "P": 0.3704,
+     "V": 0.444,
+     "radius_um": 219.96
+    },
+    {
+     "t_h": 23.0,
+     "I": 0.6962,
+     "P": 0.3808,
+     "V": 0.4259,
+     "radius_um": 218.33
+    },
+    {
+     "t_h": 24.0,
+     "I": 0.6936,
+     "P": 0.3908,
+     "V": 0.4086,
+     "radius_um": 216.78
+    },
+    {
+     "t_h": 25.0,
+     "I": 0.6911,
+     "P": 0.4002,
+     "V": 0.3921,
+     "radius_um": 215.29
+    },
+    {
+     "t_h": 26.0,
+     "I": 0.6887,
+     "P": 0.4091,
+     "V": 0.3764,
+     "radius_um": 213.87
+    },
+    {
+     "t_h": 27.0,
+     "I": 0.6863,
+     "P": 0.4175,
+     "V": 0.3613,
+     "radius_um": 212.51
+    },
+    {
+     "t_h": 28.0,
+     "I": 0.6841,
+     "P": 0.4254,
+     "V": 0.3468,
+     "radius_um": 211.21
+    },
+    {
+     "t_h": 29.0,
+     "I": 0.6819,
+     "P": 0.4329,
+     "V": 0.333,
+     "radius_um": 209.97
+    },
+    {
+     "t_h": 30.0,
+     "I": 0.6799,
+     "P": 0.4401,
+     "V": 0.3198,
+     "radius_um": 208.78
+    },
+    {
+     "t_h": 31.0,
+     "I": 0.6779,
+     "P": 0.4468,
+     "V": 0.3071,
+     "radius_um": 207.64
+    },
+    {
+     "t_h": 32.0,
+     "I": 0.6761,
+     "P": 0.4532,
+     "V": 0.295,
+     "radius_um": 206.55
+    },
+    {
+     "t_h": 33.0,
+     "I": 0.6743,
+     "P": 0.4592,
+     "V": 0.2834,
+     "radius_um": 205.5
+    },
+    {
+     "t_h": 34.0,
+     "I": 0.6727,
+     "P": 0.465,
+     "V": 0.2722,
+     "radius_um": 204.5
+    },
+    {
+     "t_h": 35.0,
+     "I": 0.6711,
+     "P": 0.4704,
+     "V": 0.2615,
+     "radius_um": 203.54
+    },
+    {
+     "t_h": 36.0,
+     "I": 0.6696,
+     "P": 0.4755,
+     "V": 0.2513,
+     "radius_um": 202.62
+    },
+    {
+     "t_h": 37.0,
+     "I": 0.6682,
+     "P": 0.4804,
+     "V": 0.2415,
+     "radius_um": 201.74
+    },
+    {
+     "t_h": 38.0,
+     "I": 0.6669,
+     "P": 0.485,
+     "V": 0.2321,
+     "radius_um": 200.89
+    },
+    {
+     "t_h": 39.0,
+     "I": 0.6656,
+     "P": 0.4894,
+     "V": 0.2231,
+     "radius_um": 200.08
+    },
+    {
+     "t_h": 40.0,
+     "I": 0.6645,
+     "P": 0.4935,
+     "V": 0.2144,
+     "radius_um": 199.3
+    },
+    {
+     "t_h": 41.0,
+     "I": 0.6634,
+     "P": 0.4975,
+     "V": 0.2061,
+     "radius_um": 198.55
+    },
+    {
+     "t_h": 42.0,
+     "I": 0.6623,
+     "P": 0.5012,
+     "V": 0.1981,
+     "radius_um": 197.83
+    },
+    {
+     "t_h": 43.0,
+     "I": 0.6613,
+     "P": 0.5047,
+     "V": 0.1905,
+     "radius_um": 197.14
+    },
+    {
+     "t_h": 44.0,
+     "I": 0.6604,
+     "P": 0.5081,
+     "V": 0.1831,
+     "radius_um": 196.48
+    },
+    {
+     "t_h": 45.0,
+     "I": 0.6595,
+     "P": 0.5112,
+     "V": 0.1761,
+     "radius_um": 195.85
+    },
+    {
+     "t_h": 46.0,
+     "I": 0.6587,
+     "P": 0.5142,
+     "V": 0.1693,
+     "radius_um": 195.24
+    },
+    {
+     "t_h": 47.0,
+     "I": 0.6579,
+     "P": 0.5171,
+     "V": 0.1628,
+     "radius_um": 194.65
+    },
+    {
+     "t_h": 48.0,
+     "I": 0.6571,
+     "P": 0.5198,
+     "V": 0.1565,
+     "radius_um": 194.09
+    },
+    {
+     "t_h": 49.0,
+     "I": 0.6178,
+     "P": 0.522,
+     "V": 0.163,
+     "radius_um": 194.67
+    },
+    {
+     "t_h": 50.0,
+     "I": 0.5899,
+     "P": 0.5234,
+     "V": 0.1695,
+     "radius_um": 195.25
+    },
+    {
+     "t_h": 51.0,
+     "I": 0.5701,
+     "P": 0.5243,
+     "V": 0.1759,
+     "radius_um": 195.83
+    },
+    {
+     "t_h": 52.0,
+     "I": 0.556,
+     "P": 0.5249,
+     "V": 0.1821,
+     "radius_um": 196.39
+    },
+    {
+     "t_h": 53.0,
+     "I": 0.5461,
+     "P": 0.5252,
+     "V": 0.1882,
+     "radius_um": 196.94
+    },
+    {
+     "t_h": 54.0,
+     "I": 0.539,
+     "P": 0.5253,
+     "V": 0.1941,
+     "radius_um": 197.47
+    },
+    {
+     "t_h": 55.0,
+     "I": 0.534,
+     "P": 0.5253,
+     "V": 0.1998,
+     "radius_um": 197.98
+    },
+    {
+     "t_h": 56.0,
+     "I": 0.5305,
+     "P": 0.5252,
+     "V": 0.2053,
+     "radius_um": 198.48
+    },
+    {
+     "t_h": 57.0,
+     "I": 0.528,
+     "P": 0.5251,
+     "V": 0.2106,
+     "radius_um": 198.95
+    },
+    {
+     "t_h": 58.0,
+     "I": 0.5262,
+     "P": 0.5249,
+     "V": 0.2156,
+     "radius_um": 199.41
+    },
+    {
+     "t_h": 59.0,
+     "I": 0.525,
+     "P": 0.5247,
+     "V": 0.2205,
+     "radius_um": 199.84
+    },
+    {
+     "t_h": 60.0,
+     "I": 0.5241,
+     "P": 0.5245,
+     "V": 0.2251,
+     "radius_um": 200.26
+    },
+    {
+     "t_h": 61.0,
+     "I": 0.5235,
+     "P": 0.5243,
+     "V": 0.2296,
+     "radius_um": 200.66
+    },
+    {
+     "t_h": 62.0,
+     "I": 0.5231,
+     "P": 0.5241,
+     "V": 0.2338,
+     "radius_um": 201.04
+    },
+    {
+     "t_h": 63.0,
+     "I": 0.5228,
+     "P": 0.5239,
+     "V": 0.2379,
+     "radius_um": 201.41
+    },
+    {
+     "t_h": 64.0,
+     "I": 0.5226,
+     "P": 0.5237,
+     "V": 0.2418,
+     "radius_um": 201.76
+    },
+    {
+     "t_h": 65.0,
+     "I": 0.5225,
+     "P": 0.5235,
+     "V": 0.2455,
+     "radius_um": 202.09
+    },
+    {
+     "t_h": 66.0,
+     "I": 0.5224,
+     "P": 0.5233,
+     "V": 0.249,
+     "radius_um": 202.41
+    },
+    {
+     "t_h": 67.0,
+     "I": 0.5223,
+     "P": 0.5231,
+     "V": 0.2524,
+     "radius_um": 202.72
+    },
+    {
+     "t_h": 68.0,
+     "I": 0.5223,
+     "P": 0.523,
+     "V": 0.2556,
+     "radius_um": 203.01
+    },
+    {
+     "t_h": 69.0,
+     "I": 0.5223,
+     "P": 0.5228,
+     "V": 0.2587,
+     "radius_um": 203.28
+    },
+    {
+     "t_h": 70.0,
+     "I": 0.5223,
+     "P": 0.5226,
+     "V": 0.2617,
+     "radius_um": 203.55
+    },
+    {
+     "t_h": 71.0,
+     "I": 0.5223,
+     "P": 0.5225,
+     "V": 0.2645,
+     "radius_um": 203.8
+    },
+    {
+     "t_h": 72.0,
+     "I": 0.5223,
+     "P": 0.5223,
+     "V": 0.2672,
+     "radius_um": 204.05
+    }
+   ],
+   "cc": [
+    {
+     "t_h": 0.0,
+     "I": 0.0272,
+     "P": 0.0703,
+     "V": 0.9592,
+     "radius_um": 266.33
+    },
+    {
+     "t_h": 1.0,
+     "I": 0.151,
+     "P": 0.0733,
+     "V": 0.9537,
+     "radius_um": 265.83
+    },
+    {
+     "t_h": 2.0,
+     "I": 0.2518,
+     "P": 0.082,
+     "V": 0.9415,
+     "radius_um": 264.74
+    },
+    {
+     "t_h": 3.0,
+     "I": 0.3337,
+     "P": 0.0949,
+     "V": 0.9242,
+     "radius_um": 263.18
+    },
+    {
+     "t_h": 4.0,
+     "I": 0.3997,
+     "P": 0.1109,
+     "V": 0.9029,
+     "radius_um": 261.27
+    },
+    {
+     "t_h": 5.0,
+     "I": 0.4527,
+     "P": 0.1291,
+     "V": 0.8789,
+     "radius_um": 259.1
+    },
+    {
+     "t_h": 6.0,
+     "I": 0.4949,
+     "P": 0.1487,
+     "V": 0.8529,
+     "radius_um": 256.77
+    },
+    {
+     "t_h": 7.0,
+     "I": 0.5281,
+     "P": 0.169,
+     "V": 0.8258,
+     "radius_um": 254.32
+    },
+    {
+     "t_h": 8.0,
+     "I": 0.5539,
+     "P": 0.1896,
+     "V": 0.798,
+     "radius_um": 251.82
+    },
+    {
+     "t_h": 9.0,
+     "I": 0.5736,
+     "P": 0.2101,
+     "V": 0.7701,
+     "radius_um": 249.31
+    },
+    {
+     "t_h": 10.0,
+     "I": 0.5884,
+     "P": 0.2303,
+     "V": 0.7423,
+     "radius_um": 246.81
+    },
+    {
+     "t_h": 11.0,
+     "I": 0.5993,
+     "P": 0.2498,
+     "V": 0.715,
+     "radius_um": 244.35
+    },
+    {
+     "t_h": 12.0,
+     "I": 0.6069,
+     "P": 0.2687,
+     "V": 0.6882,
+     "radius_um": 241.94
+    },
+    {
+     "t_h": 13.0,
+     "I": 0.612,
+     "P": 0.2868,
+     "V": 0.6622,
+     "radius_um": 239.6
+    },
+    {
+     "t_h": 14.0,
+     "I": 0.6151,
+     "P": 0.304,
+     "V": 0.6371,
+     "radius_um": 237.33
+    },
+    {
+     "t_h": 15.0,
+     "I": 0.6166,
+     "P": 0.3203,
+     "V": 0.6127,
+     "radius_um": 235.15
+    },
+    {
+     "t_h": 16.0,
+     "I": 0.617,
+     "P": 0.3357,
+     "V": 0.5893,
+     "radius_um": 233.04
+    },
+    {
+     "t_h": 17.0,
+     "I": 0.6164,
+     "P": 0.3503,
+     "V": 0.5668,
+     "radius_um": 231.01
+    },
+    {
+     "t_h": 18.0,
+     "I": 0.6152,
+     "P": 0.364,
+     "V": 0.5452,
+     "radius_um": 229.07
+    },
+    {
+     "t_h": 19.0,
+     "I": 0.6135,
+     "P": 0.3769,
+     "V": 0.5244,
+     "radius_um": 227.2
+    },
+    {
+     "t_h": 20.0,
+     "I": 0.6115,
+     "P": 0.389,
+     "V": 0.5045,
+     "radius_um": 225.41
+    },
+    {
+     "t_h": 21.0,
+     "I": 0.6093,
+     "P": 0.4003,
+     "V": 0.4854,
+     "radius_um": 223.69
+    },
+    {
+     "t_h": 22.0,
+     "I": 0.6069,
+     "P": 0.4109,
+     "V": 0.4671,
+     "radius_um": 222.04
+    },
+    {
+     "t_h": 23.0,
+     "I": 0.6045,
+     "P": 0.4209,
+     "V": 0.4496,
+     "radius_um": 220.46
+    },
+    {
+     "t_h": 24.0,
+     "I": 0.6021,
+     "P": 0.4302,
+     "V": 0.4328,
+     "radius_um": 218.95
+    },
+    {
+     "t_h": 25.0,
+     "I": 0.5997,
+     "P": 0.439,
+     "V": 0.4167,
+     "radius_um": 217.5
+    },
+    {
+     "t_h": 26.0,
+     "I": 0.5974,
+     "P": 0.4472,
+     "V": 0.4012,
+     "radius_um": 216.11
+    },
+    {
+     "t_h": 27.0,
+     "I": 0.5951,
+     "P": 0.4548,
+     "V": 0.3864,
+     "radius_um": 214.77
+    },
+    {
+     "t_h": 28.0,
+     "I": 0.593,
+     "P": 0.462,
+     "V": 0.3721,
+     "radius_um": 213.49
+    },
+    {
+     "t_h": 29.0,
+     "I": 0.5909,
+     "P": 0.4687,
+     "V": 0.3585,
+     "radius_um": 212.26
+    },
+    {
+     "t_h": 30.0,
+     "I": 0.589,
+     "P": 0.475,
+     "V": 0.3454,
+     "radius_um": 211.08
+    },
+    {
+     "t_h": 31.0,
+     "I": 0.5871,
+     "P": 0.4809,
+     "V": 0.3328,
+     "radius_um": 209.95
+    },
+    {
+     "t_h": 32.0,
+     "I": 0.5854,
+     "P": 0.4864,
+     "V": 0.3207,
+     "radius_um": 208.86
+    },
+    {
+     "t_h": 33.0,
+     "I": 0.5838,
+     "P": 0.4916,
+     "V": 0.3091,
+     "radius_um": 207.81
+    },
+    {
+     "t_h": 34.0,
+     "I": 0.5822,
+     "P": 0.4964,
+     "V": 0.2979,
+     "radius_um": 206.81
+    },
+    {
+     "t_h": 35.0,
+     "I": 0.5808,
+     "P": 0.5009,
+     "V": 0.2871,
+     "radius_um": 205.84
+    },
+    {
+     "t_h": 36.0,
+     "I": 0.5794,
+     "P": 0.5052,
+     "V": 0.2768,
+     "radius_um": 204.91
+    },
+    {
+     "t_h": 37.0,
+     "I": 0.5782,
+     "P": 0.5092,
+     "V": 0.2669,
+     "radius_um": 204.02
+    },
+    {
+     "t_h": 38.0,
+     "I": 0.577,
+     "P": 0.5129,
+     "V": 0.2573,
+     "radius_um": 203.16
+    },
+    {
+     "t_h": 39.0,
+     "I": 0.5759,
+     "P": 0.5164,
+     "V": 0.2481,
+     "radius_um": 202.33
+    },
+    {
+     "t_h": 40.0,
+     "I": 0.5748,
+     "P": 0.5197,
+     "V": 0.2392,
+     "radius_um": 201.53
+    },
+    {
+     "t_h": 41.0,
+     "I": 0.5739,
+     "P": 0.5228,
+     "V": 0.2307,
+     "radius_um": 200.77
+    },
+    {
+     "t_h": 42.0,
+     "I": 0.573,
+     "P": 0.5257,
+     "V": 0.2225,
+     "radius_um": 200.03
+    },
+    {
+     "t_h": 43.0,
+     "I": 0.5721,
+     "P": 0.5284,
+     "V": 0.2146,
+     "radius_um": 199.32
+    },
+    {
+     "t_h": 44.0,
+     "I": 0.5713,
+     "P": 0.5309,
+     "V": 0.207,
+     "radius_um": 198.63
+    },
+    {
+     "t_h": 45.0,
+     "I": 0.5706,
+     "P": 0.5333,
+     "V": 0.1997,
+     "radius_um": 197.97
+    },
+    {
+     "t_h": 46.0,
+     "I": 0.5699,
+     "P": 0.5355,
+     "V": 0.1926,
+     "radius_um": 197.33
+    },
+    {
+     "t_h": 47.0,
+     "I": 0.5692,
+     "P": 0.5376,
+     "V": 0.1858,
+     "radius_um": 196.72
+    },
+    {
+     "t_h": 48.0,
+     "I": 0.5686,
+     "P": 0.5396,
+     "V": 0.1792,
+     "radius_um": 196.13
+    },
+    {
+     "t_h": 49.0,
+     "I": 0.5681,
+     "P": 0.5415,
+     "V": 0.1729,
+     "radius_um": 195.56
+    },
+    {
+     "t_h": 50.0,
+     "I": 0.5675,
+     "P": 0.5432,
+     "V": 0.1668,
+     "radius_um": 195.01
+    },
+    {
+     "t_h": 51.0,
+     "I": 0.567,
+     "P": 0.5448,
+     "V": 0.161,
+     "radius_um": 194.49
+    },
+    {
+     "t_h": 52.0,
+     "I": 0.5666,
+     "P": 0.5464,
+     "V": 0.1553,
+     "radius_um": 193.98
+    },
+    {
+     "t_h": 53.0,
+     "I": 0.5661,
+     "P": 0.5478,
+     "V": 0.1498,
+     "radius_um": 193.49
+    },
+    {
+     "t_h": 54.0,
+     "I": 0.5657,
+     "P": 0.5492,
+     "V": 0.1446,
+     "radius_um": 193.01
+    },
+    {
+     "t_h": 55.0,
+     "I": 0.5653,
+     "P": 0.5504,
+     "V": 0.1395,
+     "radius_um": 192.55
+    },
+    {
+     "t_h": 56.0,
+     "I": 0.565,
+     "P": 0.5516,
+     "V": 0.1346,
+     "radius_um": 192.11
+    },
+    {
+     "t_h": 57.0,
+     "I": 0.5646,
+     "P": 0.5527,
+     "V": 0.1299,
+     "radius_um": 191.69
+    },
+    {
+     "t_h": 58.0,
+     "I": 0.5643,
+     "P": 0.5538,
+     "V": 0.1253,
+     "radius_um": 191.28
+    },
+    {
+     "t_h": 59.0,
+     "I": 0.564,
+     "P": 0.5548,
+     "V": 0.121,
+     "radius_um": 190.89
+    },
+    {
+     "t_h": 60.0,
+     "I": 0.5637,
+     "P": 0.5557,
+     "V": 0.1167,
+     "radius_um": 190.5
+    },
+    {
+     "t_h": 61.0,
+     "I": 0.5635,
+     "P": 0.5566,
+     "V": 0.1126,
+     "radius_um": 190.14
+    },
+    {
+     "t_h": 62.0,
+     "I": 0.5632,
+     "P": 0.5574,
+     "V": 0.1087,
+     "radius_um": 189.78
+    },
+    {
+     "t_h": 63.0,
+     "I": 0.563,
+     "P": 0.5582,
+     "V": 0.1049,
+     "radius_um": 189.44
+    },
+    {
+     "t_h": 64.0,
+     "I": 0.5628,
+     "P": 0.5589,
+     "V": 0.1012,
+     "radius_um": 189.11
+    },
+    {
+     "t_h": 65.0,
+     "I": 0.5626,
+     "P": 0.5596,
+     "V": 0.0977,
+     "radius_um": 188.79
+    },
+    {
+     "t_h": 66.0,
+     "I": 0.5624,
+     "P": 0.5602,
+     "V": 0.0943,
+     "radius_um": 188.49
+    },
+    {
+     "t_h": 67.0,
+     "I": 0.5622,
+     "P": 0.5608,
+     "V": 0.091,
+     "radius_um": 188.19
+    },
+    {
+     "t_h": 68.0,
+     "I": 0.5621,
+     "P": 0.5614,
+     "V": 0.0878,
+     "radius_um": 187.9
+    },
+    {
+     "t_h": 69.0,
+     "I": 0.5619,
+     "P": 0.5619,
+     "V": 0.0848,
+     "radius_um": 187.63
+    },
+    {
+     "t_h": 70.0,
+     "I": 0.5618,
+     "P": 0.5624,
+     "V": 0.0818,
+     "radius_um": 187.36
+    },
+    {
+     "t_h": 71.0,
+     "I": 0.5616,
+     "P": 0.5628,
+     "V": 0.079,
+     "radius_um": 187.11
+    },
+    {
+     "t_h": 72.0,
+     "I": 0.5615,
+     "P": 0.5633,
+     "V": 0.0762,
+     "radius_um": 186.86
+    }
+   ],
+   "ck": [
+    {
+     "t_h": 0.0,
+     "I": 0.0256,
+     "P": 0.0489,
+     "V": 0.9856,
+     "radius_um": 268.71
+    },
+    {
+     "t_h": 1.0,
+     "I": 0.0243,
+     "P": 0.0491,
+     "V": 0.984,
+     "radius_um": 268.56
+    },
+    {
+     "t_h": 2.0,
+     "I": 0.023,
+     "P": 0.0493,
+     "V": 0.9826,
+     "radius_um": 268.43
+    },
+    {
+     "t_h": 3.0,
+     "I": 0.0217,
+     "P": 0.0494,
+     "V": 0.9811,
+     "radius_um": 268.3
+    },
+    {
+     "t_h": 4.0,
+     "I": 0.0205,
+     "P": 0.0494,
+     "V": 0.9798,
+     "radius_um": 268.18
+    },
+    {
+     "t_h": 5.0,
+     "I": 0.0194,
+     "P": 0.0494,
+     "V": 0.9786,
+     "radius_um": 268.07
+    },
+    {
+     "t_h": 6.0,
+     "I": 0.0184,
+     "P": 0.0493,
+     "V": 0.9774,
+     "radius_um": 267.96
+    },
+    {
+     "t_h": 7.0,
+     "I": 0.0174,
+     "P": 0.0492,
+     "V": 0.9763,
+     "radius_um": 267.86
+    },
+    {
+     "t_h": 8.0,
+     "I": 0.0165,
+     "P": 0.049,
+     "V": 0.9752,
+     "radius_um": 267.77
+    },
+    {
+     "t_h": 9.0,
+     "I": 0.0156,
+     "P": 0.0488,
+     "V": 0.9742,
+     "radius_um": 267.68
+    },
+    {
+     "t_h": 10.0,
+     "I": 0.0147,
+     "P": 0.0485,
+     "V": 0.9733,
+     "radius_um": 267.59
+    },
+    {
+     "t_h": 11.0,
+     "I": 0.0139,
+     "P": 0.0482,
+     "V": 0.9724,
+     "radius_um": 267.51
+    },
+    {
+     "t_h": 12.0,
+     "I": 0.0132,
+     "P": 0.0479,
+     "V": 0.9715,
+     "radius_um": 267.44
+    },
+    {
+     "t_h": 13.0,
+     "I": 0.0125,
+     "P": 0.0476,
+     "V": 0.9707,
+     "radius_um": 267.36
+    },
+    {
+     "t_h": 14.0,
+     "I": 0.0118,
+     "P": 0.0472,
+     "V": 0.97,
+     "radius_um": 267.3
+    },
+    {
+     "t_h": 15.0,
+     "I": 0.0112,
+     "P": 0.0468,
+     "V": 0.9692,
+     "radius_um": 267.23
+    },
+    {
+     "t_h": 16.0,
+     "I": 0.0106,
+     "P": 0.0464,
+     "V": 0.9686,
+     "radius_um": 267.17
+    },
+    {
+     "t_h": 17.0,
+     "I": 0.01,
+     "P": 0.0459,
+     "V": 0.9679,
+     "radius_um": 267.11
+    },
+    {
+     "t_h": 18.0,
+     "I": 0.0095,
+     "P": 0.0455,
+     "V": 0.9673,
+     "radius_um": 267.06
+    },
+    {
+     "t_h": 19.0,
+     "I": 0.009,
+     "P": 0.045,
+     "V": 0.9668,
+     "radius_um": 267.01
+    },
+    {
+     "t_h": 20.0,
+     "I": 0.0085,
+     "P": 0.0445,
+     "V": 0.9662,
+     "radius_um": 266.96
+    },
+    {
+     "t_h": 21.0,
+     "I": 0.008,
+     "P": 0.044,
+     "V": 0.9657,
+     "radius_um": 266.91
+    },
+    {
+     "t_h": 22.0,
+     "I": 0.0076,
+     "P": 0.0435,
+     "V": 0.9652,
+     "radius_um": 266.87
+    },
+    {
+     "t_h": 23.0,
+     "I": 0.0072,
+     "P": 0.043,
+     "V": 0.9648,
+     "radius_um": 266.83
+    },
+    {
+     "t_h": 24.0,
+     "I": 0.0068,
+     "P": 0.0425,
+     "V": 0.9643,
+     "radius_um": 266.79
+    },
+    {
+     "t_h": 25.0,
+     "I": 0.0065,
+     "P": 0.0419,
+     "V": 0.9639,
+     "radius_um": 266.75
+    },
+    {
+     "t_h": 26.0,
+     "I": 0.0061,
+     "P": 0.0414,
+     "V": 0.9635,
+     "radius_um": 266.72
+    },
+    {
+     "t_h": 27.0,
+     "I": 0.0058,
+     "P": 0.0408,
+     "V": 0.9632,
+     "radius_um": 266.68
+    },
+    {
+     "t_h": 28.0,
+     "I": 0.0055,
+     "P": 0.0403,
+     "V": 0.9628,
+     "radius_um": 266.65
+    },
+    {
+     "t_h": 29.0,
+     "I": 0.0052,
+     "P": 0.0397,
+     "V": 0.9625,
+     "radius_um": 266.62
+    },
+    {
+     "t_h": 30.0,
+     "I": 0.0049,
+     "P": 0.0392,
+     "V": 0.9622,
+     "radius_um": 266.6
+    },
+    {
+     "t_h": 31.0,
+     "I": 0.0047,
+     "P": 0.0386,
+     "V": 0.9619,
+     "radius_um": 266.57
+    },
+    {
+     "t_h": 32.0,
+     "I": 0.0044,
+     "P": 0.0381,
+     "V": 0.9616,
+     "radius_um": 266.54
+    },
+    {
+     "t_h": 33.0,
+     "I": 0.0042,
+     "P": 0.0375,
+     "V": 0.9613,
+     "radius_um": 266.52
+    },
+    {
+     "t_h": 34.0,
+     "I": 0.004,
+     "P": 0.0369,
+     "V": 0.9611,
+     "radius_um": 266.5
+    },
+    {
+     "t_h": 35.0,
+     "I": 0.0038,
+     "P": 0.0364,
+     "V": 0.9608,
+     "radius_um": 266.48
+    },
+    {
+     "t_h": 36.0,
+     "I": 0.0036,
+     "P": 0.0358,
+     "V": 0.9606,
+     "radius_um": 266.46
+    },
+    {
+     "t_h": 37.0,
+     "I": 0.0034,
+     "P": 0.0353,
+     "V": 0.9604,
+     "radius_um": 266.44
+    },
+    {
+     "t_h": 38.0,
+     "I": 0.0032,
+     "P": 0.0347,
+     "V": 0.9602,
+     "radius_um": 266.42
+    },
+    {
+     "t_h": 39.0,
+     "I": 0.003,
+     "P": 0.0342,
+     "V": 0.96,
+     "radius_um": 266.4
+    },
+    {
+     "t_h": 40.0,
+     "I": 0.0029,
+     "P": 0.0336,
+     "V": 0.9598,
+     "radius_um": 266.38
+    },
+    {
+     "t_h": 41.0,
+     "I": 0.0027,
+     "P": 0.0331,
+     "V": 0.9597,
+     "radius_um": 266.37
+    },
+    {
+     "t_h": 42.0,
+     "I": 0.0026,
+     "P": 0.0325,
+     "V": 0.9595,
+     "radius_um": 266.35
+    },
+    {
+     "t_h": 43.0,
+     "I": 0.0025,
+     "P": 0.032,
+     "V": 0.9593,
+     "radius_um": 266.34
+    },
+    {
+     "t_h": 44.0,
+     "I": 0.0023,
+     "P": 0.0315,
+     "V": 0.9592,
+     "radius_um": 266.33
+    },
+    {
+     "t_h": 45.0,
+     "I": 0.0022,
+     "P": 0.0309,
+     "V": 0.9591,
+     "radius_um": 266.31
+    },
+    {
+     "t_h": 46.0,
+     "I": 0.0021,
+     "P": 0.0304,
+     "V": 0.9589,
+     "radius_um": 266.3
+    },
+    {
+     "t_h": 47.0,
+     "I": 0.002,
+     "P": 0.0299,
+     "V": 0.9588,
+     "radius_um": 266.29
+    },
+    {
+     "t_h": 48.0,
+     "I": 0.0019,
+     "P": 0.0294,
+     "V": 0.9587,
+     "radius_um": 266.28
+    },
+    {
+     "t_h": 49.0,
+     "I": 0.0018,
+     "P": 0.0289,
+     "V": 0.9586,
+     "radius_um": 266.27
+    },
+    {
+     "t_h": 50.0,
+     "I": 0.0017,
+     "P": 0.0284,
+     "V": 0.9585,
+     "radius_um": 266.26
+    },
+    {
+     "t_h": 51.0,
+     "I": 0.0016,
+     "P": 0.0279,
+     "V": 0.9584,
+     "radius_um": 266.25
+    },
+    {
+     "t_h": 52.0,
+     "I": 0.0015,
+     "P": 0.0274,
+     "V": 0.9583,
+     "radius_um": 266.24
+    },
+    {
+     "t_h": 53.0,
+     "I": 0.0014,
+     "P": 0.0269,
+     "V": 0.9582,
+     "radius_um": 266.24
+    },
+    {
+     "t_h": 54.0,
+     "I": 0.0014,
+     "P": 0.0264,
+     "V": 0.9581,
+     "radius_um": 266.23
+    },
+    {
+     "t_h": 55.0,
+     "I": 0.0013,
+     "P": 0.026,
+     "V": 0.958,
+     "radius_um": 266.22
+    },
+    {
+     "t_h": 56.0,
+     "I": 0.0012,
+     "P": 0.0255,
+     "V": 0.9579,
+     "radius_um": 266.21
+    },
+    {
+     "t_h": 57.0,
+     "I": 0.0012,
+     "P": 0.025,
+     "V": 0.9578,
+     "radius_um": 266.21
+    },
+    {
+     "t_h": 58.0,
+     "I": 0.0011,
+     "P": 0.0246,
+     "V": 0.9578,
+     "radius_um": 266.2
+    },
+    {
+     "t_h": 59.0,
+     "I": 0.0011,
+     "P": 0.0241,
+     "V": 0.9577,
+     "radius_um": 266.19
+    },
+    {
+     "t_h": 60.0,
+     "I": 0.001,
+     "P": 0.0237,
+     "V": 0.9576,
+     "radius_um": 266.19
+    },
+    {
+     "t_h": 61.0,
+     "I": 0.001,
+     "P": 0.0233,
+     "V": 0.9576,
+     "radius_um": 266.18
+    },
+    {
+     "t_h": 62.0,
+     "I": 0.0009,
+     "P": 0.0228,
+     "V": 0.9575,
+     "radius_um": 266.18
+    },
+    {
+     "t_h": 63.0,
+     "I": 0.0009,
+     "P": 0.0224,
+     "V": 0.9575,
+     "radius_um": 266.17
+    },
+    {
+     "t_h": 64.0,
+     "I": 0.0008,
+     "P": 0.022,
+     "V": 0.9574,
+     "radius_um": 266.17
+    },
+    {
+     "t_h": 65.0,
+     "I": 0.0008,
+     "P": 0.0216,
+     "V": 0.9574,
+     "radius_um": 266.16
+    },
+    {
+     "t_h": 66.0,
+     "I": 0.0007,
+     "P": 0.0212,
+     "V": 0.9573,
+     "radius_um": 266.16
+    },
+    {
+     "t_h": 67.0,
+     "I": 0.0007,
+     "P": 0.0208,
+     "V": 0.9573,
+     "radius_um": 266.16
+    },
+    {
+     "t_h": 68.0,
+     "I": 0.0007,
+     "P": 0.0204,
+     "V": 0.9572,
+     "radius_um": 266.15
+    },
+    {
+     "t_h": 69.0,
+     "I": 0.0006,
+     "P": 0.02,
+     "V": 0.9572,
+     "radius_um": 266.15
+    },
+    {
+     "t_h": 70.0,
+     "I": 0.0006,
+     "P": 0.0197,
+     "V": 0.9572,
+     "radius_um": 266.15
+    },
+    {
+     "t_h": 71.0,
+     "I": 0.0006,
+     "P": 0.0193,
+     "V": 0.9571,
+     "radius_um": 266.14
+    },
+    {
+     "t_h": 72.0,
+     "I": 0.0005,
+     "P": 0.0189,
+     "V": 0.9571,
+     "radius_um": 266.14
+    }
+   ]
+  },
+  "sigma_um": 2.4868461964265425,
+  "true_radius_um": {
+   "cr": 204.05,
+   "cc": 186.86,
+   "ck": 266.14
+  },
+  "observed_radius_um": {
+   "cr": 201.55,
+   "cc": 186.79,
+   "ck": 267.6
+  },
+  "effect_um": 14.76,
+  "predicted": {
+   "M1_graded": {
+    "effect_um": 8.511554506841351,
+    "effect_sd_um": 11.35673274292009
+   },
+   "M2_threshold": {
+    "effect_um": 24.997958696802904,
+    "effect_sd_um": 6.252347178286532
+   },
+   "M3_protective": {
+    "effect_um": 25.35813912830903,
+    "effect_sd_um": 6.501913095362415
+   }
+  },
+  "prior": {
+   "M1_graded": 0.3333333333333333,
+   "M2_threshold": 0.3333333333333333,
+   "M3_protective": 0.3333333333333333
+  },
+  "posterior": {
+   "M1_graded": 0.6778,
+   "M2_threshold": 0.1522,
+   "M3_protective": 0.1699
+  },
+  "entropy_before_bit": 1.585,
+  "entropy_after_bit": 1.2282,
+  "information_gain_bit": 0.3568,
+  "expected_gain_bit": 0.5439,
+  "required_bit": 0.5,
+  "control_baseline_um": 268.71
+ },
+ "mapping": {
+  "vessels": {
+   "?cr": {
+    "role": "rescued",
+    "lab_var": "?r",
+    "well": "A01",
+    "plate": "P17"
+   },
+   "?cc": {
+    "role": "comparator",
+    "lab_var": "?c",
+    "well": "A02",
+    "plate": "P17"
+   },
+   "?ck": {
+    "role": "control",
+    "lab_var": "?k",
+    "well": "A05",
+    "plate": "P17"
+   }
+  },
+  "rows": [
+   {
+    "culture_step": "?c1",
+    "type": "challenging",
+    "lab_step": "?x1",
+    "lab_type": "intervening",
+    "lab_text": "(an action ?x1 (type intervening) (into ?r) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))",
+    "ambiguous": false,
+    "process": "substance-transfer",
+    "device": [
+     "l12"
+    ],
+    "slot": [
+     "stations_l12_liquidhandler_plate_nest"
+    ]
+   },
+   {
+    "culture_step": "?c2",
+    "type": "challenging",
+    "lab_step": "?x2",
+    "lab_type": "intervening",
+    "lab_text": "(an action ?x2 (type intervening) (into ?c) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))",
+    "ambiguous": false,
+    "process": "substance-transfer",
+    "device": [
+     "l12"
+    ],
+    "slot": [
+     "stations_l12_liquidhandler_plate_nest"
+    ]
+   },
+   {
+    "culture_step": "?g1",
+    "type": "growing",
+    "lab_step": "?w1",
+    "lab_type": "incubating",
+    "lab_text": "(an action ?w1 (type incubating) (plate ?p) (in ?env) (from (culture-time 0 h)) (to (culture-time 48 h)) (requires (the well ?r (received ?ch)) (the well ?c (received ?ch))))",
+    "ambiguous": false,
+    "process": "incubation",
+    "device": [
+     "l10"
+    ],
+    "slot": [
+     "stations_l10_incubator_transfer_station"
+    ]
+   },
+   {
+    "culture_step": "?c3",
+    "type": "rescuing",
+    "lab_step": "?x3",
+    "lab_type": "intervening",
+    "lab_text": "(an action ?x3 (type intervening) (into ?r) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h)))",
+    "ambiguous": false,
+    "process": "substance-transfer",
+    "device": [
+     "l12"
+    ],
+    "slot": [
+     "stations_l12_liquidhandler_plate_nest"
+    ]
+   },
+   {
+    "culture_step": "?g2",
+    "type": "growing",
+    "lab_step": "?w2",
+    "lab_type": "incubating",
+    "lab_text": "(an action ?w2 (type incubating) (plate ?p) (in ?env) (from (culture-time 48 h)) (to (culture-time 72 h)) (requires (the well ?r (received ?rs))))",
+    "ambiguous": false,
+    "process": "incubation",
+    "device": [
+     "l10"
+    ],
+    "slot": [
+     "stations_l10_incubator_transfer_station"
+    ]
+   },
+   {
+    "culture_step": "?o1",
+    "type": "observing",
+    "lab_step": "?m1",
+    "lab_type": "measuring",
+    "lab_text": "(an action ?m1 (type measuring) (of ?r) (readout organoid-radius) (at (culture-time 72 h)))",
+    "ambiguous": false,
+    "process": "imaging",
+    "device": [
+     "l17"
+    ],
+    "slot": [
+     "stations_l17_brightfieldimager_plate_load_frame"
+    ]
+   },
+   {
+    "culture_step": "?o2",
+    "type": "observing",
+    "lab_step": "?m2",
+    "lab_type": "measuring",
+    "lab_text": "(an action ?m2 (type measuring) (of ?c) (readout organoid-radius) (at (culture-time 72 h)))",
+    "ambiguous": false,
+    "process": "imaging",
+    "device": [
+     "l17"
+    ],
+    "slot": [
+     "stations_l17_brightfieldimager_plate_load_frame"
+    ]
+   },
+   {
+    "culture_step": "?o3",
+    "type": "observing",
+    "lab_step": "?m3",
+    "lab_type": "measuring",
+    "lab_text": "(an action ?m3 (type measuring) (of ?k) (readout organoid-radius) (at (culture-time 72 h)))",
+    "ambiguous": false,
+    "process": "imaging",
+    "device": [
+     "l17"
+    ],
+    "slot": [
+     "stations_l17_brightfieldimager_plate_load_frame"
+    ]
+   },
+   {
+    "culture_step": "?i1",
+    "type": "interpreting",
+    "lab_step": null,
+    "lab_type": null,
+    "realised_by": "culture SDT image analysis (twin/culture/optics.analyse): radius from the calibrated pixel size",
+    "device": null
+   },
+   {
+    "culture_step": "?i2",
+    "type": "interpreting",
+    "lab_step": null,
+    "lab_type": null,
+    "realised_by": "culture SDT image analysis (twin/culture/optics.analyse): radius from the calibrated pixel size",
+    "device": null
+   },
+   {
+    "culture_step": "?i3",
+    "type": "interpreting",
+    "lab_step": null,
+    "lab_type": null,
+    "realised_by": "culture SDT image analysis (twin/culture/optics.analyse): radius from the calibrated pixel size",
+    "device": null
+   },
+   {
+    "culture_step": "?a1",
+    "type": "analysing",
+    "lab_step": null,
+    "lab_type": null,
+    "realised_by": "posterior over M1-M3 (twin/culture/eig.posterior_over_models) on the rescued - comparator radius",
+    "device": null
+   }
+  ],
+  "projected_order": [
+   [
+    "?w1",
+    "?x3"
+   ],
+   [
+    "?w2",
+    "?m1"
+   ],
+   [
+    "?w2",
+    "?m2"
+   ],
+   [
+    "?w2",
+    "?m3"
+   ],
+   [
+    "?x1",
+    "?w1"
+   ],
+   [
+    "?x2",
+    "?w1"
+   ],
+   [
+    "?x3",
+    "?w2"
+   ]
+  ],
+  "lab_order": [
+   [
+    "?w1",
+    "?x3"
+   ],
+   [
+    "?w2",
+    "?m1"
+   ],
+   [
+    "?w2",
+    "?m2"
+   ],
+   [
+    "?w2",
+    "?m3"
+   ],
+   [
+    "?x1",
+    "?w1"
+   ],
+   [
+    "?x2",
+    "?w1"
+   ],
+   [
+    "?x3",
+    "?w2"
+   ]
+  ],
+  "order_preserved": true
+ },
+ "feasibility": {
+  "sessions": [
+   {
+    "session": "s0",
+    "t_h": 0,
+    "device": "l12",
+    "material": [
+     [
+      "dose",
+      "a01",
+      "challenge",
+      85
+     ],
+     [
+      "dose",
+      "a02",
+      "challenge",
+      85
+     ]
+    ],
+    "legs": [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l12"
+     ],
+     [
+      "r02",
+      "l12",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    "tending": {
+     "l10": [
+      "verify_identity",
+      "present",
+      "stow",
+      "present",
+      "wait_environment",
+      "store"
+     ],
+     "l12": [
+      "tip_pick",
+      "aspirate",
+      "dispense",
+      "tip_eject",
+      "tip_pick",
+      "aspirate",
+      "dispense",
+      "tip_eject"
+     ]
+    },
+    "checks": [
+     {
+      "kind": "transport",
+      "what": "R01 carries the plate L10 \u2192 HANDOVERNEST",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r01,l10), serves(r01,handovernest), holds_plate(l10), holds_plate(handovernest)",
+       "layout reach: L10 {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.602}; HANDOVERNEST {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.539}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 carries the plate HANDOVERNEST \u2192 L12",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r02,handovernest), serves(r02,l12), holds_plate(handovernest), holds_plate(l12)",
+       "layout reach: HANDOVERNEST {\"ok\": true, \"note\": \"rail-side handover (layout P1)\"}; L12 {\"ok\": true, \"rail_m\": 0.8, \"sigma_min\": 0.245, \"margin_deg\": 54.6}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 carries the plate L12 \u2192 HANDOVERNEST",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r02,l12), serves(r02,handovernest), holds_plate(l12), holds_plate(handovernest)",
+       "layout reach: L12 {\"ok\": true, \"rail_m\": 0.8, \"sigma_min\": 0.245, \"margin_deg\": 54.6}; HANDOVERNEST {\"ok\": true, \"note\": \"rail-side handover (layout P1)\"}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R01 carries the plate HANDOVERNEST \u2192 L10",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r01,handovernest), serves(r01,l10), holds_plate(handovernest), holds_plate(l10)",
+       "layout reach: HANDOVERNEST {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.539}; L10 {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.602}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 couples tool T01 for the plate (each trip; freshness rule F2)",
+      "ok": true,
+      "evidence": [
+       "knowledge: requires_tool(r02,t01), tool_pose(t01,tooling_automatictoolchanger_dock_t01)",
+       "layout reach: dock_T01 {\"ok\": true, \"rail_m\": 0.85, \"sigma_min\": 0.208, \"margin_deg\": 44.2}",
+       "tool_compatible: T01 does not contact the culture (contacts_culture: t03, t04 only)"
+      ]
+     },
+     {
+      "kind": "tending",
+      "what": "L10: verify_identity \u2192 present \u2192 stow \u2192 present \u2192 wait_environment \u2192 store",
+      "ok": true,
+      "conditional": [],
+      "evidence": [
+       "capabilities(l10): incubate_plate, maintain_environment, store_plate, release_plate, report_environment, raise_excursion_alarm",
+       "contract incubate: plate identity verified \u2190 verify_identity at L10 in the same trip (barcode, observed); incubator available \u2190 L10 transfer station free (single plate); environment valid \u2190 wait_environment at L10 before store (monitored: temperature, CO2, humidity, gate); slot reserved \u2190 L10 slot 2 (inventory), held across the experiment"
+      ]
+     },
+     {
+      "kind": "tending",
+      "what": "L12: tip_pick \u2192 aspirate \u2192 dispense \u2192 tip_eject \u2192 tip_pick \u2192 aspirate \u2192 dispense \u2192 tip_eject",
+      "ok": true,
+      "conditional": [
+       "device calibrated"
+      ],
+      "evidence": [
+       "capabilities(l12): pick_tip, detect_liquid_surface, aspirate, dispense, mix, dose_well, eject_tip",
+       "contract dose_well: plate ID verified \u2190 verify_identity at L10 in the same trip (barcode, observed); well bound \u2190 well_pose(<well>,pipette, \u2026/Interfaces/pipette_target_frame) (SDT); reagent lot verified \u2190 registry reagents (lot SIM-LOT-A/B) + reagent_pose(\u2026, rack_1_pos_1/2); tip attached and compatible \u2190 tip_pick from tip_rack(l12, rack_1) before aspirate; device calibrated \u2190 ASSUMED: no L12 calibration record in the twin"
+      ]
+     },
+     {
+      "kind": "time",
+      "what": "trip outside the incubator \u2264 600 s (planner margin 20 %: \u2264 500 s)",
+      "ok": true,
+      "evidence": [
+       "plan (clingo, z3-validated): 298.9 s",
+       "simulation (symbolic run): 298.9 s",
+       "physics (Isaac twin): 305.7 s"
+      ]
+     }
+    ],
+    "ok": true
+   },
+   {
+    "session": "s1",
+    "t_h": 48,
+    "device": "l12",
+    "material": [
+     [
+      "dose",
+      "a01",
+      "rescue",
+      70
+     ]
+    ],
+    "legs": [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l12"
+     ],
+     [
+      "r02",
+      "l12",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    "tending": {
+     "l10": [
+      "verify_identity",
+      "present",
+      "stow",
+      "present",
+      "wait_environment",
+      "store"
+     ],
+     "l12": [
+      "tip_pick",
+      "aspirate",
+      "dispense",
+      "tip_eject"
+     ]
+    },
+    "checks": [
+     {
+      "kind": "transport",
+      "what": "R01 carries the plate L10 \u2192 HANDOVERNEST",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r01,l10), serves(r01,handovernest), holds_plate(l10), holds_plate(handovernest)",
+       "layout reach: L10 {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.602}; HANDOVERNEST {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.539}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 carries the plate HANDOVERNEST \u2192 L12",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r02,handovernest), serves(r02,l12), holds_plate(handovernest), holds_plate(l12)",
+       "layout reach: HANDOVERNEST {\"ok\": true, \"note\": \"rail-side handover (layout P1)\"}; L12 {\"ok\": true, \"rail_m\": 0.8, \"sigma_min\": 0.245, \"margin_deg\": 54.6}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 carries the plate L12 \u2192 HANDOVERNEST",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r02,l12), serves(r02,handovernest), holds_plate(l12), holds_plate(handovernest)",
+       "layout reach: L12 {\"ok\": true, \"rail_m\": 0.8, \"sigma_min\": 0.245, \"margin_deg\": 54.6}; HANDOVERNEST {\"ok\": true, \"note\": \"rail-side handover (layout P1)\"}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R01 carries the plate HANDOVERNEST \u2192 L10",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r01,handovernest), serves(r01,l10), holds_plate(handovernest), holds_plate(l10)",
+       "layout reach: HANDOVERNEST {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.539}; L10 {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.602}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 couples tool T01 for the plate (each trip; freshness rule F2)",
+      "ok": true,
+      "evidence": [
+       "knowledge: requires_tool(r02,t01), tool_pose(t01,tooling_automatictoolchanger_dock_t01)",
+       "layout reach: dock_T01 {\"ok\": true, \"rail_m\": 0.85, \"sigma_min\": 0.208, \"margin_deg\": 44.2}",
+       "tool_compatible: T01 does not contact the culture (contacts_culture: t03, t04 only)"
+      ]
+     },
+     {
+      "kind": "tending",
+      "what": "L10: verify_identity \u2192 present \u2192 stow \u2192 present \u2192 wait_environment \u2192 store",
+      "ok": true,
+      "conditional": [],
+      "evidence": [
+       "capabilities(l10): incubate_plate, maintain_environment, store_plate, release_plate, report_environment, raise_excursion_alarm",
+       "contract incubate: plate identity verified \u2190 verify_identity at L10 in the same trip (barcode, observed); incubator available \u2190 L10 transfer station free (single plate); environment valid \u2190 wait_environment at L10 before store (monitored: temperature, CO2, humidity, gate); slot reserved \u2190 L10 slot 2 (inventory), held across the experiment"
+      ]
+     },
+     {
+      "kind": "tending",
+      "what": "L12: tip_pick \u2192 aspirate \u2192 dispense \u2192 tip_eject",
+      "ok": true,
+      "conditional": [
+       "device calibrated"
+      ],
+      "evidence": [
+       "capabilities(l12): pick_tip, detect_liquid_surface, aspirate, dispense, mix, dose_well, eject_tip",
+       "contract dose_well: plate ID verified \u2190 verify_identity at L10 in the same trip (barcode, observed); well bound \u2190 well_pose(<well>,pipette, \u2026/Interfaces/pipette_target_frame) (SDT); reagent lot verified \u2190 registry reagents (lot SIM-LOT-A/B) + reagent_pose(\u2026, rack_1_pos_1/2); tip attached and compatible \u2190 tip_pick from tip_rack(l12, rack_1) before aspirate; device calibrated \u2190 ASSUMED: no L12 calibration record in the twin"
+      ]
+     },
+     {
+      "kind": "time",
+      "what": "trip outside the incubator \u2264 600 s (planner margin 20 %: \u2264 500 s)",
+      "ok": true,
+      "evidence": [
+       "plan (clingo, z3-validated): 263.3 s",
+       "simulation (symbolic run): 263.3 s",
+       "physics (Isaac twin): 230.1 s"
+      ]
+     }
+    ],
+    "ok": true
+   },
+   {
+    "session": "s2",
+    "t_h": 72,
+    "device": "l17",
+    "material": [
+     [
+      "image",
+      "a01"
+     ],
+     [
+      "image",
+      "a02"
+     ],
+     [
+      "image",
+      "a05"
+     ]
+    ],
+    "legs": [
+     [
+      "r01",
+      "l10",
+      "handovernest"
+     ],
+     [
+      "r02",
+      "handovernest",
+      "l17"
+     ],
+     [
+      "r02",
+      "l17",
+      "handovernest"
+     ],
+     [
+      "r01",
+      "handovernest",
+      "l10"
+     ]
+    ],
+    "tending": {
+     "l10": [
+      "verify_identity",
+      "present",
+      "stow",
+      "present",
+      "wait_environment",
+      "store"
+     ],
+     "l17": [
+      "present",
+      "load",
+      "image_well",
+      "present",
+      "stow"
+     ]
+    },
+    "checks": [
+     {
+      "kind": "transport",
+      "what": "R01 carries the plate L10 \u2192 HANDOVERNEST",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r01,l10), serves(r01,handovernest), holds_plate(l10), holds_plate(handovernest)",
+       "layout reach: L10 {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.602}; HANDOVERNEST {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.539}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 carries the plate HANDOVERNEST \u2192 L17",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r02,handovernest), serves(r02,l17), holds_plate(handovernest), holds_plate(l17)",
+       "layout reach: HANDOVERNEST {\"ok\": true, \"note\": \"rail-side handover (layout P1)\"}; L17 {\"ok\": true, \"rail_m\": 2.3, \"sigma_min\": 0.238, \"margin_deg\": 54.6}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 carries the plate L17 \u2192 HANDOVERNEST",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r02,l17), serves(r02,handovernest), holds_plate(l17), holds_plate(handovernest)",
+       "layout reach: L17 {\"ok\": true, \"rail_m\": 2.3, \"sigma_min\": 0.238, \"margin_deg\": 54.6}; HANDOVERNEST {\"ok\": true, \"note\": \"rail-side handover (layout P1)\"}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R01 carries the plate HANDOVERNEST \u2192 L10",
+      "ok": true,
+      "evidence": [
+       "knowledge: serves(r01,handovernest), serves(r01,l10), holds_plate(handovernest), holds_plate(l10)",
+       "layout reach: HANDOVERNEST {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.539}; L10 {\"serviceable\": true, \"yaw_coverage\": \"3/5\", \"dist\": 0.602}",
+       "SDT: both seats are PlateSeatPose (SBS plate)"
+      ]
+     },
+     {
+      "kind": "transport",
+      "what": "R02 couples tool T01 for the plate (each trip; freshness rule F2)",
+      "ok": true,
+      "evidence": [
+       "knowledge: requires_tool(r02,t01), tool_pose(t01,tooling_automatictoolchanger_dock_t01)",
+       "layout reach: dock_T01 {\"ok\": true, \"rail_m\": 0.85, \"sigma_min\": 0.208, \"margin_deg\": 44.2}",
+       "tool_compatible: T01 does not contact the culture (contacts_culture: t03, t04 only)"
+      ]
+     },
+     {
+      "kind": "tending",
+      "what": "L10: verify_identity \u2192 present \u2192 stow \u2192 present \u2192 wait_environment \u2192 store",
+      "ok": true,
+      "conditional": [],
+      "evidence": [
+       "capabilities(l10): incubate_plate, maintain_environment, store_plate, release_plate, report_environment, raise_excursion_alarm",
+       "contract incubate: plate identity verified \u2190 verify_identity at L10 in the same trip (barcode, observed); incubator available \u2190 L10 transfer station free (single plate); environment valid \u2190 wait_environment at L10 before store (monitored: temperature, CO2, humidity, gate); slot reserved \u2190 L10 slot 2 (inventory), held across the experiment"
+      ]
+     },
+     {
+      "kind": "tending",
+      "what": "L17: present \u2192 load \u2192 image_well \u2192 present \u2192 stow",
+      "ok": true,
+      "conditional": [
+       "device healthy"
+      ],
+      "evidence": [
+       "capabilities(l17): load_plate, autofocus, image_well, image_plate_region, compute_focus_quality, export_raw_image",
+       "contract image_well: plate verified and seated \u2190 verify_identity at L10; L17 seat sensors (partial: no lateral shift, F17); well coordinate bound \u2190 well_pose(<well>,imaging, \u2026/Interfaces/imaging_target_frame) (SDT); calibration valid \u2190 calibrated(l17) observed; else a QC calibration on L21 is inserted (establishable); device healthy \u2190 ASSUMED: no health monitor beyond the device's own monitors"
+      ]
+     },
+     {
+      "kind": "time",
+      "what": "trip outside the incubator \u2264 600 s (planner margin 20 %: \u2264 500 s)",
+      "ok": true,
+      "evidence": [
+       "plan (clingo, z3-validated): 256.4 s",
+       "simulation (symbolic run): 256.4 s",
+       "physics (Isaac twin): 207.3 s"
+      ]
+     }
+    ],
+    "ok": true
+   }
+  ],
+  "precision": [
+   {
+    "session": "s0",
+    "what": "dispense",
+    "well": "A01",
+    "offset_s": 156.1,
+    "culture_time_h": 0
+   },
+   {
+    "session": "s0",
+    "what": "dispense",
+    "well": "A02",
+    "offset_s": 191.7,
+    "culture_time_h": 0
+   },
+   {
+    "session": "s1",
+    "what": "dispense",
+    "well": "A01",
+    "offset_s": 156.1,
+    "culture_time_h": 48
+   },
+   {
+    "session": "s2",
+    "what": "image_well",
+    "well": "A01",
+    "offset_s": 140.3,
+    "culture_time_h": 72
+   },
+   {
+    "session": "s2",
+    "what": "image_well",
+    "well": "A02",
+    "offset_s": 142.4,
+    "culture_time_h": 72
+   },
+   {
+    "session": "s2",
+    "what": "image_well",
+    "well": "A05",
+    "offset_s": 144.5,
+    "culture_time_h": 72
+   }
+  ],
+  "open": [
+   "reagent stock and tip inventory: no inventory model in the twin (3 tips and 51 uL challenge / 14 uL rescue are needed; ILLUSTRATIVE)",
+   "L12 calibration: no calibration record; the dose_well precondition 'device calibrated' is assumed",
+   "L12 well registration is only partly detected (seating, not dispense position): the dose's trust gap (process model)",
+   "L17 lateral seating is only partly detected (F17); the prescribed re-seat repair is not yet in the kernel",
+   "real device timing: the durations are the twin's controllers', not vendor data (no manufacturer CAD or specs acquired)",
+   "humidity and CO2 are monitored by L10's contract but not simulated by the twin's incubator model"
+  ],
+  "plan_validation": {
+   "planner": "clingo optimal plan plan_g050 (151 steps)",
+   "z3": "make e2m: 7 plans z3-validated, PASS",
+   "kernel": "projection succeeded before each trip (projection_succeeds ENFORCED)",
+   "simulation": "symbolic run executed, R/V ok",
+   "physics": "Isaac run executed, R/V ok, 10/10 CQ"
+  },
+  "ok": true
+ },
+ "lab_steps": [
+  {
+   "var": "?x1",
+   "type": "intervening",
+   "text": "(an action ?x1 (type intervening) (into ?r) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))"
+  },
+  {
+   "var": "?x2",
+   "type": "intervening",
+   "text": "(an action ?x2 (type intervening) (into ?c) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))"
+  },
+  {
+   "var": "?w1",
+   "type": "incubating",
+   "text": "(an action ?w1 (type incubating) (plate ?p) (in ?env) (from (culture-time 0 h)) (to (culture-time 48 h)) (requires (the well ?r (received ?ch)) (the well ?c (received ?ch))))"
+  },
+  {
+   "var": "?x3",
+   "type": "intervening",
+   "text": "(an action ?x3 (type intervening) (into ?r) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h)))"
+  },
+  {
+   "var": "?w2",
+   "type": "incubating",
+   "text": "(an action ?w2 (type incubating) (plate ?p) (in ?env) (from (culture-time 48 h)) (to (culture-time 72 h)) (requires (the well ?r (received ?rs))))"
+  },
+  {
+   "var": "?m1",
+   "type": "measuring",
+   "text": "(an action ?m1 (type measuring) (of ?r) (readout organoid-radius) (at (culture-time 72 h)))"
+  },
+  {
+   "var": "?m2",
+   "type": "measuring",
+   "text": "(an action ?m2 (type measuring) (of ?c) (readout organoid-radius) (at (culture-time 72 h)))"
+  },
+  {
+   "var": "?m3",
+   "type": "measuring",
+   "text": "(an action ?m3 (type measuring) (of ?k) (readout organoid-radius) (at (culture-time 72 h)))"
+  }
+ ]
+}

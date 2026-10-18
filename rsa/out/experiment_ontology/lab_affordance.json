@@ -1,0 +1,565 @@
+{
+ "labs": {
+  "cell01": {
+   "name": "cell01",
+   "label": "Cell 01 (automated treatment-and-imaging module)",
+   "devices": {
+    "h4": {
+     "name": "H4 Quarantine Station",
+     "capabilities": [
+      "isolate_sample",
+      "retain_invalid_run",
+      "prevent_reentry",
+      "release_by_authorization"
+     ]
+    },
+    "l09": {
+     "name": "L09 Automated Plate Hotel",
+     "capabilities": [
+      "buffer_plate",
+      "store_plate",
+      "retrieve_plate",
+      "report_inventory",
+      "reserve_slot",
+      "verify_identity"
+     ]
+    },
+    "l10": {
+     "name": "L10 Automated CO2 Incubator",
+     "capabilities": [
+      "incubate_plate",
+      "maintain_environment",
+      "store_plate",
+      "release_plate",
+      "report_environment",
+      "raise_excursion_alarm"
+     ]
+    },
+    "l12": {
+     "name": "L12 Automated Liquid-Handling Station",
+     "capabilities": [
+      "pick_tip",
+      "detect_liquid_surface",
+      "aspirate",
+      "dispense",
+      "mix",
+      "dose_well",
+      "eject_tip"
+     ]
+    },
+    "l17": {
+     "name": "L17 Bright-Field Imaging Station",
+     "capabilities": [
+      "load_plate",
+      "autofocus",
+      "image_well",
+      "image_plate_region",
+      "compute_focus_quality",
+      "export_raw_image"
+     ]
+    },
+    "l21": {
+     "name": "L21 Quality-Control and Calibration Station",
+     "capabilities": [
+      "run_reference_measurement",
+      "validate_imager",
+      "validate_barcode",
+      "validate_tool_frame"
+     ]
+    },
+    "r01": {
+     "name": "R01 Fixed Precision Plate-Handling Arm",
+     "capabilities": [
+      "pick_sbs_plate",
+      "place_sbs_plate",
+      "handover_plate",
+      "reseat_plate",
+      "inspect_grasp",
+      "move_plate_between_local_stations"
+     ]
+    },
+    "r02": {
+     "name": "R02 Rail-Mounted Flexible Manipulation System",
+     "capabilities": [
+      "translate_workspace",
+      "pick_plate",
+      "pick_tube",
+      "handle_rack",
+      "press_button",
+      "turn_selector",
+      "open_access_door",
+      "change_tool",
+      "inspect_station"
+     ]
+    },
+    "r03": {
+     "name": "R03 Clean Sample AMR with H2 Deterministic Dock",
+     "capabilities": [
+      "navigate",
+      "transport_clean_sample",
+      "dock_precisely",
+      "handover_carrier",
+      "opportunity_charge"
+     ]
+    },
+    "automatictoolchanger": {
+     "name": "R02 Automatic Tool Changer and Tool Magazine",
+     "capabilities": [
+      "dock_tool",
+      "lock_tool",
+      "verify_tool",
+      "unlock_tool",
+      "store_tool",
+      "select_tool_for_task"
+     ]
+    }
+   },
+   "environments": {
+    "standard": {
+     "temperature_C": 37.0,
+     "CO2_percent": 5.0,
+     "humidity_percent": 90.0
+    }
+   },
+   "stocks": [
+    "challenge",
+    "rescue"
+   ],
+   "bindings": [
+    {
+     "device": "L17",
+     "readout": "organoid_radius_um",
+     "level": "validated"
+    }
+   ],
+   "source": "component records, devices.yaml, twin durations",
+   "window_s": 600.0,
+   "overhead_s": 204.6,
+   "dose_s": 35.625,
+   "wells_per_session": 11,
+   "capability_classes": [
+    "BrightfieldImagingLab",
+    "ConnectedLab",
+    "ContainmentCapableLab",
+    "CultivationLab",
+    "DosingLab",
+    "QualityControlledLab",
+    "TreatmentAndImagingModule",
+    "ValidatedSizeReadoutLab"
+   ]
+  },
+  "core_reader": {
+   "name": "core_reader",
+   "label": "Core facility: multimode plate reader (ILLUSTRATIVE)",
+   "devices": {
+    "reader": {
+     "name": "Multimode plate reader",
+     "capabilities": [
+      "read_luminescence",
+      "read_absorbance",
+      "pick_sbs_plate"
+     ]
+    },
+    "dock": {
+     "name": "AMR reception dock",
+     "capabilities": [
+      "receive_carrier"
+     ]
+    }
+   },
+   "environments": {},
+   "stocks": [
+    "atp_assay_reagent"
+   ],
+   "bindings": [
+    {
+     "device": "reader",
+     "readout": "atp_luminescence",
+     "level": "validated"
+    }
+   ],
+   "source": "ILLUSTRATIVE (not from records)",
+   "capability_classes": [
+    "AbsorbanceReadoutLab",
+    "ConnectedLab",
+    "LuminescenceReadoutLab",
+    "ValidatedMetabolicReadoutLab"
+   ]
+  }
+ },
+ "designs": {
+  "current": {
+   "design": "current",
+   "requirements": [
+    "RequiresCultivation",
+    "RequiresDosing",
+    "RequiresImaging"
+   ],
+   "checks": [
+    {
+     "requirement": "RequiresCultivation",
+     "capability": "CultivationLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresDosing",
+     "capability": "DosingLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresImaging",
+     "capability": "BrightfieldImagingLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "reagents stocked",
+     "capability": "challenge, rescue",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "validated binding: imaging readout",
+     "capability": "OrganoidSize",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "units within the plate's interior wells",
+     "capability": "3 of 60",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    }
+   ],
+   "allocation": {
+    "RequiresCultivation": "cell01",
+    "RequiresDosing": "cell01",
+    "RequiresImaging": "cell01"
+   },
+   "missing": [],
+   "notes": [
+    "doses per time point {0.0: 2, 48.0: 1}; at most 11 wells per session (600 s window, 205 s transfer overhead, 35.6 s per well); one session per time point"
+   ],
+   "verdict": "executable in cell01",
+   "units": 3,
+   "label": "the current challenge-rescue design",
+   "design_classes": [
+    "FactorialDesign",
+    "HypothesisDiscriminatingDesign",
+    "PreSpecifiedDesign",
+    "RequiresImaging",
+    "SufficientlyInformativeDesign",
+    "ValidatedInjuryRescueDesign",
+    "WellContrastedDesign"
+   ]
+  },
+  "improved": {
+   "design": "improved",
+   "requirements": [
+    "RequiresCultivation",
+    "RequiresDosing",
+    "RequiresImaging"
+   ],
+   "checks": [
+    {
+     "requirement": "RequiresCultivation",
+     "capability": "CultivationLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresDosing",
+     "capability": "DosingLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresImaging",
+     "capability": "BrightfieldImagingLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "reagents stocked",
+     "capability": "challenge, rescue, vehicle",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": null
+    },
+    {
+     "requirement": "validated binding: imaging readout",
+     "capability": "OrganoidSize",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "units within the plate's interior wells",
+     "capability": "15 of 60",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    }
+   ],
+   "allocation": {
+    "RequiresCultivation": "cell01",
+    "RequiresDosing": "cell01",
+    "RequiresImaging": "cell01"
+   },
+   "missing": [
+    "reagent not stocked in cell01: vehicle"
+   ],
+   "notes": [
+    "doses per time point {0: 15, 6: 15, 48: 15}; at most 11 wells per session (600 s window, 205 s transfer overhead, 35.6 s per well); split into several sessions at 0 h (2), 6 h (2), 48 h (2); the last session of a time point starts about 10 min after the first"
+   ],
+   "verdict": "not executable as modelled",
+   "units": 15,
+   "label": "the improved design (vehicle, rescue-only, early rescue, 3 replicates)",
+   "design_classes": [
+    "AdequatelyControlledInjuryRescueDesign",
+    "DeviationAwareDesign",
+    "FactorialDesign",
+    "HypothesisDiscriminatingDesign",
+    "InteractionAwareDesign",
+    "RequiresImaging",
+    "SufficientlyInformativeDesign",
+    "TherapeuticWindowDesign"
+   ],
+   "if_stocked": {
+    "reagents": [
+     "vehicle"
+    ],
+    "verdict": "executable in cell01"
+   }
+  },
+  "improved_atp": {
+   "design": "improved_atp",
+   "requirements": [
+    "RequiresCultivation",
+    "RequiresDosing",
+    "RequiresEndpointHandling",
+    "RequiresImaging",
+    "RequiresLuminescence"
+   ],
+   "checks": [
+    {
+     "requirement": "RequiresCultivation",
+     "capability": "CultivationLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresDosing",
+     "capability": "DosingLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresImaging",
+     "capability": "BrightfieldImagingLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresLuminescence",
+     "capability": "LuminescenceReadoutLab",
+     "labs": [
+      "core_reader"
+     ],
+     "allocated": "core_reader"
+    },
+    {
+     "requirement": "reagents stocked",
+     "capability": "challenge, rescue, vehicle",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": null
+    },
+    {
+     "requirement": "validated binding: imaging readout",
+     "capability": "OrganoidSize",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "validated binding: luminescence readout",
+     "capability": "MetabolicActivity",
+     "labs": [
+      "core_reader"
+     ],
+     "allocated": "core_reader"
+    },
+    {
+     "requirement": "units within the plate's interior wells",
+     "capability": "15 of 60",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    }
+   ],
+   "allocation": {
+    "RequiresCultivation": "cell01",
+    "RequiresDosing": "cell01",
+    "RequiresImaging": "cell01",
+    "RequiresLuminescence": "core_reader"
+   },
+   "missing": [
+    "reagent not stocked in cell01: vehicle"
+   ],
+   "notes": [
+    "doses per time point {0: 15, 6: 15, 48: 15}; at most 11 wells per session (600 s window, 205 s transfer overhead, 35.6 s per well); split into several sessions at 0 h (2), 6 h (2), 48 h (2); the last session of a time point starts about 10 min after the first",
+    "transfer cell01 -> core_reader: possible (clean-sample transport at both ends); the plate leaves the controlled environment for an unmodelled time"
+   ],
+   "verdict": "not executable as modelled",
+   "units": 15,
+   "label": "the improved design with an ATP luminescence endpoint at 72 h",
+   "design_classes": [
+    "AdequatelyControlledInjuryRescueDesign",
+    "DeviationAwareDesign",
+    "FactorialDesign",
+    "HypothesisDiscriminatingDesign",
+    "InteractionAwareDesign",
+    "RequiresImaging",
+    "RequiresLuminescence",
+    "SufficientlyInformativeDesign",
+    "TherapeuticWindowDesign"
+   ],
+   "if_stocked": {
+    "reagents": [
+     "vehicle"
+    ],
+    "verdict": "executable on site with transfers"
+   }
+  },
+  "oxygen": {
+   "design": "oxygen",
+   "requirements": [
+    "RequiresCultivation",
+    "RequiresDosing",
+    "RequiresImaging",
+    "RequiresMultipleEnvironments"
+   ],
+   "checks": [
+    {
+     "requirement": "RequiresCultivation",
+     "capability": "CultivationLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresDosing",
+     "capability": "DosingLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresImaging",
+     "capability": "BrightfieldImagingLab",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "RequiresMultipleEnvironments",
+     "capability": "MultiEnvironmentLab",
+     "labs": [],
+     "allocated": null
+    },
+    {
+     "requirement": "reagents stocked",
+     "capability": "challenge",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "validated binding: imaging readout",
+     "capability": "OrganoidSize",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    },
+    {
+     "requirement": "units within the plate's interior wells",
+     "capability": "12 of 60",
+     "labs": [
+      "cell01"
+     ],
+     "allocated": "cell01"
+    }
+   ],
+   "allocation": {
+    "RequiresCultivation": "cell01",
+    "RequiresDosing": "cell01",
+    "RequiresImaging": "cell01",
+    "RequiresMultipleEnvironments": null
+   },
+   "missing": [
+    "RequiresMultipleEnvironments: no laboratory is a MultiEnvironmentLab"
+   ],
+   "notes": [
+    "environment factor 'oxygen' needs 2 controlled environments; provided: cell01 1, core_reader 0",
+    "doses per time point {0: 6}; at most 11 wells per session (600 s window, 205 s transfer overhead, 35.6 s per well); one session per time point"
+   ],
+   "verdict": "not executable as modelled",
+   "units": 12,
+   "label": "a challenge x oxygen design (environment factor)",
+   "design_classes": [
+    "ControlledDesign",
+    "DeviationAwareDesign",
+    "FactorialDesign",
+    "HypothesisDiscriminatingDesign",
+    "InteractionAwareDesign",
+    "ReplicatedDesign",
+    "RequiresDosing",
+    "RequiresImaging",
+    "RequiresMultipleEnvironments",
+    "WellContrastedDesign"
+   ]
+  }
+ },
+ "reasoner": {
+  "consistent": true,
+  "seconds": 1.76
+ }
+}

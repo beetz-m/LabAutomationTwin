@@ -1,0 +1,149 @@
+# Constraint registry (KERNEL.md concept 8). One entry per constraint, evaluated by rsa/checks.py.
+#   column     realization (did it run correctly and safely) | validity (is the result interpretable)  [uc_ccr]
+#   phase      accept (before the designator is accepted) | post (after it executed) | policy (watched during
+#              execution) | episode (experimental critic)
+#   applies_to categories (card ids)
+#   asp / z3   the same constraint in the planner (experiment_to_motion.lp) and in the validator (validate_plan_z3.py)
+#   source     origin (rule individual in abox/safety.ofn, Cell 01 record, design)
+
+interlocks_closed:
+  column: realization
+  phase: accept
+  applies_to: [run_session]
+  text: enclosure interlocks are closed before a trip starts
+  asp: S6
+  z3: V2
+  source: safety.ofn enclosure_door_interlock; Cell 01 safety enclosure
+projection_succeeds:
+  column: realization
+  phase: accept
+  applies_to: [experiment, run_session]
+  text: the plan can be projected to completion (every designator groundable) before anything is moved -- for the
+    whole experiment before the first intervention, and again for each session before the plate leaves its home
+  source: CRAM projection / Ground & Emulate gate (cram_viz); kernel iteration 1 findings F5, F6
+window_prospective:
+  column: realization
+  phase: accept
+  applies_to: [run_session]
+  text: projected trip duration plus margin fits the window outside the incubator
+  asp: S5
+  z3: V3
+  source: e2m E2M8 S5 (600 s, 20 % margin; ILLUSTRATIVE window)
+window_kept:
+  column: realization
+  phase: policy
+  applies_to: [run_session]
+  text: elapsed time outside the incubator stays within the window
+  asp: S5
+  z3: V3
+  source: Cell 01 monitor time_outside_environment
+identity_verified:
+  column: realization
+  phase: post
+  applies_to: [retrieve]
+  text: the plate identity read at the storage device matches the plate the session is about
+  asp: S7
+  z3: V2
+  source: safety.ofn identity_verified; Cell 01 monitor plate_identity
+environment_before_store:
+  column: realization
+  phase: post
+  applies_to: [store]
+  text: the incubator environment is accepted before the plate is stored
+  asp: S2
+  z3: V2
+  source: safety.ofn l10_environment_valid
+l12_airspace_clear:
+  column: realization
+  phase: policy
+  applies_to: [dose]
+  text: no robot is in L12's deck airspace while L12 moves
+  asp: S1
+  z3: V2
+  source: safety.ofn l12_deck_airspace
+calibration_before_imaging:
+  column: realization
+  phase: accept
+  applies_to: [image]
+  text: the imager is believed calibrated, or a QC calibration precedes the imaging
+  asp: S3
+  z3: V2
+  source: safety.ofn l17_calibration_valid
+tool_compatible:
+  column: realization
+  phase: accept
+  applies_to: [coupling_tool]
+  text: a tool that contacts culture is compatible with the culture before coupling
+  asp: S4
+  z3: V2
+  source: Cell 01 contamination-and-asepsis
+contamination_free:
+  column: realization
+  phase: accept
+  applies_to: [experiment, dose, transport_lab]
+  text: no challenge or rescue is performed on a plate under suspected contamination
+  asp: S8
+  z3: V2
+  source: safety rule contamination_suspected_blocks
+reagent_bound:
+  column: realization
+  phase: accept
+  applies_to: [dose]
+  text: the reagent is bound to a rack position with identity and lot before aspiration
+  source: Cell 01 L12 constraint 'Correct reagent identity/lot must be bound before aspiration'
+dispense_completed:
+  column: realization
+  phase: post
+  applies_to: [dose]
+  text: dispense completed with the commanded volume within tolerance
+  source: Cell 01 monitor dispense_completion; tolerance 5 % ILLUSTRATIVE
+challenge_requires_controls:
+  column: validity
+  phase: accept
+  applies_to: [experiment]
+  text: a challenge is authorised only if the design contains a control arm
+  asp: S9
+  z3: V4b
+  source: safety rule challenge_requires_controls; uc_ccr negative control (NR3)
+measurement_binding_validated:
+  column: validity
+  phase: post
+  applies_to: [image]
+  text: the imager's binding for the readout is validated (not only a capability match)
+  source: RSV measurement-binding lattice; VRB CF2
+# ---------------------------------------------------------------- experimental critic (episode level)
+V1_identity_continuity:
+  column: validity
+  phase: episode
+  text: every identity read in the run is the experiment's plate
+  source: Cell 01 critic identity; D009
+V2_calibration_at_measurement:
+  column: validity
+  phase: episode
+  text: the imager was calibrated (observed) when each readout was acquired
+  source: Cell 01 monitor calibration_state
+V3_binding_validated:
+  column: validity
+  phase: episode
+  text: every readout comes from a validated measurement binding
+  source: RSV binding lattice
+V4_controls_present:
+  column: validity
+  phase: episode
+  text: the control well was measured
+  source: uc_ccr NR3
+V5_dose_delivered:
+  column: validity
+  phase: episode
+  text: each designed dose was delivered within tolerance (volume; not biological effective dose)
+  source: Cell 01 L12 'Executed volume is not equivalent to biological effective dose'
+V6_sample_integrity:
+  column: validity
+  phase: episode
+  text: every trip kept the window outside the incubator
+  source: Cell 01 monitor time_outside_environment
+V7_design_realised:
+  column: validity
+  phase: episode
+  text: every intervention and measurement of the design was executed at its designed culture time
+  source: e2m workflow (sessions)

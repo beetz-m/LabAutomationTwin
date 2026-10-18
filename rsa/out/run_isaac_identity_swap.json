@@ -1,0 +1,266 @@
+{
+ "scenario": "isaac_identity_swap",
+ "about": "the experiment is about P18 (L10 inventory slot 5) but the plate in slot 5 is P23 (twin initial state); L10's barcode read catches it, P23 is quarantined in H4, escalation",
+ "backend": "isaac-cell01-twin/0.1",
+ "error": "escalated: l10 read P23, expected P18 (after quarantine P23 (Cell 01 routing H4_quarantine_if_identity_unresolved); P18 location unknown, human escalation)",
+ "end": "escalated",
+ "n_entries": 56,
+ "n_leaves": 15,
+ "wall_s": 350.0,
+ "audit": {
+  "verify": {
+   "ok": true,
+   "n": 56,
+   "attributable": true,
+   "evidence_hashed": true
+  },
+  "tampered_detected": true
+ },
+ "verdict": {
+  "realization": {
+   "ok": false,
+   "violated": [],
+   "run_ended": "escalated"
+  },
+  "validity": {
+   "ok": false,
+   "checks": {
+    "V1_identity_continuity": {
+     "ok": false,
+     "observation": "identity reads ['P23']; mismatch at seq [13]"
+    },
+    "V2_calibration_at_measurement": {
+     "ok": false,
+     "observation": "0 readouts, calibration observed valid for all"
+    },
+    "V3_binding_validated": {
+     "ok": false,
+     "observation": "no readout"
+    },
+    "V4_controls_present": {
+     "ok": false,
+     "observation": "control ['A05'], imaged []"
+    },
+    "V5_dose_delivered": {
+     "ok": false,
+     "observation": "0 dispenses within 5.0 %: True"
+    },
+    "V6_sample_integrity": {
+     "ok": true,
+     "observation": "window kept on every trip"
+    },
+    "V7_design_realised": {
+     "ok": false,
+     "observation": "missing [('A01', 'challenge', 0), ('A02', 'challenge', 0), ('A01', 'rescue', 48), ('A01', 72), ('A02', 72), ('A05', 72)]"
+    }
+   },
+   "refused_by": []
+  },
+  "promotable": false,
+  "nr3": false,
+  "disposition": "escalated: human decision required; nothing committed",
+  "design": {
+   "id": "c_d85_t48_n1",
+   "requirement_bits": 0.5,
+   "eig_bits": 0.5439
+  }
+ },
+ "repairs": [
+  {
+   "failure": "identity_mismatch",
+   "detail": "l10 read P23, expected P18",
+   "at": "d0005-verify_identity",
+   "repairs": [
+    "(an action (type quarantine) (plate P23) (reason identity mismatch: read P23, expected P18))"
+   ],
+   "repair_categories": [
+    "quarantine"
+   ],
+   "then": "fail",
+   "why": "quarantine P23 (Cell 01 routing H4_quarantine_if_identity_unresolved); P18 location unknown, human escalation",
+   "category": "retrieve",
+   "node": "d0004-retrieve"
+  }
+ ],
+ "sessions": [
+  {
+   "session": "s0",
+   "kernel_s": 55.31,
+   "planner_s": 298.9,
+   "leaves": 15
+  }
+ ],
+ "expected": {
+  "end": "escalated",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "repaired_at": [
+   "retrieve"
+  ]
+ },
+ "got": {
+  "end": "escalated",
+  "realization": false,
+  "validity": false,
+  "promotable": false,
+  "nr3": false,
+  "repaired_at": [
+   "retrieve"
+  ]
+ },
+ "expectation_ok": true,
+ "plate": "P18",
+ "cq": {
+  "correct": 6,
+  "n": 6,
+  "grounded": 6,
+  "results": [
+   {
+    "id": "CQ-15",
+    "family": "evidence",
+    "scenario": "isaac_identity_swap",
+    "question": "Is your record intact, and would you notice if someone edited it?",
+    "ok": true,
+    "answer": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "expected": {
+     "intact": true,
+     "tamper_detected": true
+    },
+    "grounds": [
+     "verify over 56 entries"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-16",
+    "family": "retrospective",
+    "scenario": "isaac_identity_swap",
+    "question": "What went wrong, and what did you repair?",
+    "ok": true,
+    "answer": [
+     {
+      "failure": "identity_mismatch",
+      "at": "retrieve",
+      "repair": [
+       "quarantine"
+      ]
+     }
+    ],
+    "expected": [
+     {
+      "failure": "identity_mismatch",
+      "at": "retrieve",
+      "repair": [
+       "quarantine"
+      ]
+     }
+    ],
+    "grounds": [
+     "trail#14:retrieve/repairing"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-17",
+    "family": "retrospective",
+    "scenario": "isaac_identity_swap",
+    "question": "Was the rescue given? If not, why not?",
+    "ok": true,
+    "answer": {
+     "rescue_given": false,
+     "reason": "identity_mismatch: l10 read P23, expected P18"
+    },
+    "expected": {
+     "rescue_given": false,
+     "reason": "~identity_mismatch"
+    },
+    "grounds": [
+     "trail#13:verify_identity/failed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-18",
+    "family": "retrospective",
+    "scenario": "isaac_identity_swap",
+    "question": "Where is the experiment's plate now, and how do you know?",
+    "ok": true,
+    "answer": {
+     "plate": "P18",
+     "at": "unknown",
+     "source": "observed"
+    },
+    "expected": {
+     "plate": "P18",
+     "at": "unknown",
+     "source": "observed"
+    },
+    "grounds": [
+     "belief plate_at:P18 (d0005-verify_identity)"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-20",
+    "family": "normative",
+    "scenario": "isaac_identity_swap",
+    "question": "Which material did you quarantine, and who authorised it?",
+    "ok": true,
+    "answer": {
+     "quarantined": [
+      {
+       "plate": "P23",
+       "status": "requested",
+       "authorization": "human_review_required"
+      }
+     ]
+    },
+    "expected": {
+     "quarantined": [
+      {
+       "plate": "P23",
+       "status": "requested",
+       "authorization": "human_review_required"
+      }
+     ]
+    },
+    "grounds": [
+     "trail#51:contain/executed"
+    ],
+    "error": null
+   },
+   {
+    "id": "CQ-21",
+    "family": "verdict",
+    "scenario": "isaac_identity_swap",
+    "question": "Is the result a valid experiment?",
+    "ok": true,
+    "answer": {
+     "realization": false,
+     "validity": false,
+     "nr3": false,
+     "failed_checks": [
+      "V1_identity_continuity",
+      "V2_calibration_at_measurement",
+      "V3_binding_validated",
+      "V4_controls_present",
+      "V5_dose_delivered",
+      "V7_design_realised"
+     ]
+    },
+    "expected": {
+     "realization": false,
+     "validity": false
+    },
+    "grounds": [
+     "critic over trail"
+    ],
+    "error": null
+   }
+  ]
+ }
+}

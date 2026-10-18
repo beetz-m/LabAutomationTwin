@@ -1,0 +1,710 @@
+{
+ "id": "challenge-rescue/c_d85_t48_n1",
+ "status": "ILLUSTRATIVE (D016): the culture biology is Cell 01's surrogate; no biomedical parameter is asserted",
+ "question": "(which (a recovery-model (in (M1_graded M2_threshold M3_protective))) (explains (the rescue-efficacy (after (a delay (of 48 h))))))",
+ "goal": [
+  "(the belief ?B (expected-information-gain (>= 0.5 bit)))"
+ ],
+ "entities": {
+  "?cr": "(the culture ?cr (role rescued))",
+  "?cc": "(the culture ?cc (role comparator))",
+  "?ck": "(the culture ?ck (role control))",
+  "?ch": "(some substance ?ch (type challenge))",
+  "?rs": "(some substance ?rs (type rescue))",
+  "?B": "(the belief ?B (over (M1_graded M2_threshold M3_protective)) (prior uniform))"
+ },
+ "input_digest": "d514d47b1ad1b07549cdee66c5db8b0b00ac277c76790f3746471ba2e515057e",
+ "plan_sha256": "2b8dcf3efc1a3bfeef60b9859bf3db39f0cd3038afcb96cd7634270b18111247",
+ "design": {
+  "selected": "c_d85_t48_n1",
+  "challenge_dose_au": 0.85,
+  "rescue_dose_au": 0.7,
+  "rescue_delay_h": 48,
+  "replicates": 1,
+  "expected_information_gain_bit": 0.5439,
+  "required_bit": 0.5,
+  "prior": {
+   "M1_graded": 0.3333333333333333,
+   "M2_threshold": 0.3333333333333333,
+   "M3_protective": 0.3333333333333333
+  },
+  "predicted_effect_um": {
+   "M1_graded": 8.5,
+   "M2_threshold": 25.0,
+   "M3_protective": 25.4
+  },
+  "alternatives": [
+   {
+    "id": "c_d45_t36_n3",
+    "eig_bit": 0.5072,
+    "cost": 14606
+   },
+   {
+    "id": "c_d45_t48_n2",
+    "eig_bit": 0.5474,
+    "cost": 12296
+   },
+   {
+    "id": "c_d45_t48_n3",
+    "eig_bit": 0.5883,
+    "cost": 14606
+   },
+   {
+    "id": "c_d65_t36_n2",
+    "eig_bit": 0.5042,
+    "cost": 12296
+   },
+   {
+    "id": "c_d65_t36_n3",
+    "eig_bit": 0.5458,
+    "cost": 14606
+   },
+   {
+    "id": "c_d65_t48_n1",
+    "eig_bit": 0.5205,
+    "cost": 9986
+   },
+   {
+    "id": "c_d65_t48_n2",
+    "eig_bit": 0.5787,
+    "cost": 12296
+   },
+   {
+    "id": "c_d65_t48_n3",
+    "eig_bit": 0.6205,
+    "cost": 14606
+   },
+   {
+    "id": "c_d85_t36_n2",
+    "eig_bit": 0.528,
+    "cost": 12296
+   },
+   {
+    "id": "c_d85_t36_n3",
+    "eig_bit": 0.5717,
+    "cost": 14606
+   },
+   {
+    "id": "c_d85_t48_n1",
+    "eig_bit": 0.5439,
+    "cost": 9986
+   },
+   {
+    "id": "c_d85_t48_n2",
+    "eig_bit": 0.6013,
+    "cost": 12296
+   },
+   {
+    "id": "c_d85_t48_n3",
+    "eig_bit": 0.6415,
+    "cost": 14606
+   }
+  ],
+  "cost": {
+   "value": 9986,
+   "unit": "decisecond-equivalents (robot / device time + 60 s per well)"
+  }
+ },
+ "culture_plan": [
+  {
+   "var": "?c1",
+   "type": "challenging",
+   "text": "(an action ?c1 (type challenging) (culture ?cr) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)) (physical (the culture ?cr (exposed-to ?ch 0.85 au)) (the culture ?cr (injury rising))) (knowledge (a record (of ?c1) (states ?cr ?ch 0.85 au 0 h))))"
+  },
+  {
+   "var": "?c2",
+   "type": "challenging",
+   "text": "(an action ?c2 (type challenging) (culture ?cc) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)) (physical (the culture ?cc (exposed-to ?ch 0.85 au)) (the culture ?cc (injury rising))) (knowledge (a record (of ?c2) (states ?cc ?ch 0.85 au 0 h))))"
+  },
+  {
+   "var": "?g1",
+   "type": "growing",
+   "text": "(an action ?g1 (type growing) (cultures ?cr ?cc ?ck) (from (culture-time 0 h)) (to (culture-time 48 h)) (requires (the culture ?cr (exposed-to ?ch)) (the culture ?cc (exposed-to ?ch))) (physical (the experiment ?E (culture-time 48 h)) (the culture ?cr (injury-burden accumulated))) (knowledge (a record (of ?g1) (environment-history culture-standard))))"
+  },
+  {
+   "var": "?c3",
+   "type": "rescuing",
+   "text": "(an action ?c3 (type rescuing) (culture ?cr) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h)) (requires (the experiment ?E (culture-time 48 h))) (physical (the culture ?cr (exposed-to ?rs 0.70 au)) (the culture ?cr (recovery possible))) (knowledge (a record (of ?c3) (states ?cr ?rs 0.70 au 48 h))))"
+  },
+  {
+   "var": "?g2",
+   "type": "growing",
+   "text": "(an action ?g2 (type growing) (cultures ?cr ?cc ?ck) (from (culture-time 48 h)) (to (culture-time 72 h)) (requires (the culture ?cr (exposed-to ?rs))) (physical (the experiment ?E (culture-time 72 h)) (the culture ?cr (viability settled))) (knowledge (a record (of ?g2) (environment-history culture-standard))))"
+  },
+  {
+   "var": "?o1",
+   "type": "observing",
+   "text": "(an action ?o1 (type observing) (culture ?cr) (readout morphology) (at (culture-time 72 h)) (requires (the experiment ?E (culture-time 72 h))) (physical (the culture ?cr (light-dose increased))) (knowledge (an image ?y1 (of ?cr) (culture-time 72 h) (raw true))))"
+  },
+  {
+   "var": "?o2",
+   "type": "observing",
+   "text": "(an action ?o2 (type observing) (culture ?cc) (readout morphology) (at (culture-time 72 h)) (requires (the experiment ?E (culture-time 72 h))) (physical (the culture ?cc (light-dose increased))) (knowledge (an image ?y2 (of ?cc) (culture-time 72 h) (raw true))))"
+  },
+  {
+   "var": "?o3",
+   "type": "observing",
+   "text": "(an action ?o3 (type observing) (culture ?ck) (readout morphology) (at (culture-time 72 h)) (requires (the experiment ?E (culture-time 72 h))) (physical (the culture ?ck (light-dose increased))) (knowledge (an image ?y3 (of ?ck) (culture-time 72 h) (raw true))))"
+  },
+  {
+   "var": "?i1",
+   "type": "interpreting",
+   "text": "(an action ?i1 (type interpreting) (image ?y1) (into organoid-radius) (requires (an image (of ?cr) (raw true)) (a scale (of (an image)) (known true)) :establishable) (knowledge (an estimate (of ?cr) (organoid-radius) (sigma 2.5 um))))"
+  },
+  {
+   "var": "?i2",
+   "type": "interpreting",
+   "text": "(an action ?i2 (type interpreting) (image ?y2) (into organoid-radius) (requires (an image (of ?cc) (raw true)) (a scale (of (an image)) (known true)) :establishable) (knowledge (an estimate (of ?cc) (organoid-radius) (sigma 2.5 um))))"
+  },
+  {
+   "var": "?i3",
+   "type": "interpreting",
+   "text": "(an action ?i3 (type interpreting) (image ?y3) (into organoid-radius) (requires (an image (of ?ck) (raw true)) (a scale (of (an image)) (known true)) :establishable) (knowledge (an estimate (of ?ck) (organoid-radius) (sigma 2.5 um))))"
+  },
+  {
+   "var": "?a1",
+   "type": "analysing",
+   "text": "(an action ?a1 (type analysing) (belief ?B) (statistic (difference (radius ?cr) (radius ?cc))) (requires (an estimate (of ?cr) (organoid-radius)) (an estimate (of ?cc) (organoid-radius)) (an estimate (of ?ck) (organoid-radius))) (knowledge (the belief ?B (posterior updated)) (the belief ?B (information-gain measured))))"
+  }
+ ],
+ "culture_order": [
+  [
+   "?c1",
+   "?g1"
+  ],
+  [
+   "?c2",
+   "?g1"
+  ],
+  [
+   "?c3",
+   "?g2"
+  ],
+  [
+   "?g1",
+   "?c3"
+  ],
+  [
+   "?g2",
+   "?o1"
+  ],
+  [
+   "?g2",
+   "?o2"
+  ],
+  [
+   "?g2",
+   "?o3"
+  ],
+  [
+   "?i1",
+   "?a1"
+  ],
+  [
+   "?i2",
+   "?a1"
+  ],
+  [
+   "?i3",
+   "?a1"
+  ],
+  [
+   "?o1",
+   "?i1"
+  ],
+  [
+   "?o2",
+   "?i2"
+  ],
+  [
+   "?o3",
+   "?i3"
+  ]
+ ],
+ "vessels": {
+  "?cr": {
+   "role": "rescued",
+   "lab_var": "?r",
+   "well": "A01",
+   "plate": "P17"
+  },
+  "?cc": {
+   "role": "comparator",
+   "lab_var": "?c",
+   "well": "A02",
+   "plate": "P17"
+  },
+  "?ck": {
+   "role": "control",
+   "lab_var": "?k",
+   "well": "A05",
+   "plate": "P17"
+  }
+ },
+ "lab_plan": [
+  {
+   "var": "?x1",
+   "type": "intervening",
+   "text": "(an action ?x1 (type intervening) (into ?r) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))",
+   "time_h": 0.0,
+   "instrument": "(an instrument ?x1.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?r) (of ?ch) (amount 0.85 au))))",
+   "signals": [
+    "identity-mismatch",
+    "dose-not-delivered",
+    "contamination-suspected"
+   ]
+  },
+  {
+   "var": "?x2",
+   "type": "intervening",
+   "text": "(an action ?x2 (type intervening) (into ?c) (substance ?ch) (dose 0.85 au) (at (culture-time 0 h)))",
+   "time_h": 0.0,
+   "instrument": "(an instrument ?x2.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?c) (of ?ch) (amount 0.85 au))))",
+   "signals": [
+    "identity-mismatch",
+    "dose-not-delivered",
+    "contamination-suspected"
+   ]
+  },
+  {
+   "var": "?w1",
+   "type": "incubating",
+   "text": "(an action ?w1 (type incubating) (plate ?p) (in ?env) (from (culture-time 0 h)) (to (culture-time 48 h)) (requires (the well ?r (received ?ch)) (the well ?c (received ?ch))))",
+   "time_h": 48.0,
+   "instrument": "(an instrument ?w1.d (slot (a plate-slot (accepts ?p))) (process (a process (type incubation) (maintains ?env))))",
+   "signals": [
+    "environment-excursion"
+   ]
+  },
+  {
+   "var": "?x3",
+   "type": "intervening",
+   "text": "(an action ?x3 (type intervening) (into ?r) (substance ?rs) (dose 0.70 au) (at (culture-time 48 h)))",
+   "time_h": 48.0,
+   "instrument": "(an instrument ?x3.d (slot (a plate-slot (accepts ?p))) (process (a process (type substance-transfer) (into ?r) (of ?rs) (amount 0.70 au))))",
+   "signals": [
+    "identity-mismatch",
+    "dose-not-delivered",
+    "contamination-suspected"
+   ]
+  },
+  {
+   "var": "?w2",
+   "type": "incubating",
+   "text": "(an action ?w2 (type incubating) (plate ?p) (in ?env) (from (culture-time 48 h)) (to (culture-time 72 h)) (requires (the well ?r (received ?rs))))",
+   "time_h": 72.0,
+   "instrument": "(an instrument ?w2.d (slot (a plate-slot (accepts ?p))) (process (a process (type incubation) (maintains ?env))))",
+   "signals": [
+    "environment-excursion"
+   ]
+  },
+  {
+   "var": "?m1",
+   "type": "measuring",
+   "text": "(an action ?m1 (type measuring) (of ?r) (readout organoid-radius) (at (culture-time 72 h)))",
+   "time_h": 72.0,
+   "instrument": "(an instrument ?m1.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?r) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "signals": [
+    "identity-mismatch",
+    "measurement-invalid",
+    "validity-effect-unachievable"
+   ]
+  },
+  {
+   "var": "?m2",
+   "type": "measuring",
+   "text": "(an action ?m2 (type measuring) (of ?c) (readout organoid-radius) (at (culture-time 72 h)))",
+   "time_h": 72.0,
+   "instrument": "(an instrument ?m2.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?c) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "signals": [
+    "identity-mismatch",
+    "measurement-invalid",
+    "validity-effect-unachievable"
+   ]
+  },
+  {
+   "var": "?m3",
+   "type": "measuring",
+   "text": "(an action ?m3 (type measuring) (of ?k) (readout organoid-radius) (at (culture-time 72 h)))",
+   "time_h": 72.0,
+   "instrument": "(an instrument ?m3.d (slot (a plate-slot (accepts ?p))) (process (a process (type imaging) (of ?k) (readout organoid-radius))) (qualified-for organoid-radius))",
+   "signals": [
+    "identity-mismatch",
+    "measurement-invalid",
+    "validity-effect-unachievable"
+   ]
+  }
+ ],
+ "refinement": [
+  {
+   "culture": "?c1",
+   "culture_type": "challenging",
+   "lab": "?x1",
+   "lab_type": "intervening",
+   "process": "substance-transfer",
+   "device": [
+    "l12"
+   ]
+  },
+  {
+   "culture": "?c2",
+   "culture_type": "challenging",
+   "lab": "?x2",
+   "lab_type": "intervening",
+   "process": "substance-transfer",
+   "device": [
+    "l12"
+   ]
+  },
+  {
+   "culture": "?g1",
+   "culture_type": "growing",
+   "lab": "?w1",
+   "lab_type": "incubating",
+   "process": "incubation",
+   "device": [
+    "l10"
+   ]
+  },
+  {
+   "culture": "?c3",
+   "culture_type": "rescuing",
+   "lab": "?x3",
+   "lab_type": "intervening",
+   "process": "substance-transfer",
+   "device": [
+    "l12"
+   ]
+  },
+  {
+   "culture": "?g2",
+   "culture_type": "growing",
+   "lab": "?w2",
+   "lab_type": "incubating",
+   "process": "incubation",
+   "device": [
+    "l10"
+   ]
+  },
+  {
+   "culture": "?o1",
+   "culture_type": "observing",
+   "lab": "?m1",
+   "lab_type": "measuring",
+   "process": "imaging",
+   "device": [
+    "l17"
+   ]
+  },
+  {
+   "culture": "?o2",
+   "culture_type": "observing",
+   "lab": "?m2",
+   "lab_type": "measuring",
+   "process": "imaging",
+   "device": [
+    "l17"
+   ]
+  },
+  {
+   "culture": "?o3",
+   "culture_type": "observing",
+   "lab": "?m3",
+   "lab_type": "measuring",
+   "process": "imaging",
+   "device": [
+    "l17"
+   ]
+  },
+  {
+   "culture": "?i1",
+   "culture_type": "interpreting",
+   "lab": null,
+   "lab_type": null,
+   "process": null,
+   "device": "culture SDT image analysis (twin/culture/optics.analyse): radius from the calibrated pixel size"
+  },
+  {
+   "culture": "?i2",
+   "culture_type": "interpreting",
+   "lab": null,
+   "lab_type": null,
+   "process": null,
+   "device": "culture SDT image analysis (twin/culture/optics.analyse): radius from the calibrated pixel size"
+  },
+  {
+   "culture": "?i3",
+   "culture_type": "interpreting",
+   "lab": null,
+   "lab_type": null,
+   "process": null,
+   "device": "culture SDT image analysis (twin/culture/optics.analyse): radius from the calibrated pixel size"
+  },
+  {
+   "culture": "?a1",
+   "culture_type": "analysing",
+   "lab": null,
+   "lab_type": null,
+   "process": null,
+   "device": "posterior over M1-M3 (twin/culture/eig.posterior_over_models) on the rescued - comparator radius"
+  }
+ ],
+ "sessions": [
+  {
+   "session": "s0",
+   "t_h": 0,
+   "device": "l12",
+   "material": [
+    [
+     "dose",
+     "a01",
+     "challenge",
+     85
+    ],
+    [
+     "dose",
+     "a02",
+     "challenge",
+     85
+    ]
+   ],
+   "steps": 52,
+   "duration_s": 298.9,
+   "route_out": [
+    "r01 l10->handovernest",
+    "r02 handovernest->l12"
+   ]
+  },
+  {
+   "session": "s1",
+   "t_h": 48,
+   "device": "l12",
+   "material": [
+    [
+     "dose",
+     "a01",
+     "rescue",
+     70
+    ]
+   ],
+   "steps": 48,
+   "duration_s": 263.3,
+   "route_out": [
+    "r01 l10->handovernest",
+    "r02 handovernest->l12"
+   ]
+  },
+  {
+   "session": "s2",
+   "t_h": 72,
+   "device": "l17",
+   "material": [
+    [
+     "image",
+     "a01"
+    ],
+    [
+     "image",
+     "a02"
+    ],
+    [
+     "image",
+     "a05"
+    ]
+   ],
+   "steps": 51,
+   "duration_s": 256.4,
+   "route_out": [
+    "r01 l10->handovernest",
+    "r02 handovernest->l17"
+   ]
+  }
+ ],
+ "window_s": 600.0,
+ "start_state": {
+  "calibrated": true,
+  "coupled": false,
+  "interlocks": true,
+  "contaminated": false
+ },
+ "constraints": [
+  {
+   "clause": "requires",
+   "cond": "(the plate ?p (contamination none))",
+   "status": "verified by the realization"
+  },
+  {
+   "clause": "requires",
+   "cond": "(the design ?D (arm (role control)))",
+   "status": "holds in the design",
+   "ok": true,
+   "column": "validity"
+  },
+  {
+   "clause": "prevents",
+   "cond": "(an excursion (of ?p) (duration (> 600 s)))",
+   "ok": true,
+   "status": "no step achieves it (statically)"
+  },
+  {
+   "clause": "prevents",
+   "cond": "(a transfer (of (some substance)) (into ?k))",
+   "ok": true,
+   "status": "no step achieves it (statically)"
+  },
+  {
+   "clause": "prevents",
+   "cond": "(an event (type contamination-introduced) (of ?p))",
+   "ok": true,
+   "status": "no step achieves it (statically)"
+  }
+ ],
+ "handlers": [
+  {
+   "type": "identity-mismatch",
+   "text": "(on (a failure (type identity-mismatch)) (do (an action (type quarantining) (material (the plate (identity mismatched))))) (then escalate) (guarantees safe-state contained))"
+  },
+  {
+   "type": "measurement-invalid",
+   "text": "(on (a failure (type measurement-invalid) (cause calibration_expired)) (do (re-establish (an instrument (function imaging) (calibration current)))) (then replan) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "measurement-invalid",
+   "text": "(on (a failure (type measurement-invalid) (cause out_of_focus)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "measurement-invalid",
+   "text": "(on (a failure (type measurement-invalid) (cause plate_misseated)) (do (re-establish (the plate ?p (seated true)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "validity-effect-unachievable",
+   "text": "(on (a failure (type validity-effect-unachievable)) (then escalate) (guarantees safe-state))"
+  },
+  {
+   "type": "dose-not-delivered",
+   "text": "(on (a failure (type dose-not-delivered) (cause wrong_reagent)) (do (re-establish (some substance ?s (identity verified)))) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "dose-not-delivered",
+   "text": "(on (a failure (type dose-not-delivered) (cause tip_missing_or_dropped)) (then (retry (max 1))) (else escalate) (guarantees goal-or-safe-state))"
+  },
+  {
+   "type": "dose-not-delivered",
+   "text": "(on (a failure (type dose-not-delivered) (cause clog_or_air_aspiration)) (then escalate) (guarantees safe-state))"
+  },
+  {
+   "type": "dose-not-delivered",
+   "text": "(on (a failure (type dose-not-delivered) (cause well_misregistration)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))"
+  },
+  {
+   "type": "contamination-suspected",
+   "text": "(on (a failure (type contamination-suspected)) (do (an action (type quarantining) (material ?p))) (then escalate) (guarantees safe-state contained))"
+  },
+  {
+   "type": "environment-excursion",
+   "text": "(on (a failure (type environment-excursion)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))"
+  },
+  {
+   "type": "containment-breach",
+   "text": "(on (a failure (type containment-breach)) (then escalate) (guarantees safe-state))"
+  },
+  {
+   "type": "prevents-violated",
+   "text": "(on (a failure (type prevents-violated)) (do (restore (the plate ?p (in ?env)))) (then escalate) (guarantees safe-state))"
+  }
+ ],
+ "kpis": [
+  {
+   "name": "safety",
+   "of": "(each violation (of (a prevents-item (in ?E))))",
+   "aggregate": "count",
+   "unit": "",
+   "op": "<=",
+   "target": 0.0,
+   "direction": "minimize",
+   "weights": null
+  },
+  {
+   "name": "reliability",
+   "of": "(each goal (of (an action (in ?E))))",
+   "aggregate": "first-attempt-fraction",
+   "unit": "",
+   "op": ">=",
+   "target": 1.0,
+   "direction": "maximize",
+   "weights": null
+  },
+  {
+   "name": "auditability",
+   "of": "(each goal (of (an action (in ?E))))",
+   "aggregate": "evidenced-fraction",
+   "unit": "",
+   "op": ">=",
+   "target": 1.0,
+   "direction": "maximize",
+   "weights": null
+  },
+  {
+   "name": "excursion-time",
+   "of": "(each excursion (of ?p))",
+   "aggregate": "max",
+   "unit": "s",
+   "op": "<=",
+   "target": 300.0,
+   "direction": "minimize",
+   "weights": null
+  },
+  {
+   "name": "cost",
+   "of": "(each resource (used-by ?E))",
+   "aggregate": "weighted-sum",
+   "unit": "cost-units",
+   "op": "<=",
+   "target": 10.0,
+   "direction": "minimize",
+   "weights": "(weights (consumable 1) (instrument-minute 0.2) (escalation 50))"
+  },
+  {
+   "name": "dose-deviation",
+   "of": "(each transfer (into (a well (of ?p))))",
+   "aggregate": "max",
+   "unit": "%",
+   "op": "<=",
+   "target": 2.0,
+   "direction": "minimize",
+   "weights": null
+  },
+  {
+   "name": "time-to-result",
+   "of": "?E",
+   "aggregate": "span",
+   "unit": "h",
+   "op": "<=",
+   "target": 72.5,
+   "direction": "minimize",
+   "weights": null
+  }
+ ],
+ "motions": {
+  "n": 111,
+  "legs": 12
+ },
+ "acceptance": {
+  "realization": "every designed intervention and measurement executed; no prevents-item violated",
+  "validity": [
+   "V1_identity_continuity",
+   "V2_calibration_at_measurement",
+   "V3_binding_validated",
+   "V4_controls_present",
+   "V5_dose_delivered",
+   "V6_sample_integrity",
+   "V7_design_realised"
+  ],
+  "competency_questions": "52/52",
+  "refinement_proof": true
+ },
+ "reproduce": [
+  "env_cad/bin/python -m rsa.reproduce",
+  "env_cad/bin/python -m rsa.reproduce --verify"
+ ]
+}

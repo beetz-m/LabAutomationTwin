@@ -1,0 +1,290 @@
+UPPER LEVEL
+  MaterialEntity ⊑ Continuant
+  SpecificallyDependentContinuant ⊑ Continuant
+  Quality ⊑ SpecificallyDependentContinuant
+  RealizableEntity ⊑ SpecificallyDependentContinuant
+  InformationContentEntity ⊑ Continuant
+  Process ⊑ Occurrent
+  Continuant ⊓ Occurrent ⊑ ⊥
+  Disjoint(MaterialEntity, SpecificallyDependentContinuant, InformationContentEntity)
+  Quality ⊓ RealizableEntity ⊑ ⊥
+  Role ⊑ RealizableEntity
+  Disposition ⊑ RealizableEntity
+  Role ⊓ Disposition ⊑ ⊥
+  PlannedProcess ⊑ Process
+  BiologicalProcess ⊑ Process
+  PlannedProcess ⊓ BiologicalProcess ⊑ ⊥
+  PlanSpecification ⊑ InformationContentEntity
+  DataItem ⊑ InformationContentEntity
+  Hypothesis ⊑ InformationContentEntity
+  Objective ⊑ InformationContentEntity
+  Conclusion ⊑ InformationContentEntity
+  Disjoint(PlanSpecification, DataItem, Hypothesis, Objective, Conclusion)
+
+RELATIONS AND PARTONOMY
+  Trans(hasPart)
+  partOf ≡ hasPart⁻
+  hasPhase ⊑ hasPart
+  hasStep ⊑ hasPart
+  hasWell ⊑ hasPart
+  hasOrganoid ⊑ hasPart
+  hasCell ⊑ hasPart
+  hasMedium ⊑ hasPart
+  hasArm ⊑ hasPart
+  hasComparisonSpec ⊑ hasPart
+  hasAdministrationSpec ⊑ hasPart
+  hasObjective ⊑ hasPart
+  Process ⊑ ∀hasPart.Process
+  MaterialEntity ⊑ ∀hasPart.MaterialEntity
+  InformationContentEntity ⊑ ∀hasPart.InformationContentEntity
+  containedIn ≡ contains⁻
+  containedIn ∘ partOf ⊑ locatedIn
+  participatesIn ≡ hasParticipant⁻
+  hasPart ∘ hasParticipant ⊑ hasParticipant
+  hasSpecifiedInput ⊑ hasParticipant
+  inheresIn ≡ bearerOf⁻
+  Func(inheresIn)
+  hasAssignedUnit ≡ assignedTo⁻
+  Func(assignedTo)
+  Func(usesAgent)
+  Trans(precedes)
+  ∃executes.⊤ ⊑ PlannedProcess
+  ⊤ ⊑ ∀executes.PlanSpecification
+  ∃isAbout.⊤ ⊑ InformationContentEntity
+  ∃bearerOf.⊤ ⊑ Continuant
+  ⊤ ⊑ ∀bearerOf.SpecificallyDependentContinuant
+  ∃realizedIn.⊤ ⊑ RealizableEntity
+  ⊤ ⊑ ∀realizedIn.Process
+  Func(dose_au)
+  Func(atTime_h)
+  Func(fromTime_h)
+  Func(toTime_h)
+  Func(expectedInformationGain_bits)
+  Func(radius_um)
+  Func(wellRow)
+  Func(wellColumn)
+
+BIOLOGICAL MATERIAL AND LABWARE
+  OrganoidCulture ⊑ MaterialEntity ⊓ ∃hasOrganoid.Organoid ⊓ ∃hasMedium.CultureMedium
+  Organoid ⊑ MaterialEntity ⊓ ∃hasCell.Cell
+  Cell ⊑ MaterialEntity
+  CultureMedium ⊑ MaterialEntity
+  ChemicalAgent ⊑ MaterialEntity
+  Plate ⊑ MaterialEntity ⊓ ∃hasWell.Well
+  Well ⊑ MaterialEntity ⊓ (≤1 contains.OrganoidCulture)
+  Disjoint(OrganoidCulture, Organoid, Cell, CultureMedium, ChemicalAgent, Plate, Well)
+  OrganoidSize ⊑ Quality ⊓ ∃inheresIn.Organoid
+  Viability ⊑ Disposition ⊓ ∃inheresIn.OrganoidCulture ⊓ ∀realizedIn.CultureGrowth
+  RecoveryCapacity ⊑ Disposition ⊓ ∃inheresIn.OrganoidCulture ⊓ ∀realizedIn.RecoveryProcess
+  ToxicityDisposition ⊑ Disposition ⊓ ∃inheresIn.ChemicalAgent ⊓ ∀realizedIn.InjuryProcess
+  Toxicant ≡ ChemicalAgent ⊓ ∃bearerOf.ToxicityDisposition
+  ChallengeAgentRole ⊑ Role
+  RescueAgentRole ⊑ Role
+  VehicleRole ⊑ Role
+  ExperimentalUnitRole ⊑ Role
+  Disjoint(ChallengeAgentRole, RescueAgentRole, VehicleRole, ExperimentalUnitRole)
+  ChallengeAgent ≡ ChemicalAgent ⊓ ∃bearerOf.ChallengeAgentRole
+  RescueAgent ≡ ChemicalAgent ⊓ ∃bearerOf.RescueAgentRole
+  Vehicle ≡ ChemicalAgent ⊓ ∃bearerOf.VehicleRole
+  Disjoint(ChallengeAgent, RescueAgent, Vehicle)
+  ChallengeAgent ⊑ Toxicant
+  ExperimentalUnit ≡ OrganoidCulture ⊓ ∃bearerOf.ExperimentalUnitRole
+
+BIOLOGICAL PROCESSES
+  InjuryProcess ⊑ BiologicalProcess ⊓ ∃hasParticipant.OrganoidCulture
+  ProtectiveResponse ⊑ BiologicalProcess ⊓ ∃hasParticipant.OrganoidCulture
+  RecoveryProcess ⊑ BiologicalProcess ⊓ ∃hasParticipant.OrganoidCulture
+  CellDeath ⊑ BiologicalProcess ⊓ ∃hasParticipant.OrganoidCulture
+  CultureGrowth ⊑ BiologicalProcess ⊓ ∃hasParticipant.OrganoidCulture
+  LossOfRecoveryCapacity ⊑ BiologicalProcess ⊓ ∃hasParticipant.OrganoidCulture
+  Disjoint(InjuryProcess, ProtectiveResponse, RecoveryProcess, CellDeath, CultureGrowth)
+
+PLANS: DESIGNS, ARMS, ADMINISTRATIONS, COMPARISONS
+  StudyDesign ⊑ PlanSpecification ⊓ ∃hasObjective.Objective ⊓ ∃hasArm.ArmSpecification
+  ArmSpecification ⊑ PlanSpecification ⊓ ∀hasAdministrationSpec.AdministrationSpecification
+  AdministrationSpecification ⊑ PlanSpecification ⊓ (=1 usesAgent.ChemicalAgent) ⊓ ∃dose_au.decimal ⊓ ∃atTime_h.decimal
+  ComparisonSpecification ⊑ PlanSpecification ⊓ (=2 compares.ArmSpecification)
+  Disjoint(StudyDesign, ArmSpecification, AdministrationSpecification, ComparisonSpecification)
+  ChallengeSpec ≡ AdministrationSpecification ⊓ ∃usesAgent.ChallengeAgent
+  RescueSpec ≡ AdministrationSpecification ⊓ ∃usesAgent.RescueAgent
+  VehicleSpec ≡ AdministrationSpecification ⊓ ∃usesAgent.Vehicle
+  UntreatedArm ≡ ArmSpecification ⊓ ¬∃hasAdministrationSpec.AdministrationSpecification
+  VehicleControlArm ≡ ArmSpecification ⊓ ∃hasAdministrationSpec.VehicleSpec ⊓ ¬∃hasAdministrationSpec.(ChallengeSpec ⊔ RescueSpec)
+  NegativeControlArm ≡ UntreatedArm ⊔ VehicleControlArm
+  ChallengeOnlyArm ≡ ArmSpecification ⊓ ∃hasAdministrationSpec.ChallengeSpec ⊓ ¬∃hasAdministrationSpec.RescueSpec
+  RescueOnlyArm ≡ ArmSpecification ⊓ ∃hasAdministrationSpec.RescueSpec ⊓ ¬∃hasAdministrationSpec.ChallengeSpec
+  ChallengeRescueArm ≡ ArmSpecification ⊓ ∃hasAdministrationSpec.ChallengeSpec ⊓ ∃hasAdministrationSpec.RescueSpec
+  ReplicatedArm ≡ ArmSpecification ⊓ (≥3 hasAssignedUnit.ExperimentalUnit)
+  InjuryValidityComparison ≡ ComparisonSpecification ⊓ ∃compares.ChallengeOnlyArm ⊓ ∃compares.NegativeControlArm
+  RescueEffectComparison ≡ ComparisonSpecification ⊓ ∃compares.ChallengeRescueArm ⊓ ∃compares.ChallengeOnlyArm
+  AgentAloneComparison ≡ ComparisonSpecification ⊓ ∃compares.RescueOnlyArm ⊓ ∃compares.NegativeControlArm
+  RescueTimingComparison ≡ ComparisonSpecification ⊓ (=2 compares.ChallengeRescueArm)
+  DiscriminationObjective ≡ Objective ⊓ (≥2 isAbout.Hypothesis)
+
+FACTORS, LEVELS AND TREATMENTS
+  Factor ⊑ PlanSpecification ⊓ (≥2 hasLevel.FactorLevel)
+  FactorLevel ⊑ PlanSpecification ⊓ (=1 levelOf.Factor)
+  levelOf ≡ hasLevel⁻
+  hasLevel ⊑ hasPart
+  hasFactor ⊑ hasPart
+  ArmSpecification ⊑ ∀atLevel.FactorLevel
+  ComparisonSpecification ⊑ ∀contrasts.Factor
+  SingleFactorComparison ≡ ComparisonSpecification ⊓ (=1 contrasts.Factor)
+  FactorialDesign ≡ StudyDesign ⊓ (≥2 hasFactor.Factor)
+  WellContrastedDesign ≡ StudyDesign ⊓ ∀hasComparisonSpec.SingleFactorComparison
+  InteractionContrast ⊑ PlanSpecification ⊓ (=2 differenceOf.ComparisonSpecification)
+  hasInteractionContrast ⊑ hasPart
+  InteractionAwareDesign ≡ StudyDesign ⊓ ∃hasInteractionContrast.InteractionContrast
+  Disjoint(Factor, FactorLevel, StudyDesign, ArmSpecification, AdministrationSpecification, ComparisonSpecification, InteractionContrast)
+
+CONTROLS
+  Expectation ⊑ DataItem
+  PriorEvidence ⊑ DataItem
+  EvidenceBasedExpectation ≡ Expectation ⊓ ∃derivedFrom.PriorEvidence
+  PositiveControlArm ≡ ArmSpecification ⊓ ∃hasExpectedOutcome.EvidenceBasedExpectation
+  PositiveControlComparison ≡ ComparisonSpecification ⊓ ∃compares.PositiveControlArm ⊓ ∃compares.ChallengeOnlyArm
+  PositiveControlledDesign ≡ StudyDesign ⊓ ∃hasComparisonSpec.PositiveControlComparison
+
+READOUTS AND ANALYSIS PLAN
+  hasReadout ⊑ hasPart
+  hasAnalysisPlan ⊑ hasPart
+  hasDecisionRule ⊑ hasPart
+  ReadoutSpecification ⊑ PlanSpecification ⊓ ∃measures.Quality ⊓ ∃atTime_h.decimal
+  SizeReadout ≡ ReadoutSpecification ⊓ ∃measures.OrganoidSize ⊓ ∃isProxyFor.Viability
+  AnalysisPlan ⊑ PlanSpecification ⊓ ∃hasDecisionRule.DecisionRule
+  DecisionRule ⊑ PlanSpecification
+  ComparisonRule ⊑ DecisionRule ⊓ (=1 appliesTo.ComparisonSpecification)
+  ThresholdRule ⊑ ComparisonRule
+  EstimationRule ⊑ ComparisonRule
+  BayesianUpdateRule ⊑ ComparisonRule ⊓ (≥2 isAbout.Hypothesis)
+  DeviationRule ⊑ DecisionRule ⊓ ¬∃appliesTo.⊤
+  Disjoint(ThresholdRule, EstimationRule, BayesianUpdateRule, DeviationRule)
+  Disjoint(ReadoutSpecification, AnalysisPlan, DecisionRule, Factor, StudyDesign, ArmSpecification, ComparisonSpecification)
+  CoveredComparison ≡ ComparisonSpecification ⊓ ∃appliesTo⁻.ComparisonRule
+  PreSpecifiedDesign ≡ StudyDesign ⊓ ∃hasReadout.ReadoutSpecification ⊓ ∃hasAnalysisPlan.AnalysisPlan ⊓ ∀hasComparisonSpec.CoveredComparison
+  DeviationAwareDesign ≡ PreSpecifiedDesign ⊓ ∃hasAnalysisPlan.∃hasDecisionRule.DeviationRule
+
+DESIGN CLASSES
+  ComparativeDesign ≡ StudyDesign ⊓ (≥2 hasArm.ArmSpecification) ⊓ ∃hasComparisonSpec.ComparisonSpecification
+  ControlledDesign ≡ ComparativeDesign ⊓ ∃hasArm.NegativeControlArm
+  InjuryRescueDesign ≡ ControlledDesign ⊓ ∃hasArm.ChallengeRescueArm ⊓ ∃hasArm.ChallengeOnlyArm ⊓ ∃hasComparisonSpec.RescueEffectComparison
+  ValidatedInjuryRescueDesign ≡ InjuryRescueDesign ⊓ ∃hasComparisonSpec.InjuryValidityComparison
+  AgentControlledInjuryRescueDesign ≡ ValidatedInjuryRescueDesign ⊓ ∃hasArm.RescueOnlyArm ⊓ ∃hasArm.VehicleControlArm ⊓ ∃hasComparisonSpec.AgentAloneComparison
+  TherapeuticWindowDesign ≡ InjuryRescueDesign ⊓ (≥2 hasArm.ChallengeRescueArm)
+  ReplicatedDesign ≡ StudyDesign ⊓ ∀hasArm.ReplicatedArm
+  AdequatelyControlledInjuryRescueDesign ≡ AgentControlledInjuryRescueDesign ⊓ PositiveControlledDesign ⊓ ReplicatedDesign ⊓ WellContrastedDesign ⊓ PreSpecifiedDesign
+  HypothesisDiscriminatingDesign ≡ StudyDesign ⊓ ∃hasObjective.DiscriminationObjective
+  SufficientlyInformativeDesign ≡ StudyDesign ⊓ ∃expectedInformationGain_bits.decimal[≥0.5]
+
+EXPERIMENTS, PHASES AND STEPS
+  Investigation ⊑ PlannedProcess ⊓ (=1 executes.StudyDesign)
+  ComparativeExperiment ≡ Investigation ⊓ ∃executes.ComparativeDesign
+  ControlledExperiment ≡ Investigation ⊓ ∃executes.ControlledDesign
+  InjuryRescueExperiment ≡ Investigation ⊓ ∃executes.InjuryRescueDesign
+  ValidatedInjuryRescueExperiment ≡ Investigation ⊓ ∃executes.ValidatedInjuryRescueDesign
+  AdequatelyControlledInjuryRescueExperiment ≡ Investigation ⊓ ∃executes.AdequatelyControlledInjuryRescueDesign
+  TherapeuticWindowExperiment ≡ Investigation ⊓ ∃executes.TherapeuticWindowDesign
+  FactorialExperiment ≡ Investigation ⊓ ∃executes.FactorialDesign
+  HypothesisDiscriminatingExperiment ≡ Investigation ⊓ ∃executes.HypothesisDiscriminatingDesign
+  ComparativeExperiment ⊑ (=1 hasPhase.CultivationPhase) ⊓ (=1 hasPhase.ObservationPhase) ⊓ (=1 hasPhase.AnalysisPhase)
+  Phase ⊑ PlannedProcess
+  CultivationPhase ⊑ Phase ⊓ ∀hasStep.(Administration ⊔ Incubation)
+  ObservationPhase ⊑ Phase ⊓ ∀hasStep.Assay
+  AnalysisPhase ⊑ Phase ⊓ ∀hasStep.DataTransformation
+  Disjoint(CultivationPhase, ObservationPhase, AnalysisPhase)
+  Administration ⊑ PlannedProcess ⊓ (=1 executes.AdministrationSpecification) ⊓ ∃hasSpecifiedInput.ChemicalAgent ⊓ ∃hasSpecifiedInput.ExperimentalUnit
+  ChallengeAdministration ≡ Administration ⊓ ∃executes.ChallengeSpec
+  RescueAdministration ≡ Administration ⊓ ∃executes.RescueSpec
+  Incubation ⊑ PlannedProcess ⊓ ∃hasParticipant.OrganoidCulture
+  Assay ⊑ PlannedProcess ⊓ ∃hasSpecifiedInput.ExperimentalUnit ⊓ ∃hasSpecifiedOutput.DataItem
+  ImagingAssay ⊑ Assay ⊓ ∃hasSpecifiedOutput.Image
+  DataTransformation ⊑ PlannedProcess
+  ImageAnalysis ⊑ DataTransformation ⊓ ∃hasSpecifiedInput.Image ⊓ ∃hasSpecifiedOutput.SizeDatum
+  StatisticalComparison ⊑ DataTransformation ⊓ (=1 executes.ComparisonSpecification) ⊓ ∃executes.ComparisonRule ⊓ ∃hasSpecifiedOutput.EffectEstimate
+  ModelUpdate ⊑ DataTransformation ⊓ ∃hasSpecifiedOutput.PosteriorDistribution
+  Disjoint(Phase, Administration, Incubation, Assay, DataTransformation)
+
+DATA, HYPOTHESES AND CONCLUSIONS
+  Image ⊑ DataItem ⊓ ∃isAbout.ExperimentalUnit
+  MeasurementDatum ⊑ DataItem
+  SizeDatum ⊑ MeasurementDatum ⊓ ∃isAbout.OrganoidSize ⊓ ∃isProxyFor.Viability
+  EffectEstimate ⊑ DataItem ⊓ ∃derivedFrom.SizeDatum
+  PosteriorDistribution ⊑ DataItem ⊓ (≥2 isAbout.Hypothesis)
+  Prediction ⊑ Expectation ⊓ ∃derivedFrom.Hypothesis ⊓ ∃isAbout.ComparisonSpecification
+  Disjoint(Image, MeasurementDatum, EffectEstimate, PosteriorDistribution, Expectation, PriorEvidence)
+  RecoveryHypothesis ⊑ Hypothesis ⊓ ∃isAbout.RecoveryProcess
+  GradedRecoveryHypothesis ⊑ RecoveryHypothesis ⊓ ¬∃posits.LossOfRecoveryCapacity
+  ThresholdRecoveryHypothesis ⊑ RecoveryHypothesis ⊓ ∃posits.LossOfRecoveryCapacity
+  ProtectiveResponseHypothesis ⊑ ThresholdRecoveryHypothesis ⊓ ∃posits.(ProtectiveResponse ⊓ ∃delays.LossOfRecoveryCapacity)
+  Conclusion ⊑ ∃derivedFrom.(EffectEstimate ⊔ PosteriorDistribution)
+
+LABORATORIES, DEVICES AND CAPABILITIES
+  Laboratory ⊑ MaterialEntity ⊓ ∃hasDevice.Device
+  hasDevice ⊑ hasPart
+  Device ⊑ MaterialEntity
+  Disjoint(Laboratory, Device, OrganoidCulture, ChemicalAgent, Plate, Well)
+  DeviceFunction ⊑ Disposition ⊓ ∃inheresIn.Device
+  DosingFunction ⊑ DeviceFunction ⊓ ∀realizedIn.Administration
+  IncubationFunction ⊑ DeviceFunction ⊓ ∀realizedIn.Incubation
+  BrightfieldImagingFunction ⊑ DeviceFunction ⊓ ∀realizedIn.ImagingAssay
+  LuminescenceReadingFunction ⊑ DeviceFunction ⊓ ∀realizedIn.LuminescenceAssay
+  AbsorbanceReadingFunction ⊑ DeviceFunction ⊓ ∀realizedIn.AbsorbanceAssay
+  CalibrationFunction ⊑ DeviceFunction
+  QuarantineFunction ⊑ DeviceFunction
+  TransportFunction ⊑ DeviceFunction
+  PlateHandlingFunction ⊑ DeviceFunction
+  StorageFunction ⊑ DeviceFunction
+  EndpointAssay ⊑ Assay
+  LuminescenceAssay ⊑ EndpointAssay
+  AbsorbanceAssay ⊑ EndpointAssay
+  ImagingAssay ⊓ EndpointAssay ⊑ ⊥
+  MetabolicActivity ⊑ Quality ⊓ ∃inheresIn.OrganoidCulture
+  EnvironmentProfile ⊑ PlanSpecification
+  ReadoutBinding ⊑ InformationContentEntity ⊓ ∃isAbout.Quality
+  ValidatedReadoutBinding ⊑ ReadoutBinding
+  DosingLab ≡ Laboratory ⊓ ∃hasDevice.∃bearerOf.DosingFunction
+  CultivationLab ≡ Laboratory ⊓ ∃hasDevice.∃bearerOf.IncubationFunction
+  BrightfieldImagingLab ≡ Laboratory ⊓ ∃hasDevice.∃bearerOf.BrightfieldImagingFunction
+  LuminescenceReadoutLab ≡ Laboratory ⊓ ∃hasDevice.∃bearerOf.LuminescenceReadingFunction
+  AbsorbanceReadoutLab ≡ Laboratory ⊓ ∃hasDevice.∃bearerOf.AbsorbanceReadingFunction
+  QualityControlledLab ≡ Laboratory ⊓ ∃hasDevice.∃bearerOf.CalibrationFunction
+  ContainmentCapableLab ≡ Laboratory ⊓ ∃hasDevice.∃bearerOf.QuarantineFunction
+  ConnectedLab ≡ Laboratory ⊓ ∃hasDevice.∃bearerOf.TransportFunction
+  MultiEnvironmentLab ≡ Laboratory ⊓ (≥2 providesEnvironment.EnvironmentProfile)
+  ValidatedSizeReadoutLab ≡ Laboratory ⊓ ∃hasReadoutBinding.(ValidatedReadoutBinding ⊓ ∃isAbout.OrganoidSize)
+  ValidatedMetabolicReadoutLab ≡ Laboratory ⊓ ∃hasReadoutBinding.(ValidatedReadoutBinding ⊓ ∃isAbout.MetabolicActivity)
+  TreatmentAndImagingModule ≡ DosingLab ⊓ CultivationLab ⊓ BrightfieldImagingLab ⊓ ValidatedSizeReadoutLab
+
+DESIGN REQUIREMENTS
+  RequiresDosing ≡ StudyDesign ⊓ ∃hasArm.∃hasAdministrationSpec.AdministrationSpecification
+  RequiresCultivation ≡ StudyDesign ⊓ ∃hasArm.ArmSpecification
+  ImagingReadout ⊑ ReadoutSpecification
+  EndpointReadout ⊑ ReadoutSpecification
+  LuminescenceReadout ⊑ EndpointReadout
+  AbsorbanceReadout ⊑ EndpointReadout
+  ImagingReadout ⊓ EndpointReadout ⊑ ⊥
+  RequiresImaging ≡ StudyDesign ⊓ ∃hasReadout.ImagingReadout
+  RequiresLuminescence ≡ StudyDesign ⊓ ∃hasReadout.LuminescenceReadout
+  RequiresAbsorbance ≡ StudyDesign ⊓ ∃hasReadout.AbsorbanceReadout
+  RequiresEndpointHandling ≡ StudyDesign ⊓ ∃hasReadout.EndpointReadout
+  EnvironmentFactor ⊑ Factor
+  RequiresMultipleEnvironments ≡ StudyDesign ⊓ ∃hasFactor.EnvironmentFactor
+
+ALIGNMENT
+  Organoid ⊑ bio:Organoid
+  CultureMedium ⊑ bio:CultureMedium
+  Toxicant ⊑ bio:Toxicant
+  RescueAgent ⊑ bio:RescueAgent
+  ChallengeAdministration ⊑ bio:ControlledToxicChallenge
+  RescueAdministration ⊑ bio:RescueIntervention
+  ImagingAssay ⊑ bio:ImagingProcess
+  Incubation ⊑ bio:IncubationProcess
+  Hypothesis ⊑ bio:Hypothesis
+  Prediction ⊑ bio:Prediction
+  ProtectiveResponse ⊑ bio:ProtectiveResponse
+  RecoveryProcess ⊑ bio:RecoveryProcess
+  CellDeath ⊑ bio:CellDeathProcess
+  CultureGrowth ⊑ bio:CultureGrowth
+  InjuryProcess ⊑ bio:DamageAccumulation
+  Plate ⊑ bio:CulturePlate
+  Well ⊑ bio:CultureWell

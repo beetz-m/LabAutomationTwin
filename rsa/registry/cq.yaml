@@ -1,0 +1,240 @@
+# Competency questions for the challenge-rescue example (iteration 1). Expected answers are written per scenario from
+# the scenario specification and the knowledge (not copied from runs). Matching: dicts are subsets; "~text" = the
+# answer contains text; {$set: [...]} = same elements in any order; {$contains: [...]} = includes these elements;
+# floats within 0.05.
+questions:
+- id: CQ-01
+  family: what
+  question: What are you doing at the first dispense -- which device, plate, well, reagent and volume?
+  fn: q_what
+  args: {category: dispense}
+  expect:
+    nominal: {category: dispense, device: l12, plate: P17, well: A01, reagent: challenge, volume_uL: 17.0, culture_time_h: 0.0}
+    tip_lost: {category: dispense, device: l12, plate: P17, well: A01, reagent: challenge, volume_uL: 17.0}
+    isaac_nominal: {category: dispense, device: l12, plate: P17, well: A01, reagent: challenge, culture_time_h: 0.0}
+- id: CQ-02
+  family: why
+  question: Why are you dispensing into this well?
+  fn: q_why_chain
+  args: {category: dispense}
+  expect:
+    nominal: {chain: [dispense, dose, intervene, run_session, experiment], design: c_d85_t48_n1, requirement_bits: 0.5,
+              eig_bits: 0.5439, role: rescued, session: s0}
+    isaac_nominal: {chain: [dispense, dose, intervene, run_session, experiment], design: c_d85_t48_n1, role: rescued, session: s0}
+- id: CQ-03
+  family: why
+  question: Why was this device chosen for dosing, and which alternatives were rejected?
+  fn: q_why_device
+  args: {category: dose}
+  expect:
+    nominal: {device: l12, grounds: {$contains: ["automated(l12)", "has_function(l12,dispensing)",
+                                                  "component:L12_LiquidHandler.capabilities∋dose_well"]}}
+- id: CQ-04
+  family: why
+  question: Why does the plate go via the handover nest?
+  fn: q_why_route
+  expect:
+    nominal: {legs: [[r01, l10, handovernest], [r02, handovernest, l12]], serves_source: [r01], serves_target: [r02]}
+    isaac_nominal: {legs: [[r01, l10, handovernest], [r02, handovernest, l12]]}
+- id: CQ-05
+  family: why
+  question: Why does R02 couple its tool in every session?
+  fn: q_why_tool
+  expect:
+    nominal: {couplings: {s0: 1, s1: 1, s2: 1}, grounds: {$contains: ["requires_tool(r02,t01)"]},
+              belief_before: {s0: assumed, s1: stale, s2: stale}}
+- id: CQ-06
+  family: how
+  question: How long was the plate outside the incubator in each session, and what is the limit?
+  fn: q_time_outside
+  expect:
+    nominal: {s0: 298.9, s1: 263.3, s2: 256.4, window_s: 600.0, margin_pct: 20}
+    uncalibrated_known: {s2: 256.4}     # iteration 2 (F11): QC is preparation, before the plate's release
+- id: CQ-07
+  family: constraints
+  question: Which constraints were checked in session s0, with which verdicts?
+  fn: q_constraints_in_session
+  args: {session: s0}
+  expect:
+    nominal: {interlocks_closed: [ENFORCED], projection_succeeds: [ENFORCED], window_prospective: [ENFORCED],
+              window_kept: [ENFORCED], identity_verified: [ENFORCED], contamination_free: [ENFORCED],
+              tool_compatible: [ENFORCED], reagent_bound: [ENFORCED], l12_airspace_clear: [ENFORCED],
+              dispense_completed: [ENFORCED], environment_before_store: [ENFORCED]}
+- id: CQ-07b
+  family: constraints
+  question: Which constraints were violated in session s1?
+  fn: q_constraints_in_session
+  args: {session: s1}
+  expect:
+    tool_changer_slow: {window_kept: [ENFORCED, VIOLATED]}
+- id: CQ-08
+  family: constraints
+  question: What must hold before and while you dispense?
+  fn: q_must_hold
+  args: {category: dose}
+  expect:
+    nominal: {kernel: {$set: [contamination_free, reagent_bound, dispense_completed, l12_airspace_clear]},
+              cell01_contract: [plate ID verified, well bound, reagent lot verified, tip attached and compatible,
+                                device calibrated]}
+- id: CQ-09
+  family: capability
+  question: Which devices can image the plate now, and how far is their readout validated?
+  fn: q_devices_now
+  expect:
+    nominal: {l17: validated}
+    imager_swapped: {l17: capability_match}
+    imager_incapable: {}
+- id: CQ-10
+  family: capability
+  question: Can R02 carry the plate from L10 to the handover nest?
+  fn: q_can_robot
+  args: {robot: r02, source: l10, target: handovernest}
+  expect:
+    nominal: {possible: false, missing: ["serves(r02,l10)"]}
+- id: CQ-11
+  family: what-if
+  question: What would change in the imaging session if L17 were not known to be calibrated?
+  fn: q_whatif
+  args: {session: s2, remove: ["calibrated(l17)"]}
+  expect:
+    nominal: {outcome: completes, inserted: [calibrate], qc_station: l21, duration_s: 376.4, within_window: true}
+- id: CQ-12
+  family: what-if
+  question: What would happen if a tool change took 600 s?
+  fn: q_whatif
+  args: {session: s0, remove: ["dur(tool_couple,416)"], add: ["dur(tool_couple,6000)"]}
+  expect:
+    nominal: {outcome: refused, refused_by: {$contains: [window_prospective]}}
+- id: CQ-13
+  family: what-if
+  question: What would happen if contamination were suspected?
+  fn: q_whatif
+  args: {add: [contamination_suspected]}
+  expect:
+    nominal: {outcome: refused, refused_by: {$contains: [contamination_free]}}
+- id: CQ-14
+  family: evidence
+  question: How do you know that A01 received the challenge?
+  fn: q_evidence_dose
+  args: {well: A01, reagent: challenge}
+  expect:
+    nominal: {well: A01, reagent: challenge, lot: SIM-LOT-A, delivered_uL: 17.0, commanded_uL: 17.0,
+              identity_read_in_session: P17, culture_time_h: 0.0, hash_chained: true}
+    isaac_nominal: {well: A01, reagent: challenge, lot: SIM-LOT-A, identity_read_in_session: P17, culture_time_h: 0.0, hash_chained: true}
+- id: CQ-15
+  family: evidence
+  question: Is your record intact, and would you notice if someone edited it?
+  fn: q_integrity
+  expect:
+    nominal: {intact: true, tamper_detected: true}
+    identity_swap: {intact: true, tamper_detected: true}
+    imager_swapped: {intact: true, tamper_detected: true}
+    isaac_nominal: {intact: true, tamper_detected: true}
+    isaac_identity_swap: {intact: true, tamper_detected: true}
+    isaac_calibration_lapsed: {intact: true, tamper_detected: true}
+- id: CQ-16
+  family: retrospective
+  question: What went wrong, and what did you repair?
+  fn: q_repairs
+  expect:
+    nominal: []
+    # iteration 2 (F11): the plate is set aside first, the reference plate needs the stage
+    calibration_lapsed: [{failure: calibration_invalid, at: image, repair: [transport_lab, calibrate]}]
+    tip_lost: [{failure: tip_missing, at: dose, repair: [tip_pick]}]
+    identity_swap: [{failure: identity_mismatch, at: retrieve, repair: [quarantine]}]
+    tool_changer_slow: [{failure: window_exceeded, at: run_session, repair: [transport_lab, store]}]
+    isaac_identity_swap: [{failure: identity_mismatch, at: retrieve, repair: [quarantine]}]
+    isaac_calibration_lapsed: {$contains: [{failure: calibration_invalid, at: image, repair: [transport_lab, calibrate]}]}
+- id: CQ-17
+  family: retrospective
+  question: Was the rescue given? If not, why not?
+  fn: q_rescue
+  expect:
+    nominal: {rescue_given: true, wells: [A01], culture_time_h: 48.0}
+    tip_lost: {rescue_given: true, wells: [A01], culture_time_h: 48.0}
+    identity_swap: {rescue_given: false, reason: "~identity_mismatch"}
+    tool_changer_slow: {rescue_given: false, reason: "~window"}
+    rescue_unbound: {rescue_given: false, reason: "~reagent_pose(rescue)"}
+    isaac_nominal: {rescue_given: true, wells: [A01], culture_time_h: 48.0}
+    isaac_identity_swap: {rescue_given: false, reason: "~identity_mismatch"}
+- id: CQ-18
+  family: retrospective
+  question: Where is the experiment's plate now, and how do you know?
+  fn: q_where
+  expect:
+    nominal: {plate: P17, at: "slot:l10", source: observed}
+    identity_swap: {plate: P17, at: unknown, source: observed}
+    control_dropped: {plate: P17, at: "slot:l10", source: inferred}
+    isaac_nominal: {plate: P17, at: "slot:l10", source: observed}
+    isaac_identity_swap: {plate: P18, at: unknown, source: observed}
+- id: CQ-19
+  family: normative
+  question: Which regulation clauses does this run cover, which not?
+  fn: q_regulation
+  expect:
+    nominal: {covered: {$set: [EU-GMP-Annex11-9, ALCOA-attributable, ALCOA-contemporaneous, ALCOA-original,
+                               ISO10218-2-safeguarding, biosafety-contamination]},
+              not_covered: {$set: [21CFR11-11.50, OECD-GLP-study-plan]}, violated: []}
+    contamination: {violated: [biosafety-contamination]}
+- id: CQ-20
+  family: normative
+  question: Which material did you quarantine, and who authorised it?
+  fn: q_quarantine
+  expect:
+    nominal: {quarantined: []}
+    identity_swap: {quarantined: [{plate: P18, status: requested, authorization: human_review_required}]}
+    isaac_nominal: {quarantined: []}
+    isaac_identity_swap: {quarantined: [{plate: P23, status: requested, authorization: human_review_required}]}
+- id: CQ-21
+  family: verdict
+  question: Is the result a valid experiment?
+  fn: q_verdict
+  expect:
+    nominal: {realization: true, validity: true, nr3: false, failed_checks: []}
+    calibration_lapsed: {realization: true, validity: true, nr3: false}
+    imager_swapped: {realization: true, validity: false, nr3: true, failed_checks: [V3_binding_validated]}
+    identity_swap: {realization: false, validity: false, failed_checks: {$set: [V1_identity_continuity,
+                    V2_calibration_at_measurement, V3_binding_validated, V4_controls_present, V7_design_realised]}}
+    isaac_nominal: {realization: true, validity: true, nr3: false}
+    isaac_calibration_lapsed: {realization: true, validity: true}
+    isaac_identity_swap: {realization: false, validity: false}
+- id: CQ-22
+  family: verdict
+  question: May this result update the culture belief?
+  fn: q_promotable
+  expect:
+    nominal: {promotable: true}
+    calibration_lapsed: {promotable: true}
+    imager_swapped: {promotable: false, reason: "~NR3"}
+    identity_swap: {promotable: false, reason: "~escalated"}
+- id: CQ-23
+  family: epistemic
+  question: What do you not know?
+  fn: q_unknowns
+  expect:
+    nominal: {$contains: ["L12: Executed volume is not equivalent to biological effective dose."]}
+    identity_swap: {$contains: ["plate_at:P17 = unknown"]}
+- id: CQ-24
+  family: what
+  question: What did R02 do in the rescue session?
+  fn: q_robot_did
+  args: {robot: r02, session: s1}
+  expect:
+    nominal: {tool_couple: 1, approach: 4, insert: 2, grasp: 2, lift: 2, transit: 2, place: 2, release: 2, retract: 2}
+    isaac_nominal: {tool_couple: 1, approach: 4, insert: 2, grasp: 2, lift: 2, transit: 2, place: 2, release: 2, retract: 2}
+- id: CQ-25
+  family: taxonomy
+  question: What kind of action is a dispense, and what does it realise?
+  fn: q_category
+  args: {category: dispense}
+  expect:
+    nominal: {level: command, effect_class: SubstanceManipulation, facet: transformation,
+              okf_class: DeviceCommandDesignator, realises: [dose, intervene]}
+- id: CQ-26
+  family: modularity
+  question: If L17 were exchanged for the generic imager, what would change?
+  fn: q_whatif
+  args: {components: {l17: l17_generic}}
+  expect:
+    nominal: {outcome: completes, plan_changed: false, validity_violations: [measurement_binding_validated]}
+

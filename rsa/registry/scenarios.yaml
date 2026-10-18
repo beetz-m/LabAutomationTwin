@@ -1,0 +1,50 @@
+# Scenarios of iteration 1. The plan code (rsa/library.py) is the same for all of them; a scenario changes only
+# knowledge (facts, component records, registry), the world (injected faults) or the workflow (roles).
+nominal:
+  plan: g050
+  crosscheck: true
+  about: the derived 0.5-bit experiment, fault-free
+uncalibrated_known:
+  plan: g050_uncal
+  crosscheck: true
+  about: the KB does not assert calibrated(l17); a QC calibration is planned before imaging (step insertion by knowledge)
+calibration_lapsed:
+  plan: g050
+  faults: {calibration_lapsed: {session: s2, devices: [l17]}}
+  about: the KB believes L17 calibrated but it lapsed; detected at imaging, repaired by QC and re-imaging
+tip_lost:
+  plan: g050
+  faults: {tip_lost: {session: s1}}
+  about: the tip falls off after the pick at the rescue dose; detected before aspiration, tip replaced
+identity_swap:
+  plan: g050
+  faults: {identity_swap: {session: s1, plate_in_slot: P18}}
+  about: L10 holds P18 instead of P17 at the rescue session; quarantine P18, escalate
+tool_changer_slow:
+  plan: g050
+  faults: {tool_changer_slow: {session: s1, duration_s: 600}}
+  about: the tool changer takes 600 s at the rescue session; window exceeded, safe return
+imager_swapped:
+  plan: g050
+  components: {l17: l17_generic}
+  about: L17 replaced by a capability-matched imager without a validated binding for the readout (device exchange)
+imager_incapable:
+  plan: g050
+  components: {l17: l17_incapable}
+  about: L17 replaced by a device without well imaging; the measurement session cannot be grounded
+rescue_unbound:
+  plan: g050
+  remove: ["reagent_pose(rescue,stations_l12_liquidhandler_reagent_rack_frames_rack_1_pos_2)"]
+  about: the rescue reagent is not bound to a rack position; the rescue dose cannot be grounded
+control_dropped:
+  plan: g050
+  drop_roles: [control]
+  about: the workflow is changed to drop the control well; the experiment is refused before any motion
+contamination:
+  plan: g050
+  add: [contamination_suspected]
+  about: contamination is suspected; challenge and rescue are refused
+card_incomplete:
+  plan: g050
+  card_patch: {dose: {drop: [evidence]}}
+  about: the dose category card lacks its evidence obligations; the understanding gate refuses the dose

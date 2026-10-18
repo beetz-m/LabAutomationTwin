@@ -1,0 +1,7405 @@
+{
+ "episode_id": "cell01-ep-001-plan",
+ "scene": "cell01",
+ "place_mode": "compliant",
+ "route": "derived_plan",
+ "plan": "okf/lab-automation-twin/L3-logical-axiomatization/derivation/out/plan_g050.json",
+ "selected": {
+  "id": "c_d85_t48_n1",
+  "dose_au": 0.85,
+  "delay_h": 48,
+  "reps": 1,
+  "eig_bits": 0.5439,
+  "predicted_effect_um": {
+   "M1_graded": {
+    "effect_um": 8.511554506841351,
+    "effect_sd_um": 11.35673274292009
+   },
+   "M2_threshold": {
+    "effect_um": 24.997958696802904,
+    "effect_sd_um": 6.252347178286532
+   },
+   "M3_protective": {
+    "effect_um": 25.35813912830903,
+    "effect_sd_um": 6.501913095362415
+   }
+  },
+  "rescue_au": 0.7
+ },
+ "trips": [
+  {
+   "id": "s0_trip1",
+   "session": "s0",
+   "t_h": 0,
+   "device": "l12",
+   "steps_total": 52,
+   "steps_ok": 52,
+   "executed": [
+    {
+     "index": 0,
+     "primitive": "check_interlocks",
+     "level": "safety_step",
+     "who": "cell01",
+     "t": 0.0,
+     "ok": true,
+     "predicted_s": 0.5,
+     "evidence": "Cell 01 scene: no door model; the enclosure interlock is not simulated (assumed closed)"
+    },
+    {
+     "index": 1,
+     "primitive": "verify_identity",
+     "level": "safety_step",
+     "who": "l10",
+     "t": 16.75,
+     "ok": true,
+     "predicted_s": 0.0,
+     "observed": "Plate_P17"
+    },
+    {
+     "index": 2,
+     "primitive": "present",
+     "level": "device_command",
+     "who": "l10",
+     "t": 16.75,
+     "ok": true,
+     "predicted_s": 26.01,
+     "mode": "PRESENTED_LOADED"
+    },
+    {
+     "index": 3,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 30.479,
+     "ok": true,
+     "predicted_s": 1.89,
+     "pick_at": "L10"
+    },
+    {
+     "index": 4,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r01",
+     "t": 30.479,
+     "ok": true,
+     "predicted_s": 1.26,
+     "pick_at": "L10"
+    },
+    {
+     "index": 5,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r01",
+     "t": 30.479,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "L10"
+    },
+    {
+     "index": 6,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r01",
+     "t": 30.479,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "L10",
+     "lifted": true,
+     "contact": true
+    },
+    {
+     "index": 7,
+     "primitive": "stow",
+     "level": "device_command",
+     "who": "l10",
+     "t": 33.729,
+     "ok": true,
+     "predicted_s": 3.0,
+     "mode": "READY"
+    },
+    {
+     "index": 8,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r01",
+     "t": 55.325,
+     "ok": true,
+     "predicted_s": 5.35,
+     "place_at": "HN"
+    },
+    {
+     "index": 9,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 55.325,
+     "ok": true,
+     "predicted_s": 1.89,
+     "place_at": "HN"
+    },
+    {
+     "index": 10,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r01",
+     "t": 55.325,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "HN"
+    },
+    {
+     "index": 11,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r01",
+     "t": 55.325,
+     "ok": true,
+     "predicted_s": 0.63,
+     "place_at": "HN"
+    },
+    {
+     "index": 12,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r01",
+     "t": 55.325,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "HN",
+     "seated": true,
+     "retract_to": "L09 approach (clear of HN)"
+    },
+    {
+     "index": 13,
+     "primitive": "tool_couple",
+     "level": "tool",
+     "who": "r02",
+     "t": 77.975,
+     "ok": true,
+     "predicted_s": 41.56,
+     "tool": "T01",
+     "reason": ""
+    },
+    {
+     "index": 14,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 95.125,
+     "ok": true,
+     "predicted_s": 4.66,
+     "pick_at": "HN"
+    },
+    {
+     "index": 15,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r02",
+     "t": 95.125,
+     "ok": true,
+     "predicted_s": 3.11,
+     "pick_at": "HN"
+    },
+    {
+     "index": 16,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r02",
+     "t": 95.125,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "HN"
+    },
+    {
+     "index": 17,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r02",
+     "t": 95.125,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "HN",
+     "positioned": true,
+     "converged": true,
+     "lifted_mm": 150.1
+    },
+    {
+     "index": 18,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r02",
+     "t": 126.067,
+     "ok": true,
+     "predicted_s": 13.2,
+     "place_at": "L12"
+    },
+    {
+     "index": 19,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 126.067,
+     "ok": true,
+     "predicted_s": 4.66,
+     "place_at": "L12"
+    },
+    {
+     "index": 20,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r02",
+     "t": 126.067,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "L12"
+    },
+    {
+     "index": 21,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r02",
+     "t": 126.067,
+     "ok": true,
+     "predicted_s": 1.55,
+     "place_at": "L12"
+    },
+    {
+     "index": 22,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r02",
+     "t": 126.067,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "L12",
+     "seated": true,
+     "offset_mm": [
+      0.08,
+      0.13,
+      -0.0
+     ],
+     "tilt_deg": 0.0,
+     "l12_airspace_clear": true
+    },
+    {
+     "index": 23,
+     "primitive": "tip_pick",
+     "level": "device_command",
+     "who": "l12",
+     "t": 169.067,
+     "ok": true,
+     "predicted_s": 7.12,
+     "l12_event": true
+    },
+    {
+     "index": 24,
+     "primitive": "aspirate",
+     "level": "device_command",
+     "who": "l12",
+     "t": 169.067,
+     "ok": true,
+     "predicted_s": 10.69,
+     "l12_event": true
+    },
+    {
+     "index": 25,
+     "primitive": "dispense",
+     "level": "device_command",
+     "who": "l12",
+     "t": 169.067,
+     "ok": true,
+     "predicted_s": 12.47,
+     "well": "A01",
+     "reagent": "challenge",
+     "au": 0.85,
+     "volume_uL": 17.0,
+     "refused": null,
+     "dose": {
+      "valid": true,
+      "volume_inferred_uL": 17.003,
+      "aborted": null,
+      "well_id": "A01"
+     },
+     "duration_s": 43.0
+    },
+    {
+     "index": 26,
+     "primitive": "tip_eject",
+     "level": "device_command",
+     "who": "l12",
+     "t": 169.067,
+     "ok": true,
+     "predicted_s": 5.34,
+     "l12_event": true
+    },
+    {
+     "index": 27,
+     "primitive": "tip_pick",
+     "level": "device_command",
+     "who": "l12",
+     "t": 210.067,
+     "ok": true,
+     "predicted_s": 7.12,
+     "l12_event": true
+    },
+    {
+     "index": 28,
+     "primitive": "aspirate",
+     "level": "device_command",
+     "who": "l12",
+     "t": 210.067,
+     "ok": true,
+     "predicted_s": 10.69,
+     "l12_event": true
+    },
+    {
+     "index": 29,
+     "primitive": "dispense",
+     "level": "device_command",
+     "who": "l12",
+     "t": 210.067,
+     "ok": true,
+     "predicted_s": 12.47,
+     "well": "A02",
+     "reagent": "challenge",
+     "au": 0.85,
+     "volume_uL": 17.0,
+     "refused": null,
+     "dose": {
+      "valid": true,
+      "volume_inferred_uL": 17.019,
+      "aborted": null,
+      "well_id": "A02"
+     },
+     "duration_s": 41.0
+    },
+    {
+     "index": 30,
+     "primitive": "tip_eject",
+     "level": "device_command",
+     "who": "l12",
+     "t": 210.067,
+     "ok": true,
+     "predicted_s": 5.34,
+     "l12_event": true
+    },
+    {
+     "index": 31,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 224.696,
+     "ok": true,
+     "predicted_s": 4.66,
+     "pick_at": "L12"
+    },
+    {
+     "index": 32,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r02",
+     "t": 224.696,
+     "ok": true,
+     "predicted_s": 3.11,
+     "pick_at": "L12"
+    },
+    {
+     "index": 33,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r02",
+     "t": 224.696,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "L12"
+    },
+    {
+     "index": 34,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r02",
+     "t": 224.696,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "L12",
+     "positioned": true,
+     "converged": true,
+     "lifted_mm": 149.8
+    },
+    {
+     "index": 35,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r02",
+     "t": 256.275,
+     "ok": true,
+     "predicted_s": 13.2,
+     "place_at": "HN"
+    },
+    {
+     "index": 36,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 256.275,
+     "ok": true,
+     "predicted_s": 4.66,
+     "place_at": "HN"
+    },
+    {
+     "index": 37,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r02",
+     "t": 256.275,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "HN"
+    },
+    {
+     "index": 38,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r02",
+     "t": 256.275,
+     "ok": true,
+     "predicted_s": 1.55,
+     "place_at": "HN"
+    },
+    {
+     "index": 39,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r02",
+     "t": 256.275,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "HN",
+     "seated": true,
+     "offset_mm": [
+      -0.02,
+      0.14,
+      0.0
+     ],
+     "tilt_deg": 0.0,
+     "l12_airspace_clear": null
+    },
+    {
+     "index": 40,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 268.008,
+     "ok": true,
+     "predicted_s": 1.89,
+     "pick_at": "HN"
+    },
+    {
+     "index": 41,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r01",
+     "t": 268.008,
+     "ok": true,
+     "predicted_s": 1.26,
+     "pick_at": "HN"
+    },
+    {
+     "index": 42,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r01",
+     "t": 268.008,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "HN"
+    },
+    {
+     "index": 43,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r01",
+     "t": 268.008,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "HN",
+     "lifted": true,
+     "contact": true
+    },
+    {
+     "index": 45,
+     "primitive": "present",
+     "level": "device_command",
+     "who": "l10",
+     "t": 271.508,
+     "ok": true,
+     "predicted_s": 26.01,
+     "mode": "PRESENTED_EMPTY"
+    },
+    {
+     "index": 44,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r01",
+     "t": 288.954,
+     "ok": true,
+     "predicted_s": 5.35,
+     "place_at": "L10"
+    },
+    {
+     "index": 46,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 288.954,
+     "ok": true,
+     "predicted_s": 1.89,
+     "place_at": "L10"
+    },
+    {
+     "index": 47,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r01",
+     "t": 288.954,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "L10"
+    },
+    {
+     "index": 48,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r01",
+     "t": 288.954,
+     "ok": true,
+     "predicted_s": 0.63,
+     "place_at": "L10"
+    },
+    {
+     "index": 49,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r01",
+     "t": 288.954,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "L10",
+     "seated": true,
+     "retract_to": "L10 approach"
+    },
+    {
+     "index": 50,
+     "primitive": "wait_environment",
+     "level": "safety_step",
+     "who": "l10",
+     "t": 289.204,
+     "ok": true,
+     "predicted_s": 1.0,
+     "environment": {
+      "T": 36.792,
+      "CO2": 4.864,
+      "RH": 89.129
+     }
+    },
+    {
+     "index": 51,
+     "primitive": "store",
+     "level": "device_command",
+     "who": "l10",
+     "t": 305.704,
+     "ok": true,
+     "predicted_s": 20.25,
+     "slot": 2,
+     "observed": "Plate_P17"
+    }
+   ],
+   "duration_s": 305.7,
+   "predicted_s": 298.9,
+   "within_window": true,
+   "ok": true,
+   "doses": [
+    {
+     "t": 170.067,
+     "plate_id": "Plate_P17",
+     "reagent_id": "abstract_challenge_reagent",
+     "reagent_lot": "SIM-LOT-A",
+     "volume_uL": 17.0,
+     "dispense_height_mm": 1.2,
+     "dispense_rate_uL_s": 2.0,
+     "intended_effect": "abstract_challenge",
+     "well_id": "A01",
+     "tip_id": "TIP-RACK1-A01",
+     "monitors": [
+      {
+       "name": "plate_identity",
+       "passed": true,
+       "observation": "L12 plate reader: expected Plate_P17, read 'Plate_P17'",
+       "value": "Plate_P17"
+      },
+      {
+       "name": "well_binding",
+       "passed": true,
+       "observation": "well A01 frame from the nest; real tip end 0.02 mm from the well centre at dispense",
+       "value": "A01"
+      },
+      {
+       "name": "reagent_identity",
+       "passed": true,
+       "observation": "reagent reader pos 1: requested abstract_challenge_reagent lot SIM-LOT-A, read ('abstract_challenge_reagent', 'SIM-LOT-A')",
+       "value": {
+        "barcode": "RGT-0001",
+        "reagent_id": "abstract_challenge_reagent",
+        "lot": "SIM-LOT-A",
+        "path": "/World/L12Consumables/Reagents/Tube_1"
+       }
+      },
+      {
+       "name": "tip_state",
+       "passed": true,
+       "observation": "fresh tip TIP-RACK1-A01 attached (presence ray) through the dispense, ejected to waste",
+       "value": "TIP-RACK1-A01"
+      },
+      {
+       "name": "plate_seating",
+       "passed": true,
+       "observation": "4 nest seat sensors confirm seating",
+       "value": [
+        -0.0,
+        -0.0,
+        -0.0,
+        -0.0
+       ]
+      },
+      {
+       "name": "liquid_level",
+       "passed": true,
+       "observation": "cLLD: {'detected': True, 'surface_z_m': 0.95485, 'expected_surface_z_m': np.float64(0.95372), 'deviation_mm': np.float64(1.127)}",
+       "value": {
+        "detected": true,
+        "surface_z_m": 0.95485,
+        "expected_surface_z_m": 0.95372,
+        "deviation_mm": 1.127
+       }
+      },
+      {
+       "name": "pressure_profile",
+       "passed": true,
+       "observation": "aspirate {'plateau_mbar': -12.01, 'expected_mbar': -12.0, 'steady_fraction': 1.0, 'clog_limit_hit': False}; dispense {'plateau_mbar': 11.99, 'expected_mbar': 12.0, 'steady_fraction': 1.0}",
+       "value": {
+        "aspirate": true,
+        "dispense": true
+       }
+      },
+      {
+       "name": "dispense_completion",
+       "passed": true,
+       "observation": "pressure back to baseline; volume inferred from the trace 17.003 uL of 17.0 uL commanded",
+       "value": 17.003
+      }
+     ],
+     "command_completed": true,
+     "aborted": null,
+     "evidence": {
+      "request": {
+       "plate_id": "Plate_P17",
+       "well_id": "A01",
+       "reagent_pos": 1,
+       "reagent_id": "abstract_challenge_reagent",
+       "reagent_lot": "SIM-LOT-A",
+       "volume_uL": 17.0,
+       "dispense_height_mm": 1.2,
+       "dispense_rate_uL_s": 2.0,
+       "aspirate_rate_uL_s": 2.0,
+       "intended_effect": "abstract_challenge"
+      },
+      "t_start": 127.071,
+      "tip": {
+       "ok": true,
+       "rack_position": "A01",
+       "expected": "TIP-RACK1-A01",
+       "observed": "TIP-RACK1-A01",
+       "gripped": [
+        "/World/L12Consumables/Tips/Tip_rack_1_A01"
+       ]
+      },
+      "lld": {
+       "detected": true,
+       "surface_z_m": 0.95485,
+       "expected_surface_z_m": 0.95372,
+       "deviation_mm": 1.127
+      },
+      "aspirate": {
+       "expected_mbar": -12.0,
+       "plateau_mbar": -12.01,
+       "steady_fraction": 1.0,
+       "clog_limit_hit": false,
+       "samples": 2040,
+       "ok": true,
+       "commanded_uL": 17.0,
+       "inferred_from_pressure_uL": 16.992,
+       "returned_to_baseline": true,
+       "trace": [
+        [
+         0.0042,
+         -12.33
+        ],
+        [
+         0.0458,
+         -11.76
+        ],
+        [
+         0.0875,
+         -11.77
+        ],
+        [
+         0.1292,
+         -11.69
+        ],
+        [
+         0.1708,
+         -11.85
+        ],
+        [
+         0.2125,
+         -11.46
+        ],
+        [
+         0.2542,
+         -11.62
+        ],
+        [
+         0.2958,
+         -12.02
+        ],
+        [
+         0.3375,
+         -11.45
+        ],
+        [
+         0.3792,
+         -11.92
+        ],
+        [
+         0.4208,
+         -12.51
+        ],
+        [
+         0.4625,
+         -12.21
+        ],
+        [
+         0.5042,
+         -12.05
+        ],
+        [
+         0.5458,
+         -11.91
+        ],
+        [
+         0.5875,
+         -11.69
+        ],
+        [
+         0.6292,
+         -11.2
+        ],
+        [
+         0.6708,
+         -12.77
+        ],
+        [
+         0.7125,
+         -11.24
+        ],
+        [
+         0.7542,
+         -11.9
+        ],
+        [
+         0.7958,
+         -11.72
+        ],
+        [
+         0.8375,
+         -11.45
+        ],
+        [
+         0.8792,
+         -12.65
+        ],
+        [
+         0.9208,
+         -11.88
+        ],
+        [
+         0.9625,
+         -11.74
+        ],
+        [
+         1.0042,
+         -12.18
+        ],
+        [
+         1.0458,
+         -12.5
+        ],
+        [
+         1.0875,
+         -11.61
+        ],
+        [
+         1.1292,
+         -11.91
+        ],
+        [
+         1.1708,
+         -12.64
+        ],
+        [
+         1.2125,
+         -12.01
+        ],
+        [
+         1.2542,
+         -11.54
+        ],
+        [
+         1.2958,
+         -11.9
+        ],
+        [
+         1.3375,
+         -11.73
+        ],
+        [
+         1.3792,
+         -12.24
+        ],
+        [
+         1.4208,
+         -11.89
+        ],
+        [
+         1.4625,
+         -11.86
+        ],
+        [
+         1.5042,
+         -12.18
+        ],
+        [
+         1.5458,
+         -12.32
+        ],
+        [
+         1.5875,
+         -11.66
+        ],
+        [
+         1.6292,
+         -12.01
+        ],
+        [
+         1.6708,
+         -12.16
+        ],
+        [
+         1.7125,
+         -11.73
+        ],
+        [
+         1.7542,
+         -12.01
+        ],
+        [
+         1.7958,
+         -12.18
+        ],
+        [
+         1.8375,
+         -12.07
+        ],
+        [
+         1.8792,
+         -12.58
+        ],
+        [
+         1.9208,
+         -11.51
+        ],
+        [
+         1.9625,
+         -12.02
+        ],
+        [
+         2.0042,
+         -11.76
+        ],
+        [
+         2.0458,
+         -11.82
+        ],
+        [
+         2.0875,
+         -11.55
+        ],
+        [
+         2.1292,
+         -11.69
+        ],
+        [
+         2.1708,
+         -11.89
+        ],
+        [
+         2.2125,
+         -11.7
+        ],
+        [
+         2.2542,
+         -12.19
+        ],
+        [
+         2.2958,
+         -11.85
+        ],
+        [
+         2.3375,
+         -11.8
+        ],
+        [
+         2.3792,
+         -12.52
+        ],
+        [
+         2.4208,
+         -12.29
+        ],
+        [
+         2.4625,
+         -11.29
+        ],
+        [
+         2.5042,
+         -12.38
+        ],
+        [
+         2.5458,
+         -12.4
+        ],
+        [
+         2.5875,
+         -12.48
+        ],
+        [
+         2.6292,
+         -11.86
+        ],
+        [
+         2.6708,
+         -12.37
+        ],
+        [
+         2.7125,
+         -12.41
+        ],
+        [
+         2.7542,
+         -12.19
+        ],
+        [
+         2.7958,
+         -11.9
+        ],
+        [
+         2.8375,
+         -11.08
+        ],
+        [
+         2.8792,
+         -12.27
+        ],
+        [
+         2.9208,
+         -12.25
+        ],
+        [
+         2.9625,
+         -12.42
+        ],
+        [
+         3.0042,
+         -12.18
+        ],
+        [
+         3.0458,
+         -12.03
+        ],
+        [
+         3.0875,
+         -12.09
+        ],
+        [
+         3.1292,
+         -11.76
+        ],
+        [
+         3.1708,
+         -12.32
+        ],
+        [
+         3.2125,
+         -11.8
+        ],
+        [
+         3.2542,
+         -11.36
+        ],
+        [
+         3.2958,
+         -11.96
+        ],
+        [
+         3.3375,
+         -12.33
+        ],
+        [
+         3.3792,
+         -11.39
+        ],
+        [
+         3.4208,
+         -12.28
+        ],
+        [
+         3.4625,
+         -11.99
+        ],
+        [
+         3.5042,
+         -12.48
+        ],
+        [
+         3.5458,
+         -12.18
+        ],
+        [
+         3.5875,
+         -12.46
+        ],
+        [
+         3.6292,
+         -11.91
+        ],
+        [
+         3.6708,
+         -11.58
+        ],
+        [
+         3.7125,
+         -12.12
+        ],
+        [
+         3.7542,
+         -12.99
+        ],
+        [
+         3.7958,
+         -12.2
+        ],
+        [
+         3.8375,
+         -11.92
+        ],
+        [
+         3.8792,
+         -11.78
+        ],
+        [
+         3.9208,
+         -12.25
+        ],
+        [
+         3.9625,
+         -12.12
+        ],
+        [
+         4.0042,
+         -12.14
+        ],
+        [
+         4.0458,
+         -11.24
+        ],
+        [
+         4.0875,
+         -12.46
+        ],
+        [
+         4.1292,
+         -12.22
+        ],
+        [
+         4.1708,
+         -11.78
+        ],
+        [
+         4.2125,
+         -11.87
+        ],
+        [
+         4.2542,
+         -12.3
+        ],
+        [
+         4.2958,
+         -11.77
+        ],
+        [
+         4.3375,
+         -12.23
+        ],
+        [
+         4.3792,
+         -11.74
+        ],
+        [
+         4.4208,
+         -11.42
+        ],
+        [
+         4.4625,
+         -12.07
+        ],
+        [
+         4.5042,
+         -11.62
+        ],
+        [
+         4.5458,
+         -11.87
+        ],
+        [
+         4.5875,
+         -11.93
+        ],
+        [
+         4.6292,
+         -12.17
+        ],
+        [
+         4.6708,
+         -11.41
+        ],
+        [
+         4.7125,
+         -11.76
+        ],
+        [
+         4.7542,
+         -12.34
+        ],
+        [
+         4.7958,
+         -11.91
+        ],
+        [
+         4.8375,
+         -11.24
+        ],
+        [
+         4.8792,
+         -11.55
+        ],
+        [
+         4.9208,
+         -12.22
+        ],
+        [
+         4.9625,
+         -12.06
+        ],
+        [
+         5.0042,
+         -12.32
+        ],
+        [
+         5.0458,
+         -11.44
+        ],
+        [
+         5.0875,
+         -12.24
+        ],
+        [
+         5.1292,
+         -11.82
+        ],
+        [
+         5.1708,
+         -11.91
+        ],
+        [
+         5.2125,
+         -12.2
+        ],
+        [
+         5.2542,
+         -11.83
+        ],
+        [
+         5.2958,
+         -12.84
+        ],
+        [
+         5.3375,
+         -11.94
+        ],
+        [
+         5.3792,
+         -12.64
+        ],
+        [
+         5.4208,
+         -12.18
+        ],
+        [
+         5.4625,
+         -11.47
+        ],
+        [
+         5.5042,
+         -11.66
+        ],
+        [
+         5.5458,
+         -11.88
+        ],
+        [
+         5.5875,
+         -12.4
+        ],
+        [
+         5.6292,
+         -12.29
+        ],
+        [
+         5.6708,
+         -12.37
+        ],
+        [
+         5.7125,
+         -12.33
+        ],
+        [
+         5.7542,
+         -11.89
+        ],
+        [
+         5.7958,
+         -12.01
+        ],
+        [
+         5.8375,
+         -12.89
+        ],
+        [
+         5.8792,
+         -12.13
+        ],
+        [
+         5.9208,
+         -11.72
+        ],
+        [
+         5.9625,
+         -12.38
+        ],
+        [
+         6.0042,
+         -11.85
+        ],
+        [
+         6.0458,
+         -11.65
+        ],
+        [
+         6.0875,
+         -12.57
+        ],
+        [
+         6.1292,
+         -12.1
+        ],
+        [
+         6.1708,
+         -11.82
+        ],
+        [
+         6.2125,
+         -11.67
+        ],
+        [
+         6.2542,
+         -12.54
+        ],
+        [
+         6.2958,
+         -12.54
+        ],
+        [
+         6.3375,
+         -11.54
+        ],
+        [
+         6.3792,
+         -11.98
+        ],
+        [
+         6.4208,
+         -12.23
+        ],
+        [
+         6.4625,
+         -12.32
+        ],
+        [
+         6.5042,
+         -12.01
+        ],
+        [
+         6.5458,
+         -12.26
+        ],
+        [
+         6.5875,
+         -12.27
+        ],
+        [
+         6.6292,
+         -12.53
+        ],
+        [
+         6.6708,
+         -11.65
+        ],
+        [
+         6.7125,
+         -11.87
+        ],
+        [
+         6.7542,
+         -12.42
+        ],
+        [
+         6.7958,
+         -12.48
+        ],
+        [
+         6.8375,
+         -11.76
+        ],
+        [
+         6.8792,
+         -12.39
+        ],
+        [
+         6.9208,
+         -11.93
+        ],
+        [
+         6.9625,
+         -12.94
+        ],
+        [
+         7.0042,
+         -12.52
+        ],
+        [
+         7.0458,
+         -12.27
+        ],
+        [
+         7.0875,
+         -11.4
+        ],
+        [
+         7.1292,
+         -11.75
+        ],
+        [
+         7.1708,
+         -12.15
+        ],
+        [
+         7.2125,
+         -11.77
+        ],
+        [
+         7.2542,
+         -11.78
+        ],
+        [
+         7.2958,
+         -11.82
+        ],
+        [
+         7.3375,
+         -12.19
+        ],
+        [
+         7.3792,
+         -12.25
+        ],
+        [
+         7.4208,
+         -11.75
+        ],
+        [
+         7.4625,
+         -12.19
+        ],
+        [
+         7.5042,
+         -11.94
+        ],
+        [
+         7.5458,
+         -12.38
+        ],
+        [
+         7.5875,
+         -12.47
+        ],
+        [
+         7.6292,
+         -11.69
+        ],
+        [
+         7.6708,
+         -12.16
+        ],
+        [
+         7.7125,
+         -11.38
+        ],
+        [
+         7.7542,
+         -12.15
+        ],
+        [
+         7.7958,
+         -11.41
+        ],
+        [
+         7.8375,
+         -11.86
+        ],
+        [
+         7.8792,
+         -11.66
+        ],
+        [
+         7.9208,
+         -12.11
+        ],
+        [
+         7.9625,
+         -12.76
+        ],
+        [
+         8.0042,
+         -11.97
+        ],
+        [
+         8.0458,
+         -12.26
+        ],
+        [
+         8.0875,
+         -12.25
+        ],
+        [
+         8.1292,
+         -12.09
+        ],
+        [
+         8.1708,
+         -12.44
+        ],
+        [
+         8.2125,
+         -11.52
+        ],
+        [
+         8.2542,
+         -12.69
+        ],
+        [
+         8.2958,
+         -11.65
+        ],
+        [
+         8.3375,
+         -11.98
+        ],
+        [
+         8.3792,
+         -12.24
+        ],
+        [
+         8.4208,
+         -11.6
+        ],
+        [
+         8.4625,
+         -12.48
+        ],
+        [
+         8.5042,
+         0.4
+        ],
+        [
+         8.5458,
+         -0.03
+        ],
+        [
+         8.5875,
+         0.29
+        ],
+        [
+         8.6292,
+         -0.32
+        ],
+        [
+         8.6708,
+         0.48
+        ],
+        [
+         8.7125,
+         0.19
+        ],
+        [
+         8.7542,
+         -0.67
+        ],
+        [
+         8.7958,
+         -0.79
+        ]
+       ]
+      },
+      "aspirated_uL_model": 17.0,
+      "well_position": {
+       "tip_end_offset_mm": [
+        -0.005,
+        0.019,
+        -0.991
+       ],
+       "lateral_mm": 0.02
+      },
+      "dispense": {
+       "expected_mbar": 12.0,
+       "plateau_mbar": 11.99,
+       "steady_fraction": 1.0,
+       "clog_limit_hit": false,
+       "samples": 2040,
+       "ok": true,
+       "commanded_uL": 17.0,
+       "inferred_from_pressure_uL": 17.003,
+       "returned_to_baseline": true,
+       "trace": [
+        [
+         0.0042,
+         12.47
+        ],
+        [
+         0.0458,
+         12.38
+        ],
+        [
+         0.0875,
+         12.06
+        ],
+        [
+         0.1292,
+         12.07
+        ],
+        [
+         0.1708,
+         12.68
+        ],
+        [
+         0.2125,
+         12.89
+        ],
+        [
+         0.2542,
+         12.19
+        ],
+        [
+         0.2958,
+         11.55
+        ],
+        [
+         0.3375,
+         11.31
+        ],
+        [
+         0.3792,
+         12.57
+        ],
+        [
+         0.4208,
+         12.21
+        ],
+        [
+         0.4625,
+         11.8
+        ],
+        [
+         0.5042,
+         11.52
+        ],
+        [
+         0.5458,
+         11.99
+        ],
+        [
+         0.5875,
+         11.62
+        ],
+        [
+         0.6292,
+         11.88
+        ],
+        [
+         0.6708,
+         12.28
+        ],
+        [
+         0.7125,
+         12.33
+        ],
+        [
+         0.7542,
+         12.57
+        ],
+        [
+         0.7958,
+         12.12
+        ],
+        [
+         0.8375,
+         11.9
+        ],
+        [
+         0.8792,
+         12.68
+        ],
+        [
+         0.9208,
+         12.78
+        ],
+        [
+         0.9625,
+         12.06
+        ],
+        [
+         1.0042,
+         11.29
+        ],
+        [
+         1.0458,
+         11.2
+        ],
+        [
+         1.0875,
+         11.53
+        ],
+        [
+         1.1292,
+         12.04
+        ],
+        [
+         1.1708,
+         12.08
+        ],
+        [
+         1.2125,
+         11.68
+        ],
+        [
+         1.2542,
+         12.18
+        ],
+        [
+         1.2958,
+         11.97
+        ],
+        [
+         1.3375,
+         11.64
+        ],
+        [
+         1.3792,
+         11.43
+        ],
+        [
+         1.4208,
+         12.28
+        ],
+        [
+         1.4625,
+         11.89
+        ],
+        [
+         1.5042,
+         12.41
+        ],
+        [
+         1.5458,
+         11.94
+        ],
+        [
+         1.5875,
+         12.04
+        ],
+        [
+         1.6292,
+         12.02
+        ],
+        [
+         1.6708,
+         11.97
+        ],
+        [
+         1.7125,
+         12.74
+        ],
+        [
+         1.7542,
+         12.2
+        ],
+        [
+         1.7958,
+         12.68
+        ],
+        [
+         1.8375,
+         11.94
+        ],
+        [
+         1.8792,
+         12.19
+        ],
+        [
+         1.9208,
+         12.01
+        ],
+        [
+         1.9625,
+         11.73
+        ],
+        [
+         2.0042,
+         11.97
+        ],
+        [
+         2.0458,
+         11.99
+        ],
+        [
+         2.0875,
+         11.82
+        ],
+        [
+         2.1292,
+         11.75
+        ],
+        [
+         2.1708,
+         11.33
+        ],
+        [
+         2.2125,
+         12.01
+        ],
+        [
+         2.2542,
+         11.37
+        ],
+        [
+         2.2958,
+         11.9
+        ],
+        [
+         2.3375,
+         12.71
+        ],
+        [
+         2.3792,
+         12.65
+        ],
+        [
+         2.4208,
+         12.21
+        ],
+        [
+         2.4625,
+         11.99
+        ],
+        [
+         2.5042,
+         12.22
+        ],
+        [
+         2.5458,
+         11.75
+        ],
+        [
+         2.5875,
+         12.0
+        ],
+        [
+         2.6292,
+         11.83
+        ],
+        [
+         2.6708,
+         12.37
+        ],
+        [
+         2.7125,
+         11.87
+        ],
+        [
+         2.7542,
+         12.29
+        ],
+        [
+         2.7958,
+         11.69
+        ],
+        [
+         2.8375,
+         11.81
+        ],
+        [
+         2.8792,
+         12.7
+        ],
+        [
+         2.9208,
+         11.39
+        ],
+        [
+         2.9625,
+         12.27
+        ],
+        [
+         3.0042,
+         11.9
+        ],
+        [
+         3.0458,
+         11.99
+        ],
+        [
+         3.0875,
+         11.64
+        ],
+        [
+         3.1292,
+         12.62
+        ],
+        [
+         3.1708,
+         12.46
+        ],
+        [
+         3.2125,
+         11.82
+        ],
+        [
+         3.2542,
+         12.96
+        ],
+        [
+         3.2958,
+         11.1
+        ],
+        [
+         3.3375,
+         11.42
+        ],
+        [
+         3.3792,
+         12.36
+        ],
+        [
+         3.4208,
+         11.51
+        ],
+        [
+         3.4625,
+         12.03
+        ],
+        [
+         3.5042,
+         11.81
+        ],
+        [
+         3.5458,
+         12.83
+        ],
+        [
+         3.5875,
+         11.4
+        ],
+        [
+         3.6292,
+         12.03
+        ],
+        [
+         3.6708,
+         12.82
+        ],
+        [
+         3.7125,
+         11.46
+        ],
+        [
+         3.7542,
+         11.46
+        ],
+        [
+         3.7958,
+         11.51
+        ],
+        [
+         3.8375,
+         12.32
+        ],
+        [
+         3.8792,
+         12.01
+        ],
+        [
+         3.9208,
+         12.62
+        ],
+        [
+         3.9625,
+         12.22
+        ],
+        [
+         4.0042,
+         11.36
+        ],
+        [
+         4.0458,
+         11.91
+        ],
+        [
+         4.0875,
+         11.19
+        ],
+        [
+         4.1292,
+         11.24
+        ],
+        [
+         4.1708,
+         11.79
+        ],
+        [
+         4.2125,
+         11.36
+        ],
+        [
+         4.2542,
+         11.63
+        ],
+        [
+         4.2958,
+         12.01
+        ],
+        [
+         4.3375,
+         11.81
+        ],
+        [
+         4.3792,
+         12.24
+        ],
+        [
+         4.4208,
+         12.3
+        ],
+        [
+         4.4625,
+         12.37
+        ],
+        [
+         4.5042,
+         12.34
+        ],
+        [
+         4.5458,
+         11.77
+        ],
+        [
+         4.5875,
+         11.6
+        ],
+        [
+         4.6292,
+         12.52
+        ],
+        [
+         4.6708,
+         11.46
+        ],
+        [
+         4.7125,
+         11.73
+        ],
+        [
+         4.7542,
+         11.59
+        ],
+        [
+         4.7958,
+         11.95
+        ],
+        [
+         4.8375,
+         11.47
+        ],
+        [
+         4.8792,
+         11.98
+        ],
+        [
+         4.9208,
+         12.4
+        ],
+        [
+         4.9625,
+         11.76
+        ],
+        [
+         5.0042,
+         11.98
+        ],
+        [
+         5.0458,
+         12.55
+        ],
+        [
+         5.0875,
+         11.76
+        ],
+        [
+         5.1292,
+         11.76
+        ],
+        [
+         5.1708,
+         11.23
+        ],
+        [
+         5.2125,
+         13.05
+        ],
+        [
+         5.2542,
+         12.08
+        ],
+        [
+         5.2958,
+         12.16
+        ],
+        [
+         5.3375,
+         12.31
+        ],
+        [
+         5.3792,
+         11.91
+        ],
+        [
+         5.4208,
+         11.61
+        ],
+        [
+         5.4625,
+         11.82
+        ],
+        [
+         5.5042,
+         11.63
+        ],
+        [
+         5.5458,
+         11.65
+        ],
+        [
+         5.5875,
+         11.12
+        ],
+        [
+         5.6292,
+         12.93
+        ],
+        [
+         5.6708,
+         12.68
+        ],
+        [
+         5.7125,
+         12.31
+        ],
+        [
+         5.7542,
+         11.98
+        ],
+        [
+         5.7958,
+         12.34
+        ],
+        [
+         5.8375,
+         12.04
+        ],
+        [
+         5.8792,
+         12.27
+        ],
+        [
+         5.9208,
+         11.85
+        ],
+        [
+         5.9625,
+         12.51
+        ],
+        [
+         6.0042,
+         11.83
+        ],
+        [
+         6.0458,
+         12.22
+        ],
+        [
+         6.0875,
+         11.31
+        ],
+        [
+         6.1292,
+         12.05
+        ],
+        [
+         6.1708,
+         12.1
+        ],
+        [
+         6.2125,
+         12.27
+        ],
+        [
+         6.2542,
+         11.88
+        ],
+        [
+         6.2958,
+         11.48
+        ],
+        [
+         6.3375,
+         12.56
+        ],
+        [
+         6.3792,
+         11.7
+        ],
+        [
+         6.4208,
+         12.43
+        ],
+        [
+         6.4625,
+         11.01
+        ],
+        [
+         6.5042,
+         11.92
+        ],
+        [
+         6.5458,
+         12.5
+        ],
+        [
+         6.5875,
+         12.11
+        ],
+        [
+         6.6292,
+         12.43
+        ],
+        [
+         6.6708,
+         12.33
+        ],
+        [
+         6.7125,
+         12.2
+        ],
+        [
+         6.7542,
+         12.27
+        ],
+        [
+         6.7958,
+         10.81
+        ],
+        [
+         6.8375,
+         12.17
+        ],
+        [
+         6.8792,
+         11.77
+        ],
+        [
+         6.9208,
+         12.09
+        ],
+        [
+         6.9625,
+         11.69
+        ],
+        [
+         7.0042,
+         11.81
+        ],
+        [
+         7.0458,
+         11.97
+        ],
+        [
+         7.0875,
+         11.86
+        ],
+        [
+         7.1292,
+         12.31
+        ],
+        [
+         7.1708,
+         11.99
+        ],
+        [
+         7.2125,
+         11.97
+        ],
+        [
+         7.2542,
+         11.38
+        ],
+        [
+         7.2958,
+         12.55
+        ],
+        [
+         7.3375,
+         11.95
+        ],
+        [
+         7.3792,
+         11.96
+        ],
+        [
+         7.4208,
+         12.28
+        ],
+        [
+         7.4625,
+         12.0
+        ],
+        [
+         7.5042,
+         12.61
+        ],
+        [
+         7.5458,
+         13.02
+        ],
+        [
+         7.5875,
+         11.76
+        ],
+        [
+         7.6292,
+         12.17
+        ],
+        [
+         7.6708,
+         11.58
+        ],
+        [
+         7.7125,
+         11.62
+        ],
+        [
+         7.7542,
+         12.34
+        ],
+        [
+         7.7958,
+         12.55
+        ],
+        [
+         7.8375,
+         11.4
+        ],
+        [
+         7.8792,
+         12.9
+        ],
+        [
+         7.9208,
+         12.8
+        ],
+        [
+         7.9625,
+         11.93
+        ],
+        [
+         8.0042,
+         12.1
+        ],
+        [
+         8.0458,
+         11.67
+        ],
+        [
+         8.0875,
+         11.46
+        ],
+        [
+         8.1292,
+         11.52
+        ],
+        [
+         8.1708,
+         12.13
+        ],
+        [
+         8.2125,
+         12.01
+        ],
+        [
+         8.2542,
+         11.86
+        ],
+        [
+         8.2958,
+         11.59
+        ],
+        [
+         8.3375,
+         11.66
+        ],
+        [
+         8.3792,
+         11.67
+        ],
+        [
+         8.4208,
+         12.44
+        ],
+        [
+         8.4625,
+         12.28
+        ],
+        [
+         8.5042,
+         0.28
+        ],
+        [
+         8.5458,
+         -0.2
+        ],
+        [
+         8.5875,
+         0.02
+        ],
+        [
+         8.6292,
+         -0.33
+        ],
+        [
+         8.6708,
+         -0.7
+        ],
+        [
+         8.7125,
+         -0.2
+        ],
+        [
+         8.7542,
+         -0.57
+        ],
+        [
+         8.7958,
+         -0.59
+        ]
+       ]
+      },
+      "well_volume_after_uL": 117.0,
+      "well_contents_after": {
+       "medium": 100.0,
+       "abstract_challenge_reagent": 17.0
+      },
+      "eject": {
+       "ok": true,
+       "tip_id": "TIP-RACK1-A01",
+       "tip_z_after_mm": 25.999979972839316
+      }
+     },
+     "volume_inferred_uL": 17.003,
+     "valid": true
+    },
+    {
+     "t": 210.846,
+     "plate_id": "Plate_P17",
+     "reagent_id": "abstract_challenge_reagent",
+     "reagent_lot": "SIM-LOT-A",
+     "volume_uL": 17.0,
+     "dispense_height_mm": 1.2,
+     "dispense_rate_uL_s": 2.0,
+     "intended_effect": "abstract_challenge",
+     "well_id": "A02",
+     "tip_id": "TIP-RACK1-B01",
+     "monitors": [
+      {
+       "name": "plate_identity",
+       "passed": true,
+       "observation": "L12 plate reader: expected Plate_P17, read 'Plate_P17'",
+       "value": "Plate_P17"
+      },
+      {
+       "name": "well_binding",
+       "passed": true,
+       "observation": "well A02 frame from the nest; real tip end 0.0 mm from the well centre at dispense",
+       "value": "A02"
+      },
+      {
+       "name": "reagent_identity",
+       "passed": true,
+       "observation": "reagent reader pos 1: requested abstract_challenge_reagent lot SIM-LOT-A, read ('abstract_challenge_reagent', 'SIM-LOT-A')",
+       "value": {
+        "barcode": "RGT-0001",
+        "reagent_id": "abstract_challenge_reagent",
+        "lot": "SIM-LOT-A",
+        "path": "/World/L12Consumables/Reagents/Tube_1"
+       }
+      },
+      {
+       "name": "tip_state",
+       "passed": true,
+       "observation": "fresh tip TIP-RACK1-B01 attached (presence ray) through the dispense, ejected to waste",
+       "value": "TIP-RACK1-B01"
+      },
+      {
+       "name": "plate_seating",
+       "passed": true,
+       "observation": "4 nest seat sensors confirm seating",
+       "value": [
+        0.0,
+        0.0,
+        -0.0,
+        -0.0
+       ]
+      },
+      {
+       "name": "liquid_level",
+       "passed": true,
+       "observation": "cLLD: {'detected': True, 'surface_z_m': 0.95457, 'expected_surface_z_m': np.float64(0.95372), 'deviation_mm': np.float64(0.852)}",
+       "value": {
+        "detected": true,
+        "surface_z_m": 0.95457,
+        "expected_surface_z_m": 0.95372,
+        "deviation_mm": 0.852
+       }
+      },
+      {
+       "name": "pressure_profile",
+       "passed": true,
+       "observation": "aspirate {'plateau_mbar': -12.01, 'expected_mbar': -12.0, 'steady_fraction': 1.0, 'clog_limit_hit': False}; dispense {'plateau_mbar': 12.02, 'expected_mbar': 12.0, 'steady_fraction': 1.0}",
+       "value": {
+        "aspirate": true,
+        "dispense": true
+       }
+      },
+      {
+       "name": "dispense_completion",
+       "passed": true,
+       "observation": "pressure back to baseline; volume inferred from the trace 17.019 uL of 17.0 uL commanded",
+       "value": 17.019
+      }
+     ],
+     "command_completed": true,
+     "aborted": null,
+     "evidence": {
+      "request": {
+       "plate_id": "Plate_P17",
+       "well_id": "A02",
+       "reagent_pos": 1,
+       "reagent_id": "abstract_challenge_reagent",
+       "reagent_lot": "SIM-LOT-A",
+       "volume_uL": 17.0,
+       "dispense_height_mm": 1.2,
+       "dispense_rate_uL_s": 2.0,
+       "aspirate_rate_uL_s": 2.0,
+       "intended_effect": "abstract_challenge"
+      },
+      "t_start": 170.071,
+      "tip": {
+       "ok": true,
+       "rack_position": "B01",
+       "expected": "TIP-RACK1-B01",
+       "observed": "TIP-RACK1-B01",
+       "gripped": [
+        "/World/L12Consumables/Tips/Tip_rack_1_B01"
+       ]
+      },
+      "lld": {
+       "detected": true,
+       "surface_z_m": 0.95457,
+       "expected_surface_z_m": 0.95372,
+       "deviation_mm": 0.852
+      },
+      "aspirate": {
+       "expected_mbar": -12.0,
+       "plateau_mbar": -12.01,
+       "steady_fraction": 1.0,
+       "clog_limit_hit": false,
+       "samples": 2040,
+       "ok": true,
+       "commanded_uL": 17.0,
+       "inferred_from_pressure_uL": 16.994,
+       "returned_to_baseline": true,
+       "trace": [
+        [
+         0.0042,
+         -11.3
+        ],
+        [
+         0.0458,
+         -11.88
+        ],
+        [
+         0.0875,
+         -11.39
+        ],
+        [
+         0.1292,
+         -12.19
+        ],
+        [
+         0.1708,
+         -11.84
+        ],
+        [
+         0.2125,
+         -12.11
+        ],
+        [
+         0.2542,
+         -10.89
+        ],
+        [
+         0.2958,
+         -12.11
+        ],
+        [
+         0.3375,
+         -12.19
+        ],
+        [
+         0.3792,
+         -12.43
+        ],
+        [
+         0.4208,
+         -12.05
+        ],
+        [
+         0.4625,
+         -12.17
+        ],
+        [
+         0.5042,
+         -12.34
+        ],
+        [
+         0.5458,
+         -12.04
+        ],
+        [
+         0.5875,
+         -12.73
+        ],
+        [
+         0.6292,
+         -11.95
+        ],
+        [
+         0.6708,
+         -11.39
+        ],
+        [
+         0.7125,
+         -11.18
+        ],
+        [
+         0.7542,
+         -12.03
+        ],
+        [
+         0.7958,
+         -11.82
+        ],
+        [
+         0.8375,
+         -12.19
+        ],
+        [
+         0.8792,
+         -12.48
+        ],
+        [
+         0.9208,
+         -12.48
+        ],
+        [
+         0.9625,
+         -11.79
+        ],
+        [
+         1.0042,
+         -12.06
+        ],
+        [
+         1.0458,
+         -11.66
+        ],
+        [
+         1.0875,
+         -12.16
+        ],
+        [
+         1.1292,
+         -11.84
+        ],
+        [
+         1.1708,
+         -11.69
+        ],
+        [
+         1.2125,
+         -11.75
+        ],
+        [
+         1.2542,
+         -12.23
+        ],
+        [
+         1.2958,
+         -12.11
+        ],
+        [
+         1.3375,
+         -11.78
+        ],
+        [
+         1.3792,
+         -12.46
+        ],
+        [
+         1.4208,
+         -11.92
+        ],
+        [
+         1.4625,
+         -12.18
+        ],
+        [
+         1.5042,
+         -11.53
+        ],
+        [
+         1.5458,
+         -12.15
+        ],
+        [
+         1.5875,
+         -12.03
+        ],
+        [
+         1.6292,
+         -12.22
+        ],
+        [
+         1.6708,
+         -12.01
+        ],
+        [
+         1.7125,
+         -11.61
+        ],
+        [
+         1.7542,
+         -12.04
+        ],
+        [
+         1.7958,
+         -12.28
+        ],
+        [
+         1.8375,
+         -11.79
+        ],
+        [
+         1.8792,
+         -11.66
+        ],
+        [
+         1.9208,
+         -11.27
+        ],
+        [
+         1.9625,
+         -12.84
+        ],
+        [
+         2.0042,
+         -11.84
+        ],
+        [
+         2.0458,
+         -11.85
+        ],
+        [
+         2.0875,
+         -12.26
+        ],
+        [
+         2.1292,
+         -11.9
+        ],
+        [
+         2.1708,
+         -11.91
+        ],
+        [
+         2.2125,
+         -11.67
+        ],
+        [
+         2.2542,
+         -12.97
+        ],
+        [
+         2.2958,
+         -11.23
+        ],
+        [
+         2.3375,
+         -12.0
+        ],
+        [
+         2.3792,
+         -11.75
+        ],
+        [
+         2.4208,
+         -11.95
+        ],
+        [
+         2.4625,
+         -12.6
+        ],
+        [
+         2.5042,
+         -11.69
+        ],
+        [
+         2.5458,
+         -12.02
+        ],
+        [
+         2.5875,
+         -11.75
+        ],
+        [
+         2.6292,
+         -12.27
+        ],
+        [
+         2.6708,
+         -13.05
+        ],
+        [
+         2.7125,
+         -12.29
+        ],
+        [
+         2.7542,
+         -12.08
+        ],
+        [
+         2.7958,
+         -12.01
+        ],
+        [
+         2.8375,
+         -11.75
+        ],
+        [
+         2.8792,
+         -11.65
+        ],
+        [
+         2.9208,
+         -12.29
+        ],
+        [
+         2.9625,
+         -12.76
+        ],
+        [
+         3.0042,
+         -12.35
+        ],
+        [
+         3.0458,
+         -12.22
+        ],
+        [
+         3.0875,
+         -11.51
+        ],
+        [
+         3.1292,
+         -11.47
+        ],
+        [
+         3.1708,
+         -11.81
+        ],
+        [
+         3.2125,
+         -12.01
+        ],
+        [
+         3.2542,
+         -11.79
+        ],
+        [
+         3.2958,
+         -11.63
+        ],
+        [
+         3.3375,
+         -12.6
+        ],
+        [
+         3.3792,
+         -11.73
+        ],
+        [
+         3.4208,
+         -11.52
+        ],
+        [
+         3.4625,
+         -12.11
+        ],
+        [
+         3.5042,
+         -12.23
+        ],
+        [
+         3.5458,
+         -11.64
+        ],
+        [
+         3.5875,
+         -12.59
+        ],
+        [
+         3.6292,
+         -12.49
+        ],
+        [
+         3.6708,
+         -12.09
+        ],
+        [
+         3.7125,
+         -12.38
+        ],
+        [
+         3.7542,
+         -11.87
+        ],
+        [
+         3.7958,
+         -11.79
+        ],
+        [
+         3.8375,
+         -12.41
+        ],
+        [
+         3.8792,
+         -12.52
+        ],
+        [
+         3.9208,
+         -12.37
+        ],
+        [
+         3.9625,
+         -11.61
+        ],
+        [
+         4.0042,
+         -12.16
+        ],
+        [
+         4.0458,
+         -11.25
+        ],
+        [
+         4.0875,
+         -11.56
+        ],
+        [
+         4.1292,
+         -11.75
+        ],
+        [
+         4.1708,
+         -12.71
+        ],
+        [
+         4.2125,
+         -12.42
+        ],
+        [
+         4.2542,
+         -11.71
+        ],
+        [
+         4.2958,
+         -11.83
+        ],
+        [
+         4.3375,
+         -12.69
+        ],
+        [
+         4.3792,
+         -12.16
+        ],
+        [
+         4.4208,
+         -11.93
+        ],
+        [
+         4.4625,
+         -12.28
+        ],
+        [
+         4.5042,
+         -12.18
+        ],
+        [
+         4.5458,
+         -11.85
+        ],
+        [
+         4.5875,
+         -12.13
+        ],
+        [
+         4.6292,
+         -12.11
+        ],
+        [
+         4.6708,
+         -11.74
+        ],
+        [
+         4.7125,
+         -11.87
+        ],
+        [
+         4.7542,
+         -12.28
+        ],
+        [
+         4.7958,
+         -11.62
+        ],
+        [
+         4.8375,
+         -11.47
+        ],
+        [
+         4.8792,
+         -13.1
+        ],
+        [
+         4.9208,
+         -11.87
+        ],
+        [
+         4.9625,
+         -11.87
+        ],
+        [
+         5.0042,
+         -11.95
+        ],
+        [
+         5.0458,
+         -12.35
+        ],
+        [
+         5.0875,
+         -12.24
+        ],
+        [
+         5.1292,
+         -12.46
+        ],
+        [
+         5.1708,
+         -11.85
+        ],
+        [
+         5.2125,
+         -11.47
+        ],
+        [
+         5.2542,
+         -12.11
+        ],
+        [
+         5.2958,
+         -11.3
+        ],
+        [
+         5.3375,
+         -12.66
+        ],
+        [
+         5.3792,
+         -12.55
+        ],
+        [
+         5.4208,
+         -11.36
+        ],
+        [
+         5.4625,
+         -12.65
+        ],
+        [
+         5.5042,
+         -12.2
+        ],
+        [
+         5.5458,
+         -12.35
+        ],
+        [
+         5.5875,
+         -13.0
+        ],
+        [
+         5.6292,
+         -12.26
+        ],
+        [
+         5.6708,
+         -12.5
+        ],
+        [
+         5.7125,
+         -11.97
+        ],
+        [
+         5.7542,
+         -11.26
+        ],
+        [
+         5.7958,
+         -12.13
+        ],
+        [
+         5.8375,
+         -12.51
+        ],
+        [
+         5.8792,
+         -11.76
+        ],
+        [
+         5.9208,
+         -12.18
+        ],
+        [
+         5.9625,
+         -11.46
+        ],
+        [
+         6.0042,
+         -12.0
+        ],
+        [
+         6.0458,
+         -12.15
+        ],
+        [
+         6.0875,
+         -12.3
+        ],
+        [
+         6.1292,
+         -11.63
+        ],
+        [
+         6.1708,
+         -12.34
+        ],
+        [
+         6.2125,
+         -12.17
+        ],
+        [
+         6.2542,
+         -12.12
+        ],
+        [
+         6.2958,
+         -12.37
+        ],
+        [
+         6.3375,
+         -11.85
+        ],
+        [
+         6.3792,
+         -11.99
+        ],
+        [
+         6.4208,
+         -11.98
+        ],
+        [
+         6.4625,
+         -12.97
+        ],
+        [
+         6.5042,
+         -12.12
+        ],
+        [
+         6.5458,
+         -12.26
+        ],
+        [
+         6.5875,
+         -11.99
+        ],
+        [
+         6.6292,
+         -12.87
+        ],
+        [
+         6.6708,
+         -12.46
+        ],
+        [
+         6.7125,
+         -12.57
+        ],
+        [
+         6.7542,
+         -11.82
+        ],
+        [
+         6.7958,
+         -11.73
+        ],
+        [
+         6.8375,
+         -11.86
+        ],
+        [
+         6.8792,
+         -12.51
+        ],
+        [
+         6.9208,
+         -11.88
+        ],
+        [
+         6.9625,
+         -11.82
+        ],
+        [
+         7.0042,
+         -11.76
+        ],
+        [
+         7.0458,
+         -11.74
+        ],
+        [
+         7.0875,
+         -11.97
+        ],
+        [
+         7.1292,
+         -12.19
+        ],
+        [
+         7.1708,
+         -12.47
+        ],
+        [
+         7.2125,
+         -11.73
+        ],
+        [
+         7.2542,
+         -12.42
+        ],
+        [
+         7.2958,
+         -12.0
+        ],
+        [
+         7.3375,
+         -11.8
+        ],
+        [
+         7.3792,
+         -12.26
+        ],
+        [
+         7.4208,
+         -11.64
+        ],
+        [
+         7.4625,
+         -12.44
+        ],
+        [
+         7.5042,
+         -12.14
+        ],
+        [
+         7.5458,
+         -12.01
+        ],
+        [
+         7.5875,
+         -10.84
+        ],
+        [
+         7.6292,
+         -12.08
+        ],
+        [
+         7.6708,
+         -11.77
+        ],
+        [
+         7.7125,
+         -11.7
+        ],
+        [
+         7.7542,
+         -12.02
+        ],
+        [
+         7.7958,
+         -11.48
+        ],
+        [
+         7.8375,
+         -12.04
+        ],
+        [
+         7.8792,
+         -11.77
+        ],
+        [
+         7.9208,
+         -12.93
+        ],
+        [
+         7.9625,
+         -12.39
+        ],
+        [
+         8.0042,
+         -11.37
+        ],
+        [
+         8.0458,
+         -12.05
+        ],
+        [
+         8.0875,
+         -11.8
+        ],
+        [
+         8.1292,
+         -11.84
+        ],
+        [
+         8.1708,
+         -12.69
+        ],
+        [
+         8.2125,
+         -12.19
+        ],
+        [
+         8.2542,
+         -11.99
+        ],
+        [
+         8.2958,
+         -12.0
+        ],
+        [
+         8.3375,
+         -12.29
+        ],
+        [
+         8.3792,
+         -11.41
+        ],
+        [
+         8.4208,
+         -11.85
+        ],
+        [
+         8.4625,
+         -12.32
+        ],
+        [
+         8.5042,
+         0.25
+        ],
+        [
+         8.5458,
+         0.2
+        ],
+        [
+         8.5875,
+         0.67
+        ],
+        [
+         8.6292,
+         0.5
+        ],
+        [
+         8.6708,
+         0.41
+        ],
+        [
+         8.7125,
+         0.06
+        ],
+        [
+         8.7542,
+         -0.29
+        ],
+        [
+         8.7958,
+         -0.95
+        ]
+       ]
+      },
+      "aspirated_uL_model": 17.0,
+      "well_position": {
+       "tip_end_offset_mm": [
+        0.0,
+        0.0,
+        -0.991
+       ],
+       "lateral_mm": 0.0
+      },
+      "dispense": {
+       "expected_mbar": 12.0,
+       "plateau_mbar": 12.02,
+       "steady_fraction": 1.0,
+       "clog_limit_hit": false,
+       "samples": 2040,
+       "ok": true,
+       "commanded_uL": 17.0,
+       "inferred_from_pressure_uL": 17.019,
+       "returned_to_baseline": true,
+       "trace": [
+        [
+         0.0042,
+         11.92
+        ],
+        [
+         0.0458,
+         11.56
+        ],
+        [
+         0.0875,
+         11.86
+        ],
+        [
+         0.1292,
+         12.31
+        ],
+        [
+         0.1708,
+         11.96
+        ],
+        [
+         0.2125,
+         13.0
+        ],
+        [
+         0.2542,
+         12.67
+        ],
+        [
+         0.2958,
+         11.6
+        ],
+        [
+         0.3375,
+         12.62
+        ],
+        [
+         0.3792,
+         11.44
+        ],
+        [
+         0.4208,
+         12.27
+        ],
+        [
+         0.4625,
+         11.3
+        ],
+        [
+         0.5042,
+         12.04
+        ],
+        [
+         0.5458,
+         11.81
+        ],
+        [
+         0.5875,
+         12.07
+        ],
+        [
+         0.6292,
+         11.92
+        ],
+        [
+         0.6708,
+         11.21
+        ],
+        [
+         0.7125,
+         12.72
+        ],
+        [
+         0.7542,
+         12.01
+        ],
+        [
+         0.7958,
+         12.24
+        ],
+        [
+         0.8375,
+         11.59
+        ],
+        [
+         0.8792,
+         11.36
+        ],
+        [
+         0.9208,
+         11.71
+        ],
+        [
+         0.9625,
+         11.99
+        ],
+        [
+         1.0042,
+         11.8
+        ],
+        [
+         1.0458,
+         11.85
+        ],
+        [
+         1.0875,
+         12.0
+        ],
+        [
+         1.1292,
+         11.82
+        ],
+        [
+         1.1708,
+         11.82
+        ],
+        [
+         1.2125,
+         11.95
+        ],
+        [
+         1.2542,
+         11.74
+        ],
+        [
+         1.2958,
+         12.04
+        ],
+        [
+         1.3375,
+         11.11
+        ],
+        [
+         1.3792,
+         12.42
+        ],
+        [
+         1.4208,
+         11.38
+        ],
+        [
+         1.4625,
+         11.85
+        ],
+        [
+         1.5042,
+         12.01
+        ],
+        [
+         1.5458,
+         11.8
+        ],
+        [
+         1.5875,
+         11.59
+        ],
+        [
+         1.6292,
+         12.24
+        ],
+        [
+         1.6708,
+         12.21
+        ],
+        [
+         1.7125,
+         11.27
+        ],
+        [
+         1.7542,
+         11.63
+        ],
+        [
+         1.7958,
+         11.59
+        ],
+        [
+         1.8375,
+         11.89
+        ],
+        [
+         1.8792,
+         12.77
+        ],
+        [
+         1.9208,
+         12.66
+        ],
+        [
+         1.9625,
+         12.05
+        ],
+        [
+         2.0042,
+         11.9
+        ],
+        [
+         2.0458,
+         12.65
+        ],
+        [
+         2.0875,
+         12.12
+        ],
+        [
+         2.1292,
+         12.19
+        ],
+        [
+         2.1708,
+         11.91
+        ],
+        [
+         2.2125,
+         12.21
+        ],
+        [
+         2.2542,
+         11.49
+        ],
+        [
+         2.2958,
+         11.71
+        ],
+        [
+         2.3375,
+         11.18
+        ],
+        [
+         2.3792,
+         12.59
+        ],
+        [
+         2.4208,
+         12.81
+        ],
+        [
+         2.4625,
+         12.32
+        ],
+        [
+         2.5042,
+         12.28
+        ],
+        [
+         2.5458,
+         11.24
+        ],
+        [
+         2.5875,
+         12.36
+        ],
+        [
+         2.6292,
+         13.14
+        ],
+        [
+         2.6708,
+         12.0
+        ],
+        [
+         2.7125,
+         11.45
+        ],
+        [
+         2.7542,
+         12.16
+        ],
+        [
+         2.7958,
+         12.35
+        ],
+        [
+         2.8375,
+         12.37
+        ],
+        [
+         2.8792,
+         12.62
+        ],
+        [
+         2.9208,
+         12.46
+        ],
+        [
+         2.9625,
+         12.07
+        ],
+        [
+         3.0042,
+         12.11
+        ],
+        [
+         3.0458,
+         12.14
+        ],
+        [
+         3.0875,
+         11.96
+        ],
+        [
+         3.1292,
+         12.64
+        ],
+        [
+         3.1708,
+         12.0
+        ],
+        [
+         3.2125,
+         11.76
+        ],
+        [
+         3.2542,
+         11.25
+        ],
+        [
+         3.2958,
+         12.78
+        ],
+        [
+         3.3375,
+         12.09
+        ],
+        [
+         3.3792,
+         12.82
+        ],
+        [
+         3.4208,
+         11.94
+        ],
+        [
+         3.4625,
+         12.12
+        ],
+        [
+         3.5042,
+         12.36
+        ],
+        [
+         3.5458,
+         11.81
+        ],
+        [
+         3.5875,
+         12.05
+        ],
+        [
+         3.6292,
+         12.63
+        ],
+        [
+         3.6708,
+         12.03
+        ],
+        [
+         3.7125,
+         11.73
+        ],
+        [
+         3.7542,
+         11.28
+        ],
+        [
+         3.7958,
+         12.15
+        ],
+        [
+         3.8375,
+         11.79
+        ],
+        [
+         3.8792,
+         12.45
+        ],
+        [
+         3.9208,
+         11.77
+        ],
+        [
+         3.9625,
+         11.99
+        ],
+        [
+         4.0042,
+         11.7
+        ],
+        [
+         4.0458,
+         11.43
+        ],
+        [
+         4.0875,
+         11.9
+        ],
+        [
+         4.1292,
+         11.12
+        ],
+        [
+         4.1708,
+         12.13
+        ],
+        [
+         4.2125,
+         12.83
+        ],
+        [
+         4.2542,
+         11.85
+        ],
+        [
+         4.2958,
+         12.34
+        ],
+        [
+         4.3375,
+         12.16
+        ],
+        [
+         4.3792,
+         11.67
+        ],
+        [
+         4.4208,
+         12.4
+        ],
+        [
+         4.4625,
+         11.82
+        ],
+        [
+         4.5042,
+         11.54
+        ],
+        [
+         4.5458,
+         12.37
+        ],
+        [
+         4.5875,
+         12.28
+        ],
+        [
+         4.6292,
+         11.86
+        ],
+        [
+         4.6708,
+         11.87
+        ],
+        [
+         4.7125,
+         12.04
+        ],
+        [
+         4.7542,
+         11.79
+        ],
+        [
+         4.7958,
+         12.37
+        ],
+        [
+         4.8375,
+         12.53
+        ],
+        [
+         4.8792,
+         12.22
+        ],
+        [
+         4.9208,
+         11.96
+        ],
+        [
+         4.9625,
+         11.51
+        ],
+        [
+         5.0042,
+         12.22
+        ],
+        [
+         5.0458,
+         11.66
+        ],
+        [
+         5.0875,
+         12.26
+        ],
+        [
+         5.1292,
+         11.66
+        ],
+        [
+         5.1708,
+         12.21
+        ],
+        [
+         5.2125,
+         12.19
+        ],
+        [
+         5.2542,
+         11.53
+        ],
+        [
+         5.2958,
+         12.2
+        ],
+        [
+         5.3375,
+         12.12
+        ],
+        [
+         5.3792,
+         12.0
+        ],
+        [
+         5.4208,
+         11.93
+        ],
+        [
+         5.4625,
+         11.59
+        ],
+        [
+         5.5042,
+         12.87
+        ],
+        [
+         5.5458,
+         11.71
+        ],
+        [
+         5.5875,
+         12.11
+        ],
+        [
+         5.6292,
+         12.73
+        ],
+        [
+         5.6708,
+         12.06
+        ],
+        [
+         5.7125,
+         11.61
+        ],
+        [
+         5.7542,
+         11.65
+        ],
+        [
+         5.7958,
+         11.56
+        ],
+        [
+         5.8375,
+         11.92
+        ],
+        [
+         5.8792,
+         11.79
+        ],
+        [
+         5.9208,
+         11.27
+        ],
+        [
+         5.9625,
+         12.3
+        ],
+        [
+         6.0042,
+         11.21
+        ],
+        [
+         6.0458,
+         11.81
+        ],
+        [
+         6.0875,
+         11.66
+        ],
+        [
+         6.1292,
+         12.03
+        ],
+        [
+         6.1708,
+         12.14
+        ],
+        [
+         6.2125,
+         12.37
+        ],
+        [
+         6.2542,
+         12.33
+        ],
+        [
+         6.2958,
+         12.58
+        ],
+        [
+         6.3375,
+         11.78
+        ],
+        [
+         6.3792,
+         12.93
+        ],
+        [
+         6.4208,
+         11.88
+        ],
+        [
+         6.4625,
+         11.91
+        ],
+        [
+         6.5042,
+         12.91
+        ],
+        [
+         6.5458,
+         11.83
+        ],
+        [
+         6.5875,
+         11.47
+        ],
+        [
+         6.6292,
+         11.74
+        ],
+        [
+         6.6708,
+         10.95
+        ],
+        [
+         6.7125,
+         12.16
+        ],
+        [
+         6.7542,
+         11.98
+        ],
+        [
+         6.7958,
+         11.86
+        ],
+        [
+         6.8375,
+         12.12
+        ],
+        [
+         6.8792,
+         12.07
+        ],
+        [
+         6.9208,
+         11.67
+        ],
+        [
+         6.9625,
+         11.77
+        ],
+        [
+         7.0042,
+         12.63
+        ],
+        [
+         7.0458,
+         12.18
+        ],
+        [
+         7.0875,
+         12.32
+        ],
+        [
+         7.1292,
+         11.5
+        ],
+        [
+         7.1708,
+         12.33
+        ],
+        [
+         7.2125,
+         12.19
+        ],
+        [
+         7.2542,
+         12.05
+        ],
+        [
+         7.2958,
+         11.99
+        ],
+        [
+         7.3375,
+         12.24
+        ],
+        [
+         7.3792,
+         11.94
+        ],
+        [
+         7.4208,
+         12.58
+        ],
+        [
+         7.4625,
+         12.52
+        ],
+        [
+         7.5042,
+         11.67
+        ],
+        [
+         7.5458,
+         12.19
+        ],
+        [
+         7.5875,
+         12.33
+        ],
+        [
+         7.6292,
+         11.68
+        ],
+        [
+         7.6708,
+         11.86
+        ],
+        [
+         7.7125,
+         12.12
+        ],
+        [
+         7.7542,
+         12.51
+        ],
+        [
+         7.7958,
+         12.36
+        ],
+        [
+         7.8375,
+         11.59
+        ],
+        [
+         7.8792,
+         12.5
+        ],
+        [
+         7.9208,
+         11.9
+        ],
+        [
+         7.9625,
+         11.72
+        ],
+        [
+         8.0042,
+         12.14
+        ],
+        [
+         8.0458,
+         12.64
+        ],
+        [
+         8.0875,
+         12.04
+        ],
+        [
+         8.1292,
+         12.16
+        ],
+        [
+         8.1708,
+         11.33
+        ],
+        [
+         8.2125,
+         12.02
+        ],
+        [
+         8.2542,
+         12.01
+        ],
+        [
+         8.2958,
+         12.31
+        ],
+        [
+         8.3375,
+         11.97
+        ],
+        [
+         8.3792,
+         12.53
+        ],
+        [
+         8.4208,
+         11.44
+        ],
+        [
+         8.4625,
+         11.66
+        ],
+        [
+         8.5042,
+         0.07
+        ],
+        [
+         8.5458,
+         0.59
+        ],
+        [
+         8.5875,
+         0.03
+        ],
+        [
+         8.6292,
+         1.1
+        ],
+        [
+         8.6708,
+         0.11
+        ],
+        [
+         8.7125,
+         -0.44
+        ],
+        [
+         8.7542,
+         -0.33
+        ],
+        [
+         8.7958,
+         0.33
+        ]
+       ]
+      },
+      "well_volume_after_uL": 117.0,
+      "well_contents_after": {
+       "medium": 100.0,
+       "abstract_challenge_reagent": 17.0
+      },
+      "eject": {
+       "ok": true,
+       "tip_id": "TIP-RACK1-B01",
+       "tip_z_after_mm": 18.00008296966549
+      }
+     },
+     "volume_inferred_uL": 17.019,
+     "valid": true
+    }
+   ]
+  },
+  {
+   "id": "s1_trip1",
+   "session": "s1",
+   "t_h": 48,
+   "device": "l12",
+   "steps_total": 48,
+   "steps_ok": 48,
+   "executed": [
+    {
+     "index": 0,
+     "primitive": "check_interlocks",
+     "level": "safety_step",
+     "who": "cell01",
+     "t": 0.0,
+     "ok": true,
+     "predicted_s": 0.5,
+     "evidence": "Cell 01 scene: no door model; the enclosure interlock is not simulated (assumed closed)"
+    },
+    {
+     "index": 1,
+     "primitive": "verify_identity",
+     "level": "safety_step",
+     "who": "l10",
+     "t": 16.25,
+     "ok": true,
+     "predicted_s": 0.0,
+     "observed": "Plate_P17"
+    },
+    {
+     "index": 2,
+     "primitive": "present",
+     "level": "device_command",
+     "who": "l10",
+     "t": 16.25,
+     "ok": true,
+     "predicted_s": 26.01,
+     "mode": "PRESENTED_LOADED"
+    },
+    {
+     "index": 3,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 26.712,
+     "ok": true,
+     "predicted_s": 1.89,
+     "pick_at": "L10"
+    },
+    {
+     "index": 4,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r01",
+     "t": 26.712,
+     "ok": true,
+     "predicted_s": 1.26,
+     "pick_at": "L10"
+    },
+    {
+     "index": 5,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r01",
+     "t": 26.712,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "L10"
+    },
+    {
+     "index": 6,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r01",
+     "t": 26.712,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "L10",
+     "lifted": true,
+     "contact": true
+    },
+    {
+     "index": 7,
+     "primitive": "stow",
+     "level": "device_command",
+     "who": "l10",
+     "t": 29.962,
+     "ok": true,
+     "predicted_s": 3.0,
+     "mode": "READY"
+    },
+    {
+     "index": 8,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.4,
+     "ok": true,
+     "predicted_s": 5.35,
+     "place_at": "HN"
+    },
+    {
+     "index": 9,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.4,
+     "ok": true,
+     "predicted_s": 1.89,
+     "place_at": "HN"
+    },
+    {
+     "index": 10,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.4,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "HN"
+    },
+    {
+     "index": 11,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.4,
+     "ok": true,
+     "predicted_s": 0.63,
+     "place_at": "HN"
+    },
+    {
+     "index": 12,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.4,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "HN",
+     "seated": true,
+     "retract_to": "L09 approach (clear of HN)"
+    },
+    {
+     "index": 13,
+     "primitive": "tool_couple",
+     "level": "tool",
+     "who": "r02",
+     "t": 51.4,
+     "ok": true,
+     "predicted_s": 41.56,
+     "tool": "T01",
+     "reason": ""
+    },
+    {
+     "index": 14,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 65.742,
+     "ok": true,
+     "predicted_s": 4.66,
+     "pick_at": "HN"
+    },
+    {
+     "index": 15,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r02",
+     "t": 65.742,
+     "ok": true,
+     "predicted_s": 3.11,
+     "pick_at": "HN"
+    },
+    {
+     "index": 16,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r02",
+     "t": 65.742,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "HN"
+    },
+    {
+     "index": 17,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r02",
+     "t": 65.742,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "HN",
+     "positioned": true,
+     "converged": true,
+     "lifted_mm": 149.9
+    },
+    {
+     "index": 18,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r02",
+     "t": 96.683,
+     "ok": true,
+     "predicted_s": 13.2,
+     "place_at": "L12"
+    },
+    {
+     "index": 19,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 96.683,
+     "ok": true,
+     "predicted_s": 4.66,
+     "place_at": "L12"
+    },
+    {
+     "index": 20,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r02",
+     "t": 96.683,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "L12"
+    },
+    {
+     "index": 21,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r02",
+     "t": 96.683,
+     "ok": true,
+     "predicted_s": 1.55,
+     "place_at": "L12"
+    },
+    {
+     "index": 22,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r02",
+     "t": 96.683,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "L12",
+     "seated": true,
+     "offset_mm": [
+      0.28,
+      0.07,
+      0.0
+     ],
+     "tilt_deg": 0.0,
+     "l12_airspace_clear": true
+    },
+    {
+     "index": 23,
+     "primitive": "tip_pick",
+     "level": "device_command",
+     "who": "l12",
+     "t": 134.683,
+     "ok": true,
+     "predicted_s": 7.12,
+     "l12_event": true
+    },
+    {
+     "index": 24,
+     "primitive": "aspirate",
+     "level": "device_command",
+     "who": "l12",
+     "t": 134.683,
+     "ok": true,
+     "predicted_s": 10.69,
+     "l12_event": true
+    },
+    {
+     "index": 25,
+     "primitive": "dispense",
+     "level": "device_command",
+     "who": "l12",
+     "t": 134.683,
+     "ok": true,
+     "predicted_s": 12.47,
+     "well": "A01",
+     "reagent": "rescue",
+     "au": 0.7,
+     "volume_uL": 14.0,
+     "refused": null,
+     "dose": {
+      "valid": true,
+      "volume_inferred_uL": 14.005,
+      "aborted": null,
+      "well_id": "A01"
+     },
+     "duration_s": 38.0
+    },
+    {
+     "index": 26,
+     "primitive": "tip_eject",
+     "level": "device_command",
+     "who": "l12",
+     "t": 134.683,
+     "ok": true,
+     "predicted_s": 5.34,
+     "l12_event": true
+    },
+    {
+     "index": 27,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 149.312,
+     "ok": true,
+     "predicted_s": 4.66,
+     "pick_at": "L12"
+    },
+    {
+     "index": 28,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r02",
+     "t": 149.312,
+     "ok": true,
+     "predicted_s": 3.11,
+     "pick_at": "L12"
+    },
+    {
+     "index": 29,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r02",
+     "t": 149.312,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "L12"
+    },
+    {
+     "index": 30,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r02",
+     "t": 149.312,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "L12",
+     "positioned": true,
+     "converged": true,
+     "lifted_mm": 149.8
+    },
+    {
+     "index": 31,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r02",
+     "t": 180.758,
+     "ok": true,
+     "predicted_s": 13.2,
+     "place_at": "HN"
+    },
+    {
+     "index": 32,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 180.758,
+     "ok": true,
+     "predicted_s": 4.66,
+     "place_at": "HN"
+    },
+    {
+     "index": 33,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r02",
+     "t": 180.758,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "HN"
+    },
+    {
+     "index": 34,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r02",
+     "t": 180.758,
+     "ok": true,
+     "predicted_s": 1.55,
+     "place_at": "HN"
+    },
+    {
+     "index": 35,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r02",
+     "t": 180.758,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "HN",
+     "seated": true,
+     "offset_mm": [
+      0.13,
+      0.19,
+      0.0
+     ],
+     "tilt_deg": 0.0,
+     "l12_airspace_clear": null
+    },
+    {
+     "index": 36,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 192.492,
+     "ok": true,
+     "predicted_s": 1.89,
+     "pick_at": "HN"
+    },
+    {
+     "index": 37,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r01",
+     "t": 192.492,
+     "ok": true,
+     "predicted_s": 1.26,
+     "pick_at": "HN"
+    },
+    {
+     "index": 38,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r01",
+     "t": 192.492,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "HN"
+    },
+    {
+     "index": 39,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r01",
+     "t": 192.492,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "HN",
+     "lifted": true,
+     "contact": true
+    },
+    {
+     "index": 41,
+     "primitive": "present",
+     "level": "device_command",
+     "who": "l10",
+     "t": 195.992,
+     "ok": true,
+     "predicted_s": 26.01,
+     "mode": "PRESENTED_EMPTY"
+    },
+    {
+     "index": 40,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r01",
+     "t": 213.442,
+     "ok": true,
+     "predicted_s": 5.35,
+     "place_at": "L10"
+    },
+    {
+     "index": 42,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 213.442,
+     "ok": true,
+     "predicted_s": 1.89,
+     "place_at": "L10"
+    },
+    {
+     "index": 43,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r01",
+     "t": 213.442,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "L10"
+    },
+    {
+     "index": 44,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r01",
+     "t": 213.442,
+     "ok": true,
+     "predicted_s": 0.63,
+     "place_at": "L10"
+    },
+    {
+     "index": 45,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r01",
+     "t": 213.442,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "L10",
+     "seated": true,
+     "retract_to": "L10 approach"
+    },
+    {
+     "index": 46,
+     "primitive": "wait_environment",
+     "level": "safety_step",
+     "who": "l10",
+     "t": 213.692,
+     "ok": true,
+     "predicted_s": 1.0,
+     "environment": {
+      "T": 36.82,
+      "CO2": 4.882,
+      "RH": 88.714
+     }
+    },
+    {
+     "index": 47,
+     "primitive": "store",
+     "level": "device_command",
+     "who": "l10",
+     "t": 230.192,
+     "ok": true,
+     "predicted_s": 20.25,
+     "slot": 2,
+     "observed": "Plate_P17"
+    }
+   ],
+   "duration_s": 230.19,
+   "predicted_s": 263.3,
+   "within_window": true,
+   "ok": true,
+   "doses": [
+    {
+     "t": 441.146,
+     "plate_id": "Plate_P17",
+     "reagent_id": "abstract_rescue_reagent",
+     "reagent_lot": "SIM-LOT-B",
+     "volume_uL": 14.0,
+     "dispense_height_mm": 1.2,
+     "dispense_rate_uL_s": 2.0,
+     "intended_effect": "abstract_rescue",
+     "well_id": "A01",
+     "tip_id": "TIP-RACK1-C01",
+     "monitors": [
+      {
+       "name": "plate_identity",
+       "passed": true,
+       "observation": "L12 plate reader: expected Plate_P17, read 'Plate_P17'",
+       "value": "Plate_P17"
+      },
+      {
+       "name": "well_binding",
+       "passed": true,
+       "observation": "well A01 frame from the nest; real tip end 0.0 mm from the well centre at dispense",
+       "value": "A01"
+      },
+      {
+       "name": "reagent_identity",
+       "passed": true,
+       "observation": "reagent reader pos 2: requested abstract_rescue_reagent lot SIM-LOT-B, read ('abstract_rescue_reagent', 'SIM-LOT-B')",
+       "value": {
+        "barcode": "RGT-0002",
+        "reagent_id": "abstract_rescue_reagent",
+        "lot": "SIM-LOT-B",
+        "path": "/World/L12Consumables/Reagents/Tube_2"
+       }
+      },
+      {
+       "name": "tip_state",
+       "passed": true,
+       "observation": "fresh tip TIP-RACK1-C01 attached (presence ray) through the dispense, ejected to waste",
+       "value": "TIP-RACK1-C01"
+      },
+      {
+       "name": "plate_seating",
+       "passed": true,
+       "observation": "4 nest seat sensors confirm seating",
+       "value": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+       ]
+      },
+      {
+       "name": "liquid_level",
+       "passed": true,
+       "observation": "cLLD: {'detected': True, 'surface_z_m': 0.95489, 'expected_surface_z_m': np.float64(0.95372), 'deviation_mm': np.float64(1.169)}",
+       "value": {
+        "detected": true,
+        "surface_z_m": 0.95489,
+        "expected_surface_z_m": 0.95372,
+        "deviation_mm": 1.169
+       }
+      },
+      {
+       "name": "pressure_profile",
+       "passed": true,
+       "observation": "aspirate {'plateau_mbar': -11.98, 'expected_mbar': -12.0, 'steady_fraction': 1.0, 'clog_limit_hit': False}; dispense {'plateau_mbar': 12.02, 'expected_mbar': 12.0, 'steady_fraction': 1.0}",
+       "value": {
+        "aspirate": true,
+        "dispense": true
+       }
+      },
+      {
+       "name": "dispense_completion",
+       "passed": true,
+       "observation": "pressure back to baseline; volume inferred from the trace 14.005 uL of 14.0 uL commanded",
+       "value": 14.005
+      }
+     ],
+     "command_completed": true,
+     "aborted": null,
+     "evidence": {
+      "request": {
+       "plate_id": "Plate_P17",
+       "well_id": "A01",
+       "reagent_pos": 2,
+       "reagent_id": "abstract_rescue_reagent",
+       "reagent_lot": "SIM-LOT-B",
+       "volume_uL": 14.0,
+       "dispense_height_mm": 1.2,
+       "dispense_rate_uL_s": 2.0,
+       "aspirate_rate_uL_s": 2.0,
+       "intended_effect": "abstract_rescue"
+      },
+      "t_start": 403.392,
+      "tip": {
+       "ok": true,
+       "rack_position": "C01",
+       "expected": "TIP-RACK1-C01",
+       "observed": "TIP-RACK1-C01",
+       "gripped": [
+        "/World/L12Consumables/Tips/Tip_rack_1_C01"
+       ]
+      },
+      "lld": {
+       "detected": true,
+       "surface_z_m": 0.95489,
+       "expected_surface_z_m": 0.95372,
+       "deviation_mm": 1.169
+      },
+      "aspirate": {
+       "expected_mbar": -12.0,
+       "plateau_mbar": -11.98,
+       "steady_fraction": 1.0,
+       "clog_limit_hit": false,
+       "samples": 1680,
+       "ok": true,
+       "commanded_uL": 14.0,
+       "inferred_from_pressure_uL": 14.0,
+       "returned_to_baseline": true,
+       "trace": [
+        [
+         0.0042,
+         -12.6
+        ],
+        [
+         0.0375,
+         -12.34
+        ],
+        [
+         0.0708,
+         -11.7
+        ],
+        [
+         0.1042,
+         -12.46
+        ],
+        [
+         0.1375,
+         -11.62
+        ],
+        [
+         0.1708,
+         -12.09
+        ],
+        [
+         0.2042,
+         -12.27
+        ],
+        [
+         0.2375,
+         -12.58
+        ],
+        [
+         0.2708,
+         -11.7
+        ],
+        [
+         0.3042,
+         -11.9
+        ],
+        [
+         0.3375,
+         -12.23
+        ],
+        [
+         0.3708,
+         -11.62
+        ],
+        [
+         0.4042,
+         -12.21
+        ],
+        [
+         0.4375,
+         -12.07
+        ],
+        [
+         0.4708,
+         -12.48
+        ],
+        [
+         0.5042,
+         -12.02
+        ],
+        [
+         0.5375,
+         -12.2
+        ],
+        [
+         0.5708,
+         -11.58
+        ],
+        [
+         0.6042,
+         -12.12
+        ],
+        [
+         0.6375,
+         -11.2
+        ],
+        [
+         0.6708,
+         -11.66
+        ],
+        [
+         0.7042,
+         -11.34
+        ],
+        [
+         0.7375,
+         -11.86
+        ],
+        [
+         0.7708,
+         -12.44
+        ],
+        [
+         0.8042,
+         -11.69
+        ],
+        [
+         0.8375,
+         -11.78
+        ],
+        [
+         0.8708,
+         -11.56
+        ],
+        [
+         0.9042,
+         -11.73
+        ],
+        [
+         0.9375,
+         -12.03
+        ],
+        [
+         0.9708,
+         -12.16
+        ],
+        [
+         1.0042,
+         -11.51
+        ],
+        [
+         1.0375,
+         -11.53
+        ],
+        [
+         1.0708,
+         -11.26
+        ],
+        [
+         1.1042,
+         -12.1
+        ],
+        [
+         1.1375,
+         -12.75
+        ],
+        [
+         1.1708,
+         -12.21
+        ],
+        [
+         1.2042,
+         -12.06
+        ],
+        [
+         1.2375,
+         -12.49
+        ],
+        [
+         1.2708,
+         -11.66
+        ],
+        [
+         1.3042,
+         -11.88
+        ],
+        [
+         1.3375,
+         -12.15
+        ],
+        [
+         1.3708,
+         -12.27
+        ],
+        [
+         1.4042,
+         -11.8
+        ],
+        [
+         1.4375,
+         -11.67
+        ],
+        [
+         1.4708,
+         -12.31
+        ],
+        [
+         1.5042,
+         -12.2
+        ],
+        [
+         1.5375,
+         -11.99
+        ],
+        [
+         1.5708,
+         -12.04
+        ],
+        [
+         1.6042,
+         -11.83
+        ],
+        [
+         1.6375,
+         -12.21
+        ],
+        [
+         1.6708,
+         -12.16
+        ],
+        [
+         1.7042,
+         -12.02
+        ],
+        [
+         1.7375,
+         -11.56
+        ],
+        [
+         1.7708,
+         -11.27
+        ],
+        [
+         1.8042,
+         -11.74
+        ],
+        [
+         1.8375,
+         -11.9
+        ],
+        [
+         1.8708,
+         -11.81
+        ],
+        [
+         1.9042,
+         -12.6
+        ],
+        [
+         1.9375,
+         -11.25
+        ],
+        [
+         1.9708,
+         -11.99
+        ],
+        [
+         2.0042,
+         -11.9
+        ],
+        [
+         2.0375,
+         -11.85
+        ],
+        [
+         2.0708,
+         -11.59
+        ],
+        [
+         2.1042,
+         -12.37
+        ],
+        [
+         2.1375,
+         -12.79
+        ],
+        [
+         2.1708,
+         -11.19
+        ],
+        [
+         2.2042,
+         -12.07
+        ],
+        [
+         2.2375,
+         -11.95
+        ],
+        [
+         2.2708,
+         -12.02
+        ],
+        [
+         2.3042,
+         -11.64
+        ],
+        [
+         2.3375,
+         -11.51
+        ],
+        [
+         2.3708,
+         -11.89
+        ],
+        [
+         2.4042,
+         -12.01
+        ],
+        [
+         2.4375,
+         -12.39
+        ],
+        [
+         2.4708,
+         -12.17
+        ],
+        [
+         2.5042,
+         -12.2
+        ],
+        [
+         2.5375,
+         -11.34
+        ],
+        [
+         2.5708,
+         -11.85
+        ],
+        [
+         2.6042,
+         -11.58
+        ],
+        [
+         2.6375,
+         -11.97
+        ],
+        [
+         2.6708,
+         -12.46
+        ],
+        [
+         2.7042,
+         -11.27
+        ],
+        [
+         2.7375,
+         -11.88
+        ],
+        [
+         2.7708,
+         -12.11
+        ],
+        [
+         2.8042,
+         -12.01
+        ],
+        [
+         2.8375,
+         -11.41
+        ],
+        [
+         2.8708,
+         -12.18
+        ],
+        [
+         2.9042,
+         -12.55
+        ],
+        [
+         2.9375,
+         -11.82
+        ],
+        [
+         2.9708,
+         -12.59
+        ],
+        [
+         3.0042,
+         -11.87
+        ],
+        [
+         3.0375,
+         -11.52
+        ],
+        [
+         3.0708,
+         -12.15
+        ],
+        [
+         3.1042,
+         -12.21
+        ],
+        [
+         3.1375,
+         -12.13
+        ],
+        [
+         3.1708,
+         -12.2
+        ],
+        [
+         3.2042,
+         -12.14
+        ],
+        [
+         3.2375,
+         -11.22
+        ],
+        [
+         3.2708,
+         -12.57
+        ],
+        [
+         3.3042,
+         -12.02
+        ],
+        [
+         3.3375,
+         -11.71
+        ],
+        [
+         3.3708,
+         -11.5
+        ],
+        [
+         3.4042,
+         -11.71
+        ],
+        [
+         3.4375,
+         -11.93
+        ],
+        [
+         3.4708,
+         -12.08
+        ],
+        [
+         3.5042,
+         -11.66
+        ],
+        [
+         3.5375,
+         -12.46
+        ],
+        [
+         3.5708,
+         -11.94
+        ],
+        [
+         3.6042,
+         -11.92
+        ],
+        [
+         3.6375,
+         -12.54
+        ],
+        [
+         3.6708,
+         -12.34
+        ],
+        [
+         3.7042,
+         -12.03
+        ],
+        [
+         3.7375,
+         -11.85
+        ],
+        [
+         3.7708,
+         -12.18
+        ],
+        [
+         3.8042,
+         -11.95
+        ],
+        [
+         3.8375,
+         -12.66
+        ],
+        [
+         3.8708,
+         -12.43
+        ],
+        [
+         3.9042,
+         -11.76
+        ],
+        [
+         3.9375,
+         -12.31
+        ],
+        [
+         3.9708,
+         -12.16
+        ],
+        [
+         4.0042,
+         -12.62
+        ],
+        [
+         4.0375,
+         -12.29
+        ],
+        [
+         4.0708,
+         -12.41
+        ],
+        [
+         4.1042,
+         -11.58
+        ],
+        [
+         4.1375,
+         -12.68
+        ],
+        [
+         4.1708,
+         -11.78
+        ],
+        [
+         4.2042,
+         -11.86
+        ],
+        [
+         4.2375,
+         -11.81
+        ],
+        [
+         4.2708,
+         -13.04
+        ],
+        [
+         4.3042,
+         -12.29
+        ],
+        [
+         4.3375,
+         -11.62
+        ],
+        [
+         4.3708,
+         -11.76
+        ],
+        [
+         4.4042,
+         -11.27
+        ],
+        [
+         4.4375,
+         -11.91
+        ],
+        [
+         4.4708,
+         -12.01
+        ],
+        [
+         4.5042,
+         -12.1
+        ],
+        [
+         4.5375,
+         -11.52
+        ],
+        [
+         4.5708,
+         -12.52
+        ],
+        [
+         4.6042,
+         -12.19
+        ],
+        [
+         4.6375,
+         -12.04
+        ],
+        [
+         4.6708,
+         -12.06
+        ],
+        [
+         4.7042,
+         -11.7
+        ],
+        [
+         4.7375,
+         -11.89
+        ],
+        [
+         4.7708,
+         -11.72
+        ],
+        [
+         4.8042,
+         -11.24
+        ],
+        [
+         4.8375,
+         -11.86
+        ],
+        [
+         4.8708,
+         -12.71
+        ],
+        [
+         4.9042,
+         -12.39
+        ],
+        [
+         4.9375,
+         -11.66
+        ],
+        [
+         4.9708,
+         -12.41
+        ],
+        [
+         5.0042,
+         -11.87
+        ],
+        [
+         5.0375,
+         -12.34
+        ],
+        [
+         5.0708,
+         -11.75
+        ],
+        [
+         5.1042,
+         -11.47
+        ],
+        [
+         5.1375,
+         -12.37
+        ],
+        [
+         5.1708,
+         -12.29
+        ],
+        [
+         5.2042,
+         -12.31
+        ],
+        [
+         5.2375,
+         -11.39
+        ],
+        [
+         5.2708,
+         -11.6
+        ],
+        [
+         5.3042,
+         -11.42
+        ],
+        [
+         5.3375,
+         -12.04
+        ],
+        [
+         5.3708,
+         -11.84
+        ],
+        [
+         5.4042,
+         -12.13
+        ],
+        [
+         5.4375,
+         -12.9
+        ],
+        [
+         5.4708,
+         -12.17
+        ],
+        [
+         5.5042,
+         -12.37
+        ],
+        [
+         5.5375,
+         -12.1
+        ],
+        [
+         5.5708,
+         -11.92
+        ],
+        [
+         5.6042,
+         -11.41
+        ],
+        [
+         5.6375,
+         -11.4
+        ],
+        [
+         5.6708,
+         -11.68
+        ],
+        [
+         5.7042,
+         -11.53
+        ],
+        [
+         5.7375,
+         -11.38
+        ],
+        [
+         5.7708,
+         -11.96
+        ],
+        [
+         5.8042,
+         -11.99
+        ],
+        [
+         5.8375,
+         -12.25
+        ],
+        [
+         5.8708,
+         -12.53
+        ],
+        [
+         5.9042,
+         -12.05
+        ],
+        [
+         5.9375,
+         -11.78
+        ],
+        [
+         5.9708,
+         -12.34
+        ],
+        [
+         6.0042,
+         -11.83
+        ],
+        [
+         6.0375,
+         -12.53
+        ],
+        [
+         6.0708,
+         -11.62
+        ],
+        [
+         6.1042,
+         -12.45
+        ],
+        [
+         6.1375,
+         -11.96
+        ],
+        [
+         6.1708,
+         -12.11
+        ],
+        [
+         6.2042,
+         -11.82
+        ],
+        [
+         6.2375,
+         -11.53
+        ],
+        [
+         6.2708,
+         -11.78
+        ],
+        [
+         6.3042,
+         -11.74
+        ],
+        [
+         6.3375,
+         -11.9
+        ],
+        [
+         6.3708,
+         -12.08
+        ],
+        [
+         6.4042,
+         -11.84
+        ],
+        [
+         6.4375,
+         -12.06
+        ],
+        [
+         6.4708,
+         -11.81
+        ],
+        [
+         6.5042,
+         -12.08
+        ],
+        [
+         6.5375,
+         -12.4
+        ],
+        [
+         6.5708,
+         -12.04
+        ],
+        [
+         6.6042,
+         -11.95
+        ],
+        [
+         6.6375,
+         -12.5
+        ],
+        [
+         6.6708,
+         -11.61
+        ],
+        [
+         6.7042,
+         -12.42
+        ],
+        [
+         6.7375,
+         -11.67
+        ],
+        [
+         6.7708,
+         -11.73
+        ],
+        [
+         6.8042,
+         -12.12
+        ],
+        [
+         6.8375,
+         -12.27
+        ],
+        [
+         6.8708,
+         -12.18
+        ],
+        [
+         6.9042,
+         -11.96
+        ],
+        [
+         6.9375,
+         -12.64
+        ],
+        [
+         6.9708,
+         -12.42
+        ],
+        [
+         7.0042,
+         1.06
+        ],
+        [
+         7.0375,
+         -0.4
+        ],
+        [
+         7.0708,
+         -0.85
+        ],
+        [
+         7.1042,
+         0.39
+        ],
+        [
+         7.1375,
+         -0.1
+        ],
+        [
+         7.1708,
+         -0.81
+        ],
+        [
+         7.2042,
+         -0.12
+        ],
+        [
+         7.2375,
+         0.24
+        ],
+        [
+         7.2708,
+         0.05
+        ],
+        [
+         7.3042,
+         0.12
+        ]
+       ]
+      },
+      "aspirated_uL_model": 14.0,
+      "well_position": {
+       "tip_end_offset_mm": [
+        0.0,
+        0.0,
+        -0.991
+       ],
+       "lateral_mm": 0.0
+      },
+      "dispense": {
+       "expected_mbar": 12.0,
+       "plateau_mbar": 12.02,
+       "steady_fraction": 1.0,
+       "clog_limit_hit": false,
+       "samples": 1680,
+       "ok": true,
+       "commanded_uL": 14.0,
+       "inferred_from_pressure_uL": 14.005,
+       "returned_to_baseline": true,
+       "trace": [
+        [
+         0.0042,
+         12.05
+        ],
+        [
+         0.0375,
+         11.92
+        ],
+        [
+         0.0708,
+         12.15
+        ],
+        [
+         0.1042,
+         11.96
+        ],
+        [
+         0.1375,
+         12.25
+        ],
+        [
+         0.1708,
+         12.32
+        ],
+        [
+         0.2042,
+         11.65
+        ],
+        [
+         0.2375,
+         12.64
+        ],
+        [
+         0.2708,
+         11.91
+        ],
+        [
+         0.3042,
+         11.94
+        ],
+        [
+         0.3375,
+         11.82
+        ],
+        [
+         0.3708,
+         12.31
+        ],
+        [
+         0.4042,
+         12.33
+        ],
+        [
+         0.4375,
+         12.06
+        ],
+        [
+         0.4708,
+         11.83
+        ],
+        [
+         0.5042,
+         11.87
+        ],
+        [
+         0.5375,
+         12.06
+        ],
+        [
+         0.5708,
+         11.77
+        ],
+        [
+         0.6042,
+         11.54
+        ],
+        [
+         0.6375,
+         11.53
+        ],
+        [
+         0.6708,
+         11.84
+        ],
+        [
+         0.7042,
+         11.58
+        ],
+        [
+         0.7375,
+         12.5
+        ],
+        [
+         0.7708,
+         11.71
+        ],
+        [
+         0.8042,
+         11.6
+        ],
+        [
+         0.8375,
+         11.86
+        ],
+        [
+         0.8708,
+         12.8
+        ],
+        [
+         0.9042,
+         12.46
+        ],
+        [
+         0.9375,
+         11.47
+        ],
+        [
+         0.9708,
+         11.72
+        ],
+        [
+         1.0042,
+         12.34
+        ],
+        [
+         1.0375,
+         12.1
+        ],
+        [
+         1.0708,
+         12.39
+        ],
+        [
+         1.1042,
+         11.81
+        ],
+        [
+         1.1375,
+         12.14
+        ],
+        [
+         1.1708,
+         13.02
+        ],
+        [
+         1.2042,
+         11.61
+        ],
+        [
+         1.2375,
+         11.97
+        ],
+        [
+         1.2708,
+         12.52
+        ],
+        [
+         1.3042,
+         12.06
+        ],
+        [
+         1.3375,
+         12.66
+        ],
+        [
+         1.3708,
+         11.91
+        ],
+        [
+         1.4042,
+         11.43
+        ],
+        [
+         1.4375,
+         11.56
+        ],
+        [
+         1.4708,
+         11.96
+        ],
+        [
+         1.5042,
+         12.34
+        ],
+        [
+         1.5375,
+         11.77
+        ],
+        [
+         1.5708,
+         11.78
+        ],
+        [
+         1.6042,
+         11.64
+        ],
+        [
+         1.6375,
+         12.47
+        ],
+        [
+         1.6708,
+         12.06
+        ],
+        [
+         1.7042,
+         12.38
+        ],
+        [
+         1.7375,
+         11.86
+        ],
+        [
+         1.7708,
+         10.97
+        ],
+        [
+         1.8042,
+         12.02
+        ],
+        [
+         1.8375,
+         11.05
+        ],
+        [
+         1.8708,
+         11.58
+        ],
+        [
+         1.9042,
+         12.32
+        ],
+        [
+         1.9375,
+         12.43
+        ],
+        [
+         1.9708,
+         12.06
+        ],
+        [
+         2.0042,
+         12.37
+        ],
+        [
+         2.0375,
+         13.0
+        ],
+        [
+         2.0708,
+         11.42
+        ],
+        [
+         2.1042,
+         11.95
+        ],
+        [
+         2.1375,
+         11.79
+        ],
+        [
+         2.1708,
+         11.9
+        ],
+        [
+         2.2042,
+         11.61
+        ],
+        [
+         2.2375,
+         12.94
+        ],
+        [
+         2.2708,
+         11.82
+        ],
+        [
+         2.3042,
+         11.77
+        ],
+        [
+         2.3375,
+         12.69
+        ],
+        [
+         2.3708,
+         11.91
+        ],
+        [
+         2.4042,
+         12.26
+        ],
+        [
+         2.4375,
+         12.37
+        ],
+        [
+         2.4708,
+         11.28
+        ],
+        [
+         2.5042,
+         12.26
+        ],
+        [
+         2.5375,
+         12.24
+        ],
+        [
+         2.5708,
+         12.84
+        ],
+        [
+         2.6042,
+         11.83
+        ],
+        [
+         2.6375,
+         11.85
+        ],
+        [
+         2.6708,
+         12.86
+        ],
+        [
+         2.7042,
+         12.06
+        ],
+        [
+         2.7375,
+         11.95
+        ],
+        [
+         2.7708,
+         11.65
+        ],
+        [
+         2.8042,
+         12.03
+        ],
+        [
+         2.8375,
+         12.82
+        ],
+        [
+         2.8708,
+         12.4
+        ],
+        [
+         2.9042,
+         11.75
+        ],
+        [
+         2.9375,
+         12.39
+        ],
+        [
+         2.9708,
+         12.0
+        ],
+        [
+         3.0042,
+         12.02
+        ],
+        [
+         3.0375,
+         11.85
+        ],
+        [
+         3.0708,
+         11.93
+        ],
+        [
+         3.1042,
+         12.52
+        ],
+        [
+         3.1375,
+         11.77
+        ],
+        [
+         3.1708,
+         12.06
+        ],
+        [
+         3.2042,
+         12.34
+        ],
+        [
+         3.2375,
+         12.22
+        ],
+        [
+         3.2708,
+         11.95
+        ],
+        [
+         3.3042,
+         12.3
+        ],
+        [
+         3.3375,
+         11.9
+        ],
+        [
+         3.3708,
+         12.2
+        ],
+        [
+         3.4042,
+         12.75
+        ],
+        [
+         3.4375,
+         12.29
+        ],
+        [
+         3.4708,
+         11.57
+        ],
+        [
+         3.5042,
+         11.45
+        ],
+        [
+         3.5375,
+         12.33
+        ],
+        [
+         3.5708,
+         12.37
+        ],
+        [
+         3.6042,
+         12.73
+        ],
+        [
+         3.6375,
+         12.13
+        ],
+        [
+         3.6708,
+         12.54
+        ],
+        [
+         3.7042,
+         12.53
+        ],
+        [
+         3.7375,
+         11.43
+        ],
+        [
+         3.7708,
+         12.11
+        ],
+        [
+         3.8042,
+         11.96
+        ],
+        [
+         3.8375,
+         12.19
+        ],
+        [
+         3.8708,
+         12.19
+        ],
+        [
+         3.9042,
+         11.84
+        ],
+        [
+         3.9375,
+         12.58
+        ],
+        [
+         3.9708,
+         11.62
+        ],
+        [
+         4.0042,
+         11.29
+        ],
+        [
+         4.0375,
+         12.34
+        ],
+        [
+         4.0708,
+         11.37
+        ],
+        [
+         4.1042,
+         11.48
+        ],
+        [
+         4.1375,
+         11.63
+        ],
+        [
+         4.1708,
+         12.19
+        ],
+        [
+         4.2042,
+         12.32
+        ],
+        [
+         4.2375,
+         11.38
+        ],
+        [
+         4.2708,
+         12.26
+        ],
+        [
+         4.3042,
+         11.93
+        ],
+        [
+         4.3375,
+         12.62
+        ],
+        [
+         4.3708,
+         11.42
+        ],
+        [
+         4.4042,
+         11.11
+        ],
+        [
+         4.4375,
+         11.86
+        ],
+        [
+         4.4708,
+         12.24
+        ],
+        [
+         4.5042,
+         12.45
+        ],
+        [
+         4.5375,
+         12.35
+        ],
+        [
+         4.5708,
+         11.33
+        ],
+        [
+         4.6042,
+         12.36
+        ],
+        [
+         4.6375,
+         11.45
+        ],
+        [
+         4.6708,
+         12.03
+        ],
+        [
+         4.7042,
+         11.59
+        ],
+        [
+         4.7375,
+         11.63
+        ],
+        [
+         4.7708,
+         11.77
+        ],
+        [
+         4.8042,
+         12.36
+        ],
+        [
+         4.8375,
+         12.98
+        ],
+        [
+         4.8708,
+         12.22
+        ],
+        [
+         4.9042,
+         11.78
+        ],
+        [
+         4.9375,
+         11.88
+        ],
+        [
+         4.9708,
+         11.45
+        ],
+        [
+         5.0042,
+         12.01
+        ],
+        [
+         5.0375,
+         11.68
+        ],
+        [
+         5.0708,
+         12.85
+        ],
+        [
+         5.1042,
+         12.38
+        ],
+        [
+         5.1375,
+         12.18
+        ],
+        [
+         5.1708,
+         11.88
+        ],
+        [
+         5.2042,
+         12.3
+        ],
+        [
+         5.2375,
+         11.9
+        ],
+        [
+         5.2708,
+         12.63
+        ],
+        [
+         5.3042,
+         11.97
+        ],
+        [
+         5.3375,
+         12.06
+        ],
+        [
+         5.3708,
+         11.86
+        ],
+        [
+         5.4042,
+         11.35
+        ],
+        [
+         5.4375,
+         12.07
+        ],
+        [
+         5.4708,
+         11.85
+        ],
+        [
+         5.5042,
+         12.14
+        ],
+        [
+         5.5375,
+         12.77
+        ],
+        [
+         5.5708,
+         12.35
+        ],
+        [
+         5.6042,
+         11.95
+        ],
+        [
+         5.6375,
+         11.86
+        ],
+        [
+         5.6708,
+         12.01
+        ],
+        [
+         5.7042,
+         11.42
+        ],
+        [
+         5.7375,
+         11.81
+        ],
+        [
+         5.7708,
+         11.55
+        ],
+        [
+         5.8042,
+         11.0
+        ],
+        [
+         5.8375,
+         11.63
+        ],
+        [
+         5.8708,
+         11.65
+        ],
+        [
+         5.9042,
+         11.86
+        ],
+        [
+         5.9375,
+         11.6
+        ],
+        [
+         5.9708,
+         11.32
+        ],
+        [
+         6.0042,
+         12.29
+        ],
+        [
+         6.0375,
+         11.31
+        ],
+        [
+         6.0708,
+         12.02
+        ],
+        [
+         6.1042,
+         11.5
+        ],
+        [
+         6.1375,
+         11.99
+        ],
+        [
+         6.1708,
+         11.79
+        ],
+        [
+         6.2042,
+         11.78
+        ],
+        [
+         6.2375,
+         11.63
+        ],
+        [
+         6.2708,
+         12.7
+        ],
+        [
+         6.3042,
+         12.7
+        ],
+        [
+         6.3375,
+         11.37
+        ],
+        [
+         6.3708,
+         12.37
+        ],
+        [
+         6.4042,
+         11.4
+        ],
+        [
+         6.4375,
+         12.7
+        ],
+        [
+         6.4708,
+         12.67
+        ],
+        [
+         6.5042,
+         11.67
+        ],
+        [
+         6.5375,
+         12.14
+        ],
+        [
+         6.5708,
+         12.29
+        ],
+        [
+         6.6042,
+         11.81
+        ],
+        [
+         6.6375,
+         11.97
+        ],
+        [
+         6.6708,
+         11.88
+        ],
+        [
+         6.7042,
+         12.5
+        ],
+        [
+         6.7375,
+         12.39
+        ],
+        [
+         6.7708,
+         11.27
+        ],
+        [
+         6.8042,
+         12.07
+        ],
+        [
+         6.8375,
+         12.29
+        ],
+        [
+         6.8708,
+         11.75
+        ],
+        [
+         6.9042,
+         11.89
+        ],
+        [
+         6.9375,
+         12.54
+        ],
+        [
+         6.9708,
+         12.37
+        ],
+        [
+         7.0042,
+         -0.01
+        ],
+        [
+         7.0375,
+         0.78
+        ],
+        [
+         7.0708,
+         -0.43
+        ],
+        [
+         7.1042,
+         0.22
+        ],
+        [
+         7.1375,
+         0.27
+        ],
+        [
+         7.1708,
+         0.08
+        ],
+        [
+         7.2042,
+         0.08
+        ],
+        [
+         7.2375,
+         0.14
+        ],
+        [
+         7.2708,
+         0.16
+        ],
+        [
+         7.3042,
+         -0.21
+        ]
+       ]
+      },
+      "well_volume_after_uL": 131.0,
+      "well_contents_after": {
+       "medium": 100.0,
+       "abstract_challenge_reagent": 17.0,
+       "abstract_rescue_reagent": 14.0
+      },
+      "eject": {
+       "ok": true,
+       "tip_id": "TIP-RACK1-C01",
+       "tip_z_after_mm": 21.600024700164756
+      }
+     },
+     "volume_inferred_uL": 14.005,
+     "valid": true
+    }
+   ]
+  },
+  {
+   "id": "s2_trip1",
+   "session": "s2",
+   "t_h": 72,
+   "device": "l17",
+   "steps_total": 51,
+   "steps_ok": 51,
+   "executed": [
+    {
+     "index": 0,
+     "primitive": "check_interlocks",
+     "level": "safety_step",
+     "who": "cell01",
+     "t": 0.0,
+     "ok": true,
+     "predicted_s": 0.5,
+     "evidence": "Cell 01 scene: no door model; the enclosure interlock is not simulated (assumed closed)"
+    },
+    {
+     "index": 1,
+     "primitive": "verify_identity",
+     "level": "safety_step",
+     "who": "l10",
+     "t": 16.25,
+     "ok": true,
+     "predicted_s": 0.0,
+     "observed": "Plate_P17"
+    },
+    {
+     "index": 2,
+     "primitive": "present",
+     "level": "device_command",
+     "who": "l10",
+     "t": 16.25,
+     "ok": true,
+     "predicted_s": 26.01,
+     "mode": "PRESENTED_LOADED"
+    },
+    {
+     "index": 3,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 26.717,
+     "ok": true,
+     "predicted_s": 1.89,
+     "pick_at": "L10"
+    },
+    {
+     "index": 4,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r01",
+     "t": 26.717,
+     "ok": true,
+     "predicted_s": 1.26,
+     "pick_at": "L10"
+    },
+    {
+     "index": 5,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r01",
+     "t": 26.717,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "L10"
+    },
+    {
+     "index": 6,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r01",
+     "t": 26.717,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "L10",
+     "lifted": true,
+     "contact": true
+    },
+    {
+     "index": 7,
+     "primitive": "stow",
+     "level": "device_command",
+     "who": "l10",
+     "t": 29.967,
+     "ok": true,
+     "predicted_s": 3.0,
+     "mode": "READY"
+    },
+    {
+     "index": 8,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.567,
+     "ok": true,
+     "predicted_s": 5.35,
+     "place_at": "HN"
+    },
+    {
+     "index": 9,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.567,
+     "ok": true,
+     "predicted_s": 1.89,
+     "place_at": "HN"
+    },
+    {
+     "index": 10,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.567,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "HN"
+    },
+    {
+     "index": 11,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.567,
+     "ok": true,
+     "predicted_s": 0.63,
+     "place_at": "HN"
+    },
+    {
+     "index": 12,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r01",
+     "t": 51.567,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "HN",
+     "seated": true,
+     "retract_to": "L09 approach (clear of HN)"
+    },
+    {
+     "index": 13,
+     "primitive": "tool_couple",
+     "level": "tool",
+     "who": "r02",
+     "t": 51.567,
+     "ok": true,
+     "predicted_s": 41.56,
+     "tool": "T01",
+     "reason": ""
+    },
+    {
+     "index": 14,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 65.767,
+     "ok": true,
+     "predicted_s": 4.66,
+     "pick_at": "HN"
+    },
+    {
+     "index": 15,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r02",
+     "t": 65.767,
+     "ok": true,
+     "predicted_s": 3.11,
+     "pick_at": "HN"
+    },
+    {
+     "index": 16,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r02",
+     "t": 65.767,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "HN"
+    },
+    {
+     "index": 17,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r02",
+     "t": 65.767,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "HN",
+     "positioned": true,
+     "converged": true,
+     "lifted_mm": 149.8
+    },
+    {
+     "index": 19,
+     "primitive": "present",
+     "level": "device_command",
+     "who": "l17",
+     "t": 69.767,
+     "ok": true,
+     "predicted_s": 5.0,
+     "mode": "PRESENTED_EMPTY"
+    },
+    {
+     "index": 18,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r02",
+     "t": 94.7,
+     "ok": true,
+     "predicted_s": 13.2,
+     "place_at": "L17"
+    },
+    {
+     "index": 20,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 94.7,
+     "ok": true,
+     "predicted_s": 4.66,
+     "place_at": "L17"
+    },
+    {
+     "index": 21,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r02",
+     "t": 94.7,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "L17"
+    },
+    {
+     "index": 22,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r02",
+     "t": 94.7,
+     "ok": true,
+     "predicted_s": 1.55,
+     "place_at": "L17"
+    },
+    {
+     "index": 23,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r02",
+     "t": 94.7,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "L17",
+     "seated": true,
+     "offset_mm": [
+      0.31,
+      0.26,
+      -0.0
+     ],
+     "tilt_deg": 0.0,
+     "l12_airspace_clear": null
+    },
+    {
+     "index": 24,
+     "primitive": "load",
+     "level": "device_command",
+     "who": "l17",
+     "t": 98.95,
+     "ok": true,
+     "predicted_s": 7.41,
+     "mode": "LOADED"
+    },
+    {
+     "index": 25,
+     "primitive": "image_well",
+     "level": "device_command",
+     "who": "l17",
+     "t": 113.2,
+     "ok": true,
+     "predicted_s": 2.11,
+     "well": "A01",
+     "acquisition": {
+      "well_id": "A01",
+      "valid": true,
+      "t": 650.017
+     },
+     "calibration": "L17-CAL-2026-10-16-SIM"
+    },
+    {
+     "index": 26,
+     "primitive": "image_well",
+     "level": "device_command",
+     "who": "l17",
+     "t": 113.2,
+     "ok": true,
+     "predicted_s": 2.11,
+     "well": "A02",
+     "acquisition": {
+      "well_id": "A02",
+      "valid": true,
+      "t": 642.963
+     },
+     "calibration": "L17-CAL-2026-10-16-SIM"
+    },
+    {
+     "index": 27,
+     "primitive": "image_well",
+     "level": "device_command",
+     "who": "l17",
+     "t": 113.2,
+     "ok": true,
+     "predicted_s": 2.11,
+     "well": "A05",
+     "acquisition": {
+      "well_id": "A05",
+      "valid": true,
+      "t": 645.433
+     },
+     "calibration": "L17-CAL-2026-10-16-SIM"
+    },
+    {
+     "index": 28,
+     "primitive": "present",
+     "level": "device_command",
+     "who": "l17",
+     "t": 117.95,
+     "ok": true,
+     "predicted_s": 5.0,
+     "mode": "PRESENTED_LOADED"
+    },
+    {
+     "index": 29,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 127.629,
+     "ok": true,
+     "predicted_s": 4.66,
+     "pick_at": "L17"
+    },
+    {
+     "index": 30,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r02",
+     "t": 127.629,
+     "ok": true,
+     "predicted_s": 3.11,
+     "pick_at": "L17"
+    },
+    {
+     "index": 31,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r02",
+     "t": 127.629,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "L17"
+    },
+    {
+     "index": 32,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r02",
+     "t": 127.629,
+     "ok": true,
+     "predicted_s": 1.94,
+     "pick_at": "L17",
+     "positioned": true,
+     "converged": true,
+     "lifted_mm": 149.8
+    },
+    {
+     "index": 33,
+     "primitive": "stow",
+     "level": "device_command",
+     "who": "l17",
+     "t": 131.629,
+     "ok": true,
+     "predicted_s": 5.0,
+     "mode": "READY"
+    },
+    {
+     "index": 34,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r02",
+     "t": 162.696,
+     "ok": true,
+     "predicted_s": 13.2,
+     "place_at": "HN"
+    },
+    {
+     "index": 35,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r02",
+     "t": 162.696,
+     "ok": true,
+     "predicted_s": 4.66,
+     "place_at": "HN"
+    },
+    {
+     "index": 36,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r02",
+     "t": 162.696,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "HN"
+    },
+    {
+     "index": 37,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r02",
+     "t": 162.696,
+     "ok": true,
+     "predicted_s": 1.55,
+     "place_at": "HN"
+    },
+    {
+     "index": 38,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r02",
+     "t": 162.696,
+     "ok": true,
+     "predicted_s": 3.88,
+     "place_at": "HN",
+     "seated": true,
+     "offset_mm": [
+      0.44,
+      0.19,
+      0.0
+     ],
+     "tilt_deg": 0.0,
+     "l12_airspace_clear": null
+    },
+    {
+     "index": 39,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 174.583,
+     "ok": true,
+     "predicted_s": 1.89,
+     "pick_at": "HN"
+    },
+    {
+     "index": 40,
+     "primitive": "insert",
+     "level": "motion",
+     "who": "r01",
+     "t": 174.583,
+     "ok": true,
+     "predicted_s": 1.26,
+     "pick_at": "HN"
+    },
+    {
+     "index": 41,
+     "primitive": "grasp",
+     "level": "motion",
+     "who": "r01",
+     "t": 174.583,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "HN"
+    },
+    {
+     "index": 42,
+     "primitive": "lift",
+     "level": "motion",
+     "who": "r01",
+     "t": 174.583,
+     "ok": true,
+     "predicted_s": 0.79,
+     "pick_at": "HN",
+     "lifted": true,
+     "contact": true
+    },
+    {
+     "index": 44,
+     "primitive": "present",
+     "level": "device_command",
+     "who": "l10",
+     "t": 178.083,
+     "ok": true,
+     "predicted_s": 26.01,
+     "mode": "PRESENTED_EMPTY"
+    },
+    {
+     "index": 43,
+     "primitive": "transit",
+     "level": "motion",
+     "who": "r01",
+     "t": 195.533,
+     "ok": true,
+     "predicted_s": 5.35,
+     "place_at": "L10"
+    },
+    {
+     "index": 45,
+     "primitive": "approach",
+     "level": "motion",
+     "who": "r01",
+     "t": 195.533,
+     "ok": true,
+     "predicted_s": 1.89,
+     "place_at": "L10"
+    },
+    {
+     "index": 46,
+     "primitive": "place",
+     "level": "motion",
+     "who": "r01",
+     "t": 195.533,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "L10"
+    },
+    {
+     "index": 47,
+     "primitive": "release",
+     "level": "motion",
+     "who": "r01",
+     "t": 195.533,
+     "ok": true,
+     "predicted_s": 0.63,
+     "place_at": "L10"
+    },
+    {
+     "index": 48,
+     "primitive": "retract",
+     "level": "motion",
+     "who": "r01",
+     "t": 195.533,
+     "ok": true,
+     "predicted_s": 1.57,
+     "place_at": "L10",
+     "seated": true,
+     "retract_to": "L10 approach"
+    },
+    {
+     "index": 49,
+     "primitive": "wait_environment",
+     "level": "safety_step",
+     "who": "l10",
+     "t": 195.783,
+     "ok": true,
+     "predicted_s": 1.0,
+     "environment": {
+      "T": 36.867,
+      "CO2": 4.912,
+      "RH": 88.637
+     }
+    },
+    {
+     "index": 50,
+     "primitive": "store",
+     "level": "device_command",
+     "who": "l10",
+     "t": 212.283,
+     "ok": true,
+     "predicted_s": 20.25,
+     "slot": 2,
+     "observed": "Plate_P17"
+    }
+   ],
+   "duration_s": 212.28,
+   "predicted_s": 256.4,
+   "within_window": true,
+   "ok": true,
+   "doses": []
+  }
+ ],
+ "all_ok": true,
+ "L10_inventory": {
+  "2": "Plate_P17",
+  "5": "Plate_P18"
+ },
+ "acquisitions": [
+  {
+   "well_id": "A01",
+   "valid": false,
+   "t": 640.85
+  },
+  {
+   "well_id": "A02",
+   "valid": true,
+   "t": 642.963
+  },
+  {
+   "well_id": "A05",
+   "valid": true,
+   "t": 645.433
+  },
+  {
+   "well_id": "A01",
+   "valid": true,
+   "t": 650.017
+  }
+ ],
+ "wall_time_s": 3513.0
+}

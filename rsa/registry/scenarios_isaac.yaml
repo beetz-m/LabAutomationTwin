@@ -1,0 +1,15 @@
+# Isaac scenarios (iteration 2): the same plan code and knowledge; the Cell 01 twin executes the leaves.
+isaac_nominal:
+  plan: g050
+  plate: P17
+  about: the derived 0.5-bit experiment on the Cell 01 twin
+isaac_identity_swap:
+  plan: g050
+  plate: P18
+  about: the experiment is about P18 (L10 inventory slot 5) but the plate in slot 5 is P23 (twin initial state); L10's
+    barcode read catches it, P23 is quarantined in H4, escalation
+isaac_calibration_lapsed:
+  plan: g050
+  plate: P17
+  faults: {calibration_lapsed: {session: s2}}
+  about: L17's calibration is invalidated just before the first image of s2; set aside, recalibrate at L21, re-plan
