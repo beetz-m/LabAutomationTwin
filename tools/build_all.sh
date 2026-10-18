@@ -4,6 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 CAD=env_cad/bin/python
 ISAAC=env_isaacsim/bin/python
+$CAD assets/materials/build_materials.py  # shared lab material library + textures (fit-out, site, equipment)
 $CAD assets/h4/build_h4.py                # H4 + labware/plate_sbs96.usda
 $CAD assets/gripper/build_plate_gripper.py
 $CAD assets/l09/build_l09.py
@@ -19,4 +20,10 @@ $CAD tools/make_r02_urdf.py               # R02 = rail + UR5e (Cell 01 kit's ur_
 OMNI_KIT_ACCEPT_EULA=YES $ISAAC scripts/import_r02.py
 $CAD assets/r02/build_tooling.py          # tool magazine TCM01 + tools T01-T05
 $CAD tools/layout_p1.py                  # layout P1 placements + checks -> scenes/layout_p1.json
+$CAD assets/cell01_fitout/build_fitout.py # enclosure E01, bench F01, rail cover, supports, L12 hood (reads layout P1)
 $CAD tools/compose_cell01_overlay.py      # scenes/cell01_twin.usda (Cell 01 is referenced, never modified)
+$CAD assets/site/build_site.py            # AICOR Lab 1 shell (site layout proposal S1)
+$CAD assets/labequip/build_storage.py     # storage room + building-service equipment
+$CAD assets/labequip/build_prep.py        # culture prep, wash/waste, operator equipment
+$CAD assets/labequip/build_variants.py    # numbered shelving racks R1-R3
+$CAD tools/compose_lab.py                 # scenes/lab_twin.usda (Cell 01 overlay + lab) + scenes/site_layout_s1.json

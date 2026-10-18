@@ -156,6 +156,9 @@ class R02Rig:
         from isaacsim.robot.surface_gripper import _surface_gripper as sgi
         from twin.kinematics import UrdfChain
         self.log, self.on_step, self.t = log, list(on_step), 0.0
+        # optional joint trace for offline swept-volume checks (tools/fitout_clearance.py): R02_TRACE=<file>
+        self._trace = open(os.environ["R02_TRACE"], "a", buffering=1) if os.environ.get("R02_TRACE") else None
+        self._trace_k = 0
         self.arm = Articulation(art_root)
         names = list(self.arm.dof_names)
         self.RAIL = names.index("rail_joint")
@@ -182,6 +185,11 @@ class R02Rig:
         self.t += DT
         for f in self.on_step:
             f(DT)
+        if self._trace is not None:
+            self._trace_k += 1
+            if self._trace_k % 12 == 0:      # 20 Hz
+                tool = (self.tool or {}).get("id", "") if isinstance(self.tool, dict) else ""
+                self._trace.write(" ".join(f"{v:.5f}" for v in self.q()) + f" {int(bool(self.holding))} {tool or '-'}\n")
         if self.holding and self.tool and self.tool.get("fingers"):
             qa, qb = self.jaw_q()                    # coupled jaws + preload while holding (R01 lesson)
             s = (abs(qa) + abs(qb)) / 2 + 0.0025

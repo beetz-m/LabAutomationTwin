@@ -1,0 +1,674 @@
+{
+ "status": "proposal_S1 (site layout around Cell 01; not part of the Cell 01 v0.3 baseline)",
+ "frame": "Cell 01 frame (origin cell floor centre, +Y rear instrument wall)",
+ "zones": {
+  "Cell01": {
+   "extent_xy": [
+    -3.05,
+    3.05,
+    -2.3,
+    2.3
+   ],
+   "role": "robot cell (Cell 01 v0.3 envelope 6.0 x 4.5 x 2.5 m)"
+  },
+  "RearServiceCorridor": {
+   "extent_xy": [
+    -5.2,
+    3.3,
+    2.3,
+    4.2
+   ],
+   "role": "technician access to the rear instrument side (spec: >= 1.0 m)"
+  },
+  "FrontLogistics": {
+   "extent_xy": [
+    -5.2,
+    9.6,
+    -4.2,
+    -2.3
+   ],
+   "role": "AMR lane to the Cell 01 portal; pedestrian walkway at y -4.15"
+  },
+  "StorageRoom_ST01": {
+   "extent_xy": [
+    -9.6,
+    -5.2,
+    -1.2,
+    4.2
+   ],
+   "role": "consumables, cold storage, cryostorage, CO2 supply, AMR dispatch S1"
+  },
+  "EntranceGowning": {
+   "extent_xy": [
+    -9.6,
+    -5.2,
+    -7.0,
+    -1.2
+   ],
+   "role": "entrance from the building corridor, coats, gloves, hand wash"
+  },
+  "OperatorArea": {
+   "extent_xy": [
+    -5.2,
+    3.3,
+    -7.0,
+    -4.2
+   ],
+   "role": "monitoring desks facing the cell, twin compute rack"
+  },
+  "CulturePrep": {
+   "extent_xy": [
+    3.3,
+    9.6,
+    -4.2,
+    4.2
+   ],
+   "role": "manual culture work upstream of Cell 01: BSCs, incubators, benches"
+  },
+  "WashWaste": {
+   "extent_xy": [
+    5.5,
+    9.6,
+    -7.0,
+    -4.2
+   ],
+   "role": "autoclave and waste collection (Cell 01 waste handover)"
+  }
+ },
+ "equipment": [
+  {
+   "id": "ST01_R1",
+   "asset": "shelving_rack_R1",
+   "zone": "StorageRoom",
+   "pose": [
+    -9.312500007152558,
+    3.3,
+    0.0,
+    90
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_R1"
+  },
+  {
+   "id": "ST01_R2",
+   "asset": "shelving_rack_R2",
+   "zone": "StorageRoom",
+   "pose": [
+    -9.312500007152558,
+    2.0,
+    0.0,
+    90
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_R2"
+  },
+  {
+   "id": "ST01_R3",
+   "asset": "shelving_rack_R3",
+   "zone": "StorageRoom",
+   "pose": [
+    -5.547499992847443,
+    2.3,
+    0.0,
+    -90
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_R3"
+  },
+  {
+   "id": "ST01_U1",
+   "asset": "ult_freezer",
+   "zone": "StorageRoom",
+   "pose": [
+    -8.52,
+    3.600000436306,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_U1"
+  },
+  {
+   "id": "ST01_F1",
+   "asset": "lab_fridge",
+   "zone": "StorageRoom",
+   "pose": [
+    -7.73,
+    3.7705062270164493,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_F1"
+  },
+  {
+   "id": "ST01_F2",
+   "asset": "lab_fridge",
+   "zone": "StorageRoom",
+   "pose": [
+    -7.08,
+    3.7705062270164493,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_F2"
+  },
+  {
+   "id": "ST01_Z1",
+   "asset": "freezer_m20",
+   "zone": "StorageRoom",
+   "pose": [
+    -6.43,
+    3.7705062270164493,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_Z1"
+  },
+  {
+   "id": "ST01_G1",
+   "asset": "gas_cabinet",
+   "zone": "StorageRoom",
+   "pose": [
+    -5.54,
+    3.55,
+    0.0,
+    -90
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_G1"
+  },
+  {
+   "id": "ST01_N1",
+   "asset": "ln2_dewar",
+   "zone": "StorageRoom",
+   "pose": [
+    -9.150000005960464,
+    -0.6,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_N1"
+  },
+  {
+   "id": "S1_DispatchBench",
+   "asset": "dispatch_bench",
+   "zone": "StorageRoom",
+   "pose": [
+    -7.95,
+    0.6,
+    0.0,
+    90
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/S1_DispatchBench"
+  },
+  {
+   "id": "ST01_O2",
+   "asset": "o2_monitor",
+   "zone": "StorageRoom",
+   "pose": [
+    -9.6,
+    -0.2,
+    1.6,
+    90
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_O2"
+  },
+  {
+   "id": "ST01_FireExt",
+   "asset": "fire_extinguisher",
+   "zone": "StorageRoom",
+   "pose": [
+    -8.0,
+    -1.14,
+    0.9,
+    180
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_FireExt"
+  },
+  {
+   "id": "ST01_Access",
+   "asset": "access_reader",
+   "zone": "StorageRoom",
+   "pose": [
+    -5.5,
+    -1.26,
+    1.1,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/StorageRoom/ST01_Access"
+  },
+  {
+   "id": "EN_Coats",
+   "asset": "lab_coat_rack",
+   "zone": "Entrance",
+   "pose": [
+    -9.6,
+    -2.0,
+    1.75,
+    90
+   ],
+   "prim": "/World/AICOR_Lab/Entrance/EN_Coats"
+  },
+  {
+   "id": "EN_Gloves",
+   "asset": "glove_dispenser",
+   "zone": "Entrance",
+   "pose": [
+    -9.2,
+    -1.26,
+    1.4,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/Entrance/EN_Gloves"
+  },
+  {
+   "id": "EN_FireExt",
+   "asset": "fire_extinguisher",
+   "zone": "Entrance",
+   "pose": [
+    -9.6,
+    -4.88,
+    0.9,
+    90
+   ],
+   "prim": "/World/AICOR_Lab/Entrance/EN_FireExt"
+  },
+  {
+   "id": "EN_Sink",
+   "asset": "lab_sink_unit",
+   "zone": "Entrance",
+   "pose": [
+    -9.250500010251999,
+    -5.85,
+    0.0,
+    90
+   ],
+   "prim": "/World/AICOR_Lab/Entrance/EN_Sink"
+  },
+  {
+   "id": "EN_FirstAid",
+   "asset": "first_aid_box",
+   "zone": "Entrance",
+   "pose": [
+    -9.6,
+    -6.7,
+    1.5,
+    90
+   ],
+   "prim": "/World/AICOR_Lab/Entrance/EN_FirstAid"
+  },
+  {
+   "id": "EN_Plant",
+   "asset": "potted_plant",
+   "zone": "Entrance",
+   "pose": [
+    -7.55,
+    -6.3,
+    0.0,
+    30
+   ],
+   "prim": "/World/AICOR_Lab/Entrance/EN_Plant"
+  },
+  {
+   "id": "OP1_MonitoringDesk",
+   "asset": "operator_desk",
+   "zone": "OperatorArea",
+   "pose": [
+    -0.6,
+    -5.0,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/OperatorArea/OP1_MonitoringDesk"
+  },
+  {
+   "id": "OP2_EngineeringDesk",
+   "asset": "operator_desk",
+   "zone": "OperatorArea",
+   "pose": [
+    2.3,
+    -5.0,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/OperatorArea/OP2_EngineeringDesk"
+  },
+  {
+   "id": "OP_TwinRack",
+   "asset": "server_rack",
+   "zone": "OperatorArea",
+   "pose": [
+    -4.55,
+    -6.449400019645691,
+    0.0,
+    180
+   ],
+   "prim": "/World/AICOR_Lab/OperatorArea/OP_TwinRack"
+  },
+  {
+   "id": "OP_Plant",
+   "asset": "potted_plant",
+   "zone": "OperatorArea",
+   "pose": [
+    -2.45,
+    -6.25,
+    0.0,
+    70
+   ],
+   "prim": "/World/AICOR_Lab/OperatorArea/OP_Plant"
+  },
+  {
+   "id": "PR_BSC1",
+   "asset": "bsc_class2",
+   "zone": "CulturePrep",
+   "pose": [
+    9.149999994039534,
+    2.6,
+    0.0,
+    -90
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_BSC1"
+  },
+  {
+   "id": "PR_BSC2",
+   "asset": "bsc_class2",
+   "zone": "CulturePrep",
+   "pose": [
+    9.149999994039534,
+    0.8,
+    0.0,
+    -90
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_BSC2"
+  },
+  {
+   "id": "PR_INC1",
+   "asset": "co2_incubator_stack",
+   "zone": "CulturePrep",
+   "pose": [
+    9.089000004529952,
+    -0.85,
+    0.0,
+    -90
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_INC1"
+  },
+  {
+   "id": "PR_Island",
+   "asset": "lab_bench_island",
+   "zone": "CulturePrep",
+   "pose": [
+    6.0,
+    0.2,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Island"
+  },
+  {
+   "id": "PR_WallBench",
+   "asset": "wall_bench",
+   "zone": "CulturePrep",
+   "pose": [
+    7.1,
+    3.8050000000000006,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_WallBench"
+  },
+  {
+   "id": "PR_Microscope",
+   "asset": "inverted_microscope",
+   "zone": "CulturePrep",
+   "pose": [
+    6.2,
+    3.8,
+    0.9,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Microscope"
+  },
+  {
+   "id": "PR_Centrifuge",
+   "asset": "centrifuge",
+   "zone": "CulturePrep",
+   "pose": [
+    7.65,
+    3.8,
+    0.9,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Centrifuge"
+  },
+  {
+   "id": "PR_WaterBath",
+   "asset": "water_bath",
+   "zone": "CulturePrep",
+   "pose": [
+    8.35,
+    3.85,
+    0.9,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_WaterBath"
+  },
+  {
+   "id": "PR_Pipettes",
+   "asset": "pipette_stand",
+   "zone": "CulturePrep",
+   "pose": [
+    5.35,
+    -0.25,
+    0.9,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Pipettes"
+  },
+  {
+   "id": "PR_Sink",
+   "asset": "lab_sink_unit",
+   "zone": "CulturePrep",
+   "pose": [
+    3.9,
+    3.8505000102519995,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Sink"
+  },
+  {
+   "id": "PR_Shower",
+   "asset": "emergency_shower",
+   "zone": "CulturePrep",
+   "pose": [
+    5.0,
+    4.2,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Shower"
+  },
+  {
+   "id": "PR_Gloves",
+   "asset": "glove_dispenser",
+   "zone": "CulturePrep",
+   "pose": [
+    9.6,
+    -1.75,
+    1.4,
+    -90
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Gloves"
+  },
+  {
+   "id": "PR_FirstAid",
+   "asset": "first_aid_box",
+   "zone": "CulturePrep",
+   "pose": [
+    2.9,
+    4.2,
+    1.5,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_FirstAid"
+  },
+  {
+   "id": "PR_FireExt",
+   "asset": "fire_extinguisher",
+   "zone": "CulturePrep",
+   "pose": [
+    9.6,
+    -3.1,
+    0.9,
+    -90
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_FireExt"
+  },
+  {
+   "id": "PR_Stool1",
+   "asset": "lab_stool",
+   "zone": "CulturePrep",
+   "pose": [
+    5.4,
+    -1.1,
+    0.0,
+    10
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Stool1"
+  },
+  {
+   "id": "PR_Stool2",
+   "asset": "lab_stool",
+   "zone": "CulturePrep",
+   "pose": [
+    6.7,
+    -1.1,
+    0.0,
+    -20
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Stool2"
+  },
+  {
+   "id": "PR_Stool3",
+   "asset": "lab_stool",
+   "zone": "CulturePrep",
+   "pose": [
+    8.1,
+    2.55,
+    0.0,
+    0
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Stool3"
+  },
+  {
+   "id": "PR_Stool4",
+   "asset": "lab_stool",
+   "zone": "CulturePrep",
+   "pose": [
+    8.1,
+    0.85,
+    0.0,
+    40
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Stool4"
+  },
+  {
+   "id": "PR_Whiteboard",
+   "asset": "whiteboard",
+   "zone": "CulturePrep",
+   "pose": [
+    4.5,
+    -7.0,
+    1.5,
+    180
+   ],
+   "prim": "/World/AICOR_Lab/CulturePrep/PR_Whiteboard"
+  },
+  {
+   "id": "WW_Autoclave",
+   "asset": "autoclave",
+   "zone": "WashWaste",
+   "pose": [
+    8.9,
+    -6.429046881198883,
+    0.0,
+    180
+   ],
+   "prim": "/World/AICOR_Lab/WashWaste/WW_Autoclave"
+  },
+  {
+   "id": "WW_Waste",
+   "asset": "waste_station",
+   "zone": "WashWaste",
+   "pose": [
+    7.3,
+    -6.667500001192093,
+    0.0,
+    180
+   ],
+   "prim": "/World/AICOR_Lab/WashWaste/WW_Waste"
+  }
+ ],
+ "s1_dock": {
+  "pose": [
+   -6.4,
+   0.6,
+   90.0
+  ],
+  "asset": "assets/r03/h2_dock.usda"
+ },
+ "missing_assets": [],
+ "hall": {
+  "x0": -9.6,
+  "x1": 9.6,
+  "y0": -7.0,
+  "y1": 4.2
+ },
+ "storage": {
+  "x0": -9.6,
+  "x1": -5.2,
+  "y0": -1.2,
+  "y1": 4.2
+ },
+ "storage_door": [
+  -7.1,
+  -5.7,
+  2.4
+ ],
+ "entrance": [
+  -4.6,
+  -3.0,
+  2.3
+ ],
+ "amr_route": [
+  [
+   -6.4,
+   0.6
+  ],
+  [
+   -6.4,
+   -1.2
+  ],
+  [
+   -6.4,
+   -3.3
+  ],
+  [
+   1.15,
+   -3.3
+  ],
+  [
+   1.15,
+   -2.25
+  ],
+  [
+   1.15,
+   -1.0
+  ],
+  [
+   0.75,
+   -0.28
+  ],
+  [
+   -0.415,
+   -0.28
+  ]
+ ],
+ "ceiling_height": 3.2
+}

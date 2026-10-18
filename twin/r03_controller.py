@@ -272,6 +272,17 @@ class R03Controller:
         est = self.pose_est()
         cmd = est.copy()
         k = 0
+        # align first: turn in place toward the first lookahead point (starting a long leg misaligned and steering
+        # onto it by pursuit swings the AMR ~0.5 m off the lane - found by the site route test)
+        while k < len(pts) - 1 and np.linalg.norm(pts[k] - cmd[:2]) < LOOKAHEAD:
+            k += 1
+        d = pts[k] - cmd[:2]
+        if np.linalg.norm(d) > 0.05:
+            h0 = math.atan2(d[1], d[0]) - flip
+            while abs(self._wrap(h0 - cmd[2])) > math.radians(1.0):
+                cmd[2] += float(np.clip(self._wrap(h0 - cmd[2]), -W_MAX * self.dt, W_MAX * self.dt))
+                self._command_est(cmd)
+                yield
         moving = True
         while moving:
             if not self.localization_ok:

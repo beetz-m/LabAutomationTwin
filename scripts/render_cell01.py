@@ -6,7 +6,9 @@ reaching over the magazine, L12 tips + reagent tubes, plates on L12 and L21, R03
 gripper on R01's base_link (hovering over H4's presented nest)
 and plates on the presented transfer nests of H4, L09, L10 and L17 (stage presented) and in the R01/R02 handover
 nest. Nothing is saved.
-Usage: python scripts/render_cell01.py [out_dir] [--quick] [--rt] [--views=name1,name2]
+Usage: python scripts/render_cell01.py [out_dir] [--quick] [--rt] [--views=name1,name2] [--lab] [--spp=N]
+--lab opens scenes/lab_twin.usda (the whole AICOR Lab 1 around Cell 01, tools/compose_lab.py) with its own views and
+the building's luminaires + daylight instead of the render-only fill light.
 """
 
 import math
@@ -17,7 +19,8 @@ import time
 os.environ.setdefault("OMNI_KIT_ACCEPT_EULA", "YES")
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, ROOT)
-OVERLAY = os.path.join(ROOT, "scenes/cell01_twin.usda")
+LAB = "--lab" in sys.argv
+OVERLAY = os.environ.get("RENDER_SCENE") or os.path.join(ROOT, "scenes/lab_twin.usda" if LAB else "scenes/cell01_twin.usda")
 FR3_USD = os.path.join(ROOT, "assets/fr3/usd/fr3_arm/fr3_arm.usda")
 GRIPPER_USD = os.path.join(ROOT, "assets/gripper/plate_gripper.usda")
 PLATE_USD = os.path.join(ROOT, "assets/labware/plate_sbs96.usda")
@@ -25,9 +28,12 @@ QUICK = "--quick" in sys.argv
 RT = "--rt" in sys.argv          # real-time ray tracing: far less GPU memory (preview next to running simulations)
 ONLY = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--views=")), None)
 args = [a for a in sys.argv[1:] if not a.startswith("--")]
-OUT = os.path.abspath(args[0] if args else os.path.join(ROOT, "renders/cell01"))
-RES = (1280, 800) if QUICK else (1920, 1200)
+OUT = os.path.abspath(args[0] if args else os.path.join(ROOT, "renders/lab" if LAB else "renders/cell01"))
+RES = (1280, 800) if QUICK else ((1920, 1080) if LAB else (1920, 1200))
 SPP, SUBFRAMES = (8, 8) if QUICK else (16, 32)
+_spp = next((int(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--spp=")), None)
+if _spp:
+    SPP, SUBFRAMES = 16, max(1, _spp // 16)
 HZ = 240
 H4 = "/World/Cell01/Stations/H4_Quarantine"
 L09 = "/World/Cell01/Stations/L09_PlateHotel"
@@ -67,6 +73,12 @@ s.set("/rtx/pathtracing/spp", SPP)
 s.set("/rtx/pathtracing/totalSpp", SPP * SUBFRAMES)
 s.set("/rtx/pathtracing/maxBounces", 8)
 s.set("/rtx/pathtracing/optixDenoiser/enabled", True)
+if LAB:   # photographic exposure for an interior lit by 4300 K panels + daylight (calibrated on renders/lab)
+    s.set("/rtx/post/tonemap/op", 6)                       # ACES
+    s.set("/rtx/post/histogram/enabled", True)             # auto exposure (interior <-> window contrast)
+    s.set("/rtx/post/histogram/whiteScale", float(os.environ.get("LAB_WHITESCALE", "9.0")))
+    s.set("/rtx/pathtracing/maxBounces", 10)
+    s.set("/rtx/pathtracing/maxSpecularAndTransmissionBounces", 10)
 
 omni.usd.get_context().open_stage(OVERLAY)
 for _ in range(10):
@@ -132,12 +144,13 @@ _p.GetPrim().GetReferences().AddReference(PLATE_USD)
 _p.AddTranslateOp().Set(Gf.Vec3d(*map(float, _pc + [0, 0, 0.0005])))
 _p.AddRotateZOp().Set(float(_yc))
 
-# a little more light than the scene's dome alone (render-only)
-key = UsdLux.RectLight.Define(stage, "/World/RenderOnly/CeilingPanel")
-key.CreateWidthAttr(2.5)
-key.CreateHeightAttr(1.2)
-key.CreateIntensityAttr(4000)
-key.AddTranslateOp().Set(Gf.Vec3d(-1.0, 0.3, 2.45))
+# a little more light than the scene's dome alone (render-only; the lab scene has its own luminaires)
+if not LAB:
+    key = UsdLux.RectLight.Define(stage, "/World/RenderOnly/CeilingPanel")
+    key.CreateWidthAttr(2.5)
+    key.CreateHeightAttr(1.2)
+    key.CreateIntensityAttr(4000)
+    key.AddTranslateOp().Set(Gf.Vec3d(-1.0, 0.3, 2.45))
 for _ in range(10):
     app.update()
 
@@ -266,6 +279,19 @@ views = [("cell01_overview", UsdGeom.XformCache().GetLocalToWorldTransform(ov.Ge
          ("cell01_l21", ((1.55, 0.25, 1.55), (2.15, 1.12, 0.98)), 26.0),
          ("cell01_amr_docked", ((-0.35, -1.35, 1.55), (-1.45, -0.28, 0.65)), 22.0),
          ("cell01_east", ((2.70, -1.90, 2.40), (0.80, 0.70, 0.95)), 20.0)]
+if LAB:   # 36 mm-wide sensor: focal 18-28 mm = full-frame-equivalent wide/normal lenses (spec 18.3: 24-35 mm overview)
+    views = [("lab_overview", ((8.7, -5.9, 2.95), (-2.6, 0.9, 0.7)), 17.0),
+             ("lab_cell_front", ((-4.3, -5.6, 2.55), (0.3, 0.5, 1.0)), 22.0),
+             ("lab_cell_operator", ((-1.6, -6.6, 1.62), (-0.2, 0.6, 1.15)), 24.0),
+             ("lab_cell_interior", ((2.75, -2.05, 2.30), (-1.2, 0.6, 0.95)), 18.0),
+             ("lab_l12_hood", ((0.95, -1.25, 1.60), (0.15, 0.25, 1.08)), 26.0),
+             ("lab_amr_portal", ((2.3, -4.6, 1.35), (0.9, -2.0, 0.75)), 22.0),
+             ("lab_storage", ((-5.55, -0.85, 1.95), (-8.7, 3.0, 0.95)), 16.0),
+             ("lab_storage_dock", ((-5.65, -0.95, 1.55), (-6.8, 1.2, 0.70)), 20.0),
+             ("lab_prep", ((3.55, -3.70, 1.90), (8.4, 2.0, 1.05)), 18.0),
+             ("lab_rear_corridor", ((-4.8, 3.85, 1.75), (2.2, 2.2, 1.15)), 18.0),
+             ("lab_entrance", ((-9.1, -3.9, 1.65), (0.5, -0.6, 1.10)), 16.0),
+             ("lab_operator_desk", ((-2.6, -6.5, 1.45), (-0.4, -4.4, 0.95)), 22.0)]
 if os.environ.get("CELL01_DEBUG"):
     sys.stdout.flush()
     os._exit(0)

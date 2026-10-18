@@ -51,10 +51,22 @@ ap.add_argument("--place-mode", choices=("compliant", "drop"), default="complian
 ap.add_argument("--frames", default=None, help="directory for path-traced stills at the key moments (presentations)")
 ap.add_argument("--quick", action="store_true", help="with --frames: 1280x800, fewer samples")
 ap.add_argument("--frame-filter", default="", help="with --frames: only frames whose name contains this")
+ap.add_argument("--scene", choices=("cell01", "lab"), default="cell01",
+                help="lab: the whole AICOR Lab 1 (scenes/lab_twin.usda); R03 starts in the storage room's S1 dock and "
+                     "comes in through the storage door, the AMR lane and the Cell 01 portal")
+ap.add_argument("--video", default=None, help="directory for a video of the run (RTX real-time frames + MP4)")
+ap.add_argument("--rsa", default=None, help="run the rsa kernel (action designators) on the twin: a scenario of "
+                "rsa/registry/scenarios_isaac.yaml (rsa/isaac.py)")
+ap.add_argument("--plan", default=None, help="execute a derived plan (okf/.../derivation/out/plan_<tag>.json): every "
+                "trip of every session, step by step, on the twin's controllers; writes test_reports/e2m/")
 args = ap.parse_args()
 
-OVERLAY = os.path.join(ROOT, "scenes/cell01_twin.usda")
-OUT_DIR = os.path.join(ROOT, "test_reports/episodes")
+LAB = args.scene == "lab"
+OVERLAY = os.path.join(ROOT, "scenes/lab_twin.usda" if LAB else "scenes/cell01_twin.usda")
+OUT_DIR = os.path.join(args.video, "records") if args.video else os.path.join(ROOT, "test_reports/episodes")
+if args.plan:
+    OUT_DIR = os.path.join(args.video, "records") if args.video else os.path.join(ROOT, "test_reports/e2m")
+    args.episodes = "plan"
 H4 = "/World/Cell01/Stations/H4_Quarantine"
 L09 = "/World/Cell01/Stations/L09_PlateHotel"
 L10 = "/World/Cell01/Stations/L10_Incubator"
@@ -67,6 +79,14 @@ REF_ID = "REF-L21-001"
 AMR_START = (-2.565, 2.72, -math.pi / 2)        # R03 map pose: world (1.2, -3.0), heading north, outside the cell
 AMR_IN = [AMR_START[:2], (-2.565, 0.72), (-2.165, 0.0), (-1.0, 0.0)]
 AMR_OUT = [(-1.0, 0.0), (-2.165, 0.0), (-2.565, 0.72), (-2.565, 2.72)]
+if LAB:   # R03 starts docked in the storage room's S1 dock (world (-6.4, 0.6), heading north); site route legs
+    S1_WORLD = (-6.4, 0.6, 90.0)
+    AMR_START = (-(S1_WORLD[0] + 1.415), -(S1_WORLD[1] + 0.28), math.radians(S1_WORLD[2] - 180.0))
+    _w2m = lambda pts: [(-(x + 1.415), -(y + 0.28)) for (x, y) in pts]   # noqa: E731
+    AMR_STORE_OUT = _w2m([(-6.4, 0.6), (-6.4, -2.4)])
+    AMR_LEGS = [_w2m(leg) for leg in ([(-6.4, -2.4), (-6.4, -3.3)], [(-6.4, -3.3), (1.15, -3.3)],
+                                      [(1.15, -3.3), (1.15, -1.0), (0.75, -0.28), (-0.415, -0.28)])]
+    AMR_IN = AMR_STORE_OUT + [p for leg in AMR_LEGS for p in leg[1:]]
 R01 = "/World/Cell01/Robots/R01_FR3"
 FR3_PATH, GRIP_PATH = f"{R01}/FR3", f"{R01}/PlateGripper"
 # Episode request parameters. These belong to the requesting protocol, not to the twin; the values are DEMO
@@ -96,7 +116,11 @@ EPISODES = {"nominal": dict(plate_id="Plate_P17", store_slot=3),  # "full_cell" 
 from isaacsim import SimulationApp  # noqa: E402
 
 RES = (1280, 800) if args.quick else (1920, 1200)
-app = SimulationApp({"headless": True, **({"renderer": "PathTracing", "width": RES[0], "height": RES[1]} if args.frames else {})})
+if args.video:
+    RES = (1920, 1080)
+app = SimulationApp({"headless": True, **({"renderer": "PathTracing", "width": RES[0], "height": RES[1]} if args.frames
+                                          else {"renderer": "RaytracedLighting", "width": RES[0], "height": RES[1]}
+                                          if args.video else {})})
 
 import isaacsim.core.experimental.utils.app as app_utils  # noqa: E402
 
@@ -148,6 +172,8 @@ for _pp in (plate_paths["P30"], REF_PATH):
 GRIP12 = author_l12(stage, L12)
 TIPS12 = add_tips(stage, L12, [f"{r}{c:02d}" for c in (1, 2) for r in "ABCDEFGH"])
 add_reagent_tube(stage, L12, 1, "RGT-0001", "abstract_challenge_reagent", "SIM-LOT-A", 1000.0)
+if args.plan or args.rsa:   # the derived plan's rescue reagent (E2M7: reagent(rescue) = reagent rack position 2)
+    add_reagent_tube(stage, L12, 2, "RGT-0002", "abstract_rescue_reagent", "SIM-LOT-B", 1000.0)
 fr3_local = UsdGeom.Xformable(stage.GetPrimAtPath(f"{R01}/base_link")).GetLocalTransformation()
 ART_ROOT = author_rig(stage, FR3_PATH, GRIP_PATH, f"{R01}/Pedestal", fr3_local, contact_prims=list(plate_paths.values()))
 R02_ART, R02_WRIST, R02_COUPLER = author_r02(stage)
@@ -174,11 +200,23 @@ for p in PLATES.values():
 l17 = L17Controller(stage, L17, image_dir=os.path.join(OUT_DIR, "l17_images"))
 hn = HandoverNest(stage, HN_PRIM)
 l12 = L12Controller(stage, L12, GRIP12, tips=dict(TIPS12), reagent_inventory={
-    1: dict(reagent_id="abstract_challenge_reagent", lot="SIM-LOT-A", volume_uL=1000.0)})
+    1: dict(reagent_id="abstract_challenge_reagent", lot="SIM-LOT-A", volume_uL=1000.0),
+    **({2: dict(reagent_id="abstract_rescue_reagent", lot="SIM-LOT-B", volume_uL=1000.0)} if args.plan or args.rsa
+       else {})})
 l21 = L21Controller(stage, L21)
 amr = R03Controller(stage, R03, H2)
 amr._command_est(np.array(AMR_START))
 STATIONS = [h4.update, l09.update, l10.update, l17.update, hn.update, l12.update, l21.update, amr.update]
+if LAB:   # storage sliding door, Cell 01 door interlock + AMR-portal light curtain (twin/site_doors.py)
+    from twin.site_doors import Door, Interlock, LightCurtain  # noqa: E402
+    store_door = Door(stage, "/World/AICOR_Lab/Building/Doors/ST01_Sliding")
+    curtain = LightCurtain(stage, R03)
+    interlock = Interlock(stage, curtain)
+
+    def _site(dt):
+        interlock.update(dt)
+        store_door.update(interlock.t)
+    STATIONS.append(_site)
 r02rig = None   # R01 and R02 step the same simulation; each rig's step advances the other's clock
 
 
@@ -1120,8 +1158,19 @@ def run_full_cell_episode(episode_id, plate_id, incubate_slot, dose, image_wells
     # ---- B. AMR intake: navigate in, dock, open; R01 takes the carrier to L10
     t0 = rig.t
     amr.load_carrier(plate_id)
-    amr.navigate(AMR_IN)
-    wait(lambda: not amr.busy(), 180, "R03 navigate to dock_approach")
+    if LAB:   # from the storage room: door open, back out of S1, door closed, lane legs, portal
+        store_door.open()
+        wait(lambda: store_door.state() == "open", 15, "ST01 storage door open")
+        amr.navigate(AMR_STORE_OUT, reverse=True)
+        wait(lambda: not amr.busy(), 120, "R03 leaves the storage dock S1")
+        store_door.close()
+        for i, leg in enumerate(AMR_LEGS):
+            amr.navigate(leg)
+            wait(lambda: not amr.busy(), 180, ["R03 to the AMR lane", "R03 along the lane to Cell 01",
+                                               "R03 through the Cell 01 portal to dock_approach"][i])
+    else:
+        amr.navigate(AMR_IN)
+        wait(lambda: not amr.busy(), 180, "R03 navigate to dock_approach")
     amr.dock(compliant=True)
     wait(lambda: not amr.busy(), 90, "R03 dock")
     dock_res = dict(getattr(amr, "last_dock", {"ok": False}))
@@ -1289,19 +1338,314 @@ def run_full_cell_episode(episode_id, plate_id, incubate_slot, dose, image_wells
 
 
 
+# ------------------------------------------------------------------------------ derived-plan execution (E2M)
+# The plan (okf/lab-automation-twin/L3-logical-axiomatization/derivation) is a sequence of motion, device-command and
+# safety designators per trip. The interpreter executes them in order on the twin's controllers. A robot's
+# approach/insert/grasp/lift at a seat is one pick of that robot's controller (executed at its `lift`), its
+# transit/approach/place/release/retract one place (executed at its `retract`); L12's tip_pick/aspirate/dispense/
+# tip_eject for one well are one dose_well (executed at `dispense`, the tip / aspirate / eject events are checked in
+# L12's own log). Every step gets the twin time at which it completed and the evidence of its controller.
+PLAN_NEST = {"l10": "L10", "hn": "HN", "l12": "L12", "l17": "L17"}
+PLAN_R02_SIDE = {"HN": -1.0}
+
+
+def run_plan_episode(episode_id, plan_path):
+    from twin.culture.model import CONC_AU_PER_UL
+    plan = json.load(open(plan_path))
+    plate_id = "Plate_P17"
+    held = by_barcode[plate_id]
+    slot = PLATES["P17"]["slot"]
+    seat_keys = {"L10_Incubator/transfer_station": "l10", "HandoverNest_R01_R02/handover_frame": "hn",
+                 "L12_LiquidHandler/plate_nest": "l12", "L17_BrightFieldImager/plate_load_frame": "l17"}
+    seat_dev = {k: d for k, v in plan["names"].items() for frag, d in seat_keys.items() if v.endswith(frag + "#entity")}
+    trips, ok_all = [], True
+    print(f"[plan] executing {os.path.relpath(plan_path, ROOT)}: {plan['selected']['id']} "
+          f"(EIG {plan['selected']['eig_bits']} bits >= {plan['requirement_bits']})")
+    for se in plan["sessions"]:
+        t0, ex, ok_trip = rig.t, [], True
+        print(f"[plan] === session {se['session']} trip {se['trip']} (culture t = {se['t_h']} h): {len(se['steps'])} steps")
+        pending = {}
+        acq_n0 = None
+
+        def done(st, ok, **ev):
+            nonlocal ok_trip
+            ok_trip &= bool(ok)
+            ex.append({"index": st["index"], "primitive": st["primitive"], "level": st["level"],
+                       "who": st.get("robot") or st.get("device"), "t": round(rig.t - t0, 3), "ok": bool(ok),
+                       "predicted_s": st["duration_s"], **ev})
+            if not ok:
+                print(f"[plan]   step {st['index']} {st['primitive']} FAILED {ev}")
+
+        for st in se["steps"]:
+            t = st["term"]
+            k = t[0]
+            if k == "cmd":
+                dev, c = t[1], t[2]
+                cn = c[0] if isinstance(c, list) else c
+                if cn == "check_interlocks":
+                    closed = all(d_.state() == "closed" for d_ in interlock.doors.values()) if LAB else True
+                    done(st, closed, evidence="LAB interlock state" if LAB else
+                         "Cell 01 scene: no door model; the enclosure interlock is not simulated (assumed closed)")
+                elif cn == "verify_identity":
+                    pending["identity"] = st          # read by L10's barcode reader during release (next step)
+                elif cn == "present" and dev == "l10" and l10.inventory[slot] == plate_id and not pending.get("out"):
+                    tr = rig.t
+                    r = l10.release_plate(plate_id)
+                    rel = r.accepted and wait(lambda: l10.mode in ("PRESENTED_LOADED", "FAULT"), 120, "L10 release")
+                    seen = (events_since(l10, tr, "identity_read") or [{}])[-1].get("observed")
+                    done(pending.pop("identity"), seen == plate_id, observed=seen)
+                    done(st, rel and l10.mode == "PRESENTED_LOADED", mode=l10.mode)
+                    pending["out"] = True
+                elif cn == "present" and dev == "l10":
+                    wait(l10_ready_for_transfer, 600, "L10 environment ready for a transfer")
+                    l10.present_for_load()
+                    done(st, wait(lambda: l10.mode == "PRESENTED_EMPTY", 30, "L10 present for load"), mode=l10.mode)
+                elif cn == "present" and dev == "l17":
+                    unload = l17.mode == "LOADED"
+                    (l17.present_for_unload if unload else l17.present_for_load)()
+                    done(st, wait(lambda: l17.mode != "BUSY", 30, f"L17 present for {'unload' if unload else 'load'}"),
+                         mode=l17.mode)
+                elif cn == "stow":
+                    d = {"l10": l10, "l17": l17}[dev]
+                    d.stow()
+                    done(st, wait(lambda: d.mode not in ("BUSY",) and d.mode != "PRESENTED_EMPTY", 30, f"{dev} stow"),
+                         mode=d.mode)
+                elif cn == "tip_eject" and "dose_evs" in pending:   # follows its dispense: checked in L12's log
+                    evs = pending.pop("dose_evs")
+                    done(st, "tip_eject" in evs and evs.index("tip_pick") < evs.index("tip_eject"), l12_event=True)
+                elif cn in ("tip_pick", "aspirate", "tip_eject"):
+                    pending.setdefault("dose", []).append(st)
+                elif cn == "dispense":
+                    m = st["material"]
+                    well, reagent, au = m[1].upper(), m[2], m[3] / 100.0
+                    asp = next(x for x in pending["dose"] if x["primitive"] == "aspirate")
+                    pos = int(asp["term"][2][1].rsplit("_", 1)[-1])
+                    vol = round(au / CONC_AU_PER_UL, 3)
+                    td = rig.t
+                    n_ev = len(l12.events)
+                    r = l12.dose_well(plate_id, well, pos, f"abstract_{reagent}_reagent",
+                                      "SIM-LOT-A" if pos == 1 else "SIM-LOT-B", vol, 1.2, 2.0,
+                                      intended_effect=f"abstract_{reagent}")
+                    fin = r.accepted and wait(lambda: l12.mode != "BUSY", 240, f"L12 dose_well {well} {reagent} {au} au")
+                    rec = l12.doses[-1] if fin and l12.doses else None
+                    evs = [e["event"] for e in l12.events[n_ev:]]
+                    order_ok = evs.index("tip_pick") < evs.index("tip_eject") if {"tip_pick", "tip_eject"} <= set(evs) \
+                        else False
+                    for x in pending.pop("dose"):
+                        done(x, order_ok, l12_event=x["primitive"] in evs or x["primitive"] == "aspirate")
+                    done(st, bool(rec and rec["valid"] and not rec["aborted"]), well=well, reagent=reagent, au=au,
+                         volume_uL=vol, refused=None if r.accepted else r.reason,
+                         dose=rec and {k_: rec[k_] for k_ in ("valid", "volume_inferred_uL", "aborted", "well_id")},
+                         duration_s=round(rig.t - td, 2))
+                    pending.setdefault("doses", []).append(rec)
+                    pending["dose_evs"] = evs
+                elif cn == "load":
+                    r = l17.load_plate(plate_id)
+                    done(st, r.accepted and wait(lambda: l17.mode != "BUSY", 30, "L17 load_plate") and l17.mode == "LOADED",
+                         mode=l17.mode)
+                    acq_n0 = len(l17.acquisitions)
+                elif cn == "image_well":
+                    pending.setdefault("images", []).append(st)
+                    nxt = se["steps"][st["index"] + 1] if st["index"] + 1 < len(se["steps"]) else None
+                    if not (nxt and nxt["term"][0] == "cmd" and isinstance(nxt["term"][2], list)
+                            and nxt["term"][2][0] == "image_well"):
+                        wells = [x["material"][1].upper() for x in pending["images"]]
+                        l17.image_plate_region(plate_id, wells, 25.0, "10x", "autofocus", 1.0, "brightfield-morphology-v1")
+                        wait(lambda: l17.mode != "BUSY", 300, f"L17 image {wells}")
+                        for acq in list(l17.acquisitions[acq_n0:]):
+                            if [m_["name"] for m_ in acq["monitors"] if not m_["passed"]] == ["focus_quality"]:
+                                l17.focus_memory.pop((plate_id, "10x"), None)
+                                l17.image_well(plate_id, acq["well_id"])
+                                wait(lambda: l17.mode != "BUSY", 120, f"L17 reacquire {acq['well_id']}")
+                        acqs = {a_["well_id"]: a_ for a_ in l17.acquisitions[acq_n0:]}
+                        for x in pending.pop("images"):
+                            w = x["material"][1].upper()
+                            a_ = acqs.get(w)
+                            done(x, bool(a_ and a_["valid"]), well=w,
+                                 acquisition=a_ and {k_: a_.get(k_) for k_ in ("well_id", "valid", "t")},
+                                 calibration=l17.calibration.get("calibration_id"))
+                elif cn == "validate":
+                    l17.present_for_load()
+                    r02_pick("L21ref", 1.0, REF_PATH)
+                    r02_place("L17", 1.0, REF_PATH)
+                    wait(lambda: l17.mode != "BUSY", 30, "L17 present")
+                    l17.load_plate(REF_ID)
+                    wait(lambda: l17.mode != "BUSY", 30, "L17 load reference")
+                    r = l21.validate_imager(l17, REF_ID)
+                    if r.accepted:
+                        wait(lambda: l21.mode != "BUSY", 900, "L21 validate_imager")
+                    l17.present_for_unload()
+                    wait(lambda: l17.mode != "BUSY", 30, "L17 present for unload")
+                    r02_pick("L17", 1.0, REF_PATH)
+                    l17.stow()
+                    r02_place("L21ref", 1.0, REF_PATH)
+                    r02_clear()
+                    done(st, l21.qc_records and l21.qc_records[-1]["verdict"] == "pass",
+                         qc=l21.qc_records and l21.qc_records[-1]["verdict"])
+                elif cn == "wait_environment":
+                    done(st, wait(l10_ready_for_transfer, 600, "L10 environment ready") and l10.environment_valid,
+                         environment={k_: round(v, 3) for k_, v in l10.env.items()})
+                elif cn == "store":
+                    tr = rig.t
+                    r = l10.incubate(plate_id, slot)
+                    fin = r.accepted and wait(lambda: l10.mode in ("READY", "FAULT"), 120, "L10 incubate")
+                    seen = (events_since(l10, tr, "identity_read") or [{}])[-1].get("observed")
+                    done(st, fin and l10.mode == "READY" and l10.inventory[slot] == plate_id and seen == plate_id,
+                         slot=slot, observed=seen)
+                else:
+                    done(st, False, error=f"no executor for command {cn}")
+                continue
+            r = t[1]
+            if k == "tool_couple":
+                okt, why = ensure_t01()
+                done(st, okt, tool=(r02rig.tool or {}).get("id"), reason=why)
+            elif k in ("approach", "insert", "grasp", "transit", "place", "release"):
+                pending.setdefault(("leg", r), []).append(st)
+            elif k == "lift":
+                legs = pending.pop(("leg", r), [])
+                src = PLAN_NEST[seat_dev[legs[0]["term"][2][1]]]
+                if r == "r01":
+                    go_above(src, held=False)
+                    rig.phase = "pick"
+                    g = rig.pick(*at(src), f"pick_{src}", plate=held)
+                    rig.phase = None
+                    okp = bool(g.get("lifted") and g.get("contact"))
+                    ev = {"lifted": bool(g.get("lifted")), "contact": bool(g.get("contact"))}
+                else:
+                    g = r02_pick(src, PLAN_R02_SIDE.get(src, 1.0), held)
+                    okp = bool(g["positioned"] and g["converged"] and g["lifted"])
+                    ev = {k_: g[k_] for k_ in ("positioned", "converged", "lifted_mm")}
+                for x in legs:
+                    done(x, okp, pick_at=src)
+                done(st, okp, pick_at=src, **ev)
+            elif k == "retract":
+                legs = pending.pop(("leg", r), [])
+                dst_atom = t[2][1]
+                dst = PLAN_NEST[seat_dev[dst_atom]]
+                if r == "r01":
+                    tr_ok, _ = go_above(dst, held=True, phase="transit")
+                    rig.phase = "place"
+                    placed, info = rig.place(*at(dst), contacts_phase="insert")
+                    rig.phase = None
+                    rig.step(int(0.5 * HZ))
+                    seated = {"HN": lambda: bool(hn.seated), "L10": lambda: bool(l10.seated)}[dst]()
+                    okp = bool(tr_ok and placed and seated)
+                    clear = go_above("L09" if dst == "HN" else dst, held=False)[0]   # leave the seat for the next robot
+                    ev = {"seated": seated, "retract_to": "L09 approach (clear of HN)" if dst == "HN" else f"{dst} approach"}
+                else:
+                    g = r02_place(dst, PLAN_R02_SIDE.get(dst, 1.0), held)
+                    seated = {"HN": lambda: bool(hn.seated), "L12": lambda: bool(l12.seated),
+                              "L17": lambda: bool(l17.seated)}[dst]()
+                    okp = bool(g["positioned"] and g["converged"] and seated)
+                    clear = (r02_clear() if dst == "L12" else r02_park() if dst == "HN" else True)
+                    ev = {"seated": seated, "offset_mm": g["offset_mm"], "tilt_deg": g["tilt_deg"],
+                          "l12_airspace_clear": bool(l12.airspace_clear()) if dst == "L12" else None}
+                for x in legs:
+                    done(x, okp, place_at=dst)
+                done(st, okp and bool(clear), place_at=dst, **ev)
+            else:
+                done(st, False, error=f"no executor for motion {k}")
+        dur = rig.t - t0
+        within = dur <= plan["window_s"]
+        complete = {x["index"] for x in ex} == set(range(len(se["steps"])))   # every step executed and checked
+        ok_trip &= within and complete
+        n_ok = sum(x["ok"] for x in ex)
+        print(f"[plan] --- {se['id']}: {n_ok}/{len(se['steps'])} steps ok, {dur:.1f} s outside L10 "
+              f"(predicted {se['duration_s']:.1f} s, window {plan['window_s']:.0f} s) -> {'OK' if ok_trip else 'FAIL'}")
+        trips.append({"id": se["id"], "session": se["session"], "t_h": se["t_h"], "device": se["device"],
+                      "steps_total": len(se["steps"]), "steps_ok": n_ok, "executed": ex, "duration_s": round(dur, 2),
+                      "predicted_s": se["duration_s"], "within_window": within, "ok": ok_trip,
+                      "doses": [d for d in pending.get("doses", []) if d]})
+        ok_all &= ok_trip
+        if not ok_trip:
+            break
+    acq = [a_ for a_ in l17.acquisitions]
+    return [], [], {"route": "derived_plan", "plan": os.path.relpath(plan_path, ROOT), "selected": plan["selected"],
+                    "trips": trips, "all_ok": ok_all, "L10_inventory": {k: v for k, v in enumerate(l10.inventory) if v},
+                    "acquisitions": [{k_: a_.get(k_) for k_ in ("well_id", "valid", "t")} for a_ in acq]}
+
+VIDEO = None
+if args.video:   # live video of the run (twin/video.py): director follows the moving robot, captions from this log
+    from pxr import Gf as _Gf  # noqa: E402
+
+    from twin.video import Recorder  # noqa: E402
+    VIDEO = Recorder(stage, args.video, title="AICOR Lab 1  |  Cell 01 full-cell experiment  |  semantic digital twin "
+                     "(Isaac Sim, simulated)" if LAB else "Cell 01  |  semantic digital twin (Isaac Sim, simulated)")
+
+    def _amr_world():
+        x, y, _ = amr.pose_true()
+        return np.array(amr.map_to_world.Transform(_Gf.Vec3d(float(x), float(y), 0.0)))
+
+    def _amr_shot(p):
+        if p[0] < -5.2 and p[1] > -1.2:                                    # in the storage room
+            return (-5.55, -0.95, 2.05), p + [0, 0, 0.5], 18.0
+        if abs(p[0]) < 3.0 and abs(p[1]) < 2.25:                           # inside Cell 01
+            return (0.9, -2.0, 1.75), p + [0, 0, 0.55], 20.0
+        eye = np.clip(p + [2.6, -2.5, 0], [-9.3, -6.7, 0], [9.3, 3.9, 0]) + [0, 0, 2.3]
+        return eye, p + [0, 0, 0.5], 20.0
+
+    VIDEO.add("R03", "R03 clean-sample AMR", _amr_world, _amr_shot, 5)
+    VIDEO.add("R02", "R02 rail-mounted arm", lambda: r02rig.tcp()[0],
+              lambda p: ((float(np.clip(p[0] + 0.5, -1.5, 2.6)), -1.25, 1.95), p, 22.0), 4)
+    VIDEO.add("R01", "R01 fixed plate arm", lambda: rig.tcp()[0], lambda p: ((-0.35, -1.45, 1.85), p, 22.0), 3)
+    VIDEO.add("L17", "L17 bright-field imager", lambda: None,
+              lambda p: ((0.95, 0.55, 1.55), (1.65, 1.40, 1.02), 26.0), 2, busy_fn=lambda: l17.mode == "BUSY")
+    VIDEO.add("L12", "L12 liquid handler", lambda: None,
+              lambda p: ((0.95, -1.25, 1.60), (0.15, 0.25, 1.08), 26.0), 2, busy_fn=lambda: l12.mode == "BUSY")
+    VIDEO.add("L21", "L21 QC / calibration", lambda: None,
+              lambda p: ((1.55, 0.25, 1.55), (2.15, 1.12, 0.98), 26.0), 2, busy_fn=lambda: l21.mode == "BUSY")
+    VIDEO.install()
+    VIDEO.hook_stdout()
+
+if args.rsa:   # the rsa kernel drives the twin through its action designators (rsa/isaac.py)
+    from types import SimpleNamespace  # noqa: E402
+
+    from rsa.isaac import run_isaac  # noqa: E402
+    S_ = SimpleNamespace(rig=rig, r02rig=r02rig, l10=l10, l12=l12, l17=l17, l21=l21, h4=h4, hn=hn, LAB=LAB, HZ=HZ,
+                         interlock=interlock if LAB else None, by_barcode=by_barcode, wait=wait,
+                         events_since=events_since, go_above=go_above, at=at, r02_pick=r02_pick, r02_place=r02_place,
+                         r02_clear=r02_clear, r02_park=r02_park, ensure_t01=ensure_t01,
+                         l10_ready_for_transfer=l10_ready_for_transfer, REF_PATH=REF_PATH, REF_ID=REF_ID,
+                         PLAN_R02_SIDE=PLAN_R02_SIDE, PLATES=PLATES)
+    try:
+        ok_rsa = run_isaac(S_, args.rsa)
+    except Exception:  # noqa: BLE001 -- report and fail the process (Kit would otherwise exit 0)
+        import traceback  # noqa: E402
+        traceback.print_exc()
+        ok_rsa = False
+    app_utils.stop()
+    sys.stdout.flush()
+    os._exit(0 if ok_rsa else 1)
+
 t_wall = time.time()
 episodes = []
 EPISODES["full_cell"] = FULL
+if args.plan:
+    EPISODES["plan"] = dict(plan_path=os.path.abspath(args.plan))
 for n, name in enumerate(args.episodes.split(",")):
     cfg = EPISODES[name]
     eid = f"cell01-ep-{n + 1:03d}-{name}"
     runner = {"quarantine_release": run_release_episode, "imaging": run_imaging_episode,
-              "full_cell": run_full_cell_episode}.get(name)
+              "full_cell": run_full_cell_episode, "plan": run_plan_episode}.get(name)
     ds, esc, outcome = runner(eid, **cfg) if runner else run_episode(eid, name, **cfg)
+    if name == "plan":
+        os.makedirs(OUT_DIR, exist_ok=True)
+        tag = json.load(open(cfg["plan_path"]))["tag"]
+        dst = os.path.join(OUT_DIR, f"plan_execution_{tag}.json")
+        json.dump({"episode_id": eid, "scene": "lab" if LAB else "cell01", "place_mode": args.place_mode, **outcome,
+                   "wall_time_s": round(time.time() - t_wall, 1)}, open(dst, "w"), indent=1, default=str)
+        print(f"[plan] wrote {os.path.relpath(dst, ROOT)}; {'PASS' if outcome['all_ok'] else 'FAIL'}", flush=True)
+        app_utils.stop()
+        if VIDEO is not None:
+            with open(os.path.join(args.video, "video_log.json"), "w") as f:
+                json.dump(VIDEO.log, f)
+            print(f"[episode] video: {VIDEO.frame} frames -> {VIDEO.encode('cell01_derived_plan.mp4')}", flush=True)
+        sys.stdout.flush()
+        os._exit(0 if outcome["all_ok"] else 1)
     episodes.append({"episode_id": eid, "scenario": name, "request": {**cfg, "protocol": PROTOCOL},
                      "designators": ds, "escalations": esc, "outcome": outcome})
     print(f"[episode] {eid} outcome {json.dumps(outcome, default=str)[:400]}")
-raw = {"run": {"scene": "scenes/cell01_twin.usda (layout P1)", "physics_hz": HZ, "place_mode": args.place_mode,
+raw = {"run": {"scene": "scenes/lab_twin.usda (AICOR Lab 1, layout P1)" if LAB else "scenes/cell01_twin.usda (layout P1)", "physics_hz": HZ, "place_mode": args.place_mode,
                "l17_calibration": l17.calibration,
                "initial_state": initial, "plates": PLATES, "wall_time_s": round(time.time() - t_wall, 1),
                "L10_environment_series_1Hz": l10.series[-400:]},
@@ -1359,5 +1703,10 @@ for ep in records["episodes"]:
           f" -> {'AS EXPECTED' if exp else 'UNEXPECTED'}")
 print(f"[episode] wrote {raw_path} and cell01_episodes_records.json; {'PASS' if ok else 'FAIL'}")
 app_utils.stop()
+sys.stdout.flush()
+if VIDEO is not None:
+    with open(os.path.join(args.video, "video_log.json"), "w") as f:
+        json.dump(VIDEO.log, f)
+    print(f"[episode] video: {VIDEO.frame} frames -> {VIDEO.encode('cell01_full_cell.mp4')}", flush=True)
 sys.stdout.flush()
 os._exit(0 if ok else 1)

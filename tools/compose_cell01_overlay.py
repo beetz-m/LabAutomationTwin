@@ -20,6 +20,11 @@ scene and adds overrides only:
          its load stage presenting toward R02's rail;
        * the L21 QC bench twin (assets/l21/) at (2.20, 1.07) on a side table, replacing the placeholder deck (which
          has no collider in Cell 01).
+  4. the Cell 01 fit-out (assets/cell01_fitout/build_fitout.py, 2026-10-16): the safety enclosure E01 (frame, glass, interlocked
+     doors as articulations, AMR portal with light curtain, E-stops, HMI, stack lights) replaces the three placeholder
+     glass cubes; the machine bench F01 and the R02 rail cover dress the bench (the Cell 01 worktop cube stays the
+     collider, render purpose -> guide); instrument cabinets / the isolated L17 sub-base dress the P1 supports (the P1
+     boxes stay the colliders); the L12 hood is added under the L12 station.
   R02 itself (rail + UR5e, assets/r02/) is added at runtime by the scripts that use it (twin/r02_rig.py), like R01.
 
 Run with the CAD venv:  env_cad/bin/python tools/compose_cell01_overlay.py   (after tools/layout_p1.py)
@@ -35,13 +40,14 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 CELL01 = os.path.expanduser(
     "~/ResearchSpace/projects/robot-scientist/cell-01/AICOR_Cell01_Codex_Handoff/simulation/isaac_sim/"
     "biophysical_v2/AICOR_BioPhysical_Cell01_v2.usda")
-OUT = os.path.join(ROOT, "scenes", "cell01_twin.usda")
+OUT = os.environ.get("CELL01_OVERLAY_OUT", os.path.join(ROOT, "scenes", "cell01_twin.usda"))
 LAYOUT = os.path.join(ROOT, "scenes", "layout_p1.json")
 R01 = "/World/Cell01/Robots/R01_FR3"
 ASSETS = {"H4": "assets/h4/h4.usda", "L09": "assets/l09/l09.usda", "L10": "assets/l10/l10.usda",
           "L12": "assets/l12/l12.usda", "L17": "assets/l17/l17.usda", "L21": "assets/l21/l21.usda", "TCM01": "assets/r02/tooling.usda", "HN": "assets/hn/hn.usda",
           "H2": "assets/r03/h2_dock.usda", "R03": "assets/r03/r03.usda"}
 R03 = "/World/Cell01/Robots/R03_SampleAMR"
+FITOUT = os.path.join(ROOT, "assets", "cell01_fitout", "usd")
 NEST_FRAME = {"H4": "transfer_nest", "L09": "transfer_nest", "L10": "transfer_station", "L17": "plate_load_frame",
               "L12": "plate_nest",
               "L21": "reference_plate_frame"}
@@ -58,6 +64,13 @@ def set_pose(prim, xyz, yaw_deg=None):
         xf.AddRotateZOp().Set(float(yaw_deg))
 
 
+def ref(st, path, asset, xyz=(0, 0, 0), yaw_deg=None):
+    prim = UsdGeom.Xform.Define(st, path).GetPrim()
+    prim.GetReferences().AddReference(os.path.relpath(asset, os.path.dirname(OUT)))
+    set_pose(prim, xyz, yaw_deg)
+    return prim
+
+
 def box(st, path, center, size, yaw_deg, color, collide=True):
     xf = UsdGeom.Xform.Define(st, path)
     set_pose(xf.GetPrim(), center, yaw_deg)
@@ -68,6 +81,41 @@ def box(st, path, center, size, yaw_deg, color, collide=True):
     if collide:
         UsdPhysics.CollisionAPI.Apply(c.GetPrim())
     return xf.GetPrim()
+
+
+SEM_PLATE = "/World/ExperimentalWorld/Plates/Plate_P17"
+SBS = (0.12776, 0.08548, 0.01435)        # m, ANSI/SLAS footprint and height (assets/common/twin_cad.py)
+WELL_BOTTOM = 0.00345                    # m above the plate base (10.9 mm deep wells, twin plate model)
+
+
+def semantic_plate(st, src):
+    """5. The SDT plate P17 as a frame tree (user decision 2026-10-17, LDL report section 7).
+
+    Cell 01 authors the 96 wells in world coordinates under an identity plate root, and a half-scale PlateBody 9 mm
+    off the well grid, so a well's frame is only right while nothing moves and is off even then. Here the plate root
+    sits on the L12 plate nest (the station Cell 01 places it at), every well is plate-relative (SBS: A1 at (-X,+Y),
+    pitch 9 mm, frame at the well bottom) and the body has the SBS footprint. The well's interface frames stay as
+    authored (pipette +10 mm, imaging +5 mm above the well frame). The runtime plate is /World/Episode/Plate_P17
+    (twin/r01_rig.add_plate); this one is the SDT referent, so it neither collides nor renders (purpose guide).
+    twin/culture/render_layer.py re-poses this root onto the physical plate from A01's local translate, which stays
+    valid."""
+    nest = UsdGeom.XformCache().GetLocalToWorldTransform(   # the composed stage: the L12 twin moves the nest
+        st.GetPrimAtPath("/World/Cell01/Stations/L12_LiquidHandler/plate_nest")).ExtractTranslation()
+    root = st.GetPrimAtPath(SEM_PLATE)
+    root.GetAttribute("xformOp:translate").Set(type(root.GetAttribute("xformOp:translate").Get())(*nest))
+    for w in st.GetPrimAtPath(SEM_PLATE + "/Wells").GetChildren():
+        r, c = "ABCDEFGH".index(w.GetName()[0]), int(w.GetName()[1:]) - 1
+        a = w.GetAttribute("xformOp:translate")
+        a.Set(type(a.Get())(-0.0495 + 0.009 * c, 0.0315 - 0.009 * r, WELL_BOTTOM))
+    body = st.GetPrimAtPath(SEM_PLATE + "/Physical/PlateBody")
+    for name, val in (("xformOp:translate", (0.0, 0.0, SBS[2] / 2)), ("xformOp:scale", SBS)):
+        a = body.GetAttribute(name)
+        a.Set(type(a.Get())(*val))
+    UsdPhysics.CollisionAPI(body).CreateCollisionEnabledAttr().Set(False)
+    UsdGeom.Imageable(body).CreatePurposeAttr().Set(UsdGeom.Tokens.guide)
+    root.CreateAttribute("sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(
+        "SDT referent of plate P17 as a frame tree: wells plate-relative (SBS), root on the L12 plate nest; "
+        "the runtime plate is /World/Episode/Plate_P17 (compose_cell01_overlay.semantic_plate)")
 
 
 def main():
@@ -122,6 +170,10 @@ def main():
         centre = (s["origin"][0] + c * cx - sn * cy, s["origin"][1] + sn * cx + c * cy, h / 2)
         sup = box(st, f"/World/Cell01/Furniture/P1_Supports/{name}_{s['support']}", centre,
                   (x1 - x0 + 0.04, y1 - y0 + 0.04, h), s["yaw_deg"], (0.62, 0.64, 0.66))
+        # fit-out: the box stays the collider (guide purpose), the cabinet / sub-base asset is its visual
+        UsdGeom.Imageable(st.GetPrimAtPath(sup.GetPath().AppendChild("Geom"))).CreatePurposeAttr(UsdGeom.Tokens.guide)
+        ref(st, f"/World/Cell01/Furniture/FitOut/{name}_support", os.path.join(FITOUT, f"support_{name}.usda"),
+            (centre[0], centre[1], 0.0), s["yaw_deg"])
         sup.CreateAttribute("sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(
             f"provisional {s['support']} (layout P1), top at {h:.3f} m so the transfer nest is at {lay['nest_z']} m")
 
@@ -153,6 +205,22 @@ def main():
     st.OverridePrim("/World/Cell01/Robots/R02_RailSystem/LinearRail/Rail").GetAttribute("xformOp:scale").Set(
         Gf.Vec3f(RAIL["x1"] - RAIL["x0"], 0.11, 0.09))
 
+    # Cell 01 fit-out: enclosure E01 (replaces the placeholder glass cubes), bench F01 + rail cover (visual over the
+    # Cell 01 worktop collider), L12 hood (static colliders, under the L12 station so its airspace monitor ignores it)
+    for cube in ("RearGlass", "LeftGlass", "RightGlass"):
+        if src.GetPrimAtPath(f"/World/Cell01/Architecture/SafetyEnclosure/{cube}"):
+            st.OverridePrim(f"/World/Cell01/Architecture/SafetyEnclosure/{cube}").SetActive(False)
+    ref(st, "/World/Cell01/Architecture/Enclosure_E01", os.path.join(FITOUT, "enclosure.usda"))
+    UsdGeom.Imageable(st.OverridePrim("/World/Cell01/Furniture/AutomationBench/Worktop")).CreatePurposeAttr(
+        UsdGeom.Tokens.guide)
+    ref(st, "/World/Cell01/Furniture/FitOut/F01_Bench", os.path.join(FITOUT, "bench_f01.usda"))
+    ref(st, "/World/Cell01/Furniture/FitOut/R02_RailCover", os.path.join(FITOUT, "rail_cover.usda"))
+    ref(st, "/World/Cell01/Stations/L12_LiquidHandler/Enclosure", os.path.join(FITOUT, "l12_hood.usda"))
+    UsdGeom.Xform.Define(st, "/World/Cell01/Furniture/FitOut").GetPrim().CreateAttribute(
+        "sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(
+        "Cell 01 fit-out (assets/cell01_fitout/build_fitout.py): project-owned proxies of the spec's enclosure/furniture "
+        "classes; manufacturer CAD not acquired")
+
     # layout frames (no device assets yet)
     for name, xyz in lay["extra_frames"].items():
         f = UsdGeom.Xform.Define(st, f"/World/Cell01/LayoutP1/{name}")
@@ -160,6 +228,7 @@ def main():
         UsdGeom.Xformable(f).CreateVisibilityAttr("invisible")
     UsdGeom.Xform.Define(st, "/World/Cell01/LayoutP1").GetPrim().CreateAttribute(
         "sdt:note", Sdf.ValueTypeNames.String, custom=True).Set(DECISION)
+    semantic_plate(st, src)
     layer.Save()
 
     # report: composed nest poses against the layout

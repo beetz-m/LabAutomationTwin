@@ -1,0 +1,13 @@
+36 fit-out collider boxes
+fit-out part                                                 min clearance  sample
+Furniture/P1_Supports/L21_side_table/Geom                            27 mm  r02_trace_episodes.txt#7614 L21_side_table tool T01  tip [2.075, 1.07, 0.977]
+Stations/L12_LiquidHandler/Enclosure                                 51 mm  r02_trace_episodes.txt#9484 Box004 tool T01  tip [0.157, 0.34, 1.131]
+Furniture/P1_Supports/L17_plinth/Geom                               163 mm  r02_trace_episodes.txt#8107 L17_plinth tool T01  tip [1.65, 1.216, 0.975]
+Furniture/P1_Supports/L09_side_table/Geom                           281 mm  r02_trace_episodes.txt#9097 L09_side_table tool T01 holding tip [-0.963, 1.187, 1.225]
+Furniture/P1_Supports/L10_plinth/Geom                               792 mm  r02_trace_episodes.txt#9097 L10_plinth tool T01 holding tip [-0.963, 1.187, 1.225]
+Architecture/Enclosure_E01                                          820 mm  r02_trace_episodes.txt#5088 Box019 tool T01  tip [2.125, 1.26, 1.03]
+Architecture/Enclosure_E01/Doors/D3_RearEast/Leaf                   885 mm  r02_trace_episodes.txt#3054 Box001 tool T01  tip [1.949, 1.321, 1.192]
+Furniture/P1_Supports/H4_side_table/Geom                            966 mm  r02_trace_episodes.txt#1868 H4_side_table tool T01 holding tip [-1.05, 0.55, 0.968]
+Architecture/Enclosure_E01/Doors/D2_RearWest/Leaf                  1188 mm  r02_trace_episodes.txt#164 Box001 tool -  tip [-0.983, 1.188, 1.382]
+Architecture/Enclosure_E01/Doors/D1_Front/Leaf                     2556 mm  r02_trace_episodes.txt#9752 Box001 tool T01  tip [0.104, 0.343, 1.13]
+worst clearance 27 mm

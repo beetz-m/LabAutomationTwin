@@ -1,0 +1,1154 @@
+{
+  "results": [
+    {
+      "test": "S structure: lab scene, enclosure doors + storage door closed, interlock ok, S1 dock + R03 at S1",
+      "pass": true,
+      "doors": {
+        "D1_Front": "closed",
+        "D2_RearWest": "closed",
+        "D3_RearEast": "closed"
+      },
+      "storage": "closed",
+      "at": [
+        -6.4,
+        0.6
+      ]
+    },
+    {
+      "test": "R1 storage door opens (measured), R03 backs out of S1 into the hall, door closes behind it",
+      "pass": true,
+      "door_events": [
+        [
+          0.004,
+          "ST01_Sliding",
+          "closed"
+        ],
+        [
+          1.529,
+          "ST01_Sliding",
+          "moving"
+        ],
+        [
+          2.233,
+          "ST01_Sliding",
+          "open"
+        ],
+        [
+          2.254,
+          "ST01_Sliding",
+          "moving"
+        ],
+        [
+          2.438,
+          "ST01_Sliding",
+          "open"
+        ],
+        [
+          11.312,
+          "ST01_Sliding",
+          "moving"
+        ],
+        [
+          11.992,
+          "ST01_Sliding",
+          "closed"
+        ]
+      ],
+      "at": [
+        -6.4,
+        -2.398
+      ],
+      "reason": ""
+    },
+    {
+      "test": "R2 AMR lane to the Cell 01 portal: muted light-curtain passage, no protective stop; at dock_approach",
+      "pass": true,
+      "estimate": [
+        -1.0009,
+        -0.0017,
+        0.0
+      ],
+      "passages": [
+        [
+          45.933,
+          48.225
+        ]
+      ],
+      "curtain_events": [
+        [
+          45.933,
+          "muted_passage_start"
+        ],
+        [
+          48.225,
+          "muted_passage_end"
+        ]
+      ],
+      "lane_s": 48.0,
+      "reason": ""
+    },
+    {
+      "test": "R3 docks at H2 (compliant) and opens: carrier seated at handover_carrier_frame within the guide band + dock residual",
+      "pass": true,
+      "dock": {
+        "ok": true,
+        "rays_mm": {
+          "depth_L": 10.0,
+          "depth_R": 10.0,
+          "nose_L": 43.997,
+          "nose_R": 44.003
+        },
+        "depth_mm": -1.0,
+        "yaw_deg": 0.0,
+        "lateral_mm": 0.003
+      },
+      "offset_mm": [
+        -1.15,
+        0.07,
+        0.0
+      ],
+      "tol_mm": 1.6
+    },
+    {
+      "test": "F1 person proxy breaks the curtain: protective stop latches, no safe motion; reset refused while broken; clear + reset restores",
+      "pass": true,
+      "why": [],
+      "events": [
+        [
+          48.225,
+          "muted_passage_end"
+        ],
+        [
+          84.004,
+          "protective_stop",
+          [
+            "/World/TestFixtures/PersonProxy"
+          ]
+        ],
+        [
+          85.0,
+          "reset"
+        ]
+      ]
+    },
+    {
+      "test": "F2 front door D1 opened: interlock withholds safe motion; closed: ok",
+      "pass": true,
+      "angle_open_deg": -90.0,
+      "events": [
+        [
+          0.004,
+          "D1_Front",
+          "closed"
+        ],
+        [
+          85.275,
+          "D1_Front",
+          "moving"
+        ],
+        [
+          86.154,
+          "D1_Front",
+          "open"
+        ],
+        [
+          86.283,
+          "D1_Front",
+          "moving"
+        ],
+        [
+          87.625,
+          "D1_Front",
+          "closed"
+        ]
+      ]
+    },
+    {
+      "test": "T1 S1 -> H2 site transport as a Cell 01 transport record: valid, commits",
+      "pass": true,
+      "errors": [],
+      "routing": "culture_sdt_commit"
+    }
+  ],
+  "passed": 7,
+  "total": 7,
+  "amr_events": [
+    {
+      "t": 1.5,
+      "event": "carrier_loaded",
+      "mode": "READY",
+      "carrier_id": "Plate_P30"
+    },
+    {
+      "t": 2.25,
+      "event": "navigate_accepted",
+      "mode": "MOVING",
+      "route": [
+        [
+          4.985,
+          -0.88
+        ],
+        [
+          4.985,
+          2.12
+        ]
+      ],
+      "reverse": true
+    },
+    {
+      "t": 11.183,
+      "event": "arrived",
+      "mode": "READY",
+      "estimate": [
+        4.985,
+        2.118,
+        -1.5708
+      ],
+      "true": [
+        4.985,
+        2.118,
+        -1.5708
+      ]
+    },
+    {
+      "t": 12.0,
+      "event": "navigate_accepted",
+      "mode": "MOVING",
+      "route": [
+        [
+          4.985,
+          2.12
+        ],
+        [
+          4.985,
+          3.0199999999999996
+        ]
+      ],
+      "reverse": false
+    },
+    {
+      "t": 19.892,
+      "event": "arrived",
+      "mode": "READY",
+      "estimate": [
+        4.9846,
+        3.018,
+        -4.713
+      ],
+      "true": [
+        4.9846,
+        3.018,
+        -4.713
+      ]
+    },
+    {
+      "t": 20.0,
+      "event": "navigate_accepted",
+      "mode": "MOVING",
+      "route": [
+        [
+          4.985,
+          3.0199999999999996
+        ],
+        [
+          -2.565,
+          3.0199999999999996
+        ]
+      ],
+      "reverse": false
+    },
+    {
+      "t": 42.275,
+      "event": "arrived",
+      "mode": "READY",
+      "estimate": [
+        -2.563,
+        3.0201,
+        -3.1416
+      ],
+      "true": [
+        -2.563,
+        3.0201,
+        -3.1416
+      ]
+    },
+    {
+      "t": 42.5,
+      "event": "navigate_accepted",
+      "mode": "MOVING",
+      "route": [
+        [
+          -2.565,
+          3.0199999999999996
+        ],
+        [
+          -2.565,
+          0.72
+        ],
+        [
+          -2.165,
+          -0.0
+        ],
+        [
+          -1.0,
+          -0.0
+        ]
+      ],
+      "reverse": false
+    },
+    {
+      "t": 59.988,
+      "event": "arrived",
+      "mode": "READY",
+      "estimate": [
+        -1.0009,
+        -0.0017,
+        0.0
+      ],
+      "true": [
+        -1.0009,
+        -0.0017,
+        0.0
+      ]
+    },
+    {
+      "t": 60.0,
+      "event": "dock_accepted",
+      "mode": "DOCKING"
+    },
+    {
+      "t": 81.404,
+      "event": "docked",
+      "mode": "DOCKED",
+      "residual": {
+        "rays_mm": {
+          "depth_L": 10.0,
+          "depth_R": 10.0,
+          "nose_L": 43.997,
+          "nose_R": 44.003
+        },
+        "depth_mm": -1.0,
+        "yaw_deg": 0.0,
+        "lateral_mm": 0.003,
+        "ok": true
+      },
+      "true_pose": [
+        1.0,
+        0.0,
+        -0.0
+      ]
+    },
+    {
+      "t": 81.5,
+      "event": "open_cabinet_accepted",
+      "mode": "DOCKED"
+    },
+    {
+      "t": 83.796,
+      "event": "cabinet",
+      "mode": "DOCKED",
+      "state": "open"
+    }
+  ],
+  "trace": [
+    [
+      0.0,
+      4.985,
+      -0.88,
+      -1.5708,
+      "closed",
+      true,
+      100.0,
+      true
+    ],
+    [
+      2.0,
+      4.985,
+      -0.88,
+      -1.5708,
+      "closed",
+      true,
+      100.0,
+      true
+    ],
+    [
+      4.0,
+      4.985,
+      -0.2209,
+      -1.5708,
+      "closed",
+      true,
+      99.96,
+      true
+    ],
+    [
+      6.0,
+      4.985,
+      0.5808,
+      -1.5708,
+      "closed",
+      true,
+      99.92,
+      true
+    ],
+    [
+      8.0,
+      4.985,
+      1.3808,
+      -1.5708,
+      "closed",
+      true,
+      99.88,
+      true
+    ],
+    [
+      10.0,
+      4.985,
+      2.072,
+      -1.5708,
+      "closed",
+      true,
+      99.84,
+      true
+    ],
+    [
+      12.0,
+      4.985,
+      2.118,
+      -1.5708,
+      "closed",
+      true,
+      99.83,
+      true
+    ],
+    [
+      14.0,
+      4.985,
+      2.118,
+      -3.1502,
+      "closed",
+      true,
+      99.83,
+      true
+    ],
+    [
+      16.0,
+      4.9847,
+      2.1304,
+      -4.698,
+      "closed",
+      true,
+      99.82,
+      true
+    ],
+    [
+      18.0,
+      4.9834,
+      2.8974,
+      -4.7224,
+      "closed",
+      true,
+      99.78,
+      true
+    ],
+    [
+      20.0,
+      4.9846,
+      3.018,
+      -4.713,
+      "closed",
+      true,
+      99.76,
+      true
+    ],
+    [
+      22.0,
+      4.98,
+      3.0181,
+      -3.1581,
+      "closed",
+      true,
+      99.76,
+      true
+    ],
+    [
+      24.0,
+      4.2023,
+      3.0284,
+      -3.1532,
+      "closed",
+      true,
+      99.72,
+      true
+    ],
+    [
+      26.0,
+      3.4023,
+      3.0364,
+      -3.1501,
+      "closed",
+      true,
+      99.68,
+      true
+    ],
+    [
+      28.0,
+      2.6023,
+      3.0422,
+      -3.1471,
+      "closed",
+      true,
+      99.64,
+      true
+    ],
+    [
+      30.0,
+      1.8023,
+      3.0455,
+      -3.144,
+      "closed",
+      true,
+      99.6,
+      true
+    ],
+    [
+      32.0,
+      1.0023,
+      3.0462,
+      -3.1409,
+      "closed",
+      true,
+      99.56,
+      true
+    ],
+    [
+      34.0,
+      0.204,
+      3.0446,
+      -3.1379,
+      "closed",
+      true,
+      99.52,
+      true
+    ],
+    [
+      36.0,
+      -0.596,
+      3.0405,
+      -3.1348,
+      "closed",
+      true,
+      99.48,
+      true
+    ],
+    [
+      38.0,
+      -1.396,
+      3.0339,
+      -3.1317,
+      "closed",
+      true,
+      99.44,
+      true
+    ],
+    [
+      40.0,
+      -2.196,
+      3.0249,
+      -3.1287,
+      "closed",
+      true,
+      99.4,
+      true
+    ],
+    [
+      42.0,
+      -2.5629,
+      3.0201,
+      -3.1416,
+      "closed",
+      true,
+      99.36,
+      true
+    ],
+    [
+      44.0,
+      -2.563,
+      3.0201,
+      -1.9655,
+      "closed",
+      true,
+      99.36,
+      true
+    ],
+    [
+      46.0,
+      -2.5706,
+      2.4377,
+      -1.5794,
+      "closed",
+      true,
+      99.33,
+      true
+    ],
+    [
+      48.0,
+      -2.5733,
+      1.6377,
+      -1.5679,
+      "closed",
+      true,
+      99.29,
+      true
+    ],
+    [
+      50.0,
+      -2.5508,
+      0.8387,
+      -1.4036,
+      "closed",
+      true,
+      99.25,
+      true
+    ],
+    [
+      52.0,
+      -2.2402,
+      0.1129,
+      -0.8034,
+      "closed",
+      true,
+      99.21,
+      true
+    ],
+    [
+      54.0,
+      -1.5388,
+      -0.0066,
+      0.034,
+      "closed",
+      true,
+      99.17,
+      true
+    ],
+    [
+      56.0,
+      -1.0461,
+      0.1006,
+      0.6889,
+      "closed",
+      true,
+      99.13,
+      true
+    ],
+    [
+      58.0,
+      -1.0134,
+      0.109,
+      0.9389,
+      "closed",
+      true,
+      99.09,
+      true
+    ],
+    [
+      60.0,
+      -1.0009,
+      -0.0017,
+      0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      62.0,
+      -0.906,
+      -0.0008,
+      0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      64.0,
+      -0.806,
+      -0.0004,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      66.0,
+      -0.706,
+      -0.0002,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      68.0,
+      -0.606,
+      -0.0001,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      70.0,
+      -0.506,
+      -0.0,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      72.0,
+      -0.406,
+      -0.0,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      74.0,
+      -0.306,
+      -0.0,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      76.0,
+      -0.206,
+      -0.0,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      78.0,
+      -0.106,
+      -0.0,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      80.0,
+      -0.006,
+      -0.0,
+      -0.0,
+      "closed",
+      true,
+      99.08,
+      true
+    ],
+    [
+      82.0,
+      0.001,
+      0.0,
+      -0.0,
+      "open",
+      true,
+      99.08,
+      true
+    ],
+    [
+      84.0,
+      0.001,
+      0.0,
+      -0.0,
+      "open",
+      true,
+      99.08,
+      true
+    ],
+    [
+      86.0,
+      0.001,
+      0.0,
+      -0.0,
+      "open",
+      true,
+      99.08,
+      true
+    ]
+  ],
+  "record": {
+    "episode_id": "test-site",
+    "designator_id": "test-site/transport_S1_H2",
+    "event_type": "R03/H2.transport",
+    "timestamp_s": 81.5,
+    "lifecycle": {
+      "open_designator": {
+        "action": "transport",
+        "requested_bindings": [
+          "contamination_state",
+          "object_id",
+          "route",
+          "source_frame",
+          "target_frame"
+        ],
+        "unresolved_bindings": []
+      },
+      "grounded_designator": {
+        "component_id": "R03/H2",
+        "component_prim": "/World/Cell01/Robots/R03_SampleAMR",
+        "interaction_frames": {
+          "source_frame": "dock_approach",
+          "target_frame": "handover_carrier_frame"
+        },
+        "grounded_bindings": {
+          "component_id": "R03/H2",
+          "component_prim": "/World/Cell01/Robots/R03_SampleAMR",
+          "object_id": "Plate_P30",
+          "source_frame": "AICOR_Lab/StorageRoom/S1_DispatchDock",
+          "target_frame": "H2/handover_carrier_frame",
+          "route": "S1 -> ST01 sliding door -> AMR lane -> Cell 01 portal (muted curtain) -> H2",
+          "contamination_state": "clean_sample_only (carrier class clean)"
+        }
+      },
+      "commitment": {
+        "accepted": true,
+        "acceptance_checks": {
+          "grounded": true,
+          "semantic_valid": true,
+          "causally_admissible": true,
+          "motion_feasible": true,
+          "monitorable": true,
+          "evidence_supported": true
+        },
+        "failure_reasons": [],
+        "blocked_paths": []
+      },
+      "execution": {
+        "command_completed": true,
+        "physical_success": true,
+        "timestamp_s": 81.5,
+        "t_start_s": 1.5,
+        "device_events": []
+      },
+      "monitors": {
+        "required": [
+          "route_clear",
+          "object_identity",
+          "object_pose_or_grasp",
+          "contamination_compatibility",
+          "elapsed_time"
+        ],
+        "observed": [
+          {
+            "name": "route_clear",
+            "passed": true,
+            "observation": "localization healthy; storage door measured open for the passage; muted portal passage",
+            "value": {
+              "samples": 161,
+              "passages": [
+                [
+                  45.933,
+                  48.225
+                ]
+              ]
+            }
+          },
+          {
+            "name": "object_identity",
+            "passed": true,
+            "observation": "carrier id bound at S1 loading",
+            "value": [
+              "Plate_P30"
+            ]
+          },
+          {
+            "name": "object_pose_or_grasp",
+            "passed": true,
+            "observation": "carrier present for the whole transport; seated at the docked handover pose",
+            "value": {
+              "ok": true,
+              "rays_mm": {
+                "depth_L": 10.0,
+                "depth_R": 10.0,
+                "nose_L": 43.997,
+                "nose_R": 44.003
+              },
+              "depth_mm": -1.0,
+              "yaw_deg": 0.0,
+              "lateral_mm": 0.003
+            }
+          },
+          {
+            "name": "contamination_compatibility",
+            "passed": true,
+            "observation": "clean carrier on the clean-sample AMR; cabinet closed in transit",
+            "value": "clean"
+          },
+          {
+            "name": "elapsed_time",
+            "passed": true,
+            "observation": "transport took 80.0 s",
+            "value": 80.0
+          }
+        ],
+        "missing": [],
+        "failed": []
+      },
+      "failures": {
+        "reasons": [],
+        "blocked_paths": []
+      },
+      "repairs": {
+        "attempted": [],
+        "available_routes": [
+          "repair_route_or_pose",
+          "human_escalation",
+          "H4_quarantine_if_identity_or_contamination_unresolved"
+        ]
+      },
+      "verdict": {
+        "critic_vector": {
+          "physical_success": true,
+          "safety_ok": true,
+          "quality_ok": true,
+          "grounding_ok": true,
+          "experimental_validity_ok": true,
+          "measurement_adequacy_ok": null,
+          "evidence_complete": true,
+          "commit_semantic_event": true,
+          "failure_reasons": [],
+          "blocked_paths": []
+        },
+        "semantic_event_eligible": true,
+        "evidence_complete": true
+      },
+      "routing": {
+        "route": "culture_sdt_commit",
+        "target": "CultureSDT"
+      }
+    },
+    "designator": {
+      "component_id": "R03/H2",
+      "component_prim": "/World/Cell01/Robots/R03_SampleAMR",
+      "object_id": "Plate_P30",
+      "source_frame": "AICOR_Lab/StorageRoom/S1_DispatchDock",
+      "target_frame": "H2/handover_carrier_frame",
+      "route": "S1 -> ST01 sliding door -> AMR lane -> Cell 01 portal (muted curtain) -> H2",
+      "contamination_state": "clean_sample_only (carrier class clean)"
+    },
+    "monitors": [
+      {
+        "name": "route_clear",
+        "passed": true,
+        "observation": "localization healthy; storage door measured open for the passage; muted portal passage",
+        "value": {
+          "samples": 161,
+          "passages": [
+            [
+              45.933,
+              48.225
+            ]
+          ]
+        }
+      },
+      {
+        "name": "object_identity",
+        "passed": true,
+        "observation": "carrier id bound at S1 loading",
+        "value": [
+          "Plate_P30"
+        ]
+      },
+      {
+        "name": "object_pose_or_grasp",
+        "passed": true,
+        "observation": "carrier present for the whole transport; seated at the docked handover pose",
+        "value": {
+          "ok": true,
+          "rays_mm": {
+            "depth_L": 10.0,
+            "depth_R": 10.0,
+            "nose_L": 43.997,
+            "nose_R": 44.003
+          },
+          "depth_mm": -1.0,
+          "yaw_deg": 0.0,
+          "lateral_mm": 0.003
+        }
+      },
+      {
+        "name": "contamination_compatibility",
+        "passed": true,
+        "observation": "clean carrier on the clean-sample AMR; cabinet closed in transit",
+        "value": "clean"
+      },
+      {
+        "name": "elapsed_time",
+        "passed": true,
+        "observation": "transport took 80.0 s",
+        "value": 80.0
+      }
+    ],
+    "critic_vector": {
+      "physical_success": true,
+      "safety_ok": true,
+      "quality_ok": true,
+      "grounding_ok": true,
+      "experimental_validity_ok": true,
+      "measurement_adequacy_ok": null,
+      "evidence_complete": true,
+      "commit_semantic_event": true,
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "commitment_acceptance": {
+      "accepted": true,
+      "acceptance_checks": {
+        "grounded": true,
+        "semantic_valid": true,
+        "causally_admissible": true,
+        "motion_feasible": true,
+        "monitorable": true,
+        "evidence_supported": true
+      },
+      "failure_reasons": [],
+      "blocked_paths": []
+    },
+    "semantic_event": {
+      "eligible": true,
+      "target": "CultureSDT.custody_event",
+      "effect": "Plate_P30 moved from storage S1 to H2 by R03"
+    },
+    "routing": "culture_sdt_commit",
+    "evidence": {
+      "route": "S1 -> ST01 sliding door -> AMR lane -> Cell 01 portal (muted curtain) -> H2",
+      "object_id": "Plate_P30",
+      "source_frame": "AICOR_Lab/StorageRoom/S1_DispatchDock",
+      "target_frame": "H2/handover_carrier_frame",
+      "timestamps": {
+        "start": 1.5,
+        "docked": 81.5
+      }
+    },
+    "provenance": {
+      "source": "LabAutomationTwin Isaac Sim twin (simulated devices)"
+    }
+  },
+  "doors": {
+    "storage": [
+      [
+        0.004,
+        "ST01_Sliding",
+        "closed"
+      ],
+      [
+        1.529,
+        "ST01_Sliding",
+        "moving"
+      ],
+      [
+        2.233,
+        "ST01_Sliding",
+        "open"
+      ],
+      [
+        2.254,
+        "ST01_Sliding",
+        "moving"
+      ],
+      [
+        2.438,
+        "ST01_Sliding",
+        "open"
+      ],
+      [
+        11.312,
+        "ST01_Sliding",
+        "moving"
+      ],
+      [
+        11.992,
+        "ST01_Sliding",
+        "closed"
+      ]
+    ],
+    "D1_Front": [
+      [
+        0.004,
+        "D1_Front",
+        "closed"
+      ],
+      [
+        85.275,
+        "D1_Front",
+        "moving"
+      ],
+      [
+        86.154,
+        "D1_Front",
+        "open"
+      ],
+      [
+        86.283,
+        "D1_Front",
+        "moving"
+      ],
+      [
+        87.625,
+        "D1_Front",
+        "closed"
+      ]
+    ],
+    "D2_RearWest": [
+      [
+        0.004,
+        "D2_RearWest",
+        "closed"
+      ]
+    ],
+    "D3_RearEast": [
+      [
+        0.004,
+        "D3_RearEast",
+        "closed"
+      ]
+    ]
+  },
+  "curtain": [
+    [
+      45.933,
+      "muted_passage_start"
+    ],
+    [
+      48.225,
+      "muted_passage_end"
+    ],
+    [
+      84.004,
+      "protective_stop",
+      [
+        "/World/TestFixtures/PersonProxy"
+      ]
+    ],
+    [
+      85.0,
+      "reset"
+    ]
+  ]
+}
