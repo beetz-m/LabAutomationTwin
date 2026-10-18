@@ -1,0 +1,120 @@
+\begin{thebibliography}{19}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[McDermott(1991)]{mcdermott1991}
+Drew McDermott.
+\newblock A reactive plan language.
+\newblock Technical Report YALEU/CSD/RR 864, Yale University, Department of
+  Computer Science, 1991.
+
+\bibitem[Beetz(2001)]{beetz2001}
+Michael Beetz.
+\newblock Structured reactive controllers.
+\newblock \emph{Autonomous Agents and Multi-Agent Systems}, 4\penalty0
+  (1--2):\penalty0 25--55, 2001.
+
+\bibitem[Beetz et~al.(2010)Beetz, M{\"o}senlechner, and Tenorth]{beetz2010}
+Michael Beetz, Lorenz M{\"o}senlechner, and Moritz Tenorth.
+\newblock {CRAM} -- a cognitive robot abstract machine for everyday
+  manipulation in human environments.
+\newblock In \emph{IEEE/RSJ International Conference on Intelligent Robots and
+  Systems (IROS)}, pages 1012--1017, 2010.
+
+\bibitem[Stelter et~al.(2022)Stelter, Bartels, and Beetz]{stelter2022}
+Simon Stelter, Georg Bartels, and Michael Beetz.
+\newblock An open-source motion planning framework for mobile manipulators
+  using constraint-based task space control with linear {MPC}.
+\newblock In \emph{IEEE/RSJ International Conference on Intelligent Robots and
+  Systems (IROS)}, 2022.
+
+\bibitem[King et~al.(2009)King, Rowland, Oliver, Young, et~al.]{king2009}
+Ross~D. King, Jem Rowland, Stephen~G. Oliver, Michael Young, et~al.
+\newblock The automation of science.
+\newblock \emph{Science}, 324\penalty0 (5923):\penalty0 85--89, 2009.
+
+\bibitem[Williams et~al.(2015)Williams, Bilsland, Sparkes,
+  et~al.]{williams2015}
+Kevin Williams, Elizabeth Bilsland, Andrew Sparkes, et~al.
+\newblock Cheaper faster drug development validated by the repositioning of
+  drugs against neglected tropical diseases.
+\newblock \emph{Journal of the Royal Society Interface}, 12\penalty0
+  (104):\penalty0 20141289, 2015.
+
+\bibitem[Burger et~al.(2020)Burger, Maffettone, Gusev, et~al.]{burger2020}
+Benjamin Burger, Phillip~M. Maffettone, Vladimir~V. Gusev, et~al.
+\newblock A mobile robotic chemist.
+\newblock \emph{Nature}, 583:\penalty0 237--241, 2020.
+
+\bibitem[Abolhasani and Kumacheva(2023)]{abolhasani2023}
+Milad Abolhasani and Eugenia Kumacheva.
+\newblock The rise of self-driving labs in chemical and materials sciences.
+\newblock \emph{Nature Synthesis}, 2:\penalty0 483--492, 2023.
+
+\bibitem[Baker(2016)]{baker2016}
+Monya Baker.
+\newblock 1,500 scientists lift the lid on reproducibility.
+\newblock \emph{Nature}, 533:\penalty0 452--454, 2016.
+
+\bibitem[Wilkinson et~al.(2016)Wilkinson, Dumontier, Aalbersberg,
+  et~al.]{wilkinson2016}
+Mark~D. Wilkinson, Michel Dumontier, IJsbrand~Jan Aalbersberg, et~al.
+\newblock The fair guiding principles for scientific data management and
+  stewardship.
+\newblock \emph{Scientific Data}, 3:\penalty0 160018, 2016.
+
+\bibitem[{U.S. Food and Drug Administration}(2018)]{fda2018}
+{U.S. Food and Drug Administration}.
+\newblock Data integrity and compliance with drug {CGMP}: Questions and
+  answers. guidance for industry, 2018.
+
+\bibitem[Lindley(1956)]{lindley1956}
+Dennis~V. Lindley.
+\newblock On a measure of the information provided by an experiment.
+\newblock \emph{The Annals of Mathematical Statistics}, 27\penalty0
+  (4):\penalty0 986--1005, 1956.
+
+\bibitem[Chaloner and Verdinelli(1995)]{chaloner1995}
+Kathryn Chaloner and Isabella Verdinelli.
+\newblock Bayesian experimental design: A review.
+\newblock \emph{Statistical Science}, 10\penalty0 (3):\penalty0 273--304, 1995.
+
+\bibitem[Gebser et~al.(2019)Gebser, Kaminski, Kaufmann, and Schaub]{gebser2019}
+Martin Gebser, Roland Kaminski, Benjamin Kaufmann, and Torsten Schaub.
+\newblock Multi-shot {ASP} solving with clingo.
+\newblock \emph{Theory and Practice of Logic Programming}, 19\penalty0
+  (1):\penalty0 27--82, 2019.
+
+\bibitem[de~Moura and Bj{\o}rner(2008)]{demoura2008}
+Leonardo de~Moura and Nikolaj Bj{\o}rner.
+\newblock {Z3}: An efficient {SMT} solver.
+\newblock In \emph{Tools and Algorithms for the Construction and Analysis of
+  Systems (TACAS)}, volume 4963 of \emph{LNCS}, pages 337--340, 2008.
+
+\bibitem[Weld(1994)]{weld1994}
+Daniel~S. Weld.
+\newblock An introduction to least commitment planning.
+\newblock \emph{AI Magazine}, 15\penalty0 (4):\penalty0 27--61, 1994.
+
+\bibitem[Haber and Stornetta(1991)]{haber1991}
+Stuart Haber and W.~Scott Stornetta.
+\newblock How to time-stamp a digital document.
+\newblock \emph{Journal of Cryptology}, 3\penalty0 (2):\penalty0 99--111, 1991.
+
+\bibitem[Abadi and Lamport(1991)]{abadi1991}
+Mart{\'\i}n Abadi and Leslie Lamport.
+\newblock The existence of refinement mappings.
+\newblock \emph{Theoretical Computer Science}, 82\penalty0 (2):\penalty0
+  253--284, 1991.
+
+\bibitem[Benveniste et~al.(2018)Benveniste, Caillaud, Nickovic,
+  et~al.]{benveniste2018}
+Albert Benveniste, Beno{\^\i}t Caillaud, Dejan Nickovic, et~al.
+\newblock Contracts for system design.
+\newblock \emph{Foundations and Trends in Electronic Design Automation},
+  12\penalty0 (2--3):\penalty0 124--400, 2018.
+
+\end{thebibliography}

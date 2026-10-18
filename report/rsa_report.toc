@@ -1,0 +1,48 @@
+\contentsline {section}{\numberline {1}Executive summary}{1}{section.1}%
+\contentsline {section}{\numberline {2}Background, scope and method}{1}{section.2}%
+\contentsline {subsection}{\numberline {2.1}A rational reconstruction}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Cell 01 and the laboratory twin}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}The example experiment}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Method: iterate on one example}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Architecture}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Twelve kernel concepts}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Code map}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Knowledge, designators and constraints}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Action categories}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Constraints and norms}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Capabilities and measurement bindings}{7}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Experimental design}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}From design to steps in ASP}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}SMT validation of the plan}{8}{subsection.5.2}%
+\contentsline {section}{\numberline {6}The lab designator language}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Instruments as roles}{9}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Order, goals and threats}{10}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Failures and handlers}{11}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Negative controls}{11}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Process models, trust, guarantees and quality}{11}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Trust per step}{12}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Repair guarantees}{12}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Epistemic meta model}{13}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Quality: KPIs and preference}{13}{subsection.7.4}%
+\contentsline {section}{\numberline {8}The culture-level plan}{13}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Derived order}{16}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Execution on the surrogate and what became known}{18}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Mapping to the laboratory}{18}{subsection.8.3}%
+\contentsline {section}{\numberline {9}Execution}{18}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Cross-check with the planner}{19}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Scenarios}{19}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Isaac Sim execution}{22}{subsection.9.3}%
+\contentsline {section}{\numberline {10}Audit trail, critic and competency questions}{22}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Competency questions}{23}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}The kernel in the ontology}{23}{subsection.10.2}%
+\contentsline {section}{\numberline {11}Motion level}{23}{section.11}%
+\contentsline {section}{\numberline {12}Refinement proof}{25}{section.12}%
+\contentsline {section}{\numberline {13}Independence of the culture plan}{27}{section.13}%
+\contentsline {section}{\numberline {14}Reproducible derivation, plan and audit}{28}{section.14}%
+\contentsline {section}{\numberline {15}Findings log}{29}{section.15}%
+\contentsline {section}{\numberline {16}Limitations and open questions}{29}{section.16}%
+\contentsline {section}{\numberline {17}Roadmap}{30}{section.17}%
+\contentsline {section}{\numberline {A}Experimentation plan tables}{31}{appendix.A}%
+\contentsline {section}{\numberline {B}Competency questions}{32}{appendix.B}%
+\contentsline {section}{\numberline {C}Glossary}{32}{appendix.C}%
+\contentsline {section}{\numberline {D}Rebuilding this report}{33}{appendix.D}%

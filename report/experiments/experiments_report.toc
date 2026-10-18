@@ -1,0 +1,78 @@
+\contentsline {section}{\numberline {1}Executive summary}{1}{section.1}%
+\contentsline {paragraph}{The case.}{1}{paragraph*.2}%
+\contentsline {paragraph}{From action lists to experiment logic.}{1}{paragraph*.3}%
+\contentsline {paragraph}{A conceptual framework.}{1}{paragraph*.4}%
+\contentsline {paragraph}{Axiomatization and reasoning.}{1}{paragraph*.5}%
+\contentsline {paragraph}{The main finding.}{1}{paragraph*.6}%
+\contentsline {paragraph}{What our laboratory affords.}{1}{paragraph*.7}%
+\contentsline {paragraph}{Limits.}{2}{paragraph*.8}%
+\contentsline {section}{\numberline {2}Motivation and scope}{2}{section.9}%
+\contentsline {section}{\numberline {3}Background}{2}{section.15}%
+\contentsline {subsection}{\numberline {3.1}Experimental design}{2}{subsection.16}%
+\contentsline {subsection}{\numberline {3.2}Ontologies of experiments}{2}{subsection.17}%
+\contentsline {subsection}{\numberline {3.3}Description logics and OWL}{3}{subsection.18}%
+\contentsline {subsection}{\numberline {3.4}Plans and Bayesian design in the RSA}{3}{subsection.19}%
+\contentsline {section}{\numberline {4}The challenge--rescue experiment}{3}{section.20}%
+\contentsline {subsection}{\numberline {4.1}System, question and hypotheses}{3}{subsection.21}%
+\contentsline {subsection}{\numberline {4.2}The selected design}{3}{subsection.23}%
+\contentsline {subsection}{\numberline {4.3}What a run shows}{3}{subsection.25}%
+\contentsline {subsection}{\numberline {4.4}How a biomedical reviewer would judge it}{4}{subsection.27}%
+\contentsline {section}{\numberline {5}From action lists to experiment logic}{4}{section.28}%
+\contentsline {subsection}{\numberline {5.1}The culture-level plan}{4}{subsection.30}%
+\contentsline {subsection}{\numberline {5.2}The plan as a CRAM/RPL controller}{5}{subsection.33}%
+\contentsline {subsection}{\numberline {5.3}The experiment as an entity, and roles}{6}{subsection.34}%
+\contentsline {subsection}{\numberline {5.4}Organised by the experiment's logic}{6}{subsection.35}%
+\contentsline {section}{\numberline {6}The authored experiment designator}{6}{section.36}%
+\contentsline {section}{\numberline {7}A conceptual framework for biomedical experiments}{7}{section.40}%
+\contentsline {subsection}{\numberline {7.1}Core idea}{7}{subsection.41}%
+\contentsline {subsection}{\numberline {7.2}Five layers}{7}{subsection.43}%
+\contentsline {subsection}{\numberline {7.3}A multi-axial taxonomy}{8}{subsection.45}%
+\contentsline {subsection}{\numberline {7.4}Criteria and their enforcement}{9}{subsection.47}%
+\contentsline {subsection}{\numberline {7.5}Lifecycle}{9}{subsection.48}%
+\contentsline {subsection}{\numberline {7.6}Design principles}{9}{subsection.49}%
+\contentsline {section}{\numberline {8}Partonomy}{9}{section.50}%
+\contentsline {section}{\numberline {9}The LDL concept layer}{10}{section.53}%
+\contentsline {section}{\numberline {10}A first description-logic statement}{13}{section.58}%
+\contentsline {section}{\numberline {11}The OWL~2~DL axiomatization}{13}{section.60}%
+\contentsline {subsection}{\numberline {11.1}Upper level and partonomy}{14}{subsection.62}%
+\contentsline {subsection}{\numberline {11.2}Biological material, agents and units}{14}{subsection.63}%
+\contentsline {subsection}{\numberline {11.3}Arms, defined by their treatment}{14}{subsection.64}%
+\contentsline {subsection}{\numberline {11.4}Factors, levels and comparisons}{14}{subsection.65}%
+\contentsline {subsection}{\numberline {11.5}Readouts and the analysis plan}{15}{subsection.66}%
+\contentsline {subsection}{\numberline {11.6}Design and experiment classes}{15}{subsection.67}%
+\contentsline {subsection}{\numberline {11.7}Phases, steps, data and hypotheses}{15}{subsection.68}%
+\contentsline {subsection}{\numberline {11.8}Alignment to Cell~01's biology ontology}{16}{subsection.69}%
+\contentsline {section}{\numberline {12}Closure and the closed world}{16}{section.70}%
+\contentsline {subsection}{\numberline {12.1}Closure axioms}{16}{subsection.71}%
+\contentsline {subsection}{\numberline {12.2}Closed-world checks}{16}{subsection.72}%
+\contentsline {section}{\numberline {13}Reasoning results}{16}{section.73}%
+\contentsline {subsection}{\numberline {13.1}Consistency}{16}{subsection.74}%
+\contentsline {subsection}{\numberline {13.2}The current experiment}{16}{subsection.75}%
+\contentsline {subsection}{\numberline {13.3}An improved design}{17}{subsection.78}%
+\contentsline {subsection}{\numberline {13.4}Closed-world checks}{18}{subsection.85}%
+\contentsline {subsection}{\numberline {13.5}Variants}{18}{subsection.87}%
+\contentsline {subsection}{\numberline {13.6}Negative controls and inferred subsumptions}{20}{subsection.89}%
+\contentsline {section}{\numberline {14}What our laboratory affords}{21}{section.91}%
+\contentsline {subsection}{\numberline {14.1}Capabilities as device functions}{21}{subsection.92}%
+\contentsline {subsection}{\numberline {14.2}Design requirements}{21}{subsection.93}%
+\contentsline {subsection}{\numberline {14.3}Cell~01's profile}{21}{subsection.95}%
+\contentsline {subsection}{\numberline {14.4}Matching designs against laboratories}{23}{subsection.98}%
+\contentsline {subsection}{\numberline {14.5}Four designs}{23}{subsection.101}%
+\contentsline {paragraph}{The current design}{23}{paragraph*.102}%
+\contentsline {paragraph}{The improved design}{23}{paragraph*.103}%
+\contentsline {paragraph}{The improved design with an ATP endpoint}{24}{paragraph*.104}%
+\contentsline {paragraph}{The challenge $\times $ oxygen design}{24}{paragraph*.105}%
+\contentsline {subsection}{\numberline {14.6}What the scope is, and what it is not}{24}{subsection.106}%
+\contentsline {section}{\numberline {15}Relation to existing standards}{24}{section.107}%
+\contentsline {section}{\numberline {16}Discussion}{24}{section.109}%
+\contentsline {paragraph}{What the representation buys.}{24}{paragraph*.110}%
+\contentsline {paragraph}{Open and closed world.}{25}{paragraph*.111}%
+\contentsline {paragraph}{Defined versus primitive concepts.}{25}{paragraph*.112}%
+\contentsline {paragraph}{The proxy and the posit.}{25}{paragraph*.113}%
+\contentsline {paragraph}{The case study as a test.}{25}{paragraph*.114}%
+\contentsline {section}{\numberline {17}Limitations}{25}{section.115}%
+\contentsline {section}{\numberline {18}Roadmap}{25}{section.116}%
+\contentsline {section}{\numberline {A}The TBox in DL notation}{27}{appendix.125}%
+\contentsline {section}{\numberline {B}ABox of the current experiment (excerpt)}{33}{appendix.126}%
+\contentsline {section}{\numberline {C}OWL functional syntax (excerpt)}{34}{appendix.127}%
+\contentsline {section}{\numberline {D}Files and rebuilding}{34}{appendix.129}%

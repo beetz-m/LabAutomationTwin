@@ -1,6 +1,6 @@
 """Quick look at any station asset: auto-framed RTX stills from a few angles (rest pose, no physics).
 
-Usage: python scripts/render_asset.py <asset.usda> <out_prefix> [--hide <prim-subpath> ...] [--quick]
+Usage: python scripts/render_asset.py <asset.usda> <out_prefix> [--hide <prim-subpath> ...] [--focus <prim-subpath>] [--quick]
 --hide makes prims invisible (e.g. Body/Visual/Housing) for cutaway views of internals.
 """
 
@@ -12,7 +12,7 @@ os.environ.setdefault("OMNI_KIT_ACCEPT_EULA", "YES")
 args = [a for a in sys.argv[1:]]
 QUICK = "--quick" in args
 hide = [args[i + 1] for i, a in enumerate(args) if a == "--hide"]
-pos = [a for i, a in enumerate(args) if not a.startswith("--") and (i == 0 or args[i - 1] != "--hide")]
+pos = [a for i, a in enumerate(args) if not a.startswith("--") and (i == 0 or args[i - 1] not in ("--hide", "--focus"))]
 ASSET, OUT = os.path.abspath(pos[0]), os.path.abspath(pos[1])
 RES = (960, 640) if QUICK else (1600, 1066)
 
@@ -54,7 +54,9 @@ key.AddRotateXYZOp().Set(Gf.Vec3f(45, 0, 35))
 for _ in range(10):
     app.update()
 
-bb = UsdGeom.BBoxCache(0, ["default", "render"]).ComputeWorldBound(asset.GetPrim()).ComputeAlignedRange()
+focus = [args[i + 1] for i, a in enumerate(args) if a == "--focus"]   # frame a sub-prim instead of the whole asset
+framed = stage.GetPrimAtPath(f"/World/Asset/{focus[0]}") if focus else asset.GetPrim()
+bb = UsdGeom.BBoxCache(0, ["default", "render"]).ComputeWorldBound(framed).ComputeAlignedRange()
 c = (np.array(bb.GetMin()) + np.array(bb.GetMax())) / 2
 r = float(np.linalg.norm(np.array(bb.GetMax()) - np.array(bb.GetMin()))) / 2
 cam = UsdGeom.Camera.Define(stage, "/World/Cam")
