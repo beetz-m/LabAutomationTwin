@@ -1,0 +1,37 @@
+{
+ "H4": [
+  "https://aicor.example/okf/lab1/manuals/H4/procedure/quarantine_sample"
+ ],
+ "L09": [
+  "https://aicor.example/okf/lab1/manuals/L09/procedure/store_plate",
+  "https://aicor.example/okf/lab1/manuals/L09/procedure/retrieve_plate"
+ ],
+ "L10": [
+  "https://aicor.example/okf/lab1/manuals/L10/procedure/incubate",
+  "https://aicor.example/okf/lab1/manuals/L10/procedure/release_plate"
+ ],
+ "L12": [
+  "https://aicor.example/okf/lab1/manuals/L12/procedure/dose_well"
+ ],
+ "L17": [
+  "https://aicor.example/okf/lab1/manuals/L17/procedure/image_well"
+ ],
+ "L21": [
+  "https://aicor.example/okf/lab1/manuals/L21/procedure/validate_measurement_chain"
+ ],
+ "R01": [
+  "https://aicor.example/okf/lab1/manuals/R01/procedure/retrieve_plate",
+  "https://aicor.example/okf/lab1/manuals/R01/procedure/place_plate"
+ ],
+ "R02": [
+  "https://aicor.example/okf/lab1/manuals/R02/procedure/position_for_station",
+  "https://aicor.example/okf/lab1/manuals/R02/procedure/operate_physical_control"
+ ],
+ "R03/H2": [
+  "https://aicor.example/okf/lab1/manuals/R03_H2/procedure/transport_carrier",
+  "https://aicor.example/okf/lab1/manuals/R03_H2/procedure/dock_and_handover"
+ ],
+ "TCM01": [
+  "https://aicor.example/okf/lab1/manuals/TCM01/procedure/change_tool"
+ ]
+}

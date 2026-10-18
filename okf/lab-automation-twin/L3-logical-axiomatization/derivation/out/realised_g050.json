@@ -1,0 +1,344 @@
+{
+ "plan": "g050",
+ "selected": {
+  "id": "c_d85_t48_n1",
+  "dose_au": 0.85,
+  "delay_h": 48,
+  "reps": 1,
+  "eig_bits": 0.5439,
+  "predicted_effect_um": {
+   "M1_graded": {
+    "effect_um": 8.511554506841351,
+    "effect_sd_um": 11.35673274292009
+   },
+   "M2_threshold": {
+    "effect_um": 24.997958696802904,
+    "effect_sd_um": 6.252347178286532
+   },
+   "M3_protective": {
+    "effect_um": 25.35813912830903,
+    "effect_sd_um": 6.501913095362415
+   }
+  },
+  "rescue_au": 0.7
+ },
+ "expected_gain_bits": 0.5439,
+ "realised_gain_bits": 0.2266,
+ "requirement_bits": 0.5,
+ "prior": {
+  "M1_graded": 0.3333333333333333,
+  "M2_threshold": 0.3333333333333333,
+  "M3_protective": 0.3333333333333333
+ },
+ "posterior": {
+  "M1_graded": 0.6078,
+  "M2_threshold": 0.1927,
+  "M3_protective": 0.1995
+ },
+ "map_model": "M1_graded",
+ "dispenses": [
+  {
+   "t_h": 0,
+   "well": "A01",
+   "reagent": "abstract_challenge_reagent",
+   "commanded_uL": 17.0,
+   "delivered_uL": 17.003
+  },
+  {
+   "t_h": 0,
+   "well": "A02",
+   "reagent": "abstract_challenge_reagent",
+   "commanded_uL": 17.0,
+   "delivered_uL": 17.019
+  },
+  {
+   "t_h": 48,
+   "well": "A01",
+   "reagent": "abstract_rescue_reagent",
+   "commanded_uL": 14.0,
+   "delivered_uL": 14.005
+  }
+ ],
+ "observations": {
+  "A01": {
+   "radius_true_um": 204.05,
+   "viability": 0.2672,
+   "radius_obs_um": 202.078
+  },
+  "A02": {
+   "radius_true_um": 186.85,
+   "viability": 0.0761,
+   "radius_obs_um": 187.448
+  },
+  "A05": {
+   "radius_true_um": 266.139,
+   "viability": 0.9571,
+   "radius_obs_um": 261.423
+  }
+ },
+ "sigma_radius_um": 2.4868461964265425,
+ "effect_observed_um": 14.63,
+ "predicted_effect_um": {
+  "M1_graded": 8.512,
+  "M2_threshold": 24.998,
+  "M3_protective": 25.358
+ },
+ "executed_ok": true,
+ "note": "ILLUSTRATIVE (D016): Cell 01 surrogate culture world; one realisation of y; the EIG is its expectation over the prior predictive.",
+ "sweep": {
+  "n": 40,
+  "mean_bits": 0.2145,
+  "median_bits": 0.2564,
+  "p10_bits": 0.0199,
+  "p90_bits": 0.3352,
+  "frac_meeting_requirement": 0.0,
+  "map_model_counts": {
+   "M1_graded": 1,
+   "M2_threshold": 18,
+   "M3_protective": 21
+  },
+  "runs": [
+   {
+    "seed": 100,
+    "realised_bits": 0.319,
+    "map_model": "M2_threshold",
+    "effect_um": 30.962
+   },
+   {
+    "seed": 101,
+    "realised_bits": 0.0391,
+    "map_model": "M3_protective",
+    "effect_um": 16.97
+   },
+   {
+    "seed": 102,
+    "realised_bits": 0.3211,
+    "map_model": "M2_threshold",
+    "effect_um": 26.393
+   },
+   {
+    "seed": 103,
+    "realised_bits": 0.0501,
+    "map_model": "M3_protective",
+    "effect_um": 25.359
+   },
+   {
+    "seed": 104,
+    "realised_bits": 0.3404,
+    "map_model": "M2_threshold",
+    "effect_um": 30.211
+   },
+   {
+    "seed": 105,
+    "realised_bits": 0.335,
+    "map_model": "M3_protective",
+    "effect_um": 21.846
+   },
+   {
+    "seed": 106,
+    "realised_bits": 0.3035,
+    "map_model": "M2_threshold",
+    "effect_um": 25.961
+   },
+   {
+    "seed": 107,
+    "realised_bits": 0.2675,
+    "map_model": "M3_protective",
+    "effect_um": 38.991
+   },
+   {
+    "seed": 108,
+    "realised_bits": 0.2021,
+    "map_model": "M2_threshold",
+    "effect_um": 24.932
+   },
+   {
+    "seed": 109,
+    "realised_bits": 0.3098,
+    "map_model": "M3_protective",
+    "effect_um": 21.062
+   },
+   {
+    "seed": 110,
+    "realised_bits": 0.3373,
+    "map_model": "M2_threshold",
+    "effect_um": 27.738
+   },
+   {
+    "seed": 111,
+    "realised_bits": 0.3402,
+    "map_model": "M2_threshold",
+    "effect_um": 28.648
+   },
+   {
+    "seed": 112,
+    "realised_bits": 0.0028,
+    "map_model": "M2_threshold",
+    "effect_um": 18.573
+   },
+   {
+    "seed": 113,
+    "realised_bits": 0.0213,
+    "map_model": "M3_protective",
+    "effect_um": 14.105
+   },
+   {
+    "seed": 114,
+    "realised_bits": 0.2831,
+    "map_model": "M3_protective",
+    "effect_um": 18.793
+   },
+   {
+    "seed": 115,
+    "realised_bits": 0.3153,
+    "map_model": "M3_protective",
+    "effect_um": 33.719
+   },
+   {
+    "seed": 116,
+    "realised_bits": 0.3397,
+    "map_model": "M2_threshold",
+    "effect_um": 25.54
+   },
+   {
+    "seed": 117,
+    "realised_bits": 0.132,
+    "map_model": "M3_protective",
+    "effect_um": 15.995
+   },
+   {
+    "seed": 118,
+    "realised_bits": 0.0739,
+    "map_model": "M3_protective",
+    "effect_um": 13.316
+   },
+   {
+    "seed": 119,
+    "realised_bits": 0.3158,
+    "map_model": "M3_protective",
+    "effect_um": 16.949
+   },
+   {
+    "seed": 120,
+    "realised_bits": 0.2072,
+    "map_model": "M3_protective",
+    "effect_um": 17.057
+   },
+   {
+    "seed": 121,
+    "realised_bits": 0.2492,
+    "map_model": "M2_threshold",
+    "effect_um": 25.545
+   },
+   {
+    "seed": 122,
+    "realised_bits": 0.202,
+    "map_model": "M2_threshold",
+    "effect_um": 20.74
+   },
+   {
+    "seed": 123,
+    "realised_bits": 0.2979,
+    "map_model": "M2_threshold",
+    "effect_um": 28.176
+   },
+   {
+    "seed": 124,
+    "realised_bits": 0.0077,
+    "map_model": "M1_graded",
+    "effect_um": 19.521
+   },
+   {
+    "seed": 125,
+    "realised_bits": 0.0021,
+    "map_model": "M3_protective",
+    "effect_um": 27.716
+   },
+   {
+    "seed": 126,
+    "realised_bits": 0.1132,
+    "map_model": "M3_protective",
+    "effect_um": 18.004
+   },
+   {
+    "seed": 127,
+    "realised_bits": 0.2857,
+    "map_model": "M2_threshold",
+    "effect_um": 26.151
+   },
+   {
+    "seed": 128,
+    "realised_bits": 0.2985,
+    "map_model": "M3_protective",
+    "effect_um": 32.496
+   },
+   {
+    "seed": 129,
+    "realised_bits": 0.2363,
+    "map_model": "M3_protective",
+    "effect_um": 33.304
+   },
+   {
+    "seed": 130,
+    "realised_bits": 0.2472,
+    "map_model": "M2_threshold",
+    "effect_um": 20.201
+   },
+   {
+    "seed": 131,
+    "realised_bits": 0.3115,
+    "map_model": "M2_threshold",
+    "effect_um": 27.61
+   },
+   {
+    "seed": 132,
+    "realised_bits": 0.0006,
+    "map_model": "M3_protective",
+    "effect_um": 14.401
+   },
+   {
+    "seed": 133,
+    "realised_bits": 0.0454,
+    "map_model": "M3_protective",
+    "effect_um": 22.487
+   },
+   {
+    "seed": 134,
+    "realised_bits": 0.1228,
+    "map_model": "M3_protective",
+    "effect_um": 18.037
+   },
+   {
+    "seed": 135,
+    "realised_bits": 0.1926,
+    "map_model": "M2_threshold",
+    "effect_um": 25.364
+   },
+   {
+    "seed": 136,
+    "realised_bits": 0.2635,
+    "map_model": "M3_protective",
+    "effect_um": 32.065
+   },
+   {
+    "seed": 137,
+    "realised_bits": 0.23,
+    "map_model": "M2_threshold",
+    "effect_um": 20.466
+   },
+   {
+    "seed": 138,
+    "realised_bits": 0.3185,
+    "map_model": "M2_threshold",
+    "effect_um": 27.676
+   },
+   {
+    "seed": 139,
+    "realised_bits": 0.2979,
+    "map_model": "M3_protective",
+    "effect_um": 31.491
+   }
+  ],
+  "note": "Twin culture world = Cell 01's graded surrogate ODE, one fixed 'nature'; the EIG averages over the prior predictive of M1-M3, so the sweep mean need not equal it."
+ }
+}

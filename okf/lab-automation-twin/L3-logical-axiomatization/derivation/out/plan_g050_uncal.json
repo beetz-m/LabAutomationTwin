@@ -1,0 +1,3749 @@
+{
+ "requirement_bits": 0.5,
+ "window_s": 600.0,
+ "state": {
+  "calibrated": false,
+  "coupled": false,
+  "interlocks": true,
+  "contaminated": false
+ },
+ "selected": {
+  "id": "c_d85_t48_n1",
+  "dose_au": 0.85,
+  "delay_h": 48,
+  "reps": 1,
+  "eig_bits": 0.5439,
+  "predicted_effect_um": {
+   "M1_graded": {
+    "effect_um": 8.511554506841351,
+    "effect_sd_um": 11.35673274292009
+   },
+   "M2_threshold": {
+    "effect_um": 24.997958696802904,
+    "effect_sd_um": 6.252347178286532
+   },
+   "M3_protective": {
+    "effect_um": 25.35813912830903,
+    "effect_sd_um": 6.501913095362415
+   }
+  },
+  "rescue_au": 0.7
+ },
+ "cost": {
+  "value": 11186,
+  "unit": "decisecond-equivalents (robot / device time + 60 s per well)"
+ },
+ "wells": {
+  "rescued": [
+   "A01"
+  ],
+  "comparator": [
+   "A02"
+  ],
+  "control": [
+   "A05"
+  ]
+ },
+ "sessions": [
+  {
+   "id": "s0_trip1",
+   "session": "s0",
+   "trip": 1,
+   "t_h": 0,
+   "device": "l12",
+   "material": [
+    [
+     "dose",
+     "a01",
+     "challenge",
+     85
+    ],
+    [
+     "dose",
+     "a02",
+     "challenge",
+     85
+    ]
+   ],
+   "duration_s": 298.9,
+   "prep_s": 0.0,
+   "route_out": [
+    {
+     "index": 1,
+     "robot": "r01",
+     "src": "l10",
+     "dst": "handovernest"
+    },
+    {
+     "index": 2,
+     "robot": "r02",
+     "src": "handovernest",
+     "dst": "l12"
+    }
+   ],
+   "steps": [
+    {
+     "level": "safety_step",
+     "primitive": "check_interlocks",
+     "device": "cell01",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01#entity",
+     "discharges_rule": "enclosure_door_interlock",
+     "term": [
+      "cmd",
+      "cell01",
+      "check_interlocks"
+     ],
+     "group": "start",
+     "index": 0,
+     "pos": 10000,
+     "duration_s": 0.5
+    },
+    {
+     "level": "safety_step",
+     "primitive": "verify_identity",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "discharges_rule": "identity_verified",
+     "term": [
+      "cmd",
+      "l10",
+      "verify_identity"
+     ],
+     "group": "start",
+     "index": 1,
+     "pos": 10010,
+     "duration_s": 0.0
+    },
+    {
+     "level": "device_command",
+     "primitive": "present",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "present"
+     ],
+     "group": "start",
+     "index": 2,
+     "pos": 10020,
+     "duration_s": 26.01
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 3,
+     "pos": 21010,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "group": "legref_1",
+     "index": 4,
+     "pos": 21020,
+     "duration_s": 1.26
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 5,
+     "pos": 21030,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 6,
+     "pos": 21040,
+     "duration_s": 0.79
+    },
+    {
+     "level": "device_command",
+     "primitive": "stow",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "stow"
+     ],
+     "group": "legref_1",
+     "index": 7,
+     "pos": 21045,
+     "duration_s": 3.0
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 8,
+     "pos": 21050,
+     "duration_s": 5.35
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 9,
+     "pos": 21060,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_1",
+     "index": 10,
+     "pos": 21070,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 11,
+     "pos": 21080,
+     "duration_s": 0.63
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 12,
+     "pos": 21090,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "tool_couple",
+     "level": "tool",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/dock_T01#entity"
+     ],
+     "approach_of": [
+      false,
+      false
+     ],
+     "tool": "t01",
+     "tool_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/Tools/T01#entity",
+     "term": [
+      "tool_couple",
+      "r02",
+      "t01",
+      "tooling_automatictoolchanger_dock_t01"
+     ],
+     "group": "legref_2",
+     "index": 13,
+     "pos": 22005,
+     "duration_s": 41.56
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 14,
+     "pos": 22010,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_2",
+     "index": 15,
+     "pos": 22020,
+     "duration_s": 3.11
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 16,
+     "pos": 22030,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 17,
+     "pos": 22040,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 18,
+     "pos": 22050,
+     "duration_s": 13.2
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 19,
+     "pos": 22060,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r02",
+      "stations_l12_liquidhandler_plate_nest"
+     ],
+     "group": "legref_2",
+     "index": 20,
+     "pos": 22070,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 21,
+     "pos": 22080,
+     "duration_s": 1.55
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 22,
+     "pos": 22090,
+     "duration_s": 3.88
+    },
+    {
+     "level": "device_command",
+     "primitive": "tip_pick",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/tip_rack_frames/rack_1#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "tip_pick",
+       "stations_l12_liquidhandler_tip_rack_frames_rack_1"
+      ]
+     ],
+     "group": "op_dose_a01_challenge_85",
+     "material": [
+      "dose",
+      "a01",
+      "challenge",
+      85
+     ],
+     "index": 23,
+     "pos": 30011,
+     "duration_s": 7.12
+    },
+    {
+     "level": "device_command",
+     "primitive": "aspirate",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/reagent_rack_frames/rack_1/pos_1#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "aspirate",
+       "stations_l12_liquidhandler_reagent_rack_frames_rack_1_pos_1"
+      ]
+     ],
+     "group": "op_dose_a01_challenge_85",
+     "material": [
+      "dose",
+      "a01",
+      "challenge",
+      85
+     ],
+     "index": 24,
+     "pos": 30012,
+     "duration_s": 10.69
+    },
+    {
+     "level": "device_command",
+     "primitive": "dispense",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A01/Interfaces/pipette_target_frame#entity",
+      85
+     ],
+     "dose_au": 0.85,
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "dispense",
+       "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a01_interfaces_pipette_target_frame",
+       85
+      ]
+     ],
+     "group": "op_dose_a01_challenge_85",
+     "material": [
+      "dose",
+      "a01",
+      "challenge",
+      85
+     ],
+     "index": 25,
+     "pos": 30013,
+     "duration_s": 12.47
+    },
+    {
+     "level": "device_command",
+     "primitive": "tip_eject",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/waste_frame#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "tip_eject",
+       "stations_l12_liquidhandler_waste_frame"
+      ]
+     ],
+     "group": "op_dose_a01_challenge_85",
+     "material": [
+      "dose",
+      "a01",
+      "challenge",
+      85
+     ],
+     "index": 26,
+     "pos": 30014,
+     "duration_s": 5.34
+    },
+    {
+     "level": "device_command",
+     "primitive": "tip_pick",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/tip_rack_frames/rack_1#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "tip_pick",
+       "stations_l12_liquidhandler_tip_rack_frames_rack_1"
+      ]
+     ],
+     "group": "op_dose_a02_challenge_85",
+     "material": [
+      "dose",
+      "a02",
+      "challenge",
+      85
+     ],
+     "index": 27,
+     "pos": 30021,
+     "duration_s": 7.12
+    },
+    {
+     "level": "device_command",
+     "primitive": "aspirate",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/reagent_rack_frames/rack_1/pos_1#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "aspirate",
+       "stations_l12_liquidhandler_reagent_rack_frames_rack_1_pos_1"
+      ]
+     ],
+     "group": "op_dose_a02_challenge_85",
+     "material": [
+      "dose",
+      "a02",
+      "challenge",
+      85
+     ],
+     "index": 28,
+     "pos": 30022,
+     "duration_s": 10.69
+    },
+    {
+     "level": "device_command",
+     "primitive": "dispense",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A02/Interfaces/pipette_target_frame#entity",
+      85
+     ],
+     "dose_au": 0.85,
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "dispense",
+       "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a02_interfaces_pipette_target_frame",
+       85
+      ]
+     ],
+     "group": "op_dose_a02_challenge_85",
+     "material": [
+      "dose",
+      "a02",
+      "challenge",
+      85
+     ],
+     "index": 29,
+     "pos": 30023,
+     "duration_s": 12.47
+    },
+    {
+     "level": "device_command",
+     "primitive": "tip_eject",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/waste_frame#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "tip_eject",
+       "stations_l12_liquidhandler_waste_frame"
+      ]
+     ],
+     "group": "op_dose_a02_challenge_85",
+     "material": [
+      "dose",
+      "a02",
+      "challenge",
+      85
+     ],
+     "index": 30,
+     "pos": 30024,
+     "duration_s": 5.34
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 31,
+     "pos": 43010,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r02",
+      "stations_l12_liquidhandler_plate_nest"
+     ],
+     "group": "legref_3",
+     "index": 32,
+     "pos": 43020,
+     "duration_s": 3.11
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 33,
+     "pos": 43030,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 34,
+     "pos": 43040,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 35,
+     "pos": 43050,
+     "duration_s": 13.2
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 36,
+     "pos": 43060,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_3",
+     "index": 37,
+     "pos": 43070,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 38,
+     "pos": 43080,
+     "duration_s": 1.55
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 39,
+     "pos": 43090,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 40,
+     "pos": 44010,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_4",
+     "index": 41,
+     "pos": 44020,
+     "duration_s": 1.26
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 42,
+     "pos": 44030,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 43,
+     "pos": 44040,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 44,
+     "pos": 44050,
+     "duration_s": 5.35
+    },
+    {
+     "level": "device_command",
+     "primitive": "present",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "present"
+     ],
+     "group": "legref_4",
+     "index": 45,
+     "pos": 44055,
+     "duration_s": 26.01
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 46,
+     "pos": 44060,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "group": "legref_4",
+     "index": 47,
+     "pos": 44070,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 48,
+     "pos": 44080,
+     "duration_s": 0.63
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 49,
+     "pos": 44090,
+     "duration_s": 1.57
+    },
+    {
+     "level": "safety_step",
+     "primitive": "wait_environment",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "discharges_rule": "l10_environment_valid",
+     "term": [
+      "cmd",
+      "l10",
+      "wait_environment"
+     ],
+     "group": "safety_l10_environment_valid",
+     "index": 50,
+     "pos": 50000,
+     "duration_s": 1.0
+    },
+    {
+     "level": "device_command",
+     "primitive": "store",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "store"
+     ],
+     "group": "home",
+     "index": 51,
+     "pos": 50010,
+     "duration_s": 20.25
+    }
+   ]
+  },
+  {
+   "id": "s1_trip1",
+   "session": "s1",
+   "trip": 1,
+   "t_h": 48,
+   "device": "l12",
+   "material": [
+    [
+     "dose",
+     "a01",
+     "rescue",
+     70
+    ]
+   ],
+   "duration_s": 263.3,
+   "prep_s": 0.0,
+   "route_out": [
+    {
+     "index": 1,
+     "robot": "r01",
+     "src": "l10",
+     "dst": "handovernest"
+    },
+    {
+     "index": 2,
+     "robot": "r02",
+     "src": "handovernest",
+     "dst": "l12"
+    }
+   ],
+   "steps": [
+    {
+     "level": "safety_step",
+     "primitive": "check_interlocks",
+     "device": "cell01",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01#entity",
+     "discharges_rule": "enclosure_door_interlock",
+     "term": [
+      "cmd",
+      "cell01",
+      "check_interlocks"
+     ],
+     "group": "start",
+     "index": 0,
+     "pos": 10000,
+     "duration_s": 0.5
+    },
+    {
+     "level": "safety_step",
+     "primitive": "verify_identity",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "discharges_rule": "identity_verified",
+     "term": [
+      "cmd",
+      "l10",
+      "verify_identity"
+     ],
+     "group": "start",
+     "index": 1,
+     "pos": 10010,
+     "duration_s": 0.0
+    },
+    {
+     "level": "device_command",
+     "primitive": "present",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "present"
+     ],
+     "group": "start",
+     "index": 2,
+     "pos": 10020,
+     "duration_s": 26.01
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 3,
+     "pos": 21010,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "group": "legref_1",
+     "index": 4,
+     "pos": 21020,
+     "duration_s": 1.26
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 5,
+     "pos": 21030,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 6,
+     "pos": 21040,
+     "duration_s": 0.79
+    },
+    {
+     "level": "device_command",
+     "primitive": "stow",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "stow"
+     ],
+     "group": "legref_1",
+     "index": 7,
+     "pos": 21045,
+     "duration_s": 3.0
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 8,
+     "pos": 21050,
+     "duration_s": 5.35
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 9,
+     "pos": 21060,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_1",
+     "index": 10,
+     "pos": 21070,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 11,
+     "pos": 21080,
+     "duration_s": 0.63
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 12,
+     "pos": 21090,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "tool_couple",
+     "level": "tool",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/dock_T01#entity"
+     ],
+     "approach_of": [
+      false,
+      false
+     ],
+     "tool": "t01",
+     "tool_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/Tools/T01#entity",
+     "term": [
+      "tool_couple",
+      "r02",
+      "t01",
+      "tooling_automatictoolchanger_dock_t01"
+     ],
+     "group": "legref_2",
+     "index": 13,
+     "pos": 22005,
+     "duration_s": 41.56
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 14,
+     "pos": 22010,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_2",
+     "index": 15,
+     "pos": 22020,
+     "duration_s": 3.11
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 16,
+     "pos": 22030,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 17,
+     "pos": 22040,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 18,
+     "pos": 22050,
+     "duration_s": 13.2
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 19,
+     "pos": 22060,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r02",
+      "stations_l12_liquidhandler_plate_nest"
+     ],
+     "group": "legref_2",
+     "index": 20,
+     "pos": 22070,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 21,
+     "pos": 22080,
+     "duration_s": 1.55
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 22,
+     "pos": 22090,
+     "duration_s": 3.88
+    },
+    {
+     "level": "device_command",
+     "primitive": "tip_pick",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/tip_rack_frames/rack_1#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "tip_pick",
+       "stations_l12_liquidhandler_tip_rack_frames_rack_1"
+      ]
+     ],
+     "group": "op_dose_a01_rescue_70",
+     "material": [
+      "dose",
+      "a01",
+      "rescue",
+      70
+     ],
+     "index": 23,
+     "pos": 30011,
+     "duration_s": 7.12
+    },
+    {
+     "level": "device_command",
+     "primitive": "aspirate",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/reagent_rack_frames/rack_1/pos_2#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "aspirate",
+       "stations_l12_liquidhandler_reagent_rack_frames_rack_1_pos_2"
+      ]
+     ],
+     "group": "op_dose_a01_rescue_70",
+     "material": [
+      "dose",
+      "a01",
+      "rescue",
+      70
+     ],
+     "index": 24,
+     "pos": 30012,
+     "duration_s": 10.69
+    },
+    {
+     "level": "device_command",
+     "primitive": "dispense",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A01/Interfaces/pipette_target_frame#entity",
+      70
+     ],
+     "dose_au": 0.7,
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "dispense",
+       "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a01_interfaces_pipette_target_frame",
+       70
+      ]
+     ],
+     "group": "op_dose_a01_rescue_70",
+     "material": [
+      "dose",
+      "a01",
+      "rescue",
+      70
+     ],
+     "index": 25,
+     "pos": 30013,
+     "duration_s": 12.47
+    },
+    {
+     "level": "device_command",
+     "primitive": "tip_eject",
+     "device": "l12",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/waste_frame#entity"
+     ],
+     "term": [
+      "cmd",
+      "l12",
+      [
+       "tip_eject",
+       "stations_l12_liquidhandler_waste_frame"
+      ]
+     ],
+     "group": "op_dose_a01_rescue_70",
+     "material": [
+      "dose",
+      "a01",
+      "rescue",
+      70
+     ],
+     "index": 26,
+     "pos": 30014,
+     "duration_s": 5.34
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 27,
+     "pos": 43010,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r02",
+      "stations_l12_liquidhandler_plate_nest"
+     ],
+     "group": "legref_3",
+     "index": 28,
+     "pos": 43020,
+     "duration_s": 3.11
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 29,
+     "pos": 43030,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 30,
+     "pos": 43040,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "stations_l12_liquidhandler_plate_nest"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 31,
+     "pos": 43050,
+     "duration_s": 13.2
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 32,
+     "pos": 43060,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_3",
+     "index": 33,
+     "pos": 43070,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 34,
+     "pos": 43080,
+     "duration_s": 1.55
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 35,
+     "pos": 43090,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 36,
+     "pos": 44010,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_4",
+     "index": 37,
+     "pos": 44020,
+     "duration_s": 1.26
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 38,
+     "pos": 44030,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 39,
+     "pos": 44040,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 40,
+     "pos": 44050,
+     "duration_s": 5.35
+    },
+    {
+     "level": "device_command",
+     "primitive": "present",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "present"
+     ],
+     "group": "legref_4",
+     "index": 41,
+     "pos": 44055,
+     "duration_s": 26.01
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 42,
+     "pos": 44060,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "group": "legref_4",
+     "index": 43,
+     "pos": 44070,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 44,
+     "pos": 44080,
+     "duration_s": 0.63
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 45,
+     "pos": 44090,
+     "duration_s": 1.57
+    },
+    {
+     "level": "safety_step",
+     "primitive": "wait_environment",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "discharges_rule": "l10_environment_valid",
+     "term": [
+      "cmd",
+      "l10",
+      "wait_environment"
+     ],
+     "group": "safety_l10_environment_valid",
+     "index": 46,
+     "pos": 50000,
+     "duration_s": 1.0
+    },
+    {
+     "level": "device_command",
+     "primitive": "store",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "store"
+     ],
+     "group": "home",
+     "index": 47,
+     "pos": 50010,
+     "duration_s": 20.25
+    }
+   ]
+  },
+  {
+   "id": "s2_trip1",
+   "session": "s2",
+   "trip": 1,
+   "t_h": 72,
+   "device": "l17",
+   "material": [
+    [
+     "image",
+     "a01"
+    ],
+    [
+     "image",
+     "a02"
+    ],
+    [
+     "image",
+     "a05"
+    ]
+   ],
+   "duration_s": 256.4,
+   "prep_s": 120.0,
+   "route_out": [
+    {
+     "index": 1,
+     "robot": "r01",
+     "src": "l10",
+     "dst": "handovernest"
+    },
+    {
+     "index": 2,
+     "robot": "r02",
+     "src": "handovernest",
+     "dst": "l17"
+    }
+   ],
+   "steps": [
+    {
+     "level": "safety_step",
+     "primitive": "validate",
+     "device": "l21",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L21_QC_Calibration#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity"
+     ],
+     "discharges_rule": "l17_calibration_valid",
+     "term": [
+      "cmd",
+      "l21",
+      [
+       "validate",
+       "l17"
+      ]
+     ],
+     "group": "safety_l17_calibration_valid",
+     "index": 0,
+     "pos": 5000,
+     "duration_s": 120.0
+    },
+    {
+     "level": "safety_step",
+     "primitive": "check_interlocks",
+     "device": "cell01",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01#entity",
+     "discharges_rule": "enclosure_door_interlock",
+     "term": [
+      "cmd",
+      "cell01",
+      "check_interlocks"
+     ],
+     "group": "start",
+     "index": 1,
+     "pos": 10000,
+     "duration_s": 0.5
+    },
+    {
+     "level": "safety_step",
+     "primitive": "verify_identity",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "discharges_rule": "identity_verified",
+     "term": [
+      "cmd",
+      "l10",
+      "verify_identity"
+     ],
+     "group": "start",
+     "index": 2,
+     "pos": 10010,
+     "duration_s": 0.0
+    },
+    {
+     "level": "device_command",
+     "primitive": "present",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "present"
+     ],
+     "group": "start",
+     "index": 3,
+     "pos": 10020,
+     "duration_s": 26.01
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 4,
+     "pos": 21010,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "group": "legref_1",
+     "index": 5,
+     "pos": 21020,
+     "duration_s": 1.26
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 6,
+     "pos": 21030,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 7,
+     "pos": 21040,
+     "duration_s": 0.79
+    },
+    {
+     "level": "device_command",
+     "primitive": "stow",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "stow"
+     ],
+     "group": "legref_1",
+     "index": 8,
+     "pos": 21045,
+     "duration_s": 3.0
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 9,
+     "pos": 21050,
+     "duration_s": 5.35
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 10,
+     "pos": 21060,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_1",
+     "index": 11,
+     "pos": 21070,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r01"
+     ],
+     "group": "legref_1",
+     "index": 12,
+     "pos": 21080,
+     "duration_s": 0.63
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_1",
+     "index": 13,
+     "pos": 21090,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "tool_couple",
+     "level": "tool",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/dock_T01#entity"
+     ],
+     "approach_of": [
+      false,
+      false
+     ],
+     "tool": "t01",
+     "tool_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/Tools/T01#entity",
+     "term": [
+      "tool_couple",
+      "r02",
+      "t01",
+      "tooling_automatictoolchanger_dock_t01"
+     ],
+     "group": "legref_2",
+     "index": 14,
+     "pos": 22005,
+     "duration_s": 41.56
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 15,
+     "pos": 22010,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_2",
+     "index": 16,
+     "pos": 22020,
+     "duration_s": 3.11
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 17,
+     "pos": 22030,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 18,
+     "pos": 22040,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 19,
+     "pos": 22050,
+     "duration_s": 13.2
+    },
+    {
+     "level": "device_command",
+     "primitive": "present",
+     "device": "l17",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity",
+     "term": [
+      "cmd",
+      "l17",
+      "present"
+     ],
+     "group": "legref_2",
+     "index": 20,
+     "pos": 22055,
+     "duration_s": 5.0
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 21,
+     "pos": 22060,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r02",
+      "stations_l17_brightfieldimager_plate_load_frame"
+     ],
+     "group": "legref_2",
+     "index": 22,
+     "pos": 22070,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r02"
+     ],
+     "group": "legref_2",
+     "index": 23,
+     "pos": 22080,
+     "duration_s": 1.55
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ]
+     ],
+     "group": "legref_2",
+     "index": 24,
+     "pos": 22090,
+     "duration_s": 3.88
+    },
+    {
+     "level": "device_command",
+     "primitive": "load",
+     "device": "l17",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity",
+     "term": [
+      "cmd",
+      "l17",
+      "load"
+     ],
+     "group": "load",
+     "index": 25,
+     "pos": 30005,
+     "duration_s": 7.41
+    },
+    {
+     "level": "device_command",
+     "primitive": "image_well",
+     "device": "l17",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A01/Interfaces/imaging_target_frame#entity"
+     ],
+     "term": [
+      "cmd",
+      "l17",
+      [
+       "image_well",
+       "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a01_interfaces_imaging_target_frame"
+      ]
+     ],
+     "group": "op_image_a01",
+     "material": [
+      "image",
+      "a01"
+     ],
+     "index": 26,
+     "pos": 30015,
+     "duration_s": 2.11
+    },
+    {
+     "level": "device_command",
+     "primitive": "image_well",
+     "device": "l17",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A02/Interfaces/imaging_target_frame#entity"
+     ],
+     "term": [
+      "cmd",
+      "l17",
+      [
+       "image_well",
+       "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a02_interfaces_imaging_target_frame"
+      ]
+     ],
+     "group": "op_image_a02",
+     "material": [
+      "image",
+      "a02"
+     ],
+     "index": 27,
+     "pos": 30025,
+     "duration_s": 2.11
+    },
+    {
+     "level": "device_command",
+     "primitive": "image_well",
+     "device": "l17",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity",
+     "args": [
+      "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A05/Interfaces/imaging_target_frame#entity"
+     ],
+     "term": [
+      "cmd",
+      "l17",
+      [
+       "image_well",
+       "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a05_interfaces_imaging_target_frame"
+      ]
+     ],
+     "group": "op_image_a05",
+     "material": [
+      "image",
+      "a05"
+     ],
+     "index": 28,
+     "pos": 30055,
+     "duration_s": 2.11
+    },
+    {
+     "level": "device_command",
+     "primitive": "present",
+     "device": "l17",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity",
+     "term": [
+      "cmd",
+      "l17",
+      "present"
+     ],
+     "group": "legref_3",
+     "index": 29,
+     "pos": 43008,
+     "duration_s": 5.0
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 30,
+     "pos": 43010,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r02",
+      "stations_l17_brightfieldimager_plate_load_frame"
+     ],
+     "group": "legref_3",
+     "index": 31,
+     "pos": 43020,
+     "duration_s": 3.11
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 32,
+     "pos": 43030,
+     "duration_s": 1.94
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 33,
+     "pos": 43040,
+     "duration_s": 1.94
+    },
+    {
+     "level": "device_command",
+     "primitive": "stow",
+     "device": "l17",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity",
+     "term": [
+      "cmd",
+      "l17",
+      "stow"
+     ],
+     "group": "legref_3",
+     "index": 34,
+     "pos": 43045,
+     "duration_s": 5.0
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r02",
+      [
+       "appr",
+       "stations_l17_brightfieldimager_plate_load_frame"
+      ],
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 35,
+     "pos": 43050,
+     "duration_s": 13.2
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 36,
+     "pos": 43060,
+     "duration_s": 4.66
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r02",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_3",
+     "index": 37,
+     "pos": 43070,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r02"
+     ],
+     "group": "legref_3",
+     "index": 38,
+     "pos": 43080,
+     "duration_s": 1.55
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r02",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r02",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_3",
+     "index": 39,
+     "pos": 43090,
+     "duration_s": 3.88
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 40,
+     "pos": 44010,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "insert",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "insert",
+      "r01",
+      "fixtures_handovernest_r01_r02_handover_frame"
+     ],
+     "group": "legref_4",
+     "index": 41,
+     "pos": 44020,
+     "duration_s": 1.26
+    },
+    {
+     "primitive": "grasp",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "grasp",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 42,
+     "pos": 44030,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "lift",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "lift",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 43,
+     "pos": 44040,
+     "duration_s": 0.79
+    },
+    {
+     "primitive": "transit",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity",
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true,
+      true
+     ],
+     "term": [
+      "transit",
+      "r01",
+      [
+       "appr",
+       "fixtures_handovernest_r01_r02_handover_frame"
+      ],
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 44,
+     "pos": 44050,
+     "duration_s": 5.35
+    },
+    {
+     "level": "device_command",
+     "primitive": "present",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "present"
+     ],
+     "group": "legref_4",
+     "index": 45,
+     "pos": 44055,
+     "duration_s": 26.01
+    },
+    {
+     "primitive": "approach",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "approach",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 46,
+     "pos": 44060,
+     "duration_s": 1.89
+    },
+    {
+     "primitive": "place",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      false
+     ],
+     "term": [
+      "place",
+      "r01",
+      "stations_l10_incubator_transfer_station"
+     ],
+     "group": "legref_4",
+     "index": 47,
+     "pos": 44070,
+     "duration_s": 1.57
+    },
+    {
+     "primitive": "release",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [],
+     "approach_of": [],
+     "term": [
+      "release",
+      "r01"
+     ],
+     "group": "legref_4",
+     "index": 48,
+     "pos": 44080,
+     "duration_s": 0.63
+    },
+    {
+     "primitive": "retract",
+     "level": "motion",
+     "robot": "r01",
+     "robot_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+     "poses": [
+      "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity"
+     ],
+     "approach_of": [
+      true
+     ],
+     "term": [
+      "retract",
+      "r01",
+      [
+       "appr",
+       "stations_l10_incubator_transfer_station"
+      ]
+     ],
+     "group": "legref_4",
+     "index": 49,
+     "pos": 44090,
+     "duration_s": 1.57
+    },
+    {
+     "level": "safety_step",
+     "primitive": "wait_environment",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "discharges_rule": "l10_environment_valid",
+     "term": [
+      "cmd",
+      "l10",
+      "wait_environment"
+     ],
+     "group": "safety_l10_environment_valid",
+     "index": 50,
+     "pos": 50000,
+     "duration_s": 1.0
+    },
+    {
+     "level": "device_command",
+     "primitive": "store",
+     "device": "l10",
+     "device_iri": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+     "term": [
+      "cmd",
+      "l10",
+      "store"
+     ],
+     "group": "home",
+     "index": 51,
+     "pos": 50010,
+     "duration_s": 20.25
+    }
+   ]
+  }
+ ],
+ "feasible_candidates": [
+  "c_d45_t36_n3",
+  "c_d45_t48_n2",
+  "c_d45_t48_n3",
+  "c_d65_t36_n2",
+  "c_d65_t36_n3",
+  "c_d65_t48_n1",
+  "c_d65_t48_n2",
+  "c_d65_t48_n3",
+  "c_d85_t36_n2",
+  "c_d85_t36_n3",
+  "c_d85_t48_n1",
+  "c_d85_t48_n2",
+  "c_d85_t48_n3"
+ ],
+ "solver": {
+  "result": "SAT",
+  "optimal": true,
+  "ground_s": 0.05,
+  "solve_s": 0.03,
+  "atoms": 334,
+  "rules": 61274,
+  "cost_vector": [
+   11186,
+   -544
+  ]
+ },
+ "durations_s": {
+  "r01_leg": 15.725,
+  "r02_leg": 38.813,
+  "l10_retrieve": 33.729,
+  "l10_store": 20.25,
+  "dose_well": 35.625,
+  "image_well": 2.113,
+  "l17_present": 5.0,
+  "l17_load": 7.409,
+  "tool_couple": 41.562
+ },
+ "trace_counts": {
+  "r01": 7,
+  "r02": 5,
+  "retrieve": 3,
+  "store": 5,
+  "dose": 1
+ },
+ "names": {
+  "h4": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/H4_Quarantine#entity",
+  "l09": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L09_PlateHotel#entity",
+  "l10": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator#entity",
+  "l12": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler#entity",
+  "l17": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager#entity",
+  "l21": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L21_QC_Calibration#entity",
+  "stations_h4_quarantine_transfer_nest": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/H4_Quarantine/transfer_nest#entity",
+  "stations_l09_platehotel_transfer_nest": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L09_PlateHotel/transfer_nest#entity",
+  "stations_l10_incubator_transfer_station": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L10_Incubator/transfer_station#entity",
+  "handovernest": "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02#entity",
+  "fixtures_handovernest_r01_r02_handover_frame": "https://aicor.example/okf/sdt/lab1/World/Cell01/Fixtures/HandoverNest_R01_R02/handover_frame#entity",
+  "stations_l12_liquidhandler_plate_nest": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/plate_nest#entity",
+  "stations_l17_brightfieldimager_plate_load_frame": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L17_BrightFieldImager/plate_load_frame#entity",
+  "stations_l21_qc_calibration_reference_plate_frame": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L21_QC_Calibration/reference_plate_frame#entity",
+  "r01": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R01_FR3#entity",
+  "h2": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/H2_AMR_Dock#entity",
+  "r02": "https://aicor.example/okf/sdt/lab1/World/Cell01/Robots/R02_RailSystem#entity",
+  "automatictoolchanger": "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger#entity",
+  "t01": "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/Tools/T01#entity",
+  "tooling_automatictoolchanger_dock_t01": "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/dock_T01#entity",
+  "t03": "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/Tools/T03#entity",
+  "t04": "https://aicor.example/okf/sdt/lab1/World/Cell01/Tooling/AutomaticToolChanger/Tools/T04#entity",
+  "cell01": "https://aicor.example/okf/sdt/lab1/World/Cell01#entity",
+  "stations_l12_liquidhandler_tip_rack_frames_rack_1": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/tip_rack_frames/rack_1#entity",
+  "stations_l12_liquidhandler_waste_frame": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/waste_frame#entity",
+  "stations_l12_liquidhandler_reagent_rack_frames_rack_1_pos_1": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/reagent_rack_frames/rack_1/pos_1#entity",
+  "stations_l12_liquidhandler_reagent_rack_frames_rack_1_pos_2": "https://aicor.example/okf/sdt/lab1/World/Cell01/Stations/L12_LiquidHandler/reagent_rack_frames/rack_1/pos_2#entity",
+  "a01": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A01#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a01_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A01/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a01_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A01/Interfaces/imaging_target_frame#entity",
+  "a02": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A02#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a02_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A02/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a02_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A02/Interfaces/imaging_target_frame#entity",
+  "a05": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A05#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a05_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A05/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a05_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A05/Interfaces/imaging_target_frame#entity",
+  "a06": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A06#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a06_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A06/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a06_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A06/Interfaces/imaging_target_frame#entity",
+  "a07": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A07#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a07_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A07/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a07_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A07/Interfaces/imaging_target_frame#entity",
+  "a08": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A08#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a08_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A08/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a08_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A08/Interfaces/imaging_target_frame#entity",
+  "a09": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A09#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a09_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A09/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a09_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A09/Interfaces/imaging_target_frame#entity",
+  "a10": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A10#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a10_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A10/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a10_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A10/Interfaces/imaging_target_frame#entity",
+  "a11": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A11#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a11_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A11/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a11_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A11/Interfaces/imaging_target_frame#entity",
+  "a12": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A12#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a12_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A12/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_a12_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/A12/Interfaces/imaging_target_frame#entity",
+  "b01": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B01#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b01_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B01/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b01_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B01/Interfaces/imaging_target_frame#entity",
+  "b02": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B02#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b02_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B02/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b02_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B02/Interfaces/imaging_target_frame#entity",
+  "b05": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B05#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b05_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B05/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b05_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B05/Interfaces/imaging_target_frame#entity",
+  "b06": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B06#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b06_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B06/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b06_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B06/Interfaces/imaging_target_frame#entity",
+  "b07": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B07#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b07_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B07/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b07_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B07/Interfaces/imaging_target_frame#entity",
+  "b08": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B08#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b08_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B08/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b08_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B08/Interfaces/imaging_target_frame#entity",
+  "b09": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B09#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b09_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B09/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b09_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B09/Interfaces/imaging_target_frame#entity",
+  "b10": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B10#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b10_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B10/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b10_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B10/Interfaces/imaging_target_frame#entity",
+  "b11": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B11#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b11_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B11/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b11_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B11/Interfaces/imaging_target_frame#entity",
+  "b12": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B12#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b12_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B12/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_b12_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/B12/Interfaces/imaging_target_frame#entity",
+  "c01": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C01#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c01_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C01/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c01_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C01/Interfaces/imaging_target_frame#entity",
+  "c02": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C02#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c02_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C02/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c02_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C02/Interfaces/imaging_target_frame#entity",
+  "c05": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C05#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c05_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C05/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c05_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C05/Interfaces/imaging_target_frame#entity",
+  "c06": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C06#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c06_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C06/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c06_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C06/Interfaces/imaging_target_frame#entity",
+  "c07": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C07#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c07_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C07/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c07_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C07/Interfaces/imaging_target_frame#entity",
+  "c08": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C08#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c08_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C08/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c08_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C08/Interfaces/imaging_target_frame#entity",
+  "c09": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C09#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c09_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C09/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c09_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C09/Interfaces/imaging_target_frame#entity",
+  "c10": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C10#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c10_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C10/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c10_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C10/Interfaces/imaging_target_frame#entity",
+  "c11": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C11#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c11_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C11/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c11_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C11/Interfaces/imaging_target_frame#entity",
+  "c12": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C12#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c12_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C12/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_c12_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/C12/Interfaces/imaging_target_frame#entity",
+  "d01": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D01#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d01_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D01/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d01_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D01/Interfaces/imaging_target_frame#entity",
+  "d02": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D02#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d02_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D02/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d02_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D02/Interfaces/imaging_target_frame#entity",
+  "d05": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D05#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d05_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D05/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d05_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D05/Interfaces/imaging_target_frame#entity",
+  "d06": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D06#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d06_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D06/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d06_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D06/Interfaces/imaging_target_frame#entity",
+  "d07": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D07#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d07_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D07/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d07_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D07/Interfaces/imaging_target_frame#entity",
+  "d08": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D08#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d08_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D08/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d08_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D08/Interfaces/imaging_target_frame#entity",
+  "d09": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D09#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d09_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D09/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d09_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D09/Interfaces/imaging_target_frame#entity",
+  "d10": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D10#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d10_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D10/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d10_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D10/Interfaces/imaging_target_frame#entity",
+  "d11": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D11#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d11_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D11/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d11_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D11/Interfaces/imaging_target_frame#entity",
+  "d12": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D12#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d12_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D12/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_d12_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/D12/Interfaces/imaging_target_frame#entity",
+  "e01": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E01#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e01_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E01/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e01_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E01/Interfaces/imaging_target_frame#entity",
+  "e02": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E02#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e02_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E02/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e02_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E02/Interfaces/imaging_target_frame#entity",
+  "e05": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E05#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e05_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E05/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e05_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E05/Interfaces/imaging_target_frame#entity",
+  "e06": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E06#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e06_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E06/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e06_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E06/Interfaces/imaging_target_frame#entity",
+  "e07": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E07#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e07_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E07/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e07_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E07/Interfaces/imaging_target_frame#entity",
+  "e08": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E08#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e08_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E08/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e08_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E08/Interfaces/imaging_target_frame#entity",
+  "e09": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E09#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e09_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E09/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e09_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E09/Interfaces/imaging_target_frame#entity",
+  "e10": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E10#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e10_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E10/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e10_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E10/Interfaces/imaging_target_frame#entity",
+  "e11": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E11#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e11_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E11/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e11_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E11/Interfaces/imaging_target_frame#entity",
+  "e12": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E12#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e12_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E12/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_e12_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/E12/Interfaces/imaging_target_frame#entity",
+  "f01": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F01#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f01_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F01/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f01_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F01/Interfaces/imaging_target_frame#entity",
+  "f02": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F02#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f02_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F02/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f02_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F02/Interfaces/imaging_target_frame#entity",
+  "f05": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F05#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f05_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F05/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f05_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F05/Interfaces/imaging_target_frame#entity",
+  "f06": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F06#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f06_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F06/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f06_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F06/Interfaces/imaging_target_frame#entity",
+  "f07": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F07#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f07_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F07/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f07_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F07/Interfaces/imaging_target_frame#entity",
+  "f08": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F08#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f08_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F08/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f08_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F08/Interfaces/imaging_target_frame#entity",
+  "f09": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F09#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f09_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F09/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f09_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F09/Interfaces/imaging_target_frame#entity",
+  "f10": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F10#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f10_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F10/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f10_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F10/Interfaces/imaging_target_frame#entity",
+  "f11": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F11#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f11_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F11/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f11_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F11/Interfaces/imaging_target_frame#entity",
+  "f12": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F12#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f12_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F12/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_f12_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/F12/Interfaces/imaging_target_frame#entity",
+  "g01": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G01#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g01_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G01/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g01_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G01/Interfaces/imaging_target_frame#entity",
+  "g02": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G02#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g02_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G02/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g02_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G02/Interfaces/imaging_target_frame#entity",
+  "g03": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G03#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g03_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G03/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g03_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G03/Interfaces/imaging_target_frame#entity",
+  "g04": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G04#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g04_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G04/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g04_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G04/Interfaces/imaging_target_frame#entity",
+  "g05": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G05#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g05_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G05/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g05_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G05/Interfaces/imaging_target_frame#entity",
+  "g06": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G06#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g06_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G06/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g06_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G06/Interfaces/imaging_target_frame#entity",
+  "g07": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G07#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g07_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G07/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g07_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G07/Interfaces/imaging_target_frame#entity",
+  "g08": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G08#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g08_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G08/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g08_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G08/Interfaces/imaging_target_frame#entity",
+  "g09": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G09#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g09_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G09/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g09_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G09/Interfaces/imaging_target_frame#entity",
+  "g10": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G10#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g10_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G10/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g10_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G10/Interfaces/imaging_target_frame#entity",
+  "g11": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G11#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g11_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G11/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g11_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G11/Interfaces/imaging_target_frame#entity",
+  "g12": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G12#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g12_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G12/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_g12_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/G12/Interfaces/imaging_target_frame#entity",
+  "h01": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H01#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h01_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H01/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h01_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H01/Interfaces/imaging_target_frame#entity",
+  "h02": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H02#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h02_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H02/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h02_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H02/Interfaces/imaging_target_frame#entity",
+  "h03": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H03#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h03_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H03/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h03_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H03/Interfaces/imaging_target_frame#entity",
+  "h04": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H04#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h04_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H04/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h04_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H04/Interfaces/imaging_target_frame#entity",
+  "h05": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H05#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h05_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H05/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h05_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H05/Interfaces/imaging_target_frame#entity",
+  "h06": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H06#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h06_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H06/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h06_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H06/Interfaces/imaging_target_frame#entity",
+  "h07": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H07#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h07_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H07/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h07_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H07/Interfaces/imaging_target_frame#entity",
+  "h08": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H08#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h08_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H08/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h08_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H08/Interfaces/imaging_target_frame#entity",
+  "h09": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H09#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h09_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H09/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h09_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H09/Interfaces/imaging_target_frame#entity",
+  "h10": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H10#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h10_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H10/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h10_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H10/Interfaces/imaging_target_frame#entity",
+  "h11": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H11#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h11_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H11/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h11_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H11/Interfaces/imaging_target_frame#entity",
+  "h12": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H12#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h12_interfaces_pipette_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H12/Interfaces/pipette_target_frame#entity",
+  "https___aicor_example_okf_sdt_lab1_world_experimentalworld_plates_plate_p17_wells_h12_interfaces_imaging_target_frame": "https://aicor.example/okf/sdt/lab1/World/ExperimentalWorld/Plates/Plate_P17/Wells/H12/Interfaces/imaging_target_frame#entity"
+ },
+ "tag": "g050_uncal",
+ "prior_over_models": {
+  "M1_graded": 0.3333333333333333,
+  "M2_threshold": 0.3333333333333333,
+  "M3_protective": 0.3333333333333333
+ },
+ "prior_from": null,
+ "candidate_optima": {
+  "c_d45_t36_n3": 15806,
+  "c_d45_t48_n2": 13496,
+  "c_d45_t48_n3": 15806,
+  "c_d65_t36_n2": 13496,
+  "c_d65_t36_n3": 15806,
+  "c_d65_t48_n1": 11186,
+  "c_d65_t48_n2": 13496,
+  "c_d65_t48_n3": 15806,
+  "c_d85_t36_n2": 13496,
+  "c_d85_t36_n3": 15806,
+  "c_d85_t48_n1": 11186,
+  "c_d85_t48_n2": 13496,
+  "c_d85_t48_n3": 15806
+ },
+ "candidate_eig_bits": {
+  "c_d45_t12_n1": 0.0146,
+  "c_d45_t12_n2": 0.0394,
+  "c_d45_t12_n3": 0.0544,
+  "c_d45_t18_n1": 0.1268,
+  "c_d45_t18_n2": 0.1915,
+  "c_d45_t18_n3": 0.2273,
+  "c_d45_t24_n1": 0.2488,
+  "c_d45_t24_n2": 0.3138,
+  "c_d45_t24_n3": 0.3523,
+  "c_d45_t36_n1": 0.4053,
+  "c_d45_t36_n2": 0.4688,
+  "c_d45_t36_n3": 0.5072,
+  "c_d45_t48_n1": 0.4839,
+  "c_d45_t48_n2": 0.5474,
+  "c_d45_t48_n3": 0.5883,
+  "c_d65_t12_n1": 0.0351,
+  "c_d65_t12_n2": 0.08,
+  "c_d65_t12_n3": 0.1098,
+  "c_d65_t18_n1": 0.1671,
+  "c_d65_t18_n2": 0.2329,
+  "c_d65_t18_n3": 0.2757,
+  "c_d65_t24_n1": 0.2821,
+  "c_d65_t24_n2": 0.35,
+  "c_d65_t24_n3": 0.3888,
+  "c_d65_t36_n1": 0.4397,
+  "c_d65_t36_n2": 0.5042,
+  "c_d65_t36_n3": 0.5458,
+  "c_d65_t48_n1": 0.5205,
+  "c_d65_t48_n2": 0.5787,
+  "c_d65_t48_n3": 0.6205,
+  "c_d85_t12_n1": 0.0635,
+  "c_d85_t12_n2": 0.1221,
+  "c_d85_t12_n3": 0.1603,
+  "c_d85_t18_n1": 0.1969,
+  "c_d85_t18_n2": 0.2634,
+  "c_d85_t18_n3": 0.3107,
+  "c_d85_t24_n1": 0.3062,
+  "c_d85_t24_n2": 0.377,
+  "c_d85_t24_n3": 0.4157,
+  "c_d85_t36_n1": 0.4635,
+  "c_d85_t36_n2": 0.528,
+  "c_d85_t36_n3": 0.5717,
+  "c_d85_t48_n1": 0.5439,
+  "c_d85_t48_n2": 0.6013,
+  "c_d85_t48_n3": 0.6415
+ },
+ "facts_file": "build/e2m/facts_g050_uncal.lp"
+}

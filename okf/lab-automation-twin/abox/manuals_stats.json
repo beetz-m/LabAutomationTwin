@@ -1,0 +1,11 @@
+{
+ "manuals": 10,
+ "procedures": 15,
+ "preconditions": 48,
+ "setpoints": 63,
+ "constraints": 36,
+ "monitors": 30,
+ "failure_modes": 27,
+ "risk_controls": 44,
+ "typed_by_rule": 68
+}

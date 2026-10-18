@@ -1,0 +1,23 @@
+{
+ "tag": "g070",
+ "requirement_bits": 0.7,
+ "window_s": 600.0,
+ "state": {
+  "calibrated": true,
+  "coupled": false,
+  "interlocks": true,
+  "contaminated": false
+ },
+ "solver": {
+  "result": "UNSAT",
+  "optimal": false,
+  "ground_s": 0.01,
+  "solve_s": 0.0,
+  "atoms": 0,
+  "rules": 16628
+ },
+ "plan": null,
+ "reason": "no candidate in the frame reaches the required gain",
+ "feasible_candidates": [],
+ "blocking_constraints": []
+}

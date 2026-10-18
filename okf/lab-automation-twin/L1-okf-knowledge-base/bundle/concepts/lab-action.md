@@ -1,0 +1,17 @@
+---
+type: concept
+title: "LabAction"
+description: "An action of lab work."
+source:
+  - "ResearchSpace/projects/robot-scientist/cell-01/AICOR_Cell01_Codex_Handoff/sdt/schemas/cram_designator_schemas.yaml"
+maturity: L1
+status: draft
+timestamp: 2026-10-17
+l2: lab-twin-tasks-dl.md
+---
+# LabAction
+
+🔧 An action of lab work.
+
+🔧 **Grounding** — specialises `soma_Action`. Defined in L2 [`lab-twin-tasks-dl.md`](../../../L2-conceptual-framework/ontology/lab-twin-tasks-dl.md) (Lab task types and actions).
+

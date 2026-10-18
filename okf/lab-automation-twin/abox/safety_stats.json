@@ -1,0 +1,8 @@
+{
+ "rules": 19,
+ "norms": 2,
+ "mechanisms": 21,
+ "verified_refusals": 16,
+ "unverified_checks": 0,
+ "enforced_preconditions": 10
+}

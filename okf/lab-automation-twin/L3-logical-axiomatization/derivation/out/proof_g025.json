@@ -1,0 +1,193 @@
+{
+ "plan": "plan_g025.json",
+ "theorems": {
+  "V1 executability / preservation": {
+   "holds": true,
+   "violations": [],
+   "checked": 278
+  },
+  "V2 safety S1 S2 S3 S6 S7": {
+   "holds": true,
+   "violations": [],
+   "checked": 115
+  },
+  "V3 time window (S5), durations +-20 %": {
+   "holds": true,
+   "violations": [],
+   "checked": 3
+  },
+  "V4 realisation (doses, images, session times)": {
+   "holds": true,
+   "doses": {
+    "s0": [
+     [
+      "a01",
+      "challenge",
+      85
+     ],
+     [
+      "a02",
+      "challenge",
+      85
+     ]
+    ],
+    "s1": [
+     [
+      "a01",
+      "rescue",
+      70
+     ]
+    ],
+    "s2": []
+   },
+   "images": [
+    "a01",
+    "a02",
+    "a05"
+   ],
+   "times": {
+    "s0": 0,
+    "s1": 48,
+    "s2": 72
+   }
+  },
+  "V4b arms E2M3 + control S9": {
+   "holds": true,
+   "wells": {
+    "rescued": [
+     "A01"
+    ],
+    "comparator": [
+     "A02"
+    ],
+    "control": [
+     "A05"
+    ]
+   }
+  },
+  "V5 gain met (EIG >= g)": {
+   "holds": true,
+   "eig_bits": 0.5439,
+   "required_bits": 0.25
+  },
+  "V5b least cost, then max EIG, over all candidates meeting g": {
+   "holds": true,
+   "smt": "unsat",
+   "compared": 29
+  }
+ },
+ "negative_controls": {
+  "N1 retract after the first L12 tip pick": {
+   "caught": true,
+   "expected": "V2",
+   "failed": [
+    "V2 safety S1 S2 S3 S6 S7"
+   ],
+   "first_violation": [
+    "s0_trip1",
+    "S1 deck airspace clear",
+    22
+   ]
+  },
+  "N2 environment wait removed": {
+   "caught": true,
+   "expected": "V2",
+   "failed": [
+    "V2 safety S1 S2 S3 S6 S7"
+   ],
+   "first_violation": [
+    "s0_trip1",
+    "S2 environment valid before store",
+    50
+   ]
+  },
+  "N3 L17 calibration expired, no QC step": {
+   "caught": true,
+   "expected": "V2",
+   "failed": [
+    "V2 safety S1 S2 S3 S6 S7"
+   ],
+   "first_violation": [
+    "s2_trip1",
+    "S3 calibration valid",
+    25
+   ]
+  },
+  "N4 identity check removed": {
+   "caught": true,
+   "expected": "V2",
+   "failed": [
+    "V2 safety S1 S2 S3 S6 S7"
+   ],
+   "first_violation": [
+    "s0_trip1",
+    "S7 identity verified before release",
+    1
+   ]
+  },
+  "N5 R02 transit to L12 removed": {
+   "caught": true,
+   "expected": "V1",
+   "failed": [
+    "V1 executability / preservation"
+   ],
+   "first_violation": [
+    "s0_trip1",
+    "V1 approach from park or the same approach pose (long moves are transits)",
+    18
+   ]
+  },
+  "N6 tool change removed (initial tool unknown)": {
+   "caught": true,
+   "expected": "V1",
+   "failed": [
+    "V1 executability / preservation"
+   ],
+   "first_violation": [
+    "s0_trip1",
+    "V1 robot carries its required tool",
+    13
+   ]
+  },
+  "N7 challenge dose changed (0.85 -> 0.65 au)": {
+   "caught": true,
+   "expected": "V4",
+   "failed": [
+    "V4 realisation (doses, images, session times)"
+   ],
+   "first_violation": null
+  },
+  "N8 selected candidate below the requirement": {
+   "caught": true,
+   "expected": "V5",
+   "failed": [
+    "V5 gain met (EIG >= g)",
+    "V5b least cost, then max EIG, over all candidates meeting g"
+   ],
+   "first_violation": null
+  },
+  "N9 window shortened to 250 s": {
+   "caught": true,
+   "expected": "V3",
+   "failed": [
+    "V3 time window (S5), durations +-20 %"
+   ],
+   "first_violation": [
+    "s0_trip1",
+    "S5 trip within the window for all durations within +-20 %",
+    -1
+   ]
+  },
+  "N10 control well not imaged": {
+   "caught": true,
+   "expected": "V4",
+   "failed": [
+    "V4 realisation (doses, images, session times)"
+   ],
+   "first_violation": null
+  }
+ },
+ "all_passed": true,
+ "z3": "5.3.1",
+ "tolerance": 0.2
+}

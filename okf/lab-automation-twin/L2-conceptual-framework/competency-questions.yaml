@@ -1,0 +1,105 @@
+# Executable competency questions (ResearchSpace tools/okf_cq.py over the HermiT-reasoned TTL).
+competency_questions:
+- id: CQ-1
+  question: Is Cell 01's automated incubator an AICOR lab-automation device and an incubation device?
+  kind: classification
+  class: AutomatedCO2Incubator
+  subclass_of: IncubationDevice
+- id: CQ-2
+  question: Is a device manual's operating procedure an AICOR / robot-scientist action contract?
+  kind: classification
+  class: OperatingProcedure
+  subclass_of: ActionContract
+- id: CQ-3
+  question: Is a device failure mode an AICOR failure signature, recovered by a repair?
+  kind: restriction
+  class: DeviceFailureMode
+  property: hasRecoveryProcedure
+  filler: RecoveryProcedure
+- id: CQ-4
+  question: Is a recovery procedure an AICOR Repair?
+  kind: classification
+  class: RecoveryProcedure
+  subclass_of: Repair
+- id: CQ-5
+  question: Is a lab safety rule a universal prohibition (AICOR IncapabilityAssertion, a BodyWorldConstraint)?
+  kind: classification
+  class: LabSafetyRule
+  subclass_of: BodyWorldConstraint
+- id: CQ-6
+  question: Is a biosafety rule a contamination-compatibility gate on interventions?
+  kind: classification
+  class: BiosafetyRule
+  subclass_of: ContaminationCompatibility
+- id: CQ-7
+  question: Is an authorisation rule a norm rather than a causal safety prohibition?
+  kind: classification
+  class: AuthorizationNorm
+  subclass_of: Norm
+  not_subclass_of: IncapabilityAssertion
+- id: CQ-8
+  question: Can an SDT node be the physical thing it represents?
+  kind: disjoint
+  class_a: LabSDTNode
+  class_b: LabArtifact
+- id: CQ-9
+  question: Is a culture experiment run an AICOR manipulation episode?
+  kind: classification
+  class: CultureExperimentRun
+  subclass_of: ManipulationEpisode
+- id: CQ-10
+  question: Does the challenge-rescue design include a control arm?
+  kind: restriction
+  class: ChallengeRescueStudyDesign
+  property: hasArm
+  filler: ControlArm
+- id: CQ-11
+  question: Is a station mechanism part kept apart from AICOR's robot-body link?
+  kind: classification
+  class: MechanismPart
+  subclass_of: dul_PhysicalObject
+  not_subclass_of: Link
+- id: CQ-12
+  question: Is a well's medium a biological sample contained in the well (not a part)?
+  kind: restriction
+  class: CultureMediumPortion
+  property: isContainedIn
+  filler: Well
+- id: CQ-13
+  question: Is a derived robot motion step a robot-scientist body-motion designator (the lowest refinement level)?
+  kind: classification
+  class: PlaceMotion
+  subclass_of: BodyMotionDesignator
+- id: CQ-14
+  question: Is the plan derived for an information-gain requirement an experimental protocol, organised in protocol
+    sessions?
+  kind: restriction
+  class: ExperimentRealisationPlan
+  property: hasSession
+  filler: ProtocolSession
+- id: CQ-15
+  question: Is a selected experiment a scientific proposal (selection is not warrant, RS ED2)?
+  kind: classification
+  class: SelectedExperiment
+  subclass_of: ScientificProposal
+  not_subclass_of: ScientificConclusion
+- id: CQ-16
+  question: Is the kernel's dispense a substance-manipulation designator at device-command level, not a body motion
+    (action categories aligned with the designator levels)?
+  kind: classification
+  class: DispenseCommand
+  subclass_of: SubstanceManipulationDesignator
+  not_subclass_of: MotionStepDesignator
+- id: CQ-17
+  question: Is the kernel's picking-up a plate-transfer (scene-step) designator of the transport facet, and not
+    a kind of the transporting it is a phase of (specialisation kept apart from partonomy)?
+  kind: classification
+  class: PickingUpDesignator
+  subclass_of: TransportFacetDesignator
+  not_subclass_of: TransportingDesignator
+- id: CQ-18
+  question: Does every kernel audit entry record one designator's lifecycle transition?
+  kind: restriction
+  class: CommitmentAuditEntry
+  property: hasTransition
+  filler: DesignatorLifecycleState

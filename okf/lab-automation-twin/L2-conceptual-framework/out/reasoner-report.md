@@ -1,0 +1,508 @@
+# L2 Ontology — OWL export & reasoner report
+
+Exported `lab-automation-twin-aicor-ontology.owl` and `lab-automation-twin-aicor-ontology.ttl` from the `*-dl.md` Manchester blocks + `core-classes.md` physical/abstract cut.
+
+## Axioms extracted
+
+- **files**: 280
+- **classes**: 1284
+- **subclass**: 1337
+- **restriction**: 1358
+- **restr_skipped**: 41
+- **disjoint**: 398
+- **disjoint_pruned_crossside**: 30
+- **placements**: 158
+- **enum_class**: 16
+- **enum_label**: 1
+- **union_filler**: 51
+- **prop_characteristic**: 134
+
+## Closed enumerations exported (audit)
+
+- `CouplingType` ≡ ( ⊔ ), members disjoint: ForceClosure, Constraint, Process
+- `TaskRelativeClass` ≡ oneOf{ }: solution, repaired, prohibited, nonachieving
+- `ConceptFamilyEnum` ≡ ( ⊔ ), members disjoint: SourceAndFamily, System, Executive, Task, EpisodeAndTrace, AssessmentAndClaim
+- `CouplingType` ≡ ( ⊔ ), members disjoint: ForceClosure, Constraint, Process
+- `CrackOrientation` ≡ ( ⊔ ), members disjoint: UpCrack, DownCrack
+- `DesignatorTarget` ≡ ( ⊔ ), members disjoint: RoleSlot, ObjectRef, LocationRef, ActionRef, MotionRef, GraspRef, TrajectoryRef, ObservationRef, RepairCandidateRef
+- `DesignatorReferent` ≡ ( ⊔ ), members disjoint: SceneNode, LocationRef, ActionRef, MotionRef, GraspRef, TrajectoryRef, ObservationRef, RepairCandidateRef
+- `DesignatorResolution` ≡ ( ⊔ ), members disjoint: UniqueReferent, CandidateSet, ReferentDistribution, Unresolved
+- `ResolutionMode` ≡ ( ⊔ ), members disjoint: Descriptive, Deictic, Relational
+- `EvidentialFrame` ≡ ( ⊔ ), members disjoint: DomainScientificFrame, RobotScientistFrame
+- `ScientificValidityGrade` ≡ ( ⊔ ), members disjoint: ValidAndInterpretable, InvalidMissingControl, InvalidCalibration, InvalidSampleIdentity, InconclusiveInsufficientEvidence
+- `JointType` ≡ ( ⊔ ), members disjoint: Revolute, Prismatic, Spherical, Continuous, Fixed
+- `BindingStatus` ≡ ( ⊔ ), members disjoint: NoMatch, CapabilityMatch, ProvisionalBinding, ValidatedBinding
+- `NuisanceComponent` ≡ ( ⊔ ), members disjoint: InitNuisance, ObjectNuisance, PhysicalNuisance, SensingNuisance, ActuationNuisance, LayoutNuisance, HumanNuisance, TaskNuisance, DisturbanceNuisance
+- `ExecutiveCounterpart` ≡ ( ⊔ ), members disjoint: ControlCounterpart, MonitorCounterpart, DiagnosisCounterpart, RevisionCounterpart, EvidenceCounterpart
+- `RelationFamily` ≡ ( ⊔ ), members disjoint: Structural, Generative, Coupling, Grounding, ProposalCommitment, Realization, CausalEffectiveness, PhysicalCausal, Recording, Evaluation, Support
+- `AccountableDimension` ≡ ( ⊔ ), members disjoint: Outcome, TerminalDisposition, ExecutiveAdequacy, Robustness, Recoverability, EvidentialSufficiency
+
+## Reasoner (HermiT)
+
+- **global consistency**: consistent
+- **unsatisfiable classes**: 0 — none (every class is satisfiable)
+- **physical/abstract cut**: PhysicalEntity ⊓ AbstractEntity = ⊥ enforced over 158 class placements — no class forced onto both sides
+- **partition root**: Entity, with covering Entity ⊑ PhysicalEntity ⊔ AbstractEntity (disjoint union — the partition is total over Entity)
+
+## Non-normative restrictions skipped (audit)
+
+- `ConfigurationSpace: hasDimension exactly xsd:positiveInteger`
+- `ManipulationEpisode: satisfies some ForceDynamicSchema) or`
+- `ForwardKinematics: maps exactly 1 Pose per Configuration`
+- `DependencyEdge: given some Precondition, generates some OntologyObject`
+- `KinematicJacobian: mapsVelocity some (JointVelocity to TaskVelocity)`
+- `KinematicJacobian: mapsWrench some (TaskWrench to JointTorque`
+- `KnowledgeQueryLanguage: hasSemantics value PrologSemantics`
+- `HingedDoor: hasDirectComponent some hasMechanismJointType some Revolute`
+- `SlidingDoor: hasDirectComponent some hasMechanismJointType some Prismatic`
+- `PlateTransferTask: classifiesAction only hasParticipantEntity some Labware`
+- `PlateStoringTask: classifiesAction only hasParticipantEntity some PlateStorageDevice`
+- `PlateRetrievingTask: classifiesAction only hasParticipantEntity some LabArtifact`
+- `IncubatingTask: classifiesAction only hasParticipantEntity some IncubationDevice`
+- `LiquidDispensingTask: classifiesAction only hasParticipantEntity some DispensingDevice`
+- `ChallengeDosingTask: classifiesAction only hasParticipantEntity some DispensingDevice`
+- `RescueDosingTask: classifiesAction only hasParticipantEntity some DispensingDevice`
+- `ImagingTask: classifiesAction only hasParticipantEntity some ImagingDevice`
+- `CalibratingTask: classifiesAction only hasParticipantEntity some QCCalibrationStation`
+- `QuarantiningTask: classifiesAction only hasParticipantEntity some QuarantineStation`
+- `QuarantineReleaseTask: classifiesAction only hasParticipantEntity some QuarantineStation`
+- `IdentifyingTask: classifiesAction only hasParticipantEntity some BarcodeReader`
+- `NavigationTask: classifiesAction only hasParticipantEntity some SampleTransportAMR`
+- `DockingTask: classifiesAction only hasParticipantEntity some Dock`
+- `ToolExchangeTask: classifiesAction only hasParticipantEntity some AutomaticToolChanger`
+- `TipHandlingTask: classifiesAction only hasParticipantEntity some PipettingChannel`
+- `ColdStoringTask: classifiesAction only hasParticipantEntity some ColdStorageDevice`
+- `SterilizingTask: classifiesAction only hasParticipantEntity some Autoclave`
+- `AsepticHandlingTask: classifiesAction only hasParticipantEntity some BiosafetyCabinet`
+- `TemperatureControllingTask: classifiesAction only hasParticipantEntity some ManualLabEquipment`
+- `ConsumableStoringTask: classifiesAction only hasParticipantEntity some StorageShelving`
+- `CleaningTask: classifiesAction only hasParticipantEntity some LabSinkUnit`
+- `OperatorInteractionTask: classifiesAction only hasParticipantEntity some LabArtifact`
+- `PortableResult: resultObtainedIn only (entryGovernedBy some OpenEntryTerms`
+- `MasteryClaim: relativeTo value CriterionRelative`
+- `OperationalGrammar: isDualAudience value HumanReadableAndMachineInterpretable`
+- `ProbabilisticHybridProcessModel: hasFlowLaw some Flow, hasGuard some Guard`
+- `ProbabilisticHybridProcessModel: hasJump some Jump, hasReset some Reset`
+- `USDOntology: modelsLanguage value USD`
+- `URDF: hasFormat value URDFFormat`
+- `URDF: hasTopology value Tree`
+
+## Disjointness axioms asserted (audit)
+
+- ActionRelatedConcept ⟂ WarrantedExecutiveCommitment
+- CandidateAction ⟂ DistributionalPlausibility
+- CandidateAction ⟂ Performance
+- ApoptoticProcess ⟂ CellRecoveryProcess
+- AssessmentRegime ⟂ ManipulationExecutive
+- AssessmentRegime ⟂ EvidenceBearingTrace
+- BileAcidSignaling ⟂ BileAcidSynthesis
+- BodyMotion ⟂ ActionToken
+- BodyWorldConstraint ⟂ StrengtheningModule
+- BodyWorldConstraint ⟂ StrengtheningModule
+- RealizationTransition ⟂ NormTransition
+- RealizationTransition ⟂ AccountTransition
+- NormTransition ⟂ AccountTransition
+- PreservingWarrant ⟂ SuccessorWarrant
+- Cholangiocyte ⟂ Hepatocyte
+- Cholestasis ⟂ XenobioticMetabolism
+- Chronicle ⟂ FluentType
+- Chronicle ⟂ EventType
+- Chronicle ⟂ Occurrence
+- Chronicle ⟂ TimeInterval
+- Chronicle ⟂ Occasion
+- Chronicle ⟂ FluentType
+- SingleCaseWarrant ⟂ ObservedConditionsWarrant
+- SingleCaseWarrant ⟂ FamilyRangingWarrant
+- SingleCaseWarrant ⟂ DistributionalWarrant
+- ObservedConditionsWarrant ⟂ FamilyRangingWarrant
+- ObservedConditionsWarrant ⟂ DistributionalWarrant
+- FamilyRangingWarrant ⟂ DistributionalWarrant
+- CommitmentChecking ⟂ WarrantedExecutiveCommitment
+- CognitiveCapability ⟂ CompetenceQuestion
+- CompetenceClaim ⟂ VerdictComponent
+- CompetenceProperty ⟂ SolvabilityClaim
+- CompetenceProperty ⟂ NecessityClaim
+- SolvabilityClaim ⟂ NecessityClaim
+- ConceptualFramework ⟂ ScientificObject
+- OpenContainerState ⟂ ClosedContainerState
+- CytochromeP450 ⟂ ConjugationEnzyme
+- DeclaredBoundary ⟂ MetaLevelEntity
+- CommittableBodyMotionDesignator ⟂ ForbiddenBodyMotionDesignator
+- SemanticDigitalTwin ⟂ ManipulationEpisode
+- DynamicModel ⟂ KinematicModel
+- IntactContainerState ⟂ CrackedContainerState
+- BoundVariable ⟂ UnboundVariable
+- Disjunction ⟂ Conjunction
+- EntityRelationQueryLanguage ⟂ KnowledgeGraph
+- EnvisionedTimeline ⟂ SimulationLog
+- PermittedTransition ⟂ ForbiddenTransition
+- EventType ⟂ FluentType
+- EventType ⟂ TimeInterval
+- EventType ⟂ Chronicle
+- EventType ⟂ Occasion
+- EventType ⟂ FluentType
+- EvidenceBearingTrace ⟂ ManipulationEpisode
+- EvidenceBearingTrace ⟂ Recording
+- ExecutiveBehaviouralSpecification ⟂ ManipulationExecutive
+- ExecutiveBehaviouralSpecification ⟂ ManipulationExecutive
+- ExpectedObservation ⟂ Observation
+- ProcessMonitoringExpectation ⟂ BindingConfirmationExpectation
+- ExperimentalVerdict ⟂ ExperimentalEpisode
+- FailureSignature ⟂ ProcessMonitor
+- FluentType ⟂ EventType
+- FluentType ⟂ TimeInterval
+- FluentType ⟂ Occurrence
+- FluentType ⟂ Chronicle
+- FluentType ⟂ EventType
+- FluentType ⟂ TimeInterval
+- SlipEventType ⟂ RuptureEventType
+- Recoverable ⟂ Irreversible
+- ForceDynamicEvent ⟂ ForceDynamicSchema
+- ForceDynamicSchema ⟂ ManipulationEpisode
+- ForwardKinematics ⟂ InverseKinematics
+- FoundationModel ⟂ ManipulationExecutive
+- DomainScientificContribution ⟂ InvalidExperimentTrace
+- EventType ⟂ FluentType
+- GrammarOfAction ⟂ ForceDynamicEvent
+- HepaticProgenitorCell ⟂ Hepatocyte
+- HepaticSteatosis ⟂ LiverFibrosis
+- HepaticStellateCell ⟂ Hepatocyte
+- HepatobiliaryTransport ⟂ TransporterInhibition
+- ImmuneCell ⟂ Cholangiocyte
+- InverseKinematics ⟂ ForwardKinematics
+- Joint ⟂ Link
+- KinematicModel ⟂ DynamicModel
+- KnowledgeQueryLanguage ⟂ KnowledgeGraph
+- LabAutomationDevice ⟂ RobotBody
+- ChallengeSpec ⟂ RescueSpec
+- ChallengeOnlyArm ⟂ ChallengeRescueArm
+- ChallengeOnlyArm ⟂ ControlArm
+- ChallengeRescueArm ⟂ ControlArm
+- ChallengeIntervention ⟂ RescueIntervention
+- IdentityPrecondition ⟂ AvailabilityPrecondition
+- IdentityPrecondition ⟂ EnvironmentPrecondition
+- IdentityPrecondition ⟂ CalibrationPrecondition
+- IdentityPrecondition ⟂ SafetyPrecondition
+- IdentityPrecondition ⟂ AuthorizationPrecondition
+- IdentityPrecondition ⟂ PlacementPrecondition
+- AvailabilityPrecondition ⟂ EnvironmentPrecondition
+- AvailabilityPrecondition ⟂ CalibrationPrecondition
+- AvailabilityPrecondition ⟂ SafetyPrecondition
+- AvailabilityPrecondition ⟂ AuthorizationPrecondition
+- AvailabilityPrecondition ⟂ PlacementPrecondition
+- EnvironmentPrecondition ⟂ CalibrationPrecondition
+- EnvironmentPrecondition ⟂ SafetyPrecondition
+- EnvironmentPrecondition ⟂ AuthorizationPrecondition
+- EnvironmentPrecondition ⟂ PlacementPrecondition
+- CalibrationPrecondition ⟂ SafetyPrecondition
+- CalibrationPrecondition ⟂ AuthorizationPrecondition
+- CalibrationPrecondition ⟂ PlacementPrecondition
+- SafetyPrecondition ⟂ AuthorizationPrecondition
+- SafetyPrecondition ⟂ PlacementPrecondition
+- AuthorizationPrecondition ⟂ PlacementPrecondition
+- PlateStorageDevice ⟂ DispensingDevice
+- PlateStorageDevice ⟂ ImagingDevice
+- PlateStorageDevice ⟂ QCCalibrationStation
+- PlateStorageDevice ⟂ QuarantineStation
+- AutomatedPlateHotel ⟂ AutomatedCO2Incubator
+- QCCalibrationStation ⟂ QuarantineStation
+- GradedRecoveryModel ⟂ ThresholdRecoveryModel
+- GradedRecoveryModel ⟂ ProtectiveThresholdModel
+- ThresholdRecoveryModel ⟂ ProtectiveThresholdModel
+- MaterialStepDesignator ⟂ SceneStepDesignator
+- MaterialStepDesignator ⟂ MotionStepDesignator
+- MaterialStepDesignator ⟂ DeviceCommandDesignator
+- SceneStepDesignator ⟂ MotionStepDesignator
+- SceneStepDesignator ⟂ DeviceCommandDesignator
+- MotionStepDesignator ⟂ DeviceCommandDesignator
+- Well ⟂ CultureMediumPortion
+- ChallengeReagentPortion ⟂ RescueReagentPortion
+- PlateSeatPose ⟂ ApproachPose
+- PlateSeatPose ⟂ DockPose
+- PlateSeatPose ⟂ ToolCenterPose
+- PlateSeatPose ⟂ ToolCouplingPose
+- PlateSeatPose ⟂ PipettingTargetPose
+- PlateSeatPose ⟂ ImagingTargetPose
+- PlateSeatPose ⟂ RackPositionPose
+- PlateSeatPose ⟂ WastePose
+- PlateSeatPose ⟂ CalibrationPose
+- ApproachPose ⟂ DockPose
+- ApproachPose ⟂ ToolCenterPose
+- ApproachPose ⟂ ToolCouplingPose
+- ApproachPose ⟂ PipettingTargetPose
+- ApproachPose ⟂ ImagingTargetPose
+- ApproachPose ⟂ RackPositionPose
+- ApproachPose ⟂ WastePose
+- ApproachPose ⟂ CalibrationPose
+- DockPose ⟂ ToolCenterPose
+- DockPose ⟂ ToolCouplingPose
+- DockPose ⟂ PipettingTargetPose
+- DockPose ⟂ ImagingTargetPose
+- DockPose ⟂ RackPositionPose
+- DockPose ⟂ WastePose
+- DockPose ⟂ CalibrationPose
+- ToolCenterPose ⟂ ToolCouplingPose
+- ToolCenterPose ⟂ PipettingTargetPose
+- ToolCenterPose ⟂ ImagingTargetPose
+- ToolCenterPose ⟂ RackPositionPose
+- ToolCenterPose ⟂ WastePose
+- ToolCenterPose ⟂ CalibrationPose
+- ToolCouplingPose ⟂ PipettingTargetPose
+- ToolCouplingPose ⟂ ImagingTargetPose
+- ToolCouplingPose ⟂ RackPositionPose
+- ToolCouplingPose ⟂ WastePose
+- ToolCouplingPose ⟂ CalibrationPose
+- PipettingTargetPose ⟂ ImagingTargetPose
+- PipettingTargetPose ⟂ RackPositionPose
+- PipettingTargetPose ⟂ WastePose
+- PipettingTargetPose ⟂ CalibrationPose
+- ImagingTargetPose ⟂ RackPositionPose
+- ImagingTargetPose ⟂ WastePose
+- ImagingTargetPose ⟂ CalibrationPose
+- RackPositionPose ⟂ WastePose
+- RackPositionPose ⟂ CalibrationPose
+- WastePose ⟂ CalibrationPose
+- CommitRouting ⟂ QuarantineRouting
+- CommitRouting ⟂ EscalationRouting
+- CommitRouting ⟂ InvalidationRouting
+- QuarantineRouting ⟂ EscalationRouting
+- QuarantineRouting ⟂ InvalidationRouting
+- EscalationRouting ⟂ InvalidationRouting
+- PlateGripperTool ⟂ TubeGripperTool
+- PlateGripperTool ⟂ PipettingTool
+- PlateGripperTool ⟂ SuctionPickupTool
+- PlateGripperTool ⟂ CameraInspectionTool
+- TubeGripperTool ⟂ PipettingTool
+- TubeGripperTool ⟂ SuctionPickupTool
+- TubeGripperTool ⟂ CameraInspectionTool
+- PipettingTool ⟂ SuctionPickupTool
+- PipettingTool ⟂ CameraInspectionTool
+- SuctionPickupTool ⟂ CameraInspectionTool
+- KernelScientificDesignator ⟂ KernelLabTaskDesignator
+- KernelScientificDesignator ⟂ KernelManipulationDesignator
+- KernelScientificDesignator ⟂ MotionStepDesignator
+- KernelScientificDesignator ⟂ DeviceCommandDesignator
+- KernelLabTaskDesignator ⟂ KernelManipulationDesignator
+- KernelLabTaskDesignator ⟂ MotionStepDesignator
+- KernelLabTaskDesignator ⟂ DeviceCommandDesignator
+- KernelManipulationDesignator ⟂ MotionStepDesignator
+- KernelManipulationDesignator ⟂ DeviceCommandDesignator
+- ObjectDisplacementDesignator ⟂ ConfigurationChangeDesignator
+- ObjectDisplacementDesignator ⟂ SubstanceManipulationDesignator
+- ObjectDisplacementDesignator ⟂ ConnectingActionDesignator
+- ObjectDisplacementDesignator ⟂ PerceptionDesignator
+- ObjectDisplacementDesignator ⟂ MaintenanceActionDesignator
+- ObjectDisplacementDesignator ⟂ RegulationActionDesignator
+- ConfigurationChangeDesignator ⟂ SubstanceManipulationDesignator
+- ConfigurationChangeDesignator ⟂ ConnectingActionDesignator
+- ConfigurationChangeDesignator ⟂ PerceptionDesignator
+- ConfigurationChangeDesignator ⟂ MaintenanceActionDesignator
+- ConfigurationChangeDesignator ⟂ RegulationActionDesignator
+- SubstanceManipulationDesignator ⟂ ConnectingActionDesignator
+- SubstanceManipulationDesignator ⟂ PerceptionDesignator
+- SubstanceManipulationDesignator ⟂ MaintenanceActionDesignator
+- SubstanceManipulationDesignator ⟂ RegulationActionDesignator
+- ConnectingActionDesignator ⟂ PerceptionDesignator
+- ConnectingActionDesignator ⟂ MaintenanceActionDesignator
+- ConnectingActionDesignator ⟂ RegulationActionDesignator
+- PerceptionDesignator ⟂ MaintenanceActionDesignator
+- PerceptionDesignator ⟂ RegulationActionDesignator
+- MaintenanceActionDesignator ⟂ RegulationActionDesignator
+- TransportFacetDesignator ⟂ OperationFacetDesignator
+- TransportFacetDesignator ⟂ TransformationFacetDesignator
+- OperationFacetDesignator ⟂ TransformationFacetDesignator
+- RealizationConstraint ⟂ ValidityConstraint
+- HumanSafetyRule ⟂ MachineProtectionRule
+- HumanSafetyRule ⟂ BiosafetyRule
+- HumanSafetyRule ⟂ SampleIntegrityRule
+- HumanSafetyRule ⟂ IdentityRule
+- HumanSafetyRule ⟂ MeasurementValidityRule
+- MachineProtectionRule ⟂ BiosafetyRule
+- MachineProtectionRule ⟂ SampleIntegrityRule
+- MachineProtectionRule ⟂ IdentityRule
+- MachineProtectionRule ⟂ MeasurementValidityRule
+- BiosafetyRule ⟂ SampleIntegrityRule
+- BiosafetyRule ⟂ IdentityRule
+- BiosafetyRule ⟂ MeasurementValidityRule
+- SampleIntegrityRule ⟂ IdentityRule
+- SampleIntegrityRule ⟂ MeasurementValidityRule
+- IdentityRule ⟂ MeasurementValidityRule
+- EntranceZone ⟂ OperatorArea
+- EntranceZone ⟂ CulturePrepArea
+- EntranceZone ⟂ WashWasteArea
+- EntranceZone ⟂ CellZone
+- EntranceZone ⟂ ServiceCorridor
+- EntranceZone ⟂ LogisticsArea
+- OperatorArea ⟂ CulturePrepArea
+- OperatorArea ⟂ WashWasteArea
+- OperatorArea ⟂ CellZone
+- OperatorArea ⟂ ServiceCorridor
+- OperatorArea ⟂ LogisticsArea
+- CulturePrepArea ⟂ WashWasteArea
+- CulturePrepArea ⟂ CellZone
+- CulturePrepArea ⟂ ServiceCorridor
+- CulturePrepArea ⟂ LogisticsArea
+- WashWasteArea ⟂ CellZone
+- WashWasteArea ⟂ ServiceCorridor
+- WashWasteArea ⟂ LogisticsArea
+- CellZone ⟂ ServiceCorridor
+- CellZone ⟂ LogisticsArea
+- ServiceCorridor ⟂ LogisticsArea
+- HingedDoor ⟂ SlidingDoor
+- SprinklerHead ⟂ SmokeDetector
+- SprinklerHead ⟂ FireExtinguisher
+- SmokeDetector ⟂ FireExtinguisher
+- PlateTransferTask ⟂ PlateStoringTask
+- PlateTransferTask ⟂ PlateRetrievingTask
+- PlateTransferTask ⟂ IncubatingTask
+- PlateTransferTask ⟂ LiquidDispensingTask
+- PlateTransferTask ⟂ ImagingTask
+- PlateTransferTask ⟂ CalibratingTask
+- PlateTransferTask ⟂ QuarantiningTask
+- PlateStoringTask ⟂ PlateRetrievingTask
+- PlateStoringTask ⟂ IncubatingTask
+- PlateStoringTask ⟂ LiquidDispensingTask
+- PlateStoringTask ⟂ ImagingTask
+- PlateStoringTask ⟂ CalibratingTask
+- PlateStoringTask ⟂ QuarantiningTask
+- PlateRetrievingTask ⟂ IncubatingTask
+- PlateRetrievingTask ⟂ LiquidDispensingTask
+- PlateRetrievingTask ⟂ ImagingTask
+- PlateRetrievingTask ⟂ CalibratingTask
+- PlateRetrievingTask ⟂ QuarantiningTask
+- IncubatingTask ⟂ LiquidDispensingTask
+- IncubatingTask ⟂ ImagingTask
+- IncubatingTask ⟂ CalibratingTask
+- IncubatingTask ⟂ QuarantiningTask
+- LiquidDispensingTask ⟂ ImagingTask
+- LiquidDispensingTask ⟂ CalibratingTask
+- LiquidDispensingTask ⟂ QuarantiningTask
+- ImagingTask ⟂ CalibratingTask
+- ImagingTask ⟂ QuarantiningTask
+- CalibratingTask ⟂ QuarantiningTask
+- RestrictedEntryTerms ⟂ OpenEntryTerms
+- Link ⟂ Joint
+- LipidPeroxidation ⟂ AntioxidantDefense
+- LiverFibrosis ⟂ LiverRegeneration
+- ManipulationControlProgram ⟂ ManipulationExecutiveOperatingSystem
+- ManipulationDimension ⟂ ConceptFamily
+- ManipulationEpisode ⟂ ForceDynamicSchema
+- ManipulationExecutive ⟂ ProposalMechanism
+- ManipulationProblemClass ⟂ ProblemDomain
+- Definition ⟂ Theorem
+- Theory ⟂ Theorem
+- Signal ⟂ ManipulationEpisode
+- Signal ⟂ ManipulationEpisode
+- AxiomConditionalGuarantee ⟂ PACGuarantee
+- RecedingHorizon ⟂ InstantaneousHorizon
+- ProcessMonitor ⟂ FailureSignature
+- Motor ⟂ Sensor
+- Motor ⟂ Joint
+- LocalWarrant ⟂ JointWarrant
+- ProposalMessage ⟂ VerdictMessage
+- ObjectLevelRequirement ⟂ ReflectiveRequirement
+- SchemaLevelFailure ⟂ BindingLevelFailure
+- ObservationFunction ⟂ ForceDynamicEvent
+- Occasion ⟂ EventType
+- Occasion ⟂ TimeInterval
+- Occasion ⟂ Chronicle
+- Occasion ⟂ Occurrence
+- WorldOccasion ⟂ BeliefOccasion
+- Occasion ⟂ Occurrence
+- Occurrence ⟂ FluentType
+- Occurrence ⟂ TimeInterval
+- Occurrence ⟂ Chronicle
+- Occurrence ⟂ Occasion
+- WorldOccurrence ⟂ BeliefOccurrence
+- Occurrence ⟂ FluentType
+- AuthoredStateChange ⟂ DisturbanceStateChange
+- PerformOccurrence ⟂ BodyWorldTrajectorySegment
+- PerformOccurrence ⟂ ManipulationExecutive
+- Phenomenon ⟂ ManipulationEpisode
+- ProbabilisticHybridProcessModel ⟂ HybridBodyWorldState
+- ProblemDomain ⟂ ManipulationProblemClass
+- ProcessInterpretation ⟂ BodyWorldTrajectory
+- Recording ⟂ ManipulationEpisode
+- Recording ⟂ EvidenceBearingTrace
+- ReflectiveRepresentation ⟂ SemanticDigitalTwin
+- ReflectiveRequirement ⟂ ObjectLevelRequirement
+- ExpectedObservation ⟂ Observation
+- Renderer ⟂ Observation
+- RepresentationalObligation ⟂ dul:InformationObject
+- RepresentationalObligation ⟂ ForceDynamicSchema
+- FailedRequest ⟂ SolvedRequest
+- RobotBody ⟂ WorldPhysicalEntity
+- RobotControlLaw ⟂ ManipulationControlProgram
+- RobotSimulator ⟂ ManipulationExecutive
+- ScienceDiscipline ⟂ EngineeringDiscipline
+- ScientificActionDesignator ⟂ ExperimentalEpisode
+- ScientificCompetenceClaim ⟂ ExperimentalEpisode
+- DomainScientificObject ⟂ MethodologicalScientificObject
+- Sterile ⟂ NonSterile
+- Sensor ⟂ Motor
+- SensorModel ⟂ Observation
+- SubstrateRung ⟂ DesignRung
+- ExecutiveInformationProcess ⟂ BodyWorldPhysicalProcess
+- SolvabilityStructure ⟂ SolvabilityRung
+- StrengtheningModule ⟂ BodyWorldConstraint
+- StrengtheningModule ⟂ BodyWorldConstraint
+- BodyMotion ⟂ DistributionalPlausible
+- TaskEnvironmentEmbodimentClass ⟂ ManipulationEpisode
+- TimeInterval ⟂ FluentType
+- TimeInterval ⟂ EventType
+- TimeInterval ⟂ Occurrence
+- TimeInterval ⟂ Chronicle
+- TimeInterval ⟂ Occasion
+- TimeInterval ⟂ FluentType
+- ForbiddenTemplate ⟂ RequiredTemplate
+- ForbiddenTrajectory ⟂ SuccessfulTrajectory
+- SuccessfulTrajectory ⟂ UnsuccessfulTrajectory
+- UnsuccessfulTrajectory ⟂ ForbiddenTrajectory
+- CaseLevelEntity ⟂ MetaLevelEntity
+- ManipulationEpisode ⟂ EvidenceBearingTrace
+- ManipulationEpisode ⟂ Recording
+- ManipulationHypothesis ⟂ Theorem
+- UnpinnedLaboratory ⟂ PinnedLaboratory
+- UnrealizedExecutiveRole ⟂ RealizedExecutiveRole
+- AccountSide ⟂ RealizationSide
+- SterilityDroppedWarrant ⟂ UC1Warrant
+- ValidatedAssertion ⟂ UnvalidatedAssertion
+- PhysicalCommitmentAction ⟂ RecoveryAction
+- StatisticalWorldModel ⟂ WorldStructureModel
+- Xacro ⟂ URDF
+- XenobioticMetabolism ⟂ GlutathioneConjugation
+
+## Cross-side disjoints pruned (entailed by the partition, not asserted)
+
+These pairs sit on opposite sides of PhysicalEntity ⊓ AbstractEntity ⊑ ⊥, so their disjointness is inferred — asserting it would be redundant.
+
+- BodyWorldProcessMicrotheory ⟂ BodyWorldSystem
+- BodyWorldSystem ⟂ SceneGraph
+- BodyWorldSystem ⟂ ManipulationEpisode
+- ManipulationProblem ⟂ RobotWorldManipulationSystem
+- ComputationalMedium ⟂ BodyWorldSystem
+- ConfigurationSpace ⟂ dul:PhysicalObject
+- DeclaredBoundary ⟂ BodyWorldSystem
+- DigitalBodyWorldSystem ⟂ BodyWorldSystem
+- ExecutablePrediction ⟂ BodyWorldSystem
+- KnowledgeGraph ⟂ BodyWorldSystem
+- KRRResource ⟂ BodyWorldSystem
+- ManipulationEpisode ⟂ RobotWorldManipulationSystem
+- ManipulationExecutive ⟂ BodyWorldSystem
+- ManipulationExecutive ⟂ Robot
+- PhysicsEngine ⟂ BodyWorldSystem
+- RobotBody ⟂ ManipulationExecutive
+- RobotControlLaw ⟂ BodyMotion
+- RobotDescription ⟂ RobotBody
+- Robot ⟂ ManipulationExecutive
+- RobotSimulator ⟂ BodyWorldSystem
+- RobotWorldManipulationSystem ⟂ ManipulationEpisode
+- RobotWorldManipulationSystem ⟂ ManipulationExecutive
+- SceneDescription ⟂ BodyWorldSystem
+- SceneGraph ⟂ BodyWorldSystem
+- ScientificObject ⟂ RobotWorldManipulationSystem
+- SemanticDigitalTwin ⟂ BodyWorldSystem
+- SensorModel ⟂ Sensor
+- Projection ⟂ dul:PhysicalObject
+- VRBContainer ⟂ BodyWorldSystem
+- WorldStructureModel ⟂ BodyWorldSystem

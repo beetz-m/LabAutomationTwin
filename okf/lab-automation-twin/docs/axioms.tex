@@ -1,0 +1,2367 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=17mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setlength{\parindent}{0pt}
+\title{lab-automation-twin (AICOR OKF module): description-logic axioms}
+\date{2026-10-17}
+\begin{document}
+\maketitle
+\small
+Names are AICOR L2 names; \textsf{dul:}/\textsf{soma:} are AICOR's upper-level stand-ins; superclasses not defined here are upstream (AICOR core, robot-scientist, VRB, normative-admissibility).
+
+\section*{Properties, upper-level placements and the SDT node / referent split}
+\paragraph{dul:PhysicalPlace} (stand-in) a place with a physical extent; its sub-places are places (DUL: PhysicalPlace $\sqsubseteq$ PhysicalObject).
+\[\begin{array}{l}
+\mathsf{dul{:}PhysicalPlace} \sqsubseteq  \mathsf{dul{:}PhysicalObject} \\
+\mathsf{dul{:}PhysicalPlace} \sqsubseteq  \exists \mathit{hasSubPlace}.\mathsf{dul{:}PhysicalPlace} \\
+\end{array}\]
+\paragraph{LabArtifact} A designed physical object of the lab that the twin represents.
+\[\begin{array}{l}
+\mathsf{LabArtifact} \sqsubseteq  \mathsf{dul{:}PhysicalObject} \\
+\mathsf{LabArtifact} \sqsubseteq  \exists \mathit{isRepresentedBy}.\mathsf{LabSDTNode} \\
+\end{array}\]
+\paragraph{LabSDTNode} A node of the lab's semantic digital twin (one USD prim): information that represents one entity.
+\[\begin{array}{l}
+\mathsf{LabSDTNode} \sqsubseteq  \mathsf{SceneNode} \\
+\mathsf{LabSDTNode} \sqsubseteq  \exists \mathit{representsEntity}.\mathsf{Entity} \\
+\mathsf{LabSDTNode} \sqsubseteq  \exists \mathit{usdPrimPath}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{GroupingNode} A structural SDT node (USD scope / xform) that groups child nodes; it represents the grouping only.
+\[\begin{array}{l}
+\mathsf{GroupingNode} \sqsubseteq  \mathsf{LabSDTNode} \\
+\mathsf{GroupingNode} \sqsubseteq  \exists \mathit{hasChildNode}.\mathsf{LabSDTNode} \\
+\end{array}\]
+\paragraph{LabSemanticDigitalTwin} The semantic digital twin of a laboratory site: the belief state about it, structured as a USD scene graph.
+\[\begin{array}{l}
+\mathsf{LabSemanticDigitalTwin} \sqsubseteq  \mathsf{SemanticDigitalTwin} \\
+\mathsf{LabSemanticDigitalTwin} \sqsubseteq  \exists \mathit{hasNodeStructure}.\mathsf{LabSceneHierarchy} \\
+\end{array}\]
+\paragraph{LabSceneHierarchy} The USD namespace hierarchy of the lab twin (lab\_twin.usda + culture layer).
+\[\begin{array}{l}
+\mathsf{LabSceneHierarchy} \sqsubseteq  \mathsf{HierarchicalSceneStructure} \\
+\mathsf{LabSceneHierarchy} \sqsubseteq  \exists \mathit{hasNode}.\mathsf{LabSDTNode} \\
+\end{array}\]
+\paragraph{SimulationSettings} Physics or rendering settings of the twin (physics scene, sky and sun lights).
+\[\begin{array}{l}
+\mathsf{SimulationSettings} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{SimulationSettings} \sqsubseteq  \exists \mathit{configures}.\mathsf{LabSemanticDigitalTwin} \\
+\end{array}\]
+\paragraph{SimulationSettingsNode} An SDT node holding settings.
+\[\begin{array}{l}
+\mathsf{SimulationSettingsNode} \sqsubseteq  \mathsf{LabSDTNode} \\
+\mathsf{SimulationSettingsNode} \sqsubseteq  \exists \mathit{representsEntity}.\mathsf{SimulationSettings} \\
+\end{array}\]
+\paragraph{RenderRepresentationNode} A render-only USD prim (looks, materials, collision / visual geometry): representation, not SDT knowledge.
+\[\begin{array}{l}
+\mathsf{RenderRepresentationNode} \sqsubseteq  \mathsf{SceneNode} \\
+\mathsf{RenderRepresentationNode} \sqsubseteq  \neg \mathsf{LabSDTNode} \\
+\end{array}\]
+\section*{Laboratory site, premises, rooms, zones, building elements and fit-out}
+\paragraph{AutomatedBiologyLab} A laboratory site that comprises at least one robot experiment cell (AICOR Lab 1).
+\[\begin{array}{l}
+\mathsf{AutomatedBiologyLab} \sqsubseteq  \mathsf{LaboratorySite} \\
+\mathsf{AutomatedBiologyLab} \sqsubseteq  \exists \mathit{comprisesCell}.\mathsf{RobotExperimentCell} \\
+\mathsf{AutomatedBiologyLab} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabPremises} \\
+\end{array}\]
+\paragraph{LabPremises} The floor area of a laboratory site.
+\[\begin{array}{l}
+\mathsf{LabPremises} \sqsubseteq  \mathsf{dul{:}PhysicalPlace} \\
+\mathsf{LabPremises} \sqsubseteq  \exists \mathit{hasSubPlace}.\mathsf{LabRoom} \\
+\end{array}\]
+\paragraph{LabRoom} A room of the premises.
+\[\begin{array}{l}
+\mathsf{LabRoom} \sqsubseteq  \mathsf{dul{:}PhysicalPlace} \\
+\mathsf{LabRoom} \sqsubseteq  \exists \mathit{isSubPlaceOf}.\mathsf{LabPremises} \\
+\end{array}\]
+\paragraph{LabHall} The hall in which automation cells stand.
+\[\begin{array}{l}
+\mathsf{LabHall} \sqsubseteq  \mathsf{LabRoom} \\
+\mathsf{LabHall} \sqsubseteq  \exists \mathit{hostsObject}.\mathsf{LaboratoryCell} \\
+\end{array}\]
+\paragraph{StorageRoom} A room for consumables, reagents and cold storage (ST01).
+\[\begin{array}{l}
+\mathsf{StorageRoom} \sqsubseteq  \mathsf{LabRoom} \\
+\mathsf{StorageRoom} \sqsubseteq  \exists \mathit{hostsObject}.(\mathsf{ColdStorageDevice} \sqcup  \mathsf{StorageShelving}) \\
+\end{array}\]
+\paragraph{LabZone} A functional area (layout S1).
+\[\begin{array}{l}
+\mathsf{LabZone} \sqsubseteq  \mathsf{dul{:}PhysicalPlace} \\
+\mathsf{LabZone} \sqsubseteq  \exists \mathit{isSubPlaceOf}.(\mathsf{LabRoom} \sqcup  \mathsf{LabPremises}) \\
+\end{array}\]
+\paragraph{EntranceZone} Entrance and gowning.
+\[\begin{array}{l}
+\mathsf{EntranceZone} \sqsubseteq  \mathsf{LabZone} \\
+\mathsf{EntranceZone} \sqsubseteq  \exists \mathit{hostsObject}.\mathsf{PPEStation} \\
+\mathsf{EntranceZone} \sqcap  \mathsf{OperatorArea} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{OperatorArea} Monitoring and engineering desks.
+\[\begin{array}{l}
+\mathsf{OperatorArea} \sqsubseteq  \mathsf{LabZone} \\
+\mathsf{OperatorArea} \sqsubseteq  \exists \mathit{hostsObject}.\mathsf{OperatorWorkstation} \\
+\mathsf{OperatorArea} \sqcap  \mathsf{EntranceZone} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{CulturePrepArea} Manual culture work upstream.
+\[\begin{array}{l}
+\mathsf{CulturePrepArea} \sqsubseteq  \mathsf{LabZone} \\
+\mathsf{CulturePrepArea} \sqsubseteq  \exists \mathit{hostsObject}.\mathsf{BiosafetyCabinet} \\
+\mathsf{CulturePrepArea} \sqcap  \mathsf{EntranceZone} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{WashWasteArea} Sterilisation and waste.
+\[\begin{array}{l}
+\mathsf{WashWasteArea} \sqsubseteq  \mathsf{LabZone} \\
+\mathsf{WashWasteArea} \sqsubseteq  \exists \mathit{hostsObject}.(\mathsf{Autoclave} \sqcup  \mathsf{WasteStation}) \\
+\mathsf{WashWasteArea} \sqcap  \mathsf{EntranceZone} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{CellZone} Floor envelope of an automation cell.
+\[\begin{array}{l}
+\mathsf{CellZone} \sqsubseteq  \mathsf{LabZone} \\
+\mathsf{CellZone} \sqsubseteq  \exists \mathit{hostsObject}.\mathsf{LaboratoryCell} \\
+\mathsf{CellZone} \sqcap  \mathsf{EntranceZone} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ServiceCorridor} Technician access to the rear instruments.
+\[\begin{array}{l}
+\mathsf{ServiceCorridor} \sqsubseteq  \mathsf{LabZone} \\
+\mathsf{ServiceCorridor} \sqsubseteq  \exists \mathit{adjoinsZone}.\mathsf{CellZone} \\
+\mathsf{ServiceCorridor} \sqcap  \mathsf{EntranceZone} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{LogisticsArea} The AMR lane and walkway to the cell portal.
+\[\begin{array}{l}
+\mathsf{LogisticsArea} \sqsubseteq  \mathsf{LabZone} \\
+\mathsf{LogisticsArea} \sqsubseteq  \exists \mathit{adjoinsZone}.\mathsf{CellZone} \\
+\mathsf{LogisticsArea} \sqcap  \mathsf{EntranceZone} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{LabCeiling} Ceiling with services.
+\[\begin{array}{l}
+\mathsf{LabCeiling} \sqsubseteq  \mathsf{dul{:}PhysicalPlace} \\
+\mathsf{LabCeiling} \sqsubseteq  \exists \mathit{hostsObject}.\mathsf{BuildingServiceDevice} \\
+\end{array}\]
+\paragraph{LabBuildingShell} Walls, doors, windows and services.
+\[\begin{array}{l}
+\mathsf{LabBuildingShell} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{LabBuildingShell} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{LabDoor} \\
+\end{array}\]
+\paragraph{LabDoor} A door with a moving leaf.
+\[\begin{array}{l}
+\mathsf{LabDoor} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{LabDoor} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{DoorLeaf} \\
+\end{array}\]
+\paragraph{HingedDoor} Leaf swings on a hinge.
+\[\begin{array}{l}
+\mathsf{HingedDoor} \sqsubseteq  \mathsf{LabDoor} \\
+\mathsf{HingedDoor} \sqsubseteq  \exists \mathit{hasDirectComponent}.\exists \mathit{hasMechanismJointType}.\mathsf{Revolute} \\
+\mathsf{HingedDoor} \sqcap  \mathsf{SlidingDoor} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{SlidingDoor} Leaf slides.
+\[\begin{array}{l}
+\mathsf{SlidingDoor} \sqsubseteq  \mathsf{LabDoor} \\
+\mathsf{SlidingDoor} \sqsubseteq  \exists \mathit{hasDirectComponent}.\exists \mathit{hasMechanismJointType}.\mathsf{Prismatic} \\
+\mathsf{SlidingDoor} \sqcap  \mathsf{HingedDoor} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{InterlockedDoor} A door whose open state gates safe robot motion.
+\[\begin{array}{l}
+\mathsf{InterlockedDoor} \sqsubseteq  \mathsf{LabDoor} \\
+\mathsf{InterlockedDoor} \sqsubseteq  \exists \mathit{isMonitoredBy}.\mathsf{DoorInterlockSwitch} \\
+\end{array}\]
+\paragraph{DoorLeaf} The moving panel of a door.
+\[\begin{array}{l}
+\mathsf{DoorLeaf} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{DoorLeaf} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabDoor} \\
+\end{array}\]
+\paragraph{DoorFrame} The fixed frame of a door.
+\[\begin{array}{l}
+\mathsf{DoorFrame} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{DoorFrame} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabDoor} \\
+\end{array}\]
+\paragraph{AMRRoute} A navigation route of an AMR between docks (a USD curve).
+\[\begin{array}{l}
+\mathsf{AMRRoute} \sqsubseteq  \mathsf{SpatialPose} \\
+\mathsf{AMRRoute} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{NavigationTask} \\
+\mathsf{AMRRoute} \sqsubseteq  \exists \mathit{startsAt}.\mathsf{Dock} \\
+\mathsf{AMRRoute} \sqsubseteq  \exists \mathit{endsAt}.\mathsf{Dock} \\
+\end{array}\]
+\paragraph{RobotExperimentCell} An automation cell of robots and automated stations behind a safety enclosure (Cell 01).
+\[\begin{array}{l}
+\mathsf{RobotExperimentCell} \sqsubseteq  \mathsf{LaboratoryCell} \\
+\mathsf{RobotExperimentCell} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{CellRobot} \\
+\mathsf{RobotExperimentCell} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{LabAutomationDevice} \\
+\mathsf{RobotExperimentCell} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{SafetyEnclosure} \\
+\end{array}\]
+\paragraph{AutomationCell} Defined: a laboratory cell with robots and automated devices as direct components.
+\[\begin{array}{l}
+\mathsf{AutomationCell} \sqsubseteq  \mathsf{LaboratoryCell} \\
+\mathsf{AutomationCell} \equiv  \mathsf{LaboratoryCell} \sqcap  \exists \mathit{hasDirectComponent}.\mathsf{Robot} \sqcap  \exists \mathit{hasDirectComponent}.\mathsf{LabAutomationDevice} \\
+\end{array}\]
+\paragraph{SafetyEnclosure} Guard enclosure bounding the robot envelope: glazed sides, interlocked doors, e-stops (spec §4.1).
+\[\begin{array}{l}
+\mathsf{SafetyEnclosure} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{SafetyEnclosure} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{LabDoor} \\
+\mathsf{SafetyEnclosure} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{EmergencyStop} \\
+\end{array}\]
+\paragraph{AMRPortal} Opening in the enclosure for the sample AMR, guarded by a muted light curtain.
+\[\begin{array}{l}
+\mathsf{AMRPortal} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{AMRPortal} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{SafetyEnclosure} \\
+\mathsf{AMRPortal} \sqsubseteq  \exists \mathit{isMonitoredBy}.\mathsf{LightCurtain} \\
+\end{array}\]
+\paragraph{HMIPanel} Operator touch panel.
+\[\begin{array}{l}
+\mathsf{HMIPanel} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{HMIPanel} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{Worktop} The working surface of a bench.
+\[\begin{array}{l}
+\mathsf{Worktop} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{Worktop} \sqsubseteq  \exists \mathit{isDirectComponentOf}.(\mathsf{AutomationBench} \sqcup  \mathsf{LabBench}) \\
+\end{array}\]
+\paragraph{AutomationBench} Machine bench carrying stations at transfer height (spec §4.2).
+\[\begin{array}{l}
+\mathsf{AutomationBench} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{AutomationBench} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{Worktop} \\
+\mathsf{AutomationBench} \sqsubseteq  \exists \mathit{supportsObject}.\mathsf{LabAutomationDevice} \\
+\end{array}\]
+\paragraph{StationSupport} Plinth or side table carrying a station at its transfer height.
+\[\begin{array}{l}
+\mathsf{StationSupport} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{StationSupport} \sqsubseteq  \exists \mathit{supportsObject}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{VibrationIsolatedSupport} Support decoupled from the bench (imaging sub-base).
+\[\begin{array}{l}
+\mathsf{VibrationIsolatedSupport} \sqsubseteq  \mathsf{StationSupport} \\
+\mathsf{VibrationIsolatedSupport} \sqsubseteq  \exists \mathit{supportsObject}.\mathsf{ImagingDevice} \\
+\end{array}\]
+\paragraph{RailCover} Cover over a robot rail.
+\[\begin{array}{l}
+\mathsf{RailCover} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{RailCover} \sqsubseteq  \exists \mathit{coversObject}.\mathsf{LinearRail} \\
+\end{array}\]
+\paragraph{StationHood} Glazed hood over a station deck.
+\[\begin{array}{l}
+\mathsf{StationHood} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{StationHood} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabAutomationDevice} \\
+\end{array}\]
+\paragraph{FitOutAssembly} The cell's furniture and covers as installed.
+\[\begin{array}{l}
+\mathsf{FitOutAssembly} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{FitOutAssembly} \sqsubseteq  \exists \mathit{hasDirectComponent}.(\mathsf{StationSupport} \sqcup  \mathsf{AutomationBench} \sqcup  \mathsf{RailCover}) \\
+\end{array}\]
+\paragraph{SafetyDevice} Equipment whose function is safety.
+\[\begin{array}{l}
+\mathsf{SafetyDevice} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{SafetyDevice} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{LabHazard} \\
+\end{array}\]
+\paragraph{EmergencyStop} Latching e-stop button.
+\[\begin{array}{l}
+\mathsf{EmergencyStop} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{EmergencyStop} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{EmergencyStop} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{LightCurtain} Optical safety curtain across the portal; muting admits the AMR only.
+\[\begin{array}{l}
+\mathsf{LightCurtain} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{LightCurtain} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{LightCurtain} \sqsubseteq  \exists \mathit{monitorsEntity}.\mathsf{AMRPortal} \\
+\end{array}\]
+\paragraph{DoorInterlockSwitch} Door switch that withholds safe motion while the door is open.
+\[\begin{array}{l}
+\mathsf{DoorInterlockSwitch} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{DoorInterlockSwitch} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{DoorInterlockSwitch} \sqsubseteq  \exists \mathit{monitorsEntity}.\mathsf{LabDoor} \\
+\end{array}\]
+\paragraph{FireSafetyDevice} Fire detection or suppression.
+\[\begin{array}{l}
+\mathsf{FireSafetyDevice} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{FireSafetyDevice} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{FireHazard} \\
+\end{array}\]
+\paragraph{SprinklerHead} Pendent sprinkler head.
+\[\begin{array}{l}
+\mathsf{SprinklerHead} \sqsubseteq  \mathsf{FireSafetyDevice} \\
+\mathsf{SprinklerHead} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabCeiling} \\
+\mathsf{SprinklerHead} \sqcap  \mathsf{SmokeDetector} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{SmokeDetector} Ceiling smoke detector.
+\[\begin{array}{l}
+\mathsf{SmokeDetector} \sqsubseteq  \mathsf{FireSafetyDevice} \\
+\mathsf{SmokeDetector} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{SmokeDetector} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabCeiling} \\
+\mathsf{SmokeDetector} \sqcap  \mathsf{SprinklerHead} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{FireExtinguisher} Portable extinguisher.
+\[\begin{array}{l}
+\mathsf{FireExtinguisher} \sqsubseteq  \mathsf{FireSafetyDevice} \\
+\mathsf{FireExtinguisher} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{dul{:}PhysicalPlace} \\
+\mathsf{FireExtinguisher} \sqcap  \mathsf{SprinklerHead} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{FirstAidBox} First-aid cabinet.
+\[\begin{array}{l}
+\mathsf{FirstAidBox} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{FirstAidBox} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{dul{:}PhysicalPlace} \\
+\end{array}\]
+\paragraph{EmergencyShower} Drench shower.
+\[\begin{array}{l}
+\mathsf{EmergencyShower} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{EmergencyShower} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{ChemicalExposureHazard} \\
+\end{array}\]
+\paragraph{O2DepletionMonitor} Oxygen-depletion monitor guarding cryogen / gas storage.
+\[\begin{array}{l}
+\mathsf{O2DepletionMonitor} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{O2DepletionMonitor} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{O2DepletionMonitor} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{AsphyxiationHazard} \\
+\end{array}\]
+\paragraph{AccessControlReader} Card reader releasing a door.
+\[\begin{array}{l}
+\mathsf{AccessControlReader} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{AccessControlReader} \sqsubseteq  \exists \mathit{monitorsEntity}.\mathsf{LabDoor} \\
+\end{array}\]
+\paragraph{BuildingServiceDevice} Technical building equipment.
+\[\begin{array}{l}
+\mathsf{BuildingServiceDevice} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{BuildingServiceDevice} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{dul{:}PhysicalPlace} \\
+\end{array}\]
+\paragraph{HVACDiffuser} Supply-air diffuser.
+\[\begin{array}{l}
+\mathsf{HVACDiffuser} \sqsubseteq  \mathsf{BuildingServiceDevice} \\
+\mathsf{HVACDiffuser} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabCeiling} \\
+\end{array}\]
+\paragraph{CeilingLuminaire} LED ceiling panel.
+\[\begin{array}{l}
+\mathsf{CeilingLuminaire} \sqsubseteq  \mathsf{BuildingServiceDevice} \\
+\mathsf{CeilingLuminaire} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabCeiling} \\
+\end{array}\]
+\paragraph{ServerRack} Rack hosting the twin's compute.
+\[\begin{array}{l}
+\mathsf{ServerRack} \sqsubseteq  \mathsf{BuildingServiceDevice} \\
+\mathsf{ServerRack} \sqsubseteq  \exists \mathit{hostsSoftware}.\mathsf{LabSemanticDigitalTwin} \\
+\end{array}\]
+\paragraph{GloveDispenser} Glove box holder.
+\[\begin{array}{l}
+\mathsf{GloveDispenser} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{GloveDispenser} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabZone} \\
+\end{array}\]
+\paragraph{LabCoatRack} Coat hooks.
+\[\begin{array}{l}
+\mathsf{LabCoatRack} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{LabCoatRack} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{EntranceZone} \\
+\end{array}\]
+\paragraph{PPEStation} Defined: a PPE station.
+\[\begin{array}{l}
+\mathsf{PPEStation} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{PPEStation} \equiv  \mathsf{GloveDispenser} \sqcup  \mathsf{LabCoatRack} \\
+\end{array}\]
+\paragraph{PottedPlant} Decor (a plant is not a designed artifact).
+\[\begin{array}{l}
+\mathsf{PottedPlant} \sqsubseteq  \mathsf{dul{:}PhysicalObject} \\
+\mathsf{PottedPlant} \sqsubseteq  \exists \mathit{hasPhysicalPart}.\mathsf{BiologicalSpecimen} \\
+\mathsf{PottedPlant} \sqsubseteq  \neg \mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{Whiteboard} Wall whiteboard.
+\[\begin{array}{l}
+\mathsf{Whiteboard} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{Whiteboard} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabZone} \\
+\end{array}\]
+\paragraph{LabBench} Laboratory bench.
+\[\begin{array}{l}
+\mathsf{LabBench} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{LabBench} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{Worktop} \\
+\end{array}\]
+\paragraph{AMRDispatchBench} Bench where staff stage AMR carriers (S1).
+\[\begin{array}{l}
+\mathsf{AMRDispatchBench} \sqsubseteq  \mathsf{LabBench} \\
+\mathsf{AMRDispatchBench} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{StorageRoom} \\
+\end{array}\]
+\paragraph{StorageShelving} Shelving with addressable locations.
+\[\begin{array}{l}
+\mathsf{StorageShelving} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{StorageShelving} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{dul{:}PhysicalPlace} \\
+\end{array}\]
+\paragraph{PipetteCarousel} Manual pipette stand.
+\[\begin{array}{l}
+\mathsf{PipetteCarousel} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{PipetteCarousel} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabZone} \\
+\end{array}\]
+\paragraph{LabSinkUnit} Sink with tap and eyewash.
+\[\begin{array}{l}
+\mathsf{LabSinkUnit} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{LabSinkUnit} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{WashingFunction} \\
+\end{array}\]
+\paragraph{WasteStation} Segregated waste and sharps bins.
+\[\begin{array}{l}
+\mathsf{WasteStation} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{WasteStation} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{WashWasteArea} \\
+\end{array}\]
+\paragraph{OperatorWorkstation} Desk with monitors.
+\[\begin{array}{l}
+\mathsf{OperatorWorkstation} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{OperatorWorkstation} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{OperatorArea} \\
+\end{array}\]
+\paragraph{LabStool} Lab stool.
+\[\begin{array}{l}
+\mathsf{LabStool} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{LabStool} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{LabZone} \\
+\end{array}\]
+\section*{Laboratory devices, automated stations, mechanisms and device sensors}
+\paragraph{PlateStorageFunction} Store / buffer plates.
+\[\begin{array}{l}
+\mathsf{PlateStorageFunction} \sqsubseteq  \mathsf{DeviceFunction} \\
+\mathsf{PlateStorageFunction} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{PlateStoringTask} \\
+\end{array}\]
+\paragraph{QuarantineFunction} Contain suspect material.
+\[\begin{array}{l}
+\mathsf{QuarantineFunction} \sqsubseteq  \mathsf{DeviceFunction} \\
+\mathsf{QuarantineFunction} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{QuarantiningTask} \\
+\end{array}\]
+\paragraph{CalibrationFunction} Validate a measurement chain.
+\[\begin{array}{l}
+\mathsf{CalibrationFunction} \sqsubseteq  \mathsf{DeviceFunction} \\
+\mathsf{CalibrationFunction} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{CalibratingTask} \\
+\end{array}\]
+\paragraph{IdentificationFunction} Read labware identity.
+\[\begin{array}{l}
+\mathsf{IdentificationFunction} \sqsubseteq  \mathsf{DeviceFunction} \\
+\mathsf{IdentificationFunction} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{IdentifyingTask} \\
+\end{array}\]
+\paragraph{ColdStorageFunction} Keep material cold.
+\[\begin{array}{l}
+\mathsf{ColdStorageFunction} \sqsubseteq  \mathsf{DeviceFunction} \\
+\mathsf{ColdStorageFunction} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{ColdStoringTask} \\
+\end{array}\]
+\paragraph{SterilizationFunction} Sterilise material.
+\[\begin{array}{l}
+\mathsf{SterilizationFunction} \sqsubseteq  \mathsf{DeviceFunction} \\
+\mathsf{SterilizationFunction} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{SterilizingTask} \\
+\end{array}\]
+\paragraph{AsepticWorkFunction} Protect open cultures.
+\[\begin{array}{l}
+\mathsf{AsepticWorkFunction} \sqsubseteq  \mathsf{DeviceFunction} \\
+\mathsf{AsepticWorkFunction} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{AsepticHandlingTask} \\
+\end{array}\]
+\paragraph{TemperatureControlFunction} Hold a sample at temperature.
+\[\begin{array}{l}
+\mathsf{TemperatureControlFunction} \sqsubseteq  \mathsf{DeviceFunction} \\
+\mathsf{TemperatureControlFunction} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{TemperatureControllingTask} \\
+\end{array}\]
+\paragraph{PlateStorageDevice} Defined: an automated device that stores plates in a cassette.
+\[\begin{array}{l}
+\mathsf{PlateStorageDevice} \sqsubseteq  \mathsf{LabAutomationDevice} \\
+\mathsf{PlateStorageDevice} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{PlateStorageDevice} \equiv  \mathsf{LabAutomationDevice} \sqcap  \exists \mathit{hasDirectComponent}.\mathsf{PlateCassette} \\
+\mathsf{PlateStorageDevice} \sqcap  \mathsf{DispensingDevice} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{AutomatedPlateHotel} Ambient automated plate store (L09, LiCONiC LPE220 baseline).
+\[\begin{array}{l}
+\mathsf{AutomatedPlateHotel} \sqsubseteq  \mathsf{PlateStorageDevice} \\
+\mathsf{AutomatedPlateHotel} \sqsubseteq  \exists \mathit{hasDeviceFunction}.\mathsf{PlateStorageFunction} \\
+\mathsf{AutomatedPlateHotel} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{PlateShuttle} \\
+\mathsf{AutomatedPlateHotel} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{InternalPlateHandler} \\
+\mathsf{AutomatedPlateHotel} \sqsubseteq  \neg \exists \mathit{hasDirectComponent}.\mathsf{IncubationChamber} \\
+\mathsf{AutomatedPlateHotel} \sqcap  \mathsf{AutomatedCO2Incubator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{AutomatedCO2Incubator} Robot-accessible CO2 incubator (L10, LiCONiC STX44-SA baseline).
+\[\begin{array}{l}
+\mathsf{AutomatedCO2Incubator} \sqsubseteq  \mathsf{IncubationDevice} \\
+\mathsf{AutomatedCO2Incubator} \sqsubseteq  \mathsf{PlateStorageDevice} \\
+\mathsf{AutomatedCO2Incubator} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{IncubationChamber} \\
+\mathsf{AutomatedCO2Incubator} \sqsubseteq  \exists \mathit{declaresSetpoint}.\mathsf{OperatingSetpoint} \\
+\mathsf{AutomatedCO2Incubator} \sqcap  \mathsf{AutomatedPlateHotel} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{AutomatedLiquidHandler} Gantry liquid handler (L12, Hamilton ZEUS LT baseline).
+\[\begin{array}{l}
+\mathsf{AutomatedLiquidHandler} \sqsubseteq  \mathsf{DispensingDevice} \\
+\mathsf{AutomatedLiquidHandler} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{AutomatedLiquidHandler} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{GantryAxis} \\
+\mathsf{AutomatedLiquidHandler} \sqsubseteq  \exists \mathit{hasPhysicalPart}.\mathsf{PipettingChannel} \\
+\end{array}\]
+\paragraph{BrightFieldImager} Bright-field imager (L17, OpenFlexure-derived).
+\[\begin{array}{l}
+\mathsf{BrightFieldImager} \sqsubseteq  \mathsf{ImagingDevice} \\
+\mathsf{BrightFieldImager} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{BrightFieldImager} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{MotorizedStage} \\
+\mathsf{BrightFieldImager} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{FocusDrive} \\
+\mathsf{BrightFieldImager} \sqsubseteq  \exists \mathit{hasPhysicalPart}.\mathsf{ObjectiveTurret} \\
+\end{array}\]
+\paragraph{QCCalibrationStation} QC / calibration bench with reference artifacts (L21).
+\[\begin{array}{l}
+\mathsf{QCCalibrationStation} \sqsubseteq  \mathsf{LabAutomationDevice} \\
+\mathsf{QCCalibrationStation} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{QCCalibrationStation} \sqsubseteq  \exists \mathit{hasDeviceFunction}.\mathsf{CalibrationFunction} \\
+\mathsf{QCCalibrationStation} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{LightBarrierSensor} \\
+\mathsf{QCCalibrationStation} \sqcap  \mathsf{PlateStorageDevice} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{QuarantineStation} Lockable quarantine store (H4).
+\[\begin{array}{l}
+\mathsf{QuarantineStation} \sqsubseteq  \mathsf{LabAutomationDevice} \\
+\mathsf{QuarantineStation} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{QuarantineStation} \sqsubseteq  \exists \mathit{hasDeviceFunction}.\mathsf{QuarantineFunction} \\
+\mathsf{QuarantineStation} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{LockableDoor} \\
+\mathsf{QuarantineStation} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{KeySwitch} \\
+\mathsf{QuarantineStation} \sqcap  \mathsf{PlateStorageDevice} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{Dock} A place an AMR docks at.
+\[\begin{array}{l}
+\mathsf{Dock} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{Dock} \sqsubseteq  \exists \mathit{hasInteractionPose}.\mathsf{DockPose} \\
+\end{array}\]
+\paragraph{DeterministicAMRDock} V-guide dock with pose sensors (H2).
+\[\begin{array}{l}
+\mathsf{DeterministicAMRDock} \sqsubseteq  \mathsf{Dock} \\
+\mathsf{DeterministicAMRDock} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{DockSensor} \\
+\end{array}\]
+\paragraph{DispatchDock} Loading / charging dock in the storage room (S1).
+\[\begin{array}{l}
+\mathsf{DispatchDock} \sqsubseteq  \mathsf{Dock} \\
+\mathsf{DispatchDock} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{StorageRoom} \\
+\end{array}\]
+\paragraph{ToolMagazine} Automatic tool magazine (TCM01, Zimmer WMR2063 baseline).
+\[\begin{array}{l}
+\mathsf{ToolMagazine} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{ToolMagazine} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{MagazineStand} \\
+\mathsf{ToolMagazine} \sqsubseteq  \exists \mathit{storesTool}.\mathsf{ExchangeableTool} \\
+\end{array}\]
+\paragraph{PassiveFixture} A fixture with no moving joints.
+\[\begin{array}{l}
+\mathsf{PassiveFixture} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{PassiveFixture} \sqsubseteq  \neg \exists \mathit{hasDirectComponent}.\mathsf{MechanismJoint} \\
+\end{array}\]
+\paragraph{HandoverNest} Passive nest where two robots hand a plate over (R01/R02).
+\[\begin{array}{l}
+\mathsf{HandoverNest} \sqsubseteq  \mathsf{PassiveFixture} \\
+\mathsf{HandoverNest} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{SeatSensor} \\
+\mathsf{HandoverNest} \sqsubseteq  \geq 2\, \mathit{isServedByRobot}.\mathsf{Robot} \\
+\end{array}\]
+\paragraph{ManualLabEquipment} Laboratory equipment operated by people, with no robot control interface.
+\[\begin{array}{l}
+\mathsf{ManualLabEquipment} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{ManualLabEquipment} \sqsubseteq  \neg \mathsf{LabAutomationDevice} \\
+\mathsf{ManualLabEquipment} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{DeviceFunction} \\
+\end{array}\]
+\paragraph{BiosafetyCabinet} Class II BSC.
+\[\begin{array}{l}
+\mathsf{BiosafetyCabinet} \sqsubseteq  \mathsf{ManualLabEquipment} \\
+\mathsf{BiosafetyCabinet} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{AsepticWorkFunction} \\
+\end{array}\]
+\paragraph{ManualCO2Incubator} Benchtop.
+\[\begin{array}{l}
+\mathsf{ManualCO2Incubator} \sqsubseteq  \mathsf{ManualLabEquipment} \\
+\mathsf{ManualCO2Incubator} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{IncubationFunction} \\
+\end{array}\]
+\paragraph{InvertedMicroscope} Manual scope.
+\[\begin{array}{l}
+\mathsf{InvertedMicroscope} \sqsubseteq  \mathsf{ManualLabEquipment} \\
+\mathsf{InvertedMicroscope} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{ImagingFunction} \\
+\end{array}\]
+\paragraph{Centrifuge} Benchtop centrifuge.
+\[\begin{array}{l}
+\mathsf{Centrifuge} \sqsubseteq  \mathsf{ManualLabEquipment} \\
+\mathsf{Centrifuge} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{SeparationFunction} \\
+\end{array}\]
+\paragraph{WaterBath} Water bath.
+\[\begin{array}{l}
+\mathsf{WaterBath} \sqsubseteq  \mathsf{ManualLabEquipment} \\
+\mathsf{WaterBath} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{TemperatureControlFunction} \\
+\end{array}\]
+\paragraph{Autoclave} Steam steriliser.
+\[\begin{array}{l}
+\mathsf{Autoclave} \sqsubseteq  \mathsf{ManualLabEquipment} \\
+\mathsf{Autoclave} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{SterilizationFunction} \\
+\end{array}\]
+\paragraph{ColdStorageDevice} Cold storage.
+\[\begin{array}{l}
+\mathsf{ColdStorageDevice} \sqsubseteq  \mathsf{ManualLabEquipment} \\
+\mathsf{ColdStorageDevice} \sqsubseteq  \exists \mathit{hasEquipmentFunction}.\mathsf{ColdStorageFunction} \\
+\end{array}\]
+\paragraph{LabRefrigerator} +4 $^\circ$C refrigerator.
+\[\begin{array}{l}
+\mathsf{LabRefrigerator} \sqsubseteq  \mathsf{ColdStorageDevice} \\
+\mathsf{LabRefrigerator} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{StorageRoom} \\
+\end{array}\]
+\paragraph{LabFreezer} -20 $^\circ$C freezer.
+\[\begin{array}{l}
+\mathsf{LabFreezer} \sqsubseteq  \mathsf{ColdStorageDevice} \\
+\mathsf{LabFreezer} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{StorageRoom} \\
+\end{array}\]
+\paragraph{ULTFreezer} -80 $^\circ$C ultra-low freezer.
+\[\begin{array}{l}
+\mathsf{ULTFreezer} \sqsubseteq  \mathsf{ColdStorageDevice} \\
+\mathsf{ULTFreezer} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{StorageRoom} \\
+\end{array}\]
+\paragraph{CryogenicDewar} LN2 dewar.
+\[\begin{array}{l}
+\mathsf{CryogenicDewar} \sqsubseteq  \mathsf{ColdStorageDevice} \\
+\mathsf{CryogenicDewar} \sqsubseteq  \exists \mathit{isMonitoredBy}.\mathsf{O2DepletionMonitor} \\
+\end{array}\]
+\paragraph{GasCylinderCabinet} Ventilated CO2 cabinet.
+\[\begin{array}{l}
+\mathsf{GasCylinderCabinet} \sqsubseteq  \mathsf{SafetyDevice} \\
+\mathsf{GasCylinderCabinet} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{AsphyxiationHazard} \\
+\end{array}\]
+\paragraph{MechanismPart} A component of a lab device or fixture (not a robot-body link; D-LAT-1).
+\[\begin{array}{l}
+\mathsf{MechanismPart} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{MechanismPart} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{MechanismJoint} A kinematic joint of a device or tool mechanism (USD physics joint), typed by AICOR's JointType.
+\[\begin{array}{l}
+\mathsf{MechanismJoint} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{MechanismJoint} \sqsubseteq  {=}1\, \mathit{hasMechanismJointType}.\mathsf{JointType} \\
+\end{array}\]
+\paragraph{DrivenMechanismJoint} Defined: a mechanism joint with an actuator (a USD joint with a drive).
+\[\begin{array}{l}
+\mathsf{DrivenMechanismJoint} \sqsubseteq  \mathsf{MechanismJoint} \\
+\mathsf{DrivenMechanismJoint} \equiv  \mathsf{MechanismJoint} \sqcap  \exists \mathit{isDrivenBy}.\mathsf{Actuator} \\
+\end{array}\]
+\paragraph{Actuator} Motor or drive of a joint.
+\[\begin{array}{l}
+\mathsf{Actuator} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{Actuator} \sqsubseteq  \exists \mathit{drivesJoint}.\mathsf{MechanismJoint} \\
+\end{array}\]
+\paragraph{StationHousing} Body of a device.
+\[\begin{array}{l}
+\mathsf{StationHousing} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{StationHousing} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabAutomationDevice} \\
+\end{array}\]
+\paragraph{IncubationChamber} Conditioned, insulated chamber.
+\[\begin{array}{l}
+\mathsf{IncubationChamber} \sqsubseteq  \mathsf{StationHousing} \\
+\mathsf{IncubationChamber} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{IncubationDevice} \\
+\end{array}\]
+\paragraph{AccessGate} Sliding load gate.
+\[\begin{array}{l}
+\mathsf{AccessGate} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{AccessGate} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabAutomationDevice} \\
+\end{array}\]
+\paragraph{ServiceDoor} Hinged service door.
+\[\begin{array}{l}
+\mathsf{ServiceDoor} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{ServiceDoor} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabAutomationDevice} \\
+\end{array}\]
+\paragraph{LockableDoor} Door that a latch bolt locks (H4).
+\[\begin{array}{l}
+\mathsf{LockableDoor} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{LockableDoor} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{QuarantineStation} \\
+\mathsf{LockableDoor} \sqsubseteq  \exists \mathit{isMonitoredBy}.\mathsf{DeviceSensor} \\
+\end{array}\]
+\paragraph{LatchBolt} Bolt that locks a door.
+\[\begin{array}{l}
+\mathsf{LatchBolt} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{LatchBolt} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{QuarantineStation} \\
+\end{array}\]
+\paragraph{OperatorControl} A physical control operated by a person.
+\[\begin{array}{l}
+\mathsf{OperatorControl} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{OperatorControl} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{KeySwitch} Key-operated selector (H4 release).
+\[\begin{array}{l}
+\mathsf{KeySwitch} \sqsubseteq  \mathsf{OperatorControl} \\
+\mathsf{KeySwitch} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{KeyCylinder} \\
+\end{array}\]
+\paragraph{KeyCylinder} Rotating cylinder of a key switch.
+\[\begin{array}{l}
+\mathsf{KeyCylinder} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{KeyCylinder} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{KeySwitch} \\
+\end{array}\]
+\paragraph{PushButton} Momentary push button.
+\[\begin{array}{l}
+\mathsf{PushButton} \sqsubseteq  \mathsf{OperatorControl} \\
+\mathsf{PushButton} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{ButtonPlunger} \\
+\end{array}\]
+\paragraph{ButtonPlunger} Moving plunger of a button.
+\[\begin{array}{l}
+\mathsf{ButtonPlunger} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{ButtonPlunger} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{PushButton} \\
+\end{array}\]
+\paragraph{PlateShuttle} Sliding SBS nest that presents a plate outside the device.
+\[\begin{array}{l}
+\mathsf{PlateShuttle} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{PlateShuttle} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{SeatSensor} \\
+\mathsf{PlateShuttle} \sqsubseteq  \exists \mathit{hasInteractionPose}.\mathsf{PlateSeatPose} \\
+\end{array}\]
+\paragraph{PlateCassette} Stack of plate slots.
+\[\begin{array}{l}
+\mathsf{PlateCassette} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{PlateCassette} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{PlateSlot} \\
+\end{array}\]
+\paragraph{PlateSlot} One plate position of a cassette.
+\[\begin{array}{l}
+\mathsf{PlateSlot} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{PlateSlot} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{PlateCassette} \\
+\mathsf{PlateSlot} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{SlotOccupancySensor} \\
+\mathsf{PlateSlot} \sqsubseteq  \exists \mathit{slotIndex}.\mathsf{xsd{:}integer} \\
+\end{array}\]
+\paragraph{InternalPlateHandler} Lift moving plates cassette <-> shuttle.
+\[\begin{array}{l}
+\mathsf{InternalPlateHandler} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{InternalPlateHandler} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{PlateFork} \\
+\end{array}\]
+\paragraph{PlateFork} Fork tine lifting a plate.
+\[\begin{array}{l}
+\mathsf{PlateFork} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{PlateFork} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{InternalPlateHandler} \\
+\end{array}\]
+\paragraph{GantryAxis} Linear gantry axis.
+\[\begin{array}{l}
+\mathsf{GantryAxis} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{GantryAxis} \sqsubseteq  \exists \mathit{isDirectComponentOf}.(\mathsf{DispensingDevice} \sqcup  \mathsf{GantryAxis}) \\
+\end{array}\]
+\paragraph{PipettingChannel} Z axis with a pipetting head.
+\[\begin{array}{l}
+\mathsf{PipettingChannel} \sqsubseteq  \mathsf{GantryAxis} \\
+\mathsf{PipettingChannel} \sqsubseteq  \exists \mathit{hasInteractionPose}.\mathsf{ToolCenterPose} \\
+\end{array}\]
+\paragraph{MotorizedStage} XY stage axis (L17's stage is also the load drawer).
+\[\begin{array}{l}
+\mathsf{MotorizedStage} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{MotorizedStage} \sqsubseteq  \exists \mathit{isDirectComponentOf}.(\mathsf{ImagingDevice} \sqcup  \mathsf{MotorizedStage}) \\
+\end{array}\]
+\paragraph{FocusDrive} Z focus drive.
+\[\begin{array}{l}
+\mathsf{FocusDrive} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{FocusDrive} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{ObjectiveTurret} \\
+\end{array}\]
+\paragraph{ObjectiveTurret} Objective changer.
+\[\begin{array}{l}
+\mathsf{ObjectiveTurret} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{ObjectiveTurret} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{FocusDrive} \\
+\end{array}\]
+\paragraph{MagazineStand} Stand carrying tool docks and their occupancy sensors.
+\[\begin{array}{l}
+\mathsf{MagazineStand} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{MagazineStand} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{ToolMagazine} \\
+\mathsf{MagazineStand} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{SlotOccupancySensor} \\
+\end{array}\]
+\paragraph{LinearRail} Linear axis carrying a robot (igus ZLW-1660).
+\[\begin{array}{l}
+\mathsf{LinearRail} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{LinearRail} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{RailCarriage} \\
+\end{array}\]
+\paragraph{RailCarriage} Moving rail carriage.
+\[\begin{array}{l}
+\mathsf{RailCarriage} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{RailCarriage} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LinearRail} \\
+\end{array}\]
+\paragraph{DeviceSensor} A sensor of a device or fixture (not AICOR's robot-mounted Sensor; D-LAT-1).
+\[\begin{array}{l}
+\mathsf{DeviceSensor} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{DeviceSensor} \sqsubseteq  \exists \mathit{monitorsEntity}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{SeatSensor} Flush seat window (plate seated).
+\[\begin{array}{l}
+\mathsf{SeatSensor} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{SeatSensor} \sqsubseteq  \exists \mathit{monitorsEntity}.\mathsf{PlateSeatPose} \\
+\end{array}\]
+\paragraph{SlotOccupancySensor} Ray occupancy sensor.
+\[\begin{array}{l}
+\mathsf{SlotOccupancySensor} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{SlotOccupancySensor} \sqsubseteq  \exists \mathit{isDirectComponentOf}.(\mathsf{PlateSlot} \sqcup  \mathsf{MagazineStand}) \\
+\end{array}\]
+\paragraph{CarrierPresenceSensor} Carrier present in AMR cabinet.
+\[\begin{array}{l}
+\mathsf{CarrierPresenceSensor} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{CarrierPresenceSensor} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{MobileRobotBase} \\
+\end{array}\]
+\paragraph{ThroughBeamSensor} Emitter / receiver beam element.
+\[\begin{array}{l}
+\mathsf{ThroughBeamSensor} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{ThroughBeamSensor} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabAutomationDevice} \\
+\end{array}\]
+\paragraph{DockSensor} Ray measuring the docked AMR pose.
+\[\begin{array}{l}
+\mathsf{DockSensor} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{DockSensor} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{DeterministicAMRDock} \\
+\end{array}\]
+\paragraph{BarcodeReader} Reads plate barcodes.
+\[\begin{array}{l}
+\mathsf{BarcodeReader} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{BarcodeReader} \sqsubseteq  \exists \mathit{monitorsEntity}.\mathsf{Labware} \\
+\end{array}\]
+\paragraph{LightBarrierSensor} Crossed barrier measuring a TCP.
+\[\begin{array}{l}
+\mathsf{LightBarrierSensor} \sqsubseteq  \mathsf{DeviceSensor} \\
+\mathsf{LightBarrierSensor} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{QCCalibrationStation} \\
+\end{array}\]
+\paragraph{FiducialMarker} Marker used to register poses.
+\[\begin{array}{l}
+\mathsf{FiducialMarker} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{FiducialMarker} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{CalibratingTask} \\
+\end{array}\]
+\paragraph{AprilTagMarker} AprilTag 36h11.
+\[\begin{array}{l}
+\mathsf{AprilTagMarker} \sqsubseteq  \mathsf{FiducialMarker} \\
+\mathsf{AprilTagMarker} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{DatumPin} Conical registration pin.
+\[\begin{array}{l}
+\mathsf{DatumPin} \sqsubseteq  \mathsf{FiducialMarker} \\
+\mathsf{DatumPin} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{LabArtifact} \\
+\end{array}\]
+\section*{Cell robots, robot bodies, tools and robot skills}
+\paragraph{CellRobot} A robot of an automation cell, assigned to stations (layout P1).
+\[\begin{array}{l}
+\mathsf{CellRobot} \sqsubseteq  \mathsf{Robot} \\
+\mathsf{CellRobot} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{CellRobot} \sqsubseteq  \exists \mathit{servesStation}.\mathsf{LabArtifact} \\
+\mathsf{CellRobot} \sqsubseteq  \exists \mathit{hasRobotSkill}.\mathsf{RobotSkill} \\
+\end{array}\]
+\paragraph{FixedBaseManipulator} Arm on a fixed pedestal (R01 FR3).
+\[\begin{array}{l}
+\mathsf{FixedBaseManipulator} \sqsubseteq  \mathsf{CellRobot} \\
+\mathsf{FixedBaseManipulator} \sqsubseteq  \exists \mathit{hasProperPart}.\mathsf{ArmRobotBody} \\
+\mathsf{FixedBaseManipulator} \sqsubseteq  \neg \exists \mathit{hasDirectComponent}.(\mathsf{LinearRail} \sqcup  \mathsf{MobileRobotBase}) \\
+\end{array}\]
+\paragraph{RailMountedManipulator} Arm on a linear rail with a tool changer (R02 UR5e).
+\[\begin{array}{l}
+\mathsf{RailMountedManipulator} \sqsubseteq  \mathsf{CellRobot} \\
+\mathsf{RailMountedManipulator} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{LinearRail} \\
+\mathsf{RailMountedManipulator} \sqsubseteq  \exists \mathit{hasProperPart}.\mathsf{ArmRobotBody} \\
+\end{array}\]
+\paragraph{SampleTransportAMR} Clean-sample AMR with a sealed cabinet (R03, MiR100 class).
+\[\begin{array}{l}
+\mathsf{SampleTransportAMR} \sqsubseteq  \mathsf{CellRobot} \\
+\mathsf{SampleTransportAMR} \sqsubseteq  \exists \mathit{hasProperPart}.\mathsf{MobileRobotBase} \\
+\mathsf{SampleTransportAMR} \sqsubseteq  \exists \mathit{hasRobotSkill}.\mathsf{SampleTransportSkill} \\
+\end{array}\]
+\paragraph{ArmRobotBody} Serial arm body (FR3, UR5e).
+\[\begin{array}{l}
+\mathsf{ArmRobotBody} \sqsubseteq  \mathsf{RobotBody} \\
+\mathsf{ArmRobotBody} \sqsubseteq  \exists \mathit{hasEndEffectorMount}.\mathsf{EndEffector} \\
+\end{array}\]
+\paragraph{MobileRobotBase} AMR base with the sample cabinet (R03).
+\[\begin{array}{l}
+\mathsf{MobileRobotBase} \sqsubseteq  \mathsf{RobotBody} \\
+\mathsf{MobileRobotBase} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{CabinetLid} \\
+\end{array}\]
+\paragraph{CabinetLid} Flat lid over the carrier nest.
+\[\begin{array}{l}
+\mathsf{CabinetLid} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{CabinetLid} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{MobileRobotBase} \\
+\end{array}\]
+\paragraph{VirtualPlanarLink} A simulation link of the AMR's planar base joints (twin artefact).
+\[\begin{array}{l}
+\mathsf{VirtualPlanarLink} \sqsubseteq  \mathsf{Link} \\
+\mathsf{VirtualPlanarLink} \sqsubseteq  \exists \mathit{partOf}.\mathsf{MobileRobotBase} \\
+\end{array}\]
+\paragraph{AutomaticToolChanger} Robot-side tool coupler.
+\[\begin{array}{l}
+\mathsf{AutomaticToolChanger} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{AutomaticToolChanger} \sqsubseteq  \exists \mathit{couplesTool}.\mathsf{ExchangeableTool} \\
+\end{array}\]
+\paragraph{ExchangeableTool} End effector exchanged by a tool changer (stored in a magazine, not a robot-body link).
+\[\begin{array}{l}
+\mathsf{ExchangeableTool} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{ExchangeableTool} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{ToolBody} \\
+\mathsf{ExchangeableTool} \sqsubseteq  \exists \mathit{hasInteractionPose}.\mathsf{ToolCouplingPose} \\
+\end{array}\]
+\paragraph{ToolBody} Housing of a tool.
+\[\begin{array}{l}
+\mathsf{ToolBody} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{ToolBody} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{ExchangeableTool} \\
+\end{array}\]
+\paragraph{GripperJaw} Jaw of a gripper tool.
+\[\begin{array}{l}
+\mathsf{GripperJaw} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{GripperJaw} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{ExchangeableTool} \\
+\end{array}\]
+\paragraph{PlateGripperTool} Two-jaw SBS plate gripper (T01).
+\[\begin{array}{l}
+\mathsf{PlateGripperTool} \sqsubseteq  \mathsf{ExchangeableTool} \\
+\mathsf{PlateGripperTool} \sqsubseteq  {=}2\, \mathit{hasDirectComponent}.\mathsf{GripperJaw} \\
+\mathsf{PlateGripperTool} \sqsubseteq  \exists \mathit{affordsRobotSkill}.\mathsf{PlateTransferSkill} \\
+\mathsf{PlateGripperTool} \sqcap  \mathsf{TubeGripperTool} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{TubeGripperTool} T02.
+\[\begin{array}{l}
+\mathsf{TubeGripperTool} \sqsubseteq  \mathsf{ExchangeableTool} \\
+\mathsf{TubeGripperTool} \sqsubseteq  \exists \mathit{affordsRobotSkill}.\mathsf{TubeHandlingSkill} \\
+\mathsf{TubeGripperTool} \sqcap  \mathsf{PlateGripperTool} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{PipettingTool} T03.
+\[\begin{array}{l}
+\mathsf{PipettingTool} \sqsubseteq  \mathsf{ExchangeableTool} \\
+\mathsf{PipettingTool} \sqsubseteq  \exists \mathit{affordsRobotSkill}.\mathsf{LiquidTransferSkill} \\
+\mathsf{PipettingTool} \sqcap  \mathsf{PlateGripperTool} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{SuctionPickupTool} T04.
+\[\begin{array}{l}
+\mathsf{SuctionPickupTool} \sqsubseteq  \mathsf{ExchangeableTool} \\
+\mathsf{SuctionPickupTool} \sqsubseteq  \exists \mathit{affordsRobotSkill}.\mathsf{PlateTransferSkill} \\
+\mathsf{SuctionPickupTool} \sqcap  \mathsf{PlateGripperTool} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{CameraInspectionTool} T05.
+\[\begin{array}{l}
+\mathsf{CameraInspectionTool} \sqsubseteq  \mathsf{ExchangeableTool} \\
+\mathsf{CameraInspectionTool} \sqsubseteq  \exists \mathit{affordsRobotSkill}.\mathsf{InspectionSkill} \\
+\mathsf{CameraInspectionTool} \sqcap  \mathsf{PlateGripperTool} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{RobotSkill} A capability of a robot.
+\[\begin{array}{l}
+\mathsf{RobotSkill} \sqsubseteq  \mathsf{dul{:}Quality} \\
+\mathsf{RobotSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{LabTaskType} \\
+\end{array}\]
+\paragraph{PlateTransferSkill} Pick, carry, place SBS plates.
+\[\begin{array}{l}
+\mathsf{PlateTransferSkill} \sqsubseteq  \mathsf{RobotSkill} \\
+\mathsf{PlateTransferSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{PlateTransferTask} \\
+\end{array}\]
+\paragraph{SampleTransportSkill} Carry samples in a closed cabinet.
+\[\begin{array}{l}
+\mathsf{SampleTransportSkill} \sqsubseteq  \mathsf{RobotSkill} \\
+\mathsf{SampleTransportSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{PlateTransferTask} \\
+\end{array}\]
+\paragraph{NavigationSkill} Navigate between docks.
+\[\begin{array}{l}
+\mathsf{NavigationSkill} \sqsubseteq  \mathsf{RobotSkill} \\
+\mathsf{NavigationSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{NavigationTask} \\
+\end{array}\]
+\paragraph{DockingSkill} Dock deterministically.
+\[\begin{array}{l}
+\mathsf{DockingSkill} \sqsubseteq  \mathsf{RobotSkill} \\
+\mathsf{DockingSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{DockingTask} \\
+\end{array}\]
+\paragraph{ToolExchangeSkill} Exchange end effectors.
+\[\begin{array}{l}
+\mathsf{ToolExchangeSkill} \sqsubseteq  \mathsf{RobotSkill} \\
+\mathsf{ToolExchangeSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{ToolExchangeTask} \\
+\end{array}\]
+\paragraph{TubeHandlingSkill} Handle tubes.
+\[\begin{array}{l}
+\mathsf{TubeHandlingSkill} \sqsubseteq  \mathsf{RobotSkill} \\
+\mathsf{TubeHandlingSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{PlateTransferTask} \\
+\end{array}\]
+\paragraph{LiquidTransferSkill} Pipette.
+\[\begin{array}{l}
+\mathsf{LiquidTransferSkill} \sqsubseteq  \mathsf{RobotSkill} \\
+\mathsf{LiquidTransferSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{LiquidDispensingTask} \\
+\end{array}\]
+\paragraph{InspectionSkill} Inspect with a camera.
+\[\begin{array}{l}
+\mathsf{InspectionSkill} \sqsubseteq  \mathsf{RobotSkill} \\
+\mathsf{InspectionSkill} \sqsubseteq  \exists \mathit{functionAffords}.\mathsf{ImagingTask} \\
+\end{array}\]
+\section*{Labware, wells and material portions}
+\paragraph{Labware} Containers handled in experiments.
+\[\begin{array}{l}
+\mathsf{Labware} \sqsubseteq  \mathsf{LabArtifact} \\
+\mathsf{Labware} \sqsubseteq  \exists \mathit{handledIn}.\mathsf{PlateTransferTask} \\
+\end{array}\]
+\paragraph{Microplate} Defined: labware with wells.
+\[\begin{array}{l}
+\mathsf{Microplate} \sqsubseteq  \mathsf{Labware} \\
+\mathsf{Microplate} \equiv  \mathsf{Labware} \sqcap  \exists \mathit{hasDirectComponent}.\mathsf{Well} \\
+\end{array}\]
+\paragraph{SBSMicroplate96} SBS / ANSI 96-well plate.
+\[\begin{array}{l}
+\mathsf{SBSMicroplate96} \sqsubseteq  \mathsf{Microplate} \\
+\mathsf{SBSMicroplate96} \sqsubseteq  {=}96\, \mathit{hasDirectComponent}.\mathsf{Well} \\
+\end{array}\]
+\paragraph{CulturePlate} Plate holding cultures (Plate\_P17).
+\[\begin{array}{l}
+\mathsf{CulturePlate} \sqsubseteq  \mathsf{Microplate} \\
+\mathsf{CulturePlate} \sqsubseteq  \exists \mathit{hasDirectComponent}.\mathsf{CultureWell} \\
+\end{array}\]
+\paragraph{ReferencePlate} L21 calibration reference plate.
+\[\begin{array}{l}
+\mathsf{ReferencePlate} \sqsubseteq  \mathsf{Microplate} \\
+\mathsf{ReferencePlate} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{CalibratingTask} \\
+\end{array}\]
+\paragraph{Well} A well of a plate.
+\[\begin{array}{l}
+\mathsf{Well} \sqsubseteq  \mathsf{MechanismPart} \\
+\mathsf{Well} \sqsubseteq  \exists \mathit{isDirectComponentOf}.\mathsf{Microplate} \\
+\mathsf{Well} \sqsubseteq  \exists \mathit{wellId}.\mathsf{xsd{:}string} \\
+\mathsf{Well} \sqcap  \mathsf{CultureMediumPortion} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{CultureWell} Defined: a well that contains culture medium.
+\[\begin{array}{l}
+\mathsf{CultureWell} \sqsubseteq  \mathsf{Well} \\
+\mathsf{CultureWell} \equiv  \mathsf{Well} \sqcap  \exists \mathit{containsMaterial}.\mathsf{CultureMediumPortion} \\
+\end{array}\]
+\paragraph{CultureMediumPortion} The medium in one well: a material portion, contained, not a part.
+\[\begin{array}{l}
+\mathsf{CultureMediumPortion} \sqsubseteq  \mathsf{BiologicalSample} \\
+\mathsf{CultureMediumPortion} \sqsubseteq  \exists \mathit{isContainedIn}.\mathsf{Well} \\
+\mathsf{CultureMediumPortion} \sqcap  \mathsf{Well} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{WellOrganoid} The organoid cultured in one well (Cell 01: hepatotoxicity model; RS reading: a liver organoid).
+\[\begin{array}{l}
+\mathsf{WellOrganoid} \sqsubseteq  \mathsf{BiologicalSpecimen} \\
+\mathsf{WellOrganoid} \sqsubseteq  \exists \mathit{locatedAt}.\mathsf{Well} \\
+\end{array}\]
+\paragraph{ReagentPortion} A reagent portion in a container.
+\[\begin{array}{l}
+\mathsf{ReagentPortion} \sqsubseteq  \mathsf{Sample} \\
+\mathsf{ReagentPortion} \sqsubseteq  \exists \mathit{isContainedIn}.\mathsf{Labware} \\
+\end{array}\]
+\paragraph{ChallengeReagentPortion} Abstract challenge reagent.
+\[\begin{array}{l}
+\mathsf{ChallengeReagentPortion} \sqsubseteq  \mathsf{ReagentPortion} \\
+\mathsf{ChallengeReagentPortion} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{ChallengeDosingTask} \\
+\mathsf{ChallengeReagentPortion} \sqcap  \mathsf{RescueReagentPortion} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{RescueReagentPortion} Abstract rescue reagent.
+\[\begin{array}{l}
+\mathsf{RescueReagentPortion} \sqsubseteq  \mathsf{ReagentPortion} \\
+\mathsf{RescueReagentPortion} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{RescueDosingTask} \\
+\mathsf{RescueReagentPortion} \sqcap  \mathsf{ChallengeReagentPortion} \sqsubseteq  \bot  \\
+\end{array}\]
+\section*{Poses: coordinate and interaction frames of the twin (AICOR SpatialPose)}
+\paragraph{TwinPose} A named pose on an object (USD Xform).
+\[\begin{array}{l}
+\mathsf{TwinPose} \sqsubseteq  \mathsf{SpatialPose} \\
+\mathsf{TwinPose} \sqsubseteq  \exists \mathit{isPoseOf}.\mathsf{dul{:}PhysicalObject} \\
+\end{array}\]
+\paragraph{KinematicPose} Reference pose of a link or mechanism.
+\[\begin{array}{l}
+\mathsf{KinematicPose} \sqsubseteq  \mathsf{TwinPose} \\
+\mathsf{KinematicPose} \sqsubseteq  \exists \mathit{isPoseOf}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{InteractionPose} Pose where a task is performed.
+\[\begin{array}{l}
+\mathsf{InteractionPose} \sqsubseteq  \mathsf{TwinPose} \\
+\mathsf{InteractionPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{LabTaskType} \\
+\end{array}\]
+\paragraph{PlateSeatPose} SBS plate seat.
+\[\begin{array}{l}
+\mathsf{PlateSeatPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{PlateSeatPose} \sqsubseteq  \exists \mathit{affordsTaskType}.(\mathsf{PlateTransferTask} \sqcup  \mathsf{PlateStoringTask}) \\
+\mathsf{PlateSeatPose} \sqcap  \mathsf{ApproachPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ApproachPose} Pose reached before an interaction.
+\[\begin{array}{l}
+\mathsf{ApproachPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{ApproachPose} \sqsubseteq  \exists \mathit{affordsTaskType}.(\mathsf{NavigationTask} \sqcup  \mathsf{PlateTransferTask}) \\
+\mathsf{ApproachPose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{DockPose} Pose of a docked AMR.
+\[\begin{array}{l}
+\mathsf{DockPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{DockPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{DockingTask} \\
+\mathsf{DockPose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ToolCenterPose} Tool centre point.
+\[\begin{array}{l}
+\mathsf{ToolCenterPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{ToolCenterPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{PlateTransferTask} \\
+\mathsf{ToolCenterPose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ToolCouplingPose} Coupling face of a tool or changer.
+\[\begin{array}{l}
+\mathsf{ToolCouplingPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{ToolCouplingPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{ToolExchangeTask} \\
+\mathsf{ToolCouplingPose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{PipettingTargetPose} Where a channel doses into a well.
+\[\begin{array}{l}
+\mathsf{PipettingTargetPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{PipettingTargetPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{LiquidDispensingTask} \\
+\mathsf{PipettingTargetPose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ImagingTargetPose} Where a well is imaged.
+\[\begin{array}{l}
+\mathsf{ImagingTargetPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{ImagingTargetPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{ImagingTask} \\
+\mathsf{ImagingTargetPose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{RackPositionPose} Rack position.
+\[\begin{array}{l}
+\mathsf{RackPositionPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{RackPositionPose} \sqsubseteq  \exists \mathit{affordsTaskType}.(\mathsf{LiquidDispensingTask} \sqcup  \mathsf{TipHandlingTask}) \\
+\mathsf{RackPositionPose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{WastePose} Tip ejection.
+\[\begin{array}{l}
+\mathsf{WastePose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{WastePose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{TipHandlingTask} \\
+\mathsf{WastePose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{CalibrationPose} Datum for QC / calibration.
+\[\begin{array}{l}
+\mathsf{CalibrationPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{CalibrationPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{CalibratingTask} \\
+\mathsf{CalibrationPose} \sqcap  \mathsf{PlateSeatPose} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{StorageLocationPose} Shelf location.
+\[\begin{array}{l}
+\mathsf{StorageLocationPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{StorageLocationPose} \sqsubseteq  \exists \mathit{affordsTaskType}.(\mathsf{ConsumableStoringTask} \sqcup  \mathsf{ColdStoringTask}) \\
+\end{array}\]
+\paragraph{ManipulationPointPose} Handle, door, lid, sash, tap, button.
+\[\begin{array}{l}
+\mathsf{ManipulationPointPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{ManipulationPointPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{OperatorInteractionTask} \\
+\end{array}\]
+\paragraph{OperatorPositionPose} Where a person works.
+\[\begin{array}{l}
+\mathsf{OperatorPositionPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{OperatorPositionPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{OperatorInteractionTask} \\
+\end{array}\]
+\paragraph{ItemAccessPose} Where a person takes or puts an item.
+\[\begin{array}{l}
+\mathsf{ItemAccessPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{ItemAccessPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{PlateTransferTask} \\
+\end{array}\]
+\paragraph{CleaningPointPose} Sink basin, eyewash.
+\[\begin{array}{l}
+\mathsf{CleaningPointPose} \sqsubseteq  \mathsf{InteractionPose} \\
+\mathsf{CleaningPointPose} \sqsubseteq  \exists \mathit{affordsTaskType}.\mathsf{CleaningTask} \\
+\end{array}\]
+\paragraph{OpticalPose} Objective, camera or focal-point pose.
+\[\begin{array}{l}
+\mathsf{OpticalPose} \sqsubseteq  \mathsf{TwinPose} \\
+\mathsf{OpticalPose} \sqsubseteq  \exists \mathit{isPoseOf}.(\mathsf{ImagingDevice} \sqcup  \mathsf{MechanismPart} \sqcup  \mathsf{CellRobot}) \\
+\end{array}\]
+\paragraph{IlluminationPose} Illumination axis.
+\[\begin{array}{l}
+\mathsf{IlluminationPose} \sqsubseteq  \mathsf{OpticalPose} \\
+\mathsf{IlluminationPose} \sqsubseteq  \exists \mathit{isPoseOf}.\mathsf{ImagingDevice} \\
+\end{array}\]
+\paragraph{ViewpointPose} Viewpoint of a virtual twin camera.
+\[\begin{array}{l}
+\mathsf{ViewpointPose} \sqsubseteq  \mathsf{TwinPose} \\
+\mathsf{ViewpointPose} \sqsubseteq  \exists \mathit{isPoseOf}.\mathsf{dul{:}PhysicalPlace} \\
+\end{array}\]
+\section*{Lab task types and actions}
+\paragraph{LabTaskType} A type of lab work.
+\[\begin{array}{l}
+\mathsf{LabTaskType} \sqsubseteq  \mathsf{dul{:}Concept} \\
+\mathsf{LabTaskType} \sqsubseteq  \forall \mathit{classifiesAction}.\mathsf{LabAction} \\
+\end{array}\]
+\paragraph{PlateTransferTask} Move labware between seats. Every action of this type involves a Labware.
+\[\begin{array}{l}
+\mathsf{PlateTransferTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{PlateTransferTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{Labware} \\
+\mathsf{PlateTransferTask} \sqcap  \mathsf{PlateStoringTask} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{PlateStoringTask} Put a plate into a store. Every action of this type involves a PlateStorageDevice.
+\[\begin{array}{l}
+\mathsf{PlateStoringTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{PlateStoringTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{PlateStorageDevice} \\
+\mathsf{PlateStoringTask} \sqcap  \mathsf{PlateTransferTask} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{PlateRetrievingTask} Take a plate out of a device. Every action of this type involves a LabArtifact.
+\[\begin{array}{l}
+\mathsf{PlateRetrievingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{PlateRetrievingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{LabArtifact} \\
+\mathsf{PlateRetrievingTask} \sqcap  \mathsf{PlateTransferTask} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{IncubatingTask} Keep a plate in an incubator. Every action of this type involves a IncubationDevice.
+\[\begin{array}{l}
+\mathsf{IncubatingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{IncubatingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{IncubationDevice} \\
+\mathsf{IncubatingTask} \sqcap  \mathsf{PlateTransferTask} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{LiquidDispensingTask} Dispense liquid into a well. Every action of this type involves a DispensingDevice.
+\[\begin{array}{l}
+\mathsf{LiquidDispensingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{LiquidDispensingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{DispensingDevice} \\
+\mathsf{LiquidDispensingTask} \sqcap  \mathsf{PlateTransferTask} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ChallengeDosingTask} Dose the challenge reagent. Every action of this type involves a DispensingDevice.
+\[\begin{array}{l}
+\mathsf{ChallengeDosingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{ChallengeDosingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{DispensingDevice} \\
+\end{array}\]
+\paragraph{RescueDosingTask} Dose the rescue reagent. Every action of this type involves a DispensingDevice.
+\[\begin{array}{l}
+\mathsf{RescueDosingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{RescueDosingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{DispensingDevice} \\
+\end{array}\]
+\paragraph{ImagingTask} Acquire an image. Every action of this type involves a ImagingDevice.
+\[\begin{array}{l}
+\mathsf{ImagingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{ImagingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{ImagingDevice} \\
+\mathsf{ImagingTask} \sqcap  \mathsf{PlateTransferTask} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{CalibratingTask} Check / calibrate against a reference. Every action of this type involves a QCCalibrationStation.
+\[\begin{array}{l}
+\mathsf{CalibratingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{CalibratingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{QCCalibrationStation} \\
+\mathsf{CalibratingTask} \sqcap  \mathsf{PlateTransferTask} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{QuarantiningTask} Contain a plate. Every action of this type involves a QuarantineStation.
+\[\begin{array}{l}
+\mathsf{QuarantiningTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{QuarantiningTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{QuarantineStation} \\
+\mathsf{QuarantiningTask} \sqcap  \mathsf{PlateTransferTask} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{QuarantineReleaseTask} Release a plate after authorisation. Every action of this type involves a QuarantineStation.
+\[\begin{array}{l}
+\mathsf{QuarantineReleaseTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{QuarantineReleaseTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{QuarantineStation} \\
+\end{array}\]
+\paragraph{IdentifyingTask} Read a plate identity. Every action of this type involves a BarcodeReader.
+\[\begin{array}{l}
+\mathsf{IdentifyingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{IdentifyingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{BarcodeReader} \\
+\end{array}\]
+\paragraph{NavigationTask} Drive between docks. Every action of this type involves a SampleTransportAMR.
+\[\begin{array}{l}
+\mathsf{NavigationTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{NavigationTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{SampleTransportAMR} \\
+\end{array}\]
+\paragraph{DockingTask} Dock an AMR. Every action of this type involves a Dock.
+\[\begin{array}{l}
+\mathsf{DockingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{DockingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{Dock} \\
+\end{array}\]
+\paragraph{ToolExchangeTask} Couple / release a tool. Every action of this type involves a AutomaticToolChanger.
+\[\begin{array}{l}
+\mathsf{ToolExchangeTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{ToolExchangeTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{AutomaticToolChanger} \\
+\end{array}\]
+\paragraph{TipHandlingTask} Pick up / eject a tip. Every action of this type involves a PipettingChannel.
+\[\begin{array}{l}
+\mathsf{TipHandlingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{TipHandlingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{PipettingChannel} \\
+\end{array}\]
+\paragraph{ColdStoringTask} Store material cold. Every action of this type involves a ColdStorageDevice.
+\[\begin{array}{l}
+\mathsf{ColdStoringTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{ColdStoringTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{ColdStorageDevice} \\
+\end{array}\]
+\paragraph{SterilizingTask} Sterilise. Every action of this type involves a Autoclave.
+\[\begin{array}{l}
+\mathsf{SterilizingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{SterilizingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{Autoclave} \\
+\end{array}\]
+\paragraph{AsepticHandlingTask} Handle open cultures. Every action of this type involves a BiosafetyCabinet.
+\[\begin{array}{l}
+\mathsf{AsepticHandlingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{AsepticHandlingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{BiosafetyCabinet} \\
+\end{array}\]
+\paragraph{TemperatureControllingTask} Hold a temperature. Every action of this type involves a ManualLabEquipment.
+\[\begin{array}{l}
+\mathsf{TemperatureControllingTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{TemperatureControllingTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{ManualLabEquipment} \\
+\end{array}\]
+\paragraph{ConsumableStoringTask} Store consumables. Every action of this type involves a StorageShelving.
+\[\begin{array}{l}
+\mathsf{ConsumableStoringTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{ConsumableStoringTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{StorageShelving} \\
+\end{array}\]
+\paragraph{CleaningTask} Wash. Every action of this type involves a LabSinkUnit.
+\[\begin{array}{l}
+\mathsf{CleaningTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{CleaningTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{LabSinkUnit} \\
+\end{array}\]
+\paragraph{OperatorInteractionTask} A person operates equipment. Every action of this type involves a LabArtifact.
+\[\begin{array}{l}
+\mathsf{OperatorInteractionTask} \sqsubseteq  \mathsf{LabTaskType} \\
+\mathsf{OperatorInteractionTask} \sqsubseteq  \forall \mathit{classifiesAction}.\exists \mathit{hasParticipantEntity}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{LabAction} An action of lab work.
+\[\begin{array}{l}
+\mathsf{LabAction} \sqsubseteq  \mathsf{soma{:}Action} \\
+\mathsf{LabAction} \sqsubseteq  \exists \mathit{executesTaskType}.\mathsf{LabTaskType} \\
+\end{array}\]
+\paragraph{RobotAction} Defined: a lab action a robot takes part in.
+\[\begin{array}{l}
+\mathsf{RobotAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{RobotAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{hasParticipantEntity}.\mathsf{Robot} \\
+\end{array}\]
+\paragraph{TransferAction} Defined: a lab action of type PlateTransferTask.
+\[\begin{array}{l}
+\mathsf{TransferAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{TransferAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{executesTaskType}.\mathsf{PlateTransferTask} \\
+\end{array}\]
+\paragraph{StoreAction} Defined: a lab action of type PlateStoringTask.
+\[\begin{array}{l}
+\mathsf{StoreAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{StoreAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{executesTaskType}.\mathsf{PlateStoringTask} \\
+\end{array}\]
+\paragraph{RetrieveAction} Defined: a lab action of type PlateRetrievingTask.
+\[\begin{array}{l}
+\mathsf{RetrieveAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{RetrieveAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{executesTaskType}.\mathsf{PlateRetrievingTask} \\
+\end{array}\]
+\paragraph{IncubateAction} Defined: a lab action of type IncubatingTask.
+\[\begin{array}{l}
+\mathsf{IncubateAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{IncubateAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{executesTaskType}.\mathsf{IncubatingTask} \\
+\end{array}\]
+\paragraph{DoseAction} Defined: a lab action of type LiquidDispensingTask.
+\[\begin{array}{l}
+\mathsf{DoseAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{DoseAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{executesTaskType}.\mathsf{LiquidDispensingTask} \\
+\end{array}\]
+\paragraph{ImageAction} Defined: a lab action of type ImagingTask.
+\[\begin{array}{l}
+\mathsf{ImageAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{ImageAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{executesTaskType}.\mathsf{ImagingTask} \\
+\end{array}\]
+\paragraph{QCAction} Defined: a lab action of type CalibratingTask.
+\[\begin{array}{l}
+\mathsf{QCAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{QCAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{executesTaskType}.\mathsf{CalibratingTask} \\
+\end{array}\]
+\paragraph{QuarantineAction} Defined: a lab action of type QuarantiningTask.
+\[\begin{array}{l}
+\mathsf{QuarantineAction} \sqsubseteq  \mathsf{LabAction} \\
+\mathsf{QuarantineAction} \equiv  \mathsf{LabAction} \sqcap  \exists \mathit{executesTaskType}.\mathsf{QuarantiningTask} \\
+\end{array}\]
+\paragraph{AMRTransferAction} Defined: a transfer by the sample AMR.
+\[\begin{array}{l}
+\mathsf{AMRTransferAction} \sqsubseteq  \mathsf{TransferAction} \\
+\mathsf{AMRTransferAction} \equiv  \mathsf{TransferAction} \sqcap  \exists \mathit{hasParticipantEntity}.\mathsf{SampleTransportAMR} \\
+\end{array}\]
+\section*{Device manual knowledge (Cell 01 component contracts) and device process knowledge}
+\paragraph{DeviceManual} Operating knowledge of a device or robot: identity, procedures, setpoints, constraints, monitors, failure modes, recovery and risk controls.
+\[\begin{array}{l}
+\mathsf{DeviceManual} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{DeviceManual} \sqsubseteq  \exists \mathit{manualFor}.\mathsf{LabArtifact} \\
+\mathsf{DeviceManual} \sqsubseteq  \exists \mathit{documentsProcedure}.\mathsf{OperatingProcedure} \\
+\mathsf{DeviceManual} \sqsubseteq  \exists \mathit{sourceDocument}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{CellComponentContract} A Cell 01 SDT component contract (sdt/components/*.yaml): the project's manual-equivalent; no vendor manual is in the repository (restricted source folders are empty).
+\[\begin{array}{l}
+\mathsf{CellComponentContract} \sqsubseteq  \mathsf{DeviceManual} \\
+\mathsf{CellComponentContract} \sqsubseteq  \exists \mathit{manufacturerBaseline}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{OperatingProcedure} A documented device operation with preconditions, parameters, effects, monitors, recovery and evidence outputs (Cell 01 action\_contracts).
+\[\begin{array}{l}
+\mathsf{OperatingProcedure} \sqsubseteq  \mathsf{ActionContract} \\
+\mathsf{OperatingProcedure} \sqsubseteq  \exists \mathit{requiresPrecondition}.\mathsf{Precondition} \\
+\mathsf{OperatingProcedure} \sqsubseteq  \exists \mathit{hasExpectedEffect}.\mathsf{ExpectedEffect} \\
+\mathsf{OperatingProcedure} \sqsubseteq  \exists \mathit{hasRecoveryProcedure}.\mathsf{RecoveryProcedure} \\
+\end{array}\]
+\paragraph{ManualItem} One item of a manual, verbatim.
+\[\begin{array}{l}
+\mathsf{ManualItem} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{ManualItem} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{Precondition} Must hold before a procedure.
+\[\begin{array}{l}
+\mathsf{Precondition} \sqsubseteq  \mathsf{ManualItem} \\
+\mathsf{Precondition} \sqsubseteq  \exists \mathit{isRequiredBy}.\mathsf{OperatingProcedure} \\
+\end{array}\]
+\paragraph{IdentityPrecondition} Plate / reagent / target identity verified or consistent.
+\[\begin{array}{l}
+\mathsf{IdentityPrecondition} \sqsubseteq  \mathsf{Precondition} \\
+\mathsf{IdentityPrecondition} \sqsubseteq  \exists \mathit{isRequiredBy}.\mathsf{OperatingProcedure} \\
+\mathsf{IdentityPrecondition} \sqcap  \mathsf{AvailabilityPrecondition} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{AvailabilityPrecondition} Device / slot / station available, reserved or clear.
+\[\begin{array}{l}
+\mathsf{AvailabilityPrecondition} \sqsubseteq  \mathsf{Precondition} \\
+\mathsf{AvailabilityPrecondition} \sqsubseteq  \exists \mathit{isRequiredBy}.\mathsf{OperatingProcedure} \\
+\mathsf{AvailabilityPrecondition} \sqcap  \mathsf{IdentityPrecondition} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{EnvironmentPrecondition} Environment within its valid envelope.
+\[\begin{array}{l}
+\mathsf{EnvironmentPrecondition} \sqsubseteq  \mathsf{Precondition} \\
+\mathsf{EnvironmentPrecondition} \sqsubseteq  \exists \mathit{isRequiredBy}.\mathsf{OperatingProcedure} \\
+\mathsf{EnvironmentPrecondition} \sqcap  \mathsf{IdentityPrecondition} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{CalibrationPrecondition} Calibration / tool frame valid.
+\[\begin{array}{l}
+\mathsf{CalibrationPrecondition} \sqsubseteq  \mathsf{Precondition} \\
+\mathsf{CalibrationPrecondition} \sqsubseteq  \exists \mathit{isRequiredBy}.\mathsf{OperatingProcedure} \\
+\mathsf{CalibrationPrecondition} \sqcap  \mathsf{IdentityPrecondition} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{SafetyPrecondition} A safety or containment state holds (interlocks ready, airspace clear).
+\[\begin{array}{l}
+\mathsf{SafetyPrecondition} \sqsubseteq  \mathsf{Precondition} \\
+\mathsf{SafetyPrecondition} \sqsubseteq  \exists \mathit{isRequiredBy}.\mathsf{OperatingProcedure} \\
+\mathsf{SafetyPrecondition} \sqcap  \mathsf{IdentityPrecondition} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{AuthorizationPrecondition} An authorisation is present (quarantine release, QA decision).
+\[\begin{array}{l}
+\mathsf{AuthorizationPrecondition} \sqsubseteq  \mathsf{Precondition} \\
+\mathsf{AuthorizationPrecondition} \sqsubseteq  \exists \mathit{isRequiredBy}.\mathsf{OperatingProcedure} \\
+\mathsf{AuthorizationPrecondition} \sqcap  \mathsf{IdentityPrecondition} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{PlacementPrecondition} An object is seated / present / positioned.
+\[\begin{array}{l}
+\mathsf{PlacementPrecondition} \sqsubseteq  \mathsf{Precondition} \\
+\mathsf{PlacementPrecondition} \sqsubseteq  \exists \mathit{isRequiredBy}.\mathsf{OperatingProcedure} \\
+\mathsf{PlacementPrecondition} \sqcap  \mathsf{IdentityPrecondition} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ExpectedEffect} State after a procedure.
+\[\begin{array}{l}
+\mathsf{ExpectedEffect} \sqsubseteq  \mathsf{ManualItem} \\
+\mathsf{ExpectedEffect} \sqsubseteq  \exists \mathit{isEffectOf}.\mathsf{OperatingProcedure} \\
+\end{array}\]
+\paragraph{EvidenceOutput} Evidence a procedure records.
+\[\begin{array}{l}
+\mathsf{EvidenceOutput} \sqsubseteq  \mathsf{ManualItem} \\
+\mathsf{EvidenceOutput} \sqsubseteq  \exists \mathit{isEvidenceOf}.\mathsf{OperatingProcedure} \\
+\end{array}\]
+\paragraph{OperatingSetpoint} Nominal operating state value of a device (e.g. 37 $^\circ$C).
+\[\begin{array}{l}
+\mathsf{OperatingSetpoint} \sqsubseteq  \mathsf{ManualItem} \\
+\mathsf{OperatingSetpoint} \sqsubseteq  \exists \mathit{quantityName}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{OperatingConstraint} A constraint a manual places on operation.
+\[\begin{array}{l}
+\mathsf{OperatingConstraint} \sqsubseteq  \mathsf{ManualItem} \\
+\mathsf{OperatingConstraint} \sqsubseteq  \mathsf{LabConstraint} \\
+\mathsf{OperatingConstraint} \sqsubseteq  \exists \mathit{constrainsDevice}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{DeviceMonitor} A monitored expectation of a device (expectation + observation channel).
+\[\begin{array}{l}
+\mathsf{DeviceMonitor} \sqsubseteq  \mathsf{ProcessMonitor} \\
+\mathsf{DeviceMonitor} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{DeviceFailureMode} A fault of a device, with its consequence and recovery (Cell 01 failure\_modes).
+\[\begin{array}{l}
+\mathsf{DeviceFailureMode} \sqsubseteq  \mathsf{FailureSignature} \\
+\mathsf{DeviceFailureMode} \sqsubseteq  \exists \mathit{hasRecoveryProcedure}.\mathsf{RecoveryProcedure} \\
+\mathsf{DeviceFailureMode} \sqsubseteq  \exists \mathit{hasFailureConsequence}.\mathsf{LabHazard} \\
+\mathsf{DeviceFailureMode} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{RecoveryProcedure} What to do when a fault occurs.
+\[\begin{array}{l}
+\mathsf{RecoveryProcedure} \sqsubseteq  \mathsf{Repair} \\
+\mathsf{RecoveryProcedure} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{RiskControl} A control measure a manual names (alarms, timing limits, interlocks, identity tracking).
+\[\begin{array}{l}
+\mathsf{RiskControl} \sqsubseteq  \mathsf{ManualItem} \\
+\mathsf{RiskControl} \sqsubseteq  \mathsf{SafetyConstraint} \\
+\mathsf{RiskControl} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{LabHazard} \\
+\end{array}\]
+\paragraph{DeviceProcessMicrotheory} Scoped process knowledge of a device: state variables, articulations, environment model.
+\[\begin{array}{l}
+\mathsf{DeviceProcessMicrotheory} \sqsubseteq  \mathsf{BodyWorldProcessMicrotheory} \\
+\mathsf{DeviceProcessMicrotheory} \sqsubseteq  \exists \mathit{microtheoryOf}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{TwinControllerCheck} A precondition / rule check implemented in a twin device controller (refuses the command when violated).
+\[\begin{array}{l}
+\mathsf{TwinControllerCheck} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{TwinControllerCheck} \sqsubseteq  \exists \mathit{exercisedByTest}.\mathsf{TwinVerificationTest} \\
+\end{array}\]
+\paragraph{TwinVerificationTest} A twin regression test (scripts/test\_*.py) with its pass record.
+\[\begin{array}{l}
+\mathsf{TwinVerificationTest} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{TwinVerificationTest} \sqsubseteq  \exists \mathit{verificationTest}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{TwinEnforcedPrecondition} Defined: a manual precondition the twin enforces.
+\[\begin{array}{l}
+\mathsf{TwinEnforcedPrecondition} \sqsubseteq  \mathsf{Precondition} \\
+\mathsf{TwinEnforcedPrecondition} \equiv  \mathsf{Precondition} \sqcap  \exists \mathit{enforcedInTwinBy}.\mathsf{TwinControllerCheck} \\
+\end{array}\]
+\section*{Safe action: hazards, safety rules, enforcement, admissibility of candidate actions}
+\paragraph{LabHazard} A potential source of harm in the lab.
+\[\begin{array}{l}
+\mathsf{LabHazard} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{LabHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{HumanInjuryHazard} Robot motion or pinch points near a person.
+\[\begin{array}{l}
+\mathsf{HumanInjuryHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{HumanInjuryHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{CollisionHazard} Robot / device / labware collision.
+\[\begin{array}{l}
+\mathsf{CollisionHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{CollisionHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{ContaminationHazard} Transfer of contaminants to cultures or reagents.
+\[\begin{array}{l}
+\mathsf{ContaminationHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{ContaminationHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{SampleIntegrityHazard} Loss of environment, time window or physical integrity.
+\[\begin{array}{l}
+\mathsf{SampleIntegrityHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{SampleIntegrityHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{IdentityHazard} Swap or loss of sample identity.
+\[\begin{array}{l}
+\mathsf{IdentityHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{IdentityHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{MeasurementValidityHazard} Measurements made with an invalid measurement chain.
+\[\begin{array}{l}
+\mathsf{MeasurementValidityHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{MeasurementValidityHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{AsphyxiationHazard} Oxygen depletion from LN2 / CO2.
+\[\begin{array}{l}
+\mathsf{AsphyxiationHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{AsphyxiationHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{FireHazard} Fire.
+\[\begin{array}{l}
+\mathsf{FireHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{FireHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{ChemicalExposureHazard} Splash / exposure of a person.
+\[\begin{array}{l}
+\mathsf{ChemicalExposureHazard} \sqsubseteq  \mathsf{LabHazard} \\
+\mathsf{ChemicalExposureHazard} \sqsubseteq  \exists \mathit{hazardTo}.\mathsf{Entity} \\
+\end{array}\]
+\paragraph{LabSafetyRule} A universal prohibition on lab actions in a situation (AICOR IncapabilityAssertion: removes trajectories).
+\[\begin{array}{l}
+\mathsf{LabSafetyRule} \sqsubseteq  \mathsf{IncapabilityAssertion} \\
+\mathsf{LabSafetyRule} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{LabHazard} \\
+\mathsf{LabSafetyRule} \sqsubseteq  \exists \mathit{prohibitsTaskType}.\mathsf{LabTaskType} \\
+\mathsf{LabSafetyRule} \sqsubseteq  \exists \mathit{derivedFromSource}.\mathsf{dul{:}InformationObject} \\
+\mathsf{LabSafetyRule} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{HumanSafetyRule} Protects people (enclosure, door interlocks, light curtain, e-stop).
+\[\begin{array}{l}
+\mathsf{HumanSafetyRule} \sqsubseteq  \mathsf{LabSafetyRule} \\
+\mathsf{HumanSafetyRule} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{HumanInjuryHazard} \\
+\mathsf{HumanSafetyRule} \sqsubseteq  \exists \mathit{enforcedBy}.\mathsf{SafetyDevice} \\
+\mathsf{HumanSafetyRule} \sqcap  \mathsf{MachineProtectionRule} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{MachineProtectionRule} Protects equipment and labware (airspace interlock, gate state, cabinet closed in transit).
+\[\begin{array}{l}
+\mathsf{MachineProtectionRule} \sqsubseteq  \mathsf{LabSafetyRule} \\
+\mathsf{MachineProtectionRule} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{CollisionHazard} \\
+\mathsf{MachineProtectionRule} \sqcap  \mathsf{HumanSafetyRule} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{BiosafetyRule} Asepsis / contamination rules; gates intervention admissibility (RS ContaminationCompatibility).
+\[\begin{array}{l}
+\mathsf{BiosafetyRule} \sqsubseteq  \mathsf{LabSafetyRule} \\
+\mathsf{BiosafetyRule} \sqsubseteq  \mathsf{ContaminationCompatibility} \\
+\mathsf{BiosafetyRule} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{ContaminationHazard} \\
+\mathsf{BiosafetyRule} \sqcap  \mathsf{HumanSafetyRule} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{SampleIntegrityRule} Environment envelope, time outside the incubator, seating.
+\[\begin{array}{l}
+\mathsf{SampleIntegrityRule} \sqsubseteq  \mathsf{LabSafetyRule} \\
+\mathsf{SampleIntegrityRule} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{SampleIntegrityHazard} \\
+\mathsf{SampleIntegrityRule} \sqcap  \mathsf{HumanSafetyRule} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{IdentityRule} Identity must be verified.
+\[\begin{array}{l}
+\mathsf{IdentityRule} \sqsubseteq  \mathsf{LabSafetyRule} \\
+\mathsf{IdentityRule} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{IdentityHazard} \\
+\mathsf{IdentityRule} \sqcap  \mathsf{HumanSafetyRule} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{MeasurementValidityRule} No measurement with an invalid calibration / tool frame.
+\[\begin{array}{l}
+\mathsf{MeasurementValidityRule} \sqsubseteq  \mathsf{LabSafetyRule} \\
+\mathsf{MeasurementValidityRule} \sqsubseteq  \exists \mathit{mitigatesHazard}.\mathsf{MeasurementValidityHazard} \\
+\mathsf{MeasurementValidityRule} \sqcap  \mathsf{HumanSafetyRule} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{AuthorizationNorm} A normative rule: an action is permitted only with an authorisation (normative, not causal, admissibility).
+\[\begin{array}{l}
+\mathsf{AuthorizationNorm} \sqsubseteq  \mathsf{Norm} \\
+\mathsf{AuthorizationNorm} \sqsubseteq  \exists \mathit{prohibitsTaskType}.\mathsf{LabTaskType} \\
+\mathsf{AuthorizationNorm} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{SafetySourceDocument} A document safety knowledge is derived from (Cell 01 specification, rule files, site proposal).
+\[\begin{array}{l}
+\mathsf{SafetySourceDocument} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{SafetySourceDocument} \sqsubseteq  \exists \mathit{sourceDocument}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{SafetyEnforcementMechanism} How a rule is enforced in the twin.
+\[\begin{array}{l}
+\mathsf{SafetyEnforcementMechanism} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{SafetyEnforcementMechanism} \sqsubseteq  \exists \mathit{enforces}.\mathsf{LabSafetyRule} \\
+\end{array}\]
+\paragraph{PhysicalInterlockMechanism} Enforcement by a safety device (door switch, light curtain, e-stop).
+\[\begin{array}{l}
+\mathsf{PhysicalInterlockMechanism} \sqsubseteq  \mathsf{SafetyEnforcementMechanism} \\
+\mathsf{PhysicalInterlockMechanism} \sqsubseteq  \exists \mathit{realizedByDevice}.\mathsf{SafetyDevice} \\
+\end{array}\]
+\paragraph{ControllerInterlockMechanism} Enforcement by a device controller refusing a command (L12 airspace, L10 environment, H4 token).
+\[\begin{array}{l}
+\mathsf{ControllerInterlockMechanism} \sqsubseteq  \mathsf{SafetyEnforcementMechanism} \\
+\mathsf{ControllerInterlockMechanism} \sqsubseteq  \mathsf{TwinControllerCheck} \\
+\mathsf{ControllerInterlockMechanism} \sqsubseteq  \exists \mathit{realizedByDevice}.\mathsf{LabArtifact} \\
+\end{array}\]
+\paragraph{CriticGateMechanism} Enforcement by Cell 01's critic vector: an event commits only if safety\_ok (AICOR commitment checking).
+\[\begin{array}{l}
+\mathsf{CriticGateMechanism} \sqsubseteq  \mathsf{SafetyEnforcementMechanism} \\
+\mathsf{CriticGateMechanism} \sqsubseteq  \mathsf{SafetyCheck} \\
+\mathsf{CriticGateMechanism} \sqsubseteq  \exists \mathit{testsCriterion}.\mathsf{CommitmentCriterion} \\
+\end{array}\]
+\paragraph{UnsafeCandidateAction} Defined: a candidate action that violates a lab safety rule (inadmissible).
+\[\begin{array}{l}
+\mathsf{UnsafeCandidateAction} \sqsubseteq  \mathsf{CandidateAction} \\
+\mathsf{UnsafeCandidateAction} \equiv  \mathsf{CandidateAction} \sqcap  \exists \mathit{violatesRule}.\mathsf{LabSafetyRule} \\
+\end{array}\]
+\paragraph{UnauthorizedCandidateAction} Defined: a candidate action that violates an authorisation norm (normatively inadmissible).
+\[\begin{array}{l}
+\mathsf{UnauthorizedCandidateAction} \sqsubseteq  \mathsf{CandidateAction} \\
+\mathsf{UnauthorizedCandidateAction} \equiv  \mathsf{CandidateAction} \sqcap  \exists \mathit{violatesRule}.\mathsf{AuthorizationNorm} \\
+\end{array}\]
+\paragraph{RefusedCommand} A command the twin refused, observed in a verification test.
+\[\begin{array}{l}
+\mathsf{RefusedCommand} \sqsubseteq  \mathsf{CandidateAction} \\
+\mathsf{RefusedCommand} \sqsubseteq  \exists \mathit{violatesRule}.(\mathsf{LabSafetyRule} \sqcup  \mathsf{AuthorizationNorm}) \\
+\mathsf{RefusedCommand} \sqsubseteq  \exists \mathit{refusedByEntity}.\mathsf{Entity} \\
+\mathsf{RefusedCommand} \sqsubseteq  \exists \mathit{verificationTest}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{ProtectiveStopEvent} A latched protective stop (e.g. light curtain broken without muting).
+\[\begin{array}{l}
+\mathsf{ProtectiveStopEvent} \sqsubseteq  \mathsf{dul{:}Event} \\
+\mathsf{ProtectiveStopEvent} \sqsubseteq  \exists \mathit{triggeredByDevice}.\mathsf{SafetyDevice} \\
+\end{array}\]
+\section*{Culture experiments: designs, arms, interventions, readouts, runs, conclusions}
+\paragraph{ChallengeRescueStudyDesign} Cell 01's challenge-rescue design: graded challenge doses, rescue at 6 h, untreated controls, 4x imaging every 6 h to 72 h.
+\[\begin{array}{l}
+\mathsf{ChallengeRescueStudyDesign} \sqsubseteq  \mathsf{StudyDesign} \\
+\mathsf{ChallengeRescueStudyDesign} \sqsubseteq  \exists \mathit{hasArm}.\mathsf{ChallengeOnlyArm} \\
+\mathsf{ChallengeRescueStudyDesign} \sqsubseteq  \exists \mathit{hasArm}.\mathsf{ChallengeRescueArm} \\
+\mathsf{ChallengeRescueStudyDesign} \sqsubseteq  \exists \mathit{hasArm}.\mathsf{ControlArm} \\
+\mathsf{ChallengeRescueStudyDesign} \sqsubseteq  \exists \mathit{observedBySchedule}.\mathsf{ObservationSchedule} \\
+\end{array}\]
+\paragraph{ExperimentalArm} A group of units treated alike.
+\[\begin{array}{l}
+\mathsf{ExperimentalArm} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{ExperimentalArm} \sqsubseteq  \exists \mathit{assignsUnit}.\mathsf{Well} \\
+\end{array}\]
+\paragraph{InterventionSpec} A planned intervention (agent, dose, time).
+\[\begin{array}{l}
+\mathsf{InterventionSpec} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{InterventionSpec} \sqsubseteq  \exists \mathit{doseAU}.\mathsf{xsd{:}double} \\
+\mathsf{InterventionSpec} \sqsubseteq  \exists \mathit{time\_h}.\mathsf{xsd{:}double} \\
+\end{array}\]
+\paragraph{ChallengeSpec} Planned challenge dose.
+\[\begin{array}{l}
+\mathsf{ChallengeSpec} \sqsubseteq  \mathsf{InterventionSpec} \\
+\mathsf{ChallengeSpec} \sqsubseteq  \exists \mathit{specifiesTask}.\mathsf{ChallengeDosingTask} \\
+\mathsf{ChallengeSpec} \sqcap  \mathsf{RescueSpec} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{RescueSpec} Planned rescue dose.
+\[\begin{array}{l}
+\mathsf{RescueSpec} \sqsubseteq  \mathsf{InterventionSpec} \\
+\mathsf{RescueSpec} \sqsubseteq  \exists \mathit{specifiesTask}.\mathsf{RescueDosingTask} \\
+\mathsf{RescueSpec} \sqcap  \mathsf{ChallengeSpec} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ChallengeOnlyArm} Defined: challenged, not rescued.
+\[\begin{array}{l}
+\mathsf{ChallengeOnlyArm} \sqsubseteq  \mathsf{ExperimentalArm} \\
+\mathsf{ChallengeOnlyArm} \equiv  \mathsf{ExperimentalArm} \sqcap  \exists \mathit{appliesIntervention}.\mathsf{ChallengeSpec} \sqcap  \neg \exists \mathit{appliesIntervention}.\mathsf{RescueSpec} \\
+\mathsf{ChallengeOnlyArm} \sqcap  \mathsf{ChallengeRescueArm} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ChallengeRescueArm} Defined: challenged and rescued.
+\[\begin{array}{l}
+\mathsf{ChallengeRescueArm} \sqsubseteq  \mathsf{ExperimentalArm} \\
+\mathsf{ChallengeRescueArm} \equiv  \mathsf{ExperimentalArm} \sqcap  \exists \mathit{appliesIntervention}.\mathsf{ChallengeSpec} \sqcap  \exists \mathit{appliesIntervention}.\mathsf{RescueSpec} \\
+\mathsf{ChallengeRescueArm} \sqcap  \mathsf{ChallengeOnlyArm} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ControlArm} Defined: no intervention.
+\[\begin{array}{l}
+\mathsf{ControlArm} \sqsubseteq  \mathsf{ExperimentalArm} \\
+\mathsf{ControlArm} \equiv  \mathsf{ExperimentalArm} \sqcap  \neg \exists \mathit{appliesIntervention}.\mathsf{InterventionSpec} \\
+\mathsf{ControlArm} \sqcap  \mathsf{ChallengeOnlyArm} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ObservationSchedule} When units are observed.
+\[\begin{array}{l}
+\mathsf{ObservationSchedule} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{ObservationSchedule} \sqsubseteq  \exists \mathit{interval\_h}.\mathsf{xsd{:}double} \\
+\mathsf{ObservationSchedule} \sqsubseteq  \exists \mathit{horizon\_h}.\mathsf{xsd{:}double} \\
+\end{array}\]
+\paragraph{ChallengeIntervention} A dose of the challenge agent into a well (L12 dose).
+\[\begin{array}{l}
+\mathsf{ChallengeIntervention} \sqsubseteq  \mathsf{BiologicalIntervention} \\
+\mathsf{ChallengeIntervention} \sqsubseteq  \exists \mathit{realizedByAction}.\mathsf{ScientificActionDesignator} \\
+\mathsf{ChallengeIntervention} \sqcap  \mathsf{RescueIntervention} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{RescueIntervention} A dose of the rescue agent into a well.
+\[\begin{array}{l}
+\mathsf{RescueIntervention} \sqsubseteq  \mathsf{BiologicalIntervention} \\
+\mathsf{RescueIntervention} \sqsubseteq  \exists \mathit{realizedByAction}.\mathsf{ScientificActionDesignator} \\
+\mathsf{RescueIntervention} \sqcap  \mathsf{ChallengeIntervention} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{MorphologyViabilityReadout} Viability inferred from bright-field morphology (radius, core OD, debris, haze) of a 4x image.
+\[\begin{array}{l}
+\mathsf{MorphologyViabilityReadout} \sqsubseteq  \mathsf{CellViabilityReadout} \\
+\mathsf{MorphologyViabilityReadout} \sqsubseteq  \exists \mathit{observationOf}.\mathsf{WellOrganoid} \\
+\end{array}\]
+\paragraph{RescueHypothesis} 'Rescue at 6 h raises 72 h viability at challenge dose d.'
+\[\begin{array}{l}
+\mathsf{RescueHypothesis} \sqsubseteq  \mathsf{ScientificHypothesis} \\
+\mathsf{RescueHypothesis} \sqsubseteq  \exists \mathit{heldIn}.\mathsf{CultureSDT} \\
+\end{array}\]
+\paragraph{CultureExperimentRun} One executed run of the study in the twin.
+\[\begin{array}{l}
+\mathsf{CultureExperimentRun} \sqsubseteq  \mathsf{ExperimentalEpisode} \\
+\mathsf{CultureExperimentRun} \sqsubseteq  \exists \mathit{runOfStudy}.\mathsf{ChallengeRescueStudyDesign} \\
+\mathsf{CultureExperimentRun} \sqsubseteq  \exists \mathit{scenarioName}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{ScenarioCondition} A condition of a run (nominal, injected fault).
+\[\begin{array}{l}
+\mathsf{ScenarioCondition} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{ScenarioCondition} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{FaultInjection} A deliberately injected fault.
+\[\begin{array}{l}
+\mathsf{FaultInjection} \sqsubseteq  \mathsf{ScenarioCondition} \\
+\mathsf{FaultInjection} \sqsubseteq  \exists \mathit{injectsHazard}.\mathsf{LabHazard} \\
+\end{array}\]
+\paragraph{RescueComparisonConclusion} Conclusion comparing a rescued with an unrescued well.
+\[\begin{array}{l}
+\mathsf{RescueComparisonConclusion} \sqsubseteq  \mathsf{ScientificConclusion} \\
+\mathsf{RescueComparisonConclusion} \sqsubseteq  \geq 2\, \mathit{concernsWell}.\mathsf{Well} \\
+\mathsf{RescueComparisonConclusion} \sqsubseteq  \exists \mathit{claimStatus}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{WithholdingReason} Why a conclusion is withheld.
+\[\begin{array}{l}
+\mathsf{WithholdingReason} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{WithholdingReason} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{UnverifiedComparatorReason} A compared well received an uncommitted (unverified) intervention.
+\[\begin{array}{l}
+\mathsf{UnverifiedComparatorReason} \sqsubseteq  \mathsf{WithholdingReason} \\
+\mathsf{UnverifiedComparatorReason} \sqsubseteq  \exists \mathit{citesRule}.\mathsf{LabSafetyRule} \\
+\end{array}\]
+\paragraph{ContaminationSuspectedReason} A compared well is flagged contamination\_suspected.
+\[\begin{array}{l}
+\mathsf{ContaminationSuspectedReason} \sqsubseteq  \mathsf{WithholdingReason} \\
+\mathsf{ContaminationSuspectedReason} \sqsubseteq  \exists \mathit{citesRule}.\mathsf{BiosafetyRule} \\
+\end{array}\]
+\paragraph{WithheldConclusion} Defined: a conclusion withheld for a stated reason.
+\[\begin{array}{l}
+\mathsf{WithheldConclusion} \sqsubseteq  \mathsf{RescueComparisonConclusion} \\
+\mathsf{WithheldConclusion} \equiv  \mathsf{RescueComparisonConclusion} \sqcap  \exists \mathit{withheldBecause}.\mathsf{WithholdingReason} \\
+\end{array}\]
+\paragraph{WellBeliefEstimate} The culture SDT's posterior estimate of a well's latent state (epistemic status: inferred).
+\[\begin{array}{l}
+\mathsf{WellBeliefEstimate} \sqsubseteq  \mathsf{StateEstimate} \\
+\mathsf{WellBeliefEstimate} \sqsubseteq  \exists \mathit{concernsWell}.\mathsf{Well} \\
+\end{array}\]
+\paragraph{WellObservationRecord} Measured morphology of one well at one session, with image / calibration provenance.
+\[\begin{array}{l}
+\mathsf{WellObservationRecord} \sqsubseteq  \mathsf{CellViabilityReadout} \\
+\mathsf{WellObservationRecord} \sqsubseteq  \exists \mathit{concernsWell}.\mathsf{Well} \\
+\mathsf{WellObservationRecord} \sqsubseteq  \exists \mathit{radius\_um}.\mathsf{xsd{:}double} \\
+\end{array}\]
+\paragraph{InterventionRecord} A dose event in a well's intervention history.
+\[\begin{array}{l}
+\mathsf{InterventionRecord} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{InterventionRecord} \sqsubseteq  \exists \mathit{partOf}.\mathsf{InterventionHistory} \\
+\mathsf{InterventionRecord} \sqsubseteq  \exists \mathit{realizesIntervention}.\mathsf{BiologicalIntervention} \\
+\mathsf{InterventionRecord} \sqsubseteq  \exists \mathit{isCommittedEvent}.\mathsf{xsd{:}boolean} \\
+\end{array}\]
+\paragraph{UnverifiedInterventionRecord} Defined: an intervention record the ledger did not commit.
+\[\begin{array}{l}
+\mathsf{UnverifiedInterventionRecord} \sqsubseteq  \mathsf{InterventionRecord} \\
+\mathsf{UnverifiedInterventionRecord} \equiv  \mathsf{InterventionRecord} \sqcap  \exists \mathit{isCommittedEvent}.{false} \\
+\end{array}\]
+\paragraph{WellQualityRecord} ESS and anomaly flags.
+\[\begin{array}{l}
+\mathsf{WellQualityRecord} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{WellQualityRecord} \sqsubseteq  \exists \mathit{concernsWell}.\mathsf{Well} \\
+\end{array}\]
+\paragraph{ContaminationSuspectedFlag} Cell 01's contamination\_suspected rule fired for a well.
+\[\begin{array}{l}
+\mathsf{ContaminationSuspectedFlag} \sqsubseteq  \mathsf{WellQualityRecord} \\
+\mathsf{ContaminationSuspectedFlag} \sqsubseteq  \exists \mathit{flagsHazard}.\mathsf{ContaminationHazard} \\
+\end{array}\]
+\section*{Action records, monitor results and routing (Cell 01 NEEM records)}
+\paragraph{CellActionRecord} A Cell 01 NEEM-style record of one action (critic vector, monitors, routing).
+\[\begin{array}{l}
+\mathsf{CellActionRecord} \sqsubseteq  \mathsf{LabExecutionTrace} \\
+\mathsf{CellActionRecord} \sqsubseteq  \exists \mathit{recordsAction}.\mathsf{LabAction} \\
+\mathsf{CellActionRecord} \sqsubseteq  \exists \mathit{hasRouting}.\mathsf{RecordRouting} \\
+\end{array}\]
+\paragraph{MonitorResult} Result of one Cell 01 monitor on an action.
+\[\begin{array}{l}
+\mathsf{MonitorResult} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{MonitorResult} \sqsubseteq  \exists \mathit{monitorPassed}.\mathsf{xsd{:}boolean} \\
+\mathsf{MonitorResult} \sqsubseteq  \exists \mathit{monitorName}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{FailedMonitorResult} Defined: a monitor that did not pass.
+\[\begin{array}{l}
+\mathsf{FailedMonitorResult} \sqsubseteq  \mathsf{MonitorResult} \\
+\mathsf{FailedMonitorResult} \equiv  \mathsf{MonitorResult} \sqcap  \exists \mathit{monitorPassed}.{false} \\
+\end{array}\]
+\paragraph{BlockedActionRecord} Defined: a record with a failed monitor; its semantic event cannot commit.
+\[\begin{array}{l}
+\mathsf{BlockedActionRecord} \sqsubseteq  \mathsf{CellActionRecord} \\
+\mathsf{BlockedActionRecord} \equiv  \mathsf{CellActionRecord} \sqcap  \exists \mathit{hasMonitorResult}.\mathsf{FailedMonitorResult} \\
+\end{array}\]
+\paragraph{RecordRouting} A routing outcome.
+\[\begin{array}{l}
+\mathsf{RecordRouting} \sqsubseteq  \mathsf{dul{:}Concept} \\
+\mathsf{RecordRouting} \sqsubseteq  \forall \mathit{classifiesRecord}.\mathsf{CellActionRecord} \\
+\end{array}\]
+\paragraph{CommitRouting} Commit (culture SDT / evidence layer / admission).
+\[\begin{array}{l}
+\mathsf{CommitRouting} \sqsubseteq  \mathsf{RecordRouting} \\
+\mathsf{CommitRouting} \sqsubseteq  \exists \mathit{routesTo}.\mathsf{LabSemanticDigitalTwin} \\
+\mathsf{CommitRouting} \sqcap  \mathsf{QuarantineRouting} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{QuarantineRouting} Object to H4 (a Repair).
+\[\begin{array}{l}
+\mathsf{QuarantineRouting} \sqsubseteq  \mathsf{RecordRouting} \\
+\mathsf{QuarantineRouting} \sqsubseteq  \exists \mathit{routesTo}.\mathsf{QuarantineStation} \\
+\mathsf{QuarantineRouting} \sqcap  \mathsf{CommitRouting} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{EscalationRouting} To a human (an AICOR HelpRequest).
+\[\begin{array}{l}
+\mathsf{EscalationRouting} \sqsubseteq  \mathsf{RecordRouting} \\
+\mathsf{EscalationRouting} \sqsubseteq  \exists \mathit{routesTo}.\mathsf{dul{:}Agent} \\
+\mathsf{EscalationRouting} \sqcap  \mathsf{CommitRouting} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{InvalidationRouting} Invalidate dependent measurements.
+\[\begin{array}{l}
+\mathsf{InvalidationRouting} \sqsubseteq  \mathsf{RecordRouting} \\
+\mathsf{InvalidationRouting} \sqsubseteq  \exists \mathit{routesTo}.\mathsf{LabSemanticDigitalTwin} \\
+\mathsf{InvalidationRouting} \sqcap  \mathsf{CommitRouting} \sqsubseteq  \bot  \\
+\end{array}\]
+\section*{From a required information gain to the robot's physical actions and motions (derivation layer)}
+\paragraph{CompetingRecoveryModel} One of Cell 01's competing recovery models (mathematical-models.md §5), calibrated to the observed data.
+\[\begin{array}{l}
+\mathsf{CompetingRecoveryModel} \sqsubseteq  \mathsf{ScientificModel} \\
+\mathsf{CompetingRecoveryModel} \sqsubseteq  \exists \mathit{predictsReadout}.\mathsf{MorphologyViabilityReadout} \\
+\end{array}\]
+\paragraph{GradedRecoveryModel} M1: P\_rec = σ(β0 − β1 I − β2 Δt + β3 d\_r); no point of no return.
+\[\begin{array}{l}
+\mathsf{GradedRecoveryModel} \sqsubseteq  \mathsf{CompetingRecoveryModel} \\
+\mathsf{GradedRecoveryModel} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\mathsf{GradedRecoveryModel} \sqcap  \mathsf{ThresholdRecoveryModel} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ThresholdRecoveryModel} M2: rescue fails once the cumulative injury burden B(Δt) $\geq$ B*.
+\[\begin{array}{l}
+\mathsf{ThresholdRecoveryModel} \sqsubseteq  \mathsf{CompetingRecoveryModel} \\
+\mathsf{ThresholdRecoveryModel} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\mathsf{ThresholdRecoveryModel} \sqcap  \mathsf{GradedRecoveryModel} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ProtectiveThresholdModel} M3: B*(t) = B0* + α P(t): the threshold moves with adaptive protection.
+\[\begin{array}{l}
+\mathsf{ProtectiveThresholdModel} \sqsubseteq  \mathsf{CompetingRecoveryModel} \\
+\mathsf{ProtectiveThresholdModel} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\mathsf{ProtectiveThresholdModel} \sqcap  \mathsf{GradedRecoveryModel} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{InformationGainRequirement} What an experiment must teach: a minimum expected information gain over the competing models.
+\[\begin{array}{l}
+\mathsf{InformationGainRequirement} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{InformationGainRequirement} \sqsubseteq  \exists \mathit{requiredGain\_bits}.\mathsf{xsd{:}double} \\
+\end{array}\]
+\paragraph{ExperimentCandidate} A candidate delayed-rescue experiment (dose, rescue delay, replicates) with its EIG and cost.
+\[\begin{array}{l}
+\mathsf{ExperimentCandidate} \sqsubseteq  \mathsf{ScientificProposal} \\
+\mathsf{ExperimentCandidate} \sqsubseteq  \geq 2\, \mathit{discriminatesModel}.\mathsf{CompetingRecoveryModel} \\
+\mathsf{ExperimentCandidate} \sqsubseteq  \exists \mathit{expectedGain\_bits}.\mathsf{xsd{:}double} \\
+\mathsf{ExperimentCandidate} \sqsubseteq  \exists \mathit{rescueDelay\_h}.\mathsf{xsd{:}double} \\
+\mathsf{ExperimentCandidate} \sqsubseteq  \exists \mathit{doseAU}.\mathsf{xsd{:}double} \\
+\mathsf{ExperimentCandidate} \sqsubseteq  \exists \mathit{replicateCount}.\mathsf{xsd{:}integer} \\
+\mathsf{ExperimentCandidate} \sqsubseteq  \exists \mathit{planCost}.\mathsf{xsd{:}integer} \\
+\end{array}\]
+\paragraph{InformationGainEstimate} EIG(a) = E\_y KL(p(M|D,y,a) ‖ p(M|D)) (Cell 01 §10), by nested Monte Carlo over the calibrated models.
+\[\begin{array}{l}
+\mathsf{InformationGainEstimate} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{InformationGainEstimate} \sqsubseteq  \exists \mathit{estimatesGainOf}.\mathsf{ExperimentCandidate} \\
+\mathsf{InformationGainEstimate} \sqsubseteq  \exists \mathit{conditionedOnBelief}.\mathsf{CultureSDT} \\
+\mathsf{InformationGainEstimate} \sqsubseteq  \exists \mathit{expectedGain\_bits}.\mathsf{xsd{:}double} \\
+\end{array}\]
+\paragraph{SelectedExperiment} Defined: the candidate chosen under a gain requirement (least cost among those meeting it).
+\[\begin{array}{l}
+\mathsf{SelectedExperiment} \sqsubseteq  \mathsf{ExperimentCandidate} \\
+\mathsf{SelectedExperiment} \equiv  \mathsf{ExperimentCandidate} \sqcap  \exists \mathit{selectedUnder}.\mathsf{InformationGainRequirement} \\
+\end{array}\]
+\paragraph{DelayedRescueStudyDesign} A study design with a chosen rescue delay, comparator and untreated control.
+\[\begin{array}{l}
+\mathsf{DelayedRescueStudyDesign} \sqsubseteq  \mathsf{StudyDesign} \\
+\mathsf{DelayedRescueStudyDesign} \sqsubseteq  \exists \mathit{hasArm}.\mathsf{ChallengeRescueArm} \\
+\mathsf{DelayedRescueStudyDesign} \sqsubseteq  \exists \mathit{hasArm}.\mathsf{ChallengeOnlyArm} \\
+\mathsf{DelayedRescueStudyDesign} \sqsubseteq  \exists \mathit{hasArm}.\mathsf{ControlArm} \\
+\mathsf{DelayedRescueStudyDesign} \sqsubseteq  \exists \mathit{rescueDelay\_h}.\mathsf{xsd{:}double} \\
+\end{array}\]
+\paragraph{ExperimentRealisationPlan} The derived protocol that realises a selected experiment in the lab: sessions of material, scene and motion designators.
+\[\begin{array}{l}
+\mathsf{ExperimentRealisationPlan} \sqsubseteq  \mathsf{ExperimentalProtocol} \\
+\mathsf{ExperimentRealisationPlan} \sqsubseteq  \exists \mathit{realisesProposal}.\mathsf{SelectedExperiment} \\
+\mathsf{ExperimentRealisationPlan} \sqsubseteq  \exists \mathit{hasSession}.\mathsf{ProtocolSession} \\
+\end{array}\]
+\paragraph{ProtocolSession} One trip of the plate out of the incubator at a scheduled culture time.
+\[\begin{array}{l}
+\mathsf{ProtocolSession} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{ProtocolSession} \sqsubseteq  \exists \mathit{scheduledAt\_h}.\mathsf{xsd{:}double} \\
+\mathsf{ProtocolSession} \sqsubseteq  \exists \mathit{hasStep}.\mathsf{LabActionDesignator} \\
+\end{array}\]
+\paragraph{LabActionDesignator} A designator of the realisation plan (RS ScientificActionDesignator).
+\[\begin{array}{l}
+\mathsf{LabActionDesignator} \sqsubseteq  \mathsf{ScientificActionDesignator} \\
+\mathsf{LabActionDesignator} \sqsubseteq  \exists \mathit{stepIndex}.\mathsf{xsd{:}integer} \\
+\end{array}\]
+\paragraph{MaterialStepDesignator} What happens to the material: dose well w, image well w.
+\[\begin{array}{l}
+\mathsf{MaterialStepDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{MaterialStepDesignator} \sqsubseteq  \mathsf{MaterialScientificDesignator} \\
+\mathsf{MaterialStepDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{SceneStepDesignator} \\
+\mathsf{MaterialStepDesignator} \sqcap  \mathsf{SceneStepDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ChallengeDoseDesignator} Dose challenge.
+\[\begin{array}{l}
+\mathsf{ChallengeDoseDesignator} \sqsubseteq  \mathsf{MaterialStepDesignator} \\
+\mathsf{ChallengeDoseDesignator} \sqsubseteq  \exists \mathit{doseAU}.\mathsf{xsd{:}double} \\
+\end{array}\]
+\paragraph{RescueDoseDesignator} Dose rescue.
+\[\begin{array}{l}
+\mathsf{RescueDoseDesignator} \sqsubseteq  \mathsf{MaterialStepDesignator} \\
+\mathsf{RescueDoseDesignator} \sqsubseteq  \exists \mathit{doseAU}.\mathsf{xsd{:}double} \\
+\end{array}\]
+\paragraph{ImageWellDesignator} Image a well.
+\[\begin{array}{l}
+\mathsf{ImageWellDesignator} \sqsubseteq  \mathsf{MaterialStepDesignator} \\
+\mathsf{ImageWellDesignator} \sqsubseteq  \exists \mathit{concernsWell}.\mathsf{Well} \\
+\end{array}\]
+\paragraph{SceneStepDesignator} Bound to the scene: device, robot, poses.
+\[\begin{array}{l}
+\mathsf{SceneStepDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{SceneStepDesignator} \sqsubseteq  \mathsf{SceneGroundedDesignator} \\
+\mathsf{SceneStepDesignator} \sqsubseteq  \exists \mathit{boundToDevice}.\mathsf{LabArtifact} \\
+\mathsf{SceneStepDesignator} \sqcap  \mathsf{MaterialStepDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{PlateTransferDesignator} Move the plate between two seat poses with one robot (one leg of a route).
+\[\begin{array}{l}
+\mathsf{PlateTransferDesignator} \sqsubseteq  \mathsf{SceneStepDesignator} \\
+\mathsf{PlateTransferDesignator} \sqsubseteq  \exists \mathit{performedByRobot}.\mathsf{CellRobot} \\
+\mathsf{PlateTransferDesignator} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{PlateSeatPose} \\
+\mathsf{PlateTransferDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{MotionStepDesignator} \\
+\end{array}\]
+\paragraph{DeviceOperationDesignator} A device operation (dose, image, present, store).
+\[\begin{array}{l}
+\mathsf{DeviceOperationDesignator} \sqsubseteq  \mathsf{SceneStepDesignator} \\
+\mathsf{DeviceOperationDesignator} \sqsubseteq  \exists \mathit{boundToDevice}.\mathsf{LabAutomationDevice} \\
+\mathsf{DeviceOperationDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{DeviceCommandDesignator} \\
+\end{array}\]
+\paragraph{MotionStepDesignator} A robot body-motion primitive (RS BodyMotionDesignator) bound to a pose.
+\[\begin{array}{l}
+\mathsf{MotionStepDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{MotionStepDesignator} \sqsubseteq  \mathsf{BodyMotionDesignator} \\
+\mathsf{MotionStepDesignator} \sqsubseteq  \exists \mathit{performedByRobot}.\mathsf{CellRobot} \\
+\mathsf{MotionStepDesignator} \sqsubseteq  \exists \mathit{primitiveName}.\mathsf{xsd{:}string} \\
+\mathsf{MotionStepDesignator} \sqsubseteq  \exists \mathit{estimatedDuration\_s}.\mathsf{xsd{:}double} \\
+\mathsf{MotionStepDesignator} \sqcap  \mathsf{MaterialStepDesignator} \sqsubseteq  \bot  \\
+\mathsf{MotionStepDesignator} \sqcap  \mathsf{KernelScientificDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ApproachMotion} Move to the approach pose above a seat.
+\[\begin{array}{l}
+\mathsf{ApproachMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{ApproachMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{InsertMotion} Descend to the seat pose (compliant).
+\[\begin{array}{l}
+\mathsf{InsertMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{InsertMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{GraspMotion} Close the gripper on the plate.
+\[\begin{array}{l}
+\mathsf{GraspMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{GraspMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{LiftMotion} Lift the plate off the seat.
+\[\begin{array}{l}
+\mathsf{LiftMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{LiftMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{TransitMotion} Planned joint-space / rail transit between approach poses.
+\[\begin{array}{l}
+\mathsf{TransitMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{TransitMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{PlaceMotion} Compliant placement into the target seat.
+\[\begin{array}{l}
+\mathsf{PlaceMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{PlaceMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{ReleaseMotion} Open the gripper.
+\[\begin{array}{l}
+\mathsf{ReleaseMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{ReleaseMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{RetractMotion} Retract to the approach pose (leaves device airspace).
+\[\begin{array}{l}
+\mathsf{RetractMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{RetractMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{ToolCoupleMotion} Couple an exchangeable tool at the magazine.
+\[\begin{array}{l}
+\mathsf{ToolCoupleMotion} \sqsubseteq  \mathsf{MotionStepDesignator} \\
+\mathsf{ToolCoupleMotion} \sqsubseteq  \exists \mathit{boundToPose}.\mathsf{TwinPose} \\
+\end{array}\]
+\paragraph{DeviceCommandDesignator} A device-level command (present, stow, tip pick, aspirate, dispense, eject, load, image, store, QC).
+\[\begin{array}{l}
+\mathsf{DeviceCommandDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{DeviceCommandDesignator} \sqsubseteq  \mathsf{ScientificActionDesignator} \\
+\mathsf{DeviceCommandDesignator} \sqsubseteq  \exists \mathit{commandsDevice}.\mathsf{LabAutomationDevice} \\
+\mathsf{DeviceCommandDesignator} \sqsubseteq  \exists \mathit{primitiveName}.\mathsf{xsd{:}string} \\
+\mathsf{DeviceCommandDesignator} \sqcap  \mathsf{MaterialStepDesignator} \sqsubseteq  \bot  \\
+\mathsf{DeviceCommandDesignator} \sqcap  \mathsf{KernelScientificDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{SafetyStepDesignator} A step inserted to discharge a safety rule (environment wait, QC calibration, interlock check).
+\[\begin{array}{l}
+\mathsf{SafetyStepDesignator} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{SafetyStepDesignator} \sqsubseteq  \exists \mathit{dischargesRule}.\mathsf{LabSafetyRule} \\
+\end{array}\]
+\paragraph{PlanDerivation} One run of the derivation (answer-set program over the ontology's ABox and the EIG candidates).
+\[\begin{array}{l}
+\mathsf{PlanDerivation} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{PlanDerivation} \sqsubseteq  \exists \mathit{derivesPlan}.\mathsf{ExperimentRealisationPlan} \\
+\mathsf{PlanDerivation} \sqsubseteq  \exists \mathit{appliesAxiomSet}.\mathsf{DerivationAxiomSet} \\
+\end{array}\]
+\paragraph{DerivationAxiomSet} The L3 axioms E2M1-E2M8 (L3-logical-axiomatization/axioms/experiment-to-motion-axioms.md).
+\[\begin{array}{l}
+\mathsf{DerivationAxiomSet} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{DerivationAxiomSet} \sqsubseteq  \exists \mathit{sourceDocument}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{RealisedInformationGain} KL(p(M|D,y) ‖ p(M|D)) after executing the plan.
+\[\begin{array}{l}
+\mathsf{RealisedInformationGain} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{RealisedInformationGain} \sqsubseteq  \exists \mathit{realisedGain\_bits}.\mathsf{xsd{:}double} \\
+\mathsf{RealisedInformationGain} \sqsubseteq  \exists \mathit{about}.\mathsf{ExperimentRealisationPlan} \\
+\end{array}\]
+\section*{The robot science assistant kernel: action-designator categories, lifecycle and audit entries}
+\paragraph{KernelScientificDesignator} Scientific-level designator of the kernel (experiment, wait, intervene, measure; RS scientific actions); realised by lower-level designators.
+\[\begin{array}{l}
+\mathsf{KernelScientificDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{KernelScientificDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{LabActionDesignator} \\
+\mathsf{KernelScientificDesignator} \sqcap  \mathsf{KernelLabTaskDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{KernelLabTaskDesignator} Lab-task designator (Cell 01 CRAM designator schemas: retrieve, store, transport, dose, image, qc, quarantine).
+\[\begin{array}{l}
+\mathsf{KernelLabTaskDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{KernelLabTaskDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{LabActionDesignator} \\
+\mathsf{KernelLabTaskDesignator} \sqcap  \mathsf{KernelScientificDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{KernelManipulationDesignator} Manipulation-action designator (CRAM action categories: picking-up, placing, transporting, coupling, presenting, stowing).
+\[\begin{array}{l}
+\mathsf{KernelManipulationDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{KernelManipulationDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{LabActionDesignator} \\
+\mathsf{KernelManipulationDesignator} \sqcap  \mathsf{KernelScientificDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ObjectDisplacementDesignator} Designators of actions whose effect class is ObjectDisplacement (AICOR action-category partition, CRAM action-category-dl).
+\[\begin{array}{l}
+\mathsf{ObjectDisplacementDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{ObjectDisplacementDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{ObjectDisplacementDesignator} \sqcap  \mathsf{ConfigurationChangeDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ConfigurationChangeDesignator} Designators of actions whose effect class is ConfigurationChange (AICOR action-category partition, CRAM action-category-dl).
+\[\begin{array}{l}
+\mathsf{ConfigurationChangeDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{ConfigurationChangeDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{ConfigurationChangeDesignator} \sqcap  \mathsf{ObjectDisplacementDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{SubstanceManipulationDesignator} Designators of actions whose effect class is SubstanceManipulation (AICOR action-category partition, CRAM action-category-dl).
+\[\begin{array}{l}
+\mathsf{SubstanceManipulationDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{SubstanceManipulationDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{SubstanceManipulationDesignator} \sqcap  \mathsf{ObjectDisplacementDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ConnectingActionDesignator} Designators of actions whose effect class is ConnectingAction (AICOR action-category partition, CRAM action-category-dl).
+\[\begin{array}{l}
+\mathsf{ConnectingActionDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{ConnectingActionDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{ConnectingActionDesignator} \sqcap  \mathsf{ObjectDisplacementDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{PerceptionDesignator} Designators of actions whose effect class is Perception (AICOR action-category partition, CRAM action-category-dl).
+\[\begin{array}{l}
+\mathsf{PerceptionDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{PerceptionDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{PerceptionDesignator} \sqcap  \mathsf{ObjectDisplacementDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{MaintenanceActionDesignator} Designators of actions whose effect class is MaintenanceAction (AICOR action-category partition, CRAM action-category-dl).
+\[\begin{array}{l}
+\mathsf{MaintenanceActionDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{MaintenanceActionDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{MaintenanceActionDesignator} \sqcap  \mathsf{ObjectDisplacementDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{RegulationActionDesignator} Designators of actions whose effect class is RegulationAction (AICOR action-category partition, CRAM action-category-dl).
+\[\begin{array}{l}
+\mathsf{RegulationActionDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{RegulationActionDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{RegulationActionDesignator} \sqcap  \mathsf{ObjectDisplacementDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{TransportFacetDesignator} Designators of transport actions (GARMI three manipulation classes; orthogonal to the effect class).
+\[\begin{array}{l}
+\mathsf{TransportFacetDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{TransportFacetDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{TransportFacetDesignator} \sqcap  \mathsf{OperationFacetDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{OperationFacetDesignator} Designators of operation actions (GARMI three manipulation classes; orthogonal to the effect class).
+\[\begin{array}{l}
+\mathsf{OperationFacetDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{OperationFacetDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{OperationFacetDesignator} \sqcap  \mathsf{TransportFacetDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{TransformationFacetDesignator} Designators of transformation actions (GARMI three manipulation classes; orthogonal to the effect class).
+\[\begin{array}{l}
+\mathsf{TransformationFacetDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{TransformationFacetDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{LabAction} \\
+\mathsf{TransformationFacetDesignator} \sqcap  \mathsf{TransportFacetDesignator} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{ExperimentDesignator} Kernel category 'experiment': run the selected experiment. HADL: (an action (type experiment) (design ?d) (requirement (eig >= ?g))). Sources: e2m derive\_plan selection, RSV experimental-workflow-dl, uc\_ccr se\_loop.
+\[\begin{array}{l}
+\mathsf{ExperimentDesignator} \sqsubseteq  \mathsf{KernelScientificDesignator} \\
+\mathsf{ExperimentDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{ExperimentDesignator} \equiv  \mathsf{KernelScientificDesignator} \sqcap  \exists \mathit{kernelCategory}.{experiment} \\
+\end{array}\]
+\paragraph{WaitDesignator} Kernel category 'wait': wait for culture time. HADL: (an action (type wait) (until (culture-time ?t))). Sources: RSV scientific-action-designator-dl Wait.
+\[\begin{array}{l}
+\mathsf{WaitDesignator} \sqsubseteq  \mathsf{KernelScientificDesignator} \\
+\mathsf{WaitDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{WaitDesignator} \equiv  \mathsf{KernelScientificDesignator} \sqcap  \exists \mathit{kernelCategory}.{wait} \\
+\end{array}\]
+\paragraph{InterveneDesignator} Kernel category 'intervene': intervene on a culture well. HADL: (an action (type intervene) (reagent ?r) (dose ?au) (well (the well ?w))). Sources: RSV scientific-action-designator-dl Intervene, C01 report §9.
+\[\begin{array}{l}
+\mathsf{InterveneDesignator} \sqsubseteq  \mathsf{KernelScientificDesignator} \\
+\mathsf{InterveneDesignator} \sqsubseteq  \mathsf{MaterialStepDesignator} \\
+\mathsf{InterveneDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{DoseDesignator} \\
+\mathsf{InterveneDesignator} \equiv  \mathsf{KernelScientificDesignator} \sqcap  \exists \mathit{kernelCategory}.{intervene} \\
+\end{array}\]
+\paragraph{MeasureDesignator} Kernel category 'measure': measure a culture well. HADL: (an action (type measure) (readout organoid-radius) (well (the well ?w))). Sources: RSV scientific-action-designator-dl Measure.
+\[\begin{array}{l}
+\mathsf{MeasureDesignator} \sqsubseteq  \mathsf{KernelScientificDesignator} \\
+\mathsf{MeasureDesignator} \sqsubseteq  \mathsf{ImageWellDesignator} \\
+\mathsf{MeasureDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{ImageDesignator} \\
+\mathsf{MeasureDesignator} \equiv  \mathsf{KernelScientificDesignator} \sqcap  \exists \mathit{kernelCategory}.{measure} \\
+\end{array}\]
+\paragraph{RunSessionDesignator} Kernel category 'run\_session': run one session trip. HADL: (an action (type run-session) (plate (the plate ?p)) (materials ?m)). Sources: e2m E2M4 sessions, C01 SESSION\_HANDOFF first slice.
+\[\begin{array}{l}
+\mathsf{RunSessionDesignator} \sqsubseteq  \mathsf{KernelLabTaskDesignator} \\
+\mathsf{RunSessionDesignator} \sqsubseteq  \mathsf{LabActionDesignator} \\
+\mathsf{RunSessionDesignator} \equiv  \mathsf{KernelLabTaskDesignator} \sqcap  \exists \mathit{kernelCategory}.{run_session} \\
+\end{array}\]
+\paragraph{RetrieveDesignator} Kernel category 'retrieve': retrieve the plate from storage. HADL: (an action (type retrieve) (object (the plate ?p)) (source (the location home))). Sources: C01 cram\_designator\_schemas retrieve, e2m S7.
+\[\begin{array}{l}
+\mathsf{RetrieveDesignator} \sqsubseteq  \mathsf{KernelLabTaskDesignator} \\
+\mathsf{RetrieveDesignator} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{RetrieveDesignator} \sqsubseteq  \mathsf{TransportFacetDesignator} \\
+\mathsf{RetrieveDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{RetrieveAction} \\
+\mathsf{RetrieveDesignator} \equiv  \mathsf{KernelLabTaskDesignator} \sqcap  \exists \mathit{kernelCategory}.{retrieve} \\
+\end{array}\]
+\paragraph{StoreDesignator} Kernel category 'store': store the plate in the incubator. HADL: (an action (type store) (object (the plate ?p)) (location (the location home))). Sources: C01 cram\_designator\_schemas store, e2m S2.
+\[\begin{array}{l}
+\mathsf{StoreDesignator} \sqsubseteq  \mathsf{KernelLabTaskDesignator} \\
+\mathsf{StoreDesignator} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{StoreDesignator} \sqsubseteq  \mathsf{TransportFacetDesignator} \\
+\mathsf{StoreDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{StoreAction} \\
+\mathsf{StoreDesignator} \equiv  \mathsf{KernelLabTaskDesignator} \sqcap  \exists \mathit{kernelCategory}.{store} \\
+\end{array}\]
+\paragraph{TransportLabDesignator} Kernel category 'transport\_lab': transport the plate between stations. HADL: (an action (type transport) (object (the plate ?p)) (target (a location (serves ?function)))). Sources: C01 cram\_designator\_schemas transport, e2m E2M6 routes, coraplex TransportAction.
+\[\begin{array}{l}
+\mathsf{TransportLabDesignator} \sqsubseteq  \mathsf{KernelLabTaskDesignator} \\
+\mathsf{TransportLabDesignator} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{TransportLabDesignator} \sqsubseteq  \mathsf{TransportFacetDesignator} \\
+\mathsf{TransportLabDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{TransferAction} \\
+\mathsf{TransportLabDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{TransportingDesignator} \\
+\mathsf{TransportLabDesignator} \equiv  \mathsf{KernelLabTaskDesignator} \sqcap  \exists \mathit{kernelCategory}.{transport_lab} \\
+\end{array}\]
+\paragraph{DoseDesignator} Kernel category 'dose': dose a culture well. HADL: (an action (type dose) (device (a device (capable dose\_well))) (well (the well ?w)) (reagent (the reagent ?r)) (volume ?v)). Sources: C01 cram\_designator\_schemas dose, C01 L12 action\_contracts dose\_well, e2m E2M5.
+\[\begin{array}{l}
+\mathsf{DoseDesignator} \sqsubseteq  \mathsf{KernelLabTaskDesignator} \\
+\mathsf{DoseDesignator} \sqsubseteq  \mathsf{SubstanceManipulationDesignator} \\
+\mathsf{DoseDesignator} \sqsubseteq  \mathsf{TransformationFacetDesignator} \\
+\mathsf{DoseDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{DoseAction} \\
+\mathsf{DoseDesignator} \equiv  \mathsf{KernelLabTaskDesignator} \sqcap  \exists \mathit{kernelCategory}.{dose} \\
+\end{array}\]
+\paragraph{ImageDesignator} Kernel category 'image': image a culture well. HADL: (an action (type image) (device (a device (capable image\_well))) (well (the well ?w))). Sources: C01 cram\_designator\_schemas image, C01 L17 record, RSV measurement-binding lever.
+\[\begin{array}{l}
+\mathsf{ImageDesignator} \sqsubseteq  \mathsf{KernelLabTaskDesignator} \\
+\mathsf{ImageDesignator} \sqsubseteq  \mathsf{PerceptionDesignator} \\
+\mathsf{ImageDesignator} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{ImageDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{ImageAction} \\
+\mathsf{ImageDesignator} \equiv  \mathsf{KernelLabTaskDesignator} \sqcap  \exists \mathit{kernelCategory}.{image} \\
+\end{array}\]
+\paragraph{CalibrateDesignator} Kernel category 'calibrate': calibrate a measurement device at its QC station. HADL: (an action (type calibrate) (target (the device ?d)) (station (a device (qc-station-for ?d)))). Sources: C01 cram\_designator\_schemas qc, e2m S3.
+\[\begin{array}{l}
+\mathsf{CalibrateDesignator} \sqsubseteq  \mathsf{KernelLabTaskDesignator} \\
+\mathsf{CalibrateDesignator} \sqsubseteq  \mathsf{MaintenanceActionDesignator} \\
+\mathsf{CalibrateDesignator} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{CalibrateDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{QCAction} \\
+\mathsf{CalibrateDesignator} \equiv  \mathsf{KernelLabTaskDesignator} \sqcap  \exists \mathit{kernelCategory}.{calibrate} \\
+\end{array}\]
+\paragraph{QuarantineDesignator} Kernel category 'quarantine': quarantine a plate. HADL: (an action (type quarantine) (object (the plate ?p)) (reason ?why)). Sources: C01 cram\_designator\_schemas quarantine, C01 H4 record.
+\[\begin{array}{l}
+\mathsf{QuarantineDesignator} \sqsubseteq  \mathsf{KernelLabTaskDesignator} \\
+\mathsf{QuarantineDesignator} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{QuarantineDesignator} \sqsubseteq  \mathsf{TransportFacetDesignator} \\
+\mathsf{QuarantineDesignator} \sqsubseteq  \exists \mathit{designatesAction}.\mathsf{QuarantineAction} \\
+\mathsf{QuarantineDesignator} \equiv  \mathsf{KernelLabTaskDesignator} \sqcap  \exists \mathit{kernelCategory}.{quarantine} \\
+\end{array}\]
+\paragraph{TransportingDesignator} Kernel category 'transporting': transport by one robot (one leg). HADL: (an action (type transporting) (agent (a robot (serves ?src ?dst))) (object (the plate ?p)) (from ?src) (to ?dst)). Sources: coraplex TransportAction, CRAM TASK-TAXONOMY A.
+\[\begin{array}{l}
+\mathsf{TransportingDesignator} \sqsubseteq  \mathsf{KernelManipulationDesignator} \\
+\mathsf{TransportingDesignator} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{TransportingDesignator} \sqsubseteq  \mathsf{TransportFacetDesignator} \\
+\mathsf{TransportingDesignator} \sqsubseteq  \mathsf{PlateTransferDesignator} \\
+\mathsf{TransportingDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{PickingUpDesignator} \\
+\mathsf{TransportingDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{PlacingDesignator} \\
+\mathsf{TransportingDesignator} \equiv  \mathsf{KernelManipulationDesignator} \sqcap  \exists \mathit{kernelCategory}.{transporting} \\
+\end{array}\]
+\paragraph{PickingUpDesignator} Kernel category 'picking\_up': pick up the plate. HADL: (an action (type picking-up) (object (the plate ?p)) (location (the seat ?s))). Sources: coraplex PickUpAction, Flanagan reach-lift.
+\[\begin{array}{l}
+\mathsf{PickingUpDesignator} \sqsubseteq  \mathsf{KernelManipulationDesignator} \\
+\mathsf{PickingUpDesignator} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{PickingUpDesignator} \sqsubseteq  \mathsf{TransportFacetDesignator} \\
+\mathsf{PickingUpDesignator} \sqsubseteq  \mathsf{PlateTransferDesignator} \\
+\mathsf{PickingUpDesignator} \equiv  \mathsf{KernelManipulationDesignator} \sqcap  \exists \mathit{kernelCategory}.{picking_up} \\
+\end{array}\]
+\paragraph{PlacingDesignator} Kernel category 'placing': place the plate. HADL: (an action (type placing) (object (the plate ?p)) (location (the seat ?s))). Sources: coraplex PlaceAction.
+\[\begin{array}{l}
+\mathsf{PlacingDesignator} \sqsubseteq  \mathsf{KernelManipulationDesignator} \\
+\mathsf{PlacingDesignator} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{PlacingDesignator} \sqsubseteq  \mathsf{TransportFacetDesignator} \\
+\mathsf{PlacingDesignator} \sqsubseteq  \mathsf{PlateTransferDesignator} \\
+\mathsf{PlacingDesignator} \equiv  \mathsf{KernelManipulationDesignator} \sqcap  \exists \mathit{kernelCategory}.{placing} \\
+\end{array}\]
+\paragraph{CouplingToolDesignator} Kernel category 'coupling\_tool': couple the plate gripper tool. HADL: (an action (type coupling-tool) (agent ?r) (tool (the tool ?t))). Sources: OKF tool-use (tool extends body), e2m S4.
+\[\begin{array}{l}
+\mathsf{CouplingToolDesignator} \sqsubseteq  \mathsf{KernelManipulationDesignator} \\
+\mathsf{CouplingToolDesignator} \sqsubseteq  \mathsf{ConnectingActionDesignator} \\
+\mathsf{CouplingToolDesignator} \sqsubseteq  \mathsf{TransportFacetDesignator} \\
+\mathsf{CouplingToolDesignator} \sqsubseteq  \mathsf{SceneStepDesignator} \\
+\mathsf{CouplingToolDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{ToolCoupleMotion} \\
+\mathsf{CouplingToolDesignator} \equiv  \mathsf{KernelManipulationDesignator} \sqcap  \exists \mathit{kernelCategory}.{coupling_tool} \\
+\end{array}\]
+\paragraph{PresentingDesignator} Kernel category 'presenting': present the device's plate shuttle. HADL: (an action (type presenting) (device ?d)). Sources: CRAM TASK-TAXONOMY B tend (access), H4 v2 shuttle.
+\[\begin{array}{l}
+\mathsf{PresentingDesignator} \sqsubseteq  \mathsf{KernelManipulationDesignator} \\
+\mathsf{PresentingDesignator} \sqsubseteq  \mathsf{ConfigurationChangeDesignator} \\
+\mathsf{PresentingDesignator} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{PresentingDesignator} \sqsubseteq  \mathsf{DeviceOperationDesignator} \\
+\mathsf{PresentingDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{PresentCommand} \\
+\mathsf{PresentingDesignator} \equiv  \mathsf{KernelManipulationDesignator} \sqcap  \exists \mathit{kernelCategory}.{presenting} \\
+\end{array}\]
+\paragraph{StowingDesignator} Kernel category 'stowing': stow the device's plate shuttle. HADL: (an action (type stowing) (device ?d)). Sources: CRAM TASK-TAXONOMY B tend (access).
+\[\begin{array}{l}
+\mathsf{StowingDesignator} \sqsubseteq  \mathsf{KernelManipulationDesignator} \\
+\mathsf{StowingDesignator} \sqsubseteq  \mathsf{ConfigurationChangeDesignator} \\
+\mathsf{StowingDesignator} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{StowingDesignator} \sqsubseteq  \mathsf{DeviceOperationDesignator} \\
+\mathsf{StowingDesignator} \sqsubseteq  \exists \mathit{refinesInto}.\mathsf{StowCommand} \\
+\mathsf{StowingDesignator} \equiv  \mathsf{KernelManipulationDesignator} \sqcap  \exists \mathit{kernelCategory}.{stowing} \\
+\end{array}\]
+\paragraph{CheckInterlocksCommand} Kernel category 'check\_interlocks': check enclosure interlocks. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{CheckInterlocksCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{CheckInterlocksCommand} \sqsubseteq  \mathsf{PerceptionDesignator} \\
+\mathsf{CheckInterlocksCommand} \sqsubseteq  \mathsf{SafetyStepDesignator} \\
+\mathsf{CheckInterlocksCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{check_interlocks} \\
+\end{array}\]
+\paragraph{VerifyIdentityCommand} Kernel category 'verify\_identity': read plate identity. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{VerifyIdentityCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{VerifyIdentityCommand} \sqsubseteq  \mathsf{PerceptionDesignator} \\
+\mathsf{VerifyIdentityCommand} \sqsubseteq  \mathsf{SafetyStepDesignator} \\
+\mathsf{VerifyIdentityCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{verify_identity} \\
+\end{array}\]
+\paragraph{PresentCommand} Kernel category 'present': present shuttle. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{PresentCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{PresentCommand} \sqsubseteq  \mathsf{ConfigurationChangeDesignator} \\
+\mathsf{PresentCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{present} \\
+\end{array}\]
+\paragraph{StowCommand} Kernel category 'stow': stow shuttle. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{StowCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{StowCommand} \sqsubseteq  \mathsf{ConfigurationChangeDesignator} \\
+\mathsf{StowCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{stow} \\
+\end{array}\]
+\paragraph{WaitEnvironmentCommand} Kernel category 'wait\_environment': wait for environment. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{WaitEnvironmentCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{WaitEnvironmentCommand} \sqsubseteq  \mathsf{RegulationActionDesignator} \\
+\mathsf{WaitEnvironmentCommand} \sqsubseteq  \mathsf{SafetyStepDesignator} \\
+\mathsf{WaitEnvironmentCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{wait_environment} \\
+\end{array}\]
+\paragraph{StoreCmdCommand} Kernel category 'store\_cmd': store plate in slot. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{StoreCmdCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{StoreCmdCommand} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{StoreCmdCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{store_cmd} \\
+\end{array}\]
+\paragraph{TipPickCommand} Kernel category 'tip\_pick': pick a tip. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{TipPickCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{TipPickCommand} \sqsubseteq  \mathsf{ConnectingActionDesignator} \\
+\mathsf{TipPickCommand} \sqsubseteq  \mathsf{TransformationFacetDesignator} \\
+\mathsf{TipPickCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{tip_pick} \\
+\end{array}\]
+\paragraph{AspirateCommand} Kernel category 'aspirate': aspirate reagent. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{AspirateCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{AspirateCommand} \sqsubseteq  \mathsf{SubstanceManipulationDesignator} \\
+\mathsf{AspirateCommand} \sqsubseteq  \mathsf{TransformationFacetDesignator} \\
+\mathsf{AspirateCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{aspirate} \\
+\end{array}\]
+\paragraph{DispenseCommand} Kernel category 'dispense': dispense into well. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{DispenseCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{DispenseCommand} \sqsubseteq  \mathsf{SubstanceManipulationDesignator} \\
+\mathsf{DispenseCommand} \sqsubseteq  \mathsf{TransformationFacetDesignator} \\
+\mathsf{DispenseCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{dispense} \\
+\end{array}\]
+\paragraph{TipEjectCommand} Kernel category 'tip\_eject': eject tip to waste. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{TipEjectCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{TipEjectCommand} \sqsubseteq  \mathsf{ConnectingActionDesignator} \\
+\mathsf{TipEjectCommand} \sqsubseteq  \mathsf{TransformationFacetDesignator} \\
+\mathsf{TipEjectCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{tip_eject} \\
+\end{array}\]
+\paragraph{LoadCommand} Kernel category 'load': load plate onto stage. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{LoadCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{LoadCommand} \sqsubseteq  \mathsf{ObjectDisplacementDesignator} \\
+\mathsf{LoadCommand} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{LoadCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{load} \\
+\end{array}\]
+\paragraph{ImageWellCommand} Kernel category 'image\_well': image a well. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{ImageWellCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{ImageWellCommand} \sqsubseteq  \mathsf{PerceptionDesignator} \\
+\mathsf{ImageWellCommand} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{ImageWellCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{image_well} \\
+\end{array}\]
+\paragraph{AutofocusCommand} Kernel category 'autofocus': fresh autofocus on a well. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{AutofocusCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{AutofocusCommand} \sqsubseteq  \mathsf{PerceptionDesignator} \\
+\mathsf{AutofocusCommand} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{AutofocusCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{autofocus} \\
+\end{array}\]
+\paragraph{IncubateCommand} Kernel category 'incubate': hold the plate in the incubator until a culture time. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{IncubateCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{IncubateCommand} \sqsubseteq  \mathsf{RegulationActionDesignator} \\
+\mathsf{IncubateCommand} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{IncubateCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{incubate} \\
+\end{array}\]
+\paragraph{ContainCommand} Kernel category 'contain': contain a plate in quarantine. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{ContainCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{ContainCommand} \sqsubseteq  \mathsf{ConfigurationChangeDesignator} \\
+\mathsf{ContainCommand} \sqsubseteq  \mathsf{OperationFacetDesignator} \\
+\mathsf{ContainCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{contain} \\
+\end{array}\]
+\paragraph{ValidateCommand} Kernel category 'validate': run reference-plate validation. HADL: -. Sources: kernel registry.
+\[\begin{array}{l}
+\mathsf{ValidateCommand} \sqsubseteq  \mathsf{DeviceCommandDesignator} \\
+\mathsf{ValidateCommand} \sqsubseteq  \mathsf{MaintenanceActionDesignator} \\
+\mathsf{ValidateCommand} \sqsubseteq  \mathsf{SafetyStepDesignator} \\
+\mathsf{ValidateCommand} \equiv  \mathsf{DeviceCommandDesignator} \sqcap  \exists \mathit{kernelCategory}.{validate} \\
+\end{array}\]
+\paragraph{DesignatorLifecycleState} Cell 01 designator lifecycle: open, grounded, accepted, executing, executed, failed, repaired, abstained, escalated (+ repairing, replanned, policy\_violation as executor events).
+\[\begin{array}{l}
+\mathsf{DesignatorLifecycleState} \sqsubseteq  \mathsf{dul{:}Concept} \\
+\mathsf{DesignatorLifecycleState} \sqsubseteq  \exists \mathit{statementText}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{KernelConstraint} A constraint of the kernel registry, checked at acceptance, after execution, as a policy, or by the experimental critic.
+\[\begin{array}{l}
+\mathsf{KernelConstraint} \sqsubseteq  \mathsf{dul{:}Description} \\
+\mathsf{KernelConstraint} \sqsubseteq  \exists \mathit{sourceDocument}.\mathsf{xsd{:}string} \\
+\mathsf{KernelConstraint} \sqsubseteq  \exists \mathit{constrainsDesignator}.\mathsf{LabActionDesignator} \\
+\end{array}\]
+\paragraph{RealizationConstraint} Did it run correctly and safely (uc\_ccr realization column).
+\[\begin{array}{l}
+\mathsf{RealizationConstraint} \sqsubseteq  \mathsf{KernelConstraint} \\
+\mathsf{RealizationConstraint} \sqsubseteq  \exists \mathit{constrainsDesignator}.\mathsf{LabActionDesignator} \\
+\mathsf{RealizationConstraint} \sqcap  \mathsf{ValidityConstraint} \sqsubseteq  \bot  \\
+\end{array}\]
+\paragraph{EvidenceItem} An observation, reading or record attached to an audit entry, content-hashed.
+\[\begin{array}{l}
+\mathsf{EvidenceItem} \sqsubseteq  \mathsf{dul{:}InformationObject} \\
+\mathsf{EvidenceItem} \sqsubseteq  \exists \mathit{evidenceSha256}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{CommitmentAuditEntry} One hash-chained audit entry per designator lifecycle transition (uc\_ccr audit.py + Cell 01 NEEM record sections + VRB warrant entry ⟨grounds, constraints discharged, verdict, disposition⟩). Not AICOR's CommitmentRecord (an episode-level Description containing action tokens and episodes; D-LAT-11).
+\[\begin{array}{l}
+\mathsf{CommitmentAuditEntry} \sqsubseteq  \mathsf{LabExecutionTrace} \\
+\mathsf{CommitmentAuditEntry} \sqsubseteq  \exists \mathit{recordsDesignator}.\mathsf{LabActionDesignator} \\
+\mathsf{CommitmentAuditEntry} \sqsubseteq  \exists \mathit{hasTransition}.\mathsf{DesignatorLifecycleState} \\
+\mathsf{CommitmentAuditEntry} \sqsubseteq  \exists \mathit{recordSeq}.\mathsf{xsd{:}integer} \\
+\mathsf{CommitmentAuditEntry} \sqsubseteq  \exists \mathit{chainHash}.\mathsf{xsd{:}string} \\
+\end{array}\]
+\paragraph{ViolationAuditEntry} Defined: an audit entry that records a violated constraint.
+\[\begin{array}{l}
+\mathsf{ViolationAuditEntry} \sqsubseteq  \mathsf{CommitmentAuditEntry} \\
+\mathsf{ViolationAuditEntry} \equiv  \mathsf{CommitmentAuditEntry} \sqcap  \exists \mathit{violatesConstraint}.\mathsf{KernelConstraint} \\
+\end{array}\]
+\end{document}

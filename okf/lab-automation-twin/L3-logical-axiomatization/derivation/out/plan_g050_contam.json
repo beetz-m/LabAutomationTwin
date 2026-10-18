@@ -1,0 +1,39 @@
+{
+ "tag": "g050_contam",
+ "requirement_bits": 0.5,
+ "window_s": 600.0,
+ "state": {
+  "calibrated": true,
+  "coupled": false,
+  "interlocks": true,
+  "contaminated": true
+ },
+ "solver": {
+  "result": "UNSAT",
+  "optimal": false,
+  "ground_s": 0.05,
+  "solve_s": 0.01,
+  "atoms": 0,
+  "rules": 121504
+ },
+ "plan": null,
+ "reason": "no plan satisfies the safety / feasibility constraints for any candidate meeting the requirement; blocked by s8 (contamination_suspected_blocks)",
+ "feasible_candidates": [
+  "c_d45_t36_n3",
+  "c_d45_t48_n2",
+  "c_d45_t48_n3",
+  "c_d65_t36_n2",
+  "c_d65_t36_n3",
+  "c_d65_t48_n1",
+  "c_d65_t48_n2",
+  "c_d65_t48_n3",
+  "c_d85_t36_n2",
+  "c_d85_t36_n3",
+  "c_d85_t48_n1",
+  "c_d85_t48_n2",
+  "c_d85_t48_n3"
+ ],
+ "blocking_constraints": [
+  "s8"
+ ]
+}
