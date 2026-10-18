@@ -1,0 +1,34 @@
+{
+ "coef": {
+  "radius_um": [
+   187.85302885036208,
+   0.045123886222495704,
+   84.44552856140854,
+   -0.3695608027133103,
+   0.21195013157457876,
+   2.061188163748297
+  ],
+  "core_od": [
+   0.17363282251447282,
+   0.23561305867704402,
+   -0.1657357187743606,
+   -0.21382582740665923,
+   0.07305928346209026,
+   0.07580603294758886
+  ]
+ },
+ "sigma": {
+  "radius_um": 2.4868461964265425,
+  "core_od": 0.02941128770147939
+ },
+ "meta": {
+  "samples": 240,
+  "method": "4x bright-field images of synthetic organoids of known latent state, 4 well positions (shape variation), analysed with twin/culture/optics.py analyse(); quadratic regression on (I, V); sigma = 1.2 x residual std + floor",
+  "wells": [
+   "A01",
+   "C05",
+   "E09",
+   "G12"
+  ]
+ }
+}

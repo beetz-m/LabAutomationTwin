@@ -612,9 +612,13 @@ class L17Controller:
         os.makedirs(self.image_dir, exist_ok=True)
         path = os.path.join(self.image_dir, f"{stem}.png")
         Image.fromarray(img.astype(np.uint16)).save(path)
+        # 8-bit preview for viewing: the 12-bit ADC range mapped linearly to 0-255 (the raw file is the evidence;
+        # a 16-bit PNG of 12-bit values looks nearly black in ordinary viewers)
+        Image.fromarray(np.clip(img.astype(float) * (255.0 / 4095.0), 0, 255).astype(np.uint8)).save(
+            os.path.join(self.image_dir, f"{stem}_view.png"))
         with open(os.path.join(self.image_dir, f"{stem}.json"), "w") as f:
-            json.dump({**meta, "raw_image_sha256": sha, "format": "PNG 16-bit, 12-bit ADC values"}, f, indent=2,
-                      default=str)
+            json.dump({**meta, "raw_image_sha256": sha, "format": "PNG 16-bit, 12-bit ADC values",
+                       "preview": f"{stem}_view.png (8-bit, linear 0-4095)"}, f, indent=2, default=str)
         return f"evidence://l17/{stem}.png#sha256={sha[:16]}"
 
     # ------------------------------------------------------------------ loop / outputs

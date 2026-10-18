@@ -75,10 +75,17 @@ def nearest_well(u_mm: float, v_mm: float):
 
 
 _SAMPLES: dict = {}
+# Optional plug (twin/culture/optics.py CultureSampleProvider): objects of a live, changing sample (a simulated
+# culture). Called first and never cached; returns None for wells it does not own.
+SAMPLE_PROVIDER = None
 
 
 def sample_objects(barcode: str, well_id: str):
     """Synthetic optical test objects in one well: (x_mm, y_mm, sigma_um, absorption), cores included."""
+    if SAMPLE_PROVIDER is not None:
+        live = SAMPLE_PROVIDER(barcode, well_id)
+        if live is not None:
+            return live
     key = (barcode, well_id)
     if key not in _SAMPLES and barcode.startswith("REF-"):
         g = REFERENCE_GRID
