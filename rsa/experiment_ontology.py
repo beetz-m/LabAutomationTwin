@@ -744,7 +744,8 @@ class ABox:
         self.vals.append((p, a, x))
 
     def different(self, *xs):
-        self.diff.append(list(xs))
+        if len(set(xs)) > 1:                     # OWL: DifferentIndividuals needs at least two individuals
+            self.diff.append(list(xs))
 
     def build(self, k):
         ind = {}
@@ -1034,37 +1035,66 @@ def current_design():
     return B, spec
 
 
-def improved_spec(eig3, units=3, positive=True):
-    """ILLUSTRATIVE: the reviewer's design as a factorial. Factors: challenge (vehicle, 0.85 au at 0 h) and time of
-    rescue (none, 6 h, 48 h), every level vehicle-matched. Arms: vehicle, rescue only, challenge only, challenge with
-    late rescue, and challenge with early rescue as the positive control (prior evidence: rescue at 6 h was effective
-    at every dose tested). Three replicates per arm, randomised interior wells, analysis plan with a deviation rule."""
-    factors = {"challenge": {"vehicle": [("vehicle", 0.0, 0)], "c085": [("challenge", 0.85, 0)]},
-               "rescue_time": {"none": [("vehicle", 0.0, 6), ("vehicle", 0.0, 48)],
-                               "h6": [("rescue", 0.70, 6), ("vehicle", 0.0, 48)],
-                               "h48": [("vehicle", 0.0, 6), ("rescue", 0.70, 48)]}}
-    arms = {"vehicle": ("vehicle", "none"), "rescue_only": ("vehicle", "h48"), "challenge_only": ("c085", "none"),
-            "challenge_late_rescue": ("c085", "h48"), "challenge_early_rescue": ("c085", "h6")}
-    if not positive:
-        arms.pop("challenge_early_rescue")
-    arms = {a: dict(units=units, levels=dict(challenge=c, rescue_time=r)) for a, (c, r) in arms.items()}
-    comps = {"validity": ("challenge_only", "vehicle"), "primary": ("challenge_late_rescue", "challenge_only"),
-             "agent_alone": ("rescue_only", "vehicle")}
-    rules = {"validity": ("threshold", 2.0), "primary": ("bayes",), "agent_alone": ("estimate",)}
-    lic = [("validity", "primary")]
-    if positive:
-        comps.update(positive_control=("challenge_early_rescue", "challenge_only"),
-                     window=("challenge_late_rescue", "challenge_early_rescue"))
-        rules.update(positive_control=("threshold", 2.0), window=("estimate",))
-        lic += [("positive_control", "primary"), ("validity", "window")]
+def spec_from_ldl(path, eig=None, units=None, positive=True):
+    """A design spec (the dict design_abox, the culture runner and lab_affordance use) from an authored LDL design
+    designator (registry/lab/experiment_improved.ldl). units overrides every arm's replicate count; positive=False
+    drops the arms with an evidence-based expected outcome, and the comparisons and licenses that involve them (the
+    variants of the negative tests)."""
+    D = parse(open(path).read())[0]
+    val = lambda d, k: (slot(d, k) or [None, None])[1]  # noqa: E731
+    factors = {}
+    for f in (s_[1] for s_ in dslots(D) if s_[0] == "factor"):
+        lv = {}
+        for l in (s_[1] for s_ in dslots(f) if s_[0] == "level"):
+            lv[val(l, "name")] = [(val(a_, "agent"), float(slot(a_, "dose")[1]), _num(slot(a_, "at")[1][1]))
+                                  for a_ in (s_[1] for s_ in dslots(l) if s_[0] == "administration")]
+        factors[val(f, "name")] = lv
+    arms, positive_arms = {}, {}
+    for a_ in (s_[1] for s_ in dslots(D) if s_[0] == "arm"):
+        name = val(a_, "name")
+        if slot(a_, "expected-outcome"):
+            ev = slot(slot(a_, "expected-outcome")[1], "from")[1][1].strip('"')
+            if not positive:
+                continue
+            positive_arms[name] = ev
+        arms[name] = dict(units=units or int(val(a_, "units")), levels={k: v for k, v in slot(a_, "at-level")[1:]})
+    comps, rules, lic = {}, {}, []
+    for c in (s_[1] for s_ in dslots(D) if s_[0] == "comparison"):
+        n, (x, y) = val(c, "name"), slot(c, "between")[1:]
+        if x not in arms or y not in arms:
+            continue
+        comps[n] = (x, y)
+        r = slot(c, "rule")[1]
+        rules[n] = (r[0], float(r[1])) if isinstance(r, list) else (r,)
+        lic += [(n, l[1]) for l in (s_ for s_ in c[2:] if isinstance(s_, list) and s_[0] == "licenses")]
+    lic = [(a_, b) for a_, b in lic if b in comps]
+    inter = [tuple(slot(i[1], "difference-of")[1:]) for i in dslots(D) if i[0] == "interaction"]
+    inter = [t for t in inter if all(c in comps for c in t)]
+    pl = slot(D, "placement")[1]
     interior = [f"{r}{c:02d}" for r in "BCDEFG" for c in range(2, 12)]
     import random
-    rnd = random.Random(17)
-    unames = [f"improved_unit_{a}_{i + 1}" for a in arms for i in range(units)]
-    return dict(factors=factors, arms=arms, comparisons=comps, licenses=lic, rules=rules,
-                interaction=[("primary", "agent_alone")], positive={"challenge_early_rescue": "rescue at 6 h effective"}
-                if positive else {}, eig=eig3, readout=dict(at_h=72), deviation_rule=True,
-                placement=dict(plate="plate_P18", wells=dict(zip(unames, rnd.sample(interior, len(unames))))))
+    rnd = random.Random(int(val(pl, "seed")))
+    nm = val(D, "name")
+    unames = [f"{nm}_unit_{a_}_{i + 1}" for a_ in arms for i in range(arms[a_]["units"])]
+    ro = slot(D, "readout")[1]
+    return dict(factors=factors, arms=arms, comparisons=comps, licenses=lic, rules=rules, interaction=inter,
+                positive=positive_arms, eig=eig, readout=dict(at_h=_num(slot(ro, "at")[1][1])),
+                deviation_rule=val(slot(D, "analysis-plan")[1], "deviation-rule") == "true",
+                placement=dict(plate=f"plate_{val(pl, 'plate')}", wells=dict(zip(unames, rnd.sample(interior, len(unames))))),
+                source=os.path.relpath(path, os.path.dirname(HERE)))
+
+
+def _num(x):
+    v = float(x)
+    return int(v) if v.is_integer() else v
+
+
+IMPROVED_LDL = os.path.join(LAB, "experiment_improved.ldl")
+
+
+def improved_spec(eig3, units=3, positive=True):
+    """The improved design, read from its authored LDL source (registry/lab/experiment_improved.ldl)."""
+    return spec_from_ldl(IMPROVED_LDL, eig3, units=units, positive=positive)
 
 
 def improved_design(eig3):

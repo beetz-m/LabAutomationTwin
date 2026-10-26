@@ -1,5 +1,5 @@
 # Fdb version 4
-["lualatex"] 1792274318.16279 "experiment_owl.tex" "experiment_owl.pdf" "experiment_owl" 1792274320.11234 0
+["lualatex"] 1792307608.11468 "experiment_owl.tex" "experiment_owl.pdf" "experiment_owl" 1792307610.19327 0
   "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ibmplexmono-bold.luc" 1792248586.4162 114623 2710b398974c99b95654f900ea544bae ""
   "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ibmplexmono-bolditalic.luc" 1792248586.3692 115687 1024597886602dd33a02bcbd3f8694e6 ""
   "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/ibmplexmono-italic.luc" 1792248586.4442 115266 bd3f7081bd9c0f03ef9c52f335cd952e ""
@@ -15,7 +15,7 @@
   "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/libertinusserif-regular.luc" 1792248584.87222 374424 1ad849a4b0b1a81b3f32f4c065e50e15 ""
   "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-bold.luc" 1792178131.04462 128392 cc9893d1631ce94f31c1896bb041be89 ""
   "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/fonts/otl/lmroman10-regular.luc" 1792178130.72563 127309 677951b359b90ddbfa3eb54f696122f6 ""
-  "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1792268662.86005 18004 3c73c867610590fc247b672893388573 ""
+  "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1792307027.96466 18267 f5873ae038be270effc5ef8a6a5c5260 ""
   "/home/mbeetz/.texlive2023/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1792178130.64163 403481 da79061b981c2aead4ec0312c8c465e7 ""
   "/usr/share/texlive/texmf-dist/fonts/opentype/ibm/plex/IBMPlexMono-Regular.otf" 1694207625 71272 8ea148c46187753f74533a837da8c104 ""
   "/usr/share/texlive/texmf-dist/fonts/opentype/ibm/plex/IBMPlexSans-Regular.otf" 1694207625 128888 05b9240dd80b2276729426b2be2e9947 ""
@@ -153,11 +153,11 @@
   "/usr/share/texlive/texmf-dist/tex/luatex/luaotfload/luaotfload.lua" 1693603203 13565 c514d92e6ff6be7b2f35d8e0eb56185c ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1790340056.42832 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/luahbtex/lualatex.fmt" 1790340066 12240867 0107f76d31c768e2c7bbc0b7eab66dd7 ""
-  "experiment_owl.aux" 1792274319.9109 2382 fecfe7ea4ab30d11317bbebd42ccfff7 "lualatex"
-  "experiment_owl.out" 1792274319.9109 3306 a2f089a67ebb91d37bd7e370c9b79230 "lualatex"
-  "experiment_owl.tex" 1792274318.09435 68932 4599b474af4f4913357044f0c6237223 ""
-  "framework.pdf" 1792274318.05392 20653 d4f77077c5a7dd84a827792246d859bf ""
-  "inferred.pdf" 1792274313.80497 25605 fa9065ab32ab079fed5e9fc865978560 ""
+  "experiment_owl.aux" 1792307609.98564 2382 fecfe7ea4ab30d11317bbebd42ccfff7 "lualatex"
+  "experiment_owl.out" 1792307609.98564 3306 a2f089a67ebb91d37bd7e370c9b79230 "lualatex"
+  "experiment_owl.tex" 1792307608.04188 68931 ee0d4fee2768a1918e24a2527a203cd0 ""
+  "framework.pdf" 1792307608.00367 20654 cff9d4fff3011d1cf081f7a5e493e88c ""
+  "inferred.pdf" 1792307603.74672 25606 99b49bb178d099532b919dec56212635 ""
   (generated)
   "experiment_owl.aux"
   "experiment_owl.log"

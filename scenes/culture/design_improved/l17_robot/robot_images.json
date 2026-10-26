@@ -1,162 +1,191 @@
 {
- "vehicle@0h": {
-  "well": "E05",
-  "file": "L17_Plate_P17_E05_4x_000.png",
-  "valid": true,
-  "accepted": true,
-  "focus": 0.1509,
-  "field_offset_from_well_centre_mm": 0.4552
+ "registration": {
+  "dx_mm": -0.028487384792857284,
+  "dy_mm": -0.25028711265171033,
+  "theta_rad": 0.0017266353654002975,
+  "wells": {
+   "B02": {
+    "measured_mm": [
+     -40.6798,
+     22.242
+    ],
+    "diameter_mm": 6.931
+   },
+   "G11": {
+    "measured_mm": [
+     40.6228,
+     -22.7426
+    ],
+    "diameter_mm": 6.9839
+   }
+  },
+  "magnification": "4x"
  },
- "rescue_only@0h": {
-  "well": "C11",
-  "file": "L17_Plate_P17_C11_4x_001.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0092,
-  "field_offset_from_well_centre_mm": 0.645
- },
- "challenge_only@0h": {
-  "well": "C03",
-  "file": "L17_Plate_P17_C03_4x_002.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0076,
-  "field_offset_from_well_centre_mm": 0.631
- },
- "challenge_late_rescue@0h": {
-  "well": "G09",
-  "file": "L17_Plate_P17_G09_4x_003.png",
-  "valid": true,
-  "accepted": true,
-  "focus": 0.1677,
-  "field_offset_from_well_centre_mm": 0.3476
- },
- "challenge_early_rescue@0h": {
-  "well": "C09",
-  "file": "L17_Plate_P17_C09_4x_004.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0044,
-  "field_offset_from_well_centre_mm": 0.6183
- },
- "vehicle@24h": {
-  "well": "E05",
-  "file": "L17_Plate_P17_E05_4x_005.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.1472,
-  "field_offset_from_well_centre_mm": 0.4503
- },
- "rescue_only@24h": {
-  "well": "C11",
-  "file": "L17_Plate_P17_C11_4x_006.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0091,
-  "field_offset_from_well_centre_mm": 0.6525
- },
- "challenge_only@24h": {
-  "well": "C03",
-  "file": "L17_Plate_P17_C03_4x_007.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0049,
-  "field_offset_from_well_centre_mm": 0.615
- },
- "challenge_late_rescue@24h": {
-  "well": "G09",
-  "file": "L17_Plate_P17_G09_4x_008.png",
-  "valid": true,
-  "accepted": true,
-  "focus": 0.1977,
-  "field_offset_from_well_centre_mm": 0.3624
- },
- "challenge_early_rescue@24h": {
-  "well": "C09",
-  "file": "L17_Plate_P17_C09_4x_009.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0029,
-  "field_offset_from_well_centre_mm": 0.6266
- },
- "vehicle@48h": {
-  "well": "E05",
-  "file": "L17_Plate_P17_E05_4x_010.png",
-  "valid": true,
-  "accepted": true,
-  "focus": 0.1537,
-  "field_offset_from_well_centre_mm": 0.426
- },
- "rescue_only@48h": {
-  "well": "C11",
-  "file": "L17_Plate_P17_C11_4x_011.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0088,
-  "field_offset_from_well_centre_mm": 0.6481
- },
- "challenge_only@48h": {
-  "well": "C03",
-  "file": "L17_Plate_P17_C03_4x_012.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0036,
-  "field_offset_from_well_centre_mm": 0.6414
- },
- "challenge_late_rescue@48h": {
-  "well": "G09",
-  "file": "L17_Plate_P17_G09_4x_013.png",
-  "valid": true,
-  "accepted": true,
-  "focus": 0.3897,
-  "field_offset_from_well_centre_mm": 0.2329
- },
- "challenge_early_rescue@48h": {
-  "well": "C09",
-  "file": "L17_Plate_P17_C09_4x_014.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0076,
-  "field_offset_from_well_centre_mm": 0.5522
- },
- "vehicle@72h": {
-  "well": "E05",
-  "file": "L17_Plate_P17_E05_4x_015.png",
-  "valid": true,
-  "accepted": true,
-  "focus": 0.1579,
-  "field_offset_from_well_centre_mm": 0.4468
- },
- "rescue_only@72h": {
-  "well": "C11",
-  "file": "L17_Plate_P17_C11_4x_016.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0085,
-  "field_offset_from_well_centre_mm": 0.6435
- },
- "challenge_only@72h": {
-  "well": "C03",
-  "file": "L17_Plate_P17_C03_4x_017.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0056,
-  "field_offset_from_well_centre_mm": 0.6379
- },
- "challenge_late_rescue@72h": {
-  "well": "G09",
-  "file": "L17_Plate_P17_G09_4x_018.png",
-  "valid": true,
-  "accepted": true,
-  "focus": 0.3818,
-  "field_offset_from_well_centre_mm": 0.1925
- },
- "challenge_early_rescue@72h": {
-  "well": "C09",
-  "file": "L17_Plate_P17_C09_4x_019.png",
-  "valid": false,
-  "accepted": true,
-  "focus": 0.0074,
-  "field_offset_from_well_centre_mm": 0.5303
+ "place": [
+  0.0,
+  0.0,
+  0.0
+ ],
+ "shots": {
+  "vehicle@0h": {
+   "well": "E05",
+   "file": "L17_Plate_P17_E05_4x_000.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.1027,
+   "field_offset_from_well_centre_mm": 0.5076
+  },
+  "rescue_only@0h": {
+   "well": "C11",
+   "file": "L17_Plate_P17_C11_4x_001.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.0895,
+   "field_offset_from_well_centre_mm": 0.5706
+  },
+  "challenge_only@0h": {
+   "well": "C03",
+   "file": "L17_Plate_P17_C03_4x_002.png",
+   "valid": true,
+   "accepted": true,
+   "focus": 0.1523,
+   "field_offset_from_well_centre_mm": 0.3167
+  },
+  "challenge_late_rescue@0h": {
+   "well": "G09",
+   "file": "L17_Plate_P17_G09_4x_003.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.1387,
+   "field_offset_from_well_centre_mm": 0.4226
+  },
+  "challenge_early_rescue@0h": {
+   "well": "C09",
+   "file": "L17_Plate_P17_C09_4x_004.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.0215,
+   "field_offset_from_well_centre_mm": 0.5441
+  },
+  "vehicle@24h": {
+   "well": "E05",
+   "file": "L17_Plate_P17_E05_4x_005.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.1364,
+   "field_offset_from_well_centre_mm": 0.4656
+  },
+  "rescue_only@24h": {
+   "well": "C11",
+   "file": "L17_Plate_P17_C11_4x_006.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.1027,
+   "field_offset_from_well_centre_mm": 0.4729
+  },
+  "challenge_only@24h": {
+   "well": "C03",
+   "file": "L17_Plate_P17_C03_4x_007.png",
+   "valid": true,
+   "accepted": true,
+   "focus": 0.1697,
+   "field_offset_from_well_centre_mm": 0.4115
+  },
+  "challenge_late_rescue@24h": {
+   "well": "G09",
+   "file": "L17_Plate_P17_G09_4x_008.png",
+   "valid": true,
+   "accepted": true,
+   "focus": 0.1947,
+   "field_offset_from_well_centre_mm": 0.3373
+  },
+  "challenge_early_rescue@24h": {
+   "well": "C09",
+   "file": "L17_Plate_P17_C09_4x_009.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.0977,
+   "field_offset_from_well_centre_mm": 0.4691
+  },
+  "vehicle@48h": {
+   "well": "E05",
+   "file": "L17_Plate_P17_E05_4x_010.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.134,
+   "field_offset_from_well_centre_mm": 0.4733
+  },
+  "rescue_only@48h": {
+   "well": "C11",
+   "file": "L17_Plate_P17_C11_4x_011.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.0888,
+   "field_offset_from_well_centre_mm": 0.5817
+  },
+  "challenge_only@48h": {
+   "well": "C03",
+   "file": "L17_Plate_P17_C03_4x_012.png",
+   "valid": true,
+   "accepted": true,
+   "focus": 0.1773,
+   "field_offset_from_well_centre_mm": 0.4235
+  },
+  "challenge_late_rescue@48h": {
+   "well": "G09",
+   "file": "L17_Plate_P17_G09_4x_013.png",
+   "valid": true,
+   "accepted": true,
+   "focus": 0.209,
+   "field_offset_from_well_centre_mm": 0.3768
+  },
+  "challenge_early_rescue@48h": {
+   "well": "C09",
+   "file": "L17_Plate_P17_C09_4x_014.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.1124,
+   "field_offset_from_well_centre_mm": 0.5093
+  },
+  "vehicle@72h": {
+   "well": "E05",
+   "file": "L17_Plate_P17_E05_4x_015.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.1308,
+   "field_offset_from_well_centre_mm": 0.4645
+  },
+  "rescue_only@72h": {
+   "well": "C11",
+   "file": "L17_Plate_P17_C11_4x_016.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.0865,
+   "field_offset_from_well_centre_mm": 0.5579
+  },
+  "challenge_only@72h": {
+   "well": "C03",
+   "file": "L17_Plate_P17_C03_4x_017.png",
+   "valid": true,
+   "accepted": true,
+   "focus": 0.2031,
+   "field_offset_from_well_centre_mm": 0.41
+  },
+  "challenge_late_rescue@72h": {
+   "well": "G09",
+   "file": "L17_Plate_P17_G09_4x_018.png",
+   "valid": true,
+   "accepted": true,
+   "focus": 0.1633,
+   "field_offset_from_well_centre_mm": 0.4158
+  },
+  "challenge_early_rescue@72h": {
+   "well": "C09",
+   "file": "L17_Plate_P17_C09_4x_019.png",
+   "valid": false,
+   "accepted": true,
+   "focus": 0.1058,
+   "field_offset_from_well_centre_mm": 0.5357
+  }
  }
 }

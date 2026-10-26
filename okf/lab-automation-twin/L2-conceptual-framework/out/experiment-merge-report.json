@@ -1,0 +1,76 @@
+{
+ "consistent": true,
+ "reasoner": "Konclude (SROIQV(D))",
+ "unsatisfiable": [],
+ "inferred_equivalences": [
+  [
+   "lab:ChallengeOnlyArm",
+   "xp:ChallengeOnlyArm"
+  ],
+  [
+   "lab:ChallengeRescueArm",
+   "xp:ChallengeRescueArm"
+  ],
+  [
+   "lab:ControlArm",
+   "xp:UntreatedArm"
+  ]
+ ],
+ "inferred_subsumptions": [
+  [
+   "lab:ChallengeRescueStudyDesign",
+   "xp:RequiresDosing"
+  ],
+  [
+   "lab:ControlArm",
+   "xp:NegativeControlArm"
+  ],
+  [
+   "lab:DelayedRescueStudyDesign",
+   "xp:RequiresDosing"
+  ],
+  [
+   "lab:ExperimentalArm",
+   "xp:PlanSpecification"
+  ],
+  [
+   "lab:InterventionSpec",
+   "xp:PlanSpecification"
+  ],
+  [
+   "xp:ChallengeRescueArm",
+   "lab:ExperimentalArm"
+  ],
+  [
+   "xp:ChallengeSpec",
+   "lab:InterventionSpec"
+  ],
+  [
+   "xp:NegativeControlArm",
+   "lab:ExperimentalArm"
+  ],
+  [
+   "xp:PositiveControlArm",
+   "lab:ExperimentalArm"
+  ],
+  [
+   "xp:ReplicatedArm",
+   "lab:ExperimentalArm"
+  ],
+  [
+   "xp:RescueOnlyArm",
+   "lab:ExperimentalArm"
+  ],
+  [
+   "xp:VehicleSpec",
+   "lab:InterventionSpec"
+  ]
+ ],
+ "seconds": 1.4,
+ "inputs": [
+  "okf/lab-automation-twin/build/upstream-aicor-ontology.ttl",
+  "okf/lab-automation-twin/build/lab-automation-twin.ofn",
+  "rsa/out/experiment_ontology/experiment.owl",
+  "okf/lab-automation-twin/bridge/experiment-bridge.ofn"
+ ]
+}

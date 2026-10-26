@@ -1,0 +1,26 @@
+\contentsline {section}{Summary}{2}{Doc-Start}%
+\contentsline {paragraph}{Where we are}{2}{paragraph*.1}%
+\contentsline {paragraph}{What is next}{2}{paragraph*.2}%
+\contentsline {section}{\numberline {1}Vision and mission}{2}{section.1}%
+\contentsline {paragraph}{Vision}{2}{paragraph*.3}%
+\contentsline {paragraph}{Mission}{2}{paragraph*.4}%
+\contentsline {section}{\numberline {2}The research problem}{3}{section.2}%
+\contentsline {section}{\numberline {3}Why it matters}{3}{section.3}%
+\contentsline {section}{\numberline {4}Why it is hard}{3}{section.4}%
+\contentsline {section}{\numberline {5}Contributions}{4}{section.5}%
+\contentsline {section}{\numberline {6}Where we are}{4}{section.6}%
+\contentsline {subsection}{\numberline {6.1}The cell and the lab}{4}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Devices and their mechanisms}{4}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Robots in action}{5}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}The cultures}{5}{subsection.6.4}%
+\contentsline {paragraph}{The robot's own images}{5}{paragraph*.16}%
+\contentsline {subsection}{\numberline {6.5}Knowledge: ontologies and the designator language}{5}{subsection.6.5}%
+\contentsline {paragraph}{The experiment ontology}{9}{paragraph*.20}%
+\contentsline {paragraph}{One experiment model}{9}{paragraph*.22}%
+\contentsline {subsection}{\numberline {6.6}From required information to robot motion}{10}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Guarantees: the motions implement the design}{11}{subsection.6.7}%
+\contentsline {subsection}{\numberline {6.8}What the lab affords}{11}{subsection.6.8}%
+\contentsline {subsection}{\numberline {6.9}Status at a glance}{13}{subsection.6.9}%
+\contentsline {section}{\numberline {7}Plan for a first demonstrator}{13}{section.7}%
+\contentsline {paragraph}{Goal}{13}{paragraph*.31}%
+\contentsline {paragraph}{Decisions needed}{14}{paragraph*.35}%

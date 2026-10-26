@@ -214,13 +214,13 @@
 <text text-anchor="middle" x="2219" y="-320.5" font-family="Helvetica,sans-Serif" font-size="10.00">ControlledDesign</text>
 </g>
 <!-- ControlledDesign&#45;&gt;StudyDesign -->
-<g id="edge16" class="edge">
+<g id="edge17" class="edge">
 <title>ControlledDesign&#45;&gt;StudyDesign</title>
 <path fill="none" stroke="#555555" d="M2238.48,-341.32C2246.76,-348.8 2256.46,-357.72 2265,-366 2281.02,-381.53 2283.25,-387.26 2300,-402 2307.24,-408.37 2315.36,-414.82 2323.14,-420.69"/>
 <polygon fill="#555555" stroke="#555555" points="2321.26,-423.66 2331.37,-426.81 2325.43,-418.04 2321.26,-423.66"/>
 </g>
 <!-- ControlledDesign&#45;&gt;ComparativeDesign -->
-<g id="edge17" class="edge">
+<g id="edge16" class="edge">
 <title>ControlledDesign&#45;&gt;ComparativeDesign</title>
 <path fill="none" stroke="#555555" d="M2214.08,-341.07C2212.76,-345.67 2211.29,-350.78 2209.84,-355.79"/>
 <polygon fill="#555555" stroke="#555555" points="2206.37,-355.19 2206.96,-365.77 2213.1,-357.13 2206.37,-355.19"/>
@@ -268,13 +268,13 @@
 <text text-anchor="middle" x="2228" y="-137.5" font-family="Helvetica,sans-Serif" font-size="10.00">AgentControlledInjuryRescueDesign</text>
 </g>
 <!-- AgentControlledInjuryRescueDesign&#45;&gt;StudyDesign -->
-<g id="edge22" class="edge">
+<g id="edge23" class="edge">
 <title>AgentControlledInjuryRescueDesign&#45;&gt;StudyDesign</title>
 <path fill="none" stroke="#555555" d="M2182.65,-158.21C2170.73,-164.51 2158.77,-172.69 2150,-183 2126.23,-210.94 2123,-224.32 2123,-261 2123,-261 2123,-261 2123,-324 2123,-359.3 2113.04,-377.03 2138,-402 2161.15,-425.16 2249.62,-436.08 2306.49,-440.8"/>
 <polygon fill="#555555" stroke="#555555" points="2306.47,-444.31 2316.72,-441.61 2307.03,-437.33 2306.47,-444.31"/>
 </g>
 <!-- AgentControlledInjuryRescueDesign&#45;&gt;ValidatedInjuryRescueDesign -->
-<g id="edge23" class="edge">
+<g id="edge22" class="edge">
 <title>AgentControlledInjuryRescueDesign&#45;&gt;ValidatedInjuryRescueDesign</title>
 <path fill="none" stroke="#555555" d="M2230.6,-158.07C2231.31,-162.67 2232.08,-167.78 2232.85,-172.79"/>
 <polygon fill="#555555" stroke="#555555" points="2229.4,-173.41 2234.37,-182.77 2236.32,-172.36 2229.4,-173.41"/>
@@ -364,7 +364,7 @@
 <text text-anchor="middle" x="2376" y="-76.5" font-family="Helvetica,sans-Serif" font-size="10.00">AdequatelyControlledInjuryRescueDesign</text>
 </g>
 <!-- AdequatelyControlledInjuryRescueDesign&#45;&gt;StudyDesign -->
-<g id="edge33" class="edge">
+<g id="edge36" class="edge">
 <title>AdequatelyControlledInjuryRescueDesign&#45;&gt;StudyDesign</title>
 <path fill="none" stroke="#555555" d="M2266.15,-93.38C2204.03,-101.82 2136.5,-112.82 2125,-122 2095.71,-145.38 2093,-162.53 2093,-200 2093,-200 2093,-200 2093,-324 2093,-360.54 2091.34,-378.12 2119,-402 2146.43,-425.69 2245.5,-436.56 2306.53,-441.1"/>
 <polygon fill="#555555" stroke="#555555" points="2306.5,-444.61 2316.72,-441.83 2307,-437.63 2306.5,-444.61"/>
@@ -376,19 +376,19 @@
 <polygon fill="#555555" stroke="#555555" points="2278.7,-115.02 2270.71,-121.97 2281.3,-121.52 2278.7,-115.02"/>
 </g>
 <!-- AdequatelyControlledInjuryRescueDesign&#45;&gt;ReplicatedDesign -->
-<g id="edge34" class="edge">
+<g id="edge35" class="edge">
 <title>AdequatelyControlledInjuryRescueDesign&#45;&gt;ReplicatedDesign</title>
 <path fill="none" stroke="#555555" d="M2370.38,-97.38C2368.24,-104.87 2366.06,-113.78 2365,-122 2359.49,-164.76 2361.94,-176 2365,-219 2365.34,-223.76 2365.89,-228.79 2366.52,-233.67"/>
 <polygon fill="#555555" stroke="#555555" points="2363.11,-234.49 2368,-243.89 2370.04,-233.5 2363.11,-234.49"/>
 </g>
 <!-- AdequatelyControlledInjuryRescueDesign&#45;&gt;PositiveControlledDesign -->
-<g id="edge35" class="edge">
+<g id="edge33" class="edge">
 <title>AdequatelyControlledInjuryRescueDesign&#45;&gt;PositiveControlledDesign</title>
 <path fill="none" stroke="#555555" d="M2373.42,-97.3C2370.19,-125.15 2367.6,-180.68 2391,-219 2401.54,-236.25 2415.98,-228.54 2429,-244 2441.49,-258.83 2450.11,-278.96 2455.55,-295.05"/>
 <polygon fill="#555555" stroke="#555555" points="2452.32,-296.46 2458.67,-304.95 2459,-294.36 2452.32,-296.46"/>
 </g>
 <!-- AdequatelyControlledInjuryRescueDesign&#45;&gt;WellContrastedDesign -->
-<g id="edge36" class="edge">
+<g id="edge34" class="edge">
 <title>AdequatelyControlledInjuryRescueDesign&#45;&gt;WellContrastedDesign</title>
 <path fill="none" stroke="#555555" d="M2405.94,-97.19C2442.88,-118.4 2505.75,-154.5 2546.31,-177.79"/>
 <polygon fill="#555555" stroke="#555555" points="2544.7,-180.89 2555.11,-182.84 2548.18,-174.82 2544.7,-180.89"/>

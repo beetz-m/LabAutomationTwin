@@ -1,0 +1,50 @@
+;; The improved challenge-rescue design as an authored LDL design designator (culture level). ILLUSTRATIVE (D016):
+;; the reviewer's design, not run. It is the single source of the design for every layer that uses it:
+;;   rsa/experiment_ontology.py   improved_spec() reads it -> OWL ABox, HermiT classification, closed-world checks
+;;   scripts/run_culture_experiment.py --design improved   -> the simulated culture run, arm by arm
+;;   rsa/lab_affordance.py        -> requirements matched against the labs' capability profiles
+;; A factorial of challenge (vehicle, 0.85 au at 0 h) and time of rescue (none, 6 h, 48 h), every level
+;; vehicle-matched; the early rescue is the positive control (prior evidence: rescue at 6 h was effective at every
+;; dose tested in the surrogate's dose series). Three replicate cultures per arm in randomised interior wells.
+;; Comparisons carry their decision rule; the analysis plan has a deviation rule.
+
+(a design
+  (name improved)
+  (status illustrative)
+  (goal (the belief (expected-information-gain (from-plan c_d85_t48_n3))))   ; plan_g050.json candidate for n = 3
+
+  (factor (a factor (name challenge)
+    (level (a level (name vehicle)
+      (administration (an administration (agent vehicle) (dose 0 au) (at (culture-time 0 h))))))
+    (level (a level (name c085)
+      (administration (an administration (agent challenge) (dose 0.85 au) (at (culture-time 0 h))))))))
+  (factor (a factor (name rescue_time)
+    (level (a level (name none)
+      (administration (an administration (agent vehicle) (dose 0 au) (at (culture-time 6 h))))
+      (administration (an administration (agent vehicle) (dose 0 au) (at (culture-time 48 h))))))
+    (level (a level (name h6)
+      (administration (an administration (agent rescue) (dose 0.70 au) (at (culture-time 6 h))))
+      (administration (an administration (agent vehicle) (dose 0 au) (at (culture-time 48 h))))))
+    (level (a level (name h48)
+      (administration (an administration (agent vehicle) (dose 0 au) (at (culture-time 6 h))))
+      (administration (an administration (agent rescue) (dose 0.70 au) (at (culture-time 48 h))))))))
+
+  (arm (an arm (name vehicle) (units 3) (at-level (challenge vehicle) (rescue_time none))))
+  (arm (an arm (name rescue_only) (units 3) (at-level (challenge vehicle) (rescue_time h48))))
+  (arm (an arm (name challenge_only) (units 3) (at-level (challenge c085) (rescue_time none))))
+  (arm (an arm (name challenge_late_rescue) (units 3) (at-level (challenge c085) (rescue_time h48))))
+  (arm (an arm (name challenge_early_rescue) (units 3) (at-level (challenge c085) (rescue_time h6))
+         (expected-outcome (an expectation (from (prior-evidence "rescue at 6 h effective"))))))
+
+  (comparison (a comparison (name validity) (between challenge_only vehicle) (rule (threshold 2 sd))
+                (licenses primary) (licenses window)))
+  (comparison (a comparison (name primary) (between challenge_late_rescue challenge_only) (rule bayes)))
+  (comparison (a comparison (name agent_alone) (between rescue_only vehicle) (rule estimate)))
+  (comparison (a comparison (name positive_control) (between challenge_early_rescue challenge_only) (rule (threshold 2 sd))
+                (licenses primary)))
+  (comparison (a comparison (name window) (between challenge_late_rescue challenge_early_rescue) (rule estimate)))
+  (interaction (an interaction (difference-of primary agent_alone)))
+
+  (readout (a readout (kind imaging) (at (culture-time 72 h))))
+  (analysis-plan (an analysis-plan (deviation-rule true)))
+  (placement (a placement (plate P18) (wells randomised-interior) (seed 17))))

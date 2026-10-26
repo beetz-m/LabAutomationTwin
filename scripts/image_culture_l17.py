@@ -8,6 +8,7 @@ culture. The plate stays loaded and is re-imaged at each time (in a run it would
 
 Outputs in scenes/culture/<run>/l17_robot/: the controller's raw 16-bit images (12-bit ADC values) with JSON sidecars
 and an 8-bit preview of each (*_view.png), and robot_images.png (arms x times). ILLUSTRATIVE surrogate (D016).
+--no-register: image without the plate registration (output in l17_robot*_unregistered/).
 --place dx,dy,yaw: where the plate is released over the nest (mm, mm, deg; default 0,0,0). 1,-1,0.5 is the L17
 acceptance test's placement: the nest's guides seat it, but without plate registration the residual shift and
 rotation move the field off the organoid at 4x (output then in l17_robot_placement_error/).
@@ -29,7 +30,8 @@ MAG = args[args.index("--mag") + 1] if "--mag" in args else "4x"
 PLACE = [float(x) for x in (args[args.index("--place") + 1] if "--place" in args else "0,0,0").split(",")]  # dx mm, dy mm, yaw deg
 TIMES = [float(x) for x in (args[args.index("--times") + 1] if "--times" in args else "0,24,48,72").split(",")]
 DIR = os.path.join(ROOT, "scenes", "culture", RUN)
-OUT = os.path.join(DIR, "l17_robot" + ("" if PLACE == [0, 0, 0] else "_placement_error"))
+REGISTER = "--no-register" not in args
+OUT = os.path.join(DIR, "l17_robot" + ("" if PLACE == [0, 0, 0] else "_placement_error") + ("" if REGISTER else "_unregistered"))
 L17_USD = os.path.join(ROOT, "assets/l17/l17.usda")
 PLATE_USD = os.path.join(ROOT, "assets/labware/plate_sbs96.usda")
 PLATE = "Plate_P17"
@@ -140,6 +142,14 @@ run_s(1.0)
 r = ctrl.load_plate(PLATE)
 wait_idle(30)
 print(f"[l17_culture] load_plate: {r.accepted} {r.reason} mode={ctrl.mode}", flush=True)
+reg = None
+if REGISTER:                                       # edge-finding plate registration before any imaging
+    r = ctrl.register_plate(PLATE)
+    wait_idle(600)
+    reg = ctrl.registration.get(PLATE)
+    print(f"[l17_culture] register_plate: accepted={r.accepted} -> "
+          + (f"shift ({reg['dx_mm']:+.3f}, {reg['dy_mm']:+.3f}) mm, rotation {math.degrees(reg['theta_rad']):+.3f} deg, "
+             f"well diameters {[w['diameter_mm'] for w in reg['wells'].values()]} mm" if reg else "FAILED"), flush=True)
 
 shots = {}
 for t in TIMES:
@@ -166,7 +176,8 @@ sheet = Image.new("RGB", (250 + cell * len(TIMES), 70 + cell * len(names) + 40),
 d = ImageDraw.Draw(sheet)
 F = "/usr/share/fonts/opentype/inter/Inter-SemiBold.otf"
 f1, f2, f3 = ImageFont.truetype(F, 22), ImageFont.truetype(F, 18), ImageFont.truetype(F, 14)
-d.text((16, 14), f"L17 robot images ({MAG}, autofocus) of the {run['design']['name']} design's cultures, one unit per arm",
+d.text((16, 14), f"L17 robot images ({MAG}, autofocus, {'with' if reg else 'without'} plate registration) of the "
+       f"{run['design']['name']} design's cultures, one unit per arm",
        font=f1, fill=(235, 240, 248))
 for j, t in enumerate(TIMES):
     d.text((250 + j * cell + cell // 2 - 22, 46), f"{t:.0f} h", font=f2, fill=(220, 226, 236))
@@ -187,6 +198,11 @@ for i, arm in enumerate(names):
 d.text((16, sheet.height - 30), "Raw 12-bit images shown linearly (0-4095 -> 0-255), centre square. Simulated culture, "
        "illustrative surrogate (D016).", font=f3, fill=(150, 165, 185))
 sheet.save(os.path.join(OUT, "robot_images.png"))
-json.dump({f"{a}@{t:g}h": s for (a, t), s in shots.items()}, open(os.path.join(OUT, "robot_images.json"), "w"), indent=1)
+json.dump(dict(registration=reg, place=PLACE, shots={f"{a}@{t:g}h": s for (a, t), s in shots.items()}),
+          open(os.path.join(OUT, "robot_images.json"), "w"), indent=1)
+valid = sum(s["valid"] for s in shots.values())
+offs = [s["field_offset_from_well_centre_mm"] for s in shots.values() if s["field_offset_from_well_centre_mm"] is not None]
+print(f"[l17_culture] valid {valid}/{len(shots)}; field offset from the well centre: max {max(offs):.3f} mm, "
+      f"mean {sum(offs) / len(offs):.3f} mm", flush=True)
 print(f"[l17_culture] wrote {OUT}/robot_images.png", flush=True)
 app.close()

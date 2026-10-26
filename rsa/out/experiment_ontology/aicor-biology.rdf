@@ -5,774 +5,132 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#requiresCondition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ParticulateContaminant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Contaminant"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#SterilityState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RedoxState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#lowerBound">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ReagentBorneContamination">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#glutathioneValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ReversibilityState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Acetaminophen">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#Toxicant"/>
-    <rdfs:label>acetaminophen / paracetamol</rdfs:label>
-    <skos:exactMatch rdf:resource="http://purl.obolibrary.org/obo/CHEBI_46195"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#concentrationValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ObservableBiologicalState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#depletes">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Anomaly">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Hypothesis">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Anomaly"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#TimingHazard">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#maintainsCondition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ImagingProcess">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#ObservationProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminatedState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasContaminationState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="https://aicor.example/okf/biology#hasState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Unknown">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>unknown</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RescueAgent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#Toxicant">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#QuarantinedState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ExperimentalValidityState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ModelStatus">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#OxidativeStress">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#StressResponse"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RecoveryPotentialState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ValidForInference">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ExperimentalValidityState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#PreventionAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#modelVersion">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Quality">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CellDeathProcess">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ViabilityState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ControlledToxicChallenge">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ToxicExposure"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#DerivedFeature">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#PhysicalEntity">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Entity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Hazard">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasObservableState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="https://aicor.example/okf/biology#hasState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#contaminates">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#duration_h">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#StateEstimate">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RecoveryAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ProtectiveCapacityState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CultureSystem">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ProhibitedCondition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Condition"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CultureWell">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#CultureWell"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#State">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#StateSpaceModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#supports">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#StressResponse">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#UnintendedToxicExposure">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ToxicExposure"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CarryoverContamination">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#CrossContamination"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#N_Acetylcysteine">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#RescueAgent"/>
-    <rdfs:label>N-acetylcysteine</rdfs:label>
-    <rdfs:comment>Reference rescue agent in the acetaminophen challenge example; exact external chemical identifier intentionally left to ontology curation.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#EvidenceItem">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Evidence"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#identity">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Hypothesis">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#viabilityValue">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#lowerBound">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Organoid">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#InjuryState">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Organoid"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#locatedIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ExperimentalValidityState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CellLineContaminant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Contaminant"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#injuryValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CellPopulation">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#QuarantineAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RecoveryAction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ScientificModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#partOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://aicor.example/okf/biology#hasPart"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Observed">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>observed</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RecoveryProcess">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#IdentityState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#QualitativeCausalModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MachineLearnedModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Prediction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#InformationEntity">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#detectedBy">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#time_h">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#FungalContaminant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#MicrobialContaminant"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Condition">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#State">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#deliveredVolume_uL">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Observation">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#InterventionProcess">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Observation"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#PhysicalProcess"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#DecontaminationAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RecoveryAction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Conflicted">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>conflicted</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Glutathione">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
-    <rdfs:label>glutathione</rdfs:label>
-    <skos:exactMatch rdf:resource="http://purl.obolibrary.org/obo/CHEBI_16856"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#PreventConditionAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RegulationAction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#warrants">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Inferred">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>inferred</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#uncertaintyValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#EstablishedDomainKnowledge">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>established domain knowledge</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#DisposalAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RecoveryAction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#usesTool">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#prohibitsCondition">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#qualifies">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#OutOfScope">
     <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
     <rdfs:label>out of scope</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#upperBound">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#BiologicalProcess">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ToxicExposure">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#BiologicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#BiologicalMaterial">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#PhysicalEntity"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#BiologicalObject"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Predicted">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>predicted</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MitochondrialFunctionState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ModelParameter">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CellLine">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#EscalationAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#recoveryProbability">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Derived">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>derived</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ToxicityHazard">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#explanationText">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#prevents">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#protectiveResponseValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasPart">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Assumed">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>assumed</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ThresholdRecoveryModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ChemicalContaminant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Contaminant"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationProcess">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#PhysicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Hypothesized">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>hypothesized</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Reagent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#InvalidForInference">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ExperimentalValidityState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasModelStatus">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ProtectiveResponseModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ValidatedForScope">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>validated for scope</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationSuspectedState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MechanisticModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ExperimentAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#causes">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#restores">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ValidatedModelForScope">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MicrobialContaminant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Contaminant"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasControlMeasure">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RegulationAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#BiologicalState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InterventionProcess"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#MediumExchange">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InterventionProcess"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Contradicted">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>contradicted</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#FalsifiedModel">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Assumption">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#generatedBy">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#DamageAccumulation">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ScientificClaim">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ConceptualModel">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#DiagnosticAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#EpistemicStatus">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#LatentBiologicalState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#InterventionProcess">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#PhysicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#requiresAuthorizationFrom">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#inhibits">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#actsOn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasBarrier">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CandidateModel">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasValidityState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="https://aicor.example/okf/biology#hasState"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#usesReagent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationHazardModel">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MachineLearnedModel">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#estimates">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RepairProcess">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#StochasticProcessModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#StateSpaceModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Measurement">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Observation"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationFreeState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationState"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#CulturePlate">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#CulturePlate"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasRecoveryPolicy">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <rdfs:label>AICOR Biological Domain Ontology</rdfs:label>
-    <rdfs:comment>Ontology for biological phenomena, interventions, contamination, evidence, models, regulation and robot understanding in the AICOR robot-scientist laboratory.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CultureGrowth">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CounterfactualPrediction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Prediction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ProtectiveResponse">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RescueIntervention">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InterventionProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ObservationModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#scopeDescription">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#confidence">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#realizesScientificPurpose">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#EvidencePackage">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#mitigates">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#AirborneContamination">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CrossContamination">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MeasurementValidityHazard">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#TransferValidatedModel">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CalibratedModel">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#setpointValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#PhysicalState">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#usesModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#contains">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RequiredCondition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Condition"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ActionSpecification">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#IncubationProcess">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#PhysicalProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#SupersededModel">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#AssayProcess">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#ObservationProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#about">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CrossWellContamination">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#CrossContamination"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#CultureMedium">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#doseValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasAdverseEffect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MetabolicProcess">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ObservableBiologicalState">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalState"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#CrossContamination">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#StateEstimate">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationProcess"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasEpistemicStatus">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasObservableState">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#participatesIn">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RestoreConditionAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RegulationAction"/>
+    <rdfs:subPropertyOf rdf:resource="https://aicor.example/okf/biology#hasState"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#hasParticipant">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <owl:inverseOf rdf:resource="https://aicor.example/okf/biology#participatesIn"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasLineage">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Glutathione">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
+    <rdfs:label>glutathione</rdfs:label>
+    <skos:exactMatch rdf:resource="http://purl.obolibrary.org/obo/CHEBI_16856"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MonitoringAction">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#glutathioneValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#identity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ModelParameter">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RestoreConditionAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RegulationAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationFreeState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#DiagnosticAction">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#measures">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#protectsAgainst">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasReceptor">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Washout">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ExperimentalValidityState">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InterventionProcess"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasContaminantSource">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasTransmissionPathway">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ToxicExposure">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InterventionProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#timestamp">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#protectiveResponseValue">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#regulatedBy">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#partOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://aicor.example/okf/biology#hasPart"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#changesStateOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Derived">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>derived</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasAssumption">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#InjuryState">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MycoplasmaContaminant">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BacterialContaminant"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#promotes">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#damages">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RegulatedCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Condition"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#hasLatentState">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -782,87 +140,11 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#PhysicalEntity"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#RegulatedCondition">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Condition"/>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#explanationText">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Risk">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationHazard">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasEvidenceRequirement">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#usesAgent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasMonitoringPlan">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#monitoredBy">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContactTransferContamination">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationProcess"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#invalidates">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MaintainConditionAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RegulationAction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#qualifies">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#triggers">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasRisk">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#ChemicalEntity">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#PhysicalEntity"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#contradicts">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#BacterialContaminant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#MicrobialContaminant"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#MycoplasmaContaminant">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BacterialContaminant"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#EstablishConditionAction">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RegulationAction"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasExpectedEffect">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#Measured">
-    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
-    <rdfs:label>measured</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#AgentBasedBiologicalModel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#causallyContributesTo">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#IdentityHazard">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#GlutathioneState">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ViabilityState">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
   </rdf:Description>
@@ -870,10 +152,728 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#StateSpaceModel"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://aicor.example/okf/biology#diagnosedBy">
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#TimingHazard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#FungalContaminant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#MicrobialContaminant"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Anomaly">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Anomaly"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ChemicalContaminant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Contaminant"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#DamageAccumulation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Observation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Observation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#warrants">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ScientificClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#PhysicalEntity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Entity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CultureGrowth">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CounterfactualPrediction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Prediction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Assumed">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>assumed</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#N_Acetylcysteine">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#RescueAgent"/>
+    <rdfs:label>N-acetylcysteine</rdfs:label>
+    <rdfs:comment>Reference rescue agent in the acetaminophen challenge example; exact external chemical identifier intentionally left to ontology curation.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#EstablishedDomainKnowledge">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>established domain knowledge</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CrossWellContamination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#CrossContamination"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#maintainsCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#recoveryProbability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CellLineContaminant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Contaminant"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasBarrier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ProhibitedCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Condition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Assumption">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MeasurementValidityHazard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#StateSpaceModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasEvidenceRequirement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationSuspectedState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#QuarantineAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RecoveryAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#confidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#usesAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MetabolicProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#BiologicalProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#BiologicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#deliveredVolume_uL">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationHazard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#BiologicalState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#IncubationProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#PhysicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#locatedIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>AICOR Biological Domain Ontology</rdfs:label>
+    <rdfs:comment>Ontology for biological phenomena, interventions, contamination, evidence, models, regulation and robot understanding in the AICOR robot-scientist laboratory.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#BacterialContaminant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#MicrobialContaminant"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasValidityState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://aicor.example/okf/biology#hasState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#uncertaintyValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#changesStateOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#modelVersion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Measurement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Observation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#BiologicalMaterial">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#PhysicalEntity"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#BiologicalObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#DisposalAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RecoveryAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#duration_h">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RequiredCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Condition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#PreventionAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#promotes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CultureSystem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#regulatedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RecoveryAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ModelStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MaintainConditionAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RegulationAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Inferred">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>inferred</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#EscalationAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ReagentBorneContamination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ControlledToxicChallenge">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ToxicExposure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MitochondrialFunctionState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#estimates">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#timestamp">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RecoveryProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#requiresAuthorizationFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#upperBound">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#contains">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RepairProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MicrobialContaminant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Contaminant"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ParticulateContaminant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Contaminant"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#detectedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#EvidencePackage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#generatedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#monitoredBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#AirborneContamination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Contradicted">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>contradicted</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#InformationEntity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#InvalidForInference">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ExperimentalValidityState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#QualitativeCausalModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Washout">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InterventionProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#PhysicalState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#EpistemicStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CellPopulation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#IdentityHazard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#IdentityState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Risk">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasAdverseEffect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Prediction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#viabilityValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#about">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasRecoveryPolicy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ImagingProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#ObservationProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#scopeDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RedoxState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#EstablishConditionAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RegulationAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasRisk">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#supports">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#UnintendedToxicExposure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ToxicExposure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Unknown">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>unknown</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationHazardModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#time_h">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Organoid">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Organoid"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ToxicityHazard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#Hazard"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasControlMeasure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#mitigates">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://aicor.example/okf/biology#predicts">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RescueAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#DecontaminationAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RecoveryAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#contradicts">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RescueIntervention">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InterventionProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#AssayProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#ObservationProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#DerivedFeature">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ProtectiveResponseModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#EvidenceItem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#Evidence"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#participatesIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ValidatedForScope">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>validated for scope</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#damages">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ConceptualModel">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Condition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MonitoringAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Acetaminophen">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#Toxicant"/>
+    <rdfs:label>acetaminophen / paracetamol</rdfs:label>
+    <skos:exactMatch rdf:resource="http://purl.obolibrary.org/obo/CHEBI_46195"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasPart">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CellLine">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalMaterial"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Conflicted">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>conflicted</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasTransmissionPathway">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RegulationAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ScientificModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#QuarantinedState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ExperimentalValidityState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#doseValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Hazard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminationProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#PhysicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Reagent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ChemicalEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#GlutathioneState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasModelStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ExperimentAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ActionSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#AgentBasedBiologicalModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#StochasticProcessModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#StateSpaceModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#injuryValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#restores">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ReversibilityState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ValidatedModelForScope">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#OxidativeStress">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#StressResponse"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Observed">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>observed</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#concentrationValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContaminatedState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ChemicalEntity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#PhysicalEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ValidForInference">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ExperimentalValidityState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#contaminates">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ProtectiveCapacityState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#setpointValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#TransferValidatedModel">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#PreventConditionAction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#RegulationAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#measures">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CultureWell">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/lab#CultureWell"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ObservationModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasMonitoringPlan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#prohibitsCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ActionSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#InformationEntity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#triggers">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CalibratedModel">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#invalidates">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Hypothesized">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>hypothesized</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#diagnosedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Measured">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>measured</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CellDeathProcess">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#depletes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#FalsifiedModel">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#requiresCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#protectsAgainst">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ContactTransferContamination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ContaminationProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#usesModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#SterilityState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#State"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#SupersededModel">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasContaminationState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://aicor.example/okf/biology#hasState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#realizesScientificPurpose">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CarryoverContamination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#CrossContamination"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#LatentBiologicalState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasContaminantSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#inhibits">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ThresholdRecoveryModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#usesTool">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#CandidateModel">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#ModelStatus"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#ProtectiveResponse">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#BiologicalProcess"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#RecoveryPotentialState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#LatentBiologicalState"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Predicted">
+    <rdf:type rdf:resource="https://aicor.example/okf/biology#EpistemicStatus"/>
+    <rdfs:label>predicted</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#actsOn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasLineage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#prevents">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#usesReagent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasExpectedEffect">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#MechanisticModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://aicor.example/okf/biology#ScientificModel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#causallyContributesTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#causes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasEpistemicStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasAssumption">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#Quality">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://aicor.example/okf/biology#hasReceptor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
 </rdf:RDF>

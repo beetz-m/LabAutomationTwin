@@ -2,7 +2,7 @@
  "results": {
   "challenge_rescue": {
    "consistent": true,
-   "seconds": 0.57,
+   "seconds": 0.6,
    "unsat": [],
    "realization": {
     "challenge_rescue_design": [
@@ -129,7 +129,7 @@
   },
   "improved": {
    "consistent": true,
-   "seconds": 0.74,
+   "seconds": 0.75,
    "unsat": [],
    "realization": {
     "improved_design": [

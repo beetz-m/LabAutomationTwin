@@ -166,6 +166,7 @@ class L17Controller:
         self.plate_id = ""            # identity verified by the barcode read at load
         self.identity_fault = None
         self.focus_memory = {}        # (plate_id, magnification) -> FocusZ (m) of the last good focus
+        self.registration = {}        # plate_id -> measured plate pose in the nest (register_plate)
         self.history = {}             # plate_id -> well -> {"exposures", "light_dose_rel_ms"} (imaging history)
         self.acquisitions = []        # one record per image_well acquisition (valid or rejected)
         self.autofocus_runs = []
@@ -407,6 +408,7 @@ class L17Controller:
     def _seq_stow(self):
         yield from self._move("y", 0.0)
         yield from self._move("gate", 0.0)
+        self.registration.pop(self.plate_id, None)
         if self.plate_id:
             self._log("plate_removed", plate_id=self.plate_id)
         self.plate_id = ""
@@ -441,8 +443,108 @@ class L17Controller:
 
     def well_target(self, well):
         wx, wy = optics.well_center(well)
+        reg = self.registration.get(self.plate_id)
+        if reg:                                          # measured pose of the plate: rotation about the plate origin + shift
+            c, s_ = math.cos(reg["theta_rad"]), math.sin(reg["theta_rad"])
+            wx, wy = c * wx - s_ * wy + reg["dx_mm"], s_ * wx + c * wy + reg["dy_mm"]
+        return self._target_uv(wx, wy)
+
+    def _target_uv(self, u_mm, v_mm):
+        """Stage target that brings the nominal plate point (u, v) under the objective (no registration)."""
         ox, oy = self.calibration.get("stage_offset_mm", [0.0, 0.0])
-        return -(wx + ox) * MM, -(wy + oy) * MM
+        return -(u_mm + ox) * MM, -(v_mm + oy) * MM
+
+    # ------------------------------------------------------------------ plate registration (edge finding)
+    REG_WELLS = ("B02", "G11")                   # far apart: rotation from their centres, shift from both
+
+    def register_plate(self, plate_id, magnification="4x", exposure_ms=25.0) -> Result:
+        """Measure where the plate actually sits in the nest: the stage sweeps the field centre across the wall of
+        two far-apart wells in +-x and +-y; the wall is where the centre of the image turns from the bright well bottom
+        to the dark plate. The midpoint of opposite wall crossings is the well centre (exact for a chord), and the two
+        centres give the plate's shift and rotation. Afterwards every well target is corrected (well_target)."""
+        if self.mode != "LOADED" or plate_id != self.plate_id:
+            return self._refuse("register_plate", f"mode {self.mode}, plate {plate_id!r}")
+        if not self.seated:
+            return self._refuse("register_plate", f"plate_misseated: seat gaps {self._gaps_mm()} mm",
+                                fault_signal="plate_misseated")
+        self.registration.pop(plate_id, None)
+        return self._start("register_plate", self._seq_register(plate_id, magnification, exposure_ms),
+                           plate_id=plate_id, magnification=magnification)
+
+    def _goto_uv(self, u_mm, v_mm):
+        tx, ty = self._target_uv(u_mm, v_mm)
+        if not (self.x_lim[0] <= tx <= self.x_lim[1] and -0.040 <= ty <= self.y_max):
+            raise RuntimeError(f"plate point ({u_mm:.2f}, {v_mm:.2f}) mm outside the stage range")
+        yield from self._move("y", ty)
+        yield from self._move("x", tx)
+        yield from self._wait(0.05)
+
+    def _centre_level(self, plate_id, well, exposure_ms):
+        yield from self._expose(plate_id, well, exposure_ms, 1.0, "registration")
+        img = self._frame[0].astype(float)
+        h, w = img.shape
+        return float(np.median(img[h // 2 - 40:h // 2 + 40, w // 2 - 40:w // 2 + 40]))
+
+    def _find_wall(self, plate_id, well, c, d, exposure_ms):
+        """Nominal plate position (mm) along c + d*r at which the wall is under the field centre."""
+        R = optics.WELL_R
+        pts = lambda r: (c[0] + d[0] * r, c[1] + d[1] * r)  # noqa: E731
+        inside = None
+        prev = None
+        for r in np.arange(R - 1.0, R + 1.01, 0.125):              # coarse: bright well bottom -> dark plate
+            yield from self._goto_uv(*pts(r))
+            lv = yield from self._centre_level(plate_id, well, exposure_ms)
+            inside = lv if inside is None else inside
+            if lv < (1 + optics.OUTSIDE_T) / 2 * inside:
+                lo, hi = (prev if prev is not None else r - 0.125), r
+                break
+            prev = r
+        else:
+            return None
+        mid = (1 + optics.OUTSIDE_T) / 2 * inside
+        rs, ls = [], []
+        for r in np.linspace(lo, hi, 9):                            # fine: 15.6 um steps across the bracket
+            yield from self._goto_uv(*pts(r))
+            lv = yield from self._centre_level(plate_id, well, exposure_ms)
+            rs.append(r)
+            ls.append(lv)
+        for k in range(1, len(rs)):                                 # first crossing, linear interpolation
+            if ls[k] < mid <= ls[k - 1]:
+                return rs[k - 1] + (ls[k - 1] - mid) / (ls[k - 1] - ls[k]) * (rs[k] - rs[k - 1])
+        return None
+
+    def _seq_register(self, plate_id, mag, exposure_ms):
+        yield from self._index(mag)
+        if (plate_id, mag) in self.focus_memory:
+            yield from self._move("focus", self.focus_memory[(plate_id, mag)])
+        else:
+            w0 = optics.parse_well(self.REG_WELLS[0])
+            yield from self._goto_well(w0)
+            yield from self._autofocus(plate_id, w0, mag, exposure_ms, 1.0)
+        found = {}
+        for name in self.REG_WELLS:
+            well = optics.parse_well(name)
+            c = optics.well_center(well)
+            r = {}
+            for key, d in (("+x", (1, 0)), ("-x", (-1, 0)), ("+y", (0, 1)), ("-y", (0, -1))):
+                r[key] = yield from self._find_wall(plate_id, well, c, d, exposure_ms)
+            if None in r.values():
+                self._log("registration_failed", plate_id=plate_id, well=name, walls=r)
+                self.mode = "LOADED"
+                return
+            found[name] = dict(nominal=c, measured=(c[0] + (r["+x"] - r["-x"]) / 2, c[1] + (r["+y"] - r["-y"]) / 2),
+                               diameter_mm=round((r["+x"] + r["-x"] + r["+y"] + r["-y"]) / 2, 4))
+        (c1, m1), (c2, m2) = [(np.array(f["nominal"]), np.array(f["measured"])) for f in found.values()]
+        th = math.atan2(*(m2 - m1)[::-1]) - math.atan2(*(c2 - c1)[::-1])
+        Rm = np.array([[math.cos(th), -math.sin(th)], [math.sin(th), math.cos(th)]])
+        t = ((m1 - Rm @ c1) + (m2 - Rm @ c2)) / 2
+        self.registration[plate_id] = dict(dx_mm=float(t[0]), dy_mm=float(t[1]), theta_rad=float(th),
+                                           wells={k: dict(measured_mm=[round(float(x), 4) for x in v["measured"]],
+                                                          diameter_mm=v["diameter_mm"]) for k, v in found.items()},
+                                           magnification=mag)
+        self._log("plate_registered", plate_id=plate_id, dx_mm=round(float(t[0]), 4), dy_mm=round(float(t[1]), 4),
+                  theta_deg=round(math.degrees(th), 4), wells=self.registration[plate_id]["wells"])
+        self.mode = "LOADED"
 
     def _goto_well(self, well):
         tx, ty = self.well_target(well)

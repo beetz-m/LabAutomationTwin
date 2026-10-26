@@ -7,7 +7,7 @@ VRB_ONTO = $(RESEARCHSPACE)/foundation/okf/vrb/L2-conceptual-framework/ontology
 NA_ONTO  = $(RESEARCHSPACE)/foundation/okf/normative-admissibility/L2-conceptual-framework/ontology
 export RESEARCHSPACE PY
 
-.PHONY: check validate reason imports cq counts upstream build abox e2m check-full pdf all
+.PHONY: check validate reason imports cq counts upstream build abox e2m check-full pdf all experiment-merge
 
 all: upstream build abox package check pdf
 
@@ -70,3 +70,7 @@ counts:
 
 pdf:
 	@cd docs && lualatex -interaction=nonstopmode -halt-on-error axioms.tex > /dev/null && rm -f axioms.aux axioms.log && echo "pdf: docs/axioms.pdf"
+
+# the module's design concepts bridged to the experiment ontology (rsa/experiment_ontology.py); D-LAT-12
+experiment-merge:
+	@$(PY) bridge/build_experiment_bridge.py && $(PY) tools/check_experiment_merge.py

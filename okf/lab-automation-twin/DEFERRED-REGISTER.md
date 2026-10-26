@@ -167,3 +167,23 @@ and coraplex's executables (giskard motion statecharts) have no counterpart.
 
 **Reuse.** The validity column of the kernel's constraints is robot-scientist's `ValidityConstraint`
 (experimental-authorization-envelope-dl), reused, not redefined.
+
+## D-LAT-12: the module's design concepts and the experiment ontology are bridged; dose datatypes diverge (reconciliation)
+
+**Status (2026-10-18):** the culture-experiments design concepts are bridged to the experiment ontology
+(`rsa/experiment_ontology.py`, namespace `xp:`) by `bridge/experiment-bridge.ofn`. Only primitive correspondences are
+asserted (arm and administration specifications, challenge and rescue specs, `hasArm`, `appliesIntervention`,
+`assignsUnit`, design, intervention, hypothesis, conclusion, run, well and organoid). `make experiment-merge`
+(Konclude over module ∪ upstream ∪ experiment ontology ∪ bridge) finds the union consistent with no unsatisfiable
+class, and infers ChallengeOnlyArm ≡ xp:ChallengeOnlyArm, ChallengeRescueArm ≡ xp:ChallengeRescueArm and
+ControlArm ≡ xp:UntreatedArm; the module's study designs are classified under the experiment ontology's requirement
+classes (RequiresDosing, RequiresCultivation). Report: `L2-conceptual-framework/out/experiment-merge-report.md`.
+
+**Divergence:** `doseAU` (here, range `xsd:double`) and `xp:dose_au` (`xsd:decimal`) are not equated. OWL 2 value
+spaces of double and decimal are disjoint, so the equivalence makes every asserted dose contradictory (HermiT found
+this on the first merge). **Proposal:** use `xsd:decimal` for abstract doses here (doses are exact decimal quantities),
+then add the data-property equivalence.
+
+**Not yet merged:** the module still states its own (simpler) definitions; the bridge makes them provably the same
+classes rather than removing them. Removing them in favour of imports is the next step once the experiment ontology is
+packaged as an OKF module.
